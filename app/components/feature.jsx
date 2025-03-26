@@ -7,7 +7,7 @@ const FeaturesSection = () => {
         {/* Section Heading */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Why Choose DSA Visualizer?
+            <span className='text-amber-500'>Why</span> Choose DSA Visualizer?
           </h2>
           <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
             Discover powerful features to enhance your learning and understanding of data structures and algorithms.
