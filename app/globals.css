@@ -79,3 +79,19 @@ body {
     animation: spin3d 8s infinite linear;
   }
 }
+
+.perspective1-1000 {
+  perspective: 1000px;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate1-y-180 {
+  transform: rotateY(180deg);
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
