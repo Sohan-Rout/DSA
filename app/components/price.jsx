@@ -2,7 +2,10 @@ import React from 'react';
 
 const SubscriptionCard = () => {
   return (
-    <section className="py-16 bg-gray-50 dark:bg-black text-gray-800 dark:text-gray-200">
+    <section className="py-16 bg-gray-50 dark:bg-black text-gray-800 dark:text-gray-200 relative overflow-hidden">
+      {/* Dotted Background */}
+      <div className="absolute inset-0 dotted-background pointer-events-none"></div>
+
       <div className="container mx-auto px-6">
         {/* Section Title */}
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
@@ -184,6 +187,11 @@ const SubscriptionCard = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Added line */}
+      <div>
+        <div className="w-[80%] h-[1px] border-gray-600 rounded-xl mx-auto mt-14 bg-gray-600 z-10"></div>
       </div>
     </section>
   );

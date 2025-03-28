@@ -32,6 +32,10 @@ const AboutSection = () => {
           </a>
         </div>
       </div>
+      {/* Added line */}
+      <div>
+        <div className="w-[80%] mx-auto h-[1px] border-gray-600 rounded-xl mt-14 bg-gray-600 z-10"></div>
+      </div>
     </section>
   );
 };

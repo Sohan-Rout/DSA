@@ -13,7 +13,8 @@ const FeaturesSection = () => {
             <span className="text-blue-500">Why</span> Choose DSA Visualizer?
           </h2>
           <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Discover powerful features to enhance your learning and understanding of data structures and algorithms.
+            Discover powerful features to enhance your learning and
+            understanding of data structures and algorithms.
           </p>
         </div>
 
@@ -47,7 +48,8 @@ const FeaturesSection = () => {
               {/* Back Face (Info) */}
               <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 backface-hidden rotate-y-180">
                 <p className="text-gray-600 dark:text-gray-300 text-center px-4">
-                  See algorithms and data structures come to life with real-time, step-by-step animations.
+                  See algorithms and data structures come to life with
+                  real-time, step-by-step animations.
                 </p>
               </div>
             </div>
@@ -81,7 +83,8 @@ const FeaturesSection = () => {
               {/* Back Face (Info) */}
               <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 backface-hidden rotate-y-180">
                 <p className="text-gray-600 dark:text-gray-300 text-center px-4">
-                  Explore a wide range of DSA topics with detailed explanations and examples.
+                  Explore a wide range of DSA topics with detailed explanations
+                  and examples.
                 </p>
               </div>
             </div>
@@ -115,11 +118,17 @@ const FeaturesSection = () => {
               {/* Back Face (Info) */}
               <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 backface-hidden rotate-y-180">
                 <p className="text-gray-600 dark:text-gray-300 text-center px-4">
-                  Quickly grasp concepts with a user-friendly interface and smooth performance.
+                  Quickly grasp concepts with a user-friendly interface and
+                  smooth performance.
                 </p>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Added line */}
+        <div>
+          <div className="w-auto h-[1px] border-gray-600 rounded-xl mt-14 bg-gray-600 z-10"></div>
         </div>
       </div>
     </section>

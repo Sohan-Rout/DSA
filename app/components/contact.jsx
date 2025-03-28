@@ -2,7 +2,10 @@ import React from 'react';
 
 const ContactSection = () => {
   return (
-    <section className="py-16 bg-gray-50 dark:bg-black text-gray-800 dark:text-gray-200">
+    <section className="py-16 bg-gray-50 dark:bg-black text-gray-800 dark:text-gray-200 relative overflow-hidden">
+      {/* Dotted Background */}
+      <div className="absolute inset-0 dotted-background pointer-events-none"></div>
+
       <div className="container mx-auto px-6">
         {/* Centered Content */}
         <div className="max-w-lg mx-auto text-center">

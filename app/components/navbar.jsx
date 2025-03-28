@@ -57,11 +57,6 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/visualizer" className="text-sm md:text-base font-medium hover:text-blue-400 transition duration-300">
-              Visualizer
-            </Link>
-          </li>
-          <li>
             <Link href="/about" className="text-sm md:text-base font-medium hover:text-blue-400 transition duration-300">
               About
             </Link>
