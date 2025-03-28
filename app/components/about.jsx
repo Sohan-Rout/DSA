@@ -2,8 +2,11 @@ import React from 'react';
 
 const AboutSection = () => {
   return (
-    <section className="py-16 bg-gray-50 dark:bg-black text-gray-800 dark:text-gray-200">
-      <div className="container mx-auto px-6">
+    <section className="py-16 bg-gray-50 dark:bg-black text-gray-800 dark:text-gray-200 relative overflow-hidden">
+      {/* Dotted Background */}
+      <div className="absolute inset-0 dotted-background pointer-events-none"></div>
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Centered Content */}
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">

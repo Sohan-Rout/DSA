@@ -78,6 +78,17 @@ body {
   .animate-spin3d {
     animation: spin3d 8s infinite linear;
   }
+
+  /* Dotted Background (Asternity Style) */
+  .dotted-background {
+    background-image: radial-gradient(circle, #2e2f30 1px, transparent 1px); /* gray-400 dots in light mode */
+    background-size: 30px 30px; /* Smaller spacing for a refined look */
+    opacity: 0.5; /* Subtle effect */
+  }
+
+  .dark .dotted-background {
+    background-image: radial-gradient(circle, #6b7280 1px, transparent 1px); /* gray-500 dots in dark mode */
+  }
 }
 
 .perspective1-1000 {

@@ -29,7 +29,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="w-full bg-white/30 dark:bg-black text-black dark:text-white py-4 px-6 fixed top-0 left-0 z-50 shadow-lg transition-colors duration-300">
+    <nav className="w-full bg-white dark:bg-black text-black dark:text-white py-4 px-6 fixed top-0 left-0 z-50 shadow-lg transition-colors duration-300">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         {/* Logo/Brand */}
         <Link

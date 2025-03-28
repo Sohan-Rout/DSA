@@ -13,7 +13,7 @@ const Footer = () => {
             <p className="text-gray-400 mb-2">Code City, Techland</p>
             <p className="text-gray-400">
               Email:{' '}
-              <a href="mailto:support@dsavisualizer.com" className="hover:text-amber-500 transition duration-300">
+              <a href="mailto:support@dsavisualizer.com" className="hover:text-blue-500 transition duration-300">
                 support@dsavisualizer.com
               </a>
             </p>
@@ -24,22 +24,22 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="hover:text-amber-500 transition duration-300">
+                <Link href="/" className="hover:text-blue-500 transition duration-300">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/features" className="hover:text-amber-500 transition duration-300">
+                <Link href="/features" className="hover:text-blue-500 transition duration-300">
                   Features
                 </Link>
               </li>
               <li>
-                <Link href="/visualizer" className="hover:text-amber-500 transition duration-300">
+                <Link href="/visualizer" className="hover:text-blue-500 transition duration-300">
                   Visualizer
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-amber-500 transition duration-300">
+                <Link href="/about" className="hover:text-blue-500 transition duration-300">
                   About
                 </Link>
               </li>
@@ -56,12 +56,12 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Your email"
-                className="flex-1 p-2 rounded-lg border border-gray-600 bg-gray-800 text-gray-300 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200"
+                className="flex-1 p-2 rounded-lg border border-gray-600 bg-gray-800 text-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                 required
               />
               <button
                 type="submit"
-                className="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
               >
                 Subscribe
               </button>
