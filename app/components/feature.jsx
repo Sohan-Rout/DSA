@@ -1,15 +1,16 @@
+// components/FeaturesSection.js
 import React from 'react';
 
 const FeaturesSection = () => {
   return (
-    <section className="py-16 bg-gray-100 text-gray-800">
+    <section className="py-16 bg-gray-50 dark:bg-black text-gray-800 dark:text-gray-200">
       <div className="container mx-auto px-6">
         {/* Section Heading */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            <span className="text-amber-500">Why</span> Choose DSA Visualizer?
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+            <span className="text-blue-500">Why</span> Choose DSA Visualizer?
           </h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Discover powerful features to enhance your learning and understanding of data structures and algorithms.
           </p>
         </div>
@@ -17,11 +18,11 @@ const FeaturesSection = () => {
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Feature 1 */}
-          <div className="group bg-white p-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-purple-700 hover:ring-2 hover:ring-purple-200 hover:ring-opacity-50 perspective1-1000">
+          <div className="group bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-purple-700 hover:ring-2 hover:ring-purple-200 dark:hover:ring-purple-500 hover:ring-opacity-50 perspective-1000">
             <div className="relative w-full h-48 transition-transform duration-500 transform-style-3d group-hover:rotate-y-180">
               {/* Front Face (Title) */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-white backface-hidden">
-                <div className="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mb-4 transition duration-300 transform hover:scale-110">
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-gray-800 backface-hidden">
+                <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mb-4 transition duration-300 transform hover:scale-110">
                   <svg
                     className="w-6 h-6"
                     fill="none"
@@ -37,13 +38,13 @@ const FeaturesSection = () => {
                     ></path>
                   </svg>
                 </div>
-                <h3 className="text-xl text-center font-semibold text-gray-900">
+                <h3 className="text-xl text-center font-semibold text-gray-900 dark:text-white">
                   Interactive Visualizations
                 </h3>
               </div>
               {/* Back Face (Info) */}
-              <div className="absolute inset-0 flex items-center justify-center bg-white backface-hidden rotate-y-180">
-                <p className="text-gray-600 text-center px-4">
+              <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 backface-hidden rotate-y-180">
+                <p className="text-gray-600 dark:text-gray-300 text-center px-4">
                   See algorithms and data structures come to life with real-time, step-by-step animations.
                 </p>
               </div>
@@ -51,11 +52,11 @@ const FeaturesSection = () => {
           </div>
 
           {/* Feature 2 */}
-          <div className="group bg-white p-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-purple-700 hover:ring-2 hover:ring-purple-200 hover:ring-opacity-50 perspective-1000">
+          <div className="group bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-purple-700 hover:ring-2 hover:ring-purple-200 dark:hover:ring-purple-500 hover:ring-opacity-50 perspective-1000">
             <div className="relative w-full h-48 transition-transform duration-500 transform-style-3d group-hover:rotate-y-180">
               {/* Front Face (Title) */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-white backface-hidden">
-                <div className="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mb-4 transition duration-300 transform hover:scale-110">
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-gray-800 backface-hidden">
+                <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mb-4 transition duration-300 transform hover:scale-110">
                   <svg
                     className="w-6 h-6"
                     fill="none"
@@ -71,13 +72,13 @@ const FeaturesSection = () => {
                     ></path>
                   </svg>
                 </div>
-                <h3 className="text-xl text-center font-semibold text-gray-900">
+                <h3 className="text-xl text-center font-semibold text-gray-900 dark:text-white">
                   Comprehensive Learning
                 </h3>
               </div>
               {/* Back Face (Info) */}
-              <div className="absolute inset-0 flex items-center justify-center bg-white backface-hidden rotate-y-180">
-                <p className="text-gray-600 text-center px-4">
+              <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 backface-hidden rotate-y-180">
+                <p className="text-gray-600 dark:text-gray-300 text-center px-4">
                   Explore a wide range of DSA topics with detailed explanations and examples.
                 </p>
               </div>
@@ -85,11 +86,11 @@ const FeaturesSection = () => {
           </div>
 
           {/* Feature 3 */}
-          <div className="group bg-white p-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-purple-700 hover:ring-2 hover:ring-purple-200 hover:ring-opacity-50 perspective-1000">
+          <div className="group bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-purple-700 hover:ring-2 hover:ring-purple-200 dark:hover:ring-purple-500 hover:ring-opacity-50 perspective-1000">
             <div className="relative w-full h-48 transition-transform duration-500 transform-style-3d group-hover:rotate-y-180">
               {/* Front Face (Title) */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-white backface-hidden">
-                <div className="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mb-4 transition duration-300 transform hover:scale-110">
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-gray-800 backface-hidden">
+                <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mb-4 transition duration-300 transform hover:scale-110">
                   <svg
                     className="w-6 h-6"
                     fill="none"
@@ -105,13 +106,13 @@ const FeaturesSection = () => {
                     ></path>
                   </svg>
                 </div>
-                <h3 className="text-xl text-center font-semibold text-gray-900">
+                <h3 className="text-xl text-center font-semibold text-gray-900 dark:text-white">
                   Fast & Intuitive
                 </h3>
               </div>
               {/* Back Face (Info) */}
-              <div className="absolute inset-0 flex items-center justify-center bg-white backface-hidden rotate-y-180">
-                <p className="text-gray-600 text-center px-4">
+              <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 backface-hidden rotate-y-180">
+                <p className="text-gray-600 dark:text-gray-300 text-center px-4">
                   Quickly grasp concepts with a user-friendly interface and smooth performance.
                 </p>
               </div>
