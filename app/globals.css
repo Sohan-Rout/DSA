@@ -8,6 +8,10 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer utilities {
   .perspective-1000 {
     perspective: 1000px;

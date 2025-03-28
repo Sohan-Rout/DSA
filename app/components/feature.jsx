@@ -2,7 +2,7 @@ import React from 'react';
 
 const FeaturesSection = () => {
   return (
-    <section className="py-20 bg-gray-50 dark:bg-black text-gray-800 dark:text-gray-200 relative overflow-hidden">
+    <section className="py-20 bg-white dark:bg-black text-gray-800 dark:text-gray-200 relative overflow-hidden">
       {/* Dotted Background */}
       <div className="absolute inset-0 dotted-background pointer-events-none"></div>
 

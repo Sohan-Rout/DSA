@@ -11,10 +11,18 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      <Hero />
-      <Feature />
-      <Prices />
-      <About />
+      <div id="hero">
+        <Hero />
+      </div>
+      <div id="features">
+        <Feature />
+      </div>
+      <div id="pricing">
+        <Prices />
+      </div>
+      <div id="about">
+        <About />
+      </div>
       <Contact />
       <Footer />
     </div>
