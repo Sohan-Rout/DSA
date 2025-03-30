@@ -59,12 +59,10 @@ const LinearSearch = () => {
   return (
     <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
       <Navbar />
-      {/* dotted bg */}
-      <div className="absolute max-h-auto inset-0 dotted-background pointer-events-none"></div>
 
       <main className="container mx-auto px-6 py-16">
-        <h1 className="text-4xl md:text-5xl mt-8 font-bold text-center text-gray-900 dark:text-white mb-8">
-          <span className='text-blue-500'>Linear Search</span> Visualizer
+        <h1 className="text-4xl md:text-5xl mt-10 font-bold text-center text-gray-900 dark:text-white mb-8">
+          <span className='text-blue-600'>Linear Search</span> Visualizer
         </h1>
         <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
           Visualize how Linear Search works by sequentially checking each element in an array.
