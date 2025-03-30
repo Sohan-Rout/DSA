@@ -9,7 +9,7 @@ const Visualizer = () => {
       <Navbar />
       <main className="container mx-auto px-6 py-16">
         <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-12">
-          Table of Contents
+          Table of <span className="text-blue-500">Contents</span>
         </h1>
 
         {/* Table of Contents */}

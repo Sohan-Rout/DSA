@@ -57,10 +57,10 @@ const LinearSearch = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
+    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
       <Navbar />
       {/* dotted bg */}
-      <div className="absolute inset-0 dotted-background pointer-events-none"></div>
+      <div className="absolute max-h-auto inset-0 dotted-background pointer-events-none"></div>
 
       <main className="container mx-auto px-6 py-16">
         <h1 className="text-4xl md:text-5xl mt-8 font-bold text-center text-gray-900 dark:text-white mb-8">
