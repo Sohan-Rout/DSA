@@ -1,4 +1,3 @@
-'use client';
 import Navbar from "@/app/components/navbar";
 import Hero from "@/app/components/hero";
 import Feature from "@/app/components/feature";
