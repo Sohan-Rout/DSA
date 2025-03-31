@@ -81,6 +81,9 @@ const Visualizer = () => {
           </div>
         </div>
       </main>
+      <div>
+        <div className="bg-gray-700 z-10 h-[1px]"></div>
+      </div>
       <Footer/>
     </div>
   );
