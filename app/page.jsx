@@ -3,6 +3,7 @@ import Hero from "@/app/components/hero";
 import Feature from "@/app/components/feature";
 import Prices from "@/app/components/price";
 import About from "@/app/components/about";
+import Faq from "@/app/components/faq";
 import Contact from "@/app/components/contact";
 import Footer from "@/app/components/footer";
 
