@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import Navbar from '@/app/components/navbarinner';
+import Footer from '@/app/components/footer';
 
 const BinarySearch = () => {
   const [arraySize, setArraySize] = useState('');
@@ -233,6 +234,10 @@ const BinarySearch = () => {
           </div>
         )}
       </main>
+      <div>
+        <div className="bg-gray-700 z-10 h-[1px]"></div>
+      </div>
+      <Footer/>
     </div>
   );
 };
