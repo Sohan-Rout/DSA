@@ -70,7 +70,7 @@ const Visualizer = () => {
               Stack
             </h2>
             <ul className="ml-4 space-y-3">
-              {['push', 'pop', 'peek', 'isempty'].map((op) => (
+              {['push-pop', 'peek', 'isempty'].map((op) => (
                 <li key={op}>
                   <Link href={`/visualizer/stack/${op}`} className="text-lg hover:text-blue-500 dark:hover:text-blue-400 transition duration-300">
                     {op.charAt(0).toUpperCase() + op.slice(1)} Operation
