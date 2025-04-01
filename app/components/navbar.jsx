@@ -42,22 +42,22 @@ export default function Navbar() {
         {/* Navigation Links */}
         <ul className="flex space-x-6 md:space-x-8 items-center">
           <li>
-            <Link href="#hero" className="text-sm md:text-base font-medium hover:text-blue-400 transition duration-300">
+            <Link href="/#hero" className="text-sm md:text-base font-medium hover:text-blue-400 transition duration-300">
               Home
             </Link>
           </li>
           <li>
-            <Link href="#features" className="text-sm md:text-base font-medium hover:text-blue-400 transition duration-300">
+            <Link href="/#features" className="text-sm md:text-base font-medium hover:text-blue-400 transition duration-300">
               Features
             </Link>
           </li>
           <li>
-            <Link href="#pricing" className="text-sm md:text-base font-medium hover:text-blue-400 transition duration-300">
+            <Link href="/#pricing" className="text-sm md:text-base font-medium hover:text-blue-400 transition duration-300">
               Prices
             </Link>
           </li>
           <li>
-            <Link href="#about" className="text-sm md:text-base font-medium hover:text-blue-400 transition duration-300">
+            <Link href="/#about" className="text-sm md:text-base font-medium hover:text-blue-400 transition duration-300">
               About
             </Link>
           </li>

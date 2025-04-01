@@ -33,7 +33,7 @@ const HeroSection = () => {
               Start Visualizing Now
             </button>
             <a
-              href="#"
+              href="#features"
               className="bg-transparent border border-gray-400 dark:border-gray-600 hover:border-blue-500 hover:text-blue-500 text-gray-800 dark:text-gray-200 font-semibold py-3 px-6 rounded-lg transition duration-300"
             >
               Explore Features
