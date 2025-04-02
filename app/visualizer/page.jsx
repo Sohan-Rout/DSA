@@ -73,7 +73,23 @@ const Visualizer = () => {
               {['push-pop', 'peek', 'isempty'].map((op) => (
                 <li key={op}>
                   <Link href={`/visualizer/stack/${op}`} className="text-lg hover:text-blue-500 dark:hover:text-blue-400 transition duration-300">
-                    {op.charAt(0).toUpperCase() + op.slice(1)} Operation
+                    {op.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} Operation
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Queue Section */}
+          <div className="mt-10">
+            <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-6">
+              Queue
+            </h2>
+            <ul className="ml-4 space-y-3">
+              {['enqueue-dequeue', 'peek-front', 'isempty'].map((op) => (
+                <li key={op}>
+                  <Link href={`/visualizer/queue/${op}`} className="text-lg hover:text-blue-500 dark:hover:text-blue-400 transition duration-300">
+                    {op.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} Operation
                   </Link>
                 </li>
               ))}
