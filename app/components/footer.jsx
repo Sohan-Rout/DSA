@@ -9,8 +9,8 @@ const Footer = () => {
           {/* Location & Contact */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
-            <p className="text-gray-400 mb-2">123 Algorithm Lane</p>
-            <p className="text-gray-400 mb-2">Code City, Techland</p>
+            <p className="text-gray-400 mb-2">Address Line-1</p>
+            <p className="text-gray-400 mb-2">Address Line-2</p>
             <p className="text-gray-400">
               Email:{' '}
               <a href="mailto:support@dsavisualizer.com" className="hover:text-blue-500 transition duration-300">
