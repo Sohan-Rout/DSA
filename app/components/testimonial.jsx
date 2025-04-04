@@ -86,6 +86,7 @@ const TestimonialsSection = () => {
                   <input
                     type="text"
                     id="name"
+                    placeholder='Let us know your name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700"
@@ -99,6 +100,7 @@ const TestimonialsSection = () => {
                   <input
                     type="email"
                     id="email"
+                    placeholder='Enter a Valid Email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700"
@@ -137,6 +139,7 @@ const TestimonialsSection = () => {
                 </label>
                 <textarea
                   id="review"
+                  placeholder='Write your thoughts'
                   rows={4}
                   value={review}
                   onChange={(e) => setReview(e.target.value)}

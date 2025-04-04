@@ -61,6 +61,11 @@ export default function Navbar() {
               About
             </Link>
           </li>
+          <li>
+            <Link href="/#faq" className="text-sm md:text-base font-medium hover:text-blue-400 transition duration-300">
+              FAQs
+            </Link>
+          </li>
           {/* Theme Toggle Button */}
           <li>
             <button
