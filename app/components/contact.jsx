@@ -2,7 +2,7 @@ import React from 'react';
 
 const ContactSection = () => {
   return (
-    <section className="py-16 bg-white dark:bg-black text-gray-800 dark:text-gray-200 relative overflow-hidden">
+    <section className="py-5 bg-white dark:bg-black text-gray-800 dark:text-gray-200 relative overflow-hidden">
       {/* Dotted Background */}
       <div className="absolute inset-0 dotted-background pointer-events-none"></div>
 
@@ -32,6 +32,10 @@ const ContactSection = () => {
             </button>
           </form>
         </div>
+      </div>
+      {/* Divider Line */}
+      <div>
+        <div className="w-[80%] mx-auto h-[1px] border-gray-600 rounded-xl mt-14 bg-gray-600 z-10"></div>
       </div>
     </section>
   );
