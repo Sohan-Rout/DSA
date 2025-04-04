@@ -5,12 +5,12 @@ import Link from 'next/link';
 
 const Visualizer = () => {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
+    <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200 flex flex-col">
       <Navbar />
       {/* Full-page background */}
       <div className="fixed inset-0 dotted-background pointer-events-none z-1"></div>
 
-      <main className="container mx-auto px-6 py-16 min-h-[calc(100vh-80px)]">
+      <main className="container mx-auto px-6 py-16 min-h-[calc(100vh-80px)] flex-grow">
         <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-12">
           Table Of <span className="text-blue-500">Contents</span>
         </h1>
@@ -97,10 +97,12 @@ const Visualizer = () => {
           </div>
         </div>
       </main>
-      <div>
+
+      {/* Footer with forced black background */}
+      <div className="bg-black w-full">
         <div className="bg-gray-700 z-10 h-[1px]"></div>
+        <Footer/>
       </div>
-      <Footer/>
     </div>
   );
 };

@@ -7,10 +7,6 @@ const FAQSection = () => {
       answer: "DSA Visualizer is an interactive learning tool that helps you understand Data Structures and Algorithms through visual representations. It provides step-by-step animations of how different algorithms work."
     },
     {
-      question: "How does the Stack Visualizer work?",
-      answer: "The Stack Visualizer demonstrates LIFO (Last-In-First-Out) operations. You can push elements onto the stack and pop them off, with animations showing exactly how the stack changes with each operation."
-    },
-    {
       question: "Is this tool suitable for beginners?",
       answer: "Absolutely! Our visualizations are designed to make complex concepts accessible to learners at all levels. Beginners can see exactly how data structures operate, while advanced users can use it to refine their understanding."
     },
