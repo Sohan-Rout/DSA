@@ -6,7 +6,7 @@
 A sleek and minimal Data Structure & Algorithm Visualizer to learn and understand algorithms better — built using Next.js & Tailwind CSS.
 </p>
 
-<img src="https://your-logo-link.png" alt="DSAVisualizer Logo" width="200" />
+<img src="./public/logo.jpeg" alt="DSAVisualizer Logo" width="200" />
 
 <p align="center">
   <a href="https://dsa-visualizer-sigma.vercel.app/"><strong>Live Demo »</strong></a>
@@ -32,7 +32,7 @@ A sleek and minimal Data Structure & Algorithm Visualizer to learn and understan
 
 ## 📸 Preview
 
-> ![App Screenshot](https://your-screenshot-link.png)
+> ![App Screenshot](./public/preview.png)
 
 ---
 
