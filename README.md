@@ -5,7 +5,7 @@
 <h1 align="center">DSAVisualizer</h1>
 
 <p align="center">
-  Visualize & Learn DSA Algorithms with Animations and Interactive UI  
+  Visualize & Learn DSA Algorithms with Animations and Interactive UI.
 </p>
 
 <p align="center">
@@ -13,14 +13,23 @@
 </p>
 
 <p align="center">
-  <a href="https://dsa-visualizer-sigma.vercel.app/">View Live Demo</a> • 
+  <a href="https://dsa-visualizer-sigma.vercel.app/">Live Demo</a> • 
   <a href="https://github.com/Sohan-Rout/DSAVisualizer/issues">Report Bug</a> • 
   <a href="https://github.com/Sohan-Rout/DSAVisualizer/issues">Request Feature</a>
 </p>
 
 ---
 
-## Tech Stack ⚙️
+<p align="center">
+  <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License: Apache 2.0">
+  <img src="https://img.shields.io/badge/Next.js-%23000000.svg?style=flat&logo=next.js&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white" alt="TailwindCSS">
+  <img src="https://img.shields.io/badge/Made%20With-Love-red" alt="Made With Love">
+</p>
+
+---
+
+## Tech Stack 🚀
 
 - Next.js  
 - TailwindCSS  
@@ -30,59 +39,57 @@
 
 ## Features ✨
 
-- Visualize DSA Algorithms with Animations  
-- Linear Search & Binary Search  
-- Stack & All Sorting Algorithms (Heap Sort Upcoming)  
+- DSA Algorithm Visualizer  
 - Custom Array Input  
-- Dark / Light Mode  
-- Clean UI & Minimal Design  
-- Queue Visualizer (Upcoming)  
-- Medium Blogs for Algorithm Explanation (Upcoming)  
-- Responsive Design (In Progress)
+- Linear Search & Binary Search  
+- All Sorting Algorithms (Except Heap Sort)  
+- Stack Visualizer  
+- Dark / Light Mode Toggle  
+- Responsive Design (In Progress)  
+- Blog Explanations via Medium (Upcoming)  
+- Queue Visualizer (Upcoming)
 
 ---
 
-## Future Plans 🚀
+## Future Plans 🛠️
 
 - Add Tree & Graph Visualizations  
-- Complete Queue Visualizer  
-- Complete Heap Sort  
-- Write Blogs on Sorting, Stacks & Queues  
+- Add Heap Sort  
+- Queue Implementation & Visualizer  
+- Write Detailed Blogs on Medium  
+- Collaborate with Colleges & Professors for Usage  
 - Improve Mobile Responsiveness  
-- Collaborate with Colleges & Professors  
-- Social Media Promotion after Blog Completion  
+- Social Media Promotion  
 
 ---
 
-## Contributing 🤝
+## Blogs ✍️  
 
-Contributions are welcome!  
-
-Please read the [Contributing Guidelines](./CONTRIBUTING.md) first.
+Coming Soon on [Medium](https://medium.com/@sohan-rout)
 
 ---
 
-## Code of Conduct 📜
+## Connect With Me  
 
-We follow a strict [Code of Conduct](./CODE_OF_CONDUCT.md).  
-Be respectful and kind!
-
----
-
-## License 📄
-
-This project is licensed under the Apache 2.0 License — see the [LICENSE](./LICENSE) file for details.
+- [LinkedIn](https://www.linkedin.com/in/sohan-rout)  
+- [Medium](https://medium.com/@sohan-rout)
 
 ---
 
-## Connect with Me 🌐
+## License 📄  
 
-- GitHub: [@Sohan-Rout](https://github.com/Sohan-Rout)  
-- LinkedIn: [Sohan Rout](https://www.linkedin.com/in/sohan-rout)  
-- Medium: [@sohan-rout](https://medium.com/@sohan-rout)
+Apache 2.0 License — See `LICENSE` for details.
+
+---
+
+# Contribution  
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md)  
+
+Code of Conduct — [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
 
 ---
 
 <p align="center">
-Made with ❤️ by Sohan Rout
+  Made with ❤️ by Sohan Rout
 </p>
