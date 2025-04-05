@@ -59,6 +59,7 @@ A sleek and minimal Data Structure & Algorithm Visualizer to learn and understan
 
 - [x] Linear Search Visualizer  
 - [x] Binary Search Visualizer  
+- [ ] Add Queue Visualizer
 - [ ] Add Tree Visualizer  
 - [ ] Add Graph Visualizer (DFS/BFS)  
 - [ ] Improve Animations  
@@ -75,3 +76,21 @@ git clone https://github.com/Sohan-Rout/dsavisualizer.git
 cd dsavisualizer
 npm install
 npm run dev
+
+🤝 Contributing
+
+Contributions are always welcome!
+
+	1.	Fork the Project
+	2.	Create your Branch (git checkout -b feature/AmazingFeature)
+	3.	Commit your Changes (git commit -m 'Add some AmazingFeature')
+	4.	Push to the Branch (git push origin feature/AmazingFeature)
+	5.	Open a Pull Request
+
+📜 License
+
+This project is licensed under the Apache License 2.0 — see the [LICENSE](LICENSE) file for details.
+
+💖 Credits
+
+Made with 💙 by Sohan Rout
