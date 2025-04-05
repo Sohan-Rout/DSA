@@ -52,7 +52,7 @@ export default function Navbar() {
         {/* Logo/Brand */}
         <Link
           href="/"
-          className="text-xl md:text-2xl font-bold tracking-tight hover:text-blue-500 transition duration-300"
+          className="text-xl md:text-2xl items-center flex font-bold tracking-tight hover:text-blue-500 transition duration-300"
           onClick={closeMobileMenu}
         >
           DSA<span className="text-blue-500">Visualizer</span>
