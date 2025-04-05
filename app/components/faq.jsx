@@ -60,7 +60,7 @@ const FAQSection = () => {
               Still have questions? We're here to help!
             </p>
             <a
-              href="#contact"
+              href="#testimonial"
               className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg transition duration-300"
             >
               Contact Us
