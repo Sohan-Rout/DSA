@@ -1,98 +1,88 @@
-<div align="center">
-
-<h1>DSAVisualizer</h1>
-
 <p align="center">
-A sleek and minimal Data Structure & Algorithm Visualizer to learn and understand algorithms better — built using Next.js & Tailwind CSS.
+  <img src="./public/DSAVisualizer.png" alt="DSAVisualizer Banner"/>
 </p>
 
-<img src="./public/logo.jpeg" alt="DSAVisualizer Logo" width="200" />
+<h1 align="center">DSAVisualizer</h1>
 
 <p align="center">
-  <a href="https://dsa-visualizer-sigma.vercel.app/"><strong>Live Demo »</strong></a>
+  Visualize & Learn DSA Algorithms with Animations and Interactive UI  
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/license/Sohan-Rout/dsavisualizer" />
-  <img src="https://img.shields.io/github/stars/Sohan-Rout/dsavisualizer?style=social" />
-  <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen" />
-  <img src="https://img.shields.io/github/deployments/Sohan-Rout/dsavisualizer/vercel" />
+  Built with ❤️ by <a href="https://github.com/Sohan-Rout">Sohan Rout</a>
 </p>
 
-</div>
+<p align="center">
+  <a href="https://dsa-visualizer-sigma.vercel.app/">View Live Demo</a> • 
+  <a href="https://github.com/Sohan-Rout/DSAVisualizer/issues">Report Bug</a> • 
+  <a href="https://github.com/Sohan-Rout/DSAVisualizer/issues">Request Feature</a>
+</p>
 
 ---
 
-## 🚀 Tech Stack
+## Tech Stack ⚙️
+
 - Next.js  
-- Tailwind CSS  
-- Vercel (Deployment)  
+- TailwindCSS  
+- Vercel (Deployment)
 
 ---
 
-## 📸 Preview
+## Features ✨
 
-> ![App Screenshot](./public/preview.png)
-
----
-
-## ✨ Features
+- Visualize DSA Algorithms with Animations  
+- Linear Search & Binary Search  
+- Stack & All Sorting Algorithms (Heap Sort Upcoming)  
 - Custom Array Input  
-- Animation Based Visualization  
-- Linear Search Visualizer  
-- Binary Search Visualizer  
-- Light/Dark Theme Coming Soon  
-- Responsive Design (Work in Progress)  
+- Dark / Light Mode  
+- Clean UI & Minimal Design  
+- Queue Visualizer (Upcoming)  
+- Medium Blogs for Algorithm Explanation (Upcoming)  
+- Responsive Design (In Progress)
 
 ---
 
-## 📚 Medium Blogs
-> Learn the concept before visualizing it.
+## Future Plans 🚀
 
-- [Linear Search Explained](#)
-- [Binary Search Explained](#)
-- More Blogs Coming Soon...
-
----
-
-## 📈 Roadmap
-
-- [x] Linear Search Visualizer  
-- [x] Binary Search Visualizer  
-- [ ] Add Queue Visualizer
-- [ ] Add Tree Visualizer  
-- [ ] Add Graph Visualizer (DFS/BFS)  
-- [ ] Improve Animations  
-- [ ] Fully Responsive UI  
-- [x] Add Dark/Light Toggle  
-- [ ] Write Complete Documentation  
+- Add Tree & Graph Visualizations  
+- Complete Queue Visualizer  
+- Complete Heap Sort  
+- Write Blogs on Sorting, Stacks & Queues  
+- Improve Mobile Responsiveness  
+- Collaborate with Colleges & Professors  
+- Social Media Promotion after Blog Completion  
 
 ---
 
-## 🛠️ Local Setup
+## Contributing 🤝
 
-```bash
-git clone https://github.com/Sohan-Rout/dsavisualizer.git
-cd dsavisualizer
-npm install
-npm run dev
-```
+Contributions are welcome!  
+
+Please read the [Contributing Guidelines](./CONTRIBUTING.md) first.
 
 ---
 
-## 🤝 Contributing
+## Code of Conduct 📜
 
-Contributions are always welcome!
-1.	Fork the Project
-2.	Create your Branch (git checkout -b feature/AmazingFeature)
-3.	Commit your Changes (git commit -m 'Add some AmazingFeature')
-4.	Push to the Branch (git push origin feature/AmazingFeature)
-5.	Open a Pull Request
+We follow a strict [Code of Conduct](./CODE_OF_CONDUCT.md).  
+Be respectful and kind!
 
-## 📜 License
+---
 
-This project is licensed under the Apache License 2.0 — see the [LICENSE](LICENSE) file for details.
+## License 📄
 
-## 💖 Credits
+This project is licensed under the Apache 2.0 License — see the [LICENSE](./LICENSE) file for details.
 
-Made with 💙 by Sohan Rout
+---
+
+## Connect with Me 🌐
+
+- GitHub: [@Sohan-Rout](https://github.com/Sohan-Rout)  
+- LinkedIn: [Sohan Rout](https://www.linkedin.com/in/sohan-rout)  
+- Medium: [@sohan-rout](https://medium.com/@sohan-rout)
+
+---
+
+<p align="center">
+Made with ❤️ by Sohan Rout
+</p>
