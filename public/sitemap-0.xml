@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://dsa-visualizer-sigma.vercel.app</loc><lastmod>2025-04-06T14:14:23.287Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/sorting/bubblesort</loc><lastmod>2025-04-06T14:14:23.287Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/searching/linearsearch</loc><lastmod>2025-04-06T14:14:23.287Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/sorting/mergesort</loc><lastmod>2025-04-06T14:14:23.287Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/searching/binarysearch</loc><lastmod>2025-04-06T14:14:23.287Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/sorting/quicksort</loc><lastmod>2025-04-06T14:14:23.287Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/sorting/selectionsort</loc><lastmod>2025-04-06T14:14:23.287Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/stack/peek</loc><lastmod>2025-04-06T14:14:23.287Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/sorting/insertionsort</loc><lastmod>2025-04-06T14:14:23.287Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/stack/isempty</loc><lastmod>2025-04-06T14:14:23.287Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/stack/push-pop</loc><lastmod>2025-04-06T14:14:23.288Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/queue/isempty</loc><lastmod>2025-04-06T14:14:23.288Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/queue/enqueue-dequeue</loc><lastmod>2025-04-06T14:14:23.288Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer</loc><lastmod>2025-04-06T14:14:23.288Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsa-visualizer-sigma.vercel.app/visualizer/queue/peek-front</loc><lastmod>2025-04-06T14:14:23.288Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+</urlset>

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://dsa-visualizer-sigma.vercel.app
+
+# Sitemaps
+Sitemap: https://dsa-visualizer-sigma.vercel.app/sitemap.xml
