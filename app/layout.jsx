@@ -3,6 +3,9 @@ import "./globals.css";
 export const metadata = {
   title: 'DSA Visualizer | Learn DSA Easily',
   description: 'Visualize Data Structures like Stack, Queue, Trees, Graphs and learn DSA interactively.',
+  icons: {
+    icon: '/favicon.ico',
+  },
   keywords: ['DSA Visualizer', 'Algorithms', 'Learn DSA', 'Data Structures', 'Visualize Algorithms'],
   authors: [{ name: 'Sohan Rout' }],
   robots: 'index, follow',
