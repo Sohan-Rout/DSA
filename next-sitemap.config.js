@@ -2,4 +2,7 @@
 module.exports = {
     siteUrl: 'https://dsa-visualizer-sigma.vercel.app',
     generateRobotsTxt: true,
-  }
+    sitemapSize: 5000,
+};
+
+module.exports = config;
