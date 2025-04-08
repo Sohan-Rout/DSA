@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://dsa-visualizer-sigma.vercel.app
+Host: https://dsavisualizer.in
 
 # Sitemaps
-Sitemap: https://dsa-visualizer-sigma.vercel.app/sitemap.xml
+Sitemap: https://dsavisualizer.in/sitemap.xml

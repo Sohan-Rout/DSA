@@ -18,7 +18,7 @@ export const metadata = {
   openGraph: {
     title: 'DSA Visualizer | Learn DSA Easily',
     description: 'Best platform to learn DSA visually.',
-    url: 'https://dsa-visualizer-sigma.vercel.app/',
+    url: 'https://dsavisualizer.in/',
     siteName: 'DSA Visualizer',
     images: [
       {
@@ -28,6 +28,12 @@ export const metadata = {
         alt: 'DSA Visualizer',
       },
     ],
+    twitter: {
+      card: 'summary_large_image',
+      title: 'DSA Visualizer | Learn DSA Easily',
+      description: 'Best platform to learn DSA visually.',
+      images: ['/og.png'],
+    },
   },
 }
 
