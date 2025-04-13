@@ -3,6 +3,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
 
+export const metadata = {
+  title: 'Sorting Visualizer | Visualize Sorting Algorithms Easily',
+  description: 'Interactive sorting algorithm visualizer. Understand how Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, and Quick Sort work with step-by-step animations.',
+  keywords: [
+    'Sorting Visualizer',
+    'DSA Sorting',
+    'Bubble Sort Animation',
+    'Selection Sort Animation',
+    'Insertion Sort',
+    'Merge Sort Visualizer',
+    'Quick Sort Algorithm',
+    'Learn Sorting Algorithms',
+    'DSA for Beginners',
+  ],
+  robots: "index, follow",
+};
+
 const QuickSortVisualizer = () => {
   const [array, setArray] = useState([]);
   const [customArray, setCustomArray] = useState('');

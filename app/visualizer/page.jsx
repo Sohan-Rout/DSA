@@ -3,6 +3,13 @@ import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
 import Link from 'next/link';
 
+export const metadata = {
+  title: 'Algorithm Visualizer | DSA Visualizer',
+  description: 'Explore visual representations of various DSA algorithms including searching, sorting, stacks, and queues. Interactive and beginner-friendly!',
+  keywords: ['DSA Visualizer', 'Algorithm Visualizer', 'Data Structures', 'Searching Algorithms', 'Sorting Algorithms', 'Stack', 'Queue', 'Linear Search', 'Bubble Sort'],
+  robots: "index, follow",
+};
+
 const Visualizer = () => {
   // Data structure for the content
   const sections = [

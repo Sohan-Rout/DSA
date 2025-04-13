@@ -3,6 +3,13 @@ import React, { useState } from 'react';
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
 
+export const metadata = {
+  title: 'Stack Visualizer | Learn Stack with Animation',
+  description: 'Visualize how Stack works in DSA using interactive animation. Great for beginners and interview prep.',
+  keywords: ['Stack DSA', 'Stack Visualizer', 'Learn Stack', 'DSA Animation'],
+  robots: "index, follow",
+};
+
 const StackVisualizer = () => {
   const [stack, setStack] = useState(['Blue', 'Green', 'Red']);
   const [inputValue, setInputValue] = useState('');

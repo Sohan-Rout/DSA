@@ -3,6 +3,13 @@ import React, { useState } from 'react';
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
 
+export const metadata = {
+  title: 'Queue Visualizer | Understand Queue Easily',
+  description: 'Interactive queue visualization for learning DSA. Try enqueue, dequeue and understand queue operations in real-time.',
+  keywords: ['Queue DSA', 'Queue Visualizer', 'Learn Queue', 'DSA Tools'],
+  robots: "index, follow",
+};
+
 const QueueVisualizer = () => {
   const [queue, setQueue] = useState(['Apple', 'Banana', 'Cherry']);
   const [inputValue, setInputValue] = useState('');

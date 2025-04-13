@@ -6,7 +6,7 @@ const HeroSection = () => {
   const router = useRouter();
 
   const handleStartVisualizing = () => {
-    router.push("./visualizer");
+    router.push("/visualizer");
   }
 
   return (
