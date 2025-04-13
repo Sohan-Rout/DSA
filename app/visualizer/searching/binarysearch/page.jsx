@@ -1,4 +1,4 @@
-import animation from "@/app/visualizer/searching/binarysearch/animation";
+import Animation from "@/app/visualizer/searching/binarysearch/animation";
 
 export const metadata = {
   title: 'Searching Visualizer | Learn Linear and Binary Search',
@@ -19,6 +19,6 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <animation />
+    <Animation />
   );
 };
