@@ -10,7 +10,7 @@ const HeroSection = () => {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 dark:from-gray-800 dark:via-gray-900 dark:to-black text-gray-800 dark:text-gray-200 relative overflow-hidden">
+    <section className="min-h-screen lg:pb-12 flex items-center justify-center bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 dark:from-gray-800 dark:via-gray-900 dark:to-black text-gray-800 dark:text-gray-200 relative overflow-hidden">
       {/* Grid Background */}
       <div className="absolute inset-0 dotted-background pointer-events-none"></div>
 
