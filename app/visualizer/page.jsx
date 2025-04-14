@@ -89,15 +89,15 @@ const Visualizer = () => {
         {
           title: 'Traversal',
           items: [
-            { name: 'Pre-order Traversal', path: '/visualizer/tree/preorder' },
-            { name: 'In-order Traversal', path: '/visualizer/tree/inorder' },
-            { name: 'Post-order Traversal', path: '/visualizer/tree/postorder' },
+            { name: 'Pre-order Traversal', path: '/visualizer/trees/traversing/pre-order' },
+            { name: 'In-order Traversal', path: '/visualizer/trees/traversing/in-order' },
+            { name: 'Post-order Traversal', path: '/visualizer/trees/traversing/post-order' },
           ],
         },
         {
           title: 'Sorting',
           items: [
-            { name: 'Heap Sort', path: '/visualizer/tree/heapsort' },
+            { name: 'Heap Sort', path: '/visualizer/trees/sorting/heapsort' },
           ],
         },
       ],

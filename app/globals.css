@@ -110,3 +110,48 @@ html {
 .transform-style-3d {
   transform-style: preserve-3d;
 }
+
+@keyframes pulse-scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes glow {
+  0% {
+    stroke-opacity: 1;
+    stroke-width: 4;
+  }
+  50% {
+    stroke-opacity: 0.7;
+    stroke-width: 5;
+  }
+  100% {
+    stroke-opacity: 1;
+    stroke-width: 4;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-pulse-scale {
+  animation: pulse-scale 0.8s ease-in-out infinite;
+}
+.animate-glow {
+  animation: glow 0.8s ease-in-out infinite;
+}
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
