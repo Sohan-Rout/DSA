@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
+import ResetButton from '@/app/components/ui/resetButton';
+import GoButton from '@/app/components/ui/goButton';
 
 const LinearSearch = () => {
     const [arraySize, setArraySize] = useState('');
@@ -25,7 +27,7 @@ const LinearSearch = () => {
       };
     }, []);
   
-    const resetSearch = () => {
+    const handleReset = () => {
       setArray([]);
       setCurrentIndex(-1);
       setFoundIndex(-1);
@@ -67,7 +69,7 @@ const LinearSearch = () => {
   
     const handleGo = (e) => {
       e.preventDefault();
-      resetSearch();
+      handleReset();
   
       if (!arraySize || !arrayElements || !target) {
         setMessage('Please fill in all fields.');
@@ -127,9 +129,10 @@ const LinearSearch = () => {
             Visualize how Linear Search works by sequentially checking each
             element in an array.
           </p>
-  
+
           {/* Input Form */}
           <form
+            ref={formRef}
             onSubmit={handleGo}
             className="max-w-lg mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8"
           >
@@ -184,62 +187,79 @@ const LinearSearch = () => {
                 disabled={isAnimating}
               />
             </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 disabled:opacity-50"
-              disabled={isAnimating}
-            >
-              Start
-            </button>
-            {message && (
-              <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
-                {message}
-              </p>
-            )}
-            <div className="flex justify-center gap-4 mt-4">
-              <button
-                onClick={resetSearch}
-                className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg"
-              >
-                Reset Search
-              </button>
+            <div className="flex gap-4">
+              <GoButton 
+                onClick={handleGo} 
+                isAnimating={isAnimating} 
+                disabled={isAnimating}
+              />
+              <ResetButton onReset={handleReset} isAnimating={isAnimating} />
             </div>
           </form>
-          <>
-            {/* Visualization */}
-            {array.length > 0 && (
-              <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                  Array Visualization
-                </h2>
-                <div className="flex flex-wrap gap-4 justify-center">
-                  {array.map((element, index) => (
-                    <div
-                      key={index}
-                      className={`w-16 h-16 flex items-center justify-center rounded-lg border transition-all duration-300 ${
-                        currentIndex === index
-                          ? "bg-yellow-500 dark:bg-yellow-600 border-yellow-900"
-                          : foundIndex === index
-                          ? "bg-green-300 dark:bg-green-500 border-green-500"
-                          : "bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600"
-                      }`}
-                    >
-                      <span className="text-lg font-medium text-gray-800 dark:text-gray-200">
-                        {element}
-                      </span>
-                    </div>
-                  ))}
+
+          {/* Output Screen */}
+          {message && (
+            <div className={`max-w-3xl mx-auto mb-8 p-4 rounded-lg ${
+              foundIndex !== -1 
+                ? "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200"
+                : "bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200"
+            }`}>
+              <p className="text-center font-medium">{message}</p>
+            </div>
+          )}
+
+          {/* Visualization */}
+          {array.length > 0 && (
+            <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+                Array Visualization
+              </h2>
+              <div className="flex flex-wrap gap-4 justify-center">
+                {array.map((element, index) => (
+                  <div
+                    key={index}
+                    className={`relative w-20 h-20 flex flex-col items-center justify-center rounded-lg border-2 transition-all duration-300 ${
+                      currentIndex === index && foundIndex === -1
+                        ? "bg-yellow-500 dark:bg-yellow-600 border-yellow-700 dark:border-yellow-400"
+                        : foundIndex === index
+                        ? "bg-green-500 dark:bg-green-600 border-green-700 dark:border-green-400"
+                        : "bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600"
+                    }`}
+                  >
+                    <span className="text-xl font-bold text-gray-800 dark:text-gray-200">
+                      {element}
+                    </span>
+                    <span className="absolute -bottom-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+                      [{index}]
+                    </span>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Legend */}
+              <div className="mt-8 flex flex-wrap justify-center gap-4">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-yellow-500 dark:bg-yellow-600 rounded mr-2"></div>
+                  <span className="text-sm">Current Element</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-green-500 dark:bg-green-600 rounded mr-2"></div>
+                  <span className="text-sm">Found Element</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded mr-2"></div>
+                  <span className="text-sm">Unchecked Elements</span>
                 </div>
               </div>
-            )}
-          </>
+            </div>
+          )}
         </main>
         <div>
           <div className="bg-gray-700 z-10 h-[1px]"></div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     );
-  };
+};
   
-  export default LinearSearch;
+export default LinearSearch;

@@ -2,6 +2,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
+import ResetButton from '@/app/components/ui/resetButton';
+import GoButton from '@/app/components/ui/goButton';
 
 const BinarySearch = () => {
     const [arraySize, setArraySize] = useState('');
@@ -17,9 +19,29 @@ const BinarySearch = () => {
     const [speed, setSpeed] = useState(1);
     const animationRef = useRef(null);
     const searchStateRef = useRef({ l: 0, h: 0, arr: [], targetValue: 0 });
+    const formRef = useRef(null);
+  
+    const handleReset = () => {
+      clearTimeout(animationRef.current);
+      setArray([]);
+      setI(-1);
+      setJ(-1);
+      setMid(-1);
+      setFoundIndex(-1);
+      setMessage('');
+      setIsAnimating(false);
+      setArraySize('');
+      setArrayElements('');
+      setTarget('');
+      if (formRef.current) {
+        formRef.current.reset();
+      }
+    };
   
     const handleGo = (e) => {
       e.preventDefault();
+      handleReset();
+  
       if (!arraySize || !arrayElements || !target) {
         setMessage('Please fill in all fields.');
         return;
@@ -115,6 +137,7 @@ const BinarySearch = () => {
           </p>
   
           <form
+            ref={formRef}
             onSubmit={handleGo}
             className="max-w-lg mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8"
           >
@@ -127,7 +150,7 @@ const BinarySearch = () => {
                 id="arraySize"
                 value={arraySize}
                 onChange={(e) => setArraySize(e.target.value)}
-                className="w-full p-3 rounded-lg border bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-400 transition duration-300"
                 placeholder="e.g., 5"
                 disabled={isAnimating}
               />
@@ -141,7 +164,7 @@ const BinarySearch = () => {
                 id="arrayElements"
                 value={arrayElements}
                 onChange={(e) => setArrayElements(e.target.value)}
-                className="w-full p-3 rounded-lg border bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-400 transition duration-300"
                 placeholder="e.g., 1, 3, 4, 6, 8"
                 disabled={isAnimating}
               />
@@ -155,26 +178,21 @@ const BinarySearch = () => {
                 id="target"
                 value={target}
                 onChange={(e) => setTarget(e.target.value)}
-                className="w-full p-3 rounded-lg border bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-400 transition duration-300"
                 placeholder="e.g., 4"
                 disabled={isAnimating}
               />
             </div>
             <div className="flex gap-4 mb-4">
-              <button
-                type="submit"
-                className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg disabled:opacity-50"
-                disabled={isAnimating}
-              >
-                Go
-              </button>
+              <GoButton onGo={handleGo} isAnimating={isAnimating} />
+              <ResetButton onReset={handleReset} isAnimating={isAnimating} />
             </div>
             {isAnimating && (
               <div className="flex items-center justify-between mb-4">
                 <button
                   type="button"
                   onClick={decreaseSpeed}
-                  className="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 px-4 py-2 rounded-lg"
+                  className="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 px-4 py-2 rounded-lg transition-colors"
                   disabled={speed <= 0.5}
                 >
                   -
@@ -183,17 +201,25 @@ const BinarySearch = () => {
                 <button
                   type="button"
                   onClick={increaseSpeed}
-                  className="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 px-4 py-2 rounded-lg"
+                  className="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 px-4 py-2 rounded-lg transition-colors"
                   disabled={speed >= 5}
                 >
                   +
                 </button>
               </div>
             )}
-            {message && (
-              <p className="mt-4 text-center text-gray-600 dark:text-gray-400">{message}</p>
-            )}
           </form>
+
+          {/* Output Screen */}
+          {message && (
+            <div className={`max-w-3xl mx-auto mb-8 p-4 rounded-lg ${
+              foundIndex !== -1 
+                ? "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200"
+                : "bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200"
+            }`}>
+              <p className="text-center font-medium">{message}</p>
+            </div>
+          )}
   
           {array.length > 0 && (
             <div className="max-w-5xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
@@ -210,19 +236,19 @@ const BinarySearch = () => {
                   return (
                     <div key={index} className="flex flex-col items-center">
                       <div
-                        className={`w-12 h-12 flex items-center justify-center rounded-lg border transition-all duration-300 text-md font-medium ${
-                          index === mid
-                            ? 'bg-yellow-300 dark:bg-yellow-500 border-yellow-500'
-                            : index === foundIndex
-                            ? 'bg-green-300 dark:bg-green-500 border-green-500'
+                        className={`w-16 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-lg font-medium ${
+                          index === foundIndex
+                            ? 'bg-green-500 dark:bg-green-600 border-green-700 dark:border-green-400'
+                            : index === mid
+                            ? 'bg-yellow-500 dark:bg-yellow-600 border-yellow-700 dark:border-yellow-400'
                             : index >= i && index <= j
-                            ? 'bg-blue-200 dark:bg-blue-700 border-blue-400'
-                            : 'bg-gray-200 dark:bg-gray-700 border-gray-300'
+                            ? 'bg-blue-300 dark:bg-blue-700 border-blue-500 dark:border-blue-400'
+                            : 'bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600'
                         }`}
                       >
                         {element}
                       </div>
-                      <div className="mt-1 text-xs text-gray-600 dark:text-gray-400 text-center">
+                      <div className="mt-1 text-sm text-gray-600 dark:text-gray-400 text-center">
                         {labels.map((label, idx) => (
                           <div key={idx}>{label}</div>
                         ))}

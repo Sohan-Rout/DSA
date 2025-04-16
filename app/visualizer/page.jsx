@@ -19,6 +19,10 @@ export const metadata = {
     'Bubble Sort',
     'Tree Traversal',
     'Heap Sort',
+    'Linked List',
+    'Singly Linked List',
+    'Doubly Linked List',
+    'Circular Linked List'
   ],
   robots: 'index, follow',
 };
@@ -76,6 +80,35 @@ const Visualizer = () => {
         { name: 'Enqueue & Dequeue', path: '/visualizer/queue/enqueue-dequeue' },
         { name: 'Peek Front', path: '/visualizer/queue/peek-front' },
         { name: 'Is Empty', path: '/visualizer/queue/isempty' },
+      ],
+    },
+    {
+      title: 'Linked List',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9l7 7-7 7" />
+        </svg>
+      ),
+      subsections: [
+        {
+          title: 'Types',
+          items: [
+            { name: 'Singly Linked List', path: '/visualizer/linkedlist/types/singly' },
+            { name: 'Doubly Linked List', path: '/visualizer/linkedlist/types/doubly' },
+            { name: 'Circular Linked List', path: '/visualizer/linkedlist/types/circular' },
+          ],
+        },
+        {
+          title: 'Operations',
+          items: [
+            { name: 'Insertion', path: '/visualizer/linkedlist/operations/insertion' },
+            { name: 'Deletion', path: '/visualizer/linkedlist/operations/deletion' },
+            { name: 'Finding an Element', path: '/visualizer/linkedlist/operations/search' },
+            { name: 'Merging Two Lists', path: '/visualizer/linkedlist/operations/merge' },
+            { name: 'Comparison', path: '/visualizer/linkedlist/operations/comparison' },
+          ],
+        },
       ],
     },
     {

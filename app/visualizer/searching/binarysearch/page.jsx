@@ -1,18 +1,19 @@
 import Animation from "@/app/visualizer/searching/binarysearch/animation";
 
 export const metadata = {
-  title: 'Searching Visualizer | Learn Linear and Binary Search',
-  description: 'Visualize Linear and Binary Search algorithms with step-by-step animations. Understand how searching works in arrays for better DSA preparation.',
+  title: 'Binary Search Visualizer | Step-by-Step Binary Search Animation',
+  description: 'Visualize the Binary Search algorithm with intuitive step-by-step animations. Learn how binary search efficiently finds elements in sorted arrays. Perfect for DSA preparation and beginners.',
   keywords: [
-    'Searching Visualizer',
-    'Linear Search Animation',
+    'Binary Search Visualizer',
     'Binary Search Animation',
-    'DSA Searching Algorithms',
-    'Learn Linear Search',
     'Learn Binary Search',
-    'Search Algorithms DSA',
-    'DSA for Beginners',
-    'Algorithm Visualizer',
+    'Binary Search for Beginners',
+    'Binary Search Step-by-Step',
+    'Visualize Binary Search Algorithm',
+    'DSA Binary Search',
+    'Binary Search Explanation',
+    'Binary Search Visualization Tool',
+    'Efficient Searching Algorithms',
   ],
   robots: "index, follow",
 };
