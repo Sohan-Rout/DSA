@@ -94,7 +94,7 @@ const Visualizer = () => {
         {
           title: 'Types',
           items: [
-            { name: 'Singly Linked List', path: '/visualizer/linkedlist/types/singly' },
+            { name: 'Singly Linked List', path: '/visualizer/linkedList/types/singly' },
             { name: 'Doubly Linked List', path: '/visualizer/linkedlist/types/doubly' },
             { name: 'Circular Linked List', path: '/visualizer/linkedlist/types/circular' },
           ],

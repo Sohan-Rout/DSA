@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://dsavisualizer.in/visualizer/sorting/bubblesort</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer/sorting/quicksort</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer/queue/isempty</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer/queue/enqueue-dequeue</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer/stack/isempty</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer/stack/peek</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer/searching/linearsearch</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer/sorting/selectionsort</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer/sorting/mergesort</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer/searching/binarysearch</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer/queue/peek-front</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer/sorting/insertionsort</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dsavisualizer.in/visualizer/stack/push-pop</loc><lastmod>2025-04-13T12:20:33.040Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/linkedList/types/singly</loc><lastmod>2025-04-16T17:54:55.106Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/queue/enqueue-dequeue</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/sorting/bubblesort</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/sorting/insertionsort</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/sorting/quicksort</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/sorting/mergesort</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/queue/isempty</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/stack/isempty</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/stack/peek</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/sorting/selectionsort</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/stack/push-pop</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/searching/binarysearch</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/queue/peek-front</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/searching/linearsearch</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://dsavisualizer.in/visualizer/trees/traversing/in-order</loc><lastmod>2025-04-16T17:54:55.107Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>
