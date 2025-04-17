@@ -244,7 +244,7 @@ const BubbleSortVisualizer = () => {
               <div className="medium-article-embed">
                 <div className="mt-0 text-center">
                   <a 
-                    href="https://medium.com/@sohan-rout/selection-sort-in-c-22575c9470c7"
+                    href="https://medium.com/@sohan-rout/bubble-sort-algorithm-using-c-b764947737c5"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 dark:text-blue-400 hover:underline"

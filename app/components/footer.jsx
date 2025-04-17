@@ -111,14 +111,15 @@ const Footer = () => {
               Empowering developers with interactive data structures and algorithms visualization tools.
             </p>
             <div className="space-y-2">
-              <ContactItem icon={
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              }>
-                123 Algorithm Avenue, Suite 456<br />Data Structures City, DS 54321
-              </ContactItem>
+            <ContactItem icon={
+  <svg fill="red" viewBox="0 0 24 24" stroke="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 
+             3.41 1.01 4.13 2.44h1.74C14.09 5.01 15.76 4 17.5 4 
+             20 4 22 6 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+  </svg>
+}>
+  Made With Love By<br /><a href='#' className='text-white underline underline-offset-8 decoration-amber-500 hover:text-blue-400'><span className='text-amber-500'>E</span>cma<span className='text-amber-500'>P</span>rojects</a>
+</ContactItem>
               <ContactItem icon={
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
