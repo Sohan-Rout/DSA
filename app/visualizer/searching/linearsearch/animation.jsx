@@ -123,10 +123,10 @@ const LinearSearch = () => {
       <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
         <Navbar />
         <main className="container mx-auto px-6 pt-16 pb-4">
-        <Content />
           <h1 className="text-4xl md:text-5xl mt-10 font-bold text-center text-gray-900 dark:text-white mb-8">
             <span className="text-blue-600">Linear Search</span> Visualizer
           </h1>
+          <Content />
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
             Visualize how Linear Search works by sequentially checking each
             element in an array.
