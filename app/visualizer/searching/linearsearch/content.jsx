@@ -96,7 +96,7 @@ const content = () => {
               </li>
               <li className="dark:text-amber-500 text-red-600">
                 <span className="dark:text-gray-300 text-black">
-                If the element is not found, return "Not Found".
+                  If the element is not found, return "Not Found".
                 </span>
               </li>
             </ol>
@@ -105,21 +105,40 @@ const content = () => {
 
         <div className="mt-4 mb-4 ml-4 mr-4">
           <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-          Time Complexity
+            Time Complexity
           </h1>
           <p className="ml-4 dark:text-gray-300 text-black">
-          <ol className="list-disc ml-8 pl-2">
+            <ol className="list-disc ml-8 pl-2">
               <li className="dark:text-amber-500 text-red-600">
                 <span className="dark:text-gray-300 text-black">
-                <span className="dark:text-amber-500 text-red-600">Best Case</span>: Target is the first element → <span className="dark:text-amber-500 text-red-600">O(1)</span>.
+                  <span className="dark:text-amber-500 text-red-600">
+                    Best Case
+                  </span>
+                  : Target is the first element →{" "}
+                  <span className="dark:text-amber-500 text-red-600">O(1)</span>
+                  .
                 </span>
               </li>
               <li className="dark:text-amber-500 text-red-600">
                 <span className="dark:text-gray-300 text-black">
-                <span className="dark:text-amber-500 text-red-600">Worst Case</span>: Target is last or not present → <span className="dark:text-amber-500 text-red-600">O(n) (checks all elements)</span>.
+                  <span className="dark:text-amber-500 text-red-600">
+                    Worst Case
+                  </span>
+                  : Target is last or not present →{" "}
+                  <span className="dark:text-amber-500 text-red-600">
+                    O(n) (checks all elements)
+                  </span>
+                  .
                 </span>
               </li>
             </ol>
+          </p>
+        </div>
+
+        <div className="mt-4 mb-4 ml-4 mr-4">
+          <p className="ml-4 dark:text-gray-300 text-black">
+            Linear Search is easy to understand but can be slow for large lists
+            compared to faster methods like Binary Search.
           </p>
         </div>
       </div>
