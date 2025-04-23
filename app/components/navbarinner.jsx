@@ -7,9 +7,9 @@ export default function Navbar() {
   const [theme, setTheme] = useState('light');
   const router = useRouter();
 
-  // Load and apply theme
+  // Ensure the default theme is applied globally on initial load
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     setTheme(savedTheme);
     document.documentElement.classList.toggle('dark', savedTheme === 'dark');
   }, []);
