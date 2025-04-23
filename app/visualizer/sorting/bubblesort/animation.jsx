@@ -240,7 +240,7 @@ const BubbleSortVisualizer = () => {
           title="Explore Sorting Algorithms"
           links={[
             { text: "Selection Sort", url: "/visualizer/sorting/selectionsort" },
-            { text: "Inserton Sort", url: "/visualizer/sorting/insertionsort" },
+            { text: "Insertion Sort", url: "/visualizer/sorting/insertionsort" },
             { text: "Merge Sort", url: "/visualizer/sorting/mergesort" },
             { text: "Quick Sort" , url: "/visualizer/sorting/quicksort"},
             { text: "Heap Sort", url: "/algorithms/sorting/heap" },
