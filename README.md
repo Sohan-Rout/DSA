@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="https://dsa-visualizer-sigma.vercel.app/">Live Demo</a> • 
+  <a href="https://www.dsavisualizer.in/">Live Demo</a> • 
   <a href="https://github.com/Sohan-Rout/DSAVisualizer/issues">Report Bug</a> • 
   <a href="https://github.com/Sohan-Rout/DSAVisualizer/issues">Request Feature</a>
 </p>
