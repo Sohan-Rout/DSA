@@ -4,6 +4,8 @@ import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
 import ResetButton from '@/app/components/ui/resetButton';
 import GoButton from '@/app/components/ui/goButton';
+import Content from '@/app/visualizer/searching/binarysearch/content';
+import NavigationLink from '@/app/components/ui/navigationLink';
 
 const BinarySearch = () => {
     const [arraySize, setArraySize] = useState('');
@@ -128,10 +130,11 @@ const BinarySearch = () => {
       <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
         <Navbar />
   
-        <main className="container mx-auto px-6 py-16">
+        <main className="container mx-auto px-6 pt-16 pb-5">
           <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
             <span className='text-blue-600'>Binary Search</span> Visualizer
           </h1>
+          <Content />
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
             Visualize how Binary Search efficiently finds an element in a sorted array.
           </p>
@@ -260,6 +263,8 @@ const BinarySearch = () => {
             </div>
           )}
         </main>
+
+        <NavigationLink href="./linearsearch" text="Linear Search"></NavigationLink>
         <div>
           <div className="bg-gray-700 z-10 h-[1px]"></div>
         </div>
