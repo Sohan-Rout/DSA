@@ -2,6 +2,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import Navbar from "@/app/components/navbarinner";
 import Footer from "@/app/components/footer";
+import ArrayGenerator from "@/app/components/ui/randomArray";
+import Content from "@/app/visualizer/sorting/bubblesort/content";
 
 const BubbleSortVisualizer = () => {
     const [array, setArray] = useState([]);
@@ -13,13 +15,9 @@ const BubbleSortVisualizer = () => {
     const [swaps, setSwaps] = useState(0);
     const [currentIndices, setCurrentIndices] = useState({ i: -1, j: -1 });
     const animationRef = useRef(null);
-  
-    // Generate random array
-    const generateRandomArray = () => {
-      const newArray = Array.from(
-        { length: 10 },
-        () => Math.floor(Math.random() * 100) + 5
-      );
+
+    // Handle array generation from child component
+    const handleArrayGenerated = (newArray) => {
       setArray(newArray);
       setSorted(false);
       resetStats();
@@ -115,40 +113,37 @@ const BubbleSortVisualizer = () => {
     return (
       <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
         <Navbar />
-        <main className="container mx-auto px-6 py-16">
-          <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
+        <main className="container mx-auto px-4 sm:px-6 pt-16 pb-4 md:pt-16 md:pb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6 mt-6 md:mt-6 md:mb-8">
             <span className="text-blue-600">Bubble Sort</span> Visualizer
           </h1>
-          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-          Watch Bubble Sort in action as it repeatedly swaps adjacent elements 
-          to sort the array step by step.
+          <Content />
+          <p className="text-base sm:text-lg text-center text-gray-600 dark:text-gray-400 mb-6 md:mb-8 px-2">
+            Watch Bubble Sort in action as it repeatedly swaps adjacent elements 
+            to sort the array step by step.
           </p>
   
           <div className="max-w-4xl mx-auto">
             {/* Controls */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
+            <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md mb-6 md:mb-8 border border-gray-200 dark:border-gray-700">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <button
-                    onClick={generateRandomArray}
-                    disabled={sorting}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded disabled:opacity-50 mb-2"
-                  >
-                    Generate Random Array
-                  </button>
+                  {/* Replace the old button with the new component */}
+                  <ArrayGenerator onGenerate={handleArrayGenerated} disabled={sorting} />
+                  
                   <div className="flex gap-2">
                     <input
                       type="text"
                       value={customArray}
                       onChange={(e) => setCustomArray(e.target.value)}
                       placeholder="Enter comma-separated numbers"
-                      className="flex-1 p-2 border rounded dark:bg-gray-700"
+                      className="flex-1 p-2 border rounded dark:bg-gray-700 text-sm sm:text-base"
                       disabled={sorting}
                     />
                     <button
                       onClick={useCustomArray}
                       disabled={sorting || !customArray}
-                      className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50"
+                      className="bg-green-600 hover:bg-green-700 text-white px-3 sm:px-4 py-2 rounded disabled:opacity-50 text-sm sm:text-base"
                     >
                       Use
                     </button>
@@ -158,13 +153,13 @@ const BubbleSortVisualizer = () => {
                   <button
                     onClick={bubbleSort}
                     disabled={!array.length || sorting || sorted}
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded disabled:opacity-50"
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded disabled:opacity-50 text-sm sm:text-base"
                   >
                     {sorting ? "Sorting..." : "Start Bubble Sort"}
                   </button>
                   <button
                     onClick={reset}
-                    className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm sm:text-base"
                   >
                     Reset All
                   </button>
@@ -173,7 +168,7 @@ const BubbleSortVisualizer = () => {
   
               {/* Speed controls */}
               <div className="flex items-center gap-4 mb-4">
-                <span className="text-gray-700 dark:text-gray-300">Speed:</span>
+                <span className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">Speed:</span>
                 <input
                   type="range"
                   min="0.5"
@@ -181,30 +176,30 @@ const BubbleSortVisualizer = () => {
                   step="0.5"
                   value={speed}
                   onChange={(e) => setSpeed(parseFloat(e.target.value))}
-                  className="w-32"
+                  className="w-24 sm:w-32"
                   disabled={sorting}
                 />
-                <span className="text-gray-700 dark:text-gray-300">{speed}x</span>
+                <span className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">{speed}x</span>
               </div>
   
               {/* Stats */}
-              <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-2 gap-4 text-sm sm:text-base">
                 <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded">
                   <div className="font-medium">Comparisons:</div>
-                  <div className="text-2xl">{comparisons}</div>
+                  <div className="text-xl sm:text-2xl">{comparisons}</div>
                 </div>
                 <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded">
                   <div className="font-medium">Swaps:</div>
-                  <div className="text-2xl">{swaps}</div>
+                  <div className="text-xl sm:text-2xl">{swaps}</div>
                 </div>
               </div>
             </div>
   
             {/* Visualization */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-semibold mb-4">Array Visualization</h2>
+            <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+              <h2 className="text-lg sm:text-xl font-semibold mb-4">Array Visualization</h2>
               {array.length > 0 ? (
-                <div className="flex flex-wrap gap-4 justify-center">
+                <div className="flex flex-wrap gap-2 sm:gap-4 justify-center">
                   {array.map((value, index) => {
                     const isComparing =
                       index === currentIndices.i || index === currentIndices.j;
@@ -213,7 +208,7 @@ const BubbleSortVisualizer = () => {
                     return (
                       <div key={index} className="flex flex-col items-center">
                         <div
-                          className={`w-16 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-lg font-medium
+                          className={`w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-sm sm:text-lg font-medium
                             ${
                               isComparing
                                 ? "bg-yellow-400 dark:bg-yellow-600 border-yellow-600 dark:border-yellow-400"
@@ -233,26 +228,10 @@ const BubbleSortVisualizer = () => {
                   })}
                 </div>
               ) : (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-center py-8 text-gray-500 text-sm sm:text-base">
                   {sorting ? "Sorting..." : "Generate or enter an array to begin"}
                 </div>
               )}
-            </div>
-  
-            {/* Medium Article Embed */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 mt-8">
-              <div className="medium-article-embed">
-                <div className="mt-0 text-center">
-                  <a 
-                    href="https://medium.com/@sohan-rout/bubble-sort-algorithm-using-c-b764947737c5"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    Read full article on Bubble Sort on Medium
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </main>
