@@ -4,13 +4,13 @@ const content = () => {
         <section className="border border-blue-700 rounded-lg bg-blue-600/25 mt-8 mb-8">
           <div className="mt-4 mb-4 ml-4 mr-4">
             <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              What is Linear Search
+              What is Binary Search
             </h1>
             <p className="ml-4 dark:text-gray-300 text-black">
-              Linear Search is a simple method to find a particular value in a
-              list. It checks each element one by one from the start until it
-              finds the target value. If the value is found, it returns its
-              position; otherwise, it says the value is not present.
+              Binary Search is an efficient algorithm for finding an item in a sorted list. 
+              It works by repeatedly dividing the search interval in half. If the target value 
+              is less than the middle element, the search continues in the lower half. 
+              Otherwise, it continues in the upper half. This process repeats until the value is found.
             </p>
           </div>
   
@@ -19,25 +19,29 @@ const content = () => {
               How Does It Work
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
-              Imagine you have a list of numbers: 
-              <span className="dark:text-amber-500 text-red-600">[5, 3, 8, 1, 9]</span> 
+              Imagine you have a sorted list of numbers: 
+              <span className="dark:text-amber-500 text-red-600">[1, 3, 5, 7, 9, 11, 13]</span> 
               and you want to find the number 
-              <span className="dark:text-amber-500 text-red-600">8</span>.
+              <span className="dark:text-amber-500 text-red-600">7</span>.
               <br />
               <ol className="list-decimal ml-8 pl-3">
                 <li>
-                  Start from the first number <span className="dark:text-amber-500 text-red-600">(5)</span>. Is <span className="dark:text-amber-500 text-red-600">5</span> equal to <span className="dark:text-amber-500 text-red-600">8</span>? No.
+                  Compare <span className="dark:text-amber-500 text-red-600">7</span> with the middle element <span className="dark:text-amber-500 text-red-600">(7)</span>. It matches! Return the position.
                 </li>
                 <li>
-                  Move to the next number <span className="dark:text-amber-500 text-red-600">(3)</span>. Is <span className="dark:text-amber-500 text-red-600">3</span> equal to <span className="dark:text-amber-500 text-red-600">8</span>? No.
-                </li>
-                <li>
-                  Move to the next number <span className="dark:text-amber-500 text-red-600">(8)</span>. Is <span className="dark:text-amber-500 text-red-600">8</span> equal to <span className="dark:text-amber-500 text-red-600">8</span>? Yes! Stop here. The position is <span className="dark:text-amber-500 text-red-600">2</span> (or 3 if counting starts from 1).
+                  If searching for <span className="dark:text-amber-500 text-red-600">5</span>:
+                  <ul className="list-disc ml-6">
+                    <li>First middle is <span className="dark:text-amber-500 text-red-600">7</span> (too high)</li>
+                    <li>Search left half: <span className="dark:text-amber-500 text-red-600">[1, 3, 5]</span></li>
+                    <li>New middle is <span className="dark:text-amber-500 text-red-600">3</span> (too low)</li>
+                    <li>Search right portion: <span className="dark:text-amber-500 text-red-600">[5]</span></li>
+                    <li>Found at position <span className="dark:text-amber-500 text-red-600">2</span></li>
+                  </ul>
                 </li>
               </ol>
               <br />
               If the number is not in the list 
-              <span className="dark:text-amber-500 text-red-600">(e.g., searching for 10)</span>, the search ends without success.
+              <span className="dark:text-amber-500 text-red-600">(e.g., searching for 8)</span>, the search ends when the subarray becomes empty.
             </div>
           </div>
   
@@ -47,16 +51,17 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-decimal ml-8 pl-2">
-                <li>Start from the first element.</li>
+                <li>Start with the entire sorted array</li>
                 <li>
-                  Compare the current element with the target value.
+                  Compare the target with the middle element:
                   <ul>
-                    <li>If they match, return the position.</li>
-                    <li>If not, move to the next element.</li>
+                    <li>If equal, return the position</li>
+                    <li>If target is smaller, search the left half</li>
+                    <li>If target is larger, search the right half</li>
                   </ul>
                 </li>
-                <li>Repeat until the end of the list.</li>
-                <li>If the element is not found, return "Not Found".</li>
+                <li>Repeat until the element is found or the subarray is empty</li>
+                <li>If not found, return "Not Found"</li>
               </ol>
             </div>
           </div>
@@ -68,10 +73,10 @@ const content = () => {
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-disc ml-8 pl-2">
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Best Case</span>: Target is the first element → <span className="dark:text-amber-500 text-red-600">O(1)</span>.
+                  <span className="dark:text-amber-500 text-red-600">Best Case</span>: Target is the middle element → <span className="dark:text-amber-500 text-red-600">O(1)</span>.
                 </li>
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Worst Case</span>: Target is last or not present → <span className="dark:text-amber-500 text-red-600">O(n)</span> (checks all elements).
+                  <span className="dark:text-amber-500 text-red-600">Worst Case</span>: Element not present → <span className="dark:text-amber-500 text-red-600">O(log n)</span> (halves search space each step).
                 </li>
               </ol>
             </div>
@@ -79,7 +84,8 @@ const content = () => {
   
           <div className="mt-4 mb-4 ml-4 mr-4">
             <p className="ml-4 dark:text-gray-300 text-black">
-              Linear Search is easy to understand but can be slow for large lists compared to faster methods like Binary Search.
+              Binary Search is extremely fast for large datasets but requires the list to be sorted beforehand.
+              It's much more efficient than Linear Search for sorted data.
             </p>
           </div>
         </section>
@@ -88,4 +94,3 @@ const content = () => {
   };
   
   export default content;
-  

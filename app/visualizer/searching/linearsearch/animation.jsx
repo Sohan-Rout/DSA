@@ -5,6 +5,7 @@ import Footer from '@/app/components/footer';
 import ResetButton from '@/app/components/ui/resetButton';
 import GoButton from '@/app/components/ui/goButton';
 import Content from '@/app/visualizer/searching/linearsearch/content';
+import NavigationLink from '@/app/components/ui/navigationLink';
 
 const LinearSearch = () => {
     const [arraySize, setArraySize] = useState('');
@@ -257,9 +258,8 @@ const LinearSearch = () => {
           )}
         </main>
         
-        <div className='bg-gray-100 dark:bg-black flex justify-center pr-10 pb-10 pt-4 font-poppins'>
-      <a href='./binarysearch' className='text-blue-600 underline hover:text-blue-700'>Move To Binary Search</a>
-    </div>
+        <NavigationLink href="./binarysearch" text="Binary Search"></NavigationLink>
+        
         <div>
           <div className="bg-gray-700 z-10 h-[1px]"></div>
         </div>
