@@ -10,6 +10,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^1.2.0",
     "next": "15.2.4",
     "next-sitemap": "^4.2.3",
     "nodemailer": "^6.10.0",
