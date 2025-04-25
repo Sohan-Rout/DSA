@@ -2,10 +2,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
+import Content from '@/app/visualizer/sorting/mergesort/content';
+import ArrayGenerator from '@/app/components/ui/randomArray';
+import CustomArrayInput from '@/app/components/ui/customArrayInput';
+import ExploreOther from '@/app/components/ui/exploreOther';
 
 const MergeSortVisualizer = () => {
     const [array, setArray] = useState([]);
-    const [customArray, setCustomArray] = useState('');
     const [sorting, setSorting] = useState(false);
     const [sorted, setSorted] = useState(false);
     const [speed, setSpeed] = useState(1);
@@ -21,29 +24,7 @@ const MergeSortVisualizer = () => {
       currentLevel: -1
     });
     const animationRef = useRef(null);
-  
-    // Generate random array
-    const generateRandomArray = () => {
-      const newArray = Array.from({ length: 10 }, () => 
-        Math.floor(Math.random() * 100) + 5
-      );
-      setArray(newArray);
-      setSorted(false);
-      resetStats();
-    };
-  
-    // Use custom array input
-    const useCustomArray = () => {
-      const elements = customArray.split(',').map(el => parseInt(el.trim()));
-      if (elements.some(isNaN)) {
-        alert('Please enter valid numbers separated by commas');
-        return;
-      }
-      setArray(elements);
-      setSorted(false);
-      resetStats();
-    };
-  
+
     // Reset all stats and state
     const resetStats = () => {
       setComparisons(0);
@@ -185,7 +166,6 @@ const MergeSortVisualizer = () => {
         clearTimeout(animationRef.current);
       }
       setArray([]);
-      setCustomArray('');
       setSorting(false);
       setSorted(false);
       resetStats();
@@ -310,6 +290,7 @@ const MergeSortVisualizer = () => {
           <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
             <span className="text-blue-600">Merge Sort</span> Visualizer
           </h1>
+          <Content/>
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
             Visualize the divide-and-conquer approach of Merge Sort with recursive splitting and merging.
           </p>
@@ -319,30 +300,22 @@ const MergeSortVisualizer = () => {
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <button
-                    onClick={generateRandomArray}
+                  <ArrayGenerator 
+                    onGenerate={(newArray) => {
+                      setArray(newArray);
+                      setSorted(false);
+                      resetStats();
+                    }}
                     disabled={sorting}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded disabled:opacity-50 mb-2"
-                  >
-                    Generate Random Array
-                  </button>
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      value={customArray}
-                      onChange={(e) => setCustomArray(e.target.value)}
-                      placeholder="Enter comma-separated numbers"
-                      className="flex-1 p-2 border rounded dark:bg-gray-700"
-                      disabled={sorting}
-                    />
-                    <button
-                      onClick={useCustomArray}
-                      disabled={sorting || !customArray}
-                      className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50"
-                    >
-                      Use
-                    </button>
-                  </div>
+                  />
+                  <CustomArrayInput 
+                    onSubmit={(newArray) => {
+                      setArray(newArray);
+                      setSorted(false);
+                      resetStats();
+                    }}
+                    disabled={sorting}
+                  />
                 </div>
                 <div className="flex flex-col gap-2">
                   <button
@@ -474,21 +447,17 @@ const MergeSortVisualizer = () => {
                 </div>
               </div>
             </div>
-  
-            {/* Medium Article Embed */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 mt-8">
-              <div className="text-center">
-                <a
-                  href="https://medium.com/@sohan-rout/merge-sort-in-c-7b9bd7b1fcdb"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  Read full article on Merge Sort on Medium
-                </a>
-              </div>
-            </div>
           </div>
+          <ExploreOther
+          title="Explore Sorting Algorithms"
+          links={[
+            { text: "Selection Sort", url: "/visualizer/sorting/selectionsort" },
+            { text: "Bubble Sort", url: "/visualizer/sorting/bubblesort" },
+            { text: "Insertion Sort", url: "/visualizer/sorting/insertionsort" },
+            { text: "Quick Sort" , url: "/visualizer/sorting/quicksort"},
+            { text: "Heap Sort", url: "/algorithms/sorting/heap" },
+          ]}
+        />
         </main>
         <div>
           <div className="bg-gray-700 z-10 h-[1px]"></div>
