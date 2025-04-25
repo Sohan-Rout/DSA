@@ -1,18 +1,18 @@
 import Animation from "@/app/visualizer/sorting/bubblesort/animation";
 
 export const metadata = {
-  title: 'Sorting Visualizer | Visualize Sorting Algorithms Easily',
-  description: 'Interactive sorting algorithm visualizer. Understand how Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, and Quick Sort work with step-by-step animations.',
+  title: 'Bubble Sort Visualizer | Step-by-Step Animation',
+  description: 'Visualize Bubble Sort in action with interactive animations. Learn how Bubble Sort works with comparisons and swaps in an easy-to-understand format.',
   keywords: [
-    'Sorting Visualizer',
-    'DSA Sorting',
+    'Bubble Sort Visualizer',
     'Bubble Sort Animation',
-    'Selection Sort Animation',
-    'Insertion Sort',
-    'Merge Sort Visualizer',
-    'Quick Sort Algorithm',
-    'Learn Sorting Algorithms',
-    'DSA for Beginners',
+    'Bubble Sort Algorithm',
+    'Sorting Algorithm Visualization',
+    'DSA Bubble Sort',
+    'Learn Bubble Sort',
+    'Sorting for Beginners',
+    'Step by Step Bubble Sort',
+    'Interactive Sorting Tool',
   ],
   robots: "index, follow",
 };
