@@ -9,7 +9,7 @@ const VisualizerClient = ({ initialSections }) => {
 
   return (
     <>
-      <div className="mb-6">
+      <div className="mb-10">
         <SearchBar
           sections={initialSections}
           onSearchResults={setFilteredSections}
