@@ -70,7 +70,7 @@ export const metadata = {
             { name: 'Push & Pop', path: '/visualizer/stack/push-pop' },
             { name: 'Peek', path: '/visualizer/stack/peek' },
             { name: 'Is Empty', path: '/visualizer/stack/isempty' },
-            { name: 'Is Full', path: '/visualizer/stack/isempty' },
+            { name: 'Is Full', path: '/visualizer/stack/isfull' },
           ],
         },
         {

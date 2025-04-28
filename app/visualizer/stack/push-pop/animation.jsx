@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
+import Content from '@/app/visualizer/stack/push-pop/content';
+import ExploreOther from '@/app/components/ui/exploreOther';
 
 const StackVisualizer = () => {
     const [stack, setStack] = useState([]);
@@ -64,6 +66,7 @@ const StackVisualizer = () => {
           <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
             <span className="text-blue-600">Stack</span> Visualizer
           </h1>
+          <Content />
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
             Visualize the <strong>LIFO (Last In, First Out)</strong> principle
           </p>
@@ -166,18 +169,16 @@ const StackVisualizer = () => {
                   {stack.length > 0 ? '↓ Bottom' : ''}
                 </div>
               </div>
-  
-              {/* Stack Explanation */}
-              <div className="mt-8 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                <h3 className="font-semibold mb-2">How Stack Works:</h3>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li><strong>Push</strong>: Adds element to the top (beginning) of stack</li>
-                  <li><strong>Pop</strong>: Removes element from the top of stack</li>
-                  <li><strong>LIFO</strong>: Last element pushed is first to be popped</li>
-                </ul>
-              </div>
             </div>
           </div>
+          <ExploreOther
+          title="Explore other operations"
+          links={[
+            { text: "Peek", url: "/visualizer/stack/peek" },
+            { text: "Is Empty", url: "/visualizer/stack/isempty" },
+            { text: "Is Full", url: "/visualizer/stack/isfull" },
+          ]}
+        />
         </main>
         <div className="bg-gray-700 z-10 h-[1px]"></div>
         <Footer />
