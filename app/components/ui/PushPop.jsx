@@ -62,7 +62,7 @@ const PushPop = ({ stack, setStack, isAnimating, setIsAnimating, setMessage, set
 
   return (
     <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
-      <div className="flex gap-2 mb-4">
+      <div className="flex flex-col sm:flex-row gap-2 mb-4">
         <input
           type="text"
           value={inputValue}
@@ -74,12 +74,12 @@ const PushPop = ({ stack, setStack, isAnimating, setIsAnimating, setMessage, set
         <button
           onClick={push}
           disabled={isAnimating}
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50"
+          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50 sm:w-auto w-full"
         >
           Push
         </button>
       </div>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
         <button
           onClick={pop}
           disabled={isAnimating || stack.length === 0}
@@ -96,7 +96,7 @@ const PushPop = ({ stack, setStack, isAnimating, setIsAnimating, setMessage, set
         </button>
         <button
           onClick={() => setStack([])}
-          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded disabled:opacity-50"
+          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded disabled:opacity-50 col-span-2 sm:col-span-1"
           disabled={isAnimating}
         >
           Reset
