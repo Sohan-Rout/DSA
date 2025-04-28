@@ -1,4 +1,4 @@
-import Animation from "@/app/visualizer/stack/isFull/animation"; 
+import Animation from "@/app/visualizer/stack/isfull/animation"; 
 
 export const metadata = {
     title: 'Stack Is Full Visualizer | Check Full Condition in Stack',
