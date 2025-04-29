@@ -34,9 +34,9 @@ const HeroSection = () => {
             </button>
             <a
               href="#features"
-              className="bg-transparent border border-gray-400 dark:border-gray-600 hover:border-blue-500 hover:text-blue-500 text-gray-800 dark:text-gray-200 font-semibold py-3 px-6 rounded-lg transition duration-300"
+              className="border border-gray-400 dark:border-gray-600 hover:border-blue-500 hover:text-blue-500 dark:hover:border-blue-400 dark:hover:text-blue-400 text-gray-800 dark:text-gray-200 font-semibold py-3 px-6 rounded-lg transition duration-300"
             >
-              Explore Features
+              <div className='bg-gray-200 dark:bg-inherit'>Explore Features</div>
             </a>
           </div>
         </div>
