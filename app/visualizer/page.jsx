@@ -1,12 +1,11 @@
 import React from 'react';
 import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
-import Link from 'next/link';
 import VisualizerClient from './VisualizerClient';
 
 export const metadata = {
   title: 'Algorithm Visualizer | DSA Visualizer',
-  description: 'Explore visual representations of various DSA algorithms including searching, sorting, stacks, queues, and trees. Interactive and beginner-friendly!',
+  description: 'Explore visual representations of various DSA algorithms including searching, sorting, stacks, queues, trees, and stack-based expression evaluation like Polish Notation using arrays and linked lists. Interactive and beginner-friendly!',
   keywords: [
     'DSA Visualizer',
     'Algorithm Visualizer',
@@ -23,7 +22,15 @@ export const metadata = {
     'Linked List',
     'Singly Linked List',
     'Doubly Linked List',
-    'Circular Linked List'
+    'Circular Linked List',
+    'Prefix Notation',
+    'Postfix Notation',
+    'Polish Notation',
+    'Stack using Array',
+    'Stack using Linked List',
+    'Prefix using Stack',
+    'Postfix using Stack',
+    'Polish Notation Implementation'
   ],
   robots: 'index, follow',
 };
@@ -83,8 +90,8 @@ export const metadata = {
         {
           title: 'Implementation',
           items: [
-            { name: 'Using Array', path: '/visualizer/stack/array-implementation' },
-            { name: 'Using Linked List', path: '/visualizer/stack/linkedlist-implementation' },
+            { name: 'Using Array', path: '/visualizer/stack/implementation/usingArray' },
+            { name: 'Using Linked List', path: '/visualizer/stack/implementation/usingLinkedList' },
           ],
         },
       ],
