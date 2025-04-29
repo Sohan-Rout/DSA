@@ -76,8 +76,8 @@ export const metadata = {
         {
           title: 'Polish Notations Evaluation',
           items: [
-            { name: 'Postfix', path: '/visualizer/stack/postfix' },
-            { name: 'Prefix', path: '/visualizer/stack/prefix' },
+            { name: 'Postfix', path: '/visualizer/stack/polish/postfix' },
+            { name: 'Prefix', path: '/visualizer/stack/polish/prefix' },
           ],
         },
         {
