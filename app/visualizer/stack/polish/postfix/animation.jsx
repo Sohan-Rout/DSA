@@ -1,10 +1,10 @@
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
 import ExploreOther from '@/app/components/ui/exploreOther';
-import Content from '@/app/visualizer/stack/polish/prefix/content';
-import Operation from '@/app/visualizer/stack/polish/prefix/operation';
+import Content from '@/app/visualizer/stack/polish/postfix/content';
+import Operation from '@/app/visualizer/stack/polish/postfix/operation';
 
-const PrefixSolver = () => {
+const PostfixSolver = () => {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
       <Navbar />
@@ -18,7 +18,7 @@ const PrefixSolver = () => {
         <ExploreOther
           title="Explore Other Tools"
           links={[
-            { text: "Postfix", url: "./postfix" },
+            { text: "Prefix", url: "./prefix" },
           ]}
           className="mt-12"
         />
@@ -29,4 +29,4 @@ const PrefixSolver = () => {
   );
 };
 
-export default PrefixSolver;
+export default PostfixSolver;
