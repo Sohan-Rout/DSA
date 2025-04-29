@@ -23,6 +23,7 @@ const PrefixSolver = () => {
           className="mt-12"
         />
       </main>
+      <div className="bg-gray-700 z-10 h-[1px]"></div>
       <Footer />
     </div>
   );
