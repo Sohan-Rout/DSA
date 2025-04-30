@@ -6,6 +6,8 @@ import ResetButton from '@/app/components/ui/resetButton';
 import GoButton from '@/app/components/ui/goButton';
 import Content from '@/app/visualizer/searching/linearsearch/content';
 import NavigationLink from '@/app/components/ui/navigationLink';
+import Code from '@/app/visualizer/searching/linearsearch/codeBlock';
+import ExploreOther from '@/app/components/ui/exploreOther';
 
 const LinearSearch = () => {
     const [arraySize, setArraySize] = useState('');
@@ -256,9 +258,15 @@ const LinearSearch = () => {
               </div>
             </div>
           )}
+
+          <Code/>
+          <ExploreOther
+          title="Explore other operations"
+          links={[
+            { text: "Binary Search", url: "./binarysearch" },
+          ]}
+        />
         </main>
-        
-        <NavigationLink href="./binarysearch" text="Binary Search"></NavigationLink>
         
         <div>
           <div className="bg-gray-700 z-10 h-[1px]"></div>
