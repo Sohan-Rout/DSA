@@ -6,6 +6,7 @@ import Content from '@/app/visualizer/sorting/mergesort/content';
 import ArrayGenerator from '@/app/components/ui/randomArray';
 import CustomArrayInput from '@/app/components/ui/customArrayInput';
 import ExploreOther from '@/app/components/ui/exploreOther';
+import CodeBlock from '@/app/visualizer/sorting/mergesort/codeBlock';
 
 const MergeSortVisualizer = () => {
     const [array, setArray] = useState([]);
@@ -448,6 +449,8 @@ const MergeSortVisualizer = () => {
               </div>
             </div>
           </div>
+
+          <CodeBlock/>
           <ExploreOther
           title="Explore Sorting Algorithms"
           links={[
