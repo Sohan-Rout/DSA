@@ -6,6 +6,7 @@ import ArrayGenerator from "@/app/components/ui/randomArray";
 import Content from "@/app/visualizer/sorting/bubblesort/content";
 import CustomArrayInput from "@/app/components/ui/customArrayInput";
 import ExploreOther from "@/app/components/ui/exploreOther";
+import CodeBlock from "@/app/visualizer/sorting/bubblesort/codeBlock";
 
 const BubbleSortVisualizer = () => {
   const [array, setArray] = useState([]);
@@ -236,6 +237,7 @@ const BubbleSortVisualizer = () => {
           </div>
         </div>
 
+        <CodeBlock/>
         <ExploreOther
           title="Explore Sorting Algorithms"
           links={[

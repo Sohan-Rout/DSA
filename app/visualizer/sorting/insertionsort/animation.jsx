@@ -6,6 +6,7 @@ import RandomArray from "@/app/components/ui/randomArray";
 import CustomArrayInput from "@/app/components/ui/customArrayInput";
 import Content from "@/app/visualizer/sorting/insertionsort/content";
 import ExploreOther from "@/app/components/ui/exploreOther";
+import CodeBlock from "@/app/visualizer/sorting/insertionsort/codeBlock";
 
 const InsertionSortVisualizer = () => {
   const [array, setArray] = useState([]);
@@ -292,6 +293,7 @@ const InsertionSortVisualizer = () => {
             )}
           </div>
         </div>
+        <CodeBlock/>
         <ExploreOther
           title="Explore Sorting Algorithms"
           links={[
