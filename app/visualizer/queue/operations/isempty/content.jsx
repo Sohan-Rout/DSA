@@ -7,8 +7,8 @@ const content = () => {
               What is the isEmpty Operation?
             </h1>
             <p className="ml-4 dark:text-gray-300 text-black">
-              The <span className="dark:text-amber-500 text-red-600">isEmpty</span> operation checks whether a queue contains any elements or not.
-              It returns <span className="dark:text-amber-500 text-red-600">true</span> if the queue is empty (no elements) and <span className="dark:text-amber-500 text-red-600">false</span> if it contains elements.
+              The <span className="dark:text-amber-500 text-purple-600">isEmpty</span> operation checks whether a queue contains any elements or not.
+              It returns <span className="dark:text-amber-500 text-purple-600">true</span> if the queue is empty (no elements) and <span className="dark:text-amber-500 text-purple-600">false</span> if it contains elements.
               This is a fundamental operation used to prevent underflow when performing dequeue operations.
             </p>
           </div>
@@ -26,13 +26,13 @@ const content = () => {
                 <li>
                   <span className="font-semibold">Empty Queue:</span> []
                   <ul className="list-disc ml-6">
-                    <li><span className="dark:text-amber-500 text-red-600">isEmpty()</span> → returns <span className="dark:text-amber-500 text-red-600">true</span></li>
+                    <li><span className="dark:text-amber-500 text-purple-600">isEmpty()</span> → returns <span className="dark:text-amber-500 text-purple-600">true</span></li>
                   </ul>
                 </li>
                 <li>
                   <span className="font-semibold">Non-empty Queue:</span> [10, 20, 30]
                   <ul className="list-disc ml-6">
-                    <li><span className="dark:text-amber-500 text-red-600">isEmpty()</span> → returns <span className="dark:text-amber-500 text-red-600">false</span></li>
+                    <li><span className="dark:text-amber-500 text-purple-600">isEmpty()</span> → returns <span className="dark:text-amber-500 text-purple-600">false</span></li>
                   </ul>
                 </li>
               </ol>
@@ -85,7 +85,7 @@ const content = () => {
               Time Complexity
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
-              The isEmpty operation always runs in <span className="dark:text-amber-500 text-red-600">O(1)</span> constant time because:
+              The isEmpty operation always runs in <span className="dark:text-amber-500 text-purple-600">O(1)</span> constant time because:
               <ol className="list-disc ml-8 pl-2">
                 <li>It only requires a simple pointer comparison</li>
                 <li>No iteration through elements is needed</li>
