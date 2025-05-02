@@ -68,8 +68,8 @@ const InfixToPrefixContent = () => {
                   <td className="border border-blue-700 px-4 py-2">Highest</td>
                 </tr>
                 <tr>
-                  <td className="border border-blue-700 px-4 py-2">^</td>
-                  <td className="border border-blue-700 px-4 py-2">Exponentiation</td>
+                  <td className="border border-blue-700 px-4 py-2">^ %</td>
+                  <td className="border border-blue-700 px-4 py-2">Exponentiation / Modulus</td>
                   <td className="border border-blue-700 px-4 py-2">2</td>
                 </tr>
                 <tr>
