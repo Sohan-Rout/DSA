@@ -23,16 +23,16 @@ const InfixToPrefixContent = () => {
           <div className="ml-4 dark:text-gray-300 text-black">
             <ol className="list-decimal ml-6">
               <li>
-                <span className="font-semibold dark:text-amber-500 text-red-600">Reverse the infix expression</span>, while keeping the positions of parentheses correct.
+                <span className="dark:text-amber-500 text-red-600">Reverse the infix expression</span>, while keeping the positions of parentheses correct.
               </li>
               <li>
-                <span className="font-semibold dark:text-amber-500 text-red-600">Replace</span> '(' with ')' and vice-versa.
+                <span className="dark:text-amber-500 text-red-600">Replace</span> '(' with ')' and vice-versa.
               </li>
               <li>
-                <span className="font-semibold dark:text-amber-500 text-red-600">Convert the reversed expression to postfix</span> using a stack.
+                <span className="dark:text-amber-500 text-red-600">Convert the reversed expression to postfix</span> using a stack.
               </li>
               <li>
-                <span className="font-semibold dark:text-amber-500 text-red-600">Finally, reverse the postfix expression</span> to get the prefix expression.
+                <span className="dark:text-amber-500 text-red-600">Finally, reverse the postfix expression</span> to get the prefix expression.
               </li>
             </ol>
             <br />

@@ -4,6 +4,7 @@ import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import Content from'@/app/visualizer/stack/polish/postfix/content';
+import CodeBlock from'@/app/visualizer/stack/polish/postfix/codeBlock';
 
 const InfixToPostfixVisualizer = () => {
   const [infix, setInfix] = useState('(A+B)*C');
@@ -435,6 +436,7 @@ const InfixToPostfixVisualizer = () => {
           )}
         </div>
 
+        <CodeBlock/>
         <ExploreOther
           title="Explore other conversions"
           links={[

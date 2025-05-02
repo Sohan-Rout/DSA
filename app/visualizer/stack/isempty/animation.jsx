@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
+import Content from '@/app/visualizer/stack/isempty/content';
+import CodeBlock from '@/app/visualizer/stack/isempty/codeBlock';
+import ExploreOther from '@/app/components/ui/exploreOther';
 
 const StackVisualizer = () => {
     const [stack, setStack] = useState([]);
@@ -109,6 +112,7 @@ const StackVisualizer = () => {
           <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
             <span className="text-blue-600">Stack</span> Visualizer
           </h1>
+          <Content/>
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
             Visualize <strong>Push</strong>, <strong>Pop</strong>, <strong>Peek</strong>, and <strong>IsEmpty</strong> operations
           </p>
@@ -224,18 +228,18 @@ const StackVisualizer = () => {
                   {stack.length > 0 ? '↓ Bottom' : ''}
                 </div>
               </div>
-  
-              {/* Stack Explanation */}
-              <div className="mt-8 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                <h3 className="font-semibold mb-2">Stack Operations:</h3>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li><span className="font-medium text-green-600 dark:text-green-400">Push</span>: Adds element to top</li>
-                  <li><span className="font-medium text-yellow-600 dark:text-yellow-400">IsEmpty</span>: Checks if stack contains no elements</li>
-                  <li><span className="font-medium text-blue-600 dark:text-blue-400">LIFO</span>: Last In, First Out principle</li>
-                </ul>
-              </div>
             </div>
           </div>
+
+          <CodeBlock/>
+          <ExploreOther
+          title="Explore other operations"
+          links={[
+            { text: "Push & Pop", url: "/visualizer/stack/push-pop" },
+            { text: "Peek", url: "/visualizer/stack/peek" },
+            { text: "Is Full", url: "/visualizer/stack/isfull" },
+          ]}
+        />
         </main>
         <div className="bg-gray-700 z-10 h-[1px]"></div>
         <Footer />

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
 import Content from '@/app/visualizer/stack/isfull/content';
+import CodeBlock from '@/app/visualizer/stack/isfull/codeBlock';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import PushPop from '@/app/components/ui/PushPop';
 
@@ -151,6 +152,8 @@ const StackVisualizer = () => {
                         </div>
                     </div>
                 </div>
+
+                <CodeBlock/>
                 <ExploreOther
                     title="Explore other operations"
                     links={[
