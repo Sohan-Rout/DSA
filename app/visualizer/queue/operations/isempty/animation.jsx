@@ -81,7 +81,7 @@ const QueueVisualizer = () => {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
       <Navbar />
-      <main className="container mx-auto px-6 py-16">
+      <main className="container mx-auto px-4 sm:px-6 py-16">
         <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
           <span className="text-blue-600">Queue</span> Visualizer
         </h1>
@@ -89,8 +89,8 @@ const QueueVisualizer = () => {
 
         <div className="max-w-2xl mx-auto">
           {/* Controls */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
-            <div className="flex gap-2 mb-4">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
+            <div className="flex flex-col sm:flex-row gap-2 mb-4">
               <input
                 type="text"
                 value={inputValue}
@@ -102,12 +102,12 @@ const QueueVisualizer = () => {
               <button
                 onClick={enqueue}
                 disabled={isAnimating}
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50"
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50 w-full sm:w-auto"
               >
                 Enqueue
               </button>
             </div>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <button
                 onClick={dequeue}
                 disabled={isAnimating || queue.length === 0}
@@ -133,7 +133,7 @@ const QueueVisualizer = () => {
           </div>
 
           {/* Queue Visualization */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
             {/* Operation Status */}
             {operation && (
               <div className="mb-4 p-3 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
@@ -188,7 +188,7 @@ const QueueVisualizer = () => {
                     {queue.map((item, index) => (
                       <div key={index} className="flex flex-col items-center transition-all duration-300">
                         <div
-                          className={`w-20 p-3 rounded-lg border-2 text-center font-medium ${
+                          className={`w-16 sm:w-20 p-3 rounded-lg border-2 text-center font-medium ${
                             index === 0
                               ? 'bg-green-500 text-white border-green-600'
                               : index === queue.length - 1
