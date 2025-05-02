@@ -15,6 +15,7 @@ const tags = [
   { title: "Queue" },
   { title: "Linked List" },
   { title: "Trees" },
+  { title: "Multiple Queue" },
 ];
 
 const VisualizerClient = ({ initialSections }) => {
