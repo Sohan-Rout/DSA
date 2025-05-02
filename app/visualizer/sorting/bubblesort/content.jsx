@@ -20,16 +20,16 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               Imagine you have an unsorted list of numbers: 
-              <span className="dark:text-amber-500 text-red-600">[5, 1, 4, 2, 8]</span>
+              <span className="dark:text-amber-500 text-purple-600">[5, 1, 4, 2, 8]</span>
               <br />
               <ol className="list-decimal ml-8 pl-3">
                 <li>
                   <span className="font-semibold">First Pass:</span>
                   <ul className="list-disc ml-6">
-                    <li>(<span className="dark:text-amber-500 text-red-600">5</span>, <span className="dark:text-amber-500 text-red-600">1</span>) → Swap → [1, 5, 4, 2, 8]</li>
-                    <li>(<span className="dark:text-amber-500 text-red-600">5</span>, <span className="dark:text-amber-500 text-red-600">4</span>) → Swap → [1, 4, 5, 2, 8]</li>
-                    <li>(<span className="dark:text-amber-500 text-red-600">5</span>, <span className="dark:text-amber-500 text-red-600">2</span>) → Swap → [1, 4, 2, 5, 8]</li>
-                    <li>(<span className="dark:text-amber-500 text-red-600">5</span>, <span className="dark:text-amber-500 text-red-600">8</span>) → No swap</li>
+                    <li>(<span className="dark:text-amber-500 text-purple-600">5</span>, <span className="dark:text-amber-500 text-purple-600">1</span>) → Swap → [1, 5, 4, 2, 8]</li>
+                    <li>(<span className="dark:text-amber-500 text-purple-600">5</span>, <span className="dark:text-amber-500 text-purple-600">4</span>) → Swap → [1, 4, 5, 2, 8]</li>
+                    <li>(<span className="dark:text-amber-500 text-purple-600">5</span>, <span className="dark:text-amber-500 text-purple-600">2</span>) → Swap → [1, 4, 2, 5, 8]</li>
+                    <li>(<span className="dark:text-amber-500 text-purple-600">5</span>, <span className="dark:text-amber-500 text-purple-600">8</span>) → No swap</li>
                   </ul>
                 </li>
                 <li>

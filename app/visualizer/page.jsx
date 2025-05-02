@@ -138,7 +138,6 @@ export const metadata = {
           items: [
             { name: 'Using Array', path: '/visualizer/queue/implementation/array' },
             { name: 'Using Linked List', path: '/visualizer/queue/implementation/linkedList' },
-            { name: 'Using Stack', path: '/visualizer/queue/implementation/stack' },
           ]
         }
       ],

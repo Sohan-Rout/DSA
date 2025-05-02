@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
+import Content from "@/app/visualizer/queue/operations/peek-front/content";
+import CodeBlock from "@/app/visualizer/queue/operations/peek-front/codeBlock";
+import ExploreOther from '@/app/components/ui/exploreOther';
 
 const QueueVisualizer = () => {
   const [queue, setQueue] = useState([]);
@@ -75,18 +78,19 @@ const QueueVisualizer = () => {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
       <Navbar />
-      <main className="container mx-auto px-6 py-16">
+      <main className="container mx-auto px-4 sm:px-6 py-16">
         <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
           <span className="text-blue-600">Queue</span> Visualizer
         </h1>
+        <Content/>
         <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-          Play with <strong>Enqueue</strong>, <strong>Dequeue</strong>, and <strong>Peek Front</strong> to see a queue in action!
+          Play with Enqueue, Dequeue, and Peek Front to see a queue in action!
         </p>
 
         <div className="max-w-2xl mx-auto">
           {/* Controls */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
-            <div className="flex gap-2 mb-4">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
+            <div className="flex flex-col sm:flex-row gap-2 mb-4">
               <input
                 type="text"
                 value={inputValue}
@@ -98,12 +102,12 @@ const QueueVisualizer = () => {
               <button
                 onClick={enqueue}
                 disabled={isAnimating}
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105 w-full sm:w-auto"
               >
                 Enqueue
               </button>
             </div>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <button
                 onClick={dequeue}
                 disabled={isAnimating || queue.length === 0}
@@ -129,7 +133,7 @@ const QueueVisualizer = () => {
           </div>
 
           {/* Queue Visualization */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
             {/* Operation Status */}
             {operation && (
               <div className="mb-4 p-3 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 animate-pulse">
@@ -181,14 +185,14 @@ const QueueVisualizer = () => {
                         }`}
                       >
                         <div
-                          className={`w-20 p-3 rounded-lg border-2 text-center font-medium ${
+                          className={`w-16 sm:w-20 p-3 rounded-lg border-2 text-center font-medium ${
                             index === 0
                               ? peekedItem === item
                                 ? 'bg-purple-500 text-white border-purple-600 animate-pulse'
                                 : 'bg-green-500 text-white border-green-600'
                               : index === queue.length - 1
                               ? 'bg-orange-500 text-white border-orange-600'
-                              : 'bg-gray-200 dark:bg-blue-500 border-blue-600 dark:border-YOUR_GRAY_BORDER'
+                              : 'bg-blue-200 dark:bg-blue-700 border-blue-300 dark:border-blue-600'
                           }`}
                         >
                           {item}
@@ -199,50 +203,18 @@ const QueueVisualizer = () => {
                 )}
               </div>
             </div>
-
-            {/* Interactive Queue Explanation */}
-            <div className="mt-8 bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
-              <h3 className="font-semibold text-lg mb-4 text-gray-900 dark:text-white">
-                What's Happening in the Queue?
-              </h3>
-              <div className="grid gap-4">
-                <div className="p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg transition-all cursor-pointer group">
-                  <h4 className="font-medium text-green-600 dark:text-green-400 group-hover:scale-105 transition-transform">
-                    Enqueue
-                  </h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Adds a new item to the <strong>rear</strong> (right). Like joining the end of a line!
-                  </p>
-                </div>
-                <div className="p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg transition-all cursor-pointer group">
-                  <h4 className="font-medium text-red-600 dark:text-red-400 group-hover:scale-105 transition-transform">
-                    Dequeue
-                  </h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Removes the item from the <strong>front</strong> (left). The first in line leaves!
-                  </p>
-                </div>
-                <div className="p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg transition-all cursor-pointer group">
-                  <h4 className="font-medium text-purple-600 dark:text-purple-400 group-hover:scale-105 transition-transform">
-                    Peek Front
-                  </h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Checks who's at the <strong>front</strong> without removing them. Just a quick look!
-                  </p>
-                </div>
-                <div className="p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg transition-all cursor-pointer group">
-                  <h4 className="font-medium text-blue-600 dark:text-blue-400 group-hover:scale-105 transition-transform">
-                    FIFO
-                  </h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Stands for <strong>First In, First Out</strong>. The queue works like a fair line—first come, first
-                    served!
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
+
+        <CodeBlock/>
+        <ExploreOther
+          title="Explore Other Operations"
+          links={[
+            { text: "Enqueue & Dequeue", url: "./enqueue-dequeue" },
+            { text: "Is Full", url: "./isfull" },
+            { text: "Is Empty", url: "./isempty" },
+          ]}
+        />
       </main>
       <div className="bg-gray-700 z-10 h-[1px]"></div>
       <Footer />
