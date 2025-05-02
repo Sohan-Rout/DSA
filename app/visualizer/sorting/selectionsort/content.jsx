@@ -19,7 +19,7 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               Consider this unsorted array: 
-              <span className="dark:text-amber-500 text-red-600">[64, 25, 12, 22, 11]</span>
+              <span className="dark:text-amber-500 text-purple-600">[64, 25, 12, 22, 11]</span>
               <br /><br />
               
               <ol className="list-decimal ml-8 pl-3">
@@ -84,16 +84,16 @@ const content = () => {
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-disc ml-8 pl-2">
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Best Case</span>: 
-                  <span className="dark:text-amber-500 text-red-600"> O(n²)</span> (still makes n(n-1)/2 comparisons)
+                  <span className="dark:text-amber-500 text-purple-600">Best Case</span>: 
+                  <span className="dark:text-amber-500 text-purple-600"> O(n²)</span> (still makes n(n-1)/2 comparisons)
                 </li>
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Average Case</span>: 
-                  <span className="dark:text-amber-500 text-red-600"> O(n²)</span>
+                  <span className="dark:text-amber-500 text-purple-600">Average Case</span>: 
+                  <span className="dark:text-amber-500 text-purple-600"> O(n²)</span>
                 </li>
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Worst Case</span>: 
-                  <span className="dark:text-amber-500 text-red-600"> O(n²)</span>
+                  <span className="dark:text-amber-500 text-purple-600">Worst Case</span>: 
+                  <span className="dark:text-amber-500 text-purple-600"> O(n²)</span>
                 </li>
               </ol>
               <p className="mt-2 ml-4">
@@ -107,8 +107,8 @@ const content = () => {
               Space Complexity
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
-              Selection Sort is an <span className="dark:text-amber-500 text-red-600">in-place</span> algorithm, 
-              requiring only <span className="dark:text-amber-500 text-red-600">O(1)</span> additional space 
+              Selection Sort is an <span className="dark:text-amber-500 text-purple-600">in-place</span> algorithm, 
+              requiring only <span className="dark:text-amber-500 text-purple-600">O(1)</span> additional space 
               for temporary variables during swaps.
             </div>
           </div>

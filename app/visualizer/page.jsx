@@ -126,7 +126,7 @@ export const metadata = {
         {
           title: 'Types',
           items: [
-            { name: 'Simple Queue', path: '/visualizer/queue/types/simple' },
+            { name: 'Single Ended Queue', path: '/visualizer/queue/types/singleEnded' },
             { name: 'Double Ended Queue (Deque)', path: '/visualizer/queue/types/deque' },
             { name: 'Circular Queue', path: '/visualizer/queue/types/circular' },
             { name: 'Priority Queue', path: '/visualizer/queue/types/priority' },
@@ -146,8 +146,8 @@ export const metadata = {
       title: 'Linked List',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9l7 7-7 7" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5l7 7-7 7" />
         </svg>
       ),
       subsections: [

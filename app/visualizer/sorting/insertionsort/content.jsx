@@ -19,7 +19,7 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               Consider this unsorted array: 
-              <span className="dark:text-amber-500 text-red-600">[7, 3, 5, 2, 1]</span>
+              <span className="dark:text-amber-500 text-purple-600">[7, 3, 5, 2, 1]</span>
               <br />
               <ol className="list-decimal ml-8 pl-3">
                 <li>
@@ -76,16 +76,16 @@ const content = () => {
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-disc ml-8 pl-2">
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Best Case</span>: Already sorted array → 
-                  <span className="dark:text-amber-500 text-red-600"> O(n)</span> (only comparisons, no shifts).
+                  <span className="dark:text-amber-500 text-purple-600">Best Case</span>: Already sorted array → 
+                  <span className="dark:text-amber-500 text-purple-600"> O(n)</span> (only comparisons, no shifts).
                 </li>
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Average Case</span>: Randomly ordered array → 
-                  <span className="dark:text-amber-500 text-red-600"> O(n²)</span>.
+                  <span className="dark:text-amber-500 text-purple-600">Average Case</span>: Randomly ordered array → 
+                  <span className="dark:text-amber-500 text-purple-600"> O(n²)</span>.
                 </li>
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Worst Case</span>: Reverse sorted array → 
-                  <span className="dark:text-amber-500 text-red-600"> O(n²)</span> (maximum comparisons and shifts).
+                  <span className="dark:text-amber-500 text-purple-600">Worst Case</span>: Reverse sorted array → 
+                  <span className="dark:text-amber-500 text-purple-600"> O(n²)</span> (maximum comparisons and shifts).
                 </li>
               </ol>
             </div>
@@ -96,8 +96,8 @@ const content = () => {
               Space Complexity
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
-              Like Bubble Sort, Insertion Sort is <span className="dark:text-amber-500 text-red-600">in-place</span> and requires only 
-              <span className="dark:text-amber-500 text-red-600"> O(1)</span> additional space.
+              Like Bubble Sort, Insertion Sort is <span className="dark:text-amber-500 text-purple-600">in-place</span> and requires only 
+              <span className="dark:text-amber-500 text-purple-600"> O(1)</span> additional space.
             </div>
           </div>
   

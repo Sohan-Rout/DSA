@@ -1,6 +1,6 @@
 const content = () => {
     return (
-      <main className="px-4 sm:px-6 lg:px-8">
+      <main className="px-4 sm:px-4 lg:px-8">
         <section className="border border-blue-700 rounded-lg bg-blue-600/25 mt-4 sm:mt-8 mb-6 sm:mb-8 mx-auto max-w-4xl">
           <div className="p-4 sm:p-6">
             {/* Header Section */}

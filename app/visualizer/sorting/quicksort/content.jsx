@@ -7,7 +7,7 @@ const content = () => {
               What is Quick Sort
             </h1>
             <p className="ml-4 dark:text-gray-300 text-black">
-              Quick Sort is an efficient, comparison-based sorting algorithm that follows the <span className="dark:text-amber-500 text-red-600">divide-and-conquer</span> approach.
+              Quick Sort is an efficient, comparison-based sorting algorithm that follows the <span className="dark:text-amber-500 text-purple-600">divide-and-conquer</span> approach.
               It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays according to whether they are less than or greater than the pivot.
               The sub-arrays are then recursively sorted.
             </p>
@@ -19,7 +19,7 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               Consider this unsorted array: 
-              <span className="dark:text-amber-500 text-red-600">[10, 80, 30, 90, 40, 50, 70]</span>
+              <span className="dark:text-amber-500 text-purple-600">[10, 80, 30, 90, 40, 50, 70]</span>
               <br /><br />
               
               <span className="font-semibold">Partitioning Phase:</span>
@@ -66,21 +66,21 @@ const content = () => {
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-decimal ml-8 pl-2">
                 <li>
-                  <p className="dark:text-amber-500 text-red-600">Choose Pivot:</p>
+                  <p className="dark:text-amber-500 text-purple-600">Choose Pivot:</p>
                   <ul className="list-disc ml-6">
-                    <li>Select an element as pivot <span className="dark:text-amber-500 text-red-600">(commonly last/first/random element)</span></li>
+                    <li>Select an element as pivot <span className="dark:text-amber-500 text-purple-600">(commonly last/first/random element)</span></li>
                   </ul>
                 </li>
                 <li>
-                  <p className="dark:text-amber-500 text-red-600">Partition:</p>
+                  <p className="dark:text-amber-500 text-purple-600">Partition:</p>
                   <ul className="list-disc ml-6">
-                    <li>Reorder array so elements <span className="dark:text-amber-500 text-red-600">&lt;</span> pivot come before it</li>
-                    <li>Elements <span className="dark:text-amber-500 text-red-600">&gt;</span> pivot come after it</li>
+                    <li>Reorder array so elements <span className="dark:text-amber-500 text-purple-600">&lt;</span> pivot come before it</li>
+                    <li>Elements <span className="dark:text-amber-500 text-purple-600">&gt;</span> pivot come after it</li>
                     <li>Pivot is now in its final sorted position</li>
                   </ul>
                 </li>
                 <li>
-                  <p className="dark:text-amber-500 text-red-600">Recurse:</p>
+                  <p className="dark:text-amber-500 text-purple-600">Recurse:</p>
                   <ul className="list-disc ml-6">
                     <li>Apply quick sort to left sub-array (elements &lt; pivot)</li>
                     <li>Apply quick sort to right sub-array (elements &gt; pivot)</li>
@@ -97,16 +97,16 @@ const content = () => {
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-disc ml-8 pl-2">
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Best Case</span>: 
-                  <span className="dark:text-amber-500 text-red-600"> O(n log n)</span> (balanced partitions)
+                  <span className="dark:text-amber-500 text-purple-600">Best Case</span>: 
+                  <span className="dark:text-amber-500 text-purple-600"> O(n log n)</span> (balanced partitions)
                 </li>
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Average Case</span>: 
-                  <span className="dark:text-amber-500 text-red-600"> O(n log n)</span>
+                  <span className="dark:text-amber-500 text-purple-600">Average Case</span>: 
+                  <span className="dark:text-amber-500 text-purple-600"> O(n log n)</span>
                 </li>
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Worst Case</span>: 
-                  <span className="dark:text-amber-500 text-red-600"> O(n²)</span> (unbalanced partitions)
+                  <span className="dark:text-amber-500 text-purple-600">Worst Case</span>: 
+                  <span className="dark:text-amber-500 text-purple-600"> O(n²)</span> (unbalanced partitions)
                 </li>
               </ol>
               <p className="mt-2 ml-4">
@@ -121,8 +121,8 @@ const content = () => {
               Space Complexity
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
-              Quick Sort is <span className="dark:text-amber-500 text-red-600">O(log n)</span> space complexity for the call stack in the average case,
-              but can degrade to <span className="dark:text-amber-500 text-red-600">O(n)</span> in the worst case with unbalanced partitions.
+              Quick Sort is <span className="dark:text-amber-500 text-purple-600">O(log n)</span> space complexity for the call stack in the average case,
+              but can degrade to <span className="dark:text-amber-500 text-purple-600">O(n)</span> in the worst case with unbalanced partitions.
               It is generally considered an in-place algorithm as it doesn't require significant additional space.
             </div>
           </div>

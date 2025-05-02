@@ -20,24 +20,24 @@ const content = () => {
           </h1>
           <div className="ml-4 dark:text-gray-300 text-black">
             Imagine you have a list of numbers: 
-            <span className="dark:text-amber-500 text-red-600">[5, 3, 8, 1, 9]</span> 
+            <span className="dark:text-amber-500 text-purple-600">[5, 3, 8, 1, 9]</span> 
             and you want to find the number 
-            <span className="dark:text-amber-500 text-red-600">8</span>.
+            <span className="dark:text-amber-500 text-purple-600">8</span>.
             <br />
             <ol className="list-decimal ml-8 pl-3">
               <li>
-                Start from the first number <span className="dark:text-amber-500 text-red-600">(5)</span>. Is <span className="dark:text-amber-500 text-red-600">5</span> equal to <span className="dark:text-amber-500 text-red-600">8</span>? No.
+                Start from the first number <span className="dark:text-amber-500 text-purple-600">(5)</span>. Is <span className="dark:text-amber-500 text-purple-600">5</span> equal to <span className="dark:text-amber-500 text-purple-600">8</span>? No.
               </li>
               <li>
-                Move to the next number <span className="dark:text-amber-500 text-red-600">(3)</span>. Is <span className="dark:text-amber-500 text-red-600">3</span> equal to <span className="dark:text-amber-500 text-red-600">8</span>? No.
+                Move to the next number <span className="dark:text-amber-500 text-purple-600">(3)</span>. Is <span className="dark:text-amber-500 text-purple-600">3</span> equal to <span className="dark:text-amber-500 text-purple-600">8</span>? No.
               </li>
               <li>
-                Move to the next number <span className="dark:text-amber-500 text-red-600">(8)</span>. Is <span className="dark:text-amber-500 text-red-600">8</span> equal to <span className="dark:text-amber-500 text-red-600">8</span>? Yes! Stop here. The position is <span className="dark:text-amber-500 text-red-600">2</span> (or 3 if counting starts from 1).
+                Move to the next number <span className="dark:text-amber-500 text-purple-600">(8)</span>. Is <span className="dark:text-amber-500 text-purple-600">8</span> equal to <span className="dark:text-amber-500 text-purple-600">8</span>? Yes! Stop here. The position is <span className="dark:text-amber-500 text-purple-600">2</span> (or 3 if counting starts from 1).
               </li>
             </ol>
             <br />
             If the number is not in the list 
-            <span className="dark:text-amber-500 text-red-600">(e.g., searching for 10)</span>, the search ends without success.
+            <span className="dark:text-amber-500 text-purple-600">(e.g., searching for 10)</span>, the search ends without success.
           </div>
         </div>
 
@@ -68,10 +68,10 @@ const content = () => {
           <div className="ml-4 dark:text-gray-300 text-black">
             <ol className="list-disc ml-8 pl-2">
               <li>
-                <span className="dark:text-amber-500 text-red-600">Best Case</span>: Target is the first element → <span className="dark:text-amber-500 text-red-600">O(1)</span>.
+                <span className="dark:text-amber-500 text-purple-600">Best Case</span>: Target is the first element → <span className="dark:text-amber-500 text-purple-600">O(1)</span>.
               </li>
               <li>
-                <span className="dark:text-amber-500 text-red-600">Worst Case</span>: Target is last or not present → <span className="dark:text-amber-500 text-red-600">O(n)</span> (checks all elements).
+                <span className="dark:text-amber-500 text-purple-600">Worst Case</span>: Target is last or not present → <span className="dark:text-amber-500 text-purple-600">O(n)</span> (checks all elements).
               </li>
             </ol>
           </div>

@@ -20,28 +20,28 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               Imagine you have a sorted list of numbers: 
-              <span className="dark:text-amber-500 text-red-600">[1, 3, 5, 7, 9, 11, 13]</span> 
+              <span className="dark:text-amber-500 text-purple-600">[1, 3, 5, 7, 9, 11, 13]</span> 
               and you want to find the number 
-              <span className="dark:text-amber-500 text-red-600">7</span>.
+              <span className="dark:text-amber-500 text-purple-600">7</span>.
               <br />
               <ol className="list-decimal ml-8 pl-3">
                 <li>
-                  Compare <span className="dark:text-amber-500 text-red-600">7</span> with the middle element <span className="dark:text-amber-500 text-red-600">(7)</span>. It matches! Return the position.
+                  Compare <span className="dark:text-amber-500 text-purple-600">7</span> with the middle element <span className="dark:text-amber-500 text-purple-600">(7)</span>. It matches! Return the position.
                 </li>
                 <li>
-                  If searching for <span className="dark:text-amber-500 text-red-600">5</span>:
+                  If searching for <span className="dark:text-amber-500 text-purple-600">5</span>:
                   <ul className="list-disc ml-6">
-                    <li>First middle is <span className="dark:text-amber-500 text-red-600">7</span> (too high)</li>
-                    <li>Search left half: <span className="dark:text-amber-500 text-red-600">[1, 3, 5]</span></li>
-                    <li>New middle is <span className="dark:text-amber-500 text-red-600">3</span> (too low)</li>
-                    <li>Search right portion: <span className="dark:text-amber-500 text-red-600">[5]</span></li>
-                    <li>Found at position <span className="dark:text-amber-500 text-red-600">2</span></li>
+                    <li>First middle is <span className="dark:text-amber-500 text-purple-600">7</span> (too high)</li>
+                    <li>Search left half: <span className="dark:text-amber-500 text-purple-600">[1, 3, 5]</span></li>
+                    <li>New middle is <span className="dark:text-amber-500 text-purple-600">3</span> (too low)</li>
+                    <li>Search right portion: <span className="dark:text-amber-500 text-purple-600">[5]</span></li>
+                    <li>Found at position <span className="dark:text-amber-500 text-purple-600">2</span></li>
                   </ul>
                 </li>
               </ol>
               <br />
               If the number is not in the list 
-              <span className="dark:text-amber-500 text-red-600">(e.g., searching for 8)</span>, the search ends when the subarray becomes empty.
+              <span className="dark:text-amber-500 text-purple-600">(e.g., searching for 8)</span>, the search ends when the subarray becomes empty.
             </div>
           </div>
   
@@ -73,10 +73,10 @@ const content = () => {
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-disc ml-8 pl-2">
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Best Case</span>: Target is the middle element → <span className="dark:text-amber-500 text-red-600">O(1)</span>.
+                  <span className="dark:text-amber-500 text-purple-600">Best Case</span>: Target is the middle element → <span className="dark:text-amber-500 text-purple-600">O(1)</span>.
                 </li>
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Worst Case</span>: Element not present → <span className="dark:text-amber-500 text-red-600">O(log n)</span> (halves search space each step).
+                  <span className="dark:text-amber-500 text-purple-600">Worst Case</span>: Element not present → <span className="dark:text-amber-500 text-purple-600">O(log n)</span> (halves search space each step).
                 </li>
               </ol>
             </div>

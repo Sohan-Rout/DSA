@@ -35,9 +35,9 @@ const content = () => {
                 <li>
                   <span className="font-semibold">Second Pass:</span>
                   <ul className="list-disc ml-6">
-                    <li>(<span className="dark:text-amber-500 text-red-600">1</span>, <span className="dark:text-amber-500 text-red-600">4</span>) → No swap</li>
-                    <li>(<span className="dark:text-amber-500 text-red-600">4</span>, <span className="dark:text-amber-500 text-red-600">2</span>) → Swap → [1, 2, 4, 5, 8]</li>
-                    <li>(<span className="dark:text-amber-500 text-red-600">4</span>, <span className="dark:text-amber-500 text-red-600">5</span>) → No swap</li>
+                    <li>(<span className="dark:text-amber-500 text-purple-600">1</span>, <span className="dark:text-amber-500 text-purple-600">4</span>) → No swap</li>
+                    <li>(<span className="dark:text-amber-500 text-purple-600">4</span>, <span className="dark:text-amber-500 text-purple-600">2</span>) → Swap → [1, 2, 4, 5, 8]</li>
+                    <li>(<span className="dark:text-amber-500 text-purple-600">4</span>, <span className="dark:text-amber-500 text-purple-600">5</span>) → No swap</li>
                   </ul>
                 </li>
                 <li>
@@ -78,13 +78,13 @@ const content = () => {
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-disc ml-8 pl-2">
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Best Case</span>: Array is already sorted → <span className="dark:text-amber-500 text-red-600">O(n)</span> (only one pass needed).
+                  <span className="dark:text-amber-500 text-purple-600">Best Case</span>: Array is already sorted → <span className="dark:text-amber-500 text-purple-600">O(n)</span> (only one pass needed).
                 </li>
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Average Case</span>: Randomly ordered array → <span className="dark:text-amber-500 text-red-600">O(n²)</span>.
+                  <span className="dark:text-amber-500 text-purple-600">Average Case</span>: Randomly ordered array → <span className="dark:text-amber-500 text-purple-600">O(n²)</span>.
                 </li>
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Worst Case</span>: Array is sorted in reverse order → <span className="dark:text-amber-500 text-red-600">O(n²)</span>.
+                  <span className="dark:text-amber-500 text-purple-600">Worst Case</span>: Array is sorted in reverse order → <span className="dark:text-amber-500 text-purple-600">O(n²)</span>.
                 </li>
               </ol>
             </div>
@@ -95,8 +95,8 @@ const content = () => {
               Space Complexity
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
-              Bubble Sort is an <span className="dark:text-amber-500 text-red-600">in-place</span> sorting algorithm, meaning it requires only 
-              <span className="dark:text-amber-500 text-red-600"> O(1)</span> additional space (for temporary storage during swaps).
+              Bubble Sort is an <span className="dark:text-amber-500 text-purple-600">in-place</span> sorting algorithm, meaning it requires only 
+              <span className="dark:text-amber-500 text-purple-600"> O(1)</span> additional space (for temporary storage during swaps).
             </div>
           </div>
   

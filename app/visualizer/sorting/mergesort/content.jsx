@@ -19,7 +19,7 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               Consider this unsorted array: 
-              <span className="dark:text-amber-500 text-red-600">[38, 27, 43, 3, 9, 82, 10]</span>
+              <span className="dark:text-amber-500 text-purple-600">[38, 27, 43, 3, 9, 82, 10]</span>
               <br /><br />
               
               <span className="font-semibold">Divide Phase:</span>
@@ -89,16 +89,16 @@ const content = () => {
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-disc ml-8 pl-2">
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Best Case</span>: 
-                  <span className="dark:text-amber-500 text-red-600"> O(n log n)</span> (already sorted, but still needs all comparisons)
+                  <span className="dark:text-amber-500 text-purple-600">Best Case</span>: 
+                  <span className="dark:text-amber-500 text-purple-600"> O(n log n)</span> (already sorted, but still needs all comparisons)
                 </li>
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Average Case</span>: 
-                  <span className="dark:text-amber-500 text-red-600"> O(n log n)</span>
+                  <span className="dark:text-amber-500 text-purple-600">Average Case</span>: 
+                  <span className="dark:text-amber-500 text-purple-600"> O(n log n)</span>
                 </li>
                 <li>
-                  <span className="dark:text-amber-500 text-red-600">Worst Case</span>: 
-                  <span className="dark:text-amber-500 text-red-600"> O(n log n)</span> (consistent performance)
+                  <span className="dark:text-amber-500 text-purple-600">Worst Case</span>: 
+                  <span className="dark:text-amber-500 text-purple-600"> O(n log n)</span> (consistent performance)
                 </li>
               </ol>
               <p className="mt-2 ml-4">
@@ -112,7 +112,7 @@ const content = () => {
               Space Complexity
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
-              Merge Sort requires <span className="dark:text-amber-500 text-red-600">O(n)</span> additional space for the temporary arrays during merging.
+              Merge Sort requires <span className="dark:text-amber-500 text-purple-600">O(n)</span> additional space for the temporary arrays during merging.
               This makes it not an in-place sorting algorithm, unlike Insertion Sort or Bubble Sort.
             </div>
           </div>
