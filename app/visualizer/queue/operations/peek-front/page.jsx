@@ -1,4 +1,4 @@
-import Animation from "@/app/visualizer/queue/peek-front/animation"
+import Animation from "@/app/visualizer/queue/operations/peek-front/animation";
 
 export const metadata = {
   title: 'Queue Visualizer | Understand Queue Easily',
