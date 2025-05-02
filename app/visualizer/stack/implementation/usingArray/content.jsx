@@ -28,75 +28,93 @@ const content = () => {
               </div>
             </div>
   
-            {/* Algorithm Steps - Responsive Layout */}
-            <div className="mb-6">
-              <h1 className="text-xl sm:text-2xl mb-3 underline decoration-blue-500 underline-offset-4">
-                Algorithmic Steps
-              </h1>
-              
-              <div className="space-y-6">
-                {/* Initialize Stack */}
-                <div className="p-3 sm:p-4 rounded-lg">
-                  <h2 className="text-lg sm:text-lg mb-2 dark:text-amber-500 text-purple-600 font-semibold">Initialize Stack</h2>
-                  <ol className="list-decimal pl-5 space-y-1 text-sm sm:text-base">
-                    <li className="dark:text-amber-500 text-purple-600"><span className="dark:text-gray-200 text-black">Create an empty array to store elements</span></li>
-                    <li className="dark:text-amber-500 text-purple-600"><span className="dark:text-gray-200 text-black">Initialize top pointer/index to -1</span></li>
-                    <li className="dark:text-amber-500 text-purple-600"><span className="dark:text-gray-200 text-black">Optional: Set maximum size limit</span></li>
-                  </ol>
-                </div>
+            {/* Algorithm Steps - Responsive Grid Layout */}
+<div className="mb-6">
+  <h1 className="text-xl sm:text-2xl mb-4 underline decoration-blue-500 underline-offset-4">
+    Algorithmic Steps
+  </h1>
   
-                {/* Push Operation */}
-                <div className="p-3 sm:p-4 rounded-lg">
-                  <h2 className="text-lg sm:text-lg mb-2 dark:text-amber-500 text-purple-600 font-semibold">push()</h2>
-                  <ol className="list-decimal pl-5 space-y-1 text-sm sm:text-base">
-                    <li className="dark:text-amber-500 text-purple-600"><span className="dark:text-gray-200 text-black">Check if stack is full</span></li>
-                    <li className="dark:text-amber-500 text-purple-600"><span className="dark:text-gray-200 text-black">If full, return "Stack Overflow"</span></li>
-                    <li className="dark:text-amber-500 text-purple-600"><span className="dark:text-gray-200 text-black">Increment top pointer</span></li>
-                    <li className="dark:text-amber-500 text-purple-600"><span className="dark:text-gray-200 text-black">Store element at array[top]</span></li>
-                  </ol>
-                </div>
-  
-                {/* Pop Operation */}
-                <div className="bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-lg">
-                  <h2 className="text-lg sm:text-xl font-semibold mb-2">3. pop()</h2>
-                  <ol className="list-decimal pl-5 space-y-1 text-sm sm:text-base">
-                    <li>Check if stack is empty</li>
-                    <li>If empty, return "Stack Underflow"</li>
-                    <li>Access element at array[top]</li>
-                    <li>Decrement top pointer</li>
-                    <li>Return the element</li>
-                  </ol>
-                </div>
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    {/* Algorithm 1 - Stack Basics */}
+    <div className="border-2 border-purple-500 dark:border-amber-500 rounded-lg p-4 bg-white dark:bg-gray-800 shadow-md">
+      <h2 className="text-lg sm:text-xl mb-3 font-bold text-center text-purple-600 dark:text-amber-500">
+        Stack Basic Operations
+      </h2>
+      
+      <div className="space-y-4">
+        {/* Initialize Stack */}
+        <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
+          <h3 className="font-semibold mb-1 text-purple-600 dark:text-amber-500">Initialize Stack</h3>
+          <ol className="list-decimal pl-5 space-y-1 text-sm sm:text-base">
+            <li>Create an empty array to store elements</li>
+            <li>Initialize top pointer/index to -1</li>
+            <li>Optional: Set maximum size limit</li>
+          </ol>
+        </div>
 
-                {/* Peek Operation */}
-                <div className="bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-lg">
-                  <h2 className="text-lg sm:text-xl font-semibold mb-2">4. peek()</h2>
-                  <ol className="list-decimal pl-5 space-y-1 text-sm sm:text-base">
-                    <li>Check if stack is empty</li>
-                    <li>If empty, return null or appropriate indicator</li>
-                    <li>Return array[top] without modifying top pointer</li>
-                  </ol>
-                </div>
+        {/* Push Operation */}
+        <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
+          <h3 className="font-semibold mb-1 text-purple-600 dark:text-amber-500">push()</h3>
+          <ol className="list-decimal pl-5 space-y-1 text-sm sm:text-base">
+            <li>Check if stack is full</li>
+            <li>If full, return "Stack Overflow"</li>
+            <li>Increment top pointer</li>
+            <li>Store element at array[top]</li>
+          </ol>
+        </div>
 
-                {/* isEmpty Operation */}
-                <div className="bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-lg">
-                  <h2 className="text-lg sm:text-xl font-semibold mb-2">4. isEmpty()</h2>
-                  <ol className="list-decimal pl-5 space-y-1 text-sm sm:text-base">
-                    <li>Return true if top pointer is -1</li>
-                    <li>Return false otherwise</li>
-                  </ol>
-                </div>
+        {/* Pop Operation */}
+        <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
+          <h3 className="font-semibold mb-1 text-purple-600 dark:text-amber-500">pop()</h3>
+          <ol className="list-decimal pl-5 space-y-1 text-sm sm:text-base">
+            <li>Check if stack is empty</li>
+            <li>If empty, return "Stack Underflow"</li>
+            <li>Access element at array[top]</li>
+            <li>Decrement top pointer</li>
+            <li>Return the element</li>
+          </ol>
+        </div>
+      </div>
+    </div>
 
-                {/* isFull Operation */}
-                <div className="bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-lg">
-                  <h2 className="text-lg sm:text-xl font-semibold mb-2">4. isFull()</h2>
-                  <ol className="list-decimal pl-5 space-y-1 text-sm sm:text-base">
-                    <li>Return true if top equals (max_size - 1)</li>
-                    <li>Return false otherwise</li>
-                  </ol>
-                </div>
-            </div>
-          </div>
+    {/* Algorithm 2 - Helper Operations */}
+    <div className="border-2 border-purple-500 dark:border-amber-500 rounded-lg p-4 bg-white dark:bg-gray-800 shadow-md">
+      <h2 className="text-lg sm:text-xl mb-3 font-bold text-center text-purple-600 dark:text-amber-500">
+        Stack Helper Operations
+      </h2>
+      
+      <div className="space-y-4">
+        {/* Peek Operation */}
+        <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
+          <h3 className="font-semibold mb-1 text-purple-600 dark:text-amber-500">peek()</h3>
+          <ol className="list-decimal pl-5 space-y-1 text-sm sm:text-base">
+            <li>Check if stack is empty</li>
+            <li>If empty, return null</li>
+            <li>Return array[top] without removal</li>
+          </ol>
+        </div>
+
+        {/* isEmpty Operation */}
+        <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
+          <h3 className="font-semibold mb-1 text-purple-600 dark:text-amber-500">isEmpty()</h3>
+          <ol className="list-decimal pl-5 space-y-1 text-sm sm:text-base">
+            <li>Return true if top pointer is -1</li>
+            <li>Return false otherwise</li>
+          </ol>
+        </div>
+
+        {/* isFull Operation */}
+        <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
+          <h3 className="font-semibold mb-1 text-purple-600 dark:text-amber-500">isFull()</h3>
+          <ol className="list-decimal pl-5 space-y-1 text-sm sm:text-base">
+            <li>Return true if top equals (max_size - 1)</li>
+            <li>Return false otherwise</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   
           {/* Visual Representation - Responsive */}
           <div className="mb-6">
@@ -140,7 +158,7 @@ const content = () => {
                   ].map(([op, comp, reason], index) => (
                     <tr key={op} className={index % 2 === 0 ? '' : 'bg-gray-100 dark:bg-gray-800'}>
                       <td className="border border-gray-400 p-2 text-sm sm:text-base">{op}</td>
-                      <td className="border border-gray-400 p-2 text-sm sm:text-base dark:text-amber-500 text-red-600">{comp}</td>
+                      <td className="border border-gray-400 p-2 text-sm sm:text-base dark:text-amber-500 text-purple-600">{comp}</td>
                       <td className="border border-gray-400 p-2 text-sm sm:text-base hidden sm:table-cell">{reason}</td>
                     </tr>
                   ))}
@@ -162,7 +180,7 @@ const content = () => {
                 'Versatility: Foundation for many algorithms'
               ].map((item) => (
                 <li key={item} className="flex items-start">
-                  <span className="dark:text-amber-500 text-red-600 mr-1">•</span>
+                  <span className="dark:text-amber-500 text-purple-600 mr-1">*</span>
                   <span>{item}</span>
                 </li>
               ))}

@@ -15,9 +15,9 @@ const InfixToPostfixVisualizer = () => {
         <Content />
         <CodeBlock/>
         <ExploreOther
-          title="Explore other conversions"
+          title="Explore other implementation"
           links={[
-            { text: "Infix to Prefix", url: "./prefix" },
+            { text: "Using Linked List", url: "./usingLinkedList" },
           ]}
         />
       </main>
