@@ -5,7 +5,7 @@ import VisualizerClient from './VisualizerClient';
 
 export const metadata = {
   title: 'Algorithm Visualizer | DSA Visualizer',
-  description: 'Explore visual representations of various DSA algorithms including searching, sorting, stacks, queues, trees, and stack-based expression evaluation like Polish Notation using arrays and linked lists. Interactive and beginner-friendly!',
+  description: 'Explore visual representations and source code for various DSA algorithms including searching, sorting, stacks, queues, trees, and stack-based expression evaluation like Polish Notation using arrays and linked lists. Interactive and beginner-friendly!',
   keywords: [
     'DSA Visualizer',
     'Algorithm Visualizer',
@@ -30,7 +30,17 @@ export const metadata = {
     'Stack using Linked List',
     'Prefix using Stack',
     'Postfix using Stack',
-    'Polish Notation Implementation'
+    'Polish Notation Implementation',
+    'Queue using Array',
+    'Queue using Linked List',
+    'Circular Queue',
+    'Priority Queue',
+    'Deque',
+    'Queue Operations',
+    'Code for DSA Algorithms',
+    'Code for Data Structures',
+    'Interactive Code Samples',
+    'DSA with Code'
   ],
   robots: 'index, follow',
 };
@@ -103,10 +113,34 @@ export const metadata = {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
         </svg>
       ),
-      items: [
-        { name: 'Enqueue & Dequeue', path: '/visualizer/queue/enqueue-dequeue' },
-        { name: 'Peek Front', path: '/visualizer/queue/peek-front' },
-        { name: 'Is Empty', path: '/visualizer/queue/isempty' },
+      subsections: [
+        {
+          title: 'Operations',
+          items: [
+            { name: 'Enqueue & Dequeue', path: '/visualizer/queue/operations/enqueue-dequeue' },
+            { name: 'Peek Front', path: '/visualizer/queue/operations/peek-front' },
+            { name: 'Is Empty', path: '/visualizer/queue/operations/isempty' },
+            { name: 'Is Full', path: '/visualizer/queue/operations/isfull' },
+          ]
+        },
+        {
+          title: 'Types',
+          items: [
+            { name: 'Simple Queue', path: '/visualizer/queue/types/simple' },
+            { name: 'Double Ended Queue (Deque)', path: '/visualizer/queue/types/deque' },
+            { name: 'Circular Queue', path: '/visualizer/queue/types/circular' },
+            { name: 'Priority Queue', path: '/visualizer/queue/types/priority' },
+            { name: 'Multiple Queue', path: '/visualizer/queue/types/multiple' },
+          ]
+        },
+        {
+          title: 'Implementation',
+          items: [
+            { name: 'Using Array', path: '/visualizer/queue/implementation/array' },
+            { name: 'Using Linked List', path: '/visualizer/queue/implementation/linkedList' },
+            { name: 'Using Stack', path: '/visualizer/queue/implementation/stack' },
+          ]
+        }
       ],
     },
     {
