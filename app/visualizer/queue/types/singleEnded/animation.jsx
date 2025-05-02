@@ -10,7 +10,7 @@ const SingleEndedQueueVisualizer = () => {
   const [queue, setQueue] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [operation, setOperation] = useState(null);
-  const [message, setMessage] = useState('Queue is empty');
+  const [setMessage] = useState('Queue is empty');
   const [highlightedIndex, setHighlightedIndex] = useState(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
