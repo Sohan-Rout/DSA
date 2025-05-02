@@ -5,6 +5,7 @@ import Footer from '@/app/components/footer';
 import Content from '@/app/visualizer/stack/push-pop/content';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import PushPop from '@/app/components/ui/PushPop';
+import CodeBlock from '@/app/visualizer/stack/push-pop/codeBlock';
 
 const StackVisualizer = () => {
     const [stack, setStack] = useState([]);
@@ -111,6 +112,7 @@ const StackVisualizer = () => {
               </div>
             </div>
           </div>
+          <CodeBlock/>
           <ExploreOther
             title="Explore other operations"
             links={[
