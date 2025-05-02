@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
+import CodeBlock from "@/app/visualizer/queue/operations/isempty/codeBlock";
+import Content from "@/app/visualizer/queue/operations/isempty/content";
+import ExploreOther from '@/app/components/ui/exploreOther';
 
 const QueueVisualizer = () => {
   const [queue, setQueue] = useState([]);
@@ -82,6 +85,7 @@ const QueueVisualizer = () => {
         <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
           <span className="text-blue-600">Queue</span> Visualizer
         </h1>
+        <Content/>
 
         <div className="max-w-2xl mx-auto">
           {/* Controls */}
@@ -224,6 +228,16 @@ const QueueVisualizer = () => {
             </div>
           </div>
         </div>
+
+        <CodeBlock/>
+        <ExploreOther
+          title="Explore Other Operations"
+          links={[
+            { text: "Peek Front", url: "./peek-front" },
+            { text: "Enqueue & Dequeue", url: "./enqueue-dequeue" },
+            { text: "Is Full", url: "./isfull" },
+          ]}
+        />
       </main>
       <div className="bg-gray-700 z-10 h-[1px]"></div>
       <Footer />
