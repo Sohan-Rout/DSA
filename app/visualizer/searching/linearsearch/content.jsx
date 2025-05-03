@@ -1,7 +1,7 @@
 const content = () => {
   return (
     <main>
-      <section className="border border-blue-700 rounded-lg bg-blue-600/25 mt-8 mb-8">
+      <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
         <div className="mt-4 mb-4 ml-4 mr-4">
           <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
             What is Linear Search
