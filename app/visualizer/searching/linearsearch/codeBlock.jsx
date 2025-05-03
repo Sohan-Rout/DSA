@@ -19,7 +19,8 @@ const Content = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -117,6 +118,35 @@ int main() {
     }
     
     return 0;
+}`,
+
+    cpp: `// Linear Search in C++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int linearSearch(const vector<int>& arr, int target) {
+    for (int i = 0; i < arr.size(); i++) {
+        if (arr[i] == target) {
+            return i; // Return index if found
+        }
+    }
+    return -1; // Return -1 if not found
+}
+
+int main() {
+    vector<int> numbers = {10, 20, 30, 40, 50};
+    int target = 30;
+    
+    int result = linearSearch(numbers, target);
+    
+    if (result != -1) {
+        cout << "Element found at index: " << result << endl;
+    } else {
+        cout << "Element not found" << endl;
+    }
+    
+    return 0;
 }`
   };
 
@@ -162,7 +192,7 @@ int main() {
           ))}
         </div>
         
-        <div className="bg-gray-200/75 dark:bg-gray-900 p-4 rounded-md overflow-x-auto transition-colors duration-300 border border-gray-200 text-black dark:text-white dark:border-gray-700">
+        <div className="bg-gray-100 dark:bg-gray-900 p-4 rounded-md overflow-x-auto transition-colors duration-300 border border-gray-200 text-black dark:text-white dark:border-gray-700">
           <pre className="text-sm">
             <code 
               className={`language-${selectedLanguage}`}

@@ -19,7 +19,8 @@ const Content = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -153,6 +154,45 @@ int main() {
         printf("Element found at index: %d\\n", result);
     } else {
         printf("Element not found\\n");
+    }
+    
+    return 0;
+}`,
+
+    cpp: `// Binary Search in C++ (Iterative)
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int binarySearch(const vector<int>& arr, int target) {
+    int left = 0;
+    int right = arr.size() - 1;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        
+        if (arr[mid] == target) {
+            return mid; // Target found
+        } else if (arr[mid] < target) {
+            left = mid + 1; // Search right half
+        } else {
+            right = mid - 1; // Search left half
+        }
+    }
+    
+    return -1; // Target not found
+}
+
+int main() {
+    vector<int> sortedNumbers = {10, 20, 30, 40, 50, 60, 70};
+    int target = 40;
+    
+    int result = binarySearch(sortedNumbers, target);
+    
+    if (result != -1) {
+        cout << "Element found at index: " << result << endl;
+    } else {
+        cout << "Element not found" << endl;
     }
     
     return 0;

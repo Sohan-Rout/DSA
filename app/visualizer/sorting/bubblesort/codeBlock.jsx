@@ -19,7 +19,8 @@ const Content = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -151,6 +152,49 @@ int main() {
     
     printf("Sorted array: ");
     printArray(unsortedArray, n);
+    
+    return 0;
+}`,
+
+    cpp: `// Bubble Sort in C++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void bubbleSort(vector<int>& arr) {
+    int n = arr.size();
+    
+    // Outer loop for passes
+    for (int i = 0; i < n - 1; i++) {
+        // Inner loop for comparisons
+        for (int j = 0; j < n - i - 1; j++) {
+            // Swap if current element is greater than next
+            if (arr[j] > arr[j + 1]) {
+                // Using std::swap for cleaner code
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
+// Function to print an array
+void printArray(const vector<int>& arr) {
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> unsortedArray = {64, 34, 25, 12, 22, 11, 90};
+    
+    cout << "Unsorted array: ";
+    printArray(unsortedArray);
+    
+    bubbleSort(unsortedArray);
+    
+    cout << "Sorted array: ";
+    printArray(unsortedArray);
     
     return 0;
 }`
