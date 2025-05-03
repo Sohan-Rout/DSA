@@ -108,13 +108,13 @@ const StackVisualizer = () => {
     return (
       <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
         <Navbar />
-        <main className="container mx-auto px-6 py-16">
+        <main className="container mx-auto px-6 py-14">
           <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
             <span className="text-blue-600">Stack</span> Visualizer
           </h1>
           <Content/>
-          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-            Visualize <strong>Push</strong>, <strong>Pop</strong>, <strong>Peek</strong>, and <strong>IsEmpty</strong> operations
+          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-4">
+            Visualize Push, Pop, Peek, and IsEmpty operations
           </p>
   
           <div className="max-w-md mx-auto">

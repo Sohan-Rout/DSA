@@ -19,7 +19,8 @@ const Content = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -77,6 +78,7 @@ stack.isEmpty();  // false
 stack.pop();
 stack.pop();
 stack.isEmpty();  // true`,
+
     python: `# Stack Implementation with isEmpty Operation in Python
 class Stack:
     def __init__(self):
@@ -119,6 +121,7 @@ stack.is_empty()  # False
 stack.pop()
 stack.pop()
 stack.is_empty()  # True`,
+
     java: `// Stack Implementation with isEmpty Operation in Java
 import java.util.ArrayList;
 
@@ -179,6 +182,7 @@ public class Main {
         stack.isEmpty();  // true
     }
 }`,
+
     c: `// Stack Implementation with isEmpty Operation in C
 #include <stdio.h>
 #include <stdbool.h>
@@ -243,6 +247,78 @@ int main() {
     pop(&stack);
     pop(&stack);
     isEmpty(&stack);  // true
+    
+    return 0;
+}`,
+
+    cpp: `// Stack Implementation with isEmpty Operation in C++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Stack {
+private:
+    vector<int> items;
+    int top;
+    const int MAX_SIZE = 100;
+
+public:
+    Stack() : top(-1) {}
+    
+    // Push operation
+    void push(int element) {
+        if (top == MAX_SIZE - 1) {
+            cout << "Stack Overflow" << endl;
+            return;
+        }
+        items.push_back(element);
+        top++;
+        cout << "Pushed: " << element << endl;
+    }
+    
+    // Pop operation
+    int pop() {
+        if (isEmpty()) {
+            cout << "Stack Underflow - Cannot pop from empty stack" << endl;
+            return -1;
+        }
+        int element = items.back();
+        items.pop_back();
+        top--;
+        return element;
+    }
+    
+    // Check if stack is empty
+    bool isEmpty() const {
+        bool empty = top == -1;
+        cout << "Stack is " << (empty ? "empty" : "not empty") << endl;
+        return empty;
+    }
+    
+    // Display stack
+    void display() const {
+        cout << "Current Stack: ";
+        for (int i = 0; i <= top; i++) {
+            cout << items[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    Stack stack;
+    
+    cout << "Initial stack check:" << endl;
+    stack.isEmpty();  // true
+
+    stack.push(10);
+    stack.push(20);
+    stack.display();
+    stack.isEmpty();  // false
+
+    stack.pop();
+    stack.pop();
+    stack.isEmpty();  // true
     
     return 0;
 }`
