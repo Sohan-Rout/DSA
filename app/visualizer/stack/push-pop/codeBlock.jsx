@@ -19,7 +19,8 @@ const Content = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -222,6 +223,66 @@ int main() {
     display(&stack);
     pop(&stack);
     display(&stack);
+    
+    return 0;
+}`,
+
+    cpp: `// Stack Implementation with Push/Pop in C++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Stack {
+private:
+    vector<int> items;
+    int top;
+    const int MAX_SIZE = 10;
+
+public:
+    Stack() : top(-1) {}
+    
+    // Push operation
+    void push(int element) {
+        if (top >= MAX_SIZE - 1) {
+            cout << "Stack Overflow" << endl;
+            return;
+        }
+        items.push_back(element);
+        top++;
+        cout << "Pushed: " << element << endl;
+    }
+    
+    // Pop operation
+    int pop() {
+        if (top < 0) {
+            cout << "Stack Underflow" << endl;
+            return -1;
+        }
+        int element = items.back();
+        items.pop_back();
+        top--;
+        cout << "Popped: " << element << endl;
+        return element;
+    }
+    
+    // Display stack
+    void display() {
+        cout << "Current Stack: ";
+        for (int i = 0; i <= top; i++) {
+            cout << items[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    Stack stack;
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    stack.display();
+    stack.pop();
+    stack.display();
     
     return 0;
 }`
