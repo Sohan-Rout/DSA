@@ -19,7 +19,8 @@ const Content = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -89,6 +90,7 @@ stack.isFull();  // true
 
 // Try to push to full stack
 stack.push(40);  // Will show overflow message`,
+
     python: `# Stack Implementation with isFull Operation in Python
 class Stack:
     def __init__(self, max_size=5):
@@ -141,6 +143,7 @@ stack.is_full()   # True
 
 # Try to push to full stack
 stack.push(40)    # Will show overflow message`,
+
     java: `// Stack Implementation with isFull Operation in Java
 import java.util.ArrayList;
 
@@ -214,6 +217,7 @@ public class Main {
         stack.push(40);  // Will show overflow message
     }
 }`,
+
     c: `// Stack Implementation with isFull Operation in C
 #include <stdio.h>
 #include <stdbool.h>
@@ -286,6 +290,84 @@ int main() {
 
     // Try to push to full stack
     push(&stack, 60);  // Will show overflow message
+    
+    return 0;
+}`,
+
+    cpp: `// Stack Implementation with isFull Operation in C++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Stack {
+private:
+    vector<int> items;
+    int top;
+    const int MAX_SIZE;
+    
+public:
+    Stack(int maxSize = 5) : top(-1), MAX_SIZE(maxSize) {}
+    
+    // Push operation with isFull check
+    void push(int element) {
+        if (isFull()) {
+            cout << "Stack Overflow - Cannot push to full stack" << endl;
+            return;
+        }
+        items.push_back(element);
+        top++;
+        cout << "Pushed: " << element << endl;
+    }
+    
+    // Pop operation
+    int pop() {
+        if (isEmpty()) {
+            cout << "Stack Underflow - Cannot pop from empty stack" << endl;
+            return -1;
+        }
+        int element = items.back();
+        items.pop_back();
+        top--;
+        return element;
+    }
+    
+    // Check if stack is full
+    bool isFull() const {
+        bool full = top == MAX_SIZE - 1;
+        cout << "Stack is " << (full ? "full" : "not full") << endl;
+        return full;
+    }
+    
+    // Check if stack is empty
+    bool isEmpty() const {
+        return top == -1;
+    }
+    
+    // Display stack
+    void display() const {
+        cout << "Current Stack: ";
+        for (int i = 0; i <= top; i++) {
+            cout << items[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    Stack stack(3); // Small stack for demonstration
+    
+    cout << "Initial checks:" << endl;
+    stack.isFull();  // false
+    stack.isEmpty(); // true
+
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    stack.display();
+    stack.isFull();  // true
+
+    // Try to push to full stack
+    stack.push(40);  // Will show overflow message
     
     return 0;
 }`

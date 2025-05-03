@@ -1,19 +1,19 @@
 const Content = () => {
   return (
     <main>
-      <section className="border border-blue-700 rounded-lg bg-blue-600/25 mt-8 mb-8">
+      <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
         <div className="mt-4 mb-4 ml-4 mr-4">
           <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
             What is the "Is Full" Operation?
           </h1>
           <p className="ml-4 dark:text-gray-300 text-black">
             The{" "}
-            <span className="dark:text-amber-500 text-red-600 font-medium">
+            <span className="dark:text-amber-500 text-purple-600 font-medium">
               Is Full
             </span>{" "}
             operation checks whether a stack has reached its maximum capacity.
             This is particularly relevant for{" "}
-            <span className="font-semibold">
+            <span className="text-purple-600 dark:text-amber-500">
               fixed-size stack implementations
             </span>{" "}
             (arrays) rather than dynamic implementations (linked lists).
@@ -28,12 +28,12 @@ const Content = () => {
             <ul className="list-disc ml-6 space-y-2">
               <li>
                 Returns{" "}
-                <span className="dark:text-amber-500 text-red-600">true</span>{" "}
+                <span className="dark:text-amber-500 text-purple-600">true</span>{" "}
                 if the stack cannot accept more elements
               </li>
               <li>
                 Returns{" "}
-                <span className="dark:text-amber-500 text-red-600">false</span>{" "}
+                <span className="dark:text-amber-500 text-purple-600">false</span>{" "}
                 if the stack can accept more elements
               </li>
               <li>
@@ -59,36 +59,36 @@ const Content = () => {
             </p>
             <ul className="list-disc ml-6">
               <li>
-                <p className="text-red-600 dark:text-amber-500">Fixed-size Stack:</p>
+                <p className="text-purple-600 dark:text-amber-500">Fixed-size Stack:</p>
                 <ul className="list-disc ml-6">
                   <li>
                     <span>
                       Time Complexity:
                     </span>{" "}
-                    <span className="text-red-600 dark:text-amber-500">O(1)</span>
+                    <span className="text-purple-600 dark:text-amber-500">O(1)</span>
                   </li>
                   <li>
                     <span>
                       Space Complexity:
                     </span>{" "}
-                    <span className="text-red-600 dark:text-amber-500">O(1)</span>
+                    <span className="text-purple-600 dark:text-amber-500">O(1)</span>
                   </li>
                 </ul>
               </li>
               <li>
-                <p className="text-red-600 dark:text-amber-500">Dynamic Stack:</p>
+                <p className="text-purple-600 dark:text-amber-500">Dynamic Stack:</p>
                 <ul className="list-disc ml-6">
                   <li>
                     <span>
                       Time Complexity:
                     </span>{" "}
-                    <span className="text-red-600 dark:text-amber-500">O(1)</span>
+                    <span className="text-purple-600 dark:text-amber-500">O(1)</span>
                   </li>
                   <li>
                     <span>
                       Space Complexity:
                     </span>{" "}
-                    <span className="text-red-600 dark:text-amber-500">O(1)</span>
+                    <span className="text-purple-600 dark:text-amber-500">O(1)</span>
                   </li>
                 </ul>
               </li>
@@ -107,7 +107,7 @@ const Content = () => {
                 <div className="w-32">Stack: [ ]</div>
                 <div className="ml-4">
                   isFull() →{" "}
-                  <span className="dark:text-amber-500 text-red-600">
+                  <span className="dark:text-amber-500 text-purple-600">
                     false
                   </span>
                 </div>
@@ -116,7 +116,7 @@ const Content = () => {
                 <div className="w-32">Stack: [5, 3]</div>
                 <div className="ml-4">
                   isFull() →{" "}
-                  <span className="dark:text-amber-500 text-red-600">
+                  <span className="dark:text-amber-500 text-purple-600">
                     false
                   </span>
                 </div>
@@ -125,7 +125,7 @@ const Content = () => {
                 <div className="w-32">Stack: [7, 3, 5]</div>
                 <div className="ml-4">
                   isFull() →{" "}
-                  <span className="dark:text-amber-500 text-red-600">true</span>
+                  <span className="dark:text-amber-500 text-purple-600">true</span>
                 </div>
               </div>
             </div>
