@@ -19,7 +19,8 @@ const PrefixEvaluator = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -155,6 +156,42 @@ int evaluatePrefix(char* expression) {
 int main() {
     // Example: "+*235" becomes (2*3)+5 = 11
     printf("%d\n", evaluatePrefix("+*235"));  // Output: 11
+    return 0;
+}`,
+
+    cpp: `// Prefix Evaluation using Stack (C++)
+#include <iostream>
+#include <stack>
+#include <string>
+#include <cctype>
+using namespace std;
+
+int evaluatePrefix(const string& expression) {
+    stack<int> st;
+    
+    // Process expression in reverse order
+    for (auto it = expression.rbegin(); it != expression.rend(); ++it) {
+        char c = *it;
+        if (isdigit(c)) {
+            st.push(c - '0');
+        } else {
+            int a = st.top(); st.pop();
+            int b = st.top(); st.pop();
+            
+            switch (c) {
+                case '+': st.push(a + b); break;
+                case '-': st.push(a - b); break;
+                case '*': st.push(a * b); break;
+                case '/': st.push(a / b); break;
+            }
+        }
+    }
+    return st.top();
+}
+
+int main() {
+    // Example: "+*235" becomes (2*3)+5 = 11
+    cout << evaluatePrefix("+*235") << endl;  // Output: 11
     return 0;
 }`
   };
