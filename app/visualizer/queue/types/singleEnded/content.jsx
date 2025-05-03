@@ -1,7 +1,22 @@
 const content = () => {
+  const application = [
+    { points : "CPU task scheduling" },
+    { points : "Print job management" },
+    { points : "Breadth-First Search (BFS) algorithms" },
+    { points : "Buffering data streams" },
+    { points : "Handling requests in web servers" },
+  ];
+
+  const differences = [
+    { points : "Single-ended only allows insertion at rear and removal at front" },
+    { points : "Double-ended (deque) allows insertion/removal at both ends" },
+    { points : "Single-ended has stricter FIFO enforcement" },
+    { points : "Single-ended is simpler to implement" },
+  ];
+
     return (
       <main>
-        <section className="border border-blue-700 rounded-lg bg-blue-600/25 mt-8 mb-8">
+        <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
           <div className="mt-4 mb-4 ml-4 mr-4">
             <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
               What is a Single-Ended Queue?
@@ -103,11 +118,9 @@ const content = () => {
             <div className="ml-4 dark:text-gray-300 text-black">
               Single-ended queues are used in:
               <ol className="list-disc ml-8 pl-2">
-                <li>CPU task scheduling</li>
-                <li>Print job management</li>
-                <li>Breadth-First Search (BFS) algorithms</li>
-                <li>Buffering data streams</li>
-                <li>Handling requests in web servers</li>
+                {application.map((item, index) => (
+                  <li key={index}>{item.points}</li>
+                ))}
               </ol>
             </div>
           </div>
@@ -119,10 +132,9 @@ const content = () => {
             <div className="ml-4 dark:text-gray-300 text-black">
               Key differences:
               <ul className="list-disc ml-8 pl-2">
-                <li>Single-ended only allows insertion at rear and removal at front</li>
-                <li>Double-ended (deque) allows insertion/removal at both ends</li>
-                <li>Single-ended has stricter FIFO enforcement</li>
-                <li>Single-ended is simpler to implement</li>
+                {differences.map((item, index) => (
+                  <li key={index}>{item.points}</li>
+                ))}
               </ul>
             </div>
           </div>

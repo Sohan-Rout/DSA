@@ -10,7 +10,7 @@ const SingleEndedQueueVisualizer = () => {
   const [queue, setQueue] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [operation, setOperation] = useState(null);
-  const [setMessage] = useState('Queue is empty');
+  const [message, setMessage] = useState('Queue is empty'); // Added message state
   const [highlightedIndex, setHighlightedIndex] = useState(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -128,28 +128,28 @@ const SingleEndedQueueVisualizer = () => {
               <button
                 onClick={dequeueFront}
                 disabled={isAnimating || queue.length === 0}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
+                className="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white border border-transparent disabled:border-blue-600 transition-transform hover:scale-105"
               >
                 Dequeue Front
               </button>
               <button
                 onClick={peekFront}
                 disabled={isAnimating || queue.length === 0}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded disabled:opacity-50 border border-transparent disabled:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white transition-transform hover:scale-105"
               >
                 Peek Front
               </button>
               <button
                 onClick={peekRear}
                 disabled={isAnimating || queue.length === 0}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
+                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded disabled:opacity-50 border border-transparent disabled:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white transition-transform hover:scale-105"
               >
                 Peek Rear
               </button>
               <button
                 onClick={reset}
                 disabled={isAnimating}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
               >
                 Clear
               </button>
@@ -158,8 +158,15 @@ const SingleEndedQueueVisualizer = () => {
 
           {/* Operation Status */}
           {operation && (
-            <div className="mb-4 p-3 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 animate-pulse">
+            <div className="mb-2 p-2 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 animate-pulse">
               {operation}
+            </div>
+          )}
+
+          {/* Message Display */}
+          {message && (
+            <div className="mb-4 p-3 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+              {message}
             </div>
           )}
 
