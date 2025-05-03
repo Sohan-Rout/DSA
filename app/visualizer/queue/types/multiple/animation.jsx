@@ -176,11 +176,11 @@ const DoubleEndedQueueVisualizer = () => {
       <Navbar />
       <main className="container mx-auto px-4 sm:px-6 pt-16 pb-4 md:pt-16 md:pb-4">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6 mt-6 md:mt-6 md:mb-8">
-          <span className="text-blue-600 dark:text-blue-600">Double-Ended Queue</span> Visualizer
+          <span className="text-blue-600 dark:text-blue-600">Multiple Queue</span> Visualizer
         </h1>
         <Content/>
         <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-          Visualize Double Ended Queue (Deque) Operations with Animations
+          Visualize Multiple Queue (Deque) Operations with Animations
         </p>
         <div className="max-w-2xl mx-auto">
           {/* Controls */}
