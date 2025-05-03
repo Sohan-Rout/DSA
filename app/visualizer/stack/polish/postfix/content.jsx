@@ -1,16 +1,16 @@
 const InfixToPostfixContent = () => {
     return (
       <main>
-        <section className="border border-blue-700 rounded-lg bg-blue-600/25 mt-8 mb-8">
+        <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
           <div className="mt-4 mb-4 ml-4 mr-4">
             <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
               What is Postfix Notation?
             </h1>
             <p className="ml-4 dark:text-gray-300 text-black">
-              Postfix notation (also called <span className="dark:text-amber-500 text-red-600">Reverse Polish Notation</span>) is a way of writing expressions where
-              <span className="dark:text-amber-500 text-red-600"> the operator comes after the operands</span>.
+              Postfix notation (also called <span className="dark:text-amber-500 text-purple-600">Reverse Polish Notation</span>) is a way of writing expressions where
+              <span className="dark:text-amber-500 text-purple-600"> the operator comes after the operands</span>.
               <br /><br />
-              For example, the infix expression <span className="dark:text-amber-500 text-red-600">3 + 4</span> becomes <span className="dark:text-amber-500 text-red-600">3 4 +</span> in postfix.
+              For example, the infix expression <span className="dark:text-amber-500 text-purple-600">3 + 4</span> becomes <span className="dark:text-amber-500 text-purple-600">3 4 +</span> in postfix.
               <br />
               It removes the need for parentheses by making operator precedence explicit through position.
             </p>
@@ -23,43 +23,43 @@ const InfixToPostfixContent = () => {
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-decimal ml-6">
                 <li>
-                  <span className="font-semibold dark:text-amber-500 text-red-600">Initialize an empty stack</span> and an empty output string.
+                  <span className="font-semibold dark:text-amber-500 text-purple-600">Initialize an empty stack</span> and an empty output string.
                 </li>
                 <li>
-                  <span className="font-semibold dark:text-amber-500 text-red-600">Scan the infix expression</span> from left to right.
+                  <span className="font-semibold dark:text-amber-500 text-purple-600">Scan the infix expression</span> from left to right.
                 </li>
                 <li>
-                  If the element is an <span className="font-semibold dark:text-amber-500 text-red-600">operand</span>, add it to the output.
+                  If the element is an <span className="font-semibold dark:text-amber-500 text-purple-600">operand</span>, add it to the output.
                 </li>
                 <li>
-                  If the element is a <span className="font-semibold dark:text-amber-500 text-red-600">'('</span>, push it onto the stack.
+                  If the element is a <span className="font-semibold dark:text-amber-500 text-purple-600">'('</span>, push it onto the stack.
                 </li>
                 <li>
-                  If the element is a <span className="font-semibold dark:text-amber-500 text-red-600">')'</span>, pop from the stack and add to output until '(' is encountered.
+                  If the element is a <span className="font-semibold dark:text-amber-500 text-purple-600">')'</span>, pop from the stack and add to output until '(' is encountered.
                 </li>
                 <li>
-                  If the element is an <span className="font-semibold dark:text-amber-500 text-red-600">operator</span>, pop from the stack all operators with higher or equal precedence, then push the current operator.
+                  If the element is an <span className="font-semibold dark:text-amber-500 text-purple-600">operator</span>, pop from the stack all operators with higher or equal precedence, then push the current operator.
                 </li>
                 <li>
-                  After scanning, <span className="font-semibold dark:text-amber-500 text-red-600">pop all remaining operators</span> from the stack.
+                  After scanning, <span className="font-semibold dark:text-amber-500 text-purple-600">pop all remaining operators</span> from the stack.
                 </li>
               </ol>
               <br />
-              <span className="dark:text-amber-500 text-red-600">Example:</span>  
+              <span className="dark:text-amber-500 text-purple-600">Example:</span>  
               <br />
-              Infix: <span className="dark:text-amber-500 text-red-600">(A + B) * (C - D)</span>
+              Infix: <span className="dark:text-amber-500 text-purple-600">(A + B) * (C - D)</span>
               <br />
-              Step 1: Push '(' → Stack: <span className="dark:text-amber-500 text-red-600">[ '(' ]</span>, Output: <span className="dark:text-amber-500 text-red-600">''</span>
+              Step 1: Push '(' → Stack: <span className="dark:text-amber-500 text-purple-600">[ '(' ]</span>, Output: <span className="dark:text-amber-500 text-purple-600">''</span>
               <br />
-              Step 2: Add 'A' → Output: <span className="dark:text-amber-500 text-red-600">'A'</span>
+              Step 2: Add 'A' → Output: <span className="dark:text-amber-500 text-purple-600">'A'</span>
               <br />
-              Step 3: Push '+' → Stack: <span className="dark:text-amber-500 text-red-600">[ '(', '+' ]</span>
+              Step 3: Push '+' → Stack: <span className="dark:text-amber-500 text-purple-600">[ '(', '+' ]</span>
               <br />
-              Step 4: Add 'B' → Output: <span className="dark:text-amber-500 text-red-600">'A B'</span>
+              Step 4: Add 'B' → Output: <span className="dark:text-amber-500 text-purple-600">'A B'</span>
               <br />
-              Step 5: Pop until '(' → Stack: <span className="dark:text-amber-500 text-red-600">[ ]</span>, Output: <span className="dark:text-amber-500 text-red-600">'A B +'</span>
+              Step 5: Pop until '(' → Stack: <span className="dark:text-amber-500 text-purple-600">[ ]</span>, Output: <span className="dark:text-amber-500 text-purple-600">'A B +'</span>
               <br />
-              Step 6: Continue similarly for the rest → Final Postfix: <span className="dark:text-amber-500 text-red-600">A B + C D - *</span>
+              Step 6: Continue similarly for the rest → Final Postfix: <span className="dark:text-amber-500 text-purple-600">A B + C D - *</span>
             </div>
           </div>
   
@@ -100,7 +100,7 @@ const InfixToPostfixContent = () => {
                 </tbody>
               </table>
               <p className="mt-4">
-                <span className="dark:text-amber-500 text-red-600">Note:</span> Higher precedence means the operation will happen first.
+                <span className="dark:text-amber-500 text-purple-600">Note:</span> Higher precedence means the operation will happen first.
                 When operators have equal precedence, they are evaluated left-to-right (except for exponentiation which is right-to-left).
               </p>
             </div>

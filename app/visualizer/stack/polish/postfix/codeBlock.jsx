@@ -19,7 +19,8 @@ const PostfixEvaluator = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -150,6 +151,40 @@ int evaluatePostfix(char* expression) {
 int main() {
     // Example: "23*5+" becomes (2*3)+5 = 11
     printf("%d\\n", evaluatePostfix("23*5+"));  // Output: 11
+    return 0;
+}`,
+
+    cpp: `// Postfix Evaluation using Stack (C++)
+#include <iostream>
+#include <stack>
+#include <string>
+#include <cctype>
+using namespace std;
+
+int evaluatePostfix(const string& expression) {
+    stack<int> st;
+    
+    for (char c : expression) {
+        if (isdigit(c)) {
+            st.push(c - '0');
+        } else {
+            int b = st.top(); st.pop();
+            int a = st.top(); st.pop();
+            
+            switch (c) {
+                case '+': st.push(a + b); break;
+                case '-': st.push(a - b); break;
+                case '*': st.push(a * b); break;
+                case '/': st.push(a / b); break;
+            }
+        }
+    }
+    return st.top();
+}
+
+int main() {
+    // Example: "23*5+" becomes (2*3)+5 = 11
+    cout << evaluatePostfix("23*5+") << endl;  // Output: 11
     return 0;
 }`
   };

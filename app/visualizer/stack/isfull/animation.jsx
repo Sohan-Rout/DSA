@@ -50,8 +50,8 @@ const StackVisualizer = () => {
                     <span className="text-blue-600">Stack</span> Visualizer
                 </h1>
                 <Content />
-                <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-                    Visualize the <strong>LIFO (Last In, First Out)</strong> principle
+                <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-4">
+                    Visualize the LIFO (Last In, First Out) principle
                 </p>
 
                 <div className="max-w-md mx-auto">
