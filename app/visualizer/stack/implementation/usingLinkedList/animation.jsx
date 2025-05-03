@@ -8,7 +8,7 @@ const InfixToPostfixVisualizer = () => {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
       <Navbar />
-      <main className="container mx-auto mt-10 px-4 sm:px-6 py-16">
+      <main className="container mx-auto mt-10 px-4 sm:px-6 py-12">
         <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
           <span className="text-blue-600">Stack Implementation</span> Using Linked List
         </h1>

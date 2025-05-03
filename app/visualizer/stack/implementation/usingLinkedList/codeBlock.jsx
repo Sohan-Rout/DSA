@@ -19,7 +19,8 @@ const LinkedListStack = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -339,6 +340,97 @@ int main() {
     printf("After pop, top element: %d\n", peek(&stack)); // 20
     
     destroy(&stack);
+    return 0;
+}`,
+
+    cpp: `// Stack Implementation using Linked List (C++)
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int value;
+    Node* next;
+    
+    Node(int val) : value(val), next(nullptr) {}
+};
+
+class LinkedListStack {
+private:
+    Node* top;
+    int size;
+    
+public:
+    LinkedListStack() : top(nullptr), size(0) {}
+    
+    ~LinkedListStack() {
+        while (!isEmpty()) {
+            pop();
+        }
+    }
+    
+    void push(int value) {
+        Node* newNode = new Node(value);
+        newNode->next = top;
+        top = newNode;
+        size++;
+    }
+    
+    int pop() {
+        if (isEmpty()) {
+            cout << "Stack Underflow" << endl;
+            return -1;
+        }
+        Node* temp = top;
+        int value = temp->value;
+        top = top->next;
+        delete temp;
+        size--;
+        return value;
+    }
+    
+    int peek() {
+        if (isEmpty()) {
+            cout << "Stack is empty" << endl;
+            return -1;
+        }
+        return top->value;
+    }
+    
+    bool isEmpty() {
+        return size == 0;
+    }
+    
+    int getSize() {
+        return size;
+    }
+    
+    void print() {
+        if (isEmpty()) {
+            cout << "Stack is empty" << endl;
+            return;
+        }
+        Node* current = top;
+        cout << "Stack contents (top to bottom):" << endl;
+        while (current != nullptr) {
+            cout << current->value << endl;
+            current = current->next;
+        }
+    }
+};
+
+int main() {
+    LinkedListStack stack;
+    
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    cout << "Top element: " << stack.peek() << endl; // 30
+    cout << "Stack size: " << stack.getSize() << endl; // 3
+    stack.print();
+    stack.pop();
+    cout << "After pop, top element: " << stack.peek() << endl; // 20
+    
     return 0;
 }`
   };

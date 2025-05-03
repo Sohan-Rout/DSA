@@ -243,7 +243,7 @@ const InfixToPrefixVisualizer = () => {
           <span className="text-blue-600">Infix to Prefix</span> Visualizer
         </h1>
         <Content />
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-4">
           Visualize the conversion from infix to prefix notation
         </p>
 

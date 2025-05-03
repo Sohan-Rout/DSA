@@ -19,7 +19,8 @@ const ArrayStack = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -315,6 +316,89 @@ int main() {
     printf("After pop, top element: %d\n", peek(&stack)); // 20
     
     destroy(&stack);
+    return 0;
+}`,
+
+    cpp: `// Stack Implementation using Array (C++)
+#include <iostream>
+using namespace std;
+
+class ArrayStack {
+private:
+    int* items;
+    int top;
+    int capacity;
+    
+public:
+    ArrayStack(int size = 10) {
+        items = new int[size];
+        top = -1;
+        capacity = size;
+    }
+    
+    ~ArrayStack() {
+        delete[] items;
+    }
+    
+    void push(int element) {
+        if (isFull()) {
+            cout << "Stack Overflow" << endl;
+            return;
+        }
+        items[++top] = element;
+    }
+    
+    int pop() {
+        if (isEmpty()) {
+            cout << "Stack Underflow" << endl;
+            return -1;
+        }
+        return items[top--];
+    }
+    
+    int peek() const {
+        if (isEmpty()) {
+            cout << "Stack is empty" << endl;
+            return -1;
+        }
+        return items[top];
+    }
+    
+    bool isEmpty() const {
+        return top == -1;
+    }
+    
+    bool isFull() const {
+        return top == capacity - 1;
+    }
+    
+    int size() const {
+        return top + 1;
+    }
+    
+    void print() const {
+        if (isEmpty()) {
+            cout << "Stack is empty" << endl;
+            return;
+        }
+        cout << "Stack contents:" << endl;
+        for (int i = top; i >= 0; i--) {
+            cout << items[i] << endl;
+        }
+    }
+};
+
+int main() {
+    ArrayStack stack(5);
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    cout << "Top element: " << stack.peek() << endl; // 30
+    cout << "Stack size: " << stack.size() << endl;  // 3
+    stack.print();
+    stack.pop();
+    cout << "After pop, top element: " << stack.peek() << endl; // 20
+    
     return 0;
 }`
   };

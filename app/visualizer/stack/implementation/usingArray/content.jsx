@@ -1,7 +1,7 @@
 const content = () => {
     return (
-      <main className="px-4 sm:px-4 lg:px-8">
-        <section className="border border-blue-700 rounded-lg bg-blue-600/25 mt-4 sm:mt-8 mb-6 sm:mb-8 mx-auto max-w-4xl">
+      <main className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
+        <section className="mt-2 sm:mt-2 mb-6 sm:mb-8 mx-auto max-w-4xl">
           <div className="p-4 sm:p-6">
             {/* Header Section */}
             <div className="mb-6">

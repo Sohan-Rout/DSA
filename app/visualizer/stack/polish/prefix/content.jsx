@@ -26,7 +26,7 @@ const InfixToPrefixContent = () => {
                 <span className="dark:text-amber-500 text-purple-600">Reverse the infix expression</span>, while keeping the positions of parentheses correct.
               </li>
               <li>
-                <span className="dark:text-amber-500 text-purple-600">Replace</span> '(' with ')' and vice-versa.
+                <span className="dark:text-amber-500 text-purple-600">Replace</span> ( with ) and vice-versa.
               </li>
               <li>
                 <span className="dark:text-amber-500 text-purple-600">Convert the reversed expression to postfix</span> using a stack.
@@ -90,7 +90,6 @@ const InfixToPrefixContent = () => {
             </p>
           </div>
         </div>
-
       </section>
     </main>
   );
