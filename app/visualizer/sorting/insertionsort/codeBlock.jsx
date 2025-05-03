@@ -19,7 +19,8 @@ const Content = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -158,6 +159,51 @@ int main() {
     
     printf("Sorted array: ");
     printArray(unsortedArray, n);
+    
+    return 0;
+}`,
+
+    cpp: `// Insertion Sort in C++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void insertionSort(vector<int>& arr) {
+    // Start from the second element (index 1)
+    for (int i = 1; i < arr.size(); i++) {
+        // Current element to be inserted
+        int current = arr[i];
+        // Compare with the sorted portion
+        int j = i - 1;
+        
+        // Shift elements greater than current to the right
+        while (j >= 0 && arr[j] > current) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        // Insert the current element in correct position
+        arr[j + 1] = current;
+    }
+}
+
+// Function to print an array
+void printArray(const vector<int>& arr) {
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> unsortedArray = {12, 11, 13, 5, 6};
+    
+    cout << "Unsorted array: ";
+    printArray(unsortedArray);
+    
+    insertionSort(unsortedArray);
+    
+    cout << "Sorted array: ";
+    printArray(unsortedArray);
     
     return 0;
 }`

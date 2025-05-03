@@ -1,7 +1,45 @@
 const content = () => {
+  { /* Pivot Strategy Array */}
+  const strategies = [
+    { strategy : "Last element" },
+    { strategy : "First element" },
+    { strategy : "Random element" },
+    { strategy : "Median-of-three" },
+    { strategy : "Middle element" },
+  ]
+
+  const strategiesDetails = [
+    { details : "Simple but can lead to worst-case on sorted arrays" },
+    { details : "Similar issues as last element" },
+    { details : "Reduces chance of worst-case scenarios" },
+    { details : "Takes median of first, middle, last elements" },
+    { details : "Often provides good balance" },
+  ]
+
+  const CombinedDeatils = strategies.map((item, index) => ({
+    strategy : item.strategy,
+    details : strategiesDetails[index].details,
+  }))
+
+  { /* Advantages */}
+  const advantages = [
+    { points : "Fastest general-purpose in-memory sorting algorithm in practice" },
+    { points : "In-place algorithm (requires minimal additional memory)" },
+    { points : "Cache-efficient due to sequential memory access" },
+    { points : "Can be easily parallelized for better performance" },
+  ]
+
+  { /* Disadvantages */}
+  const disadvantages = [
+    { points : "Not stable (relative order of equal elements may change)" },
+    { points : "Worst-case O(n²) performance (though rare with proper pivot selection)" },
+    { points : "Performance depends heavily on pivot selection strategy" },
+    { points : "Not ideal for linked lists (works best with arrays)" },
+  ]
+
     return (
       <main>
-        <section className="border border-blue-700 rounded-lg bg-blue-600/25 mt-8 mb-8">
+        <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
           <div className="mt-4 mb-4 ml-4 mr-4">
             <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
               What is Quick Sort
@@ -22,21 +60,21 @@ const content = () => {
               <span className="dark:text-amber-500 text-purple-600">[10, 80, 30, 90, 40, 50, 70]</span>
               <br /><br />
               
-              <span className="font-semibold">Partitioning Phase:</span>
+              <span className="font-semibold text-purple-600 dark:text-amber-500">Partitioning Phase:</span>
               <ol className="list-decimal ml-8 pl-3">
                 <li>Choose last element as pivot (70)</li>
                 <li>Rearrange: elements &lt; pivot on left, &gt; pivot on right
                   <br />→ [10, 30, 40, 50] [70] [80, 90]</li>
               </ol>
               
-              <span className="font-semibold">Recursive Phase:</span>
+              <span className="font-semibold text-purple-600 dark:text-amber-500">Recursive Phase:</span>
               <ol className="list-decimal ml-8 pl-3">
                 <li>Apply same process to left sub-array [10, 30, 40, 50]</li>
                 <li>Apply same process to right sub-array [80, 90]</li>
                 <li>Combine results: [10, 30, 40, 50, 70, 80, 90]</li>
               </ol>
               
-              <div className="mt-4 bg-gray-100 dark:bg-gray-800 p-0 pb-2 rounded">
+              <div className="mt-4 bg-gray-100 dark:bg-gray-900 p-0 pb-2 rounded">
                 <pre className="text-sm font-mono">{`
   Original: 
   [10, 80, 30, 90, 40, 50, 70]
@@ -133,10 +171,9 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ul className="list-disc ml-8 pl-2">
-                <li>Fastest general-purpose in-memory sorting algorithm in practice</li>
-                <li>In-place algorithm (requires minimal additional memory)</li>
-                <li>Cache-efficient due to sequential memory access</li>
-                <li>Can be easily parallelized for better performance</li>
+                {advantages.map((item, index)=> (
+                  <li key={index}>{item.points}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -147,10 +184,9 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ul className="list-disc ml-8 pl-2">
-                <li>Not stable (relative order of equal elements may change)</li>
-                <li>Worst-case O(n²) performance (though rare with proper pivot selection)</li>
-                <li>Performance depends heavily on pivot selection strategy</li>
-                <li>Not ideal for linked lists (works best with arrays)</li>
+                {disadvantages.map((item, index) => (
+                  <li key={index}>{item.points}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -161,11 +197,9 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ul className="list-disc ml-8 pl-2">
-                <li><strong>Last element:</strong> Simple but can lead to worst-case on sorted arrays</li>
-                <li><strong>First element:</strong> Similar issues as last element</li>
-                <li><strong>Random element:</strong> Reduces chance of worst-case scenarios</li>
-                <li><strong>Median-of-three:</strong> Takes median of first, middle, last elements</li>
-                <li><strong>Middle element:</strong> Often provides good balance</li>
+                {CombinedDeatils.map((item, index) => (
+                  <li key={index}><strong className="text-purple-600 dark:text-amber-500">{item.strategy} :</strong> {item.details}</li>
+                ))}
               </ul>
             </div>
           </div>

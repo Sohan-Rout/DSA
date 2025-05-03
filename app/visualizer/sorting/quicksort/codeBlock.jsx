@@ -19,7 +19,8 @@ const Content = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -187,6 +188,55 @@ int main() {
     
     printf("Sorted: ");
     printArray(arr, size);
+    
+    return 0;
+}`,
+
+    cpp: `// Quick Sort in C++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low;
+    
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            swap(arr[i], arr[j]);
+            i++;
+        }
+    }
+    
+    swap(arr[i], arr[high]);
+    return i;
+}
+
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pivotIndex = partition(arr, low, high);
+        quickSort(arr, low, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, high);
+    }
+}
+
+void printArray(const vector<int>& arr) {
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> arr = {10, 7, 8, 9, 1, 5};
+    
+    cout << "Original: ";
+    printArray(arr);
+    
+    quickSort(arr, 0, arr.size() - 1);
+    
+    cout << "Sorted: ";
+    printArray(arr);
     
     return 0;
 }`
