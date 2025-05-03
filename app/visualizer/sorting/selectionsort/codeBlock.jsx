@@ -19,7 +19,8 @@ const Content = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -151,6 +152,49 @@ int main() {
     
     printf("Sorted: ");
     printArray(arr, n);
+    
+    return 0;
+}`,
+
+    cpp: `// Selection Sort in C++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void selectionSort(vector<int>& arr) {
+    int n = arr.size();
+    
+    for (int i = 0; i < n - 1; i++) {
+        // Find the minimum element in unsorted array
+        int minIdx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIdx]) {
+                minIdx = j;
+            }
+        }
+        
+        // Swap the found minimum with the first element
+        swap(arr[i], arr[minIdx]);
+    }
+}
+
+void printArray(const vector<int>& arr) {
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> arr = {64, 25, 12, 22, 11};
+    
+    cout << "Original: ";
+    printArray(arr);
+    
+    selectionSort(arr);
+    
+    cout << "Sorted: ";
+    printArray(arr);
     
     return 0;
 }`
