@@ -19,7 +19,8 @@ const Content = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -228,6 +229,78 @@ int main() {
     
     printf("%d\\n", dequeue(&q)); // 10
     printf("%d\\n", dequeue(&q)); // 20
+    
+    return 0;
+}`,
+
+    cpp: `// Queue Implementation in C++ (Linked List)
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+    
+    Node(int val) : data(val), next(nullptr) {}
+};
+
+class Queue {
+private:
+    Node* front;
+    Node* rear;
+    
+public:
+    Queue() : front(nullptr), rear(nullptr) {}
+    
+    ~Queue() {
+        while (!isEmpty()) {
+            dequeue();
+        }
+    }
+    
+    // Add element to the rear (enqueue)
+    void enqueue(int item) {
+        Node* newNode = new Node(item);
+        if (rear == nullptr) {
+            front = rear = newNode;
+        } else {
+            rear->next = newNode;
+            rear = newNode;
+        }
+    }
+    
+    // Remove element from front (dequeue)
+    int dequeue() {
+        if (front == nullptr) {
+            cout << "Queue Underflow" << endl;
+            return -1;
+        }
+        Node* temp = front;
+        int item = temp->data;
+        front = front->next;
+        
+        if (front == nullptr) {
+            rear = nullptr;
+        }
+        
+        delete temp;
+        return item;
+    }
+    
+    bool isEmpty() const {
+        return front == nullptr;
+    }
+};
+
+int main() {
+    Queue q;
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    
+    cout << q.dequeue() << endl; // 10
+    cout << q.dequeue() << endl; // 20
     
     return 0;
 }`

@@ -59,8 +59,8 @@ const QueueVisualizer = () => {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-black dark:text-white">
       <Navbar />
-      <main className="container mx-auto mt-10 px-4 sm:px-6 py-16">
-        <div className="max-w-4xl mx-auto">
+      <main className="container mx-auto px-4 sm:px-6 pt-16 pb-4 md:pt-16 md:pb-4">
+        <div className="py-12">
           <div className="mb-12">
             <h1 className=" text-center text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               <span className="text-blue-600">Queue</span> Visualizer
@@ -94,7 +94,7 @@ const QueueVisualizer = () => {
                 <button
                   onClick={dequeue}
                   disabled={isAnimating || queue.length === 0}
-                  className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all flex items-center justify-center gap-2"
+                  className="bg-yellow-600 hover:bg-yellow-700 border border-transparent disabled:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all flex items-center justify-center gap-2"
                 >
                   <span className="text-base font-medium leading-none">
                     Dequeue
@@ -103,7 +103,7 @@ const QueueVisualizer = () => {
 
                 <button
                   onClick={reset}
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all col-span-2 sm:col-span-1 flex items-center justify-center gap-2"
+                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all col-span-2 sm:col-span-1 flex items-center justify-center gap-2"
                   disabled={isAnimating}
                 >
                   <span className="text-base font-medium leading-none">
@@ -266,7 +266,6 @@ const QueueVisualizer = () => {
               </div>
             </div>
           </div>
-        </div>
 
         <CodeBlock/>
         <ExploreOther
@@ -277,6 +276,7 @@ const QueueVisualizer = () => {
             { text: "Is Full", url: "./isfull" },
           ]}
         />
+        </div>
       </main>
       <div className="bg-gray-700 z-10 h-[1px]"></div>
       <Footer />
