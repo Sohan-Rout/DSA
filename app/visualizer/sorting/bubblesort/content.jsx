@@ -59,7 +59,7 @@ const content = () => {
                 <li>Set a flag to track if any swaps occur</li>
                 <li>
                   For each pair of adjacent elements:
-                  <ul>
+                  <ul className="list-disc pl-2">
                     <li>Compare the two elements</li>
                     <li>If they are in the wrong order, swap them</li>
                     <li>Set the swap flag to true</li>

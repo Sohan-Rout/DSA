@@ -149,13 +149,13 @@ const BubbleSortVisualizer = () => {
                 <button
                   onClick={bubbleSort}
                   disabled={!array.length || sorting || sorted}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded disabled:opacity-50 text-sm sm:text-base"
+                  className="w-full disabled:opacity-50 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded border border-transparent shadow-sm transition-all duration-200 disabled:bg-transparent disabled:text-blue-600 disabled:border-blue-400 dark:disabled:text-white dark:disabled:border-blue-600 text-sm sm:text-base"
                 >
                   {sorting ? "Sorting..." : "Start Bubble Sort"}
                 </button>
                 <button
                   onClick={reset}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm sm:text-base"
+                  className="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition-colors text-sm sm:text-base"
                 >
                   Reset All
                 </button>
@@ -237,14 +237,20 @@ const BubbleSortVisualizer = () => {
           </div>
         </div>
 
-        <CodeBlock/>
+        <CodeBlock />
         <ExploreOther
           title="Explore Sorting Algorithms"
           links={[
-            { text: "Selection Sort", url: "/visualizer/sorting/selectionsort" },
-            { text: "Insertion Sort", url: "/visualizer/sorting/insertionsort" },
+            {
+              text: "Selection Sort",
+              url: "/visualizer/sorting/selectionsort",
+            },
+            {
+              text: "Insertion Sort",
+              url: "/visualizer/sorting/insertionsort",
+            },
             { text: "Merge Sort", url: "/visualizer/sorting/mergesort" },
-            { text: "Quick Sort" , url: "/visualizer/sorting/quicksort"},
+            { text: "Quick Sort", url: "/visualizer/sorting/quicksort" },
             { text: "Heap Sort", url: "/algorithms/sorting/heap" },
           ]}
         />
