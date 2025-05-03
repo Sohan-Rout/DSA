@@ -1,4 +1,17 @@
 const content = () => {
+  const advantages = [
+    { points : "Stable sorting (maintains relative order of equal elements)" },
+    { points : "Excellent for large datasets (consistent O(n log n) performance)" },
+    { points : "Well-suited for external sorting (sorting data too large for RAM)" },
+    { points : "Easily parallelizable (divide steps can be done concurrently)" },
+  ]
+
+  const disadvantages = [
+    { points : "Requires O(n) additional space (not in-place)" },
+    { points : "Slower than O(n²) algorithms for very small datasets due to recursion overhead" },
+    { points : "Not as cache-efficient as some other algorithms (e.g., QuickSort)" },
+  ]
+
     return (
       <main>
         <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
@@ -123,10 +136,9 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ul className="list-disc ml-8 pl-2">
-                <li>Stable sorting (maintains relative order of equal elements)</li>
-                <li>Excellent for large datasets (consistent O(n log n) performance)</li>
-                <li>Well-suited for external sorting (sorting data too large for RAM)</li>
-                <li>Easily parallelizable (divide steps can be done concurrently)</li>
+                {advantages.map((items, index) => (
+                  <li key={index}>{items.points}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -137,9 +149,9 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ul className="list-disc ml-8 pl-2">
-                <li>Requires O(n) additional space (not in-place)</li>
-                <li>Slower than O(n²) algorithms for very small datasets due to recursion overhead</li>
-                <li>Not as cache-efficient as some other algorithms (e.g., QuickSort)</li>
+                {disadvantages.map((items, index) => (
+                  <li key={index}>{items.points}</li>
+                ))}
               </ul>
             </div>
           </div>
