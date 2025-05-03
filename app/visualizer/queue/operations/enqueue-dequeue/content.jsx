@@ -1,7 +1,19 @@
 const content = () => {
   const enqueue = [
-    { points : "" },
+    { points : "Check if the queue is full (in case of fixed-size implementation)" },
+    { points : "If full, return overflow error (or resize in dynamic implementation)" },
+    { points : "Increment the rear pointer" },
+    { points : "Add the new element at the rear position" },
   ];
+
+  const dequeue = [
+    { points : "Check if the queue is empty" },
+    { points : "If empty, return underflow error" },
+    { points : "Access the data at the front of the queue" },
+    { points : "Increment the front pointer to the next element" },
+    { points : "Return the accessed data" },
+  ];
+
     return (
       <main>
         <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
@@ -73,12 +85,11 @@ const content = () => {
               Algorithm Steps for Enqueue
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
-              <ol className="list-decimal ml-8 pl-2">
-                <li>Check if the queue is full (in case of fixed-size implementation)</li>
-                <li>If full, return overflow error (or resize in dynamic implementation)</li>
-                <li>Increment the rear pointer</li>
-                <li>Add the new element at the rear position</li>
-              </ol>
+              <ul className="list-decimal ml-8 pl-2">
+                {enqueue.map((item, index) => (
+                  <li key={index}>{item.points}</li>
+                ))}
+              </ul>
             </div>
           </div>
   
@@ -87,13 +98,11 @@ const content = () => {
               Algorithm Steps for Dequeue
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
-              <ol className="list-decimal ml-8 pl-2">
-                <li>Check if the queue is empty</li>
-                <li>If empty, return underflow error</li>
-                <li>Access the data at the front of the queue</li>
-                <li>Increment the front pointer to the next element</li>
-                <li>Return the accessed data</li>
-              </ol>
+              <ul className="list-decimal ml-8 pl-2">
+                {dequeue.map((item, index) => (
+                  <li key={index}>{item.points}</li>
+                ))}
+              </ul>
             </div>
           </div>
   

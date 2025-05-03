@@ -19,7 +19,8 @@ const Content = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -93,6 +94,61 @@ int peek(Queue *q) {
         return -1;
     }
     return q->items[q->front];
+}`,
+
+    cpp: `// Queue peek (front) in C++
+#include <iostream>
+#include <queue>
+
+int main() {
+    std::queue<int> q;
+    
+    // Using STL queue's front() method
+    if (!q.empty()) {
+        std::cout << "Front element: " << q.front() << std::endl;
+    } else {
+        std::cout << "Queue is empty" << std::endl;
+    }
+
+    // Custom queue implementation
+    class CustomQueue {
+    private:
+        struct Node {
+            int data;
+            Node* next;
+            Node(int val) : data(val), next(nullptr) {}
+        };
+        Node* front;
+        Node* rear;
+        
+    public:
+        CustomQueue() : front(nullptr), rear(nullptr) {}
+        
+        ~CustomQueue() {
+            while (front != nullptr) {
+                Node* temp = front;
+                front = front->next;
+                delete temp;
+            }
+        }
+        
+        int peek() const {
+            if (front == nullptr) {
+                std::cout << "Queue is empty" << std::endl;
+                return -1;
+            }
+            return front->data;
+        }
+        
+        bool isEmpty() const {
+            return front == nullptr;
+        }
+    };
+    
+    CustomQueue customQ;
+    std::cout << "Custom queue front: " << customQ.peek() << std::endl;
+    
+    return 0;
 }`
   };
 
@@ -123,7 +179,6 @@ int peek(Queue *q) {
         </div>
         
         <div className="mb-6">
-          
           <div className="flex flex-wrap gap-2 mb-6">
             {languages.map((lang) => (
               <button

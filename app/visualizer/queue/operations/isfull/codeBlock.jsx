@@ -19,7 +19,8 @@ const Content = () => {
     { id: 'javascript', name: 'JavaScript' },
     { id: 'python', name: 'Python' },
     { id: 'java', name: 'Java' },
-    { id: 'c', name: 'C' }
+    { id: 'c', name: 'C' },
+    { id: 'cpp', name: 'C++' }
   ];
 
   const copyToClipboard = (text) => {
@@ -81,7 +82,31 @@ typedef struct {
 
 bool isFull(Queue *q) {
     return (q->rear + 1) % MAX_SIZE == q->front;
-}`
+}`,
+
+    cpp: `// Array Queue isFull in C++
+#include <iostream>
+
+class ArrayQueue {
+private:
+    int* arr;
+    int front;
+    int rear;
+    int capacity;
+    
+public:
+    ArrayQueue(int size) : front(-1), rear(-1), capacity(size) {
+        arr = new int[capacity];
+    }
+    
+    ~ArrayQueue() {
+        delete[] arr;
+    }
+    
+    bool isFull() const {
+        return (rear + 1) % capacity == front;
+    }
+};`
   };
 
   return (

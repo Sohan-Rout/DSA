@@ -111,23 +111,23 @@ const QueueVisualizer = () => {
               <button
                 onClick={dequeue}
                 disabled={isAnimating || queue.length === 0}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
+                className="bg-amber-500 hover:bg-amber-600 border border-transparent disabled:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
               >
                 Dequeue
               </button>
               <button
                 onClick={peekFront}
                 disabled={isAnimating || queue.length === 0}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
+                className="bg-purple-600 hover:bg-purple-700 border border-transparent disabled:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
               >
                 Peek Front
               </button>
               <button
                 onClick={reset}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
                 disabled={isAnimating}
               >
-                Clear
+                Reset
               </button>
             </div>
           </div>

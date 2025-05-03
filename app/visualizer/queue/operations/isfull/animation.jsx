@@ -148,7 +148,7 @@ const QueueVisualizer = () => {
               <button
                 onClick={dequeue}
                 disabled={isAnimating || queue.length === 0}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded disabled:opacity-50"
+                className="bg-amber-500 hover:bg-amber-600 border border-transparent disabled:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white text-white px-4 py-2 rounded disabled:opacity-50"
               >
                 Dequeue
               </button>
@@ -161,10 +161,10 @@ const QueueVisualizer = () => {
               </button>
               <button
                 onClick={reset}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded disabled:opacity-50"
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded disabled:opacity-50"
                 disabled={isAnimating}
               >
-                Clear
+                Reset
               </button>
             </div>
             <div className="mt-2 text-sm text-gray-600 dark:text-gray-400">
@@ -260,28 +260,6 @@ const QueueVisualizer = () => {
                   </div>
                 )}
               </div>
-            </div>
-
-            {/* Queue Explanation */}
-            <div className="mt-8 p-4 rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
-              <h3 className="font-semibold mb-2">Queue Operations:</h3>
-              <ul className="space-y-2">
-                <li className="flex items-center">
-                  <span className="bg-green-600 text-white px-2 py-1 rounded text-sm mr-2">Enqueue</span>
-                  <span>Add to rear (O(1) operation)</span>
-                </li>
-                <li className="flex items-center">
-                  <span className="bg-red-600 text-white px-2 py-1 rounded text-sm mr-2">Dequeue</span>
-                  <span>Remove from front (O(1) operation)</span>
-                </li>
-                <li className="flex items-center">
-                  <span className="bg-blue-600 text-white px-2 py-1 rounded text-sm mr-2">IsFull</span>
-                  <span>Check if queue is full (O(1))</span>
-                </li>
-                <li className="text-sm text-gray-700 dark:text-gray-300 mt-2">
-                  Queue follows <strong>FIFO</strong> (First In First Out) principle with max size of {MAX_SIZE}
-                </li>
-              </ul>
             </div>
           </div>
         </div>
