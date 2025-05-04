@@ -1,6 +1,7 @@
 import "./globals.css";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { UserProvider } from "@/app/contexts/UserContext";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -78,7 +79,9 @@ export default function RootLayout({ children }) {
           </>
         )}
       </head>
-      <body>{children}</body>
+      <body>
+        <UserProvider>{children}</UserProvider>
+        </body>
       <SpeedInsights/>
     </html>
   );
