@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiLock, FiAlertCircle, FiLoader } from 'react-icons/fi';
-import { useUser } from '@/contexts/UserContext';
+import { useUser } from '@/app/contexts/UserContext';
 
 export default function LoginForm({ onSwitchToSignup }) {
   const [email, setEmail] = useState('');
