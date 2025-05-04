@@ -2,12 +2,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiLock, FiAlertCircle, FiLoader } from 'react-icons/fi';
+import { useUser } from '@/app/contexts/UserContext';
 
 export default function LoginForm({ onSwitchToSignup }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const { setUser } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,11 +21,24 @@ export default function LoginForm({ onSwitchToSignup }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
+        credentials: 'include'
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Login failed');
-      // Handle successful login (redirect, store token, etc.)
+      if (!res.ok) {
+        throw new Error(data, { message: data.message || 'Login failed' });
+      }
+
+      // Fetch user data after successful login
+      const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/me`, {
+        credentials: 'include'
+      });
+      const userData = await userRes.json();
+      if (userRes.ok && userData.user) {
+        setUser({ ...userData.user, username: userData.user.name });
+      } else {
+        throw new Error('Failed to fetch user data');
+      }
     } catch (err) {
       setError(err.message || 'An unexpected error occurred');
     } finally {
@@ -35,19 +50,33 @@ export default function LoginForm({ onSwitchToSignup }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
       className="w-full max-w-sm mx-auto p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800"
     >
       <div className="text-center mb-8">
         <div className="flex justify-center mb-4">
           <div className="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center">
-            <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+            <svg
+              className="w-6 h-6 text-blue-600 dark:text-blue-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"
+              />
             </svg>
           </div>
         </div>
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Welcome back</h1>
-        <p className="text-gray-500 dark:text-gray-400 mt-2">Sign in to your account</p>
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
+          Welcome back
+        </h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">
+          Sign in to your account
+        </p>
       </div>
 
       {error && (
@@ -63,7 +92,12 @@ export default function LoginForm({ onSwitchToSignup }) {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="space-y-1">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email address</label>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
+            Email address
+          </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <FiMail className="h-5 w-5 text-gray-400" />
@@ -82,8 +116,18 @@ export default function LoginForm({ onSwitchToSignup }) {
 
         <div className="space-y-1">
           <div className="flex items-center justify-between">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
-            <a href="#" className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline">Forgot password?</a>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
+              Password
+            </label>
+            <a
+              href="#"
+              className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              Forgot password?
+            </a>
           </div>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -121,7 +165,7 @@ export default function LoginForm({ onSwitchToSignup }) {
 
       <div className="mt-6">
         <div className="relative">
-          <div className="absolute inset-0 flex items-center">
+          <div className="absolute inset-ishu flex items-center">
             <div className="w-full border-t border-gray-300 dark:border-gray-700"></div>
           </div>
           <div className="relative flex justify-center text-sm">

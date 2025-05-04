@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useUser } from '@/app/contexts/UserContext';
 
 export default function SignupForm({ onSwitchToLogin }) {
   const [name, setName] = useState('');
@@ -9,6 +10,7 @@ export default function SignupForm({ onSwitchToLogin }) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const { setUser } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,38 +27,65 @@ export default function SignupForm({ onSwitchToLogin }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, name }),
+        credentials: 'include'
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Signup failed');
-      console.log('Signup successful:', data);
+      if (!res.ok) {
+        throw new Error(data.message || 'Signup failed');
+      }
+
+      // Fetch user data after successful signup
+      const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/me`, {
+        credentials: 'include'
+      });
+      const userData = await userRes.json();
+      if (userRes.ok && userData.user) {
+        setUser({ ...userData.user, username: userData.user.name });
+      } else {
+        throw new Error('Failed to fetch user data');
+      }
     } catch (err) {
-      setError(err.message || 'Signup failed');
+      setError(err.message || 'An unexpected error occurred');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       className="w-full max-w-md mx-auto p-6 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-700"
     >
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-1">Join Our Community</h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400">Start your journey with us today</p>
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-1">
+          Join Our Community
+        </h2>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          Start your journey with us today
+        </p>
       </div>
 
       {error && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-4 p-2 text-sm bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-300 rounded-lg flex items-center gap-2"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
           </svg>
           {error}
         </motion.div>
@@ -64,7 +93,12 @@ export default function SignupForm({ onSwitchToLogin }) {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-1">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</label>
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
+            Full Name
+          </label>
           <input
             id="name"
             type="text"
@@ -77,7 +111,12 @@ export default function SignupForm({ onSwitchToLogin }) {
         </div>
 
         <div className="space-y-1">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
+            Email
+          </label>
           <input
             id="email"
             type="email"
@@ -90,7 +129,12 @@ export default function SignupForm({ onSwitchToLogin }) {
         </div>
 
         <div className="space-y-1">
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
+            Password
+          </label>
           <input
             id="password"
             type="password"
@@ -103,7 +147,12 @@ export default function SignupForm({ onSwitchToLogin }) {
         </div>
 
         <div className="space-y-1">
-          <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Confirm Password</label>
+          <label
+            htmlFor="confirmPassword"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
+            Confirm Password
+          </label>
           <input
             id="confirmPassword"
             type="password"
@@ -124,9 +173,25 @@ export default function SignupForm({ onSwitchToLogin }) {
         >
           {isLoading ? (
             <>
-              <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              <svg
+                className="animate-spin h-4 w-4 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
               </svg>
               Creating Account...
             </>
