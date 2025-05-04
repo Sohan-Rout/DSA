@@ -12,25 +12,52 @@ export default function SignupForm({ onSwitchToLogin }) {
   const [error, setError] = useState('');
   const { setUser } = useUser();
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    setError('');
+
+    // Trim inputs to avoid spaces
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+    const trimmedConfirmPassword = confirmPassword.trim();
+
+    // Validate inputs
+    if (!trimmedName) {
+      setError('Name is required');
+      return;
+    }
+    if (!validateEmail(trimmedEmail)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+    if (trimmedPassword.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
+    if (trimmedPassword !== trimmedConfirmPassword) {
       setError("Passwords don't match");
       return;
     }
 
     setIsLoading(true);
-    setError('');
 
     try {
+      console.log('Sending signup request:', { email: trimmedEmail, name: trimmedName });
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password, name }),
+        body: JSON.stringify({ email: trimmedEmail, password: trimmedPassword, name: trimmedName }),
         credentials: 'include'
       });
 
       const data = await res.json();
+      console.log('Signup response:', data);
       if (!res.ok) {
         throw new Error(data.message || 'Signup failed');
       }
@@ -40,12 +67,14 @@ export default function SignupForm({ onSwitchToLogin }) {
         credentials: 'include'
       });
       const userData = await userRes.json();
+      console.log('User data:', userData);
       if (userRes.ok && userData.user) {
         setUser({ ...userData.user, username: userData.user.name });
       } else {
         throw new Error('Failed to fetch user data');
       }
     } catch (err) {
+      console.error('Signup error:', err);
       setError(err.message || 'An unexpected error occurred');
     } finally {
       setIsLoading(false);

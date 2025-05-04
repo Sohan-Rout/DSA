@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiLock, FiAlertCircle, FiLoader } from 'react-icons/fi';
-import { useUser } from '@/app/contexts/UserContext';
+import { useUser } from '@/contexts/UserContext';
 
 export default function LoginForm({ onSwitchToSignup }) {
   const [email, setEmail] = useState('');
@@ -11,22 +11,44 @@ export default function LoginForm({ onSwitchToSignup }) {
   const [error, setError] = useState('');
   const { setUser } = useUser();
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
     setError('');
 
+    // Trim inputs to avoid spaces
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+
+    // Validate inputs
+    if (!validateEmail(trimmedEmail)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+    if (trimmedPassword.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
+
+    setIsLoading(true);
+
     try {
+      console.log('Sending login request:', { email: trimmedEmail });
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: trimmedEmail, password: trimmedPassword }),
         credentials: 'include'
       });
 
       const data = await res.json();
+      console.log('Login response:', data);
       if (!res.ok) {
-        throw new Error(data, { message: data.message || 'Login failed' });
+        throw new Error(data.message || 'Login failed');
       }
 
       // Fetch user data after successful login
@@ -34,12 +56,14 @@ export default function LoginForm({ onSwitchToSignup }) {
         credentials: 'include'
       });
       const userData = await userRes.json();
+      console.log('User data:', userData);
       if (userRes.ok && userData.user) {
         setUser({ ...userData.user, username: userData.user.name });
       } else {
         throw new Error('Failed to fetch user data');
       }
     } catch (err) {
+      console.error('Login error:', err);
       setError(err.message || 'An unexpected error occurred');
     } finally {
       setIsLoading(false);
@@ -165,7 +189,7 @@ export default function LoginForm({ onSwitchToSignup }) {
 
       <div className="mt-6">
         <div className="relative">
-          <div className="absolute inset-ishu flex items-center">
+          <div className="absolute inset-y-0 flex items-center">
             <div className="w-full border-t border-gray-300 dark:border-gray-700"></div>
           </div>
           <div className="relative flex justify-center text-sm">
