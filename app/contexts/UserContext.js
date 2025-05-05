@@ -11,23 +11,19 @@ export const UserProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const headers = token ? { 
-        'Authorization': `Bearer ${token}` 
-      } : {};
-
       const res = await fetch(`${API_BASE_URL}/api/me`, {
-        credentials: "include",
-        headers
+        credentials: 'include', // This is crucial
+        headers: {
+          'Content-Type': 'application/json',
+        }
       });
       
       const data = await res.json();
+      console.log('User fetch response:', data); // Add this for debugging
       
       if (res.ok && data.user) {
         setUser(data.user);
       } else {
-        // Clear invalid token
-        localStorage.removeItem('token');
         setUser(null);
       }
     } catch (err) {
