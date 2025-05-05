@@ -11,6 +11,8 @@ export default function LoginForm({ onSwitchToSignup }) {
   const [error, setError] = useState('');
   const { setUser } = useUser();
 
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -38,7 +40,7 @@ export default function LoginForm({ onSwitchToSignup }) {
 
     try {
       console.log('Sending login request:', { email: trimmedEmail });
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/login`, {
+      const res = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: trimmedEmail, password: trimmedPassword }),
@@ -46,24 +48,26 @@ export default function LoginForm({ onSwitchToSignup }) {
       });
 
       const data = await res.json();
-      console.log('Login response:', data);
+      console.log('Login response:', { status: res.status, data });
+
       if (!res.ok) {
-        throw new Error(data.message || 'Login failed');
+        throw new Error(data.message || `Login failed with status ${res.status}`);
       }
 
       // Fetch user data after successful login
-      const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/me`, {
+      const userRes = await fetch(`${API_BASE_URL}/me`, {
         credentials: 'include'
       });
       const userData = await userRes.json();
-      console.log('User data:', userData);
+      console.log('User data:', { status: userRes.status, data: userData });
+
       if (userRes.ok && userData.user) {
         setUser({ ...userData.user, username: userData.user.name });
       } else {
-        throw new Error('Failed to fetch user data');
+        throw new Error(userData.message || `Failed to fetch user data with status ${userRes.status}`);
       }
     } catch (err) {
-      console.error('Login error:', err);
+      console.error('Login error:', err.message);
       setError(err.message || 'An unexpected error occurred');
     } finally {
       setIsLoading(false);
