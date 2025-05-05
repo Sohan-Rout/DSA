@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch("/me", {
+        const res = await fetch("/api/me", {
           credentials: "include",
         });
         const data = await res.json();
