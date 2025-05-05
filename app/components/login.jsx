@@ -11,7 +11,7 @@ export default function LoginForm({ onSwitchToSignup }) {
   const [error, setError] = useState('');
   const { setUser } = useUser();
 
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001';
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -21,12 +21,11 @@ export default function LoginForm({ onSwitchToSignup }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    console.log('API_BASE_URL:', API_BASE_URL);
 
-    // Trim inputs to avoid spaces
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
 
-    // Validate inputs
     if (!validateEmail(trimmedEmail)) {
       setError('Please enter a valid email address');
       return;
@@ -40,7 +39,7 @@ export default function LoginForm({ onSwitchToSignup }) {
 
     try {
       console.log('Sending login request:', { email: trimmedEmail });
-      const res = await fetch(`${API_BASE_URL}/login`, {
+      const res = await fetch(`${API_BASE_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: trimmedEmail, password: trimmedPassword }),
@@ -48,18 +47,27 @@ export default function LoginForm({ onSwitchToSignup }) {
       });
 
       const data = await res.json();
-      console.log('Login response:', { status: res.status, data });
+      console.log('Login response:', {
+        status: res.status,
+        data,
+        setCookie: res.headers.get('Set-Cookie'),
+        cookies: document.cookie
+      });
 
       if (!res.ok) {
         throw new Error(data.message || `Login failed with status ${res.status}`);
       }
 
-      // Fetch user data after successful login
-      const userRes = await fetch(`${API_BASE_URL}/me`, {
+      console.log('Fetching user data');
+      const userRes = await fetch(`${API_BASE_URL}/api/me`, {
         credentials: 'include'
       });
       const userData = await userRes.json();
-      console.log('User data:', { status: userRes.status, data: userData });
+      console.log('User data:', {
+        status: userRes.status,
+        data: userData,
+        cookies: document.cookie
+      });
 
       if (userRes.ok && userData.user) {
         setUser({ ...userData.user, username: userData.user.name });
