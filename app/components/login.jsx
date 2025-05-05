@@ -21,7 +21,6 @@ export default function LoginForm({ onSwitchToSignup }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    console.log('API_BASE_URL:', API_BASE_URL);
 
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
@@ -38,44 +37,41 @@ export default function LoginForm({ onSwitchToSignup }) {
     setIsLoading(true);
 
     try {
-      console.log('Sending login request:', { email: trimmedEmail });
       const res = await fetch(`${API_BASE_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: trimmedEmail, password: trimmedPassword }),
+        body: JSON.stringify({ 
+          email: trimmedEmail, 
+          password: trimmedPassword 
+        }),
         credentials: 'include'
       });
 
       const data = await res.json();
-      console.log('Login response:', {
-        status: res.status,
-        data,
-        setCookie: res.headers.get('Set-Cookie'),
-        cookies: document.cookie
-      });
-
+      
       if (!res.ok) {
-        throw new Error(data.message || `Login failed with status ${res.status}`);
+        throw new Error(data.message || 'Login failed');
       }
 
-      console.log('Fetching user data');
+      // Store token if returned
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+      }
+
+      // Fetch user data
       const userRes = await fetch(`${API_BASE_URL}/api/me`, {
         credentials: 'include'
       });
+      
       const userData = await userRes.json();
-      console.log('User data:', {
-        status: userRes.status,
-        data: userData,
-        cookies: document.cookie
-      });
-
+      
       if (userRes.ok && userData.user) {
-        setUser({ ...userData.user, username: userData.user.name });
+        setUser(userData.user);
       } else {
-        throw new Error(userData.message || `Failed to fetch user data with status ${userRes.status}`);
+        throw new Error(userData.message || 'Failed to fetch user data');
       }
     } catch (err) {
-      console.error('Login error:', err.message);
+      console.error('Login error:', err);
       setError(err.message || 'An unexpected error occurred');
     } finally {
       setIsLoading(false);

@@ -12,6 +12,8 @@ export default function SignupForm({ onSwitchToLogin }) {
   const [error, setError] = useState('');
   const { setUser } = useUser();
 
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001';
+
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -21,7 +23,7 @@ export default function SignupForm({ onSwitchToLogin }) {
     e.preventDefault();
     setError('');
 
-    // Trim inputs to avoid spaces
+    // Trim inputs
     const trimmedName = name.trim();
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
@@ -48,30 +50,39 @@ export default function SignupForm({ onSwitchToLogin }) {
     setIsLoading(true);
 
     try {
-      console.log('Sending signup request:', { email: trimmedEmail, name: trimmedName });
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/signup`, {
+      const res = await fetch(`${API_BASE_URL}/api/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: trimmedEmail, password: trimmedPassword, name: trimmedName }),
+        body: JSON.stringify({ 
+          email: trimmedEmail, 
+          password: trimmedPassword, 
+          name: trimmedName 
+        }),
         credentials: 'include'
       });
 
       const data = await res.json();
-      console.log('Signup response:', data);
+      
       if (!res.ok) {
         throw new Error(data.message || 'Signup failed');
       }
 
-      // Fetch user data after successful signup
-      const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/me`, {
+      // Store token if returned
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+      }
+
+      // Fetch user data
+      const userRes = await fetch(`${API_BASE_URL}/api/me`, {
         credentials: 'include'
       });
+      
       const userData = await userRes.json();
-      console.log('User data:', userData);
+      
       if (userRes.ok && userData.user) {
-        setUser({ ...userData.user, username: userData.user.name });
+        setUser(userData.user);
       } else {
-        throw new Error('Failed to fetch user data');
+        throw new Error(userData.message || 'Failed to fetch user data');
       }
     } catch (err) {
       console.error('Signup error:', err);
