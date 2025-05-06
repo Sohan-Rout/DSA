@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 // Use absolute backend URL (e.g., https://your-backend.com or http://localhost:3001)
-const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const AuthContext = createContext();
 
