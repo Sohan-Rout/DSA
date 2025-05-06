@@ -11,7 +11,7 @@ const RedirectButton = ({
     return (
       <button
         onClick={handleRedirect}
-        className={`flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200 text-gray-700 ${className}`}
+        className={`flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark:text-amber-500 dark:bg-black transition-colors duration-200 text-gray-700 ${className}`}
         aria-label={buttonText}
       >
         {icon && (
