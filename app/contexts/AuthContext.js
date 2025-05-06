@@ -2,6 +2,9 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
+// Replace with your deployed backend URL (e.g., https://your-backend.com)
+const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
@@ -12,7 +15,7 @@ export function AuthProvider({ children }) {
   // Fetch user data from /api/me using token
   const fetchUser = async () => {
     try {
-      const response = await fetch('/api/me', {
+      const response = await fetch(`${BASE_API_URL}/api/me`, {
         method: 'GET',
         credentials: 'include', // Send cookies with request
         headers: {
@@ -39,10 +42,10 @@ export function AuthProvider({ children }) {
     fetchUser();
   }, []);
 
-  // Login function: Call /api/login or /api/signup and set user
+  // Login function: Call /api/login and set user
   const login = async (email, password) => {
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch(`${BASE_API_URL}/api/login`, {
         method: 'POST',
         credentials: 'include', // Include cookies for token
         headers: {
@@ -67,7 +70,7 @@ export function AuthProvider({ children }) {
   // Signup function
   const signup = async (email, password, name) => {
     try {
-      const response = await fetch('/api/signup', {
+      const response = await fetch(`${BASE_API_URL}/api/signup`, {
         method: 'POST',
         credentials: 'include', // Include cookies for token
         headers: {
@@ -92,7 +95,6 @@ export function AuthProvider({ children }) {
   // Logout function: Clear user and token
   const logout = async () => {
     try {
-      // Optionally call a logout endpoint to clear server-side session (if implemented)
       setUser(null);
       // Clear token cookie by setting an expired cookie
       document.cookie = 'token=; Max-Age=0; path=/;';
