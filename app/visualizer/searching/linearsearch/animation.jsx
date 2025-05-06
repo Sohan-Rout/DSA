@@ -5,9 +5,9 @@ import Footer from '@/app/components/footer';
 import ResetButton from '@/app/components/ui/resetButton';
 import GoButton from '@/app/components/ui/goButton';
 import Content from '@/app/visualizer/searching/linearsearch/content';
-import NavigationLink from '@/app/components/ui/navigationLink';
 import Code from '@/app/visualizer/searching/linearsearch/codeBlock';
 import ExploreOther from '@/app/components/ui/exploreOther';
+import GoBackButton from '@/app/components/ui/goback';
 
 const LinearSearch = () => {
     const [arraySize, setArraySize] = useState('');
@@ -126,6 +126,9 @@ const LinearSearch = () => {
       <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
         <Navbar />
         <main className="container mx-auto px-6 pt-16 pb-4">
+          <div className='mt-6 sm:mt-5'>
+            <GoBackButton/>
+          </div>
           <h1 className="text-4xl md:text-5xl mt-10 font-bold text-center text-gray-900 dark:text-white mb-8">
             <span className="text-blue-600">Linear Search</span> Visualizer
           </h1>

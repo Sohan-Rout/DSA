@@ -7,6 +7,7 @@ import GoButton from '@/app/components/ui/goButton';
 import Content from '@/app/visualizer/searching/binarysearch/content';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import CodeBlock from '@/app/visualizer/searching/binarysearch/codeBlock';
+import GoBackButton from '@/app/components/ui/goback';
 
 const BinarySearch = () => {
     const [arraySize, setArraySize] = useState('');
@@ -132,6 +133,9 @@ const BinarySearch = () => {
         <Navbar />
   
         <main className="container mx-auto px-6 pt-16 pb-5">
+        <div className='mt-6 sm:mt-5'>
+            <GoBackButton/>
+          </div>
           <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
             <span className='text-blue-600'>Binary Search</span> Visualizer
           </h1>

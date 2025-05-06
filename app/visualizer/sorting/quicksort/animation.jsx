@@ -7,6 +7,7 @@ import ArrayGenerator from '@/app/components/ui/randomArray';
 import CustomArrayInput from '@/app/components/ui/customArrayInput';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import CodeBlock from '@/app/visualizer/sorting/quicksort/codeBlock';
+import GoBackButton from '@/app/components/ui/goback';
 
 const QuickSortVisualizer = () => {
     const [array, setArray] = useState([]);
@@ -233,6 +234,9 @@ const QuickSortVisualizer = () => {
       <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
         <Navbar />
         <main className="container mx-auto px-6 py-16">
+        <div className='mt-6 sm:mt-5'>
+            <GoBackButton/>
+          </div>
           <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
             <span className="text-blue-600">Quick Sort</span> Visualizer
           </h1>
