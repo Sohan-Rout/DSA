@@ -18,6 +18,11 @@ export default function LoginForm({ onSwitchToSignup }) {
     return emailRegex.test(email);
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = `${API_BASE_URL}/auth/google`;
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -196,25 +201,35 @@ export default function LoginForm({ onSwitchToSignup }) {
       </form>
 
       <div className="mt-6">
-        <div className="relative">
-          <div className="absolute inset-y-0 flex items-center">
-            <div className="w-full border-t border-gray-300 dark:border-gray-700"></div>
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white dark:bg-gray-900 text-gray-500 dark:text-gray-400">
-              New to platform?
-            </span>
-          </div>
-        </div>
+      <div className="mt-6">
+  <div className="relative mb-4">
+    <div className="absolute inset-0 flex items-center">
+      <div className="w-full border-t border-gray-300 dark:border-gray-700"></div>
+    </div>
+    <div className="relative flex justify-center text-sm">
+      <span className="px-2 bg-white dark:bg-gray-900 text-gray-500 dark:text-gray-400">
+        Or continue with
+      </span>
+    </div>
+  </div>
 
-        <div className="mt-4">
-          <button
-            onClick={onSwitchToSignup}
-            className="w-full py-2.5 px-4 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            Create new account
-          </button>
-        </div>
+  <button
+    onClick={handleGoogleLogin}
+    className="w-full py-2.5 px-4 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-center gap-2 transition"
+  >
+    <img src="/google-icon.svg" alt="Google" className="h-5 w-5" />
+    Continue with Google
+  </button>
+
+  <div className="mt-4">
+    <button
+      onClick={onSwitchToSignup}
+      className="w-full py-2.5 px-4 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      Create new account
+    </button>
+  </div>
+</div>
       </div>
     </motion.div>
   );
