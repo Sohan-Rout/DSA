@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useUser } from '@/app/contexts/UserContext';
+import { useUser } from '@/app/contexts/AuthContext';
 import LoginForm from '@/app/components/login';
 import SignupForm from '@/app/components/signup';
 
@@ -81,32 +81,6 @@ export default function Navbar() {
                 Login / Signup
               </button>
             )}
-
-            {/* Go Back Button */}
-            <button
-              onClick={() => router.push('/visualizer')}
-              className="relative inline-flex items-center justify-center px-4 py-2 overflow-hidden font-medium text-white transition duration-300 ease-out rounded-full shadow-lg group bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
-            >
-              <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                  />
-                </svg>
-              </span>
-              <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform group-hover:translate-x-full ease">
-                Go Back
-              </span>
-              <span className="relative invisible">Go Back</span>
-            </button>
 
             {/* Theme Toggle Button */}
             <button
@@ -255,29 +229,6 @@ export default function Navbar() {
               Login / Signup
             </button>
           )}
-
-          <button
-            onClick={() => {
-              router.push('/visualizer');
-              setIsMenuOpen(false);
-            }}
-            className="w-full px-4 py-3 text-left font-medium rounded-lg bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400 flex items-center gap-2"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M10 19l-7-7m0 0l7-7m-7 7h18"
-              />
-            </svg>
-            Go Back
-          </button>
         </div>
       </div>
 
@@ -312,6 +263,41 @@ export default function Navbar() {
           </div>
         </div>
       )}
+
+{user ? (
+  <div className="flex items-center gap-4">
+    <p className="text-black dark:text-white font-medium">
+      Welcome, {user.name}
+    </p>
+    <button
+      onClick={logout}
+      className="px-4 py-2 rounded-lg font-medium bg-red-500 text-white hover:bg-red-600 transition duration-300"
+    >
+      Logout
+    </button>
+  </div>
+) : (
+  <button
+    onClick={() => openAuthModal(true)}
+    className="px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md flex items-center gap-2"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+      />
+    </svg>
+    Login / Signup
+  </button>
+)}
     </>
   );
 }
