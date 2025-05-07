@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
@@ -8,6 +8,7 @@ import Content from '@/app/visualizer/searching/linearsearch/content';
 import Code from '@/app/visualizer/searching/linearsearch/codeBlock';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import GoBackButton from '@/app/components/ui/goback';
+import BackToTopButton from '@/app/components/ui/backtotop';
 
 const LinearSearch = () => {
     const [arraySize, setArraySize] = useState('');
@@ -274,6 +275,7 @@ const LinearSearch = () => {
         <div>
           <div className="bg-gray-700 z-10 h-[1px]"></div>
         </div>
+        <BackToTopButton/>
         <Footer />
       </div>
     );

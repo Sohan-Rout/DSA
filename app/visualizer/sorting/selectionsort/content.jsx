@@ -1,4 +1,18 @@
 const content = () => {
+  const Advantages = [
+    { points : "Simple to understand and implement" },
+    { points : "Performs well on small lists" },
+    { points : "Minimal memory usage (in-place sorting)" },
+    { points : "Only O(n) swaps required (better than Bubble Sort)" },
+  ];
+
+  const Disadvantages = [
+    { points : "Poor performance on large lists (quadratic time complexity)" },
+    { points : "Not stable (may change relative order of equal elements)" },
+    { points : "Less efficient than Insertion Sort for nearly sorted data" },
+    { points : "Always performs O(n²) comparisons regardless of input" },
+  ];
+
     return (
       <main>
         <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
@@ -119,10 +133,9 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ul className="list-disc ml-8 pl-2">
-                <li>Simple to understand and implement</li>
-                <li>Performs well on small lists</li>
-                <li>Minimal memory usage (in-place sorting)</li>
-                <li>Only O(n) swaps required (better than Bubble Sort)</li>
+                {Advantages.map((item, index) => (
+                  <li key={index}>{item.points}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -133,10 +146,9 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ul className="list-disc ml-8 pl-2">
-                <li>Poor performance on large lists (quadratic time complexity)</li>
-                <li>Not stable (may change relative order of equal elements)</li>
-                <li>Less efficient than Insertion Sort for nearly sorted data</li>
-                <li>Always performs O(n²) comparisons regardless of input</li>
+                {Disadvantages.map((item, index) => (
+                  <li key={index}>{item.points}</li>
+                ))}
               </ul>
             </div>
           </div>

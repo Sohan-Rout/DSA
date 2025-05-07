@@ -4,13 +4,13 @@ const content = () => {
     { points : "Excellent for large datasets (consistent O(n log n) performance)" },
     { points : "Well-suited for external sorting (sorting data too large for RAM)" },
     { points : "Easily parallelizable (divide steps can be done concurrently)" },
-  ]
+  ];
 
   const disadvantages = [
     { points : "Requires O(n) additional space (not in-place)" },
     { points : "Slower than O(n²) algorithms for very small datasets due to recursion overhead" },
     { points : "Not as cache-efficient as some other algorithms (e.g., QuickSort)" },
-  ]
+  ];
 
     return (
       <main>

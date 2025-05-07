@@ -8,6 +8,7 @@ import CustomArrayInput from '@/app/components/ui/customArrayInput';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import CodeBlock from '@/app/visualizer/sorting/selectionsort/codeBlock';
 import GoBackButton from '@/app/components/ui/goback';
+import BackToTop from '@/app/components/ui/backtotop';
 
 const SelectionSortVisualizer = () => {
     const [array, setArray] = useState([]);
@@ -122,32 +123,32 @@ const SelectionSortVisualizer = () => {
       <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
         <Navbar />
         <main className="container mx-auto px-6 py-16">
-          <div className='mt-6 sm:mt-5'>
-                      <GoBackButton/>
-                    </div>
+          <div className="mt-6 sm:mt-5">
+            <GoBackButton />
+          </div>
           <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
             <span className="text-blue-600">Selection Sort</span> Visualizer
           </h1>
           <Content />
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-            Visualize Selection Sort as it repeatedly selects the smallest element
-            and swaps it to its correct position in the array.
+            Visualize Selection Sort as it repeatedly selects the smallest
+            element and swaps it to its correct position in the array.
           </p>
-  
+
           <div className="max-w-4xl mx-auto">
             {/* Controls */}
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div className="space-y-4">
-                  <ArrayGenerator 
-                    onGenerate={handleGenerateRandomArray} 
+                  <ArrayGenerator
+                    onGenerate={handleGenerateRandomArray}
                     disabled={sorting}
                     defaultSize={10}
                     minValue={5}
                     maxValue={100}
                   />
-                  <CustomArrayInput 
-                    onSubmit={handleCustomArray} 
+                  <CustomArrayInput
+                    onSubmit={handleCustomArray}
                     disabled={sorting}
                     placeholder="e.g. 5, 3, 8, 1, 2"
                   />
@@ -168,7 +169,7 @@ const SelectionSortVisualizer = () => {
                   </button>
                 </div>
               </div>
-  
+
               {/* Speed controls */}
               <div className="flex items-center gap-4 mb-4">
                 <span className="text-gray-700 dark:text-gray-300">Speed:</span>
@@ -182,9 +183,11 @@ const SelectionSortVisualizer = () => {
                   className="w-32"
                   disabled={sorting}
                 />
-                <span className="text-gray-700 dark:text-gray-300">{speed}x</span>
+                <span className="text-gray-700 dark:text-gray-300">
+                  {speed}x
+                </span>
               </div>
-  
+
               {/* Stats */}
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded">
@@ -197,17 +200,19 @@ const SelectionSortVisualizer = () => {
                 </div>
               </div>
             </div>
-  
+
             {/* Visualization */}
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-semibold mb-4">Array Visualization</h2>
+              <h2 className="text-xl font-semibold mb-4">
+                Array Visualization
+              </h2>
               {array.length > 0 ? (
                 <div className="flex flex-wrap gap-4 justify-center">
                   {array.map((value, index) => {
                     const isCurrent = index === currentIndices.j;
                     const isMin = index === currentIndices.min;
                     const isSorted = sorted || index < currentIndices.i;
-  
+
                     return (
                       <div key={index} className="flex flex-col items-center">
                         <div
@@ -235,7 +240,9 @@ const SelectionSortVisualizer = () => {
                 </div>
               ) : (
                 <div className="text-center py-8 text-gray-500">
-                  {sorting ? "Sorting..." : "Generate or enter an array to begin"}
+                  {sorting
+                    ? "Sorting..."
+                    : "Generate or enter an array to begin"}
                 </div>
               )}
             </div>
@@ -243,19 +250,23 @@ const SelectionSortVisualizer = () => {
 
           <CodeBlock />
           <ExploreOther
-          title="Explore Sorting Algorithms"
-          links={[
-            { text: "Quick Sort", url: "/visualizer/sorting/quicksort" },
-            { text: "Bubble Sort", url: "/visualizer/sorting/bubblesort" },
-            { text: "Insertion Sort", url: "/visualizer/sorting/insertionsort" },
-            { text: "Merge Sort" , url: "/visualizer/sorting/mergesort"},
-            { text: "Heap Sort", url: "/algorithms/sorting/heap" },
-          ]}
-        />
+            title="Explore Sorting Algorithms"
+            links={[
+              { text: "Quick Sort", url: "/visualizer/sorting/quicksort" },
+              { text: "Bubble Sort", url: "/visualizer/sorting/bubblesort" },
+              {
+                text: "Insertion Sort",
+                url: "/visualizer/sorting/insertionsort",
+              },
+              { text: "Merge Sort", url: "/visualizer/sorting/mergesort" },
+              { text: "Heap Sort", url: "/algorithms/sorting/heap" },
+            ]}
+          />
         </main>
         <div>
           <div className="bg-gray-700 z-10 h-[1px]"></div>
         </div>
+        <BackToTop />
         <Footer />
       </div>
     );

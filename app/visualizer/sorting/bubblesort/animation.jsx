@@ -7,7 +7,8 @@ import Content from "@/app/visualizer/sorting/bubblesort/content";
 import CustomArrayInput from "@/app/components/ui/customArrayInput";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import CodeBlock from "@/app/visualizer/sorting/bubblesort/codeBlock";
-import GoBackButton from '@/app/components/ui/goback';
+import GoBackButton from "@/app/components/ui/goback";
+import BackToTop from "@/app/components/ui/backtotop";
 
 const BubbleSortVisualizer = () => {
   const [array, setArray] = useState([]);
@@ -118,9 +119,9 @@ const BubbleSortVisualizer = () => {
     <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
       <Navbar />
       <main className="container mx-auto px-4 sm:px-6 pt-16 pb-4 md:pt-16 md:pb-4">
-      <div className='mt-6 sm:mt-5'>
-            <GoBackButton/>
-          </div>
+        <div className="mt-6 sm:mt-5">
+          <GoBackButton />
+        </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6 mt-6 md:mt-6 md:mb-8">
           <span className="text-blue-600">Bubble Sort</span> Visualizer
         </h1>
@@ -263,6 +264,7 @@ const BubbleSortVisualizer = () => {
       <div>
         <div className="bg-gray-700 z-10 h-[1px]"></div>
       </div>
+      <BackToTop/>
       <Footer />
     </div>
   );

@@ -1,4 +1,11 @@
 const content = () => {
+  const advantages = [
+    { points : "Efficient for small datasets (often faster than more complex algorithms for n ≤ 10)" },
+    { points : "Stable (doesn't change relative order of equal elements)" },
+    { points : "Adaptive (performs well with partially sorted data)" },
+    { points : "Online (can sort as it receives input)" },
+  ];
+
     return (
       <main>
         <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
@@ -107,10 +114,9 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ul className="list-disc ml-8 pl-2">
-                <li>Efficient for small datasets (often faster than more complex algorithms for n ≤ 10)</li>
-                <li>Stable (doesn't change relative order of equal elements)</li>
-                <li>Adaptive (performs well with partially sorted data)</li>
-                <li>Online (can sort as it receives input)</li>
+                {advantages.map((item, index) => (
+                  <li key={index}>{item.points}</li>
+                ))}
               </ul>
             </div>
           </div>

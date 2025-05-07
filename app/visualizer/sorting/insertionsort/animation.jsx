@@ -8,6 +8,7 @@ import Content from "@/app/visualizer/sorting/insertionsort/content";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import CodeBlock from "@/app/visualizer/sorting/insertionsort/codeBlock";
 import GoBackButton from '@/app/components/ui/goback';
+import BackToTop from "@/app/components/ui/backtotop";
 
 const InsertionSortVisualizer = () => {
   const [array, setArray] = useState([]);
@@ -312,6 +313,7 @@ const InsertionSortVisualizer = () => {
       <div>
         <div className="bg-gray-700 z-10 h-[1px]"></div>
       </div>
+      <BackToTop/>
       <Footer />
     </div>
   );

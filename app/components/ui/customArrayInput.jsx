@@ -1,55 +1,64 @@
 "use client";
 import { useState } from "react";
 
-const CustomArrayInput = ({ onUseCustomArray, disabled, className }) => {
-  const [customArray, setCustomArray] = useState("");
+const CustomArrayInput = ({ 
+  onUseCustomArray = (numbers) => console.log("Received:", numbers),
+  disabled = false, 
+  className = "" 
+}) => {
+  const [inputValue, setInputValue] = useState("");
+  const [error, setError] = useState("");
 
-  const handleUseCustomArray = () => {
-    const elements = customArray.split(",").map((el) => parseInt(el.trim()));
-    if (elements.some(isNaN)) {
-      alert("Please enter valid numbers separated by commas");
+  const handleSubmit = () => {
+    setError("");
+    
+    if (!inputValue.trim()) {
+      setError("Please enter numbers separated by commas");
       return;
     }
-    onUseCustomArray(elements);
+
+    try {
+      const numbers = inputValue
+        .split(",")
+        .map(item => {
+          const num = Number(item.trim());
+          if (isNaN(num)) throw new Error(`"${item}" is not a valid number`);
+          return num;
+        });
+
+      if (numbers.length === 0) {
+        setError("No valid numbers found");
+        return;
+      }
+
+      onUseCustomArray(numbers);
+      setInputValue("");
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
     <div className={`${className}`}>
-      {/* Mobile layout (stacked) */}
-      <div className="md:hidden flex flex-col gap-2">
-        <input
-          type="text"
-          value={customArray}
-          onChange={(e) => setCustomArray(e.target.value)}
-          placeholder="Enter comma-separated numbers"
-          className="w-full p-2 border rounded dark:bg-gray-700 text-sm sm:text-base"
-          disabled={disabled}
-        />
+      <div className="flex flex-col sm:flex-row gap-2 items-end">
+        <div className="flex-1 w-full">
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="Example: 5, 3, 8, 1, 2"
+            className="w-full p-2 border rounded dark:bg-gray-700"
+            disabled={disabled}
+            onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+          />
+          {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+        </div>
         <button
-          onClick={handleUseCustomArray}
-          disabled={disabled || !customArray}
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50 text-sm sm:text-base"
+          onClick={handleSubmit}
+          disabled={disabled || !inputValue.trim()}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded disabled:opacity-50"
         >
-          Use Custom Array
-        </button>
-      </div>
-
-      {/* Desktop layout (side by side) */}
-      <div className="hidden md:flex items-end gap-2 w-full">
-        <input
-          type="text"
-          value={customArray}
-          onChange={(e) => setCustomArray(e.target.value)}
-          placeholder="Enter comma-separated numbers"
-          className="flex-1 p-2 border rounded dark:bg-gray-700 text-sm sm:text-base"
-          disabled={disabled}
-        />
-        <button
-          onClick={handleUseCustomArray}
-          disabled={disabled || !customArray}
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50 text-sm sm:text-base h-[42px]"
-        >
-          Use
+          Use Array
         </button>
       </div>
     </div>

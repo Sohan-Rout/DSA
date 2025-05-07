@@ -8,6 +8,7 @@ import CustomArrayInput from '@/app/components/ui/customArrayInput';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import CodeBlock from '@/app/visualizer/sorting/quicksort/codeBlock';
 import GoBackButton from '@/app/components/ui/goback';
+import BackToTop from '@/app/components/ui/backtotop';
 
 const QuickSortVisualizer = () => {
     const [array, setArray] = useState([]);
@@ -400,6 +401,7 @@ const QuickSortVisualizer = () => {
         <div>
           <div className="bg-gray-700 z-10 h-[1px]"></div>
         </div>
+        <BackToTop/>
         <Footer />
       </div>
     );

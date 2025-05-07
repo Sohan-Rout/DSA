@@ -8,6 +8,7 @@ import Content from '@/app/visualizer/searching/binarysearch/content';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import CodeBlock from '@/app/visualizer/searching/binarysearch/codeBlock';
 import GoBackButton from '@/app/components/ui/goback';
+import BackToTop from '@/app/components/ui/backtotop';
 
 const BinarySearch = () => {
     const [arraySize, setArraySize] = useState('');
@@ -278,6 +279,7 @@ const BinarySearch = () => {
         <div>
           <div className="bg-gray-700 z-10 h-[1px]"></div>
         </div>
+        <BackToTop/>
         <Footer/>
       </div>
     );
