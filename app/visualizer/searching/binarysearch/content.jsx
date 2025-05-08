@@ -1,4 +1,30 @@
 const content = () => {
+  const searching = [
+    { points : "First middle is 7 (too high)" },
+    { points : "Search left half: [1, 3, 5]" },
+    { points : "New middle is 3 (too low)" },
+    { points : "Search right portion: [5]" },
+    { points : "Found at position 2" },
+  ];
+
+  const steps = [
+    {points : "Start with the entire sorted array" },
+    {points : "Compare the target with the middle element:",
+      subpoints : [
+        "If equal, return the position",
+        "If target is smaller, search the left half",
+        "If target is larger, search the right half"
+      ]
+     },
+    {points : "Repeat until the element is found or the subarray is empty" },
+    {points : 'If not found, return "Not Found"' },
+  ];
+
+  const complexity = [
+    { points : "Best Case: Target is the middle element → O(1)." },
+    { points : "Worst Case: Element not present → O(log n) (halves search space each step)." },
+  ];
+
     return (
       <main>
         <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
@@ -19,29 +45,23 @@ const content = () => {
               How Does It Work
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
-              Imagine you have a sorted list of numbers: 
-              <span className="dark:text-amber-500 text-purple-600">[1, 3, 5, 7, 9, 11, 13]</span> 
-              and you want to find the number 
-              <span className="dark:text-amber-500 text-purple-600">7</span>.
+              <p>Imagine you have a sorted list of numbers: [1, 3, 5, 7, 9, 11, 13] and you want to find the number 7.</p>
               <br />
               <ol className="list-decimal ml-8 pl-3">
                 <li>
-                  Compare <span className="dark:text-amber-500 text-purple-600">7</span> with the middle element <span className="dark:text-amber-500 text-purple-600">(7)</span>. It matches! Return the position.
+                  Compare 7 with the middle element (7). It matches! Return the position.
                 </li>
                 <li>
-                  If searching for <span className="dark:text-amber-500 text-purple-600">5</span>:
+                  If searching for 5:
                   <ul className="list-disc ml-6">
-                    <li>First middle is <span className="dark:text-amber-500 text-purple-600">7</span> (too high)</li>
-                    <li>Search left half: <span className="dark:text-amber-500 text-purple-600">[1, 3, 5]</span></li>
-                    <li>New middle is <span className="dark:text-amber-500 text-purple-600">3</span> (too low)</li>
-                    <li>Search right portion: <span className="dark:text-amber-500 text-purple-600">[5]</span></li>
-                    <li>Found at position <span className="dark:text-amber-500 text-purple-600">2</span></li>
+                    {searching.map((item, index) => (
+                      <li key={index}>{item.points}</li>
+                    ))}
                   </ul>
                 </li>
               </ol>
               <br />
-              If the number is not in the list 
-              <span className="dark:text-amber-500 text-purple-600">(e.g., searching for 8)</span>, the search ends when the subarray becomes empty.
+              <p>If the number is not in the list (e.g., searching for 8), the search ends when the subarray becomes empty.</p>
             </div>
           </div>
   
@@ -51,17 +71,15 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-decimal ml-8 pl-2">
-                <li>Start with the entire sorted array</li>
-                <li>
-                  Compare the target with the middle element:
-                  <ul>
-                    <li>If equal, return the position</li>
-                    <li>If target is smaller, search the left half</li>
-                    <li>If target is larger, search the right half</li>
-                  </ul>
-                </li>
-                <li>Repeat until the element is found or the subarray is empty</li>
-                <li>If not found, return "Not Found"</li>
+                {steps.map((item, index) => (
+                  <li key={index}>{item.points}{item.subpoints && (
+                    <ul className="list-disc ml-6">
+                      {item.subpoints.map((subItem, subIndex) => (
+                        <li key={subIndex}>{subItem}</li>
+                      ))}
+                    </ul>
+                  )}</li>
+                ))}
               </ol>
             </div>
           </div>
@@ -72,12 +90,9 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-disc ml-8 pl-2">
-                <li>
-                  <span className="dark:text-amber-500 text-purple-600">Best Case</span>: Target is the middle element → <span className="dark:text-amber-500 text-purple-600">O(1)</span>.
-                </li>
-                <li>
-                  <span className="dark:text-amber-500 text-purple-600">Worst Case</span>: Element not present → <span className="dark:text-amber-500 text-purple-600">O(log n)</span> (halves search space each step).
-                </li>
+                {complexity.map((item, index) => (
+                  <li key={index}>{item.points}</li>
+                ))}
               </ol>
             </div>
           </div>

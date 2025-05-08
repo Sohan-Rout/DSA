@@ -7,6 +7,7 @@ import GoButton from '@/app/components/ui/goButton';
 import Content from '@/app/visualizer/searching/binarysearch/content';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import CodeBlock from '@/app/visualizer/searching/binarysearch/codeBlock';
+import Quiz from '@/app/visualizer/searching/binarysearch/Quiz';
 import GoBackButton from '@/app/components/ui/goback';
 import BackToTop from '@/app/components/ui/backtotop';
 
@@ -268,6 +269,13 @@ const BinarySearch = () => {
               </div>
             </div>
           )}
+
+          { /* quiz block here */}
+          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+            Test Your Knowledge before moving forward!
+          </p>
+          <Quiz />
+
           <CodeBlock/>
           <ExploreOther
           title="Explore other operations"

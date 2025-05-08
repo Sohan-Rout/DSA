@@ -1,8 +1,8 @@
 import Animation from "@/app/visualizer/searching/binarysearch/animation";
 
 export const metadata = {
-  title: 'Binary Search Visualizer | Step-by-Step Animation with Code in JS, C, Python, Java',
-  description: 'Visualize the Binary Search algorithm with intuitive step-by-step animations and code examples in JavaScript, C, Python, and Java. Learn how binary search efficiently finds elements in sorted arrays. Perfect for DSA preparation and beginners.',
+  title: 'Binary Search Visualizer & Quiz | Step-by-Step Animation with Code in JS, C, Python, Java',
+  description: 'Visualize the Binary Search algorithm with intuitive step-by-step animations, code examples in JavaScript, C, Python, and Java, and an interactive Binary Search Quiz to test your knowledge. Perfect for DSA preparation and beginners learning efficient search algorithms.',
   keywords: [
     'Binary Search Visualizer',
     'Binary Search Animation',
@@ -19,6 +19,13 @@ export const metadata = {
     'Binary Search in Python',
     'Binary Search in Java',
     'Binary Search Code Examples',
+    'Binary Search Quiz',
+    'Interactive Binary Search Quiz',
+    'DSA Quiz',
+    'Quiz for Binary Search',
+    'Learn DSA with Quizzes',
+    'Binary Search Practice',
+    'Test Your Binary Search Skills',
   ],
   robots: "index, follow",
 };

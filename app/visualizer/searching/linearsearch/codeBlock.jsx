@@ -11,7 +11,7 @@ export const highlightCode = (code, language) => {
 };
 
 const Content = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState('javascript');
+  const [selectedLanguage, setSelectedLanguage] = useState('c');
   const [copied, setCopied] = useState(false);
   const topRef = useRef(null);
 
