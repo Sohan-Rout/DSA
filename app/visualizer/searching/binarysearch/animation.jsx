@@ -7,7 +7,7 @@ import GoButton from '@/app/components/ui/goButton';
 import Content from '@/app/visualizer/searching/binarysearch/content';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import CodeBlock from '@/app/visualizer/searching/binarysearch/codeBlock';
-import Quiz from '@/app/visualizer/searching/binarysearch/Quiz';
+import Quiz from '@/app/visualizer/searching/binarysearch/quiz';
 import GoBackButton from '@/app/components/ui/goback';
 import BackToTop from '@/app/components/ui/backtotop';
 

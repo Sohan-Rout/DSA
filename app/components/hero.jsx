@@ -17,10 +17,10 @@ const HeroSection = () => {
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between relative z-10">
         {/* Text Content */}
         <div className="md:w-1/2 text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4 text-gray-900 dark:text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4 text-gray-900 dark:text-white">
             Master Data Structures & Algorithms with Interactive Visualizations
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-6">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-6">
             Learn, explore, and understand complex DSA concepts through dynamic,
             step-by-step visualizations designed for students, developers, and
             enthusiasts.
