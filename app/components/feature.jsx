@@ -12,8 +12,8 @@ const FeaturesSection = () => {
     {
       title: "Comprehensive Learning",
       description: "Explore a wide range of DSA topics with detailed explanations and examples. From basic arrays to advanced graph algorithms, we've got everything covered with clear, concise explanations.",
-      lightImage: "/learningLight.png",
-      darkImage: "/learningDark.png",
+      lightImage: "/comprehensiveLight.png",
+      darkImage: "/comprehensiveDark.png",
       reverse: true
     },
     {
