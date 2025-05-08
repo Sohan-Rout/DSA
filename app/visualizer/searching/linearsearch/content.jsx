@@ -1,4 +1,15 @@
 const content = () => {
+  const working = [
+    { points : "Start from the first number (5). Is 5 equal to 8? No." },
+    { points : "Move to the next number (3). Is 3 equal to 8? No." },
+    { points : "Move to the next number (8). Is 8 equal to 8? Yes! Stop here. The position is 2 (or 3 if counting starts from 1)." },
+  ];
+
+  const complexity = [
+    { data : "Best Case: Target is the first element → O(1)" },
+    { data : "Worst Case: Target is last or not present → O(n) (checks all elements)" },
+  ];
+
   return (
     <main>
       <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
@@ -19,25 +30,15 @@ const content = () => {
             How Does It Work
           </h1>
           <div className="ml-4 dark:text-gray-300 text-black">
-            Imagine you have a list of numbers: 
-            <span className="dark:text-amber-500 text-purple-600">[5, 3, 8, 1, 9]</span> 
-            and you want to find the number 
-            <span className="dark:text-amber-500 text-purple-600">8</span>.
+            <p>Imagine you have a list of numbers: [5, 3, 8, 1, 9] and you want to find the number 8.</p>
             <br />
             <ol className="list-decimal ml-8 pl-3">
-              <li>
-                Start from the first number <span className="dark:text-amber-500 text-purple-600">(5)</span>. Is <span className="dark:text-amber-500 text-purple-600">5</span> equal to <span className="dark:text-amber-500 text-purple-600">8</span>? No.
-              </li>
-              <li>
-                Move to the next number <span className="dark:text-amber-500 text-purple-600">(3)</span>. Is <span className="dark:text-amber-500 text-purple-600">3</span> equal to <span className="dark:text-amber-500 text-purple-600">8</span>? No.
-              </li>
-              <li>
-                Move to the next number <span className="dark:text-amber-500 text-purple-600">(8)</span>. Is <span className="dark:text-amber-500 text-purple-600">8</span> equal to <span className="dark:text-amber-500 text-purple-600">8</span>? Yes! Stop here. The position is <span className="dark:text-amber-500 text-purple-600">2</span> (or 3 if counting starts from 1).
-              </li>
+              {working.map((item, index) => (
+                <li key={index}>{item.points}</li>
+              ))}
             </ol>
             <br />
-            If the number is not in the list 
-            <span className="dark:text-amber-500 text-purple-600">(e.g., searching for 10)</span>, the search ends without success.
+            If the number is not in the list (e.g., searching for 10), the search ends without success.
           </div>
         </div>
 
@@ -67,12 +68,9 @@ const content = () => {
           </h1>
           <div className="ml-4 dark:text-gray-300 text-black">
             <ol className="list-disc ml-8 pl-2">
-              <li>
-                <span className="dark:text-amber-500 text-purple-600">Best Case</span>: Target is the first element → <span className="dark:text-amber-500 text-purple-600">O(1)</span>.
-              </li>
-              <li>
-                <span className="dark:text-amber-500 text-purple-600">Worst Case</span>: Target is last or not present → <span className="dark:text-amber-500 text-purple-600">O(n)</span> (checks all elements).
-              </li>
+              {complexity.map((item, index) => (
+                <li key={index}>{item.data}</li>
+              ))}
             </ol>
           </div>
         </div>

@@ -1,8 +1,8 @@
 import LinearSearchAnimation from '@/app/visualizer/searching/linearsearch/animation';
 
 export const metadata = {
-  title: 'Linear Search Visualizer | Step-by-Step Animation with Code in JS, C, Python, Java',
-  description: 'Visualize the Linear Search algorithm with step-by-step animations and code examples in JavaScript, C, Python, and Java. Understand how linear search works in arrays and build a strong foundation for DSA.',
+  title: 'Linear Search Visualizer & Quiz | Step-by-Step Animation with Code in JS, C, Python, Java',
+  description: 'Visualize the Linear Search algorithm with step-by-step animations, code examples in JavaScript, C, Python, and Java, and a Linear Search Quiz to test your understanding. Build a strong foundation in DSA through interactive learning.',
   keywords: [
     'Linear Search Visualizer',
     'Linear Search Animation',
@@ -19,6 +19,13 @@ export const metadata = {
     'Linear Search in Python',
     'Linear Search in Java',
     'Linear Search Code Examples',
+    'Linear Search Quiz',
+    'Interactive Linear Search Quiz',
+    'DSA Quiz',
+    'Quiz for Searching Algorithms',
+    'Learn DSA with Quizzes',
+    'Linear Search Practice',
+    'Test Your Linear Search Skills',
   ],
   robots: "index, follow",
 };

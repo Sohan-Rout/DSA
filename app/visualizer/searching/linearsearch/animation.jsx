@@ -6,6 +6,7 @@ import ResetButton from '@/app/components/ui/resetButton';
 import GoButton from '@/app/components/ui/goButton';
 import Content from '@/app/visualizer/searching/linearsearch/content';
 import Code from '@/app/visualizer/searching/linearsearch/codeBlock';
+import Quiz from '@/app/visualizer/searching/linearsearch/quiz';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import GoBackButton from '@/app/components/ui/goback';
 import BackToTopButton from '@/app/components/ui/backtotop';
@@ -127,9 +128,13 @@ const LinearSearch = () => {
       <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
         <Navbar />
         <main className="container mx-auto px-6 pt-16 pb-4">
-          <div className='mt-6 sm:mt-5'>
-            <GoBackButton/>
+
+          { /* go back block here */}
+          <div className="mt-6 sm:mt-5">
+            <GoBackButton />
           </div>
+
+          { /* main logic here */}
           <h1 className="text-4xl md:text-5xl mt-10 font-bold text-center text-gray-900 dark:text-white mb-8">
             <span className="text-blue-600">Linear Search</span> Visualizer
           </h1>
@@ -197,9 +202,9 @@ const LinearSearch = () => {
               />
             </div>
             <div className="flex gap-4">
-              <GoButton 
-                onClick={handleGo} 
-                isAnimating={isAnimating} 
+              <GoButton
+                onClick={handleGo}
+                isAnimating={isAnimating}
                 disabled={isAnimating}
               />
               <ResetButton onReset={handleReset} isAnimating={isAnimating} />
@@ -208,11 +213,13 @@ const LinearSearch = () => {
 
           {/* Output Screen */}
           {message && (
-            <div className={`max-w-3xl mx-auto mb-8 p-4 rounded-lg ${
-              foundIndex !== -1 
-                ? "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200"
-                : "bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200"
-            }`}>
+            <div
+              className={`max-w-3xl mx-auto mb-8 p-4 rounded-lg ${
+                foundIndex !== -1
+                  ? "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200"
+                  : "bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200"
+              }`}
+            >
               <p className="text-center font-medium">{message}</p>
             </div>
           )}
@@ -244,7 +251,7 @@ const LinearSearch = () => {
                   </div>
                 ))}
               </div>
-              
+
               {/* Legend */}
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <div className="flex items-center">
@@ -263,19 +270,26 @@ const LinearSearch = () => {
             </div>
           )}
 
-          <Code/>
+          { /* quiz block here */}
+          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+            Test Your Knowledge before moving forward!
+          </p>
+          <Quiz />
+          
+          { /* code block and explore block here */}
+          <Code />
           <ExploreOther
-          title="Explore other operations"
-          links={[
-            { text: "Binary Search", url: "./binarysearch" },
-          ]}
-        />
+            title="Explore other operations"
+            links={[{ text: "Binary Search", url: "./binarysearch" }]}
+          />
         </main>
-        
+
         <div>
           <div className="bg-gray-700 z-10 h-[1px]"></div>
         </div>
-        <BackToTopButton/>
+
+        { /* back to top block here */}
+        <BackToTopButton />
         <Footer />
       </div>
     );
