@@ -9,13 +9,14 @@ import Contact from "@/app/components/contact";
 import Footer from "@/app/components/footer";
 
 export const metadata = {
-  title: 'DSA Visualizer | Learn, Visualize & Practice Algorithms',
-  description: 'Master Data Structures and Algorithms with visual animations and interactive practice problems. Explore sorting, searching, stacks, queues, trees, and linked lists—all in one beginner-friendly platform.',
+  title: 'DSA Visualizer | Learn, Visualize, Practice & Quiz on Algorithms',
+  description: 'Master Data Structures and Algorithms with visual animations, interactive quizzes, and practice problems. Explore sorting, searching, stacks, queues, trees, and linked lists—all in one beginner-friendly platform.',
   keywords: [
     'DSA Visualizer',
     'Algorithm Visualizer',
     'Learn DSA',
     'Practice DSA Problems',
+    'DSA Quizzes',
     'Interactive DSA',
     'Sorting Algorithms',
     'Searching Algorithms',
@@ -31,7 +32,11 @@ export const metadata = {
     'Doubly Linked List',
     'Circular Linked List',
     'Data Structures for Beginners',
-    'DSA Practice Platform'
+    'DSA Practice Platform',
+    'Quiz for DSA',
+    'Algorithm Quiz',
+    'Interactive Algorithm Quiz',
+    'Learn DSA with Quizzes'
   ],
   robots: 'index, follow',
 };
