@@ -10,7 +10,7 @@ export default function LoginForm({ onSwitchToSignup, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await API.post('/auth/login', { email, password });
+      const res = await API.post('/api/auth/login', { email, password });
       if (res.data.success) {
         onClose();
       } else {

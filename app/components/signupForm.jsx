@@ -11,7 +11,7 @@ export default function SignupForm({ onSwitchToLogin, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await API.post('/auth/signup', { name, email, password });
+      const res = await API.post('/api/auth/signup', { name, email, password });
       if (res.data.success) {
         onClose();
       } else {
