@@ -45,9 +45,25 @@ export default function Navbar() {
 
           {/* Navigation Items */}
           <div className="flex items-center gap-4">
-            {/* Desktop Login/Signup Button - hidden on mobile */}
-            <button
-              onClick={() => openAuthModal(true)}
+            {/* Premium Page */}
+            <Link
+              href="/premium"
+              className="hidden md:flex px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 transition duration-300 shadow-md items-center"
+            >
+              Premium
+            </Link>
+
+            {/* Dashboard Page */}
+            <Link
+              href="/dashboard"
+              className="hidden md:flex px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700 transition duration-300 shadow-md items-center"
+            >
+              Dashboard
+            </Link>
+
+            {/* Login/Signup Button - Desktop */}
+            <Link
+              href="/login"
               className="hidden md:flex px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md items-center gap-2"
             >
               <svg
@@ -65,11 +81,11 @@ export default function Navbar() {
                 />
               </svg>
               Login / Signup
-            </button>
+            </Link>
 
-            {/* Mobile Profile Icon - hidden on desktop */}
-            <button
-              onClick={() => openAuthModal(true)}
+            {/* Mobile Login Icon */}
+            <Link
+              href="/login"
               className="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300"
               aria-label="Login or Signup"
             >
@@ -87,9 +103,9 @@ export default function Navbar() {
                   d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                 />
               </svg>
-            </button>
+            </Link>
 
-            {/* Theme Toggle Button */}
+            {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300"
@@ -129,7 +145,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Auth Modal */}
+      {/* Optional Auth Modal (still present, unused by nav buttons) */}
       {isAuthModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
           <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4 p-6 animate-fade-in">
