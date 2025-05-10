@@ -45,18 +45,10 @@ export default function Navbar() {
 
           {/* Navigation Items */}
           <div className="flex items-center gap-4">
-            {/* Premium Page */}
-            <Link
-              href="/premium"
-              className="hidden md:flex px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 transition duration-300 shadow-md items-center"
-            >
-              Premium
-            </Link>
-
             {/* Dashboard Page */}
             <Link
               href="/dashboard"
-              className="hidden md:flex px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700 transition duration-300 shadow-md items-center"
+              className="hidden md:flex px-4 py-2 rounded-lg font-medium bg-transparent border border-blue-600 transition duration-300 shadow-md items-center"
             >
               Dashboard
             </Link>
