@@ -94,8 +94,7 @@ const Footer = () => {
 
   const bottomLinks = [
     { href: "/sitemap.xml", text: "Sitemap" },
-    { href: "/careers", text: "Careers" },
-    { href: "/testimonial", text: "Contact Us" }
+    { href: "/#testimonial", text: "Contact Us" }
   ];
 
   return (
