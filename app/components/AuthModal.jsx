@@ -1,6 +1,6 @@
 'use client';
-import LoginForm from './LoginForm';
-import SignupForm from './SignupForm';
+import LoginForm from '@/app/components/LoginForm';
+import SignupForm from '@/app/components/SignupForm';
 
 export default function AuthModal({ isOpen, showLogin, closeModal, switchToLogin, switchToSignup }) {
   if (!isOpen) return null;
