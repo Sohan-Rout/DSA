@@ -10,6 +10,12 @@ const TestimonialSection = () => {
       review: `This is something which doesn't need words to explain dayummmmm it is good for beginners like us. This is something which actually needs to be appreciated`,
       stars: 5,
     },
+    {
+      name: 'Rahul Yadav',
+      email: 'yadav.rahul05@gmail.com',
+      review: `DSA Visualizer made understanding complex algorithms incredibly simple. Its intuitive design and step-by-step visuals helped me grasp DSA concepts faster than traditional methods. A must-use tool for learners! The interface might feel a bit cluttered or difficult to navigate for new users but seriously overall it's actually good.`,
+      stars: 4,
+    },
   ];
 
   const [visibleCount, setVisibleCount] = useState(3);
@@ -54,7 +60,7 @@ const TestimonialSection = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            What Our Users Say
+            What Our <span className='text-blue-600'>Users</span> Say
           </h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Trusted by students and professionals worldwide
