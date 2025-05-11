@@ -91,28 +91,31 @@ const TestimonialSection = () => {
           </button>
         </div>
 
-        {/* Testimonial Grid - Now properly responsive */}
+        {/* Testimonial Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTestimonials.slice(0, visibleCount).map((testimonial, index) => (
             <div
               key={index}
               className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg"
             >
-              <div className="flex justify-between items-start mb-4">
-                <div className="flex items-center">
-                  {/* Initials Avatar with blue-600 background */}
-                  <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold mr-4">
-                    {getInitials(testimonial.name)}
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h3>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 truncate max-w-[160px]">
-                      {testimonial.email}
-                    </p>
-                  </div>
+              <div className="flex items-center mb-4">
+                {/* Initials Avatar with blue-600 background */}
+                <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold mr-4">
+                  {getInitials(testimonial.name)}
                 </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h3>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    {testimonial.email}
+                  </p>
+                </div>
+              </div>
+              
+              {/* Star rating moved below email */}
+              <div className="mb-4">
                 <StarRating rating={testimonial.stars} />
               </div>
+              
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 "{testimonial.review}"
               </p>
