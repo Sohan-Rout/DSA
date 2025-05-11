@@ -27,7 +27,7 @@ const content = () => {
 
     return (
       <main>
-        <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-2 mb-2 p-0">
+        <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-2 pb-4 p-0">
           <div className="mt-4 mb-4 ml-4 mr-4">
             <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
               What is Binary Search
