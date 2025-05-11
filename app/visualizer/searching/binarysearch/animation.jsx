@@ -308,8 +308,6 @@ const BinarySearch = () => {
             title="Explore other search algorithms"
             links={[
               { text: "Linear Search", url: "./linearsearch" },
-              { text: "Jump Search", url: "./jumpsearch" },
-              { text: "Exponential Search", url: "./exponentialsearch" },
             ]}
           />
         </main>

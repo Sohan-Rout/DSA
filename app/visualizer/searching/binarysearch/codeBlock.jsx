@@ -205,7 +205,6 @@ int main() {
 
   return (
     <div className="max-w-6xl mx-auto" ref={topRef}>
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mt-8 transition-colors duration-300">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
             Binary Search Implementation
@@ -256,7 +255,6 @@ int main() {
           </pre>
         </div>
       </div>
-    </div>
   );
 };
 
