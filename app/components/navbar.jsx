@@ -1,11 +1,13 @@
 'use client';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [theme, setTheme] = useState('light');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
 
   // Load theme from localStorage on mount and apply it
   useEffect(() => {
@@ -59,73 +61,97 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex space-x-6 lg:space-x-8 items-center">
-          <li>
-            <Link href="/#hero" className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/#features" className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300">
-              Features
-            </Link>
-          </li>
-          <li>
-            <Link href="/#pricing" className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300">
-              Prices
-            </Link>
-          </li>
-          <li>
-            <Link href="/#about" className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/#faq" className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300">
-              FAQs
-            </Link>
-          </li>
-          {/* Theme Toggle Button */}
-          <li>
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300"
-              aria-label="Toggle theme"
-            >
-              {theme === 'light' ? (
-                <svg
-                  className="w-5 h-5 text-gray-800 dark:text-gray-200"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                  ></path>
-                </svg>
-              ) : (
-                <svg
-                  className="w-5 h-5 text-gray-800 dark:text-gray-200"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                  ></path>
-                </svg>
-              )}
-            </button>
-          </li>
-        </ul>
+        {/* Desktop Navigation Links */}
+<ul className="hidden md:flex space-x-6 lg:space-x-8 items-center">
+  <li>
+    <Link href="/#hero" className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300">
+      Home
+    </Link>
+  </li>
+  <li>
+    <Link href="/#features" className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300">
+      Features
+    </Link>
+  </li>
+  <li>
+    <Link href="/#pricing" className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300">
+      Prices
+    </Link>
+  </li>
+  <li>
+    <Link href="/#about" className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300">
+      About
+    </Link>
+  </li>
+  <li>
+    <Link href="/#faq" className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300">
+      FAQs
+    </Link>
+  </li>
+  {/* Add Login Button for Desktop */}
+  <li>
+    <Link
+      href="/login"
+      className="ml-4 px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md flex items-center gap-2"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+        />
+      </svg>
+      Login/Signup
+    </Link>
+  </li>
+  {/* Theme Toggle Button */}
+  <li>
+    <button
+      onClick={toggleTheme}
+      className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300"
+      aria-label="Toggle theme"
+    >
+      {theme === 'light' ? (
+        <svg
+          className="w-5 h-5 text-gray-800 dark:text-gray-200"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          ></path>
+        </svg>
+      ) : (
+        <svg
+          className="w-5 h-5 text-gray-800 dark:text-gray-200"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          ></path>
+        </svg>
+      )}
+    </button>
+  </li>
+</ul>
 
         {/* Mobile Menu Button */}
         <button
@@ -215,6 +241,50 @@ export default function Navbar() {
               onClick={closeMobileMenu}
             >
               FAQs
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/login"
+              className="hidden md:flex px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
+              Login / Signup
+            </Link>
+
+            {/* Mobile Login Icon */}
+            <Link
+              href="/login"
+              className="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300"
+              aria-label="Login or Signup"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
             </Link>
           </li>
           <li className="pt-2">

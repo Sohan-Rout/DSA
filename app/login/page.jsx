@@ -51,14 +51,14 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
+    <div className="min-h-screen dark:bg-gray-950 bg-gray-50 flex items-center justify-center p-4">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
       >
         {/* Header with theme toggle */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-800 dark:to-purple-800 p-6 text-white flex justify-between items-center">
+        <div className="bg-blue-600 p-6 text-white flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold">{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
             <p className="text-blue-100 dark:text-blue-200">
@@ -67,7 +67,7 @@ export default function LoginPage() {
           </div>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-blue-700 dark:hover:bg-purple-700 transition duration-200"
+            className="p-2 rounded-full hover:bg-blue-700 transition duration-200"
             aria-label="Toggle theme"
           >
             {theme === 'light' ? (
@@ -135,7 +135,7 @@ export default function LoginPage() {
               className={`w-full flex items-center justify-center py-3 px-4 rounded-lg text-white font-medium transition-all ${
                 loading 
                   ? 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed' 
-                  : 'bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700 hover:from-blue-700 hover:to-purple-700 dark:hover:from-blue-800 dark:hover:to-purple-800 shadow-md hover:shadow-lg'
+                  : 'bg-blue-600 hover:from-blue-700 hover:to-purple-700 dark:hover:from-blue-800 dark:hover:to-purple-800 shadow-md hover:shadow-lg'
               }`}
             >
               {loading ? (

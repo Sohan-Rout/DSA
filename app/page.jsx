@@ -3,7 +3,8 @@ import Hero from "@/app/components/hero";
 import Feature from "@/app/components/feature";
 import Prices from "@/app/components/price";
 import About from "@/app/components/about";
-import TestimonialsSection from "@/app/components/testimonial";
+import Review from "@/app/components/review";
+import Testimonial from "@/app/components/testimonial";
 import Faq from "@/app/components/faq";
 import Contact from "@/app/components/contact";
 import Footer from "@/app/components/footer";
@@ -62,7 +63,10 @@ export default function Home() {
       </div>
       <Contact />
       <div id="testimonial">
-        <TestimonialsSection/>
+        <Testimonial/>
+      </div>
+      <div id="review">
+        <Review/>
       </div>
       <Footer />
     </div>
