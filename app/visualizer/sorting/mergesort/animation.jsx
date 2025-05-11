@@ -7,6 +7,7 @@ import ArrayGenerator from "@/app/components/ui/randomArray";
 import CustomArrayInput from "@/app/components/ui/customArrayInput";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import CodeBlock from "@/app/visualizer/sorting/mergesort/codeBlock";
+import Quiz from "@/app/visualizer/sorting/mergesort/quiz";
 import GoBackButton from "@/app/components/ui/goback";
 import BackToTop from "@/app/components/ui/backtotop";
 
@@ -468,6 +469,12 @@ const MergeSortVisualizer = () => {
             </div>
           </div>
         </div>
+
+        { /* quiz block here */}
+          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
+            Test Your Knowledge before moving forward!
+          </p>
+          <Quiz />
 
         <CodeBlock />
         <ExploreOther

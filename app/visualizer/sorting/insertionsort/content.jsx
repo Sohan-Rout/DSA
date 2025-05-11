@@ -1,4 +1,65 @@
+import { time } from "framer-motion";
+
 const content = () => {
+  const paragraph = [
+    `Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time. It works similarly to how you might sort playing cards in your hands - you take each new card and insert it into its proper position among the already sorted cards.`,
+    `The algorithm maintains a "sorted sublist" that grows with each iteration.`,
+    `Like Bubble Sort, Insertion Sort is in-place and requires only O(1) additional space.`,
+    `Insertion Sort is often used when the data is nearly sorted (where it approaches O(n) time) or when the dataset is small. Some hybrid algorithms like TimSort use Insertion Sort for small subarrays due to its low overhead.`,
+  ];
+
+  const working = [
+    { points : "First Element (7):", 
+      subpoints : [
+        "Already \"sorted\" as the first item",
+        "→ [7, 3, 5, 2, 1]",
+      ],
+    },
+    { points : "Second Element (3):", 
+      subpoints : [
+        "Insert before 7",
+        "→ [3, 7, 5, 2, 1]",
+      ],
+    },
+    { points : "Third Element (5):", 
+      subpoints : [
+        "Insert between 3 and 7",
+        "→ [3, 5, 7, 2, 1]",
+      ],
+    },
+    { points : "Fourth Element (2):", 
+      subpoints : [
+        "Insert at beginning",
+        "→ [2, 3, 5, 7, 1]",
+      ],
+    },
+    { points : "Fifth Element (1):", 
+      subpoints : [
+        "Insert at beginning",
+        "→ [1, 2, 3, 5, 7]",
+      ],
+    },
+  ];
+
+  const algorithm = [
+    { steps : "Start with the second element (consider first element as sorted)" },
+    { steps : "Pick the next element (key) from the unsorted portion" },
+    { steps : "Compare the key with elements in the sorted portion:",
+      points : [
+        "Shift elements greater than the key one position right",
+        "Stop when you find an element ≤ the key",
+      ],
+     },
+    { steps : "Insert the key in its correct position" },
+    { steps : "Repeat until all elements are processed" },
+  ];
+
+  const timeComplexity = [
+    { points : "Best Case: Already sorted array → O(n) (only comparisons, no shifts)." },
+    { points : "Average Case: Randomly ordered array → O(n²)." },
+    { points : "Worst Case: Reverse sorted array → O(n²) (maximum comparisons and shifts)." },
+  ];
+
   const advantages = [
     { points : "Efficient for small datasets (often faster than more complex algorithms for n ≤ 10)" },
     { points : "Stable (doesn't change relative order of equal elements)" },
@@ -13,11 +74,7 @@ const content = () => {
             <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
               What is Insertion Sort
             </h1>
-            <p className="ml-4 dark:text-gray-300 text-black">
-              Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time.
-              It works similarly to how you might sort playing cards in your hands - you take each new card and
-              insert it into its proper position among the already sorted cards.
-            </p>
+            <p className="ml-4 dark:text-gray-300 text-black">{paragraph[0]}</p>
           </div>
   
           <div className="mt-4 mb-4 ml-4 mr-4">
@@ -25,33 +82,17 @@ const content = () => {
               How Does It Work
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
-              Consider this unsorted array: 
-              <span className="dark:text-amber-500 text-purple-600">[7, 3, 5, 2, 1]</span>
+              Consider this unsorted array: [7, 3, 5, 2, 1]
               <br />
               <ol className="list-decimal ml-8 pl-3">
-                <li>
-                  <span className="font-semibold">First Element (7):</span> Already "sorted" as the first item
-                  <br />→ [<span className="dark:text-green-400 text-green-600">7</span>, 3, 5, 2, 1]
-                </li>
-                <li>
-                  <span className="font-semibold">Second Element (3):</span> Insert before 7
-                  <br />→ [<span className="dark:text-green-400 text-green-600">3, 7</span>, 5, 2, 1]
-                </li>
-                <li>
-                  <span className="font-semibold">Third Element (5):</span> Insert between 3 and 7
-                  <br />→ [<span className="dark:text-green-400 text-green-600">3, 5, 7</span>, 2, 1]
-                </li>
-                <li>
-                  <span className="font-semibold">Fourth Element (2):</span> Insert at beginning
-                  <br />→ [<span className="dark:text-green-400 text-green-600">2, 3, 5, 7</span>, 1]
-                </li>
-                <li>
-                  <span className="font-semibold">Fifth Element (1):</span> Insert at beginning
-                  <br />→ [<span className="dark:text-green-400 text-green-600">1, 2, 3, 5, 7</span>]
-                </li>
+                {working.map((items, index) => (
+                  <li key={index} className="font-semibold">{items.points}{items.subpoints && <ul className="font-normal">
+                    {items.subpoints.map((subitems, subindex) => (
+                      <li key={subindex}>{subitems}</li>
+                    ))}</ul>}</li>
+                ))}
               </ol>
-              <br />
-              The algorithm maintains a "sorted sublist" that grows with each iteration.
+              <p>{paragraph[1]}</p>
             </div>
           </div>
   
@@ -61,17 +102,12 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-decimal ml-8 pl-2">
-                <li>Start with the second element (consider first element as sorted)</li>
-                <li>Pick the next element (key) from the unsorted portion</li>
-                <li>
-                  Compare the key with elements in the sorted portion:
-                  <ul>
-                    <li>Shift elements greater than the key one position right</li>
-                    <li>Stop when you find an element ≤ the key</li>
-                  </ul>
-                </li>
-                <li>Insert the key in its correct position</li>
-                <li>Repeat until all elements are processed</li>
+                {algorithm.map((item, index) => (
+                  <li key={index}>{item.steps}{item.points && <ul>
+                    {item.points.map((subitem, subindex) => (
+                      <li key={subindex}>{subitem}</li>
+                    ))}</ul>}</li>
+                ))}
               </ol>
             </div>
           </div>
@@ -82,18 +118,9 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-disc ml-8 pl-2">
-                <li>
-                  <span className="dark:text-amber-500 text-purple-600">Best Case</span>: Already sorted array → 
-                  <span className="dark:text-amber-500 text-purple-600"> O(n)</span> (only comparisons, no shifts).
-                </li>
-                <li>
-                  <span className="dark:text-amber-500 text-purple-600">Average Case</span>: Randomly ordered array → 
-                  <span className="dark:text-amber-500 text-purple-600"> O(n²)</span>.
-                </li>
-                <li>
-                  <span className="dark:text-amber-500 text-purple-600">Worst Case</span>: Reverse sorted array → 
-                  <span className="dark:text-amber-500 text-purple-600"> O(n²)</span> (maximum comparisons and shifts).
-                </li>
+                {timeComplexity.map((item, index) => (
+                  <li key={index}>{item.points}</li>
+                ))}
               </ol>
             </div>
           </div>
@@ -102,10 +129,7 @@ const content = () => {
             <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
               Space Complexity
             </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              Like Bubble Sort, Insertion Sort is <span className="dark:text-amber-500 text-purple-600">in-place</span> and requires only 
-              <span className="dark:text-amber-500 text-purple-600"> O(1)</span> additional space.
-            </div>
+            <div className="ml-4 dark:text-gray-300 text-black">{paragraph[2]}</div>
           </div>
   
           <div className="mt-4 mb-4 ml-4 mr-4">
@@ -122,11 +146,7 @@ const content = () => {
           </div>
   
           <div className="mt-4 mb-4 ml-4 mr-4">
-            <p className="ml-4 dark:text-gray-300 text-black">
-              Insertion Sort is often used when the data is nearly sorted (where it approaches O(n) time)
-              or when the dataset is small. Some hybrid algorithms like TimSort use Insertion Sort
-              for small subarrays due to its low overhead.
-            </p>
+            <p className="ml-4 dark:text-gray-300 text-black">{paragraph[3]}</p>
           </div>
         </section>
       </main>
