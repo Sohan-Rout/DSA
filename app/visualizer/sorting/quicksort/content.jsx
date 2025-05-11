@@ -1,12 +1,62 @@
+import { time } from "framer-motion";
+
 const content = () => {
-  { /* Pivot Strategy Array */}
+  const paragraphs = [
+    `Quick Sort is an efficient, comparison-based sorting algorithm that follows the divide-and-conquer approach. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays according to whether they are less than or greater than the pivot. The sub-arrays are then recursively sorted.`,
+    `The log n factor comes from the division steps when partitions are balanced. The n² occurs when the pivot selection consistently creates unbalanced partitions.`,
+    `Quick Sort is O(log n) space complexity for the call stack in the average case, but can degrade to O(n) in the worst case with unbalanced partitions. It is generally considered an in-place algorithm as it doesn't require significant additional space.`,
+  ];
+
+  const working =[
+    { steps : "Partitioning Phase:",
+      points : [
+        "Choose last element as pivot (70)",
+        "Rearrange: elements < pivot on left, > pivot on right → [10, 30, 40, 50] [70] [80, 90]",
+      ],
+     },
+    { steps : "Recursive Phase:", 
+      points : [
+        "Apply same process to left sub-array [10, 30, 40, 50]",
+        "Apply same process to right sub-array [80, 90]",
+        "Combine results: [10, 30, 40, 50, 70, 80, 90]",
+      ],
+    }
+  ];
+
+  const algorithm = [
+    { steps : "Choose Pivot:",
+      points : [
+        "Select an element as pivot (commonly last/first/random element)",
+      ],
+     },
+    { steps : "Partition:",
+      points : [
+        "Reorder array so elements < pivot come before it",
+        "Elements > pivot come after it",
+        "Pivot is now in its final sorted position",
+      ],
+     },
+    { steps : "Recurse:",
+      points : [
+        "Apply quick sort to left sub-array (elements < pivot)",
+        "Apply quick sort to right sub-array (elements > pivot)",
+      ],
+     },
+  ];
+
+  const timeComplexity = [
+    { points : "Best Case: O(n log n) (balanced partitions)" },
+    { points : "Average Case: O(n log n)" },
+    { points : "Worst Case: O(n²) (unbalanced partitions)" },
+  ];
+
   const strategies = [
     { strategy : "Last element" },
     { strategy : "First element" },
     { strategy : "Random element" },
     { strategy : "Median-of-three" },
     { strategy : "Middle element" },
-  ]
+  ];
 
   const strategiesDetails = [
     { details : "Simple but can lead to worst-case on sorted arrays" },
@@ -44,11 +94,7 @@ const content = () => {
             <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
               What is Quick Sort
             </h1>
-            <p className="ml-4 dark:text-gray-300 text-black">
-              Quick Sort is an efficient, comparison-based sorting algorithm that follows the <span className="dark:text-amber-500 text-purple-600">divide-and-conquer</span> approach.
-              It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays according to whether they are less than or greater than the pivot.
-              The sub-arrays are then recursively sorted.
-            </p>
+            <p className="ml-4 dark:text-gray-300 text-black">{paragraphs[0]}</p>
           </div>
   
           <div className="mt-4 mb-4 ml-4 mr-4">
@@ -56,24 +102,16 @@ const content = () => {
               How Does It Work
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
-              Consider this unsorted array: 
-              <span className="dark:text-amber-500 text-purple-600">[10, 80, 30, 90, 40, 50, 70]</span>
-              <br /><br />
-              
-              <span className="font-semibold text-purple-600 dark:text-amber-500">Partitioning Phase:</span>
-              <ol className="list-decimal ml-8 pl-3">
-                <li>Choose last element as pivot (70)</li>
-                <li>Rearrange: elements &lt; pivot on left, &gt; pivot on right
-                  <br />→ [10, 30, 40, 50] [70] [80, 90]</li>
-              </ol>
-              
-              <span className="font-semibold text-purple-600 dark:text-amber-500">Recursive Phase:</span>
-              <ol className="list-decimal ml-8 pl-3">
-                <li>Apply same process to left sub-array [10, 30, 40, 50]</li>
-                <li>Apply same process to right sub-array [80, 90]</li>
-                <li>Combine results: [10, 30, 40, 50, 70, 80, 90]</li>
-              </ol>
-              
+              Consider this unsorted array: [10, 80, 30, 90, 40, 50, 70] :
+              <div className="pb-2"></div>
+              <ul className="font-semibold">
+                {working.map((item, index) => (
+                  <li key={index}>{item.steps}{item.points && <ul className="font-normal ml-8 pl-3 list-decimal">
+                    {item.points.map((subitem, subindex) => (
+                      <li key={subindex}>{subitem}</li>
+                    ))}</ul>}</li>
+                ))}
+              </ul>
               <div className="mt-4 bg-gray-100 dark:bg-gray-900 p-0 pb-2 rounded">
                 <pre className="text-sm font-mono">{`
   Original: 
@@ -103,27 +141,12 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-decimal ml-8 pl-2">
-                <li>
-                  <p className="dark:text-amber-500 text-purple-600">Choose Pivot:</p>
-                  <ul className="list-disc ml-6">
-                    <li>Select an element as pivot <span className="dark:text-amber-500 text-purple-600">(commonly last/first/random element)</span></li>
-                  </ul>
-                </li>
-                <li>
-                  <p className="dark:text-amber-500 text-purple-600">Partition:</p>
-                  <ul className="list-disc ml-6">
-                    <li>Reorder array so elements <span className="dark:text-amber-500 text-purple-600">&lt;</span> pivot come before it</li>
-                    <li>Elements <span className="dark:text-amber-500 text-purple-600">&gt;</span> pivot come after it</li>
-                    <li>Pivot is now in its final sorted position</li>
-                  </ul>
-                </li>
-                <li>
-                  <p className="dark:text-amber-500 text-purple-600">Recurse:</p>
-                  <ul className="list-disc ml-6">
-                    <li>Apply quick sort to left sub-array (elements &lt; pivot)</li>
-                    <li>Apply quick sort to right sub-array (elements &gt; pivot)</li>
-                  </ul>
-                </li>
+                {algorithm.map((item, index) => (
+                  <li key={index}>{item.steps}{item.points && <ul className="list-disc ml-6">
+                    {item.points.map((subitem, subindex) => (
+                      <li key={subindex}>{subitem}</li>
+                    ))}</ul>}</li>
+                ))}
               </ol>
             </div>
           </div>
@@ -134,23 +157,11 @@ const content = () => {
             </h1>
             <div className="ml-4 dark:text-gray-300 text-black">
               <ol className="list-disc ml-8 pl-2">
-                <li>
-                  <span className="dark:text-amber-500 text-purple-600">Best Case</span>: 
-                  <span className="dark:text-amber-500 text-purple-600"> O(n log n)</span> (balanced partitions)
-                </li>
-                <li>
-                  <span className="dark:text-amber-500 text-purple-600">Average Case</span>: 
-                  <span className="dark:text-amber-500 text-purple-600"> O(n log n)</span>
-                </li>
-                <li>
-                  <span className="dark:text-amber-500 text-purple-600">Worst Case</span>: 
-                  <span className="dark:text-amber-500 text-purple-600"> O(n²)</span> (unbalanced partitions)
-                </li>
+                {timeComplexity.map((item, index) => (
+                  <li key={index}>{item.points}</li>
+                ))}
               </ol>
-              <p className="mt-2 ml-4">
-                The log n factor comes from the division steps when partitions are balanced.
-                The n² occurs when the pivot selection consistently creates unbalanced partitions.
-              </p>
+              <p className="mt-2 ml-4">{paragraphs[1]}</p>
             </div>
           </div>
   
@@ -158,11 +169,7 @@ const content = () => {
             <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
               Space Complexity
             </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              Quick Sort is <span className="dark:text-amber-500 text-purple-600">O(log n)</span> space complexity for the call stack in the average case,
-              but can degrade to <span className="dark:text-amber-500 text-purple-600">O(n)</span> in the worst case with unbalanced partitions.
-              It is generally considered an in-place algorithm as it doesn't require significant additional space.
-            </div>
+            <p className="ml-4 dark:text-gray-300 text-black">{paragraphs[2]}</p>
           </div>
   
           <div className="mt-4 mb-4 ml-4 mr-4">
@@ -198,7 +205,7 @@ const content = () => {
             <div className="ml-4 dark:text-gray-300 text-black">
               <ul className="list-disc ml-8 pl-2">
                 {CombinedDeatils.map((item, index) => (
-                  <li key={index}><strong className="text-purple-600 dark:text-amber-500">{item.strategy} :</strong> {item.details}</li>
+                  <li key={index}><strong>{item.strategy} :</strong> {item.details}</li>
                 ))}
               </ul>
             </div>
