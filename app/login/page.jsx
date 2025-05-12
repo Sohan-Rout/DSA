@@ -50,6 +50,13 @@ export default function LoginPage() {
     }
   }
 
+    const handleGoogleSignIn = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    })
+    if (error) console.error('Error signing in with Google:', error.message)
+  }
+
   return (
     <div className="min-h-screen dark:bg-gray-950 bg-gray-50 flex items-center justify-center p-4">
       <motion.div 

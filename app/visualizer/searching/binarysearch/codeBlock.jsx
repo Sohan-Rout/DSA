@@ -205,18 +205,19 @@ int main() {
 
   return (
     <div className="max-w-6xl mx-auto" ref={topRef}>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mt-8 transition-colors duration-300">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
             Binary Search Implementation
           </h3>
           <button
             onClick={() => copyToClipboard(codeExamples[selectedLanguage])}
-            className="flex items-center gap-2 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-gray-800 dark:text-gray-200"
+            className="flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600"
             title="Copy to clipboard"
           >
             {copied ? (
               <>
-                <FaCheck className="text-green-500" />
+                <FaCheck className="text-green-600 dark:text-green-400" />
                 <span>Copied!</span>
               </>
             ) : (
@@ -235,8 +236,8 @@ int main() {
               onClick={() => setSelectedLanguage(lang.id)}
               className={`px-4 py-2 rounded-md transition-colors ${
                 selectedLanguage === lang.id
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  ? 'bg-blue-700 text-white' // Darker blue for better contrast
+                  : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 border border-gray-300 dark:border-gray-600'
               }`}
             >
               {lang.name}
@@ -244,7 +245,7 @@ int main() {
           ))}
         </div>
         
-        <div className="bg-gray-100 dark:bg-gray-900 p-4 rounded-md overflow-x-auto transition-colors duration-300">
+        <div className="bg-gray-100 dark:bg-gray-900 p-4 rounded-md overflow-x-auto transition-colors duration-300 border border-gray-200 text-black dark:text-white dark:border-gray-700">
           <pre className="text-sm">
             <code 
               className={`language-${selectedLanguage}`}
@@ -255,6 +256,7 @@ int main() {
           </pre>
         </div>
       </div>
+    </div>
   );
 };
 
