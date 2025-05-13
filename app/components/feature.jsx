@@ -51,72 +51,87 @@ const FeaturesSection = () => {
     setCurrentIndex(index);
   };
 
-  return (
-    <section className="py-20 bg-white dark:bg-black text-gray-800 dark:text-gray-200 relative overflow-hidden">
-      {/* Dotted Background */}
-      <div className="absolute inset-0 dotted-background pointer-events-none"></div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Section Heading */}
-        <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-            <span className="text-blue-500">Why</span> Choose DSA Visualizer?
+   return (
+    <section className="relative overflow-hidden">
+      {/* Gradient transition from hero blue to white */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-200/25 via-blue-100 to-white dark:from-gray-950 dark:to-black z-0"></div>
+      {/* Subtle grid pattern */}
+        <div className="absolute inset-0 dotted-background"></div>
+      
+      <div className="container mx-auto px-6 py-24 relative z-10">
+        {/* Section Heading with modern styling */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            Elevate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-300">DSA Learning</span>
           </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Discover powerful features to enhance your learning and understanding of data structures and algorithms.
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Interactive tools designed to transform how you understand and master data structures and algorithms.
           </p>
         </div>
 
-        {/* Carousel */}
+        {/* Modern Carousel */}
         <div className="relative">
-          {/* Carousel Container */}
-          <div className="overflow-hidden">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
+          {/* Floating background element for depth */}
+          <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-200/30 dark:bg-blue-800/20 rounded-full filter blur-3xl -z-10"></div>
+          
+          <div className="overflow-hidden rounded-2xl">
+            <div 
+              className="flex transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {features.map((feature, index) => (
                 <div key={index} className="min-w-full px-4">
-                  <div
-                    className={`flex flex-col ${
-                      feature.reverse ? 'md:flex-row-reverse' : 'md:flex-row'
-                    } items-center gap-8 md:gap-12 max-w-5xl mx-auto`}
-                  >
-                    <div className="md:w-1/2">
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                        {feature.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400">
+                  <div className={`flex flex-col ${feature.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-12 max-w-6xl mx-auto`}>
+                    {/* Text Content */}
+                    <div className="md:w-1/2 space-y-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                          <span className="text-blue-600 dark:text-blue-400 text-xl">{index + 1}</span>
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                          {feature.title}
+                        </h3>
+                      </div>
+                      <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
                         {feature.description}
                       </p>
+                      <ul className="space-y-3">
+                        {feature.benefits?.map((benefit, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <svg className="w-5 h-5 text-blue-500 dark:text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span className="text-gray-700 dark:text-gray-300">{benefit}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
+                    
+                    {/* Image Content */}
                     <div className="md:w-1/2 w-full">
-                      <div className="bg-gray-100 dark:bg-black rounded-lg overflow-hidden shadow-lg aspect-[3/2] flex items-center justify-center p-2">
-                        {/* Container for both images */}
-                        <div className="relative w-full h-full">
-                          {/* Light mode image */}
-                          <div className="absolute inset-0 flex items-center justify-center dark:hidden">
-                            <img
-                              src={feature.lightImage}
-                              alt={`Illustration of ${feature.title}`}
-                              className="object-contain w-full h-full rounded-lg"
-                              style={{ maxHeight: '100%', maxWidth: '100%' }}
-                              loading="lazy"
-                              decoding="async"
-                            />
-                          </div>
-                          {/* Dark mode image */}
-                          <div className="absolute inset-0 items-center justify-center hidden dark:flex">
-                            <img
-                              src={feature.darkImage}
-                              alt={`Illustration of ${feature.title}`}
-                              className="object-contain w-full h-full rounded-lg"
-                              style={{ maxHeight: '100%', maxWidth: '100%' }}
-                              loading="lazy"
-                              decoding="async"
-                            />
-                          </div>
+                      <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900">
+                        {/* Light mode image */}
+                        <div className="absolute inset-0 flex items-center justify-center dark:hidden p-4">
+                          <img
+                            src={feature.lightImage}
+                            alt={`Illustration of ${feature.title}`}
+                            className="object-contain w-full h-full rounded-lg"
+                            loading="lazy"
+                            decoding="async"
+                          />
                         </div>
+                        {/* Dark mode image */}
+                        <div className="absolute inset-0 items-center justify-center hidden dark:flex p-4">
+                          <img
+                            src={feature.darkImage}
+                            alt={`Illustration of ${feature.title}`}
+                            className="object-contain w-full h-full rounded-lg"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                        {/* Floating elements */}
+                        <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-blue-200/40 dark:bg-blue-800/30 rounded-full filter blur-xl -z-10"></div>
                       </div>
                     </div>
                   </div>
@@ -125,39 +140,42 @@ const FeaturesSection = () => {
             </div>
           </div>
 
-          {/* Navigation Buttons */}
-          <button
-            onClick={prevSlide}
-            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 dark:bg-gray-600 text-white p-3 rounded-full hover:bg-gray-900 dark:hover:bg-gray-500 transition-colors"
-          >
-            ❮
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 dark:bg-gray-600 text-white p-3 rounded-full hover:bg-gray-900 dark:hover:bg-gray-500 transition-colors"
-          >
-            ❯
-          </button>
-
-          {/* Indicators */}
-          <div className="flex justify-center mt-6 space-x-2">
-            {features.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full ${
-                  currentIndex === index
-                    ? 'bg-gray-800 dark:bg-gray-400'
-                    : 'bg-gray-400 dark:bg-gray-600'
-                }`}
-              />
-            ))}
+          {/* Modern Navigation Buttons */}
+          <div className="flex justify-center gap-4 mt-8">
+            <button
+              onClick={prevSlide}
+              className="w-12 h-12 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group"
+            >
+              <svg className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <div className="flex items-center gap-2 mx-4">
+              {features.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentIndex === index
+                      ? 'w-8 bg-blue-600 dark:bg-blue-400'
+                      : 'bg-gray-300 dark:bg-gray-600'
+                  }`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={nextSlide}
+              className="w-12 h-12 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group"
+            >
+              <svg className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
           </div>
         </div>
-
-        {/* Divider */}
+        {/* Added line */}
       <div>
-        <div className="w-[80%] h-[1px] border-gray-600 rounded-xl mx-auto mt-14 bg-gray-600 z-10"></div>
+        <div className="w-[80%] mx-auto h-[1px] border-gray-600 rounded-xl mt-14 bg-gray-600 z-10"></div>
       </div>
       </div>
     </section>
