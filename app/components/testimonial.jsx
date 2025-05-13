@@ -6,13 +6,13 @@ const TestimonialSection = () => {
   const testimonials = [
     {
       name: 'Raman Jaiswal',
-      email: 'ramanj001@gmail.com',
+      email: '@ramanj001',
       review: `This is something which doesn't need words to explain dayummmmm it is good for beginners like us. This is something which actually needs to be appreciated`,
       stars: 5,
     },
     {
       name: 'Rahul Yadav',
-      email: 'yadav.rahul05@gmail.com',
+      email: '@yadav.rahul05',
       review: `DSA Visualizer made understanding complex algorithms incredibly simple. Its intuitive design and step-by-step visuals helped me grasp DSA concepts faster than traditional methods. A must-use tool for learners! The interface might feel a bit cluttered or difficult to navigate for new users but seriously overall it's actually good.`,
       stars: 4,
     },

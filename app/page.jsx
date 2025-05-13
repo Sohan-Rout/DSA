@@ -52,9 +52,9 @@ export default function Home() {
       <div id="features">
         <Feature />
       </div>
-      <div id="pricing">
+      {/*<div id="pricing">
         <Prices />
-      </div>
+      </div>*/}
       <div id="about">
         <About />
       </div>

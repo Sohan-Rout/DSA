@@ -20,14 +20,6 @@ const FeaturesSection = () => {
       reverse: true,
     },
     {
-      title: "Fast & Intuitive",
-      description:
-        "Quickly grasp concepts with a user-friendly interface and smooth performance. Our platform is designed to help you learn efficiently without unnecessary complexity.",
-      lightImage: "/performanceLight.png",
-      darkImage: "/performanceDark.png",
-      reverse: true,
-    },
-    {
       title: "Test Your Knowledge",
       description:
         "Reinforce your learning with inbuilt quizzes under each topic. Immediate feedback helps you identify areas that need more practice and track your progress.",

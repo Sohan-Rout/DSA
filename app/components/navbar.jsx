@@ -80,14 +80,14 @@ export default function Navbar() {
               Features
             </Link>
           </li>
-          <li>
+          { /*<li>
             <Link
               href="/#pricing"
               className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300"
             >
               Prices
             </Link>
-          </li>
+          </li>*/}
           <li>
             <Link
               href="/#about"
@@ -102,6 +102,14 @@ export default function Navbar() {
               className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300"
             >
               FAQs
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/#testimonial"
+              className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300"
+            >
+              Reviews
             </Link>
           </li>
           {/* Add Login Button for Desktop */}
