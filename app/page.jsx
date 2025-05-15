@@ -6,7 +6,6 @@ import About from "@/app/components/about";
 import Review from "@/app/components/review";
 import Testimonial from "@/app/components/testimonial";
 import Faq from "@/app/components/faq";
-import Contact from "@/app/components/contact";
 import Footer from "@/app/components/footer";
 
 export const metadata = {
@@ -55,13 +54,9 @@ export default function Home() {
       <div id="features">
         <Feature />
       </div>
-      {/*<div id="pricing">
-        <Prices />
-      </div>*/}
       <div id="faq">
         <Faq />
       </div>
-      <Contact />
       <div id="testimonial">
         <Testimonial/>
       </div>

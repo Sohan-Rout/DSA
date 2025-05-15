@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FiCode, FiBookOpen, FiAward, FiCpu, FiTrendingUp, FiZap } from 'react-icons/fi';
 
 const FeaturesSection = () => {
@@ -42,25 +42,10 @@ const FeaturesSection = () => {
     }
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  // Auto-transition every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % features.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [features.length]);
-
-  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % features.length);
-  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + features.length) % features.length);
-  const goToSlide = (index) => setCurrentIndex(index);
-
   return (
     <section className="relative overflow-hidden py-24">
       {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-white dark:from-black dark:to-black z-0"></div>
+      <div className="absolute inset-0 bg-white dark:bg-black z-0"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Heading */}
@@ -73,46 +58,85 @@ const FeaturesSection = () => {
           </p>
         </div>
 
-        {/* Modern Card Carousel */}
-        <div className="relative max-w-5xl mx-auto">
+        {/* Desktop Grid (shows all cards) */}
+        <div className="hidden md:grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {features.map((feature, index) => (
+            <div 
+              key={index}
+              className="bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+            >
+              <div className="p-8 h-full flex flex-col">
+                {/* Icon Card */}
+                <div className={`flex-shrink-0 w-20 h-20 ${feature.bgColor} rounded-2xl flex items-center justify-center ${feature.color} mb-6 transition-all duration-500 hover:rotate-6 hover:scale-110`}>
+                  {feature.icon}
+                </div>
+                
+                {/* Content */}
+                <div className="flex-grow space-y-4">
+                  <div>
+                    <div className="text-xs font-semibold tracking-wider text-blue-500 dark:text-blue-400 uppercase mb-1">
+                      Feature 0{index + 1}
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      {feature.title}
+                    </h3>
+                  </div>
+                  
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {feature.description}
+                  </p>
+                  
+                  <ul className="space-y-3 mt-4">
+                    {feature.benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <div className={`flex-shrink-0 mt-1 w-5 h-5 ${feature.color} rounded-full flex items-center justify-center`}>
+                          <svg className="w-3 h-3 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                        </div>
+                        <span className="text-gray-700 dark:text-gray-300">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile Carousel (hidden on desktop) */}
+        <div className="md:hidden relative max-w-5xl mx-auto">
           {/* Floating background elements */}
           <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-200/20 dark:bg-blue-800/10 rounded-full filter blur-3xl -z-10 animate-float-slow"></div>
           <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-blue-200/20 dark:bg-blue-800/10 rounded-full filter blur-3xl -z-10 animate-float-slower"></div>
           
           <div className="overflow-hidden rounded-3xl">
-            <div 
-              className="flex transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
+            <div className="flex space-x-4">
               {features.map((feature, index) => (
                 <div key={index} className="min-w-full px-4">
-                  <div 
-                    className={`bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-3xl overflow-hidden shadow-2xl transition-all duration-300 ${hoveredIndex === index ? 'scale-[1.02] shadow-xl' : ''}`}
-                    onMouseEnter={() => setHoveredIndex(index)}
-                    onMouseLeave={() => setHoveredIndex(null)}
-                  >
-                    <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8">
+                  <div className="bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-3xl overflow-hidden shadow-lg">
+                    <div className="p-8 flex flex-col">
                       {/* Icon Card */}
-                      <div className={`flex-shrink-0 w-24 h-24 ${feature.bgColor} rounded-2xl flex items-center justify-center ${feature.color} transition-all duration-500 ${hoveredIndex === index ? 'rotate-6 scale-110' : ''}`}>
+                      <div className={`flex-shrink-0 w-20 h-20 ${feature.bgColor} rounded-2xl flex items-center justify-center ${feature.color} mb-6`}>
                         {feature.icon}
                       </div>
                       
                       {/* Content */}
-                      <div className="space-y-6">
+                      <div className="space-y-4">
                         <div>
                           <div className="text-xs font-semibold tracking-wider text-blue-500 dark:text-blue-400 uppercase mb-1">
                             Feature 0{index + 1}
                           </div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                             {feature.title}
                           </h3>
                         </div>
                         
-                        <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+                        <p className="text-gray-600 dark:text-gray-400">
                           {feature.description}
                         </p>
                         
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <ul className="space-y-3 mt-4">
                           {feature.benefits.map((benefit, i) => (
                             <li key={i} className="flex items-start gap-3">
                               <div className={`flex-shrink-0 mt-1 w-5 h-5 ${feature.color} rounded-full flex items-center justify-center`}>
@@ -130,41 +154,6 @@ const FeaturesSection = () => {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Modern Navigation */}
-          <div className="flex justify-center gap-4 mt-10">
-            <button
-              onClick={prevSlide}
-              className="w-14 h-14 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 group hover:shadow-md"
-            >
-              <svg className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-              </svg>
-            </button>
-            
-            <div className="flex items-center gap-2 mx-4">
-              {features.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    currentIndex === index
-                      ? 'w-8 bg-blue-600 dark:bg-blue-400'
-                      : 'w-4 bg-gray-300 dark:bg-gray-600'
-                  }`}
-                />
-              ))}
-            </div>
-            
-            <button
-              onClick={nextSlide}
-              className="w-14 h-14 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 group hover:shadow-md"
-            >
-              <svg className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </button>
           </div>
         </div>
 

@@ -26,7 +26,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section className="relative py-24 bg-gradient-to-b from-blue-50 to-white dark:from-black dark:to-black overflow-hidden">
+    <section className="relative py-12 bg-gradient-to-b from-blue-50 to-white dark:from-black dark:to-black overflow-hidden">
       {/* Floating background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-0 w-64 h-64 bg-blue-400/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
@@ -93,6 +93,7 @@ const AboutSection = () => {
 
         {/* CTA */}
         <div className="text-center mt-16">
+          <a href='/#features'>
           <button className="relative px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-blue-500/30 group overflow-hidden">
             <span className="relative z-10 flex items-center justify-center gap-2">
               Explore Features
@@ -102,10 +103,11 @@ const AboutSection = () => {
             </span>
             <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
           </button>
+          </a>
         </div>
 
         {/* Divider */}
-        <div className="w-full max-w-4xl mx-auto h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent my-20"></div>
+        <div className="w-full max-w-4xl mx-auto h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent my-10"></div>
       </div>
     </section>
   );

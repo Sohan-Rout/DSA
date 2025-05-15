@@ -36,7 +36,7 @@ const HeroSection = () => {
               Master DSA
             </span>
             <br />
-            Through Visual Thinking
+            Through Interactive Visualization
           </h1>
           <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0">
             See algorithms come to life in your mind's eye before you code them.
