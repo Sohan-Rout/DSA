@@ -49,15 +49,15 @@ export default function Home() {
       <div id="hero">
         <Hero />
       </div>
+      <div id="about">
+        <About />
+      </div>
       <div id="features">
         <Feature />
       </div>
       {/*<div id="pricing">
         <Prices />
       </div>*/}
-      <div id="about">
-        <About />
-      </div>
       <div id="faq">
         <Faq />
       </div>

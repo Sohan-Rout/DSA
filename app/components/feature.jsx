@@ -61,8 +61,6 @@ const FeaturesSection = () => {
     <section className="relative overflow-hidden py-24">
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-white dark:from-black dark:to-black z-0"></div>
-      {/* Dotted Background */}
-      <div className="absolute inset-0 dotted-background pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Heading */}
