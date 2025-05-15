@@ -11,7 +11,7 @@ export default function Navbar() {
 
   // Load theme from localStorage on mount and apply it
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light"; // Default to light
+    const savedTheme = localStorage.getItem("theme") || "light";
     setTheme(savedTheme);
     if (savedTheme === "dark") {
       document.documentElement.classList.add("dark");
@@ -48,11 +48,11 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`w-full bg-white dark:bg-black text-black dark:text-white py-4 px-6 top-0 left-0 z-50 transition-all duration-300 ${
-        isScrolled ? "shadow-lg" : "shadow-sm"
+      className={`fixed w-[calc(100%-2rem)] mx-4 mt-4 bg-white/80 dark:bg-black/80 backdrop-blur-lg rounded-2xl border border-gray-200 dark:border-gray-700 text-black dark:text-white z-50 transition-all duration-300 ${
+        isScrolled ? "shadow-xl" : "shadow-md"
       }`}
     >
-      <div className="max-w-6xl mx-auto flex justify-between items-center">
+      <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-3">
         {/* Logo/Brand */}
         <Link
           href="/"
@@ -80,14 +80,6 @@ export default function Navbar() {
               Features
             </Link>
           </li>
-          { /*<li>
-            <Link
-              href="/#pricing"
-              className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300"
-            >
-              Prices
-            </Link>
-          </li>*/}
           <li>
             <Link
               href="/#about"
@@ -112,11 +104,11 @@ export default function Navbar() {
               Reviews
             </Link>
           </li>
-          {/* Add Login Button for Desktop */}
+          {/* Login Button for Desktop */}
           <li>
             <Link
               href="/login"
-              className="ml-4 px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md flex items-center gap-2"
+              className="ml-4 px-4 py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md flex items-center gap-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -179,7 +171,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300"
+          className="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -219,7 +211,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden bg-white dark:bg-gray-900 transition-all duration-300 overflow-hidden ${
+        className={`md:hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg transition-all duration-300 overflow-hidden ${
           mobileMenuOpen ? "max-h-96 py-4" : "max-h-0 py-0"
         }`}
       >
@@ -244,15 +236,6 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href="/#pricing"
-              className="block py-2 font-medium hover:text-blue-400 transition duration-300"
-              onClick={closeMobileMenu}
-            >
-              Prices
-            </Link>
-          </li>
-          <li>
-            <Link
               href="/#about"
               className="block py-2 font-medium hover:text-blue-400 transition duration-300"
               onClick={closeMobileMenu}
@@ -272,29 +255,16 @@ export default function Navbar() {
           <li>
             <Link
               href="/login"
-              className="hidden md:flex px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md items-center gap-2"
+              className="block w-full text-center py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md mt-2"
+              onClick={closeMobileMenu}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                />
-              </svg>
-              Login / Signup
+              Login/Signup
             </Link>
           </li>
           <li className="pt-2">
             <button
               onClick={toggleTheme}
-              className="flex items-center gap-2 py-2 font-medium hover:text-blue-400 transition duration-300"
+              className="flex items-center gap-2 py-2 font-medium hover:text-blue-400 transition duration-300 w-full"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (

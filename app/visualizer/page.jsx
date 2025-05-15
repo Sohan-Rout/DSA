@@ -469,7 +469,7 @@ const sections = [
         <Navbar />
         <div className="fixed inset-0 dotted-background pointer-events-none z-0"></div>
         <main className="container mx-auto px-4 sm:px-6 pt-20 pb-16 min-h-[calc(100vh-80px)] flex-grow relative z-10">
-          <div className="text-center mb-10">
+          <div className="text-center mb-10 mt-10">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               Algorithm <span className="text-blue-600 dark:text-blue-500">Visualizer</span>
             </h1>

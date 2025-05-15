@@ -1,7 +1,6 @@
 import Navbar from "@/app/components/navbar";
 import Hero from "@/app/components/hero";
 import Feature from "@/app/components/feature";
-import Prices from "@/app/components/price";
 import About from "@/app/components/about";
 import Review from "@/app/components/review";
 import Testimonial from "@/app/components/testimonial";

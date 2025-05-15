@@ -21,7 +21,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-950 dark:to-black text-gray-900 dark:text-gray-100 relative overflow-hidden">
+    <section className="min-h-screen py-10 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-950 dark:to-black text-gray-900 dark:text-gray-100 relative overflow-hidden">
       {/* Abstract background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-0 w-64 h-64 bg-blue-400/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
@@ -98,57 +98,56 @@ const HeroSection = () => {
         </div>
 
         {/* Person image with automatic background removal effect */}
-        <div className="lg:w-1/2 lg:h-full flex justify-center items-center mt-10 lg:mt-0 relative">
-          <div className="relative w-full h-full max-w-lg">
-            <Image
-              src="/GurlThinking.png"
-              alt="Person thinking about algorithms"
-              width={1200}
-              height={1200}
-              className="w-full h-full max-h-[600px] object-contain drop-shadow-2xl"
-              style={{
-                filter: "drop-shadow(0 20px 13px rgba(0, 0, 0, 0.1))",
-                maskImage:
-                  "linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 98%)",
-              }}
-              priority
-            />
+<div className="lg:w-1/2 lg:h-full flex justify-center items-center mt-10 lg:mt-0 relative">
+  <div className="relative w-full h-full max-w-lg">
+    <Image
+      src="/GurlThinking.png"
+      alt="Person thinking about algorithms"
+      width={1200}
+      height={1200}
+      className="w-full z-20 h-full max-h-[400px] lg:max-h-[600px] object-contain drop-shadow-2xl"
+      style={{
+        filter: "drop-shadow(0 20px 13px rgba(0, 0, 0, 0.1))",
+        maskImage:
+          "linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 98%)",
+      }}
+      priority
+    />
 
-            {/* Larger floating algorithm elements */}
-            <div className="absolute top-[15%] -right-4 w-24 h-24 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float border-2 border-gray-300 dark:border-gray-600">
-              <div className="text-base font-mono font-bold text-center p-2">
-                O(1)
-              </div>
-            </div>
+    {/* Floating algorithm elements - adjusted for mobile */}
+    <div className="absolute top-[15%] -right-4 w-16 h-16 lg:w-24 lg:h-24 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float border-2 border-gray-300 dark:border-gray-600">
+      <div className="text-xs lg:text-base font-mono font-bold text-center p-1 lg:p-2">
+        O(1)
+      </div>
+    </div>
 
-            <div className="absolute top-[40%] -right-8 w-28 h-28 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-2000 border-2 border-gray-300 dark:border-gray-600">
-              <div className="text-lg font-mono font-bold text-center p-3">
-                <span className="text-blue-600 dark:text-blue-400">Hash</span>
-                Map
-              </div>
-            </div>
+    <div className="absolute top-[40%] -right-8 w-20 h-20 lg:w-28 lg:h-28 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-2000 border-2 border-gray-300 dark:border-gray-600">
+      <div className="text-sm lg:text-lg font-mono font-bold text-center p-2 lg:p-3">
+        <span className="text-blue-600 dark:text-blue-400">Hash</span>
+        Map
+      </div>
+    </div>
 
-            <div className="absolute top-[25%] left-4 w-24 h-24 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-1000 border-2 border-gray-300 dark:border-gray-600">
-              <div className="text-base font-mono font-bold text-center">
-                Queue
-              </div>
-            </div>
+    <div className="absolute top-[25%] z-[-1] left-[-5] w-20 h-20 lg:w-24 lg:h-24 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-1000 border-2 border-gray-300 dark:border-gray-600">
+      <div className="text-xs lg:text-base font-mono font-bold text-center">
+        Queue
+      </div>
+    </div>
 
-            {/* Additional larger thought bubble */}
-            <div className="absolute top-[10%] left-10 w-20 h-20 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-1500 border-2 border-gray-300 dark:border-gray-600">
-              <div className="text-sm font-mono font-bold text-center">
-                Stack
-              </div>
-            </div>
+    {/* Additional thought bubbles - adjusted for mobile */}
+    <div className="absolute z-[-1] top-[10%] left-5 w-14 h-14 lg:w-20 lg:h-20 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-1500 border-2 border-gray-300 dark:border-gray-600">
+      <div className="text-xs lg:text-sm font-mono font-bold text-center">
+        Stack
+      </div>
+    </div>
 
-            {/* New bubble for more dynamism */}
-            <div className="absolute top-[5%] right-12 w-20 h-20 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-2500 border-2 border-gray-300 dark:border-gray-600">
-              <div className="text-sm font-mono font-bold text-center">
-                Tree
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="absolute top-[5%] right-12 w-14 h-14 lg:w-20 lg:h-20 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-2500 border-2 border-gray-300 dark:border-gray-600">
+      <div className="text-xs lg:text-sm font-mono font-bold text-center">
+        Tree
+      </div>
+    </div>
+  </div>
+</div>
       </div>
     </section>
   );
