@@ -1,4 +1,6 @@
 import LinearSearchAnimation from '@/app/visualizer/searching/linearsearch/animation';
+import Navbar from '@/app/components/navbarinner';
+import GoBackButton from '@/app/components/ui/goback';
 
 export const metadata = {
   title: 'Linear Search Visualizer & Quiz | Step-by-Step Animation with Code in JS, C, Python, Java',
@@ -32,6 +34,9 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <LinearSearchAnimation />
+    <>
+      <Navbar />
+      <LinearSearchAnimation />
+    </>
   );
 };

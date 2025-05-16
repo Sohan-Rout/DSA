@@ -185,19 +185,19 @@ const LinearSearchQuiz = () => {
             </h3>
             <ul className="space-y-2 text-sm">
               <li className="flex items-start">
-                <FaCheck className="text-green-500 mt-1 mr-2 flex-shrink-0" />
+                <FaCheck className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
                 <span>+1 point for each correct answer</span>
               </li>
               <li className="flex items-start">
-                <FaTimes className="text-red-500 mt-1 mr-2 flex-shrink-0" />
+                <FaTimes className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
                 <span>0 points for wrong answers</span>
               </li>
               <li className="flex items-start">
-                <FaInfoCircle className="text-yellow-500 mt-1 mr-2 flex-shrink-0" />
+                <FaInfoCircle className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
                 <span>-0.5 point penalty for viewing explanations</span>
               </li>
               <li className="flex items-start">
-                <FaTrophy className="text-purple-500 mt-1 mr-2 flex-shrink-0" />
+                <FaTrophy className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
                 <span>Earn stars based on your final score (max 5 stars)</span>
               </li>
             </ul>

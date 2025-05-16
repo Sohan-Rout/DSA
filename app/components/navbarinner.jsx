@@ -33,8 +33,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="w-full bg-white dark:bg-black text-black dark:text-white py-4 px-6 fixed top-0 left-0 z-50 shadow-lg transition-colors duration-300">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
+      <nav className="fixed w-[calc(100%-2rem)] mx-4 mt-4 bg-white/80 dark:bg-black/80 backdrop-blur-lg rounded-2xl border border-gray-200 dark:border-gray-700 text-black dark:text-white z-50 shadow-lg transition-all duration-300">
+        <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-3">
           {/* Logo/Brand */}
           <Link
             href="/"
@@ -48,7 +48,7 @@ export default function Navbar() {
             {/* Dashboard Page */}
             <Link
               href="/dashboard"
-              className="hidden md:flex px-4 py-2 rounded-lg font-medium bg-transparent border border-blue-600 transition duration-300 shadow-md items-center"
+              className="hidden md:flex px-4 py-2 rounded-full font-medium bg-transparent border border-blue-600 hover:bg-blue-50/50 dark:hover:bg-gray-700/50 transition duration-300 items-center"
             >
               Dashboard
             </Link>
@@ -56,7 +56,7 @@ export default function Navbar() {
             {/* Login/Signup Button - Desktop */}
             <Link
               href="/login"
-              className="hidden md:flex px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md items-center gap-2"
+              className="hidden md:flex px-4 py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md items-center gap-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +140,7 @@ export default function Navbar() {
       {/* Optional Auth Modal (still present, unused by nav buttons) */}
       {isAuthModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-          <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4 p-6 animate-fade-in">
+          <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl max-w-md w-full mx-4 p-6 animate-fade-in border border-gray-200 dark:border-gray-700">
             <button
               onClick={closeAuthModal}
               className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-200"
