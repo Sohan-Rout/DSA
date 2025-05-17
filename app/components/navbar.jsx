@@ -218,7 +218,7 @@ export default function Navbar() {
           mobileMenuOpen ? "max-h-96 py-4" : "max-h-0 py-0"
         }`}
       >
-        <ul className="flex flex-col space-y-4 px-6">
+        <ul className="flex flex-col space-y-15 px-6">
           <li>
             <Link
               href="/#hero"
@@ -255,6 +255,15 @@ export default function Navbar() {
               FAQs
             </Link>
           </li>
+<li>
+  <Link
+    href="/blogs"
+    className="block py-2 font-medium hover:text-blue-400 transition duration-300"
+    onClick={closeMobileMenu}
+  >
+    Blogs
+  </Link>
+</li>
           <li>
             <Link
               href="/login"
