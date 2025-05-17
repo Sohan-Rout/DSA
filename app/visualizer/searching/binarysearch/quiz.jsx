@@ -176,7 +176,7 @@ const BinarySearchQuiz = () => {
                 </div>
               </div>
               <h2 className="text-2xl font-bold mb-4 text-black dark:text-gray-100">
-                Linear Search Quiz Challenge
+                Binary Search Quiz Challenge
               </h2>
               <div className="bg-white dark:bg-gray-700 p-4 rounded-lg mb-6 text-left shadow-inner">
                 <h3 className="font-bold mb-2 flex items-center text-blue-600 dark:text-blue-400">

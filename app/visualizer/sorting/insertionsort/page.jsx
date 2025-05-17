@@ -1,4 +1,5 @@
 import Animation from "@/app/visualizer/sorting/insertionsort/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
   title: 'Insertion Sort Visualizer & Quiz | Learn with Interactive Animations and Code in JS, C, Python, Java',
@@ -28,6 +29,9 @@ export const metadata = {
 
 export default function Page() {
   return(
-    <Animation />
+    <>
+      <Navbar/>
+      <Animation />
+    </>
   );
 };

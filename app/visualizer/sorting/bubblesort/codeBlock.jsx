@@ -206,10 +206,6 @@ int main() {
 }`
   };
 
-  const scrollToTop = () => {
-    topRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
      <div 
           className="max-w-4xl mx-auto"
@@ -228,7 +224,7 @@ int main() {
               <div className="flex items-center mb-2 sm:mb-0">
                 <FaCode className="text-blue-500 mr-2 text-lg" />
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
-                  Linear Search Implementation
+                  Bubble Sort Implementation
                 </h3>
               </div>
               
