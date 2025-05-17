@@ -1,6 +1,6 @@
 import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
-import Content from "@/app/blogs/blogContent/dsaWebDev/content";
+import Content from "@/app/blogs/Content/dsaWebDev/content";
 
 export const metadata = {
   title: "Is Data Structures and Algorithms Important for Web Developers?",

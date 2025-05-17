@@ -1,4 +1,5 @@
 import Animation from "@/app/visualizer/searching/binarysearch/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
   title: 'Binary Search Visualizer & Quiz | Step-by-Step Animation with Code in JS, C, Python, Java',
@@ -32,6 +33,9 @@ export const metadata = {
 
 export default function Page() {
   return (
+    <>
+    <Navbar/>
     <Animation />
+    </>
   );
 };

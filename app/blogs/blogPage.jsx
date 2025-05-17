@@ -10,7 +10,7 @@ const BlogPage = () => {
       excerpt: "Explore why understanding data structures and algorithms can help web developers write efficient, scalable, and maintainable code.",
       date: "May 20, 2025",
       readTime: "8 min read",
-      slug: "/blogs/blogContent/dsaWebDev"
+      slug: "/blogs/Content/dsaWebDev"
     },
     {
       title: "CSS Grid Mastery",

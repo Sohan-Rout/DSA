@@ -136,7 +136,7 @@ const LinearSearch = () => {
           <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
             <span className="text-black dark:text-white">Linear Search</span>
           </h1>
-          <div className='bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-1 mb-5'></div>
+          <div className='bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5'></div>
           <Content />
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
             Visualize how Linear Search works by sequentially checking each
