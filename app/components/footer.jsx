@@ -1,7 +1,12 @@
+"use client";
 import React from 'react';
 import Link from 'next/link';
+import { useState } from 'react';
+import PrivacyPolicyModal from "@/app/components/PrivacyPolicyModal";
 
 const Footer = () => {
+  const [showPolicyModal, setShowPolicyModal] = useState(false);
+
   const quickLinks = [
     { href: "/", text: "Home" },
     { href: "/#features", text: "Features" },
@@ -49,11 +54,11 @@ const Footer = () => {
     }
   ];
 
-  const legalLinks = [
-    { href: "/privacy", text: "Privacy Policy" },
-    { href: "/terms", text: "Terms of Service" },
-    { href: "/cookies", text: "Cookies" }
-  ];
+const legalLinks = [
+  { href: "/privacy", text: "Privacy Policy", type: "modal" },
+  { href: "/terms", text: "Terms of Service", type: "link" },
+  { href: "/cookies", text: "Cookies", type: "link" }
+];
 
   return (
     <footer className="bg-black text-gray-400">
@@ -107,15 +112,33 @@ const Footer = () => {
             <div>
               <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Legal</h3>
               <ul className="space-y-3">
-                {legalLinks.map((link, index) => (
-                  <li key={index}>
-                    <Link href={link.href} className="hover:text-blue-400 transition">
-                      {link.text}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+          {legalLinks.map((link, index) => (
+            <li key={index}>
+              {link.type === "modal" ? (
+                <button
+                  onClick={() => setShowPolicyModal(true)}
+                  className="text-gray-500 hover:text-blue-400 transition"
+                >
+                  {link.text}
+                </button>
+              ) : (
+                <Link
+                  href={link.href}
+                  className="text-gray-500 hover:text-blue-400 transition"
+                >
+                  {link.text}
+                </Link>
+              )}
+            </li>
+          ))}
+        </ul>
             </div>
+
+            {/* Render the modal */}
+      <PrivacyPolicyModal
+        isOpen={showPolicyModal}
+        onClose={() => setShowPolicyModal(false)}
+      />
 
             <div>
               <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Connect</h3>
