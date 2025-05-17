@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import Navbar from "@/app/components/navbarinner";
 import Footer from "@/app/components/footer";
 import ArrayGenerator from "@/app/components/ui/randomArray";
 import Content from "@/app/visualizer/sorting/bubblesort/content";
@@ -117,17 +116,21 @@ const BubbleSortVisualizer = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
-      <Navbar />
-      <main className="container mx-auto px-4 sm:px-6 pt-16 pb-4 md:pt-16 md:pb-4">
-        <div className="mt-6 sm:mt-5">
-          <GoBackButton />
-        </div>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6 mt-6 md:mt-6 md:mb-8">
-          <span className="text-blue-600">Bubble Sort</span> Visualizer
-        </h1>
-        <Content />
-        <p className="text-base sm:text-lg text-center text-gray-600 dark:text-gray-400 mb-6 md:mb-8 px-2">
+    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
+        <main className="container mx-auto px-6 pt-16 pb-4">
+
+          { /* go back block here */}
+          <div className="mt-10 sm:mt-10">
+            <GoBackButton />
+          </div>
+
+          { /* main logic here */}
+          <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
+            <span className="text-black dark:text-white">Bubble Sort</span>
+          </h1>
+          <div className='bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5'></div>
+          <Content />
+        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
           Watch Bubble Sort in action as it repeatedly swaps adjacent elements
           to sort the array step by step.
         </p>
@@ -155,13 +158,13 @@ const BubbleSortVisualizer = () => {
                 <button
                   onClick={bubbleSort}
                   disabled={!array.length || sorting || sorted}
-                  className="w-full disabled:opacity-50 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded border border-transparent shadow-sm transition-all duration-200 disabled:bg-transparent disabled:text-blue-600 disabled:border-blue-400 dark:disabled:text-white dark:disabled:border-blue-600 text-sm sm:text-base"
+                  className="w-full disabled:opacity-50 bg-none text-black border-black dark:border-white dark:text-white px-4 py-2 rounded border shadow-sm transition-all duration-200 disabled:bg-transparent disabled:text-blue-600 disabled:border-blue-400 dark:disabled:text-white dark:disabled:border-blue-600 text-sm sm:text-base"
                 >
                   {sorting ? "Sorting..." : "Start Bubble Sort"}
                 </button>
                 <button
                   onClick={reset}
-                  className="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition-colors text-sm sm:text-base"
+                  className="w-full bg-none text-black border border-black dark:text-white dark:border-white px-4 py-2 rounded transition-colors text-sm sm:text-base"
                 >
                   Reset All
                 </button>

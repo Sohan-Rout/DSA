@@ -48,83 +48,126 @@ const content = () => {
   ];
 
     return (
-      <main>
-        <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              What is Bubble Sort
-            </h1>
-            <p className="ml-4 dark:text-gray-300 text-black">{paragraph[0]}</p>
-          </div>
+      <main className="max-w-4xl mx-auto">
+  <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+    {/* What is Bubble Sort */}
+    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+        What is Bubble Sort?
+      </h1>
+      <div className="prose dark:prose-invert max-w-none">
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          {paragraph[0]}
+        </p>
+      </div>
+    </section>
 
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              How Does It Work
-            </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              Imagine you have an unsorted list of numbers: [5, 1, 4, 2, 8]
-              <br />
-              <ol className="list-decimal ml-8 pl-3">
-                {working.map((items, index) => (
-                  <li key={index}>{items.passes}{items.points && <ul className="list-disc ml-6">
-                    {items.points.map((subitems, subindex) => (
-                      <li key={subindex}>{subitems}</li>
-                    ))}</ul>}</li>
-                ))}
-              </ol>
-              <br />
-              The algorithm stops when a complete pass is made without any
-              swaps.
-            </div>
-          </div>
+    {/* How Does It Work */}
+    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+        How Does It Work?
+      </h1>
+      <div className="prose dark:prose-invert max-w-none">
+        <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+          Imagine you have an unsorted list of numbers: [5, 1, 4, 2, 8]
+        </p>
+        
+        <ol className="space-y-3 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+          {working.map((items, index) => (
+            <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
+              {items.passes}
+              {items.points && (
+                <ul className="mt-2 space-y-2 list-disc pl-5 marker:text-gray-400 dark:marker:text-gray-500">
+                  {items.points.map((subitems, subindex) => (
+                    <li key={subindex} className="text-gray-600 dark:text-gray-400">
+                      {subitems}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ol>
+        
+        <p className="text-gray-700 dark:text-gray-300 mt-4 leading-relaxed">
+          The algorithm stops when a complete pass is made without any swaps.
+        </p>
+      </div>
+    </section>
 
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              Algorithm Steps
-            </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              <ol className="list-decimal ml-8 pl-2">
-                {algorithm.map((items, index) => (
-                  <li key={index}>
-                    {items.points}
-                    {items.subpoints && (
-                      <ul className="list-disc ml-6">
-                        {items.subpoints.map((subitems, subindex) => (
-                          <li key={subindex}>{subitems}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
+    {/* Algorithm Steps */}
+    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+        Algorithm Steps
+      </h1>
+      <div className="prose dark:prose-invert max-w-none">
+        <ol className="space-y-3 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+          {algorithm.map((items, index) => (
+            <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
+              {items.points}
+              {items.subpoints && (
+                <ul className="mt-2 space-y-2 list-disc pl-5 marker:text-gray-400 dark:marker:text-gray-500">
+                  {items.subpoints.map((subitems, subindex) => (
+                    <li key={subindex} className="text-gray-600 dark:text-gray-400">
+                      {subitems}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
 
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              Time Complexity
-            </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              <ol className="list-disc ml-8 pl-2">
-                {complexity.map((item, index) => (
-                  <li key={index}>{item.points}</li>
-                ))}
-              </ol>
-            </div>
-          </div>
+    {/* Time Complexity */}
+    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+        Time Complexity
+      </h1>
+      <div className="prose dark:prose-invert max-w-none">
+        <ul className="space-y-3 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+          {complexity.map((item, index) => (
+            <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
+              <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-sm">
+                {item.points.split(':')[0]}:
+              </span>
+              <span className="ml-2">{item.points.split(':')[1]}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
 
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              Space Complexity
-            </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">{paragraph[1]}</div>
-          </div>
+    {/* Space Complexity */}
+    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+        Space Complexity
+      </h1>
+      <div className="prose dark:prose-invert max-w-none">
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          {paragraph[1]}
+        </p>
+      </div>
+    </section>
 
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <p className="ml-4 dark:text-gray-300 text-black">{paragraph[2]}</p>
-          </div>
-        </section>
-      </main>
+    {/* Additional Info */}
+    <section className="p-6">
+      <div className="prose dark:prose-invert max-w-none">
+        <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            {paragraph[2]}
+          </p>
+        </div>
+      </div>
+    </section>
+  </article>
+</main>
     );
   };
   
