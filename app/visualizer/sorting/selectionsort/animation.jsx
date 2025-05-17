@@ -1,6 +1,5 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
-import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
 import Content from '@/app/visualizer/sorting/selectionsort/content';
 import ArrayGenerator from '@/app/components/ui/randomArray';
@@ -121,17 +120,21 @@ const SelectionSortVisualizer = () => {
     }, []);
   
     return (
-      <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
-        <Navbar />
-        <main className="container mx-auto px-6 py-16">
-          <div className="mt-6 sm:mt-5">
+          <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
+      <main className="container mx-auto px-6 pt-16 pb-4">
+
+          { /* go back block here */}
+          <div className="mt-10 sm:mt-10">
             <GoBackButton />
           </div>
-          <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
-            <span className="text-blue-600">Selection Sort</span> Visualizer
+
+          { /* main logic here */}
+          <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
+            <span className="text-black dark:text-white">Quick Sort</span>
           </h1>
+          <div className='bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5'></div>
           <Content />
-          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
             Visualize Selection Sort as it repeatedly selects the smallest
             element and swaps it to its correct position in the array.
           </p>
@@ -158,13 +161,13 @@ const SelectionSortVisualizer = () => {
                   <button
                     onClick={selectionSort}
                     disabled={!array.length || sorting || sorted}
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded disabled:opacity-50"
+                    className="w-full bg-none border border-black dark:border-white text-white dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:border-blue-500 disabled:text-blue-500 disabled:dark:border-blue-500 disabled:dark:text-blue-500"
                   >
                     {sorting ? "Sorting..." : "Start Selection Sort"}
                   </button>
                   <button
                     onClick={reset}
-                    className="w-full bg-red-600 hover:bg-red-700 text-white mt-4 px-4 py-2 rounded"
+                    className="w-full bg-none border border-black dark:border-white text-black dark:text-white mt-4 px-4 py-2 rounded"
                   >
                     Reset All
                   </button>

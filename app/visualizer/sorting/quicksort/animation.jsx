@@ -233,30 +233,30 @@ const QuickSortVisualizer = () => {
     };
   
     return (
-          <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
-      <main className="container mx-auto px-6 pt-16 pb-4">
-
-          { /* go back block here */}
+      <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
+        <main className="container mx-auto px-6 pt-16 pb-4">
+          {/* go back block here */}
           <div className="mt-10 sm:mt-10">
             <GoBackButton />
           </div>
 
-          { /* main logic here */}
+          {/* main logic here */}
           <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
             <span className="text-black dark:text-white">Quick Sort</span>
           </h1>
-          <div className='bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5'></div>
+          <div className="bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5"></div>
           <Content />
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-            Visualize Quick Sort's divide-and-conquer approach with interactive partitions
+          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+            Visualize Quick Sort's divide-and-conquer approach with interactive
+            partitions
           </p>
-  
+
           <div className="max-w-4xl mx-auto">
             {/* Controls */}
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <ArrayGenerator 
+                  <ArrayGenerator
                     onGenerate={(newArray) => {
                       setArray(newArray);
                       setSorted(false);
@@ -264,7 +264,7 @@ const QuickSortVisualizer = () => {
                     }}
                     disabled={sorting}
                   />
-                  <CustomArrayInput 
+                  <CustomArrayInput
                     onSubmit={(newArray) => {
                       setArray(newArray);
                       setSorted(false);
@@ -289,7 +289,7 @@ const QuickSortVisualizer = () => {
                   </button>
                 </div>
               </div>
-  
+
               {/* Speed controls */}
               <div className="flex items-center gap-4 mb-4">
                 <span className="text-gray-700 dark:text-gray-300">Speed:</span>
@@ -303,9 +303,11 @@ const QuickSortVisualizer = () => {
                   className="w-32"
                   disabled={sorting}
                 />
-                <span className="text-gray-700 dark:text-gray-300">{speed}x</span>
+                <span className="text-gray-700 dark:text-gray-300">
+                  {speed}x
+                </span>
               </div>
-  
+
               {/* Stats */}
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded">
@@ -318,7 +320,7 @@ const QuickSortVisualizer = () => {
                 </div>
               </div>
             </div>
-  
+
             {/* Main Array Visualization */}
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
               <h2 className="text-xl font-semibold mb-4">Main Array</h2>
@@ -330,9 +332,9 @@ const QuickSortVisualizer = () => {
                     const isRight = index === currentIndices.right;
                     const isPartition = index === currentIndices.partitionIndex;
                     const isInPartition = currentIndices.partitions.some(
-                      p => index >= p.low && index <= p.high
+                      (p) => index >= p.low && index <= p.high
                     );
-  
+
                     return (
                       <div key={index} className="flex flex-col items-center">
                         <div
@@ -368,51 +370,77 @@ const QuickSortVisualizer = () => {
                 </div>
               ) : (
                 <div className="text-center py-8 text-gray-500">
-                  {sorting ? "Sorting..." : "Generate or enter an array to begin"}
+                  {sorting
+                    ? "Sorting..."
+                    : "Generate or enter an array to begin"}
                 </div>
               )}
             </div>
-  
+
             {/* Partition Visualization */}
             {renderPartitions()}
-  
+
             {/* Algorithm Explanation */}
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 mt-8">
-              <h2 className="text-xl font-semibold mb-4">How Quick Sort Works</h2>
+              <h2 className="text-xl font-semibold mb-4">
+                How Quick Sort Works
+              </h2>
               <div className="prose dark:prose-invert max-w-none">
                 <ol className="list-decimal pl-5 space-y-2">
-                  <li>Select a <span className="text-red-500">pivot</span> element (here we use the last element)</li>
-                  <li>Partition the array so elements <span className="text-yellow-500">left</span> of pivot are smaller and elements <span className="text-blue-500">right</span> are larger</li>
-                  <li>The <span className="text-green-500">partition index</span> marks where the pivot belongs in the sorted array</li>
-                  <li>Recursively apply the same process to the left and right partitions</li>
-                  <li>When all partitions are sorted, the entire array is sorted</li>
+                  <li>
+                    Select a <span className="text-red-500">pivot</span> element
+                    (here we use the last element)
+                  </li>
+                  <li>
+                    Partition the array so elements{" "}
+                    <span className="text-yellow-500">left</span> of pivot are
+                    smaller and elements{" "}
+                    <span className="text-blue-500">right</span> are larger
+                  </li>
+                  <li>
+                    The <span className="text-green-500">partition index</span>{" "}
+                    marks where the pivot belongs in the sorted array
+                  </li>
+                  <li>
+                    Recursively apply the same process to the left and right
+                    partitions
+                  </li>
+                  <li>
+                    When all partitions are sorted, the entire array is sorted
+                  </li>
                 </ol>
               </div>
             </div>
           </div>
 
-          { /* quiz block here */}
+          {/* quiz block here */}
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
             Test Your Knowledge before moving forward!
           </p>
           <Quiz />
 
-          <CodeBlock/>
+          <CodeBlock />
           <ExploreOther
-          title="Explore Sorting Algorithms"
-          links={[
-            { text: "Selection Sort", url: "/visualizer/sorting/selectionsort" },
-            { text: "Bubble Sort", url: "/visualizer/sorting/bubblesort" },
-            { text: "Insertion Sort", url: "/visualizer/sorting/insertionsort" },
-            { text: "Merge Sort" , url: "/visualizer/sorting/mergesort"},
-            { text: "Heap Sort", url: "/algorithms/sorting/heap" },
-          ]}
-        />
+            title="Explore Sorting Algorithms"
+            links={[
+              {
+                text: "Selection Sort",
+                url: "/visualizer/sorting/selectionsort",
+              },
+              { text: "Bubble Sort", url: "/visualizer/sorting/bubblesort" },
+              {
+                text: "Insertion Sort",
+                url: "/visualizer/sorting/insertionsort",
+              },
+              { text: "Merge Sort", url: "/visualizer/sorting/mergesort" },
+              { text: "Heap Sort", url: "/algorithms/sorting/heap" },
+            ]}
+          />
         </main>
         <div>
           <div className="bg-gray-700 z-10 h-[1px]"></div>
         </div>
-        <BackToTop/>
+        <BackToTop />
         <Footer />
       </div>
     );

@@ -1,4 +1,5 @@
 import Animation from "@/app/visualizer/sorting/selectionsort/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
   title: 'Selection Sort Visualizer | Simple Sorting Animation with Code in JS, C, Python, Java',
@@ -24,6 +25,9 @@ export const metadata = {
 
 export default function Page() {
   return(
-    <Animation />
+    <>
+      <Navbar />
+      <Animation />
+    </>
   );
 };
