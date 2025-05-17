@@ -25,7 +25,7 @@ const ExploreOther = ({
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200/80 dark:border-gray-700/80 overflow-hidden mt-6 transition-all duration-300 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600"
+      className="bg-white max-w-4xl mx-auto dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200/80 dark:border-gray-700/80 overflow-hidden mt-6 transition-all duration-300 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600"
     >
       <div className="p-5 sm:p-6">
         <div className="flex items-center justify-between mb-5">

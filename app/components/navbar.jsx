@@ -104,6 +104,9 @@ export default function Navbar() {
               Reviews
             </Link>
           </li>
+          <li>
+            <Link href="/blogs" className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300">Blogs</Link>
+          </li>
           {/* Login Button for Desktop */}
           <li>
             <Link

@@ -465,9 +465,8 @@ const sections = [
 
   const Visualizer = () => {
     return (
-      <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200 flex flex-col">
+      <div className="min-h-screen bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200 flex flex-col">
         <Navbar />
-        <div className="fixed inset-0 dotted-background pointer-events-none z-0"></div>
         <main className="container mx-auto px-4 sm:px-6 pt-20 pb-16 min-h-[calc(100vh-80px)] flex-grow relative z-10">
           <div className="text-center mb-10 mt-10">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">

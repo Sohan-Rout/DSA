@@ -124,7 +124,7 @@ const LinearSearch = () => {
     };
   
     return (
-      <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
+      <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
         <main className="container mx-auto px-6 pt-16 pb-4">
 
           { /* go back block here */}

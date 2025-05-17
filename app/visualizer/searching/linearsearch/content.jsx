@@ -30,7 +30,7 @@ const content = () => {
   ];
 
   return (
-    <main className="max-w-4xl mx-auto px-4">
+    <main className="max-w-4xl mx-auto">
   <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
     {/* What is Linear Search */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
