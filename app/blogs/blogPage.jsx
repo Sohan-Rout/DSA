@@ -6,11 +6,11 @@ import Link from 'next/link';
 const BlogPage = () => {
   const otherBlogs = [
     {
-      title: "Understanding React Hooks",
-      excerpt: "Deep dive into useState, useEffect and custom hooks",
-      date: "May 20, 2024",
+      title: "Is data structures and algorithms important for web developers",
+      excerpt: "Explore why understanding data structures and algorithms can help web developers write efficient, scalable, and maintainable code.",
+      date: "May 20, 2025",
       readTime: "8 min read",
-      slug: "/blog/react-hooks"
+      slug: "/blogs/blogContent/dsaWebDev"
     },
     {
       title: "CSS Grid Mastery",
