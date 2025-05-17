@@ -6,7 +6,7 @@ import { FiChevronRight, FiSearch, FiFrown } from 'react-icons/fi';
 
 const SectionsDisplay = ({ sections, searchQuery }) => {
   return (
-    <div className="max-w-7xl mx-auto space-y-8 px-4 sm:px-6">
+    <div className="max-w-7xl mx-auto space-y-8 px-4 sm:px-1">
       {sections.map((section, sectionIndex) => (
         <motion.div
           key={sectionIndex}

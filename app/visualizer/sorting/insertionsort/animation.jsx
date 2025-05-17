@@ -178,13 +178,13 @@ const InsertionSortVisualizer = () => {
                 <button
                   onClick={insertionSort}
                   disabled={!array.length || sorting || sorted}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded disabled:opacity-50"
+                  className="w-full bg-none-600 border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-none disabled:border-blue-500 disabled:dark:border-blue-500 disabled:text-blue-500"
                 >
                   {sorting ? "Sorting..." : "Start Insertion Sort"}
                 </button>
                 <button
                   onClick={reset}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white px-4 mt-4 py-2 rounded"
+                  className="w-full bg-none border border-black dark:border-white text-black dark:text-white px-4 mt-4 py-2 rounded"
                 >
                   Reset All
                 </button>
