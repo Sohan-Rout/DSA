@@ -1,4 +1,5 @@
 import Animation from "@/app/visualizer/stack/isempty/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
   title: 'Stack Visualizer | Learn Stack with Animation and IsEmpty Operation in JS, C, Python, Java',
@@ -22,6 +23,9 @@ export const metadata = {
 
 export default function Page() {
   return(
-    <Animation />
+    <>
+      <Navbar/>
+      <Animation />
+    </>
   );
 };
