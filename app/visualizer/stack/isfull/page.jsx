@@ -1,4 +1,5 @@
-import Animation from "@/app/visualizer/stack/isfull/animation"; 
+import Animation from "@/app/visualizer/stack/isfull/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
   title: 'Stack Is Full Visualizer | Check Full Condition in Stack with Code in JS, C, Python, Java',
@@ -22,6 +23,9 @@ export const metadata = {
 
 export default function Page() {
   return(
-    <Animation />
+    <>
+      <Navbar />
+      <Animation />
+    </>
   );
 };
