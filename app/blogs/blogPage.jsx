@@ -142,41 +142,75 @@ const BlogPage = () => {
             Welcome to Our Tech Blog
           </h1>
           <p className="text-xl text-gray-600 dark:text-zinc-300 max-w-3xl mx-auto">
-            Discover the latest in web development, programming tips, and cutting-edge technologies.
+            Discover the latest in web development, programming tips, and
+            cutting-edge technologies.
           </p>
         </section>
 
         {/* Search Bar */}
-        <section className="mb-16">
+        <section className="mb-16 px-4">
           <div className="relative max-w-2xl mx-auto">
-            <form onSubmit={handleSearchSubmit} className="flex">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={handleSearch}
-                placeholder="Search blog posts..."
-                className="flex-1 p-3 border border-gray-300 dark:border-zinc-600 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-zinc-800 dark:text-zinc-100"
-              />
-              <button 
+            <form
+              onSubmit={handleSearchSubmit}
+              className="flex flex-col sm:flex-row gap-2 sm:gap-0"
+            >
+              <div className="flex-1 relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={handleSearch}
+                  placeholder="Search blog posts..."
+                  className="w-full p-3 sm:p-3 border border-gray-300 dark:border-zinc-600 rounded-lg sm:rounded-l-lg sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-zinc-800 dark:text-zinc-100"
+                />
+                {searchQuery.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSearchSuggestions([]);
+                    }}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-zinc-300"
+                    aria-label="Clear search"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                )}
+              </div>
+              <button
                 type="submit"
-                className="bg-blue-600 text-white px-6 py-3 rounded-r-lg hover:bg-blue-700 transition-colors flex items-center"
+                className="bg-blue-600 text-white px-6 py-3 rounded-lg sm:rounded-r-lg sm:rounded-l-none hover:bg-blue-700 transition-colors flex items-center justify-center"
               >
                 <FiSearch className="mr-2" />
-                Search
+                <span className="hidden sm:inline">Search</span>
               </button>
             </form>
-            
+
             {searchSuggestions.length > 0 && (
               <div className="absolute z-10 w-full mt-1 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-lg shadow-lg">
-                {searchSuggestions.map(blog => (
-                  <Link 
+                {searchSuggestions.map((blog) => (
+                  <Link
                     key={blog.id}
                     href={blog.slug}
                     className="block p-3 hover:bg-gray-100 dark:hover:bg-zinc-700 cursor-pointer border-b border-gray-100 dark:border-zinc-700 last:border-b-0"
                     onClick={() => setSearchSuggestions([])}
                   >
-                    <div className="font-medium dark:text-zinc-100">{blog.title}</div>
-                    <div className="text-sm text-gray-500 dark:text-zinc-400">{blog.category}</div>
+                    <div className="font-medium dark:text-zinc-100">
+                      {blog.title}
+                    </div>
+                    <div className="text-sm text-gray-500 dark:text-zinc-400">
+                      {blog.category}
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -191,14 +225,14 @@ const BlogPage = () => {
               Featured Posts
             </h2>
             <div className="flex space-x-2">
-              <button 
+              <button
                 onClick={prevSlide}
                 className="p-2 rounded-full bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300 hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors"
                 aria-label="Previous slide"
               >
                 <FiChevronLeft size={20} />
               </button>
-              <button 
+              <button
                 onClick={nextSlide}
                 className="p-2 rounded-full bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300 hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors"
                 aria-label="Next slide"
@@ -207,34 +241,36 @@ const BlogPage = () => {
               </button>
             </div>
           </div>
-          
-          <div 
+
+          <div
             className="relative overflow-hidden"
             ref={carouselRef}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <div 
+            <div
               className="grid grid-cols-1 md:grid-cols-3 gap-8 transition-transform duration-500 ease-in-out"
               style={{
-                transform: `translateX(-${currentSlideIndex * 100}%)`
+                transform: `translateX(-${currentSlideIndex * 100}%)`,
               }}
             >
               {blogData.map((blog) => (
-                <div 
+                <div
                   key={blog.id}
                   className="border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 rounded-lg overflow-hidden hover:shadow-md dark:hover:shadow-zinc-700/30 transition-all duration-300 group min-w-full"
                 >
                   <div className="h-48 bg-gray-200 dark:bg-zinc-700 overflow-hidden">
-                    <img 
-                      src={blog.image} 
+                    <img
+                      src={blog.image}
                       alt={blog.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                   <div className="p-6">
-                    <span className="text-sm text-gray-500 dark:text-zinc-400">{blog.category}</span>
+                    <span className="text-sm text-gray-500 dark:text-zinc-400">
+                      {blog.category}
+                    </span>
                     <h3 className="text-xl font-bold text-gray-800 dark:text-zinc-100 my-2 group-hover:text-black dark:group-hover:text-white transition-colors">
                       <Link href={blog.slug}>{blog.title}</Link>
                     </h3>
@@ -253,14 +289,20 @@ const BlogPage = () => {
 
           {/* Carousel indicators */}
           <div className="flex justify-center mt-6 space-x-2">
-            {Array.from({ length: Math.ceil(blogData.length / 3) }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlideIndex(index)}
-                className={`w-3 h-3 rounded-full ${currentSlideIndex === index ? 'bg-blue-600 dark:bg-blue-400' : 'bg-gray-300 dark:bg-zinc-600'}`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+            {Array.from({ length: Math.ceil(blogData.length / 3) }).map(
+              (_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlideIndex(index)}
+                  className={`w-3 h-3 rounded-full ${
+                    currentSlideIndex === index
+                      ? "bg-blue-600 dark:bg-blue-400"
+                      : "bg-gray-300 dark:bg-zinc-600"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              )
+            )}
           </div>
         </section>
 

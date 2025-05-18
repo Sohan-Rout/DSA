@@ -1,114 +1,157 @@
 const InfixToPostfixContent = () => {
-    return (
-      <main>
-        <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              What is Postfix Notation?
-            </h1>
-            <p className="ml-4 dark:text-gray-300 text-black">
-              Postfix notation (also called <span className="dark:text-amber-500 text-purple-600">Reverse Polish Notation</span>) is a way of writing expressions where
-              <span className="dark:text-amber-500 text-purple-600"> the operator comes after the operands</span>.
-              <br /><br />
-              For example, the infix expression <span className="dark:text-amber-500 text-purple-600">3 + 4</span> becomes <span className="dark:text-amber-500 text-purple-600">3 4 +</span> in postfix.
-              <br />
-              It removes the need for parentheses by making operator precedence explicit through position.
+  const paragraph = [
+    `Postfix notation (also called Reverse Polish Notation) is a way of writing expressions where the operator comes after the operands.`,
+    `For example, the infix expression 3 + 4 becomes 3 4 + in postfix. It removes the need for parentheses by making operator precedence explicit through position.`,
+    `Note: Higher precedence means the operation will happen first. When operators have equal precedence, they are evaluated left-to-right (except for exponentiation which is right-to-left).`,
+  ];
+
+  const steps = [
+    { points : "Initialize an empty stack and an empty output string." },
+    { points : "Scan the infix expression from left to right." },
+    { points : "If the element is an operand, add it to the output." },
+    { points : "If the element is a '(', push it onto the stack." },
+    { points : `If the element is a ')', pop from the stack and add to output until '(' is encountered.` },
+    { points : "If the element is an operator, pop from the stack all operators with higher or equal precedence, then push the current operator." },
+    { points : "After scanning, pop all remaining operators from the stack." },
+  ];
+
+  const example = [
+    { points : "Infix: (A + B) * (C - D)" },
+    { points : `Step 1: Push '(' → Stack: [ '(' ], Output: ''` },
+    { points : "Step 2: Add 'A' → Output: 'A'" },
+    { points : "Step 3: Push '+' → Stack: [ '(', '+' ]" },
+    { points : "Step 4: Add 'B' → Output: 'A B'" },
+    { points : "Step 5: Pop until '(' → Stack: [ ], Output: 'A B +'" },
+    { points : "Step 6: Continue similarly for the rest → Final Postfix: A B + C D - *" },
+  ];
+
+  return (
+    <main className="max-w-4xl mx-auto">
+      <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+        {/* What is Postfix Notation? */}
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+            What is Postfix Notation?
+          </h1>
+          <div className="prose dark:prose-invert max-w-none">
+            {paragraph.map((text, idx) => (
+              <p
+                key={idx}
+                className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed"
+              >
+                {text}
+              </p>
+            ))}
+          </div>
+        </section>
+
+        {/* Infix to Postfix Conversion Steps */}
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+            Infix to Postfix Conversion Steps
+          </h1>
+          <div className="prose dark:prose-invert max-w-none">
+            <ol className="space-y-3 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+              {steps.map((item, idx) => (
+                <li key={idx} className="text-gray-700 dark:text-gray-300 pl-2">
+                  {item.points}
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-4">
+              <span className="font-medium">
+                Example:
+              </span>
+              <ul className="mt-2 space-y-2 list-disc pl-5 marker:text-gray-400 dark:marker:text-gray-500">
+                {example.map((item, idx) => (
+                  <li key={idx} className="text-gray-600 dark:text-gray-400">
+                    {item.points}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Operator Precedence Table */}
+        <section className="p-6">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+            Operator Precedence Table
+          </h1>
+          <div className="prose dark:prose-invert max-w-none overflow-x-auto">
+            <table className="min-w-full border-collapse border border-blue-700">
+              <thead>
+                <tr className="bg-blue-50 dark:bg-blue-900/20">
+                  <th className="border border-blue-700 px-4 py-2 font-semibold">
+                    Operator
+                  </th>
+                  <th className="border border-blue-700 px-4 py-2 font-semibold">
+                    Meaning
+                  </th>
+                  <th className="border border-blue-700 px-4 py-2 font-semibold">
+                    Precedence
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                    ( )
+                  </td>
+                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                    Parentheses
+                  </td>
+                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                    Highest
+                  </td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-700/20">
+                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                    ^ %
+                  </td>
+                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                    Exponentiation / Modulus
+                  </td>
+                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                    2
+                  </td>
+                </tr>
+                <tr>
+                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                    * /
+                  </td>
+                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                    Multiplication / Division
+                  </td>
+                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                    3
+                  </td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-700/20">
+                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                    + -
+                  </td>
+                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                    Addition / Subtraction
+                  </td>
+                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                    4 (Lowest)
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p className="text-gray-700 dark:text-gray-300 mt-4 leading-relaxed">
+              {paragraph[2]}
             </p>
           </div>
-  
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              Infix to Postfix Conversion Steps
-            </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              <ol className="list-decimal ml-6">
-                <li>
-                  <span className="font-semibold dark:text-amber-500 text-purple-600">Initialize an empty stack</span> and an empty output string.
-                </li>
-                <li>
-                  <span className="font-semibold dark:text-amber-500 text-purple-600">Scan the infix expression</span> from left to right.
-                </li>
-                <li>
-                  If the element is an <span className="font-semibold dark:text-amber-500 text-purple-600">operand</span>, add it to the output.
-                </li>
-                <li>
-                  If the element is a <span className="font-semibold dark:text-amber-500 text-purple-600">'('</span>, push it onto the stack.
-                </li>
-                <li>
-                  If the element is a <span className="font-semibold dark:text-amber-500 text-purple-600">')'</span>, pop from the stack and add to output until '(' is encountered.
-                </li>
-                <li>
-                  If the element is an <span className="font-semibold dark:text-amber-500 text-purple-600">operator</span>, pop from the stack all operators with higher or equal precedence, then push the current operator.
-                </li>
-                <li>
-                  After scanning, <span className="font-semibold dark:text-amber-500 text-purple-600">pop all remaining operators</span> from the stack.
-                </li>
-              </ol>
-              <br />
-              <span className="dark:text-amber-500 text-purple-600">Example:</span>  
-              <br />
-              Infix: <span className="dark:text-amber-500 text-purple-600">(A + B) * (C - D)</span>
-              <br />
-              Step 1: Push '(' → Stack: <span className="dark:text-amber-500 text-purple-600">[ '(' ]</span>, Output: <span className="dark:text-amber-500 text-purple-600">''</span>
-              <br />
-              Step 2: Add 'A' → Output: <span className="dark:text-amber-500 text-purple-600">'A'</span>
-              <br />
-              Step 3: Push '+' → Stack: <span className="dark:text-amber-500 text-purple-600">[ '(', '+' ]</span>
-              <br />
-              Step 4: Add 'B' → Output: <span className="dark:text-amber-500 text-purple-600">'A B'</span>
-              <br />
-              Step 5: Pop until '(' → Stack: <span className="dark:text-amber-500 text-purple-600">[ ]</span>, Output: <span className="dark:text-amber-500 text-purple-600">'A B +'</span>
-              <br />
-              Step 6: Continue similarly for the rest → Final Postfix: <span className="dark:text-amber-500 text-purple-600">A B + C D - *</span>
-            </div>
-          </div>
-  
-          <div className="mt-4 mb-4 ml-4 mr-4 overflow-x-auto">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              Operator Precedence Table
-            </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              <table className="min-w-full border-collapse border border-blue-700">
-                <thead>
-                  <tr>
-                    <th className="border border-blue-700 px-4 py-2 bg-blue-600/50">Operator</th>
-                    <th className="border border-blue-700 px-4 py-2 bg-blue-600/50">Meaning</th>
-                    <th className="border border-blue-700 px-4 py-2 bg-blue-600/50">Precedence</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="border border-blue-700 px-4 py-2">( )</td>
-                    <td className="border border-blue-700 px-4 py-2">Parentheses</td>
-                    <td className="border border-blue-700 px-4 py-2">Highest</td>
-                  </tr>
-                  <tr>
-                    <td className="border border-blue-700 px-4 py-2">^ %</td>
-                    <td className="border border-blue-700 px-4 py-2">Exponentiation / Modulus</td>
-                    <td className="border border-blue-700 px-4 py-2">2</td>
-                  </tr>
-                  <tr>
-                    <td className="border border-blue-700 px-4 py-2">* /</td>
-                    <td className="border border-blue-700 px-4 py-2">Multiplication / Division</td>
-                    <td className="border border-blue-700 px-4 py-2">3</td>
-                  </tr>
-                  <tr>
-                    <td className="border border-blue-700 px-4 py-2">+ -</td>
-                    <td className="border border-blue-700 px-4 py-2">Addition / Subtraction</td>
-                    <td className="border border-blue-700 px-4 py-2">4 (Lowest)</td>
-                  </tr>
-                </tbody>
-              </table>
-              <p className="mt-4">
-                <span className="dark:text-amber-500 text-purple-600">Note:</span> Higher precedence means the operation will happen first.
-                When operators have equal precedence, they are evaluated left-to-right (except for exponentiation which is right-to-left).
-              </p>
-            </div>
-          </div>
-  
         </section>
-      </main>
-    );
+      </article>
+    </main>
+  );
   };
   
   export default InfixToPostfixContent;
