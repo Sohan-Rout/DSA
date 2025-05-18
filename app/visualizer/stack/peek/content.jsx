@@ -1,71 +1,70 @@
 const content = () => {
+  const paragraphs = [
+    `Returns the topmost element from the stack without removing it.`,
+    `The peek operation is useful when you need to inspect the top element before deciding whether to pop it or push another element onto the stack.`,
+  ];
+
+  const example = [
+    { points : "Current stack: [7, 3, 5]" },
+    { points : "Peek → returns 7: [7, 3, 5] (stack remains unchanged)" },
+    { points : "After pop: [3, 5]" },
+    { points : "Peek → returns 3: [3, 5]" },
+  ];
+
+  const complexity = [
+    { points : "Time Complexity: O(1)" },
+    { points : "Space Complexity: O(1)" },
+  ];
+
   return (
-    <main>
-      <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
-        <div className="mt-4 mb-4 ml-4 mr-4">
-          <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
+    <main className="max-w-4xl mx-auto">
+      <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+        {/* Peek Operation */}
+        <section className="p-6">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Peek Operation
           </h1>
-          <div className="ml-4 dark:text-gray-300 text-black">
-            Returns the <span className="font-semibold dark:text-amber-500 text-purple-600">topmost</span> element
-            from the stack{" "}
-            <span className="dark:text-amber-500 text-purple-600">
-              without removing it
-            </span>
-            .
-            <br />
-            <br />
-            <span className="dark:text-amber-500 text-purple-600">
-              Example:
-            </span>{" "}
-            Peeking at a stack
-            <ol className="list-decimal ml-8 pl-3">
-              <li>
-                Current stack:{" "}
-                <span className="dark:text-amber-500 text-purple-600">
-                  [7, 3, 5]
-                </span>
-              </li>
-              <li>
-                Peek → returns 7:{" "}
-                <span className="dark:text-amber-500 text-purple-600">
-                  [7, 3, 5]
-                </span>{" "}
-                (stack remains unchanged)
-              </li>
-              <li>
-                After pop:{" "}
-                <span className="dark:text-amber-500 text-purple-600">[3, 5]</span>
-              </li>
-              <li>
-                Peek → returns 3:{" "}
-                <span className="dark:text-amber-500 text-purple-600">[3, 5]</span>
-              </li>
+          <div className="prose dark:prose-invert max-w-none">
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              {paragraphs[0]}
+            </p>
+
+            <p className="text-gray-700 dark:text-gray-300 font-medium mt-4 mb-2">
+              Example: Peeking at a stack
+            </p>
+
+            <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+              {example.map((item, index) => (
+                <li
+                  key={index}
+                  className="text-gray-700 dark:text-gray-300 pl-2"
+                >
+                  {item.points}
+                </li>
+              ))}
             </ol>
-            <br />
-            <ul className="list-disc ml-6">
-              <li>
-                Time Complexity:{" "}
-                <span className="dark:text-amber-500 text-purple-600">O(1)</span>
-              </li>
-              <li>
-                Space Complexity:{" "}
-                <span className="dark:text-amber-500 text-purple-600">O(1)</span>
-              </li>
-              <li>
-                Also known as <span className="italic">top</span> operation in
-                some implementations
-              </li>
+
+            <ul className="mt-4 space-y-2 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+              {complexity.map((item, index) => (
+                <li
+                  key={index}
+                  className="text-gray-700 dark:text-gray-300 pl-2"
+                >
+                  <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-sm">
+                    {item.points.split(":")[0]}:
+                  </span>
+                  <span className="ml-2">{item.points.split(":")[1]}</span>
+                </li>
+              ))}
             </ul>
-            <br />
-            <p>
-              The peek operation is useful when you need to inspect the top
-              element before deciding whether to pop it or push another element
-              onto the stack.
+
+            <p className="text-gray-700 dark:text-gray-300 mt-4 leading-relaxed">
+              {paragraphs[1]}
             </p>
           </div>
-        </div>
-      </section>
+        </section>
+      </article>
     </main>
   );
 };

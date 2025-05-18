@@ -1,4 +1,5 @@
 import Animation from "@/app/visualizer/stack/push-pop/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
   title: 'Stack Push and Pop Visualizer | Understand Stack Operations with Code in JS, C, Python, Java',
@@ -24,6 +25,9 @@ export const metadata = {
 
 export default function Page() {
   return(
-    <Animation />
+    <>
+      <Navbar />
+      <Animation />
+    </>
   );
 };

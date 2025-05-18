@@ -61,7 +61,7 @@ const PushPop = ({ stack, setStack, isAnimating, setIsAnimating, setMessage, set
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 border border-gray-200 dark:border-gray-700">
       <div className="flex flex-col sm:flex-row gap-2 mb-4">
         <input
           type="text"
@@ -74,7 +74,7 @@ const PushPop = ({ stack, setStack, isAnimating, setIsAnimating, setMessage, set
         <button
           onClick={push}
           disabled={isAnimating}
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50 sm:w-auto w-full"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50 sm:w-auto w-full"
         >
           Push
         </button>
@@ -83,20 +83,20 @@ const PushPop = ({ stack, setStack, isAnimating, setIsAnimating, setMessage, set
         <button
           onClick={pop}
           disabled={isAnimating || stack.length === 0}
-          className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-transparent disabled:text-blue-600 border border-transparent disabled:border-blue-600 dark:disabled:text-white"
+          className="bg-none border border-black dark:border-white text-balck dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:dark:border-blue-500 disabled:text-blue-500 disabled:border-blue-500 dark:disabled:text-blue-500"
         >
           Pop
         </button>
         <button
           onClick={peek}
           disabled={isAnimating || stack.length === 0}
-          className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-transparent disabled:text-blue-600 border border-transparent disabled:border-blue-600 dark:disabled:text-white"
+          className="bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:dark:text-blue-500 disabled:text-blue-500 disabled:border-blue-500 dark:disabled:border-blue-500"
         >
           Peek
         </button>
         <button
           onClick={() => setStack([])}
-          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded disabled:opacity-50 col-span-2 sm:col-span-1"
+          className="bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 col-span-2 sm:col-span-1"
           disabled={isAnimating}
         >
           Reset

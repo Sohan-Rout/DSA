@@ -37,7 +37,7 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-3">
           {/* Logo/Brand */}
           <Link
-            href="/"
+            href="/visualizer"
             className="text-xl md:text-2xl flex items-center font-bold tracking-tight hover:text-blue-500 transition duration-300"
           >
             DSA<span className="text-blue-500">Visualizer</span>

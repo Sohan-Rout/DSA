@@ -1,4 +1,5 @@
 import Animation from "@/app/visualizer/stack/peek/animation"; 
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
   title: 'Stack Peek Visualizer | Understand Peek Operation in Stack with Code in JS, C, Python, Java',
@@ -23,6 +24,9 @@ export const metadata = {
 
 export default function Page() {
   return(
-    <Animation />
+    <>
+      <Navbar/>
+      <Animation/>
+    </>
   );
 };
