@@ -11,6 +11,12 @@ const TestimonialSection = () => {
       stars: 5,
     },
     {
+      name: 'Pratham Batra',
+      email: '@Co-founder, Geekroom',
+      review: `This is damn impressive seriously, no words. It genuinely feels like a strong alternative to platforms like GeeksforGeeks and W3Schools. Honestly, as a user, this feels even better. Everything is perfect. The only thing I’d love to see next is a custom code feature based on user input. But overall, this is fantastic.`,
+      stars: 4,
+    },
+    {
       name: 'Rahul Yadav',
       email: '@yadav.rahul05',
       review: `DSA Visualizer made understanding complex algorithms incredibly simple. Its intuitive design and step-by-step visuals helped me grasp DSA concepts faster than traditional methods. A must-use tool for learners! The interface might feel a bit cluttered or difficult to navigate for new users but seriously overall it's actually good. I particularly appreciate how it breaks down each step of the algorithms.`,
