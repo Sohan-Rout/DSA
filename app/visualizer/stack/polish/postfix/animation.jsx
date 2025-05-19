@@ -1,6 +1,5 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import Content from'@/app/visualizer/stack/polish/postfix/content';

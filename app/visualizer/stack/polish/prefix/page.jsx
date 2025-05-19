@@ -1,4 +1,5 @@
 import Animation from "@/app/visualizer/stack/polish/prefix/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
     title: 'Prefix Notation using Stack | Learn Prefix Evaluation in DSA with Code in JS, C, Python, Java',
@@ -23,6 +24,9 @@ export const metadata = {
 
 export default function Page() {
     return(
+      <>
+        <Navbar/>
         <Animation/>
+      </>
     );
 };
