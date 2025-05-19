@@ -1,4 +1,5 @@
 import Animation from "@/app/visualizer/queue/operations/enqueue-dequeue/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
   title: 'Enqueue and Dequeue Operations in Queue | Learn Queue with JS, C, Python, Java Code',
@@ -24,6 +25,9 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <Animation />
+    <>
+      <Navbar/>
+      <Animation />
+    </>
   );
 };
