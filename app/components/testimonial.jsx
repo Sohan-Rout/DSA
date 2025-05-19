@@ -17,6 +17,12 @@ const TestimonialSection = () => {
       stars: 4,
     },
     {
+      name: 'kartik',
+      email: '@kartik2005221',
+      review: `This platform made DSA so much easier to grasp. Everything’s in one place — topics, visualizations, and practice. It really helped me connect the dots between theory and how things actually work.`,
+      stars: 5,
+    },
+    {
       name: 'Priya Sharma',
       email: '@priya.s',
       review: `As a visual learner, this tool has been revolutionary for me. Being able to see the algorithms in action with different speeds makes all the difference. The color coding helps distinguish between different operations clearly.`,
