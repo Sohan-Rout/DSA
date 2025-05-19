@@ -252,7 +252,7 @@ const InfixToPostfixVisualizer = () => {
               </button>
               <button
                 onClick={reset}
-                className="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                className="px-6 py-2 bg-none text-black border border-black dark:border-white dark:text-white rounded-md"
               >
                 Reset
               </button>
