@@ -5,99 +5,94 @@ import { motion, AnimatePresence } from 'framer-motion';
 const QueueQuiz = () => {
   const questions = [
     {
-      question: "What principle does a Queue data structure follow?",
+      question: "What does the isEmpty operation in a queue determine?",
       options: [
-        "Last-In-First-Out (LIFO)",
-        "First-In-First-Out (FIFO)",
-        "Random Access",
-        "Priority-Based"
+        "The total capacity of the queue",
+        "Whether the queue contains any elements",
+        "The position of the front element",
+        "The time complexity of other operations"
       ],
       correctAnswer: 1,
-      explanation: "Queues follow FIFO: The first element added is the first one removed."
+      explanation: "isEmpty checks if the queue has zero elements (returns true if empty, false otherwise)."
     },
     {
-      question: "Where is a new element added in a Queue?",
+      question: "What does isEmpty() return for a queue with elements [10, 20]?",
+      options: ["true", "false", "null", "10"],
+      correctAnswer: 1,
+      explanation: "The queue contains elements, so isEmpty returns false."
+    },
+    {
+      question: "Why is isEmpty crucial before calling dequeue()?",
       options: [
-        "At the front",
-        "At the rear",
-        "In the middle",
-        "At any random position"
+        "To improve time complexity",
+        "To prevent queue underflow errors",
+        "To resize the queue",
+        "To count the elements"
       ],
       correctAnswer: 1,
-      explanation: "Enqueue adds elements to the **rear** (end) of the queue."
+      explanation: "Checking isEmpty first avoids errors when attempting to dequeue from an empty queue."
     },
     {
-      question: "What is the time complexity of the enqueue operation?",
+      question: "What is the time complexity of isEmpty?",
       options: ["O(n)", "O(1)", "O(log n)", "O(n²)"],
       correctAnswer: 1,
-      explanation: "Enqueue is O(1) as it only requires adding an element to the end."
+      explanation: "isEmpty runs in O(1) time as it only checks if front == rear or head == null."
     },
     {
-      question: "Given a queue [5, 10, 15], what will it look like after enqueue(20) and dequeue()?",
+      question: "How would you implement isEmpty for a linked list-based queue?",
       options: [
-        "[10, 15, 20]",
-        "[5, 10, 15]",
-        "[20, 10, 15]",
-        "[5, 10, 20]"
+        "Check if head.next == null",
+        "Check if head == null",
+        "Count all nodes",
+        "Compare head and tail values"
+      ],
+      correctAnswer: 1,
+      explanation: "For linked list queues, isEmpty simply verifies if the head pointer is null."
+    },
+    {
+      question: "In an array-based queue, what condition typically indicates an empty queue?",
+      options: [
+        "front == -1",
+        "front == rear",
+        "rear == array.length",
+        "front == array.length - 1"
+      ],
+      correctAnswer: 1,
+      explanation: "When front equals rear (with proper initialization), the queue is empty."
+    },
+    {
+      question: "What is the space complexity of the isEmpty operation?",
+      options: ["O(n)", "O(1)", "O(log n)", "Depends on queue size"],
+      correctAnswer: 1,
+      explanation: "isEmpty uses O(1) space as it only needs to compare pointers/counters."
+    },
+    {
+      question: "Which scenario would isEmpty return true?",
+      options: [
+        "After creating a new queue",
+        "After enqueuing one element",
+        "After dequeuing from a full queue",
+        "When front == rear + 1"
       ],
       correctAnswer: 0,
-      explanation: "Enqueue(20) → [5,10,15,20]; Dequeue() removes 5 → [10,15,20]."
+      explanation: "A newly created queue is empty by default (before any enqueue operations)."
     },
     {
-      question: "What happens if you try to dequeue from an empty queue?",
+      question: "How does isEmpty help in queue processing loops?",
       options: [
-        "Returns null",
-        "Returns 0",
-        "Causes an underflow error",
-        "Automatically resizes the queue"
-      ],
-      correctAnswer: 2,
-      explanation: "Dequeueing from an empty queue results in an **underflow** error."
-    },
-    {
-      question: "Which operation retrieves the front element without removing it?",
-      options: ["Enqueue", "Dequeue", "Peek", "Search"],
-      correctAnswer: 2,
-      explanation: "Peek (or front) examines the front element without modification."
-    },
-    {
-      question: "In a queue implementation using an array, what problem occurs if the rear reaches the end?",
-      options: [
-        "Stack overflow",
-        "Memory leak",
-        "Queue saturation",
-        "Need for circular queue"
-      ],
-      correctAnswer: 3,
-      explanation: "Fixed-size arrays may require a **circular queue** to reuse space when rear/front pointers wrap around."
-    },
-    {
-      question: "Which real-world scenario best demonstrates a queue?",
-      options: [
-        "Pile of stacked plates",
-        "Supermarket checkout line",
-        "Emergency room triage",
-        "Random lottery draw"
+        "By counting elements",
+        "As a termination condition",
+        "By sorting elements",
+        "By resizing the queue"
       ],
       correctAnswer: 1,
-      explanation: "A checkout line follows FIFO—first customer in line is first served."
+      explanation: "Loops often use isEmpty to check when to stop processing (e.g., while(!queue.isEmpty()))."
     },
     {
-      question: "What is the space complexity of a queue storing N elements?",
-      options: ["O(1)", "O(log N)", "O(N)", "O(N²)"],
+      question: "What would isEmpty return after: enqueue(5), dequeue(), dequeue()?",
+      options: ["true", "false", "Error", "null"],
       correctAnswer: 2,
-      explanation: "Queues use O(N) space to store all elements linearly."
-    },
-    {
-      question: "Which algorithm commonly uses a queue for implementation?",
-      options: [
-        "Depth-First Search (DFS)",
-        "Breadth-First Search (BFS)",
-        "Binary Search",
-        "QuickSort"
-      ],
-      correctAnswer: 1,
-      explanation: "BFS uses a queue to explore neighbor nodes level by level."
+      explanation: "Second dequeue() would cause underflow (error) if isEmpty wasn't checked first."
     }
 ];
 

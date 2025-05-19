@@ -1,10 +1,12 @@
 'use client';
 import React, { useState } from 'react';
-import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
 import CodeBlock from "@/app/visualizer/queue/operations/isempty/codeBlock";
 import Content from "@/app/visualizer/queue/operations/isempty/content";
 import ExploreOther from '@/app/components/ui/exploreOther';
+import Quiz from '@/app/visualizer/queue/operations/isempty/quiz';
+import BackToTop from '@/app/components/ui/backtotop';
+import GoBackButton from "@/app/components/ui/goback";
 
 const QueueVisualizer = () => {
   const [queue, setQueue] = useState([]);
@@ -79,13 +81,22 @@ const QueueVisualizer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
-      <Navbar />
-      <main className="container mx-auto px-4 sm:px-6 py-16">
-        <h1 className="text-4xl mt-10 md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-8">
-          <span className="text-blue-600">Queue</span> Visualizer
+    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
+      <main className="container mx-auto px-6 pt-16 pb-4">
+        {/* go back block here */}
+        <div className="mt-10 sm:mt-10">
+          <GoBackButton />
+        </div>
+
+        {/* main logic here */}
+        <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
+          <span className="text-black dark:text-white">Queue - IsEmpty</span>
         </h1>
-        <Content/>
+        <div className="bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5"></div>
+        <Content />
+        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+          Visualize isEmpty operation in real-time
+        </p>
 
         <div className="max-w-2xl mx-auto">
           {/* Controls */}
@@ -96,13 +107,13 @@ const QueueVisualizer = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Enter value"
-                className="flex-1 p-2 border rounded dark:bg-gray-700 focus:ring-2 focus:ring-green-500"
+                className="flex-1 p-2 border rounded dark:bg-gray-700 focus:ring-1 focus:ring-blue-500"
                 disabled={isAnimating}
               />
               <button
                 onClick={enqueue}
                 disabled={isAnimating}
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50 w-full sm:w-auto"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded disabled:opacity-50 w-full sm:w-auto"
               >
                 Enqueue
               </button>
@@ -111,20 +122,20 @@ const QueueVisualizer = () => {
               <button
                 onClick={dequeue}
                 disabled={isAnimating || queue.length === 0}
-                className="bg-red-600 hover:bg-red-700 border border-transparent disabled:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white text-white px-4 py-2 rounded disabled:opacity-50"
+                className="bg-none border border-black dark:border-white text-black dark:text-white disabled:border-blue-500 dark:disabled:border-blue-500 disabled:text-blue-500 dark:disabled:text-blue-500 px-4 py-2 rounded disabled:opacity-50"
               >
                 Dequeue
               </button>
               <button
                 onClick={checkEmpty}
                 disabled={isAnimating}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded disabled:opacity-50"
+                className="bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50"
               >
                 IsEmpty
               </button>
               <button
                 onClick={reset}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded disabled:opacity-50"
+                className="bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50"
                 disabled={isAnimating}
               >
                 Reset
@@ -144,13 +155,13 @@ const QueueVisualizer = () => {
             {/* Message Display */}
             <div
               className={`mb-6 p-3 rounded-lg ${
-                message.includes('added')
-                  ? 'bg-green-100 dark:bg-green-900'
-                  : message.includes('removed')
-                  ? 'bg-red-100 dark:bg-red-900'
+                message.includes("added")
+                  ? "bg-green-100 dark:bg-green-900"
+                  : message.includes("removed")
+                  ? "bg-red-100 dark:bg-red-900"
                   : isEmptyStatus
-                  ? 'bg-purple-100 dark:bg-purple-900'
-                  : 'bg-gray-100 dark:bg-gray-700'
+                  ? "bg-purple-100 dark:bg-purple-900"
+                  : "bg-gray-100 dark:bg-gray-700"
               }`}
             >
               {message}
@@ -173,27 +184,34 @@ const QueueVisualizer = () => {
                   <div
                     className={`text-center py-8 border-2 rounded-lg ${
                       isEmptyStatus
-                        ? 'border-gray-300 bg-gray-50 dark:border-gray-700 dark:bg-gray-900/30'
-                        : 'border-dashed border-gray-300 dark:border-gray-600'
+                        ? "border-gray-300 bg-gray-50 dark:border-gray-700 dark:bg-gray-900/30"
+                        : "border-dashed border-gray-300 dark:border-gray-600"
                     }`}
                   >
                     <span
-                      className={`${isEmptyStatus ? 'text-gray-600 dark:text-gray-400' : 'text-gray-500'}`}
+                      className={`${
+                        isEmptyStatus
+                          ? "text-gray-600 dark:text-gray-400"
+                          : "text-gray-500"
+                      }`}
                     >
-                      {isEmptyStatus ? 'Queue is empty!' : 'Queue is empty'}
+                      {isEmptyStatus ? "Queue is empty!" : "Queue is empty"}
                     </span>
                   </div>
                 ) : (
                   <div className="flex gap-2 overflow-x-auto pb-4">
                     {queue.map((item, index) => (
-                      <div key={index} className="flex flex-col items-center transition-all duration-300">
+                      <div
+                        key={index}
+                        className="flex flex-col items-center transition-all duration-300"
+                      >
                         <div
                           className={`w-16 sm:w-20 p-3 rounded-lg border-2 text-center font-medium ${
                             index === 0
-                              ? 'bg-green-500 text-white border-green-600'
+                              ? "bg-green-500 text-white border-green-600"
                               : index === queue.length - 1
-                              ? 'bg-orange-500 text-white border-orange-600'
-                              : 'bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600'
+                              ? "bg-orange-500 text-white border-orange-600"
+                              : "bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600"
                           }`}
                         >
                           {item}
@@ -207,7 +225,12 @@ const QueueVisualizer = () => {
           </div>
         </div>
 
-        <CodeBlock/>
+        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
+          Test Your Knowledge before moving forward!
+        </p>
+        <Quiz />
+
+        <CodeBlock />
         <ExploreOther
           title="Explore Other Operations"
           links={[
@@ -218,6 +241,7 @@ const QueueVisualizer = () => {
         />
       </main>
       <div className="bg-gray-700 z-10 h-[1px]"></div>
+      <BackToTop />
       <Footer />
     </div>
   );

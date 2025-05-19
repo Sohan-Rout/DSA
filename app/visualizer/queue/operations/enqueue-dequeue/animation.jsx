@@ -273,6 +273,7 @@ const QueueVisualizer = () => {
         </div>
       </div>
     </div>
+    
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
             Test Your Knowledge before moving forward!
           </p>
