@@ -1,4 +1,5 @@
 import Animation from "@/app/visualizer/stack/implementation/usingArray/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
   title: 'Stack Implementation using Array | Learn Stack in DSA with JS, C, Python, Java Code',
@@ -23,6 +24,9 @@ export const metadata = {
 
 export default function Page(){
   return(
-    <Animation/>
+    <>
+      <Navbar/>
+      <Animation/>
+    </>
   );
 };
