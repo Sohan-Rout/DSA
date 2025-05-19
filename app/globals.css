@@ -82,3 +82,21 @@ html {
 .animate-float-slower {
   animation: float-slower 10s ease-in-out infinite;
 }
+
+@keyframes draw-loop {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 100;
+  }
+}
+
+.animate-draw .path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw-loop 2s ease-in-out infinite;
+}

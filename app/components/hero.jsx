@@ -2,9 +2,11 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from 'next/link';
 
 const HeroSection = () => {
   const router = useRouter();
+  
 
   const handleStartVisualizing = () => {
     router.push("/visualizer");
@@ -21,12 +23,54 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="min-h-screen py-10 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-950 dark:to-black text-gray-900 dark:text-gray-100 relative overflow-hidden">
-      {/* Abstract background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-blue-400/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2"></div>
-      </div>
+      <section className="min-h-screen py-10 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-950 dark:to-black text-gray-900 dark:text-gray-100 relative overflow-hidden">
+  {/* Notification Bar */}
+<div className="hidden md:block absolute mt-14 top-12 left-1/2 transform -translate-x-1/2 z-20 w-full max-w-md px-4">
+  <div className="bg-white dark:bg-gray-800 border border-blue-200 dark:border-blue-900 rounded-full shadow-lg py-2 px-4 flex items-center justify-between">
+    <span className="text-sm font-medium text-blue-600 dark:text-blue-400 flex items-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-4 w-4 mr-2 text-blue-600 dark:text-blue-400 animate-draw"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+          className="path"
+        />
+      </svg>
+      New: Blog Posts Added!
+    </span>
+<Link href="./blogs">
+  <button className="text-blue-600 hover:text-blue-700 dark:hover:text-blue-700">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  className="h-4 w-4 transform transition-transform duration-300 hover:translate-x-1"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke="currentColor"
+>
+  <path
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth={2}
+    d="M9 5l7 7-7 7"
+  />
+</svg>
+  </button>
+</Link>
+  </div>
+</div>
+
+  {/* Abstract background elements */}
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute top-0 left-0 w-64 h-64 bg-blue-400/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+    <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2"></div>
+  </div>
 
       <div className="container mx-auto px-6 py-20 flex flex-col lg:flex-row items-center justify-between relative z-10 gap-12">
         {/* Text Content */}
