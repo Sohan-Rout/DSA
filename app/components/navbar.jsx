@@ -10,6 +10,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
   const { user } = useUser();
+  console.log("👤 Navbar user:", user); /* temporary */
 
   // Load theme from localStorage on mount and apply it
   useEffect(() => {
