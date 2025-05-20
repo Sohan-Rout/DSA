@@ -10,7 +10,11 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
   const { user } = useUser();
-  console.log("👤 Navbar user:", user); /* temporary */
+
+  const handleLogout = async () => {
+  await supabase.auth.signOut();
+  router.push('/');
+};
 
   // Load theme from localStorage on mount and apply it
   useEffect(() => {
@@ -108,14 +112,27 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/blogs" className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300">Blogs</Link>
+            <Link
+              href="/blogs"
+              className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300"
+            >
+              Blogs
+            </Link>
           </li>
           {/* Login Button for Desktop */}
           <li>
             {user ? (
-              <span className="text-sm lg:text-base font-medium text-green-600">
-                Welcome, {user.email.split('@')[0]}
-              </span>
+              <>
+                <span className="text-sm lg:text-base font-medium text-green-600">
+                  Welcome, {user.email.split("@")[0]}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="ml-4 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                >
+                  Logout
+                </button>
+              </>
             ) : (
               <Link
                 href="/login"
@@ -264,20 +281,28 @@ export default function Navbar() {
               FAQs
             </Link>
           </li>
-<li>
-  <Link
-    href="/blogs"
-    className="block py-2 font-medium hover:text-blue-400 transition duration-300"
-    onClick={closeMobileMenu}
-  >
-    Blogs
-  </Link>
-</li>
+          <li>
+            <Link
+              href="/blogs"
+              className="block py-2 font-medium hover:text-blue-400 transition duration-300"
+              onClick={closeMobileMenu}
+            >
+              Blogs
+            </Link>
+          </li>
           <li>
             {user ? (
-              <span className="block text-center py-2 font-medium text-green-600">
-                Welcome, {user.email.split('@')[0]}
-              </span>
+              <>
+                <span className="text-sm lg:text-base font-medium text-green-600">
+                  Welcome, {user.email.split("@")[0]}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="ml-4 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                >
+                  Logout
+                </button>
+              </>
             ) : (
               <Link
                 href="/login"
