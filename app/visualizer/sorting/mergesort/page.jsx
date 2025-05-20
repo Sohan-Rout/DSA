@@ -2,11 +2,12 @@ import Animation from "@/app/visualizer/sorting/mergesort/animation";
 import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
-  title: 'Merge Sort Visualizer & Quiz | Step-by-Step Algorithm Animation with Code in JS, C, Python, Java',
+  title: 'Merge Sort Algorithm | Step-by-Step Algorithm Animation',
   description: 'Explore how Merge Sort works with interactive, step-by-step visualizations, hands-on practice, and a quiz to test your understanding. Includes code examples in JavaScript, C, Python, and Java. Ideal for beginners learning efficient divide-and-conquer sorting algorithms.',
   keywords: [
     'Merge Sort Visualizer',
     'Merge Sort Animation',
+    'Merge Sort Visualization',
     'Merge Sort Algorithm',
     'Merge Sort Quiz',
     'Sorting Algorithm Quiz',

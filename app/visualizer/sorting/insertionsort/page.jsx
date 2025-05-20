@@ -2,11 +2,12 @@ import Animation from "@/app/visualizer/sorting/insertionsort/animation";
 import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
-  title: 'Insertion Sort Visualizer & Quiz | Learn with Interactive Animations and Code in JS, C, Python, Java',
+  title: 'Insertion Sort Algorithm | Learn with Interactive Animations',
   description: 'Understand how Insertion Sort works through step-by-step animations and test your knowledge with an interactive quiz. Includes code examples in JavaScript, C, Python, and Java. Perfect for beginners learning data structures and algorithms visually and through hands-on coding.',
   keywords: [
     'Insertion Sort Visualizer',
     'Insertion Sort Animation',
+    'Insertion Sort Visualization',
     'DSA Insertion Sort',
     'Learn Insertion Sort',
     'Insertion Sort Quiz',

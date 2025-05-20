@@ -17,6 +17,12 @@ const TestimonialSection = () => {
       stars: 4,
     },
     {
+      name: 'Arnav Gupta',
+      email: '@Co-founder, Geekroom',
+      review: `DSA Visualizer, this could be the upcoming game-changer. When you’re stuck on LeetCode or trying to debug your logic, it helps you actually see what your code is doing at each step. Whether you're just starting out or deep into competitive programming, this is something which can make learning DSA so much more intuitive and less frustrating. Well! my opinion says in the future, I’d love to see a built-in compiler or a feature where users can test their own code with custom inputs — that would take it to the next level. But even now, it’s incredibly helpful and super polished!”`,
+      stars: 4,
+    },
+    {
       name: 'Rahul Yadav',
       email: '@yadav.rahul05',
       review: `DSA Visualizer made understanding complex algorithms incredibly simple. Its intuitive design and step-by-step visuals helped me grasp DSA concepts faster than traditional methods. A must-use tool for learners! The interface might feel a bit cluttered or difficult to navigate for new users but seriously overall it's actually good. I particularly appreciate how it breaks down each step of the algorithms.`,
