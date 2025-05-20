@@ -2,7 +2,7 @@ import LinearSearchAnimation from '@/app/visualizer/searching/linearsearch/anima
 import Navbar from '@/app/components/navbarinner';
 
 export const metadata = {
-  title: 'Linear Search Visualizer Algorithm | Step-by-Step Animation',
+  title: 'Linear Search Algorithm | Step-by-Step Animation',
   description: 'Visualize the Linear Search algorithm with step-by-step animations, code examples in JavaScript, C, Python, and Java, and a Linear Search Quiz to test your understanding. Build a strong foundation in DSA through interactive learning.',
   keywords: [
     'Linear Search Visualizer',

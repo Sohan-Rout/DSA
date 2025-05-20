@@ -100,3 +100,46 @@ html {
   stroke-dashoffset: 100;
   animation: draw-loop 2s ease-in-out infinite;
 }
+
+/* 404 Animation styles */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.animate-float-slow { animation: float 8s ease-in-out infinite; }
+.animate-float-slower { animation: float 12s ease-in-out infinite; }
+
+@keyframes bounce-pin-1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.animate-bounce-pin-1 { animation: bounce-pin-1 2s ease-in-out infinite; }
+
+@keyframes bounce-pin-2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-bounce-pin-2 { animation: bounce-pin-2 2.5s ease-in-out infinite; }
+
+@keyframes spark {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+.animate-spark-1 { animation: spark 3s ease-in-out infinite; }
+.animate-spark-2 { animation: spark 3.5s ease-in-out infinite; }
+
+@keyframes swing {
+  0%, 100% { transform: translateX(-50%) rotate(-5deg); }
+  50% { transform: translateX(-50%) rotate(5deg); }
+}
+.animate-swing { animation: swing 4s ease-in-out infinite; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 0; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+}
+.animate-pulse { animation: pulse 3s ease-in-out infinite; }
+
+/* Page load animation */
+.page-loaded .page-loaded\:opacity-100 { opacity: 1; }
+.page-loaded .page-loaded\:translate-y-0 { transform: translateY(0); }
