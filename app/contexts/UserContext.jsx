@@ -1,5 +1,6 @@
 'use client';
-import { createContext, useContext, useState, useEffect } from 'react';
+
+import { createContext, useContext, useEffect, useState } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 const UserContext = createContext();
@@ -9,12 +10,19 @@ export const UserProvider = ({ children }) => {
   const supabase = createClientComponentClient();
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const getSessionAndUser = async () => {
+      const { data: sessionData } = await supabase.auth.getSession();
+      if (!sessionData.session) {
+        console.log("🚫 No session found");
+        return;
+      }
+
       const { data: { user } } = await supabase.auth.getUser();
-      console.log("🧠 Logged-in user from Supabase:", user); /* temporary */
+      console.log("✅ Logged-in user from Supabase:", user);
       setUser(user);
     };
-    fetchUser();
+
+    getSessionAndUser();
   }, []);
 
   return <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>;
