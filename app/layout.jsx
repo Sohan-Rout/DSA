@@ -6,6 +6,7 @@ import { AuthProvider } from '@/app/contexts/AuthContext';
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata = {
+  metadataBase: new URL("https://dsavisualizer.in"),
   title: 'DSA Visualizer | Visualize & Learn DSA the Smart Way',
   description: 'Master Data Structures and Algorithms with interactive visualizations. Perfect for students, beginners, and interview prep. Visualize Stack, Queue, Tree, Graph, Sorting & more.',
   keywords: [

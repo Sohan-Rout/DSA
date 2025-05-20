@@ -2,10 +2,11 @@ import Animation from "@/app/visualizer/searching/binarysearch/animation";
 import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
-  title: 'Binary Search Visualizer & Quiz | Step-by-Step Animation with Code in JS, C, Python, Java',
+  title: 'Binary Search Algorithm | Step-by-Step Animation',
   description: 'Visualize the Binary Search algorithm with intuitive step-by-step animations, code examples in JavaScript, C, Python, and Java, and an interactive Binary Search Quiz to test your knowledge. Perfect for DSA preparation and beginners learning efficient search algorithms.',
   keywords: [
     'Binary Search Visualizer',
+    'Binary Search Visualization',
     'Binary Search Animation',
     'Learn Binary Search',
     'Binary Search for Beginners',
