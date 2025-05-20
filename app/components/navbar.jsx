@@ -2,12 +2,14 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useUser } from '@/app/contexts/UserContext';
 
 export default function Navbar() {
   const [theme, setTheme] = useState("light");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
+  const { user } = useUser();
 
   // Load theme from localStorage on mount and apply it
   useEffect(() => {
@@ -109,26 +111,32 @@ export default function Navbar() {
           </li>
           {/* Login Button for Desktop */}
           <li>
-            <Link
-              href="/login"
-              className="ml-4 px-4 py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md flex items-center gap-2"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+            {user ? (
+              <span className="text-sm lg:text-base font-medium text-green-600">
+                Welcome, {user.email.split('@')[0]}
+              </span>
+            ) : (
+              <Link
+                href="/login"
+                className="ml-4 px-4 py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md flex items-center gap-2"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                />
-              </svg>
-              Login/Signup
-            </Link>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+                Login/Signup
+              </Link>
+            )}
           </li>
           {/* Theme Toggle Button */}
           <li>
@@ -265,13 +273,19 @@ export default function Navbar() {
   </Link>
 </li>
           <li>
-            <Link
-              href="/login"
-              className="block w-full text-center py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md mt-2"
-              onClick={closeMobileMenu}
-            >
-              Login/Signup
-            </Link>
+            {user ? (
+              <span className="block text-center py-2 font-medium text-green-600">
+                Welcome, {user.email.split('@')[0]}
+              </span>
+            ) : (
+              <Link
+                href="/login"
+                className="block w-full text-center py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md mt-2"
+                onClick={closeMobileMenu}
+              >
+                Login/Signup
+              </Link>
+            )}
           </li>
           <li className="pt-2">
             <button
