@@ -1,4 +1,5 @@
 import Animation from "@/app/visualizer/queue/operations/isfull/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
     title: 'Queue Is Full Operation | Learn with JS, C, Python, Java Code',
@@ -22,6 +23,9 @@ export const metadata = {
 
 export default function page(){
     return(
+      <>
+        <Navbar/>
         <Animation/>
+      </>
     );
 };
