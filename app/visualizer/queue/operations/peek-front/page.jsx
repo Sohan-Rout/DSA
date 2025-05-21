@@ -1,10 +1,12 @@
 import Animation from "@/app/visualizer/queue/operations/peek-front/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
   title: 'Queue Peek Front Operation | Learn with JS, C, Java, Python Code',
   description: 'Understand the Peek Front operation in Queue with interactive animations and code examples in JavaScript, C, Python, and Java. Ideal for DSA beginners and interview preparation.',
   keywords: [
     'Queue Peek Front',
+    'Queue peek front Visulaization',
     'Peek Front Operation',
     'Queue DSA',
     'Queue Front Element',
@@ -23,6 +25,9 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <Animation />
+    <>
+      <Navbar/>
+      <Animation />
+    </>
   );
 };
