@@ -1,10 +1,12 @@
 'use client';
 import React, { useState } from 'react';
-import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
 import CodeBlock from '@/app/visualizer/queue/types/singleEnded/codeBlock';
 import Content from '@/app/visualizer/queue/types/singleEnded/content';
 import ExploreOther from '@/app/components/ui/exploreOther';
+import Quiz from '@/app/visualizer/queue/types/singleEnded/quiz';
+import BackToTop from '@/app/components/ui/backtotop';
+import GoBackButton from "@/app/components/ui/goback";
 
 const SingleEndedQueueVisualizer = () => {
   const [queue, setQueue] = useState([]);
@@ -93,14 +95,20 @@ const SingleEndedQueueVisualizer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
-      <Navbar />
-      <main className="container mx-auto px-4 sm:px-6 pt-16 pb-4 md:pt-16 md:pb-4">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6 mt-6 md:mt-6 md:mb-8">
-          <span className="text-blue-600 dark:text-blue-600">Single-Ended Queue</span> Visualizer
-        </h1>
-        <Content/>
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
+  <main className="container mx-auto px-6 pt-16 pb-4">
+    {/* go back block here */}
+    <div className="mt-10 sm:mt-10">
+      <GoBackButton />
+    </div>
+
+    {/* main logic here */}
+    <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
+      <span className="text-black dark:text-white">Single Ended Queue</span>
+    </h1>
+    <div className='bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5'></div>
+    <Content />
+    <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
             Visualize Single Ended Queue Operations
           </p>
         <div className="max-w-2xl mx-auto">
@@ -118,9 +126,9 @@ const SingleEndedQueueVisualizer = () => {
               <button
                 onClick={enqueueRear}
                 disabled={isAnimating}
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105 w-full sm:w-auto"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105 w-full sm:w-auto"
               >
-                Enqueue Rear
+                Enqueue
               </button>
             </div>
             
@@ -128,28 +136,28 @@ const SingleEndedQueueVisualizer = () => {
               <button
                 onClick={dequeueFront}
                 disabled={isAnimating || queue.length === 0}
-                className="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white border border-transparent disabled:border-blue-600 transition-transform hover:scale-105"
+                className="bg-none border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-transparent disabled:text-blue-600 disabled:border-blue-600 dark:disabled:text-blue-600 border dark:disabled:border-blue-600 transition-transform hover:scale-105"
               >
-                Dequeue Front
+                Dequeue
               </button>
               <button
                 onClick={peekFront}
                 disabled={isAnimating || queue.length === 0}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded disabled:opacity-50 border border-transparent disabled:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white transition-transform hover:scale-105"
+                className="bg-none border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-transparent disabled:text-blue-600 disabled:border-blue-600 dark:disabled:text-blue-600 border dark:disabled:border-blue-600 transition-transform hover:scale-105"
               >
                 Peek Front
               </button>
               <button
                 onClick={peekRear}
                 disabled={isAnimating || queue.length === 0}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded disabled:opacity-50 border border-transparent disabled:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white transition-transform hover:scale-105"
+                className="bg-none border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-transparent disabled:text-blue-600 disabled:border-blue-600 dark:disabled:text-blue-600 border dark:disabled:border-blue-600 transition-transform hover:scale-105"
               >
                 Peek Rear
               </button>
               <button
                 onClick={reset}
                 disabled={isAnimating}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
+                className="bg-none border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-transparent disabled:text-blue-600 disabled:border-blue-600 dark:disabled:text-blue-600 border dark:disabled:border-blue-600 transition-transform hover:scale-105"
               >
                 Clear
               </button>
@@ -212,6 +220,11 @@ const SingleEndedQueueVisualizer = () => {
           </div>
         </div>
 
+        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
+          Test Your Knowledge before moving forward!
+        </p>
+        <Quiz />
+
         <CodeBlock/>
         <ExploreOther
           title="Explore Other Types"
@@ -227,6 +240,7 @@ const SingleEndedQueueVisualizer = () => {
         <div className="bg-gray-700 z-10 h-[1px]"></div>
       </div>
       <div className="bg-gray-700 z-10 h-[1px]"></div>
+      <BackToTop />
       <Footer />
     </div>
   );

@@ -1,7 +1,8 @@
 import Animation from "@/app/visualizer/queue/types/singleEnded/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
-    title: 'Single Ended Queue in DSA | Learn with JS, C, Python, Java Code',
+    title: 'Single Ended Queue | Learn with JS, C, Python, Java Code',
     description: 'Understand Single Ended Queue in Data Structures with animations and full code examples in JavaScript, C, Python, and Java. Ideal for beginners learning queue operations and preparing for interviews.',
     keywords: [
       'Single Ended Queue',
@@ -21,6 +22,9 @@ export const metadata = {
 
 export default function Page(){
     return(
+      <>
+        <Navbar/>
         <Animation/>
+      </>
     );
 };
