@@ -1,152 +1,252 @@
 const content = () => {
+  const paragraph = [
+    `A Double-Ended Queue (Deque) is a versatile data structure that allows insertion and deletion of elements from both ends (front and rear). Unlike a single-ended queue, it provides more flexibility while maintaining efficient O(1) operations.`,
+    `The double-ended queue is a powerful hybrid data structure that combines the best features of stacks and queues. Its flexibility makes it invaluable for algorithms requiring access to both ends of a dataset, while maintaining efficient constant-time operations for all key functions.`,
+  ];
+
+  const characteristics = [
+    { points : "Two open ends:",
+      subpoints : [
+        "Supports operations at both front and rear",
+      ],
+     },
+    { points : "Four core operations:",
+      subpoints : [
+        "addFront() - Insert at front",
+        "addRear() - Insert at rear",
+        "removeFront() - Delete from front",
+        "removeRear() - Delete from rear",
+      ],
+     },
+    { points : "Hybrid nature:",
+      subpoints : [
+        "Combines features of both stacks and queues",
+      ],
+     },
+  ];
+
+  const example = [
+    { points : "addFront(30): [30]" },
+    { points : "addRear(40): [30, 40]" },
+    { points : "addFront(20): [20, 30, 40]" },
+    { points : "addRear(50): [20, 30, 40, 50]" },
+    { points : "removeFront(): Returns 20 → [30, 40, 50]" },
+    { points : "removeRear(): Returns 50 → [30, 40]" },
+  ];
+
+  const variations = [
+    { points : "Doubly Linked List:",
+      subpoints : [
+        "Natural fit with head and tail pointers",
+        "All operations are O(1)",
+        "Extra memory for previous/next pointers",
+      ],
+    },
+    { points : "Circular Array:",
+      subpoints : [
+        "Fixed capacity but efficient",
+        "Requires careful index management",
+        "Good for memory-constrained environments",
+      ],
+    },
+    { points : "Dynamic Array:",
+      subpoints : [
+        "Amortized O(1) operations",
+        "May need occasional resizing",
+      ],
+    },
+  ];
+
+  const complexity = [
+    { points : "addFront(): O(1)" },
+    { points : "addRear(): O(1)" },
+    { points : "removeFront(): O(1)" },
+    { points : "removeRear(): O(1)" },
+    { points : "peekFront(): O(1)" },
+    { points : "peekRear(): O(1)" },
+  ];
+
+  const application = [
+    { points : "Undo/Redo operations: Store history at both ends" },
+    { points : "Palindrome checking: Compare front and rear elements" },
+    { points : "Steal algorithms: Work stealing in parallel processing" },
+    { points : "Sliding window problems: Efficient maximum/minimum tracking" },
+    { points : "Browser history: Navigation in both directions" },
+  ];
+
+  const cases = [
+    { points : "Input-Restricted Deque: Insertion only at one end" },
+    { points : "Output-Restricted Deque: Deletion only at one end" },
+    { points : "Palindrome Checker: Using deque properties" },
+    { points : "Priority Deque: Combines deque and priority queue features" },
+  ];
+
     return (
-      <main>
-        <section className="shadow-lg rounded-lg bg-white dark:bg-gray-800 mt-8 mb-8 p-2">
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              What is a Double-Ended Queue (Deque)?
-            </h1>
-            <p className="ml-4 dark:text-gray-300 text-black">
-              A <span className="dark:text-amber-500 text-purple-600">Double-Ended Queue (Deque)</span> is a versatile data structure that allows insertion and deletion of elements from <span className="dark:text-amber-500 text-purple-600">both ends</span> (front and rear). 
-              Unlike a single-ended queue, it provides more flexibility while maintaining efficient O(1) operations.
-            </p>
-          </div>
-  
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              Key Characteristics
-            </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              Deques have these fundamental properties:
-              <br /><br />
-              <ol className="list-decimal ml-8 pl-3">
-                <li>
-                  <span className="font-semibold">Two open ends:</span> Supports operations at both front and rear
-                </li>
-                <li>
-                  <span className="font-semibold">Four core operations:</span>
-                  <ul className="list-disc ml-6">
-                    <li><span className="font-semibold">addFront()</span> - Insert at front</li>
-                    <li><span className="font-semibold">addRear()</span> - Insert at rear</li>
-                    <li><span className="font-semibold">removeFront()</span> - Delete from front</li>
-                    <li><span className="font-semibold">removeRear()</span> - Delete from rear</li>
-                  </ul>
-                </li>
-                <li>
-                  <span className="font-semibold">Hybrid nature:</span> Combines features of both stacks and queues
-                </li>
-              </ol>
-            </div>
-          </div>
-  
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              Visual Example
-            </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              Operation sequence on an empty deque:
-              <br /><br />
-              <ol className="list-decimal ml-8 pl-3">
-                <li>addFront(30): [<span className="dark:text-amber-500 text-purple-600">30</span>]</li>
-                <li>addRear(40): [30, <span className="dark:text-amber-500 text-purple-600">40</span>]</li>
-                <li>addFront(20): [<span className="dark:text-amber-500 text-purple-600">20</span>, 30, 40]</li>
-                <li>addRear(50): [20, 30, 40, <span className="dark:text-amber-500 text-purple-600">50</span>]</li>
-                <li>removeFront(): Returns 20 → [<span className="dark:text-amber-500 text-purple-600">30</span>, 40, 50]</li>
-                <li>removeRear(): Returns 50 → [30, 40]</li>
-              </ol>
-            </div>
-          </div>
-  
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              Implementation Variations
-            </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              Common implementation approaches:
-              <ol className="list-decimal ml-8 pl-2">
-                <li>
-                  <span className="font-semibold">Doubly Linked List:</span>
-                  <ul className="list-disc ml-6">
-                    <li>Natural fit with head and tail pointers</li>
-                    <li>All operations are O(1)</li>
-                    <li>Extra memory for previous/next pointers</li>
-                  </ul>
-                </li>
-                <li>
-                  <span className="font-semibold">Circular Array:</span>
-                  <ul className="list-disc ml-6">
-                    <li>Fixed capacity but efficient</li>
-                    <li>Requires careful index management</li>
-                    <li>Good for memory-constrained environments</li>
-                  </ul>
-                </li>
-                <li>
-                  <span className="font-semibold">Dynamic Array:</span>
-                  <ul className="list-disc ml-6">
-                    <li>Amortized O(1) operations</li>
-                    <li>May need occasional resizing</li>
-                  </ul>
-                </li>
-              </ol>
-            </div>
-          </div>
-  
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              Time Complexity
-            </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              <ul className="list-disc ml-8 pl-2">
-                <li>addFront(): <span className="dark:text-amber-500 text-purple-600">O(1)</span></li>
-                <li>addRear(): <span className="dark:text-amber-500 text-purple-600">O(1)</span></li>
-                <li>removeFront(): <span className="dark:text-amber-500 text-purple-600">O(1)</span></li>
-                <li>removeRear(): <span className="dark:text-amber-500 text-purple-600">O(1)</span></li>
-                <li>peekFront(): <span className="dark:text-amber-500 text-purple-600">O(1)</span></li>
-                <li>peekRear(): <span className="dark:text-amber-500 text-purple-600">O(1)</span></li>
-              </ul>
-            </div>
-          </div>
-  
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              Applications
-            </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              Deques are used in:
-              <ol className="list-disc ml-8 pl-2">
-                <li><span className="font-semibold">Undo/Redo operations:</span> Store history at both ends</li>
-                <li><span className="font-semibold">Palindrome checking:</span> Compare front and rear elements</li>
-                <li><span className="font-semibold">Steal algorithms:</span> Work stealing in parallel processing</li>
-                <li><span className="font-semibold">Sliding window problems:</span> Efficient maximum/minimum tracking</li>
-                <li><span className="font-semibold">Browser history:</span> Navigation in both directions</li>
-              </ol>
-            </div>
-          </div>
-  
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <h1 className="text-2xl mb-2 underline decoration-blue-500 underline-offset-4">
-              Special Cases
-            </h1>
-            <div className="ml-4 dark:text-gray-300 text-black">
-              Interesting deque variations:
-              <ul className="list-disc ml-8 pl-2">
-                <li><span className="font-semibold">Input-Restricted Deque:</span> Insertion only at one end</li>
-                <li><span className="font-semibold">Output-Restricted Deque:</span> Deletion only at one end</li>
-                <li><span className="font-semibold">Palindrome Checker:</span> Using deque properties</li>
-                <li><span className="font-semibold">Priority Deque:</span> Combines deque and priority queue features</li>
-              </ul>
-            </div>
-          </div>
-  
-          <div className="mt-4 mb-4 ml-4 mr-4">
-            <p className="ml-4 dark:text-gray-300 text-black">
-              The double-ended queue is a powerful hybrid data structure that combines the best features of stacks and queues. 
-              Its flexibility makes it invaluable for algorithms requiring access to both ends of a dataset, 
-              while maintaining efficient constant-time operations for all key functions.
-            </p>
-          </div>
-        </section>
-      </main>
+      <main className="max-w-4xl mx-auto">
+  <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+    {/* What is a Double-Ended Queue (Deque)? */}
+    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+        What is a Double-Ended Queue (Deque)?
+      </h1>
+      <div className="prose dark:prose-invert max-w-none">
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          {paragraph[0]}
+        </p>
+      </div>
+    </section>
+
+    {/* Key Characteristics */}
+    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+        Key Characteristics
+      </h1>
+      <div className="prose dark:prose-invert max-w-none">
+        <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+          Deques have these fundamental properties:
+        </p>
+        <ol className="space-y-3 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+          {characteristics.map((item, index) => (
+            <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
+              {item.points}
+              {item.subpoints && (
+                <ul className="mt-2 space-y-2 list-disc pl-5 marker:text-gray-400 dark:marker:text-gray-500">
+                  {item.subpoints.map((subitem, subindex) => (
+                    <li key={subindex} className="text-gray-600 dark:text-gray-400">
+                      {subitem}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    {/* Visual Example */}
+    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+        Visual Example
+      </h1>
+      <div className="prose dark:prose-invert max-w-none">
+        <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+          Operation sequence on an empty deque:
+        </p>
+        <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+          {example.map((item, index) => (
+            <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
+              {item.points}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    {/* Implementation Variations */}
+    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+        Implementation Variations
+      </h1>
+      <div className="prose dark:prose-invert max-w-none">
+        <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+          Common implementation approaches:
+        </p>
+        <ol className="space-y-3 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+          {variations.map((item, index) => (
+            <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
+              <span className="font-semibold">{item.points}</span>
+              {item.subpoints && (
+                <ul className="mt-2 space-y-2 list-disc pl-5 marker:text-gray-400 dark:marker:text-gray-500">
+                  {item.subpoints.map((subitem, subindex) => (
+                    <li key={subindex} className="text-gray-600 dark:text-gray-400">
+                      {subitem}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    {/* Time Complexity */}
+    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+        Time Complexity
+      </h1>
+      <div className="prose dark:prose-invert max-w-none">
+        <ul className="space-y-2 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+          {complexity.map((item, index) => (
+            <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
+              <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-sm">
+                {item.points.split(':')[0]}:
+              </span>
+              <span className="ml-2">{item.points.split(':')[1]}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    {/* Applications */}
+    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+        Applications
+      </h1>
+      <div className="prose dark:prose-invert max-w-none">
+        <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+          Deques are used in:
+        </p>
+        <ul className="space-y-2 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+          {application.map((item, index) => (
+            <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
+              {item.points}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    {/* Special Cases */}
+    <section className="p-6">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+        Special Cases
+      </h1>
+      <div className="prose dark:prose-invert max-w-none">
+        <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+          Interesting deque variations:
+        </p>
+        <ul className="space-y-2 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+          {cases.map((item, index) => (
+            <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
+              {item.points}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    {/* Additional Info */}
+    <section className="p-6 border-t border-gray-100 dark:border-gray-700">
+      <div className="prose dark:prose-invert max-w-none">
+        <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            {paragraph[1]}
+          </p>
+        </div>
+      </div>
+    </section>
+  </article>
+</main>
     );
   };
   
