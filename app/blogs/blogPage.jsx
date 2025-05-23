@@ -62,7 +62,7 @@ const BlogPage = () => {
   const blogData = [
     {
       id: 1,
-      title: "Is data structures and algorithms important for web developers",
+      title: "Is Data Structures and Algorithms Important for Web Developers?",
       excerpt: "Explore why understanding data structures and algorithms can help web developers write efficient, scalable, and maintainable code.",
       date: "May 17, 2025",
       readTime: "8 min read",
@@ -73,7 +73,7 @@ const BlogPage = () => {
     },
     {
       id: 2,
-      title: "Are data structures and algorithms different for different languages",
+      title: "Are Data Structures and Algorithms Different for Different Languages?",
       excerpt: "Explore the differences in data structures and algorithms across various programming languages and how it impacts implementation.",
       date: "May 19, 2025",
       readTime: "5 min read",
@@ -81,6 +81,17 @@ const BlogPage = () => {
       category: "Programming Languages",
       tags: ["DSA", "Programming Languages", "Algorithms"],
       image: "/blog/dsaDifferent.png"
+    },
+    {
+      id: 3,
+      title: "What Are Data Structures? A Beginner-Friendly Guide",
+      excerpt: "Confused by terms like arrays, stacks, or linked lists? This guide breaks down data structures in a simple, relatable way. Understand what they are, why they matter, and how they form the backbone of every efficient program.",
+      date: "May 23, 2025",
+      readTime: "10 min read",
+      slug: "/blogs/Content/whatIsDS",
+      category: "Computer Science Fundamentals ",
+      tags: ["Data Structures", "DSA", "Algorithms", "Computer Science", "Beginner Programming", "Coding Basics", "Arrays", "Stacks", "Programming Concepts"],
+      image: "/blog/whatIsDS.png"
     },
   ];
 
