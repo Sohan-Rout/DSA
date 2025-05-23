@@ -5,6 +5,9 @@ import Footer from '@/app/components/footer';
 import CodeBlock from '@/app/visualizer/queue/types/circular/codeBlock';
 import Content from '@/app/visualizer/queue/types/circular/content';
 import ExploreOther from '@/app/components/ui/exploreOther';
+import Quiz from '@/app/visualizer/queue/types/circular/quiz';
+import BackToTop from '@/app/components/ui/backtotop';
+import GoBackButton from "@/app/components/ui/goback";
 
 const CircularQueueVisualizer = () => {
   const [queue, setQueue] = useState(Array(5).fill(null));
@@ -141,13 +144,19 @@ const CircularQueueVisualizer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
-      <Navbar />
-      <main className="container mx-auto px-4 sm:px-6 pt-16 pb-4 md:pt-16 md:pb-4">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6 mt-6 md:mt-6 md:mb-8">
-          <span className="text-blue-600 dark:text-blue-600">Circular Queue</span> Visualizer
+   <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
+      <main className="container mx-auto px-6 pt-16 pb-4">
+        {/* go back block here */}
+        <div className="mt-10 sm:mt-10">
+          <GoBackButton />
+        </div>
+
+        {/* main logic here */}
+        <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
+          <span className="text-black dark:text-white">Circular Queue</span>
         </h1>
-        <Content/>
+        <div className="bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5"></div>
+        <Content />
         <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
           Visualize Circular Queue Operations
         </p>
@@ -193,7 +202,7 @@ const CircularQueueVisualizer = () => {
               <button
                 onClick={enqueue}
                 disabled={isAnimating}
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105 w-full sm:w-auto"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105 w-full sm:w-auto"
               >
                 Enqueue
               </button>
@@ -203,30 +212,30 @@ const CircularQueueVisualizer = () => {
               <button
                 onClick={dequeue}
                 disabled={isAnimating || isEmpty()}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white border border-transparent disabled:border-blue-600 transition-transform hover:scale-105"
+                className="bg-none text-black border-black dark:border-white dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-transparent disabled:text-blue-600 disabled:dark:border-blue-600 border disabled:border-blue-600 dark:disabled:text-blue-600 transition-transform hover:scale-105"
               >
                 Dequeue
               </button>
               <button
                 onClick={peekFront}
                 disabled={isAnimating || isEmpty()}
-                className="bg-blue-600 hover:bg-blue-700 border border-transparent disabled:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
+                className="bg-none text-black border-black dark:border-white dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-transparent disabled:text-blue-600 disabled:dark:border-blue-600 border disabled:border-blue-600 dark:disabled:text-blue-600 transition-transform hover:scale-105"
               >
                 Peek Front
               </button>
               <button
                 onClick={peekRear}
                 disabled={isAnimating || isEmpty()}
-                className="bg-purple-600 hover:bg-purple-700 border border-transparent disabled:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-white text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
+                className="bg-none text-black border-black dark:border-white dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-transparent disabled:text-blue-600 disabled:dark:border-blue-600 border disabled:border-blue-600 dark:disabled:text-blue-600 transition-transform hover:scale-105"
               >
                 Peek Rear
               </button>
               <button
                 onClick={reset}
                 disabled={isAnimating}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
+                className="bg-none text-black border-black border dark:border-white dark:text-white px-4 py-2 rounded transition-transform hover:scale-105"
               >
-                Clear
+                Reset
               </button>
             </div>
           </div>
@@ -286,6 +295,11 @@ const CircularQueueVisualizer = () => {
           </div>
         </div>
 
+        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
+          Test Your Knowledge before moving forward!
+        </p>
+        <Quiz />
+
         <CodeBlock/>
         <ExploreOther
           title="Explore Other Types"
@@ -301,6 +315,7 @@ const CircularQueueVisualizer = () => {
         <div className="bg-gray-700 z-10 h-[1px]"></div>
       </div>
       <div className="bg-gray-700 z-10 h-[1px]"></div>
+      <BackToTop />
       <Footer />
     </div>
   );

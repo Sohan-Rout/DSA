@@ -1,10 +1,12 @@
 import Animation from "@/app/visualizer/queue/types/circular/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
-    title: 'Circular Queue in DSA | Learn with JS, C, Python, Java Code',
+    title: 'Circular Queue | Learn with JS, C, Python, Java Code',
     description: 'Understand how Circular Queue works in Data Structures using animations and complete code examples in JavaScript, C, Python, and Java. Ideal for DSA beginners and interview preparation.',
     keywords: [
       'Circular Queue',
+      'Circular Queue Visualizer',
       'Circular Queue DSA',
       'Circular Queue in JavaScript',
       'Circular Queue in C',
@@ -21,6 +23,9 @@ export const metadata = {
 
 export default function Page(){
     return(
-        <Animation/>
+        <>
+          <Navbar/>
+          <Animation/>
+        </>
     );
 };

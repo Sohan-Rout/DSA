@@ -36,21 +36,6 @@ html {
   animation-delay: 2s;
 }
 
-
-/* Dotted Background (Asternity Style) */
-.dotted-background {
-  background-image: radial-gradient(circle, #2e2f30 0.5px, transparent 1px);
-  /* gray-400 dots in light mode */
-  background-size: 30px 30px;
-  /* Smaller spacing for a refined look */
-  opacity: 0.5;
-  /* Subtle effect */
-}
-.dark .dotted-background {
-  background-image: radial-gradient(circle, #6b7280 0.5px, transparent 1px);
-  /* gray-500 dots in dark mode */
-}
-
 @keyframes float-slow {
 
   0%,
@@ -102,13 +87,6 @@ html {
 }
 
 /* 404 Animation styles */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-.animate-float-slow { animation: float 8s ease-in-out infinite; }
-.animate-float-slower { animation: float 12s ease-in-out infinite; }
-
 @keyframes bounce-pin-1 {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }

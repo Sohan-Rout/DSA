@@ -148,7 +148,7 @@ const legalLinks = [
                     key={index}
                     href={social.href}
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-full bg-gray-900 hover:bg-gray-800 flex items-center justify-center transition-colors"
+                    className="w-10 h-10 rounded-full bg-gray-900 hover:bg-gray-900/70 hover:text-blue-600 flex items-center justify-center transition-colors"
                   >
                     {social.icon}
                   </a>
