@@ -72,7 +72,7 @@ const HeroSection = () => {
     <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2"></div>
   </div>
 
-      <div className="container mx-auto px-6 py-20 flex flex-col lg:flex-row items-center justify-between relative z-10 gap-12">
+      <div className="container top-4 mx-auto px-6 py-20 flex flex-col lg:flex-row items-center justify-between relative z-10 gap-12">
         {/* Text Content */}
         <div className="lg:w-1/2 text-center lg:text-left space-y-6">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
