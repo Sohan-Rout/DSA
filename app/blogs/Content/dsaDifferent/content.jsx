@@ -100,11 +100,11 @@ const BlogContent = () => {
   ];
 
   const protips = [
-    {points: "Learn DSA in one language first, then compare implementations"},
-    {points: "Use language-specific benchmarks to verify performance assumptions"},
-    {points: "Study standard library implementations of common structures"},
-    {points: "Understand how your language's memory model affects data structures"},
-    {points: "Don’t just translate code between languages—adapt it to leverage language strengths"}
+    { points: "Learn DSA in one language first, then compare implementations" },
+    { points: "Use language-specific benchmarks to verify performance assumptions" },
+    { points: "Study standard library implementations of common structures" },
+    { points: "Understand how your language's memory model affects data structures" },
+    { points: "Don’t just translate code between languages—adapt it to leverage language strengths" }
   ];
 
   return (
@@ -176,7 +176,7 @@ const BlogContent = () => {
           </h2>
           <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg mb-6">
             <p className="font-medium text-green-800 dark:text-green-200">
-              Core Insight: The theoretical foundations of data structures and algorithms 
+              Core Insight: The theoretical foundations of data structures and algorithms
               remain constant regardless of programming language.
             </p>
           </div>
@@ -192,7 +192,7 @@ const BlogContent = () => {
           <h2 className="text-2xl font-bold text-black dark:text-zinc-100 mb-6 pb-2 border-b border-gray-200 dark:border-zinc-700">
             Language-Specific Implementations
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {languageExamples.map((lang, index) => (
               <div key={index} className="border dark:border-zinc-700 rounded-lg overflow-hidden">
@@ -225,7 +225,7 @@ const BlogContent = () => {
           <h2 className="text-2xl font-bold text-black dark:text-zinc-100 mb-6 pb-2 border-b border-gray-200 dark:border-zinc-700">
             Web Development Implications
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6 mb-6">
             {webDevImplications.map((item, index) => (
               <div key={index} className="bg-gray-50 dark:bg-zinc-800 p-5 rounded-lg">
@@ -241,7 +241,7 @@ const BlogContent = () => {
               </div>
             ))}
           </div>
-          
+
           <p className="dark:text-zinc-300">{Paragraphs[3]}</p>
           <p className="dark:text-zinc-300">
             Developers building cross-platform or microservice-based architectures especially benefit from understanding how DSA implementations behave differently across tech stacks.
@@ -265,8 +265,8 @@ const BlogContent = () => {
           </h2>
           <div className="dark:bg-zinc-800 bg-gray-100 p-6 rounded-lg">
             <p className="dark:text-white">
-              While data structures and algorithms may be implemented differently across languages, 
-              the core concepts remain the same. Master the fundamentals first, then learn how your 
+              While data structures and algorithms may be implemented differently across languages,
+              the core concepts remain the same. Master the fundamentals first, then learn how your
               preferred languages realize these concepts in practice. This dual understanding not only enhances your adaptability but also empowers you to choose the most efficient solution depending on the project requirements and language capabilities.
             </p>
           </div>
@@ -281,12 +281,26 @@ const BlogContent = () => {
               Share this article
             </h3>
             <div className="flex space-x-3">
-              {["Twitter", "LinkedIn", "Facebook"].map((social) => (
+              {[
+                {
+                  name: "Twitter",
+                  url: "https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.dsavisualizer.in%2Fblogs%2FContent%2FdsaDifferent&text=Exploring%20if%20Data%20Structures%20and%20Algorithms%20are%20different%20across%20languages%20in%20this%20blog%20post%21%20A%20must-read%20for%20programmers.%20%23DSA%20%23ProgrammingLanguages"
+                },
+                {
+                  name: "LinkedIn",
+                  url: "https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.dsavisualizer.in%2Fblogs%2FContent%2FdsaDifferent"
+                },
+                {
+                  name: "Facebook",
+                  url: "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.dsavisualizer.in%2Fblogs%2FContent%2FdsaDifferent"
+                }
+              ].map((social) => (
                 <button
-                  key={social}
+                  key={social.name}
+                  onClick={() => window.open(social.url, '_blank')}
                   className="px-4 py-2 border rounded-lg text-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors dark:border-zinc-600 dark:text-zinc-300"
                 >
-                  {social}
+                  {social.name}
                 </button>
               ))}
             </div>

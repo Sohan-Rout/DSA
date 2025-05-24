@@ -56,9 +56,9 @@ const BlogContent = () => {
   ];
 
   const protip = [
-    {points : "Implement your own simplified version of React's reconciliation algorithm" },
-    {points : "Build a custom hook that efficiently manages large datasets" },
-    {points : "Create a visualization of how different sorting algorithms work" },
+    { points: "Implement your own simplified version of React's reconciliation algorithm" },
+    { points: "Build a custom hook that efficiently manages large datasets" },
+    { points: "Create a visualization of how different sorting algorithms work" },
   ];
 
   return (
@@ -189,7 +189,7 @@ const BlogContent = () => {
           <p className="mb-2">{Paragraphs[3]}</p>
           <ul className="list-disc pl-6 space-y-1">
             {protip.map((item, index) => (
-                <li key={index}>{item.points}</li>
+              <li key={index}>{item.points}</li>
             ))}
           </ul>
         </section>
@@ -210,12 +210,26 @@ const BlogContent = () => {
               Share this article
             </h3>
             <div className="flex space-x-3">
-              {["Twitter", "LinkedIn", "Facebook"].map((social) => (
+              {[
+                {
+                  name: "Twitter",
+                  url: "https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.dsavisualizer.in%2Fblogs%2FContent%2FdsaWebDev&text=Just%20read%20this%20insighful%20blog%3A%20Is%20Data%20Structures%20and%20Algorithms%20Important%20for%20Web%20Developers%3F%20%23WebDev%20%23DSA%20%23Programming"
+                },
+                {
+                  name: "LinkedIn",
+                  url: "https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.dsavisualizer.in%2Fblogs%2FContent%2FdsaWebDev"
+                },
+                {
+                  name: "Facebook",
+                  url: "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.dsavisualizer.in%2Fblogs%2FContent%2FdsaWebDev"
+                }
+              ].map((social) => (
                 <button
-                  key={social}
+                  key={social.name}
+                  onClick={() => window.open(social.url, '_blank')}
                   className="px-4 py-2 border rounded-lg text-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors dark:border-zinc-600 dark:text-zinc-300"
                 >
-                  {social}
+                  {social.name}
                 </button>
               ))}
             </div>
