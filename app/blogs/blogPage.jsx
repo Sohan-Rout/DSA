@@ -163,67 +163,90 @@ const BlogPage = () => {
         </section>
 
         {/* Featured Posts */}
-        <section className="mb-20">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-3xl font-bold text-zinc-800 dark:text-white">Featured Articles</h2>
-            <Link href="#" className="flex items-center text-blue-600 dark:text-blue-400 hover:underline">
-              View all <FiChevronRight className="ml-1" />
-            </Link>
-          </div>
+          <section className="mb-20">
+            <div className="flex items-center justify-between mb-10">
+              <h2 className="text-3xl font-bold text-zinc-800 dark:text-white">Featured Articles</h2>
+              <Link href="#" className="flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+                View all <FiChevronRight className="ml-1" />
+              </Link>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredPosts.map((post, index) => (
-              <motion.div
-                key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="bg-white dark:bg-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-zinc-100 dark:border-zinc-700/50"
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredPosts.map((post, index) => (
+                <motion.div
+            key={post.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ y: -5 }}
+            className="bg-white dark:bg-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-zinc-100 dark:border-zinc-700/50"
+                >
+            <Link href={post.slug}>
+              <div className="relative h-48 w-full overflow-hidden">
+                <img 
+                  src={post.image} 
+                  alt={post.title}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <span className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-medium px-2.5 py-1 rounded-full">
+                  {post.category}
+                </span>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center text-sm text-zinc-500 dark:text-zinc-400 mb-3">
+                  <FiCalendar className="mr-1.5" />
+                  <span className="mr-3">{post.date}</span>
+                  <FiClock className="mr-1.5" />
+                  <span>{post.readTime}</span>
+                </div>
+                <h3 className="text-xl font-bold text-zinc-800 dark:text-white mb-3 line-clamp-2">
+                  {post.title}
+                </h3>
+                <p className="text-zinc-600 dark:text-zinc-300 mb-4 line-clamp-2">
+                  {post.excerpt}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {post.tags.map((tag, i) => (
+              <span 
+                key={i}
+                className="text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 rounded-full text-zinc-700 dark:text-zinc-300"
               >
-                <Link href={post.slug}>
-                  <div className="relative h-48 w-full overflow-hidden">
-                    <img 
-                      src={post.image} 
-                      alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    <span className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-medium px-2.5 py-1 rounded-full">
-                      {post.category}
-                    </span>
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center text-sm text-zinc-500 dark:text-zinc-400 mb-3">
-                      <FiCalendar className="mr-1.5" />
-                      <span className="mr-3">{post.date}</span>
-                      <FiClock className="mr-1.5" />
-                      <span>{post.readTime}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-zinc-800 dark:text-white mb-3 line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-zinc-600 dark:text-zinc-300 mb-4 line-clamp-2">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {post.tags.map((tag, i) => (
-                        <span 
-                          key={i}
-                          className="text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 rounded-full text-zinc-700 dark:text-zinc-300"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+                #{tag}
+              </span>
+                  ))}
+                </div>
+              </div>
+            </Link>
+                </motion.div>
+              ))}
+            </div>
+          </section>
 
-        {/* Category Filter */}
+          {/* Popular Tags */}
+          <section className="mt-20 mb-5">
+            <h2 className="text-2xl font-bold text-zinc-800 dark:text-white mb-6">
+              Explore Popular Topics
+            </h2>
+            <div className="flex flex-wrap items-center gap-3 justify-center">
+              {popularTags.map((tag) => (
+                <motion.button
+            key={tag}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              setSearchQuery(tag);
+              setActiveCategory('All');
+            }}
+            className="px-5 py-2 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 shadow-sm hover:shadow-md transition-all"
+                >
+            #{tag}
+                </motion.button>
+              ))}
+            </div>
+          </section>
+
+          {/* Category Filter */}
         <section className="mb-12">
           <div className="flex flex-wrap gap-3 justify-center">
             {categories.map((category) => (
@@ -330,29 +353,6 @@ const BlogPage = () => {
                 </button>
               </div>
             )}
-          </div>
-        </section>
-
-        {/* Popular Tags */}
-        <section className="mt-20">
-          <h2 className="text-2xl font-bold text-zinc-800 dark:text-white mb-6">
-            Explore Popular Topics
-          </h2>
-          <div className="flex flex-wrap gap-3">
-            {popularTags.map((tag) => (
-              <motion.button
-                key={tag}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  setSearchQuery(tag);
-                  setActiveCategory('All');
-                }}
-                className="px-5 py-2 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 shadow-sm hover:shadow-md transition-all"
-              >
-                #{tag}
-              </motion.button>
-            ))}
           </div>
         </section>
       </main>

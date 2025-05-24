@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { FiChevronDown, FiChevronUp, FiHelpCircle, FiMail } from 'react-icons/fi';
+import Support from "@/app/components/support";
 
 const FAQSection = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -93,28 +94,22 @@ const FAQSection = () => {
         </div>
 
         {/* Additional Help */}
-        <div className="max-w-3xl mx-auto mt-16 text-center bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-sm">
-          <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-500 dark:text-blue-400 mx-auto mb-6">
-            <FiMail className="w-8 h-8" />
+          <div className="max-w-3xl mx-auto mt-16 text-center bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-sm">
+            <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-500 dark:text-blue-400 mx-auto mb-6">
+              <FiMail className="w-8 h-8" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              Still have questions?
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
+              Our team is ready to help you with any additional questions you might have.
+            </p>
+            <div className="mt-20 flex justify-center items-center">
+              <Support/>
+            </div>
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Still have questions?
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
-            Our team is ready to help you with any additional questions you might have.
-          </p>
-          <button className="relative px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-blue-500/30 group overflow-hidden">
-            <span className="relative z-10 flex items-center justify-center gap-2">
-              Contact Support
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-          </button>
-        </div>
 
-        {/* Divider */}
+          {/* Divider */}
         <div className="w-full max-w-4xl mx-auto h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent my-20"></div>
       </div>
     </section>
