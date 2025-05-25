@@ -56,12 +56,35 @@ const SERVICES = [
   }
 ];
 
+const ABOUT = [
+  {
+    title: "About Us",
+    description: "Our Mission",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M5.121 17.804A7 7 0 0112 15a7 7 0 016.879 2.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+</svg>
+    ),
+    iconBg: "bg-green-100 text-green-600",
+    href: "/#about"
+  },
+  {
+    title: "FAQs",
+    description: "Quick answers to common questions about our platform",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h.01M12 12a1.5 1.5 0 10-1.5-1.5m0 0A1.5 1.5 0 0112 9m0 7h.01M21 12c0 4.418-4.03 8-9 8a9.99 9.99 0 01-5.197-1.45L3 20l1.462-3.414A8.986 8.986 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+</svg>
+    ),
+    iconBg: "bg-blue-100 text-blue-600",
+    href: "/#faq"
+  },
+];
+
 // Constants for navigation links
 const NAV_LINKS = [
   { href: "/#hero", label: "Home" },
   { href: "/#features", label: "Features" },
-  { href: "/#about", label: "About" },
-  { href: "/#faq", label: "FAQs" },
   { href: "/#testimonial", label: "Reviews" }
 ];
 
@@ -153,6 +176,53 @@ const MobileServicesDropdown = ({ isOpen }) => (
   </div>
 );
 
+// Service item component for both desktop and mobile
+const AboutItem = ({ title, description, icon, iconBg, href }) => (
+  <Link
+    href={href}
+    className="flex items-center justify-between px-4 py-3 text-sm text-gray-700 dark:text-white hover:bg-blue-50 dark:hover:bg-zinc-900 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-150"
+  >
+    <div className="flex items-center gap-3">
+      <div className={`p-1.5 rounded-lg ${iconBg}`}>
+        {icon}
+      </div>
+      <div>
+        <div className="font-medium">{title}</div>
+        <div className="text-xs text-gray-500">{description}</div>
+      </div>
+    </div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4 text-gray-400"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+    </svg>
+  </Link>
+);
+
+// Abut dropdown component for desktop
+const AboutServicesDropdown = () => (
+  <div className="absolute left-0 mt-2 w-64 origin-top-right dark:bg-black dark:ring-blue-400 bg-white rounded-lg shadow-xl ring-1 ring-gray-200 focus:outline-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 overflow-hidden">
+    <div className="py-1">
+      {ABOUT.map((about, index) => (
+        <AboutItem key={index} {...about} />
+      ))}
+    </div>
+  </div>
+);
+
+// Services dropdown component for mobile
+const MobileAboutDropdown = ({ isOpen }) => (
+  <div className={`${isOpen ? 'block' : 'hidden'} pl-4 space-y-1`}>
+    {ABOUT.map((about, index) => (
+      <AboutItem key={index} {...about} />
+    ))}
+  </div>
+);
+
 export default function Navbar() {
   const [theme, setTheme] = useState("light");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -223,6 +293,15 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
+
+          {/* Services Dropdown */}
+          <li className="relative group">
+            <button className="flex items-center gap-1 text-sm dark:text-white lg:text-base font-medium text-gray-700 hover:text-blue-500 transition-colors duration-200">
+              About
+              <ChevronIcon />
+            </button>
+            <AboutServicesDropdown />
+          </li>
           
           {/* Services Dropdown */}
           <li className="relative group">
@@ -311,6 +390,20 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
+
+          {/* Mobile About Dropdown */}
+          <li>
+            <div>
+              <button
+                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                className="w-full flex justify-between items-center py-2 rounded-md text-base font-medium text-gray-700 dark:text-white hover:text-blue-600"
+              >
+                About
+                <ChevronIcon isOpen={isServicesOpen} />
+              </button>
+              <MobileAboutDropdown isOpen={isServicesOpen} />
+            </div>
+          </li>
           
           {/* Mobile Services Dropdown */}
           <li>
