@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-export default function AITutorPage({ darkMode }) {
+export default function AITutorPage() {
   const supabase = createClientComponentClient();
   const router = useRouter();
   const messagesEndRef = useRef(null);
@@ -39,7 +39,7 @@ export default function AITutorPage({ darkMode }) {
     const loadChats = async () => {
       if (!user) return;
 
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from("chats")
         .select("*")
         .eq("user_id", user.id)
@@ -262,21 +262,56 @@ export default function AITutorPage({ darkMode }) {
               </div>
             ) : (
               chats.flatMap((chat, i) => {
-                const bubbles = [
-                  // User message bubble
-                  <div key={`user-${i}`} className="flex justify-end">
-                    <div className="max-w-[90vw] sm:max-w-[85%] rounded-2xl p-3 sm:p-4 shadow-md bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800">
-                      <div className="font-medium mb-1 text-xs sm:text-sm text-blue-100 dark:text-blue-200">
-                        You
-                      </div>
-                      <div className="whitespace-pre-wrap text-white break-words">
-                        {chat.message}
+                // System message (like welcome)
+                if (chat.from === "system") {
+                  return (
+                    <div key={`system-${i}`} className="flex justify-center">
+                      <div className="max-w-[90vw] sm:max-w-[70%] rounded-2xl p-3 sm:p-4 border shadow-sm bg-white border-blue-200/50 dark:bg-gray-800 dark:border-gray-700">
+                        <div className="font-medium mb-1 text-xs sm:text-sm text-blue-600 dark:text-blue-400 text-center">
+                          DSA Tutor
+                        </div>
+                        <div className="text-gray-800 dark:text-gray-200 break-words">
+                          {formatMessage(chat.message)}
+                        </div>
+                        <div className="mt-2 pt-2 border-t text-xs border-blue-100/30 text-blue-400 dark:border-gray-700 dark:text-gray-500 text-center">
+                          <svg
+                            className="w-3 h-3 inline mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M13 10V3L4 14h7v7l9-11h-7z"
+                            />
+                          </svg>
+                          AI-generated educational content
+                        </div>
                       </div>
                     </div>
-                  </div>,
-                ];
-                // AI response bubble (if present)
-                if (chat.response) {
+                  );
+                }
+
+                const bubbles = [];
+                // User message bubble
+                if (chat.from === "user") {
+                  bubbles.push(
+                    <div key={`user-${i}`} className="flex justify-end">
+                      <div className="max-w-[90vw] sm:max-w-[85%] rounded-2xl p-3 sm:p-4 shadow-md bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800">
+                        <div className="font-medium mb-1 text-xs sm:text-sm text-blue-100 dark:text-blue-200">
+                          You
+                        </div>
+                        <div className="whitespace-pre-wrap text-white break-words">
+                          {chat.message}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+                // AI response bubble (for assistant)
+                if (chat.response && chat.from === "assistant") {
                   bubbles.push(
                     <div key={`ai-${i}`} className="flex justify-start">
                       <div className="max-w-[90vw] sm:max-w-[85%] rounded-2xl p-3 sm:p-4 border shadow-sm bg-white border-blue-200/50 dark:bg-gray-800 dark:border-gray-700">
@@ -318,7 +353,7 @@ export default function AITutorPage({ darkMode }) {
               <input
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" && handleSend()}
+                onKeyDown={(e) => e.key === "Enter" && handleSend()}
                 className="flex-1 border-0 focus:ring-2 rounded-xl p-2 sm:p-3 dark:bg-gray-700/50 dark:text-white dark:placeholder-gray-400 dark:focus:ring-blue-500/50 bg-blue-50/50 text-blue-900 placeholder-blue-400/60 focus:ring-blue-500/50 text-sm sm:text-base"
                 placeholder="Ask about time complexity, algorithms, or code implementations..."
                 disabled={loading}
