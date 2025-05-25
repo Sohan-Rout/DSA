@@ -1,6 +1,34 @@
 import React, { useEffect } from 'react';
 import { FiX } from 'react-icons/fi';
 
+const policySections = [
+  {
+    id : "1",
+    title : "Information We Collect",
+    data : "We collect personal information like name, email address, and usage data (IP, browser, etc.) to provide and improve our services.",
+  },
+  {
+    id : "2",
+    title : "How We Use Your Information",
+    points : [
+      "To provide and maintain our services",
+      "Improve user experience and service quality",
+      "Send important updates or support emails",
+    ],
+  },
+  {
+    id : "3",
+    title : "Your Rights",
+    data : "You have the right to request access, correction, or deletion of your personal data at any time by contacting us.",
+  },
+  {
+    id : "4",
+    title : "Contact Information",
+    data : "For any privacy-related questions, please contact us at",
+    contact : "support@dsavisualizer.com",
+  },
+];
+
 const PrivacyPolicyModal = ({ isOpen, onClose }) => {
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -48,56 +76,29 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
 
           {/* Policy sections */}
           <div className="space-y-6">
-            <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3 flex items-center">
-                <span className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mr-3">1</span>
-                Information We Collect
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 pl-9">
-                We collect personal information like name, email address, and usage data (IP, browser, etc.) to provide and improve our services.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3 flex items-center">
-                <span className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mr-3">2</span>
-                How We Use Your Information
-              </h3>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-300 pl-9">
-                <li className="flex items-start">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                  <span>To provide and maintain our services</span>
+            <ul>
+              {policySections.map((item, index) => (
+                <li key={index} className='mb-3'>
+                  <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg">
+                    <div className='flex'>
+                    <span className="w-6 h-6 font-poppins font-semibold bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mr-3">{item.id}</span>
+                    <h3 className="text-xl font-semibold mb-2 flex items-center">
+                      {item.title}
+                    </h3>
+                    </div>
+                    {item.points && <ul className="space-y-2 text-gray-600 dark:text-gray-300 pl-9">
+                      {item.points.map((subitem, subindex) => (
+                        <li key={subindex} className='list-disc text-blue-500'>
+                          <span className='text-gray-600 dark:text-gray-300'>{subitem}</span>
+                        </li>
+                      ))}
+                    </ul>}
+                    <p className="text-gray-600 dark:text-gray-300 pl-9">{item.data}</p>
+                    <span className="font-medium pl-9 text-blue-600 dark:text-blue-400">{item.contact}</span>
+                  </div>
                 </li>
-                <li className="flex items-start">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                  <span>Improve user experience and service quality</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                  <span>Send important updates or support emails</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3 flex items-center">
-                <span className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mr-3">3</span>
-                Your Rights
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 pl-9">
-                You have the right to request access, correction, or deletion of your personal data at any time by contacting us.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg">
-              <h3 className="text-xl font-semibold mb-3 flex items-center">
-                <span className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mr-3">4</span>
-                Contact Information
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 pl-9">
-                For any privacy-related questions, please contact us at <span className="font-medium text-blue-600 dark:text-blue-400">support@dsavisualizer.com</span>.
-              </p>
-            </div>
+              ))}
+            </ul>
           </div>
 
           <div className="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
