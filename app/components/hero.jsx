@@ -75,7 +75,7 @@ const HeroSection = () => {
       <div className="container top-4 mx-auto px-6 py-20 flex flex-col lg:flex-row items-center justify-between relative z-10 gap-12">
         {/* Text Content */}
         <div className="lg:w-1/2 text-center lg:text-left space-y-6">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
+          <h1 className="text-6xl sm:text-5xl md:text-6xl font-bold leading-tight">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300">
               Master DSA
             </span>

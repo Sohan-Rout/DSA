@@ -8,8 +8,8 @@ import Faq from "@/app/components/faq";
 import Footer from "@/app/components/footer";
 
 export const metadata = {
-  title: 'DSA Visualizer | Learn, Visualize, Practice & Quiz on Algorithms',
-  description: 'Master Data Structures and Algorithms with visual animations, interactive quizzes, and practice problems. Explore sorting, searching, stacks, queues, trees, and linked lists—all in one beginner-friendly platform.',
+  title: 'DSA Visualizer | Visualize & Learn DSA the Smart Way',
+  description: 'Master Data Structures and Algorithms with interactive visualizations. Perfect for students, beginners, and interview prep. Visualize Stack, Queue, Tree, Graph, Sorting & more.',
   keywords: [
     'DSA Visualizer',
     'Algorithm Visualizer',
