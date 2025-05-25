@@ -1,4 +1,5 @@
 import Animation from "@/app/visualizer/queue/types/multiple/animation";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
   title: 'Multiple Queue in DSA | Learn with JS, C, Python, Java Code',
@@ -22,6 +23,9 @@ export const metadata = {
 
 export default function Page(){
     return(
+      <>
+        <Navbar/>
         <Animation/>
+      </>
     );
 };

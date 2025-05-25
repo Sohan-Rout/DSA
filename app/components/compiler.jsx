@@ -196,7 +196,7 @@ export default function FloatingCompiler() {
                 </button>
               )}
             </div>
-            <div className="flex-1 overflow-auto p-3 bg-black text-green-400 font-mono text-sm">
+            <div className="flex-1 overflow-auto p-3 bg-black text-white font-mono text-sm">
               {errors.length > 0 ? (
                 <div className="space-y-2">
                   {errors.map((error, i) => (
