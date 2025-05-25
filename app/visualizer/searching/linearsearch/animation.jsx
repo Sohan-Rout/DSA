@@ -9,7 +9,6 @@ import Quiz from '@/app/visualizer/searching/linearsearch/quiz';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import GoBackButton from '@/app/components/ui/goback';
 import BackToTopButton from '@/app/components/ui/backtotop';
-import Compiler from "@/app/components/compiler";
 
 const LinearSearch = () => {
     const [arraySize, setArraySize] = useState('');
@@ -289,7 +288,6 @@ const LinearSearch = () => {
         </div>
 
         { /* back to top block here */}
-        <Compiler/>
         <BackToTopButton />
         <Footer />
       </div>

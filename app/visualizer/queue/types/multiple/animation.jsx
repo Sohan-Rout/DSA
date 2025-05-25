@@ -7,7 +7,6 @@ import ExploreOther from '@/app/components/ui/exploreOther';
 import Quiz from '@/app/visualizer/queue/types/multiple/quiz';
 import BackToTop from '@/app/components/ui/backtotop';
 import GoBackButton from "@/app/components/ui/goback";
-import Compiler from "@/app/components/compiler";
 
 const DoubleEndedQueueVisualizer = () => {
   const [deque, setDeque] = useState([]);
@@ -340,7 +339,6 @@ const DoubleEndedQueueVisualizer = () => {
       <div>
         <div className="bg-gray-700 z-10 h-[1px]"></div>
       </div>
-      <Compiler/>
       <BackToTop />
       <Footer />
     </div>
