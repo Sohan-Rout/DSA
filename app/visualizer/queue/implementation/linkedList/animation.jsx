@@ -1,8 +1,8 @@
 "use client";
 import Footer from "@/app/components/footer";
 import ExploreOther from "@/app/components/ui/exploreOther";
-import Content from "@/app/visualizer/queue/implementation/array/content";
-import CodeBlock from "@/app/visualizer/queue/implementation/array/codeBlock";
+import Content from "@/app/visualizer/queue/implementation/linkedList/content";
+import CodeBlock from "@/app/visualizer/queue/implementation/linkedList/codeBlock";
 import GoBackButton from "@/app/components/ui/goback";
 import BackToTop from "@/app/components/ui/backtotop";
 
@@ -18,7 +18,7 @@ const InfixToPostfixVisualizer = () => {
 
           { /* main logic here */}
           <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
-            <span className="text-black dark:text-white">Queue Implementation Using Array</span>
+            <span className="text-black dark:text-white">Queue Implementation Using Linked List</span>
           </h1>
           <div className='bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5'></div>
           <Content />
@@ -26,7 +26,7 @@ const InfixToPostfixVisualizer = () => {
         <CodeBlock />
         <ExploreOther
           title="Explore other implementation"
-          links={[{ text: "Using Linked List", url: "./linkedList" }]}
+          links={[{ text: "Using Array", url: "./array" }]}
         />
       </main>
       <div className="bg-gray-700 z-10 h-[1px]"></div>
