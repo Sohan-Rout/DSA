@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/app/contexts/UserContext'; // import the hook
 import { supabase } from '@/lib/supabase'; // or wherever your supabase client is
+import { Bot } from "lucide-react"; 
 
 export default function Navbar() {
   const [theme, setTheme] = useState('light');
@@ -44,17 +45,21 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             {/* Dashboard Page */}
             <Link
-              href="/dashboard"
-              className="hidden md:flex px-4 py-2 rounded-full font-medium bg-transparent border border-blue-600 hover:bg-blue-50/50 dark:hover:bg-gray-700/50 transition duration-300 items-center"
+              href="/tutor"
+              className="glow-btn relative hidden md:flex px-5 py-2 rounded-full font-medium text-blue-600 border dark:text-blue-400 border-blue-600 bg-transparent overflow-hidden items-center transition-all duration-300 hover:text-black dark:hover:text-white"
             >
-              Dashboard
+              <span className="z-[1] flex items-center gap-2">
+                <Bot className="w-4 h-4 bot-wiggle" />
+                Ask AI Tutor?
+              </span>
+              <span className="glow-border absolute inset-0 rounded-full z-0"></span>
             </Link>
 
             {/* Conditionally show user info or Login/Signup */}
             {user ? (
               <>
                 <span className="hidden md:block text-green-600 font-medium">
-                  Welcome, {user.email.split('@')[0]}
+                  Welcome, {user.email.split("@")[0]}
                 </span>
                 <button
                   onClick={handleLogout}
@@ -84,6 +89,15 @@ export default function Navbar() {
                     />
                   </svg>
                   Login / Signup
+                </Link>
+
+                <Link
+                  href="/tutor"
+                  className="flex md:hidden px-3 py-2 rounded-full font-medium text-md text-blue-600 dark:text-blue-400 border border-blue-600 bg-transparent items-center gap-1 hover:text-black dark:hover:text-white transition duration-300"
+                >
+                  <span className="z-[1] flex items-center gap-2">
+                    Ask AI ?
+                  </span>
                 </Link>
 
                 {/* Mobile Login Icon */}
@@ -116,7 +130,7 @@ export default function Navbar() {
               className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300"
               aria-label="Toggle theme"
             >
-              {theme === 'light' ? (
+              {theme === "light" ? (
                 <svg
                   className="w-5 h-5 text-gray-800 dark:text-gray-200"
                   fill="none"
