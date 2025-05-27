@@ -2,7 +2,7 @@
 import Footer from "@/app/components/footer";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import Content from "@/app/visualizer/queue/implementation/array/content";
-import CodeBlock from "@/app/visualizer/queue/implementation/array/codeBlock";
+import CodeBlock from "@/app/visualizer/queue/implementation/array/codeblock";
 import GoBackButton from "@/app/components/ui/goback";
 import BackToTop from "@/app/components/ui/backtotop";
 
