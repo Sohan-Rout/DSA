@@ -43,7 +43,7 @@ export default function Navbar() {
 
           {/* Navigation Items */}
           <div className="flex items-center gap-4">
-            {/* Dashboard Page */}
+            {/*   Ai Page */}
             <Link
               href="/tutor"
               className="glow-btn relative hidden md:flex px-5 py-2 rounded-full font-medium text-blue-600 border dark:text-blue-400 border-blue-600 bg-transparent overflow-hidden items-center transition-all duration-300 hover:text-black dark:hover:text-white"
@@ -93,33 +93,12 @@ export default function Navbar() {
 
                 <Link
                   href="/tutor"
-                  className="flex md:hidden px-3 py-2 rounded-full font-medium text-md text-blue-600 dark:text-blue-400 border border-blue-600 bg-transparent items-center gap-1 hover:text-black dark:hover:text-white transition duration-300"
+                  className="flex md:hidden px-2 py-1 text-sm rounded-full font-medium text-blue-600 dark:text-blue-400 border border-blue-600 bg-transparent items-center gap-1 hover:text-black dark:hover:text-white transition duration-300"
                 >
-                  <span className="z-[1] flex items-center gap-2">
-                    Ask AI ?
+                  <span className="flex items-center gap-1">
+                    <Bot className="w-4 h-4" />
+                    AI Tutor
                   </span>
-                </Link>
-
-                {/* Mobile Login Icon */}
-                <Link
-                  href="/login"
-                  className="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300"
-                  aria-label="Login or Signup"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
                 </Link>
               </>
             )}

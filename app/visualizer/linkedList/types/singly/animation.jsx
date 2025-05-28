@@ -24,22 +24,6 @@ const SinglyLinkedListVisualizer = () => {
     return '0x' + Math.floor(Math.random() * 0xFFFF).toString(16).padStart(4, '0');
   };
 
-  const steps = [
-    'Allocating memory for new node',
-    'Storing data in node',
-    'Setting next pointer to null',
-    'Updating previous node\'s pointer',
-    'Node added to list'
-  ];
-
-  const explanations = [
-    'Step 1: Memory is allocated at a specific address for the new node.',
-    'Step 2: The input value is stored in the node\'s data field.',
-    'Step 3: The new node\'s next pointer initialized to null (indicates end of list).',
-    'Step 4: The previous node\'s next pointer is updated to point to this new node\'s address.',
-    'Step 5: The new node is now properly linked in the list!'
-  ];
-
   const addNode = () => {
     if (!inputValue || isAnimating) return;
 
