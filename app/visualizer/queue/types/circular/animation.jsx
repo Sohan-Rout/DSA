@@ -1,6 +1,5 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import Navbar from '@/app/components/navbarinner';
 import Footer from '@/app/components/footer';
 import CodeBlock from '@/app/visualizer/queue/types/circular/codeBlock';
 import Content from '@/app/visualizer/queue/types/circular/content';
