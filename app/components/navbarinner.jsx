@@ -96,7 +96,6 @@ export default function Navbar() {
                   className="flex md:hidden px-2 py-1 text-sm rounded-full font-medium text-blue-600 dark:text-blue-400 border border-blue-600 bg-transparent items-center gap-1 hover:text-black dark:hover:text-white transition duration-300"
                 >
                   <span className="flex items-center gap-1">
-                    <Bot className="w-4 h-4" />
                     AI Tutor
                   </span>
                 </Link>
