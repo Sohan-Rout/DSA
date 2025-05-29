@@ -1,4 +1,4 @@
-import Navbar from "@/app/components/Navbar";
+import Navbar from "@/app/components/navbar";
 import Practice from "@/app/compiler/practice";
 import Footer from "@/app/components/footer";
 
