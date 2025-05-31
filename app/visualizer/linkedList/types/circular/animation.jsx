@@ -1,136 +1,134 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
-import Navbar from '@/app/components/navbarinner';
+import { gsap } from 'gsap';
 import Footer from '@/app/components/footer';
 import ResetButton from '@/app/components/ui/resetButton';
+import ExploreOther from '@/app/components/ui/exploreOther';
+import Content from "@/app/visualizer/linkedList/types/circular/content";
+import Quiz from '@/app/visualizer/linkedList/types/circular/quiz';
+import CodeBlock from "@/app/visualizer/linkedList/types/circular/codeBlock";
+import BackToTop from '@/app/components/ui/backtotop';
+import GoBackButton from "@/app/components/ui/goback";
 
 const CircularLinkedListVisualizer = () => {
   const [inputValue, setInputValue] = useState('');
   const [list, setList] = useState([]);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [explanation, setExplanation] = useState('Enter a value and click "Add Node" to start.');
   const nodeIdCounter = useRef(1);
-  const animationRef = useRef(null);
-  const isMounted = useRef(true);
+  const containerRef = useRef(null);
 
   // Generate random memory addresses
   const generateMemoryAddress = () => {
     return '0x' + Math.floor(Math.random() * 0xFFFF).toString(16).padStart(4, '0');
   };
 
-  const steps = [
-    'Allocating memory for new node',
-    'Storing data in node',
-    'Setting initial pointers',
-    'Updating neighboring nodes',
-    'Completing circular connection',
-    'Node added to circular list'
-  ];
-
-  const explanations = [
-    'Step 1: Memory is allocated at a specific address for the new node.',
-    'Step 2: The input value is stored in the node\'s data field.',
-    'Step 3: The new node\'s next pointer is initialized (points to itself if first node).',
-    'Step 4: The previous node\'s next pointer is updated to point to new node.',
-    'Step 5: The tail node\'s next pointer is updated to point back to head.',
-    'Step 6: The new node is now part of the circular chain!'
-  ];
-
   const addNode = () => {
     if (!inputValue || isAnimating) return;
-
     setIsAnimating(true);
-    setCurrentStep(0);
-    setExplanation(explanations[0]);
 
-    let step = 0;
-    const animateStep = () => {
-      if (!isMounted.current) return;
-
-      setCurrentStep(step);
-      setExplanation(explanations[step]);
-      step++;
-
-      if (step < steps.length) {
-        animationRef.current = setTimeout(animateStep, 1500);
-      } else {
-        // Animation complete - add the node
-        const newNode = {
-          value: inputValue,
-          id: nodeIdCounter.current++,
-          address: generateMemoryAddress(),
-        };
-
-        setList(prev => {
-          if (prev.length === 0) {
-            // First node points to itself
-            newNode.next = newNode.address;
-            return [newNode];
-          } else {
-            const updatedList = [...prev];
-            // New node points to head
-            newNode.next = updatedList[0].address;
-            // Last node points to new node
-            updatedList[updatedList.length - 1].next = newNode.address;
-            return [...updatedList, newNode];
-          }
-        });
-
-        setInputValue('');
-        setExplanation(explanations[explanations.length - 1]);
-        setIsAnimating(false);
-      }
+    const newNode = {
+      value: inputValue,
+      id: nodeIdCounter.current++,
+      address: generateMemoryAddress(),
     };
 
-    animateStep();
+    setList(prev => {
+      if (prev.length === 0) {
+        newNode.next = newNode.address;
+        return [newNode];
+      } else {
+        const updatedList = [...prev];
+        newNode.next = updatedList[0].address;
+        updatedList[updatedList.length - 1].next = newNode.address;
+        return [...updatedList, newNode];
+      }
+    });
+
+    setInputValue('');
+    setIsAnimating(false);
+  };
+
+  const animateNodeAddition = (nodeId) => {
+    const newNodeElement = document.querySelector(`[data-node-id="${nodeId}"]`);
+    const arrows = document.querySelectorAll('.connection-arrow');
+
+    if (!newNodeElement) return;
+
+    // Node entry animation
+    gsap.from(newNodeElement, {
+      opacity: 0,
+      scale: 0.5,
+      duration: 0.5,
+      ease: 'back.out(1.7)'
+    });
+
+    // Arrow animations
+    gsap.from(arrows, {
+      opacity: 0,
+      duration: 0.3,
+      stagger: 0.1
+    });
   };
 
   const resetList = () => {
-    clearTimeout(animationRef.current);
-    setList([]);
-    setInputValue('');
-    setIsAnimating(false);
-    setCurrentStep(0);
-    nodeIdCounter.current = 1;
-    setExplanation('Enter a value and click "Add Node" to start.');
+    // Animate nodes out
+    const nodes = document.querySelectorAll('[data-node-id]');
+    gsap.to(nodes, {
+      opacity: 0,
+      scale: 0.5,
+      duration: 0.3,
+      stagger: 0.05,
+      onComplete: () => {
+        setList([]);
+        nodeIdCounter.current = 1;
+      }
+    });
   };
 
   useEffect(() => {
-    isMounted.current = true;
-    return () => {
-      isMounted.current = false;
-      clearTimeout(animationRef.current);
-    };
-  }, []);
+    if (list.length > 0) {
+      animateNodeAddition(list[list.length - 1].id);
+    }
+  }, [list]);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
-      <Navbar />
-      <main className="container mx-auto px-6 py-16">
-        <h1 className="text-4xl md:text-5xl mt-10 font-bold text-center text-gray-900 dark:text-white mb-8">
-          <span className="text-blue-600">Circular Linked List</span> Visualizer
+    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
+      <main className="container mx-auto px-6 pt-16 pb-4">
+        {/* go back block here */}
+        <div className="mt-10 sm:mt-10">
+          <GoBackButton />
+        </div>
+
+        {/* main logic here */}
+        <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
+          <span className="text-black dark:text-white">Circular Linked List</span>
         </h1>
+        <div className="bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5"></div>
+        <Content />
+        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+          Visualize Circular Linked List Operations
+        </p>
         
         {/* Input Form */}
-        <div className="max-w-lg mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8">
+        <div className="max-w-md mx-auto bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md mb-8 border border-gray-200 dark:border-gray-700">
           <div className="mb-4">
-            <label className="block text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-gray-700 dark:text-gray-300 mb-2 text-sm font-medium">
               Node Value
             </label>
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
+              className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               placeholder="Enter value"
               disabled={isAnimating}
+              onKeyDown={(e) => e.key === 'Enter' && addNode()}
             />
           </div>
           <div className="flex gap-4">
             <button
               onClick={addNode}
-              className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg disabled:opacity-50"
+              className={`flex-1 py-3 rounded-lg transition-all ${isAnimating || !inputValue ? 'bg-gray-300 dark:bg-gray-600 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
               disabled={isAnimating || !inputValue}
             >
               Add Node
@@ -139,86 +137,59 @@ const CircularLinkedListVisualizer = () => {
           </div>
         </div>
 
-        {/* Animation Progress */}
-        {isAnimating && (
-          <div className="max-w-lg mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8">
-            <div className="mb-2 text-gray-700 dark:text-gray-300">
-              Current Step: <span className="font-medium">{steps[currentStep]}</span>
-            </div>
-            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-              <div
-                className="bg-blue-600 h-2.5 rounded-full"
-                style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
-              ></div>
-            </div>
-          </div>
-        )}
-
-        {/* Explanation Box */}
-        <div className="max-w-3xl mx-auto bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg shadow-md mb-8 border border-blue-200 dark:border-blue-800">
-          <h3 className="text-xl font-semibold text-blue-800 dark:text-blue-200 mb-4">
-            How Circular Linked Lists Work:
-          </h3>
-          <p className="text-gray-700 dark:text-gray-300 mb-4">{explanation}</p>
-          <div className="text-sm text-gray-600 dark:text-gray-400">
-            <p className="mb-2">• Each node contains: Data + Next Pointer + Memory Address</p>
-            <p className="mb-2">• Next pointer always points to another node (no NULL pointers)</p>
-            <p className="mb-2">• Last node points back to the first node (circular connection)</p>
-            <p>• Can traverse indefinitely in one direction</p>
-          </div>
-        </div>
-
-        {/* Circular List Visualization */}
-        <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6 text-center">
-            Circular Linked List Visualization
-          </h2>
-          
+        {/* Visualization Area */}
+        <div className="relative max-w-4xl mx-auto">
           {list.length === 0 ? (
-            <div className="text-center text-gray-500 dark:text-gray-400 py-8">
-              No nodes in the list yet. Add your first node!
+            <div className="text-center py-16 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-dashed border-gray-300 dark:border-gray-700">
+              <div className="inline-block p-6 bg-gray-100 dark:bg-gray-700 rounded-full mb-4">
+                <svg className="w-12 h-12 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-medium text-gray-700 dark:text-gray-300 mb-2">Empty List</h3>
+              <p className="text-gray-500 dark:text-gray-400">Add nodes to visualize the circular linked list</p>
             </div>
           ) : (
-            <div className="relative">
+            <div className="relative" ref={containerRef}>
               {/* Circular arrangement of nodes */}
-              <div className="relative mx-auto" style={{ width: '500px', height: '500px' }}>
+              <div className="relative mx-auto" style={{ minHeight: '500px' }}>
                 {list.map((node, index) => {
-                  // Calculate position on circle
                   const angle = (index * (360 / list.length)) * (Math.PI / 180);
-                  const centerX = 250;
-                  const centerY = 250;
-                  const radius = 200;
-                  const nodeX = centerX + radius * Math.cos(angle) - 50;
-                  const nodeY = centerY + radius * Math.sin(angle) - 50;
+                  const radius = Math.min(200, 150 + list.length * 15);
+                  const centerX = 0;
+                  const centerY = 0;
+                  const nodeX = centerX + radius * Math.cos(angle);
+                  const nodeY = centerY + radius * Math.sin(angle);
                   
                   return (
                     <div
                       key={node.id}
-                      className="absolute"
+                      data-node-id={node.id}
+                      className="absolute transition-all duration-300"
                       style={{
-                        left: `${nodeX}px`,
-                        top: `${nodeY}px`,
-                        width: '100px',
-                        zIndex: 10,
+                        left: `calc(50% + ${nodeX}px)`,
+                        top: `calc(50% + ${nodeY}px)`,
+                        transform: 'translate(-50%, -50%)',
+                        width: '160px',
                       }}
                     >
-                      <div className={`flex flex-col border-2 ${index === 0 ? 'border-green-500' : 'border-blue-500'} rounded-lg p-3 bg-white dark:bg-gray-700`}>
-                        <div className="flex justify-between items-center mb-2">
+                      <div className={`flex flex-col border-2 ${index === 0 ? 'border-green-500' : 'border-blue-500'} rounded-xl p-4 bg-white dark:bg-gray-700 shadow-md`}>
+                        <div className="flex justify-between items-center mb-3">
                           <span className="font-mono text-xs text-gray-600 dark:text-gray-300">
                             {node.address}
                           </span>
-                          <span className="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-600 rounded">
+                          <span className={`text-xs px-2 py-1 rounded ${index === 0 ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'}`}>
                             {index === 0 ? 'HEAD' : `Node ${index}`}
                           </span>
                         </div>
-                        <div className="grid grid-cols-2 gap-1 mb-1">
-                          <div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">Data</div>
-                            <div className="font-bold text-center">{node.value}</div>
+                        <div className="grid grid-cols-2 gap-3 mb-2">
+                          <div className="bg-gray-50 dark:bg-gray-600 p-2 rounded">
+                            <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Data</div>
+                            <div className="font-bold text-center text-lg">{node.value}</div>
                           </div>
-                          <div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">Next</div>
-                            <div className="font-mono text-xs text-center">
+                          <div className="bg-gray-50 dark:bg-gray-600 p-2 rounded">
+                            <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Next</div>
+                            <div className="font-mono text-xs text-center truncate">
                               {node.next === node.address ? 'self' : node.next}
                             </div>
                           </div>
@@ -228,65 +199,82 @@ const CircularLinkedListVisualizer = () => {
                   );
                 })}
 
-                {/* Circular connections */}
-                {list.length > 1 && (
+                {/* Arrow connections */}
+                {list.length > 0 && (
                   <svg className="absolute top-0 left-0 w-full h-full" style={{ zIndex: 1 }}>
                     {list.map((node, index) => {
                       const nextIndex = (index + 1) % list.length;
                       const angle1 = (index * (360 / list.length)) * (Math.PI / 180);
                       const angle2 = (nextIndex * (360 / list.length)) * (Math.PI / 180);
-                      const centerX = 250;
-                      const centerY = 250;
-                      const radius = 200;
-                      const x1 = centerX + radius * Math.cos(angle1);
-                      const y1 = centerY + radius * Math.sin(angle1);
-                      const x2 = centerX + radius * Math.cos(angle2);
-                      const y2 = centerY + radius * Math.sin(angle2);
+                      const radius = Math.min(200, 150 + list.length * 15);
+                      const startX = 50 + (radius * Math.cos(angle1)) / 5;
+                      const startY = 50 + (radius * Math.sin(angle1)) / 5;
+                      const endX = 50 + (radius * Math.cos(angle2)) / 5;
+                      const endY = 50 + (radius * Math.sin(angle2)) / 5;
+                      
+                      // Calculate control points for curved arrows
+                      const controlX = 50;
+                      const controlY = 50;
                       
                       return (
-                        <g key={`connection-${node.id}`}>
+                        <g key={`connection-${node.id}`} className="connection-arrow">
+                          {/* Curved path */}
                           <path
-                            d={`M ${x1} ${y1} Q ${centerX} ${centerY}, ${x2} ${y2}`}
+                            d={`M ${startX}% ${startY}% Q ${controlX}% ${controlY}%, ${endX}% ${endY}%`}
                             fill="none"
                             stroke="#3b82f6"
                             strokeWidth="2"
                             strokeDasharray={index === list.length - 1 ? "5,5" : "0"}
                           />
-                          <circle cx={x2} cy={y2} r="5" fill="#3b82f6" />
+                          
+                          {/* Arrowhead */}
+                          <marker 
+                            id={`arrowhead-${node.id}`} 
+                            markerWidth="10" 
+                            markerHeight="7" 
+                            refX="9" 
+                            refY="3.5" 
+                            orient="auto"
+                          >
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" />
+                          </marker>
+                          
+                          {/* Arrow line with arrowhead */}
+                          <path
+                            d={`M ${startX}% ${startY}% Q ${controlX}% ${controlY}%, ${endX}% ${endY}%`}
+                            fill="none"
+                            stroke="#3b82f6"
+                            strokeWidth="2"
+                            markerEnd={`url(#arrowhead-${node.id})`}
+                            opacity="0.7"
+                          />
                         </g>
                       );
                     })}
                   </svg>
                 )}
-
-                {/* Single node self-connection */}
-                {list.length === 1 && (
-                  <svg className="absolute top-0 left-0 w-full h-full" style={{ zIndex: 1 }}>
-                    <circle cx="250" cy="50" r="40" fill="none" stroke="#3b82f6" strokeWidth="2" />
-                    <circle cx="290" cy="50" r="5" fill="#3b82f6" />
-                  </svg>
-                )}
-              </div>
-
-              {/* Legend */}
-              <div className="mt-12 text-center">
-                <div className="inline-flex items-center mx-4">
-                  <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
-                  <span className="text-sm">Head Node</span>
-                </div>
-                <div className="inline-flex items-center mx-4">
-                  <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
-                  <span className="text-sm">Regular Node</span>
-                </div>
-                <div className="inline-flex items-center mx-4">
-                  <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
-                  <span className="text-sm">Circular Connection</span>
-                </div>
               </div>
             </div>
           )}
         </div>
+
+        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
+          Test Your Knowledge before moving forward!
+        </p>
+        <Quiz />
+
+        <CodeBlock/>
+
+        <ExploreOther
+          title="Explore Other Types"
+          links={[
+            { text: "Singly Linked List", url: "./singly" },
+            { text: "Doubly Linked List", url: "./doubly" },
+          ]}
+        />
+
       </main>
+      <BackToTop/>
       <Footer />
     </div>
   );

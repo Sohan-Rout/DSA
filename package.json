@@ -21,6 +21,7 @@
     "axios": "^1.9.0",
     "dotenv": "^16.5.0",
     "framer-motion": "^12.9.4",
+    "gsap": "^3.13.0",
     "highlight.js": "^11.11.1",
     "lucide-react": "^0.511.0",
     "monaco-themes": "^0.4.5",
