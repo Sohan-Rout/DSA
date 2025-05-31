@@ -22,7 +22,7 @@ export const UserProvider = ({ children }) => {
     getSessionAndUser();
   }, []);
 
-  return <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
 };
 
 export const useUser = () => useContext(UserContext);

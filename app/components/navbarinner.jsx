@@ -9,7 +9,7 @@ import { Bot } from "lucide-react";
 export default function Navbar() {
   const [theme, setTheme] = useState('light');
   const router = useRouter();
-  const { user } = useUser();
+  const { user, setUser } = useUser();
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -26,6 +26,7 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
+    setUser(null);
     router.push('/'); // redirect after logout
   };
 

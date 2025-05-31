@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import ChatInput from "@/app/tutor/ChatInput";
 
 export default function AITutorPage({ darkMode }) {
   const supabase = createClientComponentClient();
@@ -15,63 +16,100 @@ export default function AITutorPage({ darkMode }) {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState(null);
+  const [isTyping, setIsTyping] = useState(false);
 
   // Scroll to bottom of chat
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chats]);
 
-  // Auth check
+  // Auth check - memoized to prevent unnecessary re-renders
+  const getUser = useCallback(async () => {
+    const { data } = await supabase.auth.getUser();
+    if (!data?.user) {
+      router.push("/login");
+    } else {
+      setUser(data.user);
+    }
+  }, [supabase, router]);
+
   useEffect(() => {
-    const getUser = async () => {
-      const { data } = await supabase.auth.getUser();
-      if (!data?.user) {
-        router.push("/login");
-      } else {
-        setUser(data.user);
-      }
-    };
     getUser();
-  }, []);
+  }, [getUser]);
 
   // Load user's chat history
+  const loadChats = useCallback(async () => {
+    if (!user) return;
+
+    const { data, error } = await supabase
+      .from("chats")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: true });
+
+    if (data.length === 0) {
+      const welcome = {
+        message:
+          "Welcome to your DSA journey! 🎓\n\nI'm your AI tutor here to help you master Data Structures & Algorithms. Try asking:\n\n```python\ndef binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1\n```\n\nOr ask about time complexity, algorithms, or coding problems.",
+        response: "",
+        from: "system",
+        created_at: new Date().toISOString()
+      };
+      setChats([welcome]);
+    } else {
+      setChats(data);
+    }
+  }, [user, supabase]);
+
   useEffect(() => {
-    const loadChats = async () => {
-      if (!user) return;
-
-      const { data, error } = await supabase
-        .from("chats")
-        .select("*")
-        .eq("user_id", user.id)
-        .order("created_at", { ascending: true });
-
-      if (data.length === 0) {
-        const welcome = {
-          message:
-            "Welcome to your DSA journey! 🎓\n\nI'm your AI tutor here to help you master Data Structures & Algorithms. Try asking:\n\n```python\ndef binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1\n```\n\nOr ask about time complexity, algorithms, or coding problems.",
-          response: "",
-          from: "system",
-        };
-        setChats([welcome]);
-      } else {
-        setChats(data);
-      }
-    };
-
     loadChats();
-  }, [user]);
+  }, [loadChats]);
+
+  // Memoize the formatDateSeparator function
+  const formatDateSeparator = useCallback((dateString) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffInDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+    
+    if (diffInDays === 0) {
+      return `Today at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    } else if (diffInDays === 1) {
+      return `Yesterday at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    } else if (diffInDays < 7) {
+      return date.toLocaleDateString([], { weekday: 'long', hour: '2-digit', minute: '2-digit' });
+    } else {
+      return date.toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+  }, []);
+
+  // Memoize the shouldShowDateSeparator function
+  const shouldShowDateSeparator = useCallback((currentIndex) => {
+    if (currentIndex === 0) return true;
+    
+    const currentMsg = chats[currentIndex];
+    const prevMsg = chats[currentIndex - 1];
+    
+    if (!currentMsg?.created_at || !prevMsg?.created_at) return false;
+    
+    const currentDate = new Date(currentMsg.created_at);
+    const prevDate = new Date(prevMsg.created_at);
+    
+    return (currentDate - prevDate) > (5 * 60 * 1000);
+  }, [chats]);
 
   const handleSend = async () => {
     if (!message.trim() || loading) return;
     const input = message.trim();
     setMessage("");
     setLoading(true);
+    setIsTyping(true);
 
     // Add user message with proper structure
     const userMessage = {
       message: input,
       response: null,
       from: "user",
+      created_at: new Date().toISOString()
     };
     setChats((prev) => [...prev, userMessage]);
 
@@ -91,6 +129,7 @@ export default function AITutorPage({ darkMode }) {
           user_id: user.id,
           message: input,
           response,
+          created_at: new Date().toISOString()
         },
       ]);
 
@@ -118,11 +157,12 @@ export default function AITutorPage({ darkMode }) {
       );
     } finally {
       setLoading(false);
+      setIsTyping(false);
     }
   };
 
-  // Format message with code blocks
-  const formatMessage = (text) => {
+  // Memoize the formatMessage function
+  const formatMessage = useCallback((text) => {
     if (!text) return null;
 
     const codeBlockRegex = /```(\w+)?\n([\s\S]+?)\n```/g;
@@ -132,7 +172,6 @@ export default function AITutorPage({ darkMode }) {
     let counter = 0;
 
     while ((match = codeBlockRegex.exec(text)) !== null) {
-      // Add text before code block
       if (match.index > lastIndex) {
         parts.push(
           <p key={`text-${counter++}`} className="mb-4">
@@ -141,7 +180,6 @@ export default function AITutorPage({ darkMode }) {
         );
       }
 
-      // Add code block
       const language = match[1] || "javascript";
       const code = match[2];
 
@@ -217,7 +255,6 @@ export default function AITutorPage({ darkMode }) {
       lastIndex = match.index + match[0].length;
     }
 
-    // Add remaining text after last code block
     if (lastIndex < text.length) {
       parts.push(
         <p key={`text-${counter++}`} className="mb-4 last:mb-0">
@@ -227,7 +264,12 @@ export default function AITutorPage({ darkMode }) {
     }
 
     return parts;
-  };
+  }, [copiedIndex]);
+
+  // Optimized input handler
+  const handleInputChange = useCallback((e) => {
+    setMessage(e.target.value);
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen transition-colors duration-300 bg-gradient-to-b from-blue-50 to-blue-100 dark:bg-gradient-to-b dark:from-zinc-900 dark:to-black">
@@ -261,94 +303,100 @@ export default function AITutorPage({ darkMode }) {
                 </div>
               </div>
             ) : (
-              chats.flatMap((chat, i) => {
-                const bubbles = [
-                  // User message bubble
-                  <div key={`user-${i}`} className="flex justify-end">
-                    <div className="max-w-[90vw] sm:max-w-[85%] rounded-2xl p-3 sm:p-4 shadow-md bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800">
-                      <div className="font-medium mb-1 text-xs sm:text-sm text-blue-100 dark:text-blue-200">
-                        You
+              <>
+                {chats.slice(-10).flatMap((chat, i) => {
+                  const bubbles = [];
+
+                  if (shouldShowDateSeparator(i)) {
+                    bubbles.push(
+                      <div key={`date-${i}`} className="flex justify-center">
+                        <div className="text-xs px-3 py-1 rounded-full bg-blue-100/50 dark:bg-gray-700 text-blue-600 dark:text-gray-400">
+                          {formatDateSeparator(chat.created_at)}
+                        </div>
                       </div>
-                      <div className="whitespace-pre-wrap text-white break-words">
-                        {chat.message}
-                      </div>
-                    </div>
-                  </div>,
-                ];
-                // AI response bubble (if present)
-                if (chat.response) {
+                    );
+                  }
+
                   bubbles.push(
-                    <div key={`ai-${i}`} className="flex justify-start">
-                      <div className="max-w-[90vw] sm:max-w-[85%] rounded-2xl p-3 sm:p-4 border shadow-sm bg-white border-blue-200/50 dark:bg-gray-800 dark:border-gray-700">
-                        <div className="font-medium mb-1 text-xs sm:text-sm text-blue-600 dark:text-blue-400">
-                          DSA Tutor
+                    <div key={`user-${i}`} className="flex justify-end">
+                      <div className="max-w-[90vw] sm:max-w-[85%] rounded-2xl p-3 sm:p-4 shadow-md bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800">
+                        <div className="font-medium mb-1 text-xs sm:text-sm text-blue-100 dark:text-blue-200">
+                          You
                         </div>
-                        <div className="text-gray-800 dark:text-gray-200 break-words">
-                          {formatMessage(chat.response)}
-                        </div>
-                        <div className="mt-2 pt-2 border-t text-xs border-blue-100/30 text-blue-400 dark:border-gray-700 dark:text-gray-500">
-                          <svg
-                            className="w-3 h-3 inline mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M13 10V3L4 14h7v7l9-11h-7z"
-                            />
-                          </svg>
-                          AI-generated educational content
+                        <div className="whitespace-pre-wrap text-white break-words">
+                          {chat.message}
                         </div>
                       </div>
                     </div>
                   );
-                }
-                return bubbles;
-              })
+
+                  if (chat.response) {
+                    bubbles.push(
+                      <div key={`ai-${i}`} className="flex justify-start">
+                        <div className="max-w-[90vw] sm:max-w-[85%] rounded-2xl p-3 sm:p-4 border shadow-sm bg-white border-blue-200/50 dark:bg-gray-800 dark:border-gray-700">
+                          <div className="font-medium mb-1 text-xs sm:text-sm text-blue-600 dark:text-blue-400">
+                            DSA Tutor
+                          </div>
+                          <div className="text-gray-800 dark:text-gray-200 break-words">
+                            {formatMessage(chat.response)}
+                          </div>
+                          <div className="mt-2 pt-2 border-t text-xs border-blue-100/30 text-blue-400 dark:border-gray-700 dark:text-gray-500">
+                            <svg
+                              className="w-3 h-3 inline mr-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M13 10V3L4 14h7v7l9-11h-7z"
+                              />
+                            </svg>
+                            AI-generated educational content
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                  return bubbles;
+                })}
+                {/* Typing indicator */}
+                {isTyping && (
+                  <div key="typing-indicator" className="flex justify-start">
+                    <div className="max-w-[90vw] sm:max-w-[85%] rounded-2xl p-3 sm:p-4 border shadow-sm bg-white border-blue-200/50 dark:bg-gray-800 dark:border-gray-700">
+                      <div className="font-medium mb-1 text-xs sm:text-sm text-blue-600 dark:text-blue-400">
+                        DSA Tutor
+                      </div>
+                      <div className="flex space-x-2 items-center">
+                        <div className="w-2 h-2 rounded-full bg-blue-400 animate-bounce"></div>
+                        <div
+                          className="w-2 h-2 rounded-full bg-blue-400 animate-bounce"
+                          style={{ animationDelay: "0.2s" }}
+                        ></div>
+                        <div
+                          className="w-2 h-2 rounded-full bg-blue-400 animate-bounce"
+                          style={{ animationDelay: "0.4s" }}
+                        ></div>
+                        <span className="text-xs text-gray-500 ml-2">
+                          Generating response...
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </>
             )}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area */}
-          <div className="rounded-xl shadow-sm p-2 sm:p-3 dark:bg-gray-800/80 dark:border-gray-700 bg-white/80 border-blue-200/70 border backdrop-blur-sm">
-            <div className="flex items-center space-x-2">
-              <input
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" && handleSend()}
-                className="flex-1 border-0 focus:ring-2 rounded-xl p-2 sm:p-3 dark:bg-gray-700/50 dark:text-white dark:placeholder-gray-400 dark:focus:ring-blue-500/50 bg-blue-50/50 text-blue-900 placeholder-blue-400/60 focus:ring-blue-500/50 text-sm sm:text-base"
-                placeholder="Ask about time complexity, algorithms, or code implementations..."
-                disabled={loading}
-              />
-              <button
-                onClick={handleSend}
-                disabled={loading || !message.trim()}
-                className="p-2 sm:p-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md hover:from-blue-700 hover:to-blue-800 dark:bg-gray-600/50 dark:bg-gradient-to-r dark:from-blue-700 dark:to-blue-800 dark:shadow-md dark:hover:from-blue-800 dark:hover:to-blue-900 bg-blue-300/50 transition-all duration-200"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div className="text-xs mt-2 px-2 text-center dark:text-gray-500 text-blue-500/60">
-              Responses may occasionally contain inaccuracies. Always verify
-              critical information.
-            </div>
-          </div>
+          <ChatInput
+            message={message}
+            setMessage={setMessage}
+            handleSend={handleSend}
+            loading={loading}
+          />
         </div>
       </main>
     </div>

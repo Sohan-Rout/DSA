@@ -1,5 +1,5 @@
 import Animation from "@/app/visualizer/linkedList/types/circular/animation";
-import Navbar from "@/app/components/navbar";
+import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
   title: 'Circular Linked List Algorithm | Interactive Learning & Step-by-Step Animation',

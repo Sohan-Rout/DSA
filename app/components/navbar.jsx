@@ -217,12 +217,13 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const router = useRouter();
-  const { user } = useUser();
+  const { user, setUser } = useUser();
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push('/');
-  };
+const handleLogout = async () => {
+  await supabase.auth.signOut();
+  setUser(null); // Correctly update the user context
+  router.push('/');
+};
 
   // Load theme from localStorage on mount and apply it
   useEffect(() => {

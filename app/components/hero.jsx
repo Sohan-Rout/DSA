@@ -43,9 +43,9 @@ const HeroSection = () => {
           className="path"
         />
       </svg>
-      New: Blog Posts Added!
+      New: AI Tutor for DSA added!
     </span>
-<Link href="./blogs">
+<Link href="./tutor">
   <button className="text-blue-600 hover:text-blue-700 dark:hover:text-blue-700">
     <svg
   xmlns="http://www.w3.org/2000/svg"
