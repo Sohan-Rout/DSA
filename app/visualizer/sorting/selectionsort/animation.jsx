@@ -130,7 +130,7 @@ const SelectionSortVisualizer = () => {
 
           { /* main logic here */}
           <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
-            <span className="text-black dark:text-white">Quick Sort</span>
+            <span className="text-black dark:text-white">Selection Sort</span>
           </h1>
           <div className='bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5'></div>
           <Content />

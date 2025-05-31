@@ -81,11 +81,13 @@ export default function RootLayout({ children }) {
           </>
         )}
       </head>
-      <body><AuthProvider>
+      <body>
+        <AuthProvider>
         <UserProvider>
           {children}
         </UserProvider>
-        </AuthProvider></body>
+        </AuthProvider>
+      </body>
       <SpeedInsights/>
     </html>
   );

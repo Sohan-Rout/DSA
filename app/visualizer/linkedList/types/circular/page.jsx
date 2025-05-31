@@ -1,4 +1,5 @@
 import Animation from "@/app/visualizer/linkedList/types/circular/animation";
+import Navbar from "@/app/components/navbar";
 
 export const metadata = {
     title: 'Circular Linked List Visualizer | Step-by-Step CLL Animation',
@@ -20,6 +21,9 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <Animation />
+    <>
+      <Navbar/>
+      <Animation/>
+    </>
   );
 };

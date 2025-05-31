@@ -123,7 +123,7 @@ const content = () => {
             ))}
             <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                <strong>Visualization:</strong> Each node is represented as [prev|data|next], showing the bidirectional links between nodes.
+                <strong>Key Property:</strong> Each node is represented as [prev|data|next], showing the bidirectional links between nodes.
               </p>
             </div>
           </div>
