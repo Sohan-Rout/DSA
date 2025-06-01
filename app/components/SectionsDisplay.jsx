@@ -1,10 +1,25 @@
 'use client';
-
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FiChevronRight, FiSearch, FiFrown } from 'react-icons/fi';
+import { FiChevronRight, FiSearch, FiInfo } from 'react-icons/fi';
+import { useState } from 'react';
+
+const InfoPopup = ({ info }) => {
+  return (
+    <div className="absolute top-full right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 p-4 z-10">
+      {Object.entries(info).map(([key, value]) => (
+        <div key={key} className="mb-2 last:mb-0">
+          <span className="font-semibold text-gray-800 dark:text-gray-200">{key}: </span>
+          <span className="text-gray-600 dark:text-gray-400">{value}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const SectionsDisplay = ({ sections, searchQuery }) => {
+  const [hoveredSection, setHoveredSection] = useState(null);
+
   return (
     <div className="max-w-7xl mx-auto space-y-8 px-4 sm:px-1">
       {sections.map((section, sectionIndex) => (
@@ -16,11 +31,25 @@ const SectionsDisplay = ({ sections, searchQuery }) => {
           className="group relative bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700/50 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-blue-400/30 dark:hover:border-blue-500/30"
         >
           {/* Section Header */}
-          <div className="px-6 py-5 border-b border-gray-200 dark:border-gray-700/50 flex items-center bg-gradient-to-r from-gray-50 to-white/50 dark:from-gray-800/50 dark:to-gray-900/50">
-            <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mr-4">
-              {section.icon}
+          <div className="px-6 py-5 border-b border-gray-200 dark:border-gray-700/50 flex items-center justify-between bg-gradient-to-r from-gray-50 to-white/50 dark:from-gray-800/50 dark:to-gray-900/50">
+            <div className="flex items-center">
+              <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mr-4">
+                {section.icon}
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{section.title}</h2>
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{section.title}</h2>
+            {section.info && (
+              <div 
+                className="relative"
+                onMouseEnter={() => setHoveredSection(sectionIndex)}
+                onMouseLeave={() => setHoveredSection(null)}
+              >
+                <FiInfo className="h-5 w-5 text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer" />
+                {hoveredSection === sectionIndex && (
+                  <InfoPopup info={section.info} />
+                )}
+              </div>
+            )}
           </div>
 
           {/* Section Content */}

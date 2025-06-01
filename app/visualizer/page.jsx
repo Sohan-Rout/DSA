@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
 import VisualizerClient from './VisualizerClient';
+import ArrayModal from '@/app/components/models/ArrayModal';
+import StackModal from '@/app/components/models/StackModel';
 
 export const metadata = {
   title: 'Algorithm Visualizer | DSA Visualizer',
@@ -69,6 +71,10 @@ const sections = [
         />
       </svg>
     ),
+    info: {
+      About : "An array is a data structure that stores multiple values of the same type in a single variable. Each value is stored at a specific index, starting from 0.",
+      Representation : <ArrayModal />,
+    },
     subsections: [
       {
         title: "Searching",
@@ -107,6 +113,10 @@ const sections = [
         />
       </svg>
     ),
+    info: {
+      About : "LIFO data structure; push adds to top; pop removes from top; peek views top; works like a stack of plates. Used in function calls, undo, expression evaluation.",
+      Representation : <StackModal />,
+    },
     subsections: [
       {
         title: "Operations",
