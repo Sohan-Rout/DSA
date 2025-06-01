@@ -4,6 +4,10 @@ import Footer from '@/app/components/footer';
 import VisualizerClient from './VisualizerClient';
 import ArrayModal from '@/app/components/models/ArrayModal';
 import StackModal from '@/app/components/models/StackModel';
+import QueueModal from '@/app/components/models/QueueModal';
+import LinkedListModal from '@/app/components/models/LinkedListModal';
+import TreeModal from '@/app/components/models/TreeModal';
+import GraphModal from '@/app/components/models/GraphModal';
 
 export const metadata = {
   title: 'Algorithm Visualizer | DSA Visualizer',
@@ -167,6 +171,10 @@ const sections = [
         />
       </svg>
     ),
+    info: {
+      About : "FIFO data structure; enqueue adds to rear; dequeue removes from front; peek views front; works like a line in a queue. Used in scheduling, buffering, BFS.",
+      Representation : <QueueModal />,
+    },
     subsections: [
       {
         title: "Operations",
@@ -238,6 +246,10 @@ const sections = [
         />
       </svg>
     ),
+    info: {
+      About : "Linear data structure; elements (nodes) connected using pointers; each node has data + next; no fixed size; types: singly, doubly, circular. Used in dynamic memory, insert/delete operations.",
+      Representation : <LinkedListModal />,
+    },
     subsections: [
       {
         title: "Types",
@@ -301,6 +313,11 @@ const sections = [
         />
       </svg>
     ),
+    info: {
+      About : "Hierarchical data structure; has root, nodes, edges; each node has parent/child; no cycles; Used in hierarchies, file systems, searching.",
+      Types : "binary tree, BST, AVL, etc.",
+      Representation : <TreeModal maxLevel={3}/>,
+    },
     subsections: [
       {
         title: "Binary Tree",
@@ -421,6 +438,10 @@ const sections = [
         />
       </svg>
     ),
+    info: {
+      About : "A graph is a data structure made up of: Nodes (also called vertices) Represent entities. Edges Represent connections between nodes.",
+      Representation : <GraphModal />,
+    },
     subsections: [
       {
         title: "Representation",
