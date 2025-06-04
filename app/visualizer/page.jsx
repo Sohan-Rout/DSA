@@ -273,7 +273,7 @@ const sections = [
         items: [
           {
             name: "Insertion",
-            path: "/visualizer/linkedlist/operations/insertion",
+            path: "/visualizer/linkedList/operations/insertion",
           },
           {
             name: "Deletion",
