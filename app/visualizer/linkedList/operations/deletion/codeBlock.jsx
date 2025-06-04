@@ -36,442 +36,384 @@ const CodeBlock = () => {
   };
   
 const codeExamples = {
-  javascript: `class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
-  }
-}
-
-class SinglyLinkedList {
-  constructor() {
-    this.head = null;
-    this.size = 0;
-  }
-
-  // 1. Insert at beginning
-  insertFirst(data) {
-    const newNode = new Node(data);
-    newNode.next = this.head;
-    this.head = newNode;
-    this.size++;
-  }
-
-  // 2. Insert at end
-  insertLast(data) {
-    const newNode = new Node(data);
+  javascript: `class SinglyLinkedList {
+  // 1. Delete first node
+  deleteFirst() {
+    if (!this.head) return null;
     
-    if (!this.head) {
-      this.head = newNode;
-    } else {
-      let current = this.head;
-      while (current.next) {
-        current = current.next;
-      }
-      current.next = newNode;
-    }
-    this.size++;
+    const deletedNode = this.head;
+    this.head = this.head.next;
+    this.size--;
+    return deletedNode.data;
   }
 
-  // 3. Insert at specific index
-  insertAt(data, index) {
-    if (index < 0 || index > this.size) {
-      console.log("Invalid index");
-      return;
+  // 2. Delete last node
+  deleteLast() {
+    if (!this.head) return null;
+    
+    if (!this.head.next) {
+      const data = this.head.data;
+      this.head = null;
+      this.size--;
+      return data;
     }
     
-    if (index === 0) {
-      this.insertFirst(data);
-      return;
-    }
-    
-    const newNode = new Node(data);
     let current = this.head;
-    let count = 0;
-    
-    // Traverse to the node before the insertion point
-    while (count < index - 1) {
-      current = current.next;
-      count++;
-    }
-    
-    newNode.next = current.next;
-    current.next = newNode;
-    this.size++;
-  }
-
-  // Print the list
-  printList() {
-    let current = this.head;
-    let result = "";
-    while (current) {
-      result += current.data + " -> ";
+    while (current.next.next) {
       current = current.next;
     }
-    result += "null";
-    console.log(result);
+    
+    const data = current.next.data;
+    current.next = null;
+    this.size--;
+    return data;
   }
-}
 
-// Usage Example
-const sll = new SinglyLinkedList();
-sll.insertFirst(100);  // List: 100 -> null
-sll.insertFirst(200);  // List: 200 -> 100 -> null
-sll.insertLast(300);   // List: 200 -> 100 -> 300 -> null
-sll.insertAt(500, 1);  // List: 200 -> 500 -> 100 -> 300 -> null
-sll.printList();`,
-
-  python: `class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-
-class SinglyLinkedList:
-    def __init__(self):
-        self.head = None
-        self.size = 0
+  // 3. Delete at specific index
+  deleteAt(index) {
+    if (index < 0 || index >= this.size) return null;
+    if (index === 0) return this.deleteFirst();
     
-    # 1. Insert at beginning
-    def insert_first(self, data):
-        new_node = Node(data)
-        new_node.next = self.head
-        self.head = new_node
-        self.size += 1
+    let current = this.head;
+    for (let i = 0; i < index - 1; i++) {
+      current = current.next;
+    }
     
-    # 2. Insert at end
-    def insert_last(self, data):
-        new_node = Node(data)
-        
+    const deletedNode = current.next;
+    current.next = deletedNode.next;
+    this.size--;
+    return deletedNode.data;
+  }
+
+  // 4. Delete by value (first occurrence)
+  deleteValue(value) {
+    if (!this.head) return null;
+    
+    if (this.head.data === value) {
+      return this.deleteFirst();
+    }
+    
+    let current = this.head;
+    while (current.next && current.next.data !== value) {
+      current = current.next;
+    }
+    
+    if (!current.next) return null;
+    
+    const deletedNode = current.next;
+    current.next = deletedNode.next;
+    this.size--;
+    return deletedNode.data;
+  }
+}`,
+
+  python: `class SinglyLinkedList:
+    # 1. Delete first node
+    def delete_first(self):
         if not self.head:
-            self.head = new_node
-        else:
-            current = self.head
-            while current.next:
-                current = current.next
-            current.next = new_node
-        self.size += 1
+            return None
+            
+        deleted_node = self.head
+        self.head = self.head.next
+        self.size -= 1
+        return deleted_node.data
     
-    # 3. Insert at specific index
-    def insert_at(self, data, index):
-        if index < 0 or index > self.size:
-            print("Invalid index")
-            return
-        
+    # 2. Delete last node
+    def delete_last(self):
+        if not self.head:
+            return None
+            
+        if not self.head.next:
+            data = self.head.data
+            self.head = None
+            self.size -= 1
+            return data
+            
+        current = self.head
+        while current.next.next:
+            current = current.next
+            
+        data = current.next.data
+        current.next = None
+        self.size -= 1
+        return data
+    
+    # 3. Delete at specific index
+    def delete_at(self, index):
+        if index < 0 or index >= self.size:
+            return None
         if index == 0:
-            self.insert_first(data)
-            return
-        
-        new_node = Node(data)
+            return self.delete_first()
+            
         current = self.head
-        count = 0
-        
-        # Traverse to the node before the insertion point
-        while count < index - 1:
+        for _ in range(index - 1):
             current = current.next
-            count += 1
-        
-        new_node.next = current.next
-        current.next = new_node
-        self.size += 1
+            
+        deleted_node = current.next
+        current.next = deleted_node.next
+        self.size -= 1
+        return deleted_node.data
     
-    # Print the list
-    def print_list(self):
+    # 4. Delete by value (first occurrence)
+    def delete_value(self, value):
+        if not self.head:
+            return None
+            
+        if self.head.data == value:
+            return self.delete_first()
+            
         current = self.head
-        result = []
-        while current:
-            result.append(str(current.data))
+        while current.next and current.next.data != value:
             current = current.next
-        print(" -> ".join(result) + " -> None")
-
-# Usage Example
-sll = SinglyLinkedList()
-sll.insert_first(100)  # List: 100 -> None
-sll.insert_first(200)  # List: 200 -> 100 -> None
-sll.insert_last(300)   # List: 200 -> 100 -> 300 -> None
-sll.insert_at(500, 1)  # List: 200 -> 500 -> 100 -> 300 -> None
-sll.print_list()`,
+            
+        if not current.next:
+            return None
+            
+        deleted_node = current.next
+        current.next = deleted_node.next
+        self.size -= 1
+        return deleted_node.data`,
 
   java: `public class SinglyLinkedList {
-    private class Node {
-        int data;
-        Node next;
+    // 1. Delete first node
+    public Integer deleteFirst() {
+        if (head == null) return null;
         
-        Node(int data) {
-            this.data = data;
-            this.next = null;
-        }
+        int data = head.data;
+        head = head.next;
+        size--;
+        return data;
     }
     
-    private Node head;
-    private int size;
-    
-    public SinglyLinkedList() {
-        head = null;
-        size = 0;
-    }
-    
-    // 1. Insert at beginning
-    public void insertFirst(int data) {
-        Node newNode = new Node(data);
-        newNode.next = head;
-        head = newNode;
-        size++;
-    }
-    
-    // 2. Insert at end
-    public void insertLast(int data) {
-        Node newNode = new Node(data);
+    // 2. Delete last node
+    public Integer deleteLast() {
+        if (head == null) return null;
         
-        if (head == null) {
-            head = newNode;
-        } else {
-            Node current = head;
-            while (current.next != null) {
-                current = current.next;
-            }
-            current.next = newNode;
-        }
-        size++;
-    }
-    
-    // 3. Insert at specific index
-    public void insertAt(int data, int index) {
-        if (index < 0 || index > size) {
-            System.out.println("Invalid index");
-            return;
+        if (head.next == null) {
+            int data = head.data;
+            head = null;
+            size--;
+            return data;
         }
         
-        if (index == 0) {
-            insertFirst(data);
-            return;
-        }
-        
-        Node newNode = new Node(data);
         Node current = head;
-        int count = 0;
-        
-        // Traverse to the node before the insertion point
-        while (count < index - 1) {
-            current = current.next;
-            count++;
-        }
-        
-        newNode.next = current.next;
-        current.next = newNode;
-        size++;
-    }
-    
-    // Print the list
-    public void printList() {
-        Node current = head;
-        while (current != null) {
-            System.out.print(current.data + " -> ");
+        while (current.next.next != null) {
             current = current.next;
         }
-        System.out.println("null");
+        
+        int data = current.next.data;
+        current.next = null;
+        size--;
+        return data;
+    }
+    
+    // 3. Delete at specific index
+    public Integer deleteAt(int index) {
+        if (index < 0 || index >= size) return null;
+        if (index == 0) return deleteFirst();
+        
+        Node current = head;
+        for (int i = 0; i < index - 1; i++) {
+            current = current.next;
+        }
+        
+        int data = current.next.data;
+        current.next = current.next.next;
+        size--;
+        return data;
+    }
+    
+    // 4. Delete by value (first occurrence)
+    public Integer deleteValue(int value) {
+        if (head == null) return null;
+        
+        if (head.data == value) {
+            return deleteFirst();
+        }
+        
+        Node current = head;
+        while (current.next != null && current.next.data != value) {
+            current = current.next;
+        }
+        
+        if (current.next == null) return null;
+        
+        int data = current.next.data;
+        current.next = current.next.next;
+        size--;
+        return data;
     }
     
     // Usage Example
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
-        sll.insertFirst(100);  // List: 100 -> null
-        sll.insertFirst(200);  // List: 200 -> 100 -> null
-        sll.insertLast(300);   // List: 200 -> 100 -> 300 -> null
-        sll.insertAt(500, 1);  // List: 200 -> 500 -> 100 -> 300 -> null
-        sll.printList();
+        // Example of the insertion for insertion refer insertion article
+        sll.insertLast(100);
+        sll.insertLast(200);
+        sll.insertLast(300);
+        sll.insertLast(400);
+        
+        System.out.println(sll.deleteFirst());  // 100
+        System.out.println(sll.deleteLast());   // 400
+        System.out.println(sll.deleteAt(1));    // 300
+        System.out.println(sll.deleteValue(200)); // 200
     }
 }`,
 
-  c: `#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct Node {
-    int data;
-    struct Node* next;
-} Node;
-
-typedef struct {
-    Node* head;
-    int size;
-} SinglyLinkedList;
-
-void initList(SinglyLinkedList* list) {
-    list->head = NULL;
-    list->size = 0;
+  c: `int deleteFirst(SinglyLinkedList* list) {
+    if (list->head == NULL) return -1;
+    
+    Node* temp = list->head;
+    int data = temp->data;
+    list->head = list->head->next;
+    free(temp);
+    list->size--;
+    return data;
 }
 
-// 1. Insert at beginning
-void insertFirst(SinglyLinkedList* list, int data) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->data = data;
-    newNode->next = list->head;
-    list->head = newNode;
-    list->size++;
-}
-
-// 2. Insert at end
-void insertLast(SinglyLinkedList* list, int data) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->data = data;
-    newNode->next = NULL;
+// 2. Delete last node
+int deleteLast(SinglyLinkedList* list) {
+    if (list->head == NULL) return -1;
     
-    if (list->head == NULL) {
-        list->head = newNode;
-    } else {
-        Node* current = list->head;
-        while (current->next != NULL) {
-            current = current->next;
-        }
-        current->next = newNode;
+    if (list->head->next == NULL) {
+        int data = list->head->data;
+        free(list->head);
+        list->head = NULL;
+        list->size--;
+        return data;
     }
-    list->size++;
-}
-
-// 3. Insert at specific index
-void insertAt(SinglyLinkedList* list, int data, int index) {
-    if (index < 0 || index > list->size) {
-        printf("Invalid index\n");
-        return;
-    }
-    
-    if (index == 0) {
-        insertFirst(list, data);
-        return;
-    }
-    
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->data = data;
     
     Node* current = list->head;
-    int count = 0;
-    
-    // Traverse to the node before the insertion point
-    while (count < index - 1) {
+    while (current->next->next != NULL) {
         current = current->next;
-        count++;
     }
     
-    newNode->next = current->next;
-    current->next = newNode;
-    list->size++;
+    int data = current->next->data;
+    free(current->next);
+    current->next = NULL;
+    list->size--;
+    return data;
 }
 
-// Print the list
-void printList(SinglyLinkedList* list) {
+// 3. Delete at specific index
+int deleteAt(SinglyLinkedList* list, int index) {
+    if (index < 0 || index >= list->size) return -1;
+    if (index == 0) return deleteFirst(list);
+    
     Node* current = list->head;
-    while (current != NULL) {
-        printf("%d -> ", current->data);
+    for (int i = 0; i < index - 1; i++) {
         current = current->next;
     }
-    printf("NULL\n");
+    
+    Node* temp = current->next;
+    int data = temp->data;
+    current->next = temp->next;
+    free(temp);
+    list->size--;
+    return data;
 }
 
-// Usage Example
-int main() {
-    SinglyLinkedList list;
-    initList(&list);
+// 4. Delete by value (first occurrence)
+int deleteValue(SinglyLinkedList* list, int value) {
+    if (list->head == NULL) return -1;
     
-    insertFirst(&list, 100);  // List: 100 -> NULL
-    insertFirst(&list, 200);  // List: 200 -> 100 -> NULL
-    insertLast(&list, 300);   // List: 200 -> 100 -> 300 -> NULL
-    insertAt(&list, 500, 1);  // List: 200 -> 500 -> 100 -> 300 -> NULL
-    printList(&list);
+    if (list->head->data == value) {
+        return deleteFirst(list);
+    }
     
-    return 0;
+    Node* current = list->head;
+    while (current->next != NULL && current->next->data != value) {
+        current = current->next;
+    }
+    
+    if (current->next == NULL) return -1;
+    
+    Node* temp = current->next;
+    int data = temp->data;
+    current->next = temp->next;
+    free(temp);
+    list->size--;
+    return data;
 }`,
 
-  cpp: `#include <iostream>
-using namespace std;
-
-class Node {
-public:
-    int data;
-    Node* next;
-    
-    Node(int data) : data(data), next(nullptr) {}
-};
-
-class SinglyLinkedList {
-private:
-    Node* head;
-    int size;
-    
-public:
-    SinglyLinkedList() : head(nullptr), size(0) {}
-    
-    // 1. Insert at beginning
-    void insertFirst(int data) {
-        Node* newNode = new Node(data);
-        newNode->next = head;
-        head = newNode;
-        size++;
+  cpp: `public:
+    // 1. Delete first node
+    int deleteFirst() {
+        if (!head) throw std::out_of_range("List is empty");
+        
+        Node* temp = head;
+        int data = temp->data;
+        head = head->next;
+        delete temp;
+        size--;
+        return data;
     }
     
-    // 2. Insert at end
-    void insertLast(int data) {
-        Node* newNode = new Node(data);
+    // 2. Delete last node
+    int deleteLast() {
+        if (!head) throw std::out_of_range("List is empty");
         
-        if (head == nullptr) {
-            head = newNode;
-        } else {
-            Node* current = head;
-            while (current->next != nullptr) {
-                current = current->next;
-            }
-            current->next = newNode;
-        }
-        size++;
-    }
-    
-    // 3. Insert at specific index
-    void insertAt(int data, int index) {
-        if (index < 0 || index > size) {
-            cout << "Invalid index" << endl;
-            return;
+        if (!head->next) {
+            int data = head->data;
+            delete head;
+            head = nullptr;
+            size--;
+            return data;
         }
         
-        if (index == 0) {
-            insertFirst(data);
-            return;
-        }
-        
-        Node* newNode = new Node(data);
         Node* current = head;
-        int count = 0;
-        
-        // Traverse to the node before the insertion point
-        while (count < index - 1) {
-            current = current->next;
-            count++;
-        }
-        
-        newNode->next = current->next;
-        current->next = newNode;
-        size++;
-    }
-    
-    // Print the list
-    void printList() {
-        Node* current = head;
-        while (current != nullptr) {
-            cout << current->data << " -> ";
+        while (current->next->next) {
             current = current->next;
         }
-        cout << "NULL" << endl;
+        
+        int data = current->next->data;
+        delete current->next;
+        current->next = nullptr;
+        size--;
+        return data;
     }
-};
-
-// Usage Example
-int main() {
-    SinglyLinkedList sll;
-    sll.insertFirst(100);  // List: 100 -> NULL
-    sll.insertFirst(200);  // List: 200 -> 100 -> NULL
-    sll.insertLast(300);   // List: 200 -> 100 -> 300 -> NULL
-    sll.insertAt(500, 1);  // List: 200 -> 500 -> 100 -> 300 -> NULL
-    sll.printList();
     
-    return 0;
-}`
+    // 3. Delete at specific index
+    int deleteAt(int index) {
+        if (index < 0 || index >= size) throw std::out_of_range("Index out of range");
+        if (index == 0) return deleteFirst();
+        
+        Node* current = head;
+        for (int i = 0; i < index - 1; i++) {
+            current = current->next;
+        }
+        
+        Node* temp = current->next;
+        int data = temp->data;
+        current->next = temp->next;
+        delete temp;
+        size--;
+        return data;
+    }
+    
+    // 4. Delete by value (first occurrence)
+    int deleteValue(int value) {
+        if (!head) throw std::out_of_range("List is empty");
+        
+        if (head->data == value) {
+            return deleteFirst();
+        }
+        
+        Node* current = head;
+        while (current->next && current->next->data != value) {
+            current = current->next;
+        }
+        
+        if (!current->next) throw std::out_of_range("Value not found");
+        
+        Node* temp = current->next;
+        int data = temp->data;
+        current->next = temp->next;
+        delete temp;
+        size--;
+        return data;
+    }
+};`
 };
 
   return (
