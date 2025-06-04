@@ -272,6 +272,10 @@ const sections = [
         title: "Operations",
         items: [
           {
+            name: "Traversal",
+            path: "/visualizer/linkedList/operations/insertion",
+          },
+          {
             name: "Insertion",
             path: "/visualizer/linkedList/operations/insertion",
           },
@@ -280,11 +284,11 @@ const sections = [
             path: "/visualizer/linkedList/operations/deletion",
           },
           {
-            name: "Finding an Element",
+            name: "Searching",
             path: "/visualizer/linkedList/operations/search",
           },
           {
-            name: "Merging Two Lists",
+            name: "Merge",
             path: "/visualizer/linkedList/operations/merge",
           },
           {
