@@ -37,7 +37,6 @@ const FeaturesSection = () => {
       benefits: [
         "Topic-specific challenges",
         "Performance analytics",
-        "Competitive coding practice"
       ]
     }
   ];
