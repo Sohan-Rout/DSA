@@ -277,19 +277,19 @@ const sections = [
           },
           {
             name: "Deletion",
-            path: "/visualizer/linkedlist/operations/deletion",
+            path: "/visualizer/linkedList/operations/deletion",
           },
           {
             name: "Finding an Element",
-            path: "/visualizer/linkedlist/operations/search",
+            path: "/visualizer/linkedList/operations/search",
           },
           {
             name: "Merging Two Lists",
-            path: "/visualizer/linkedlist/operations/merge",
+            path: "/visualizer/linkedList/operations/merge",
           },
           {
             name: "Comparison",
-            path: "/visualizer/linkedlist/operations/comparison",
+            path: "/visualizer/linkedList/operations/comparison",
           },
         ],
       },

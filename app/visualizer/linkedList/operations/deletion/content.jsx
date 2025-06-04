@@ -1,133 +1,183 @@
 const content = () => {
   const overview = [
-    `Linked List insertion involves adding new nodes to the linked data structure at various positions. Unlike arrays, linked lists allow efficient insertion at any point without reallocation or shifting of existing elements.`,
-    `Insertion is a fundamental operation that enables dynamic growth of the list. The efficiency varies based on insertion position, from O(1) for head/tail (with tail pointer) to O(n) for arbitrary positions.`,
-    `Mastering insertion techniques is crucial for building more complex data structures and algorithms that utilize linked lists as their foundation.`,
+    `Linked List deletion involves removing nodes from the linked data structure at various positions. Unlike arrays, linked lists allow efficient deletion at any point without requiring shifting of remaining elements.`,
+    `Deletion is a fundamental operation that enables dynamic modification of the list. The efficiency varies based on deletion position, from O(1) for head to O(n) for arbitrary positions or tail (without tail pointer).`,
+    `Proper deletion requires careful pointer manipulation to maintain list integrity and avoid memory leaks (in languages without garbage collection).`,
   ];
 
-  const insertionTypes = [
+  const deletionTypes = [
     { 
-      name: "Insertion at Head", 
+      name: "Deletion at Head", 
       complexity: "O(1)", 
-      description: "Adds new node at the beginning, making it the new head",
-      code: `function insertHead(data) {
-  const newNode = new Node(data);
-  newNode.next = head;
-  head = newNode;
-}`
-    },
-    { 
-      name: "Insertion at Tail", 
-      complexity: "O(1) with tail pointer, O(n) without", 
-      description: "Appends new node at the end of the list",
-      code: `function insertTail(data) {
-  const newNode = new Node(data);
-  if (!head) {
-    head = newNode;
-    tail = newNode;
-  } else {
-    tail.next = newNode;
-    tail = newNode;
-  }
-}`
-    },
-    { 
-      name: "Insertion at Position", 
-      complexity: "O(n)", 
-      description: "Inserts node at specific index (0-based)",
-      code: `function insertAt(data, position) {
-  if (position === 0) return insertHead(data);
+      description: "Removes the first node, making the next node the new head",
+      code: `function deleteHead() {
+  if (!head) return; // Empty list
   
+  const temp = head;
+  head = head.next;
+  
+  // In languages without GC:
+  // temp.next = null; // Isolate node
+  // free(temp);       // Free memory
+  
+  // Special case: If list becomes empty
+  if (!head) tail = null;
+}`
+    },
+    { 
+      name: "Deletion at Tail", 
+      complexity: "O(n) without tail pointer, O(1) with doubly linked list", 
+      description: "Removes the last node, requiring traversal to find new tail",
+      code: `function deleteTail() {
+  if (!head) return; // Empty list
+  
+  // Single node case
+  if (!head.next) {
+    head = null;
+    tail = null;
+    return;
+  }
+  
+  // Traverse to find node before tail
   let current = head;
-  for (let i = 0; i < position-1 && current; i++) {
+  while (current.next && current.next.next) {
     current = current.next;
   }
   
-  if (!current) return; // Position out of bounds
-  
-  const newNode = new Node(data);
-  newNode.next = current.next;
-  current.next = newNode;
-  
-  if (!newNode.next) tail = newNode;
+  // Now current is the new tail
+  current.next = null;
+  tail = current;
 }`
     },
     { 
-      name: "Insertion After Node", 
-      complexity: "O(1)", 
-      description: "Inserts new node after a given reference node",
-      code: `function insertAfter(refNode, data) {
-  const newNode = new Node(data);
-  newNode.next = refNode.next;
-  refNode.next = newNode;
+      name: "Deletion by Value", 
+      complexity: "O(n)", 
+      description: "Finds and removes first node containing matching value",
+      code: `function deleteValue(value) {
+  if (!head) return; // Empty list
   
-  if (refNode === tail) tail = newNode;
+  // Special case: head contains value
+  if (head.data === value) {
+    deleteHead();
+    return;
+  }
+  
+  let current = head;
+  while (current.next && current.next.data !== value) {
+    current = current.next;
+  }
+  
+  if (current.next) {
+    const toDelete = current.next;
+    current.next = toDelete.next;
+    
+    // Update tail if deleting last node
+    if (!current.next) tail = current;
+    
+    // In languages without GC:
+    // toDelete.next = null;
+    // free(toDelete);
+  }
+}`
+    },
+    { 
+      name: "Deletion at Position", 
+      complexity: "O(n)", 
+      description: "Removes node at specific index (0-based)",
+      code: `function deleteAt(position) {
+  if (!head || position < 0) return;
+  
+  if (position === 0) {
+    deleteHead();
+    return;
+  }
+  
+  let current = head;
+  for (let i = 0; current && i < position-1; i++) {
+    current = current.next;
+  }
+  
+  if (!current || !current.next) return; // Out of bounds
+  
+  const toDelete = current.next;
+  current.next = toDelete.next;
+  
+  // Update tail if deleting last node
+  if (!current.next) tail = current;
+  
+  // Memory cleanup in non-GC languages
+  // toDelete.next = null;
+  // free(toDelete);
 }`
     },
   ];
 
-  const headInsertionSteps = [
-    { step: "Create a new node with the given data" },
-    { step: "Set the new node's next pointer to current head" },
-    { step: "Update the head pointer to point to the new node" },
-    { step: "Special case: If list was empty, update tail pointer too" },
+  const headDeletionSteps = [
+    { step: "Check if list is empty (head is null)" },
+    { step: "Store reference to current head node" },
+    { step: "Update head pointer to head.next" },
+    { step: "Handle memory cleanup (if needed)" },
+    { step: "Special case: If list becomes empty, update tail pointer" },
   ];
 
-  const tailInsertionSteps = [
-    { step: "Create a new node with the given data" },
-    { step: "If list is empty, set both head and tail to new node" },
-    { step: "Otherwise, set current tail's next pointer to new node" },
-    { step: "Update tail pointer to the new node" },
+  const tailDeletionSteps = [
+    { step: "Check for empty list" },
+    { step: "Handle single node case separately" },
+    { step: "Traverse to find node before tail (penultimate node)" },
+    { step: "Set penultimate node's next to null" },
+    { step: "Update tail pointer to penultimate node" },
   ];
 
-  const middleInsertionSteps = [
-    { step: "Traverse the list to find the insertion position" },
-    { step: "Create a new node with the given data" },
-    { step: "Set new node's next to the next node of current position" },
-    { step: "Set current node's next pointer to the new node" },
-    { step: "Special case: If inserting at end, update tail pointer" },
+  const middleDeletionSteps = [
+    { step: "Traverse to find node before target node" },
+    { step: "Update previous node's next pointer to skip target" },
+    { step: "Handle special case when deleting last node" },
+    { step: "Perform memory cleanup (if needed)" },
   ];
 
   const visualization = [
-    { operation: "Initial State", state: "head → [A] → [B] → [C] → null" },
-    { operation: "insertHead(X)", state: "head → [X] → [A] → [B] → [C] → null" },
-    { operation: "insertTail(Y)", state: "head → [X] → [A] → [B] → [C] → [Y] → null" },
-    { operation: "insertAt(Z, 2)", state: "head → [X] → [A] → [Z] → [B] → [C] → [Y] → null" },
+    { operation: "Initial State", state: "head → [A] → [B] → [C] → [D] → null" },
+    { operation: "deleteHead()", state: "head → [B] → [C] → [D] → null" },
+    { operation: "deleteTail()", state: "head → [B] → [C] → null" },
+    { operation: "deleteValue('C')", state: "head → [B] → null" },
+    { operation: "deleteAt(0)", state: "head → null" },
   ];
 
   const edgeCases = [
     "Empty list (head = null)",
-    "Insertion at position 0 (becomes new head)",
-    "Insertion at position = list length (becomes new tail)",
-    "Insertion at position > list length (should handle gracefully)",
-    "Insertion after tail node (should update tail pointer)",
-    "Insertion with invalid node references",
+    "Single node list (head = tail)",
+    "Deleting head node",
+    "Deleting tail node",
+    "Deleting non-existent value",
+    "Deleting at invalid position (negative or out of bounds)",
+    "Memory management in non-GC languages",
   ];
 
   const bestPractices = [
-    "Always check for empty list condition",
-    "Maintain tail pointer for O(1) tail insertion",
-    "Validate position bounds before insertion",
-    "Update tail pointer when inserting at end",
+    "Always check for empty list before deletion",
+    "Maintain proper head/tail pointers after deletion",
+    "Handle single node case separately",
+    "In non-GC languages, properly free deleted node memory",
     "Consider using dummy nodes to simplify edge cases",
-    "Document whether position is 0-based or 1-based",
+    "Document position/indexing scheme (0-based vs 1-based)",
+    "Validate position bounds before deletion attempts",
   ];
 
   const comparisonTable = [
     { 
       feature: "Time Complexity", 
       array: "O(n) (requires shifting)", 
-      linkedList: "O(1) head/tail, O(n) arbitrary" 
+      linkedList: "O(1) head, O(n) arbitrary/tail" 
     },
     { 
       feature: "Space Complexity", 
-      array: "O(1) (amortized)", 
-      linkedList: "O(1) per insertion" 
+      array: "O(1)", 
+      linkedList: "O(1)" 
     },
     { 
       feature: "Memory Usage", 
-      array: "May need reallocation", 
-      linkedList: "No reallocation needed" 
+      array: "Fixed size unless resized", 
+      linkedList: "Dynamic, no unused capacity" 
     },
     { 
       feature: "Implementation", 
@@ -137,7 +187,7 @@ const content = () => {
     { 
       feature: "Best For", 
       array: "Frequent random access", 
-      linkedList: "Frequent insertions/deletions" 
+      linkedList: "Frequent deletions at head" 
     },
   ];
 
@@ -148,7 +198,7 @@ const content = () => {
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
-            Insertion
+            Deletion
           </h1>
           <div className="prose dark:prose-invert max-w-none">
             {overview.map((para, index) => (
@@ -158,17 +208,17 @@ const content = () => {
             ))}
             <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                <strong>Key Insight:</strong> Linked list insertion doesn't require shifting elements like arrays, but does require careful pointer manipulation to maintain list integrity.
+                <strong>Key Consideration:</strong> Proper deletion requires maintaining list connectivity and handling memory appropriately to prevent leaks (in manual memory management environments).
               </p>
             </div>
           </div>
         </section>
 
-        {/* Insertion Types */}
+        {/* Deletion Types */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Insertion Types</h2>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Deletion Types</h2>
           <div className="space-y-6">
-            {insertionTypes.map((type, index) => (
+            {deletionTypes.map((type, index) => (
               <div key={index} className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{type.name}</h3>
                 <div className="flex flex-col md:flex-row gap-4">
@@ -187,15 +237,15 @@ const content = () => {
           </div>
         </section>
 
-        {/* Insertion Processes */}
+        {/* Deletion Processes */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Insertion Processes</h2>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Deletion Processes</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {/* Head Insertion */}
+            {/* Head Deletion */}
             <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Head Insertion</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Head Deletion</h3>
               <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-                {headInsertionSteps.map((step, index) => (
+                {headDeletionSteps.map((step, index) => (
                   <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
                     {step.step}
                   </li>
@@ -203,11 +253,11 @@ const content = () => {
               </ol>
             </div>
 
-            {/* Tail Insertion */}
+            {/* Tail Deletion */}
             <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Tail Insertion</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Tail Deletion</h3>
               <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-                {tailInsertionSteps.map((step, index) => (
+                {tailDeletionSteps.map((step, index) => (
                   <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
                     {step.step}
                   </li>
@@ -215,17 +265,17 @@ const content = () => {
               </ol>
             </div>
 
-            {/* Middle Insertion */}
+            {/* Middle Deletion */}
             <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Middle Insertion</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Middle Deletion</h3>
               <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-                {middleInsertionSteps.map((step, index) => (
+                {middleDeletionSteps.map((step, index) => (
                   <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
                     {step.step}
                   </li>
                 ))}
               </ol>
-            </div>
+              </div>
           </div>
         </section>
 
@@ -296,7 +346,7 @@ const content = () => {
 
         {/* Comparison with Arrays */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Comparison with Array Insertion</h2>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Comparison with Array Deletion</h2>
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <thead className="bg-gray-50 dark:bg-gray-700">
@@ -319,7 +369,7 @@ const content = () => {
           </div>
           <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              <strong>When to Choose:</strong> Prefer linked lists when you need frequent insertions at arbitrary positions and don't require random access. Use arrays when you need index-based access and memory efficiency for small, fixed-size collections.
+              <strong>When to Choose:</strong> Prefer linked lists when you need frequent deletions, especially at the head. Use arrays when you need index-based access and memory efficiency for small, fixed-size collections.
             </p>
           </div>
         </section>
@@ -330,16 +380,19 @@ const content = () => {
           <div className="prose dark:prose-invert max-w-none">
             <ul className="list-disc pl-5 space-y-2 marker:text-blue-500 dark:marker:text-blue-400">
               <li className="text-gray-700 dark:text-gray-300">
-                <strong>Memory Management:</strong> Remember to properly allocate memory for new nodes in languages that require manual memory management
+                <strong>Memory Management:</strong> In languages without garbage collection, ensure proper memory deallocation when deleting nodes
               </li>
               <li className="text-gray-700 dark:text-gray-300">
-                <strong>Error Handling:</strong> Always validate input parameters and handle edge cases gracefully
+                <strong>Error Handling:</strong> Implement robust checks for edge cases to prevent null pointer exceptions
               </li>
               <li className="text-gray-700 dark:text-gray-300">
-                <strong>Testing:</strong> Thoroughly test all insertion scenarios including empty list, single-node list, head/tail insertions
+                <strong>Testing:</strong> Thoroughly test all deletion scenarios including empty list, single-node list, head/tail deletions
               </li>
               <li className="text-gray-700 dark:text-gray-300">
-                <strong>Optimizations:</strong> Consider maintaining both head and tail pointers for O(1) insertions at both ends
+                <strong>Optimizations:</strong> For frequent tail deletions, consider using a doubly linked list for O(1) performance
+              </li>
+              <li className="text-gray-700 dark:text-gray-300">
+                <strong>Documentation:</strong> Clearly document whether your deletion methods return the deleted value or just remove it
               </li>
             </ul>
           </div>

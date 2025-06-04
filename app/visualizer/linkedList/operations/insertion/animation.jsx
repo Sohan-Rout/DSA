@@ -125,7 +125,7 @@ const LinkedListVisualizer = () => {
         <div className="bg-black dark:bg-gray-600 w-full h-[2px] rounded-xl mt-2 mb-5"></div>
         <Content />
         <p className="text-base sm:text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-          Visualize Circular Linked List Operations
+          Visualize Linked List Insertion
         </p>
 
         {/* Input Form - Responsive */}
