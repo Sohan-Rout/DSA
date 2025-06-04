@@ -50,7 +50,7 @@ export default function AITutorPage({ darkMode }) {
     if (data.length === 0) {
       const welcome = {
         message:
-          "Welcome to your DSA journey! 🎓\n\nI'm your AI tutor here to help you master Data Structures & Algorithms. Try asking:\n\n```python\ndef binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1\n```\n\nOr ask about time complexity, algorithms, or coding problems.",
+          "Welcome to your DSA journey! 🎓\n\nI'm your AI tutor here to help you master Data Structures & Algorithms. Ask about time complexity, algorithms, or coding problems.",
         response: "",
         from: "system",
         created_at: new Date().toISOString()
