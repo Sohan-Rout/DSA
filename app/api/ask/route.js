@@ -12,7 +12,7 @@ Don't talk about anything else. Stay focused on Data Structures and Algorithms.
 `;
 
   const completion = await openai.chat.completions.create({
-    model: "gpt-4",
+    model: "gpt-4.1-mini",
     messages: [
       { role: "system", content: systemPrompt },
       { role: "user", content: prompt },

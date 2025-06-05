@@ -4,6 +4,9 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import sanitizeHtml from "sanitize-html";
 import ChatInput from "@/app/tutor/ChatInput";
 
 export default function AITutorPage({ darkMode }) {
@@ -25,8 +28,9 @@ export default function AITutorPage({ darkMode }) {
 
   // Auth check - memoized to prevent unnecessary re-renders
   const getUser = useCallback(async () => {
-    const { data } = await supabase.auth.getUser();
-    if (!data?.user) {
+    const { data, error } = await supabase.auth.getUser();
+    if (error || !data?.user) {
+      console.error("Auth error:", error);
       router.push("/login");
     } else {
       setUser(data.user);
@@ -47,13 +51,18 @@ export default function AITutorPage({ darkMode }) {
       .eq("user_id", user.id)
       .order("created_at", { ascending: true });
 
+    if (error) {
+      console.error("Error loading chats:", error);
+      return;
+    }
+
     if (data.length === 0) {
       const welcome = {
         message:
           "Welcome to your DSA journey! 🎓\n\nI'm your AI tutor here to help you master Data Structures & Algorithms. Ask about time complexity, algorithms, or coding problems.",
         response: "",
         from: "system",
-        created_at: new Date().toISOString()
+        created_at: new Date().toISOString(),
       };
       setChats([welcome]);
     } else {
@@ -70,32 +79,35 @@ export default function AITutorPage({ darkMode }) {
     const date = new Date(dateString);
     const now = new Date();
     const diffInDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
-    
+
     if (diffInDays === 0) {
-      return `Today at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+      return `Today at ${date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
     } else if (diffInDays === 1) {
-      return `Yesterday at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+      return `Yesterday at ${date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
     } else if (diffInDays < 7) {
-      return date.toLocaleDateString([], { weekday: 'long', hour: '2-digit', minute: '2-digit' });
+      return date.toLocaleDateString([], { weekday: "long", hour: "2-digit", minute: "2-digit" });
     } else {
-      return date.toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' });
+      return date.toLocaleDateString([], { year: "numeric", month: "short", day: "numeric" });
     }
   }, []);
 
   // Memoize the shouldShowDateSeparator function
-  const shouldShowDateSeparator = useCallback((currentIndex) => {
-    if (currentIndex === 0) return true;
-    
-    const currentMsg = chats[currentIndex];
-    const prevMsg = chats[currentIndex - 1];
-    
-    if (!currentMsg?.created_at || !prevMsg?.created_at) return false;
-    
-    const currentDate = new Date(currentMsg.created_at);
-    const prevDate = new Date(prevMsg.created_at);
-    
-    return (currentDate - prevDate) > (5 * 60 * 1000);
-  }, [chats]);
+  const shouldShowDateSeparator = useCallback(
+    (currentIndex) => {
+      if (currentIndex === 0) return true;
+
+      const currentMsg = chats[currentIndex];
+      const prevMsg = chats[currentIndex - 1];
+
+      if (!currentMsg?.created_at || !prevMsg?.created_at) return false;
+
+      const currentDate = new Date(currentMsg.created_at);
+      const prevDate = new Date(prevMsg.created_at);
+
+      return currentDate - prevDate > 5 * 60 * 1000;
+    },
+    [chats]
+  );
 
   const handleSend = async () => {
     if (!message.trim() || loading) return;
@@ -109,7 +121,7 @@ export default function AITutorPage({ darkMode }) {
       message: input,
       response: null,
       from: "user",
-      created_at: new Date().toISOString()
+      created_at: new Date().toISOString(),
     };
     setChats((prev) => [...prev, userMessage]);
 
@@ -119,37 +131,53 @@ export default function AITutorPage({ darkMode }) {
         body: JSON.stringify({ prompt: input }),
       });
 
-      if (!res.ok) throw new Error("Network response was not ok");
+      if (!res.ok) {
+        throw new Error(`Network response was not ok: ${res.status}`);
+      }
 
       const { response } = await res.json();
+      console.log("Raw API response:", response);
+
+      // Sanitize response
+      const sanitizedResponse = sanitizeHtml(response, {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(["h1", "h2", "h3", "h4", "h5", "h6", "hr", "table", "thead", "tbody", "tr", "th", "td"]),
+        allowedAttributes: {
+          ...sanitizeHtml.defaults.allowedAttributes,
+          "*": ["class"],
+        },
+      });
 
       // Store to Supabase
-      await supabase.from("chats").insert([
+      const { error: insertError } = await supabase.from("chats").insert([
         {
           user_id: user.id,
           message: input,
-          response,
-          created_at: new Date().toISOString()
+          response: sanitizedResponse,
+          created_at: new Date().toISOString(),
         },
       ]);
 
-      // Update the chat with the response
+      if (insertError) {
+        console.error("Supabase insert error:", insertError);
+        throw new Error("Failed to save chat to database");
+      }
+
+      // Update the chat with the sanitized response
       setChats((prev) =>
         prev.map((chat, i) =>
           i === prev.length - 1
-            ? { ...chat, response, from: "assistant" }
+            ? { ...chat, response: sanitizedResponse, from: "assistant" }
             : chat
         )
       );
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error in handleSend:", error);
       setChats((prev) =>
         prev.map((chat, i) =>
           i === prev.length - 1
             ? {
                 ...chat,
-                response:
-                  "Sorry, I encountered an error. Please try again later.",
+                response: "Sorry, I encountered an error. Please try again later.",
                 from: "assistant",
               }
             : chat
@@ -162,109 +190,160 @@ export default function AITutorPage({ darkMode }) {
   };
 
   // Memoize the formatMessage function
-  const formatMessage = useCallback((text) => {
-    if (!text) return null;
+  const formatMessage = useCallback(
+    (text) => {
+      if (!text) return null;
 
-    const codeBlockRegex = /```(\w+)?\n([\s\S]+?)\n```/g;
-    const parts = [];
-    let lastIndex = 0;
-    let match;
-    let counter = 0;
+      const codeBlockRegex = /```(\w+)?\n([\s\S]+?)\n```/g;
+      const parts = [];
+      let lastIndex = 0;
+      let counter = 0;
 
-    while ((match = codeBlockRegex.exec(text)) !== null) {
-      if (match.index > lastIndex) {
-        parts.push(
-          <p key={`text-${counter++}`} className="mb-4">
-            {text.substring(lastIndex, match.index)}
-          </p>
-        );
+      // Split text into code and non-code parts
+      const splitText = [];
+      let match;
+      while ((match = codeBlockRegex.exec(text)) !== null) {
+        if (match.index > lastIndex) {
+          splitText.push({
+            type: "markdown",
+            content: text.substring(lastIndex, match.index),
+          });
+        }
+        splitText.push({
+          type: "code",
+          language: match[1] || "javascript",
+          content: match[2],
+        });
+        lastIndex = match.index + match[0].length;
+      }
+      if (lastIndex < text.length) {
+        splitText.push({
+          type: "markdown",
+          content: text.substring(lastIndex),
+        });
       }
 
-      const language = match[1] || "javascript";
-      const code = match[2];
-
-      parts.push(
-        <div
-          key={`code-${counter++}`}
-          className="relative my-4 rounded-lg overflow-hidden"
-        >
-          <div className="flex items-center justify-between px-4 py-2 dark:bg-gray-800 bg-gray-200 text-xs">
-            <span className="font-mono">{language}</span>
-            <button
-              onClick={() => {
-                navigator.clipboard.writeText(code);
-                setCopiedIndex(counter);
-                setTimeout(() => setCopiedIndex(null), 2000);
-              }}
-              className="flex items-center space-x-1 hover:opacity-80"
+      // Render parts
+      splitText.forEach((part) => {
+        if (part.type === "code") {
+          parts.push(
+            <div
+              key={`code-${counter++}`}
+              className="relative my-4 rounded-lg overflow-hidden"
             >
-              {copiedIndex === counter ? (
-                <>
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span>Copied!</span>
-                </>
-              ) : (
-                <>
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
-                    />
-                  </svg>
-                  <span>Copy</span>
-                </>
-              )}
-            </button>
-          </div>
-          <SyntaxHighlighter
-            language={language}
-            style={oneDark}
-            customStyle={{
-              margin: 0,
-              padding: "1rem",
-              fontSize: "0.875rem",
-              backgroundColor: "#292c33",
-              borderRadius: "0 0 0.5rem 0.5rem",
-            }}
-            showLineNumbers
-          >
-            {code}
-          </SyntaxHighlighter>
-        </div>
-      );
+              <div className="flex items-center justify-between px-4 py-2 dark:bg-gray-800 bg-gray-200 text-xs">
+                <span className="font-mono">{part.language}</span>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(part.content);
+                    setCopiedIndex(counter);
+                    setTimeout(() => setCopiedIndex(null), 2000);
+                  }}
+                  className="flex items-center space-x-1 hover:opacity-80"
+                >
+                  {copiedIndex === counter ? (
+                    <>
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                      <span>Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                        />
+                      </svg>
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
+              </div>
+              <SyntaxHighlighter
+                language={part.language}
+                style={oneDark}
+                customStyle={{
+                  margin: 0,
+                  padding: "1rem",
+                  fontSize: "0.875rem",
+                  backgroundColor: "#292c33",
+                  borderRadius: "0 0 0.5rem 0.5rem",
+                }}
+                showLineNumbers
+              >
+                {part.content}
+              </SyntaxHighlighter>
+            </div>
+          );
+        } else {
+          parts.push(
+            <div
+              key={`markdown-${counter++}`}
+              className="mb-4 prose dark:prose-invert prose-blue max-w-none"
+            >
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  code({ node, inline, className, children, ...props }) {
+                    return inline ? (
+                      <code className={className} {...props}>
+                        {children}
+                      </code>
+                    ) : null;
+                  },
+                  table({ children }) {
+                    return (
+                      <table className="border-collapse border border-gray-300 dark:border-gray-600">
+                        {children}
+                      </table>
+                    );
+                  },
+                  th({ children }) {
+                    return (
+                      <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 bg-gray-100 dark:bg-gray-700">
+                        {children}
+                      </th>
+                    );
+                  },
+                  td({ children }) {
+                    return (
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">
+                        {children}
+                      </td>
+                    );
+                  },
+                }}
+              >
+                {part.content}
+              </ReactMarkdown>
+            </div>
+          );
+        }
+      });
 
-      lastIndex = match.index + match[0].length;
-    }
-
-    if (lastIndex < text.length) {
-      parts.push(
-        <p key={`text-${counter++}`} className="mb-4 last:mb-0">
-          {text.substring(lastIndex)}
-        </p>
-      );
-    }
-
-    return parts;
-  }, [copiedIndex]);
+      return parts;
+    },
+    [copiedIndex]
+  );
 
   // Optimized input handler
   const handleInputChange = useCallback((e) => {
@@ -304,10 +383,10 @@ export default function AITutorPage({ darkMode }) {
               </div>
             ) : (
               <>
-                {chats.slice(-10).flatMap((chat, i) => {
+                {chats.slice(-5).flatMap((chat, i) => {
                   const bubbles = [];
 
-                  if (shouldShowDateSeparator(i)) {
+                  if (shouldShowDateSeparator(i + (chats.length - 5))) {
                     bubbles.push(
                       <div key={`date-${i}`} className="flex justify-center">
                         <div className="text-xs px-3 py-1 rounded-full bg-blue-100/50 dark:bg-gray-700 text-blue-600 dark:text-gray-400">
