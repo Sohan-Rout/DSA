@@ -65,11 +65,19 @@ export default function Navbar() {
           {/* Desktop Nav Items */}
           <div className="hidden md:flex items-center gap-4">
             <Link
-              href="/Blogs"
-              className="relative px-5 py-2 font-medium text-black dark:text-white bg-transparent overflow-hidden items-center transition-all duration-300 hover:text-black dark:hover:text-white"
+              href="/blogs"
+              className="relative pr-2 py-2 font-medium text-black dark:text-white bg-transparent overflow-hidden items-center transition-all duration-300 hover:text-blue-500 dark:hover:text-blue-400"
             >
               <span className="z-[1] flex items-center gap-2">
                 Blogs
+              </span>
+            </Link>
+            <Link
+              href="https://learn.dsavisualizer.in/"
+              className="relative pr-2 py-2 font-medium text-black dark:text-white bg-transparent overflow-hidden items-center transition-all duration-300 hover:text-blue-500 dark:hover:text-blue-400"
+            >
+              <span className="z-[1] flex items-center gap-2">
+                Start with Basics
               </span>
             </Link>
             {user ? (
@@ -149,11 +157,18 @@ export default function Navbar() {
         {menuOpen && (
           <div className="md:hidden px-6 pb-4 pt-2 flex flex-col gap-2 animate-fade-in-down">
             <Link
-              href="/Blogs"
+              href="/blogs"
               onClick={closeMenu}
               className="px-4 py-2 rounded font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition"
             >
               Blogs
+            </Link>
+            <Link
+              href="https://learn.dsavisualizer.in/"
+              onClick={closeMenu}
+              className="px-4 py-2 rounded font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            >
+              Start with Basics
             </Link>
             {user ? (
               <>

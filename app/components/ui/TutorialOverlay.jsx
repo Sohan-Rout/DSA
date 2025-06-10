@@ -89,13 +89,13 @@ export default function TutorialOverlay() {
         )}
         <div className="flex justify-center gap-3">
           <button
-            className="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-4 py-2 rounded-xl hover:opacity-90"
+            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 rounded-xl hover:opacity-90"
             onClick={nextStep}
           >
             {step < 2 ? "Next" : "Finish"}
           </button>
           <button
-            className="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-4 py-2 rounded-xl hover:opacity-90"
+            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 rounded-xl hover:opacity-90"
             onClick={closeOverlay}
           >
             Skip
