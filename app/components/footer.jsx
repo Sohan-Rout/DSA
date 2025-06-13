@@ -78,7 +78,7 @@ const legalLinks = [
                   <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.13 2.44h1.74C14.09 5.01 15.76 4 17.5 4 20 4 22 6 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                 </svg>
                 <span>
-                  Made with ♥ by <a href="https://ecmaproject.vercel.app" className="text-blue-400 hover:text-blue-300">EcmaProjects</a>
+                  Made with ♥ by <a href="https://www.linkedin.com/in/sohan-rout/" className="text-blue-400 hover:text-blue-300">Sohan Rout</a>
                 </span>
               </div>
               <div className="flex items-start">
