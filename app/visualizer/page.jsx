@@ -274,7 +274,7 @@ const sections = [
         items: [
           {
             name: "Traversal",
-            path: "/visualizer/linkedList/operations/insertion",
+            path: "/visualizer/linkedList/operations/traversal",
           },
           {
             name: "Insertion",
@@ -287,6 +287,10 @@ const sections = [
           {
             name: "Searching",
             path: "/visualizer/linkedList/operations/search",
+          },
+          {
+            name: "Reverse",
+            path: "/visualizer/linkedList/operations/reverse",
           },
           {
             name: "Merge",
