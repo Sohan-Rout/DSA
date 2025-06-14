@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { gsap } from "gsap";
 import Footer from "@/app/components/footer";
 import RandomArray from "@/app/components/ui/randomArray";
 import CustomArrayInput from "@/app/components/ui/customArrayInput";
@@ -23,6 +24,7 @@ const InsertionSortVisualizer = () => {
     sortedUpTo: -1, // Up to which index is sorted
   });
   const animationRef = useRef(null);
+  const barRefs = useRef([]);
 
   // Handle array generation from RandomArray component
   const handleRandomArray = (newArray) => {
@@ -52,6 +54,11 @@ const InsertionSortVisualizer = () => {
   const insertionSort = async () => {
     if (sorted || sorting || array.length === 0) return;
 
+    // Normalize all bars: Reset x-position before rendering starts
+    barRefs.current.forEach((bar) => {
+      if (bar) gsap.set(bar, { x: 0, y: 0 });
+    });
+
     setSorting(true);
     let arr = [...array];
     let n = arr.length;
@@ -80,6 +87,16 @@ const InsertionSortVisualizer = () => {
       while (j >= 0 && arr[j] > current) {
         setComparisons((prev) => prev + 1);
         arr[j + 1] = arr[j];
+
+        // Animate only the current bar with vertical and horizontal movement
+        const movingBar = barRefs.current[j + 1];
+        if (movingBar) {
+          await gsap.to(movingBar, { y: -20, duration: 0.2 });
+          await gsap.to(movingBar, { x: "+=70", duration: 0.3, ease: "power2.inOut" });
+          await gsap.to(movingBar, { y: 0, duration: 0.2 });
+          gsap.set(movingBar, { clearProps: "transform" });
+        }
+
         setSwaps((prev) => prev + 1);
         j--;
 
@@ -97,6 +114,17 @@ const InsertionSortVisualizer = () => {
       }
 
       arr[j + 1] = current;
+
+      // Animate the insertion of the current element
+      const insertBar = barRefs.current[i];
+      if (insertBar) {
+        const moveX = (j + 1 - i) * 70;
+        await gsap.to(insertBar, { y: -20, duration: 0.2 });
+        await gsap.to(insertBar, { x: moveX, duration: 0.3, ease: "power2.inOut" });
+        await gsap.to(insertBar, { y: 0, duration: 0.2 });
+        gsap.set(insertBar, { clearProps: "transform" });
+      }
+
       setArray([...arr]);
 
       setCurrentIndices({
@@ -233,15 +261,16 @@ const InsertionSortVisualizer = () => {
                   return (
                     <div key={index} className="flex flex-col items-center">
                       <div
-                        className={`w-16 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-lg font-medium
+                        ref={(el) => (barRefs.current[index] = el)}
+                        className={`bar w-16 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-lg font-medium
                             ${
                               isCurrent
-                                ? "bg-yellow-400 dark:bg-yellow-600 border-yellow-600 dark:border-yellow-400"
+                                ? "bg-yellow-400 dark:bg-yellow-400 border-yellow-600 dark:border-yellow-600 dark:text-gray-800"
                                 : isComparing
-                                ? "bg-red-400 dark:bg-red-600 border-red-600 dark:border-red-400"
+                                ? "bg-red-400 dark:bg-red-400 border-red-600 dark:border-red-600 dark:text-gray-800"
                                 : isSorted
-                                ? "bg-green-400 dark:bg-green-600 border-green-600 dark:border-green-400"
-                                : "bg-blue-400 dark:bg-blue-600 border-blue-600 dark:border-blue-400"
+                                ? "bg-green-400 dark:bg-green-400 border-green-600 dark:border-green-600 dark:text-gray-800"
+                                : "bg-blue-400 dark:bg-blue-400 border-blue-600 dark:border-blue-600 dark:text-gray-800"
                             }`}
                       >
                         {value}

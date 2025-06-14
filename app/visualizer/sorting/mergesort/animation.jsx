@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { gsap } from "gsap";
 import Footer from "@/app/components/footer";
 import Content from "@/app/visualizer/sorting/mergesort/content";
 import ArrayGenerator from "@/app/components/ui/randomArray";
@@ -85,9 +86,19 @@ const MergeSortVisualizer = () => {
         j++;
       }
       setSwaps((prev) => prev + 1);
-      k++;
 
       setArray([...arr]);
+      // GSAP pop animation for the merged bar
+      {
+        const bars = document.querySelectorAll(".bar");
+        const bar = bars[k];
+        if (bar) {
+          await gsap.to(bar, { scale: 1.2, duration: 0.2 });
+          await gsap.to(bar, { scale: 1.0, duration: 0.2 });
+        }
+      }
+
+      k++;
       await new Promise(
         (resolve) => (animationRef.current = setTimeout(resolve, 1000 / speed))
       );
@@ -97,8 +108,17 @@ const MergeSortVisualizer = () => {
     while (i < n1) {
       arr[k] = L[i];
       i++;
-      k++;
       setArray([...arr]);
+      // GSAP pop animation for the merged bar
+      {
+        const bars = document.querySelectorAll(".bar");
+        const bar = bars[k];
+        if (bar) {
+          await gsap.to(bar, { scale: 1.2, duration: 0.2 });
+          await gsap.to(bar, { scale: 1.0, duration: 0.2 });
+        }
+      }
+      k++;
       await new Promise(
         (resolve) => (animationRef.current = setTimeout(resolve, 1000 / speed))
       );
@@ -108,8 +128,17 @@ const MergeSortVisualizer = () => {
     while (j < n2) {
       arr[k] = R[j];
       j++;
-      k++;
       setArray([...arr]);
+      // GSAP pop animation for the merged bar
+      {
+        const bars = document.querySelectorAll(".bar");
+        const bar = bars[k];
+        if (bar) {
+          await gsap.to(bar, { scale: 1.2, duration: 0.2 });
+          await gsap.to(bar, { scale: 1.0, duration: 0.2 });
+        }
+      }
+      k++;
       await new Promise(
         (resolve) => (animationRef.current = setTimeout(resolve, 1000 / speed))
       );
@@ -197,101 +226,6 @@ const MergeSortVisualizer = () => {
     );
   };
 
-  const RecursionTree = () => {
-    if (!currentIndices.recursionPath?.length) return null;
-
-    return (
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 mt-8">
-        <h2 className="text-xl font-semibold mb-4">Recursion Tree</h2>
-        <div className="overflow-x-auto">
-          <div className="space-y-6">
-            {/* Tree visualization */}
-            <div className="flex justify-center">
-              <div className="relative">
-                {currentIndices.recursionPath.map((level, idx) => (
-                  <div key={idx} className="mb-8">
-                    {/* Level indicator */}
-                    <div className="text-center font-medium mb-2">
-                      Level {idx + 1}
-                    </div>
-
-                    {/* Visual connection lines */}
-                    {idx > 0 && (
-                      <div className="absolute left-1/2 -top-4 w-0.5 h-6 bg-gray-300 dark:bg-gray-600 transform -translate-x-1/2"></div>
-                    )}
-
-                    {/* Current subarray visualization */}
-                    <div
-                      className={`p-3 rounded-lg border-2 ${
-                        idx === currentIndices.recursionPath.length - 1
-                          ? "bg-yellow-100 dark:bg-yellow-900 border-yellow-400 dark:border-yellow-600"
-                          : "bg-blue-50 dark:bg-blue-900 border-blue-200 dark:border-blue-700"
-                      }`}
-                    >
-                      <div className="text-center text-sm mb-1">
-                        Processing: array[{level.l}..{level.r}]
-                        {idx === currentIndices.recursionPath.length - 1 &&
-                          currentIndices.mid !== undefined && (
-                            <span className="block text-xs mt-1">
-                              (Split at index {currentIndices.mid})
-                            </span>
-                          )}
-                      </div>
-
-                      {/* Subarray elements */}
-                      <div className="flex justify-center gap-1">
-                        {array.map((val, i) => (
-                          <div
-                            key={i}
-                            className={`w-8 h-8 flex items-center justify-center text-xs rounded border ${
-                              i >= level.l && i <= level.r
-                                ? idx ===
-                                  currentIndices.recursionPath.length - 1
-                                  ? "bg-yellow-200 dark:bg-yellow-800 border-yellow-400 dark:border-yellow-600"
-                                  : "bg-blue-100 dark:bg-blue-800 border-blue-300 dark:border-blue-600"
-                                : "opacity-30"
-                            }`}
-                          >
-                            {i >= level.l && i <= level.r ? val : ""}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Left/Right indicators for non-leaf nodes */}
-                    {idx < currentIndices.recursionPath.length - 1 && (
-                      <div className="flex justify-between text-xs mt-1 px-2">
-                        <span>Left</span>
-                        <span>Right</span>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Current operation explanation */}
-            <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
-              <h3 className="font-medium mb-2">Current Operation:</h3>
-              {currentIndices.mergeStart >= 0 ? (
-                <p>
-                  Merging subarrays: array[{currentIndices.mergeStart}..
-                  {currentIndices.mid}] and array[{currentIndices.mid + 1}..
-                  {currentIndices.mergeEnd}]
-                </p>
-              ) : (
-                <p>
-                  {currentIndices.recursionPath.length > 0 &&
-                    `Dividing at level ${currentIndices.recursionPath.length}: 
-                      array[${currentIndices.left}..${currentIndices.right}]`}
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
@@ -399,14 +333,14 @@ const MergeSortVisualizer = () => {
                         className={`w-16 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-lg font-medium
                             ${
                               isComparing
-                                ? "bg-red-400 dark:bg-red-600 border-red-600 dark:border-red-400"
+                                ? "bg-red-400 dark:bg-red-400 border-red-600 dark:border-red-600 text-gray-800"
                                 : isMerging
-                                ? "bg-green-400 dark:bg-green-600 border-green-600 dark:border-green-400"
+                                ? "bg-green-400 dark:bg-green-400 border-green-600 dark:border-green-600 text-gray-800"
                                 : isInRange
-                                ? "bg-yellow-400 dark:bg-yellow-600 border-yellow-600 dark:border-yellow-400"
+                                ? "bg-yellow-400 dark:bg-yellow-400 border-yellow-600 dark:border-yellow-600 text-gray-800"
                                 : isSorted
-                                ? "bg-blue-400 dark:bg-blue-600 border-blue-600 dark:border-blue-400"
-                                : "bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600"
+                                ? "bg-green-400 dark:bg-green-400 border-green-600 dark:border-green-600 text-gray-800"
+                                : "bg-blue-400 dark:bg-blue-500 border-blue-600 dark:border-blue-600 text-gray-800"
                             }`}
                       >
                         {value}
@@ -432,33 +366,11 @@ const MergeSortVisualizer = () => {
           </div>
 
           {/* Enhanced Recursion Tree */}
-          {sorting && array.length > 0 && <RecursionTree />}
 
           {/* Algorithm Explanation with Visual Guide */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 mt-8">
             <h2 className="text-xl font-semibold mb-4">Merge Sort Process</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="font-medium mb-2">Visual Guide:</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-yellow-400 rounded mr-2"></div>
-                    <span>Current division level</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-blue-400 rounded mr-2"></div>
-                    <span>Completed division levels</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-red-400 rounded mr-2"></div>
-                    <span>Elements being compared</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-green-400 rounded mr-2"></div>
-                    <span>Elements being merged</span>
-                  </div>
-                </div>
-              </div>
+            <div>
               <div>
                 <h3 className="font-medium mb-2">Steps:</h3>
                 <ol className="list-decimal pl-5 space-y-2">

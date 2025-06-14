@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { gsap } from "gsap";
 import Footer from "@/app/components/footer";
 import ArrayGenerator from "@/app/components/ui/randomArray";
 import Content from "@/app/visualizer/sorting/bubblesort/content";
@@ -74,6 +75,26 @@ const BubbleSortVisualizer = () => {
         );
 
         if (arr[j] > arr[j + 1]) {
+          const bars = document.querySelectorAll(".bar");
+          const bar1 = bars[j];
+          const bar2 = bars[j + 1];
+          if (bar1 && bar2) {
+            await gsap.to(bar1, {
+              x: "+=40",
+              duration: 0.3,
+              yoyo: true,
+            });
+            await gsap.to(bar2, {
+              x: "-=40",
+              duration: 0.3,
+              yoyo: true,
+            });
+            await gsap.to([bar1, bar2], {
+              x: "0",
+              duration: 0,
+            });
+          }
+
           [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
           swapped = true;
           tempSwaps++;
@@ -219,18 +240,18 @@ const BubbleSortVisualizer = () => {
                   return (
                     <div key={index} className="flex flex-col items-center">
                       <div
-                        className={`w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-sm sm:text-lg font-medium
+                        className={`bar w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-lg border-2 shadow-md dark:shadow-blue-900 transition-all duration-300 text-sm sm:text-lg font-bold
                             ${
                               isComparing
-                                ? "bg-yellow-400 dark:bg-yellow-600 border-yellow-600 dark:border-yellow-400"
+                                ? "bg-yellow-400 dark:bg-yellow-400 border-yellow-600 dark:border-yellow-600 dark:text-gray-900"
                                 : isSorted
-                                ? "bg-green-400 dark:bg-green-600 border-green-600 dark:border-green-400"
-                                : "bg-blue-400 dark:bg-blue-600 border-blue-600 dark:border-blue-400"
+                                ? "bg-green-400 dark:bg-green-400 border-green-600 dark:border-green-600 dark:text-gray-900"
+                                : "bg-blue-400 dark:bg-blue-400 border-blue-600 dark:border-blue-600 dark:text-gray-900"
                             }`}
                       >
                         {value}
                       </div>
-                      <div className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+                      <div className="mt-1 text-xs text-gray-700 dark:text-blue-300 font-semibold">
                         {index === currentIndices.i && "i"}
                         {index === currentIndices.j && "j"}
                       </div>
