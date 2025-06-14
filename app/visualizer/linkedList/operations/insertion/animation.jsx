@@ -233,10 +233,12 @@ const LinkedListVisualizer = () => {
         <ExploreOther
           title="Explore Other Types"
           links={[
+            { text: "Traversal", url: "./traversal" },
             { text: "Deletion", url: "./deletion" },
             { text: "Searching", url: "./search" },
-            { text: "Merge Lists", url: "./merge" },
+            { text: "Merging", url: "./merge" },
             { text: "Comparison", url: "./comparison" },
+            { text: "Reverse", url: "./reverse" },
           ]}
         />
       </main>
