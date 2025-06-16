@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
+import { gsap } from "gsap";
 import Footer from '@/app/components/footer';
 import Content from '@/app/visualizer/sorting/selectionsort/content';
 import ArrayGenerator from '@/app/components/ui/randomArray';
@@ -87,6 +88,23 @@ const SelectionSortVisualizer = () => {
           setSwaps(tempSwaps);
           setArray([...arr]);
           
+          const barI = document.querySelectorAll(".array-bar")[i];
+          const barMin = document.querySelectorAll(".array-bar")[minIndex];
+          if (barI && barMin) {
+            gsap.to([barI, barMin], {
+              opacity: 0,
+              scale: 0.5,
+              duration: 0.2,
+              onComplete: () => {
+                gsap.to([barI, barMin], {
+                  opacity: 1,
+                  scale: 1,
+                  duration: 0.2
+                });
+              }
+            });
+          }
+          
           await new Promise(resolve => 
             animationRef.current = setTimeout(resolve, 1000 / speed)
           );
@@ -94,6 +112,24 @@ const SelectionSortVisualizer = () => {
       }
       
       setArray([...arr]);
+      
+      const barI = document.querySelectorAll(".array-bar")[currentIndices.i];
+      const barMin = document.querySelectorAll(".array-bar")[currentIndices.min];
+      if (barI && barMin) {
+        gsap.to([barI, barMin], {
+          opacity: 0,
+          scale: 0.5,
+          duration: 0.2,
+          onComplete: () => {
+            gsap.to([barI, barMin], {
+              opacity: 1,
+              scale: 1,
+              duration: 0.2
+            });
+          }
+        });
+      }
+      
       setSorting(false);
       setSorted(true);
       setCurrentIndices({ i: -1, j: -1, min: -1 });
@@ -161,7 +197,7 @@ const SelectionSortVisualizer = () => {
                   <button
                     onClick={selectionSort}
                     disabled={!array.length || sorting || sorted}
-                    className="w-full bg-none border border-black dark:border-white text-white dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:border-blue-500 disabled:text-blue-500 disabled:dark:border-blue-500 disabled:dark:text-blue-500"
+                    className="w-full bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:border-blue-500 disabled:text-blue-500 disabled:dark:border-blue-500 disabled:dark:text-blue-500"
                   >
                     {sorting ? "Sorting..." : "Start Selection Sort"}
                   </button>
@@ -220,7 +256,7 @@ const SelectionSortVisualizer = () => {
                     return (
                       <div key={index} className="flex flex-col items-center">
                         <div
-                          className={`w-16 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-lg font-medium
+                          className={`array-bar w-16 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-lg font-medium
                             ${
                               isCurrent
                                 ? "bg-yellow-400 dark:bg-yellow-600 border-yellow-600 dark:border-yellow-400"

@@ -129,27 +129,6 @@ const content = () => {
             </li>
           ))}
         </ul>
-        
-        <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
-          <pre className="text-sm font-mono text-gray-800 dark:text-gray-300 overflow-x-auto">
-            {`Original: 
-[10, 80, 30, 90, 40, 50, 70]
-
-First Partition (pivot=70):
-[10, 30, 40, 50][70][80, 90]
-
-Left Partition (pivot=50):
-[10, 30, 40][50]
-→ already sorted
-
-Right Partition (pivot=90):
-[80][90]
-→ already sorted
-
-Final:    
-[10, 30, 40, 50, 70, 80, 90]`}
-          </pre>
-        </div>
       </div>
     </section>
 

@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
-import Navbar from '@/app/components/navbarinner';
+import { gsap } from "gsap";
 import Footer from '@/app/components/footer';
 import Content from '@/app/visualizer/sorting/quicksort/content';
 import ArrayGenerator from '@/app/components/ui/randomArray';
@@ -74,7 +74,15 @@ const QuickSortVisualizer = () => {
           [arr[i], arr[j]] = [arr[j], arr[i]];
           setSwaps(prev => prev + 1);
           setArray([...arr]);
-          
+          // GSAP animation after swap/visual update
+          const bars = document.querySelectorAll(".array-bar");
+          if (bars.length > 0) {
+            gsap.fromTo(
+              bars,
+              { scale: 1, opacity: 0.5 },
+              { scale: 1.1, opacity: 1, duration: 0.3, stagger: 0.05 }
+            );
+          }
           await new Promise(resolve => 
             animationRef.current = setTimeout(resolve, 1000 / speed)
           );
@@ -84,7 +92,15 @@ const QuickSortVisualizer = () => {
       [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
       setSwaps(prev => prev + 1);
       setArray([...arr]);
-      
+      // GSAP animation after swap/visual update
+      const bars = document.querySelectorAll(".array-bar");
+      if (bars.length > 0) {
+        gsap.fromTo(
+          bars,
+          { scale: 1, opacity: 0.5 },
+          { scale: 1.1, opacity: 1, duration: 0.3, stagger: 0.05 }
+        );
+      }
       await new Promise(resolve => 
         animationRef.current = setTimeout(resolve, 1000 / speed)
       );
@@ -277,7 +293,7 @@ const QuickSortVisualizer = () => {
                   <button
                     onClick={quickSort}
                     disabled={!array.length || sorting || sorted}
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded disabled:opacity-50"
+                    className="w-full bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50"
                   >
                     {sorting ? "Sorting..." : "Start Quick Sort"}
                   </button>
@@ -338,7 +354,7 @@ const QuickSortVisualizer = () => {
                     return (
                       <div key={index} className="flex flex-col items-center">
                         <div
-                          className={`w-16 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-lg font-medium
+                          className={`array-bar w-16 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-lg font-medium
                             ${
                               isPivot
                                 ? "bg-red-400 dark:bg-red-600 border-red-600 dark:border-red-400"
