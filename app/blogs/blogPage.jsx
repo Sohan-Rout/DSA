@@ -38,10 +38,10 @@ const BlogPage = () => {
   // Categories
   const categories = ["All", ...new Set(blogData.map((blog) => blog.category))];
 
-  // Featured posts (latest 3 by date)
+  // Featured posts (latest 5 by date)
   const featuredPosts = [...blogData]
     .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 3);
+    .slice(0, 4);
 
   // Popular tags
   const popularTags = [
@@ -133,7 +133,7 @@ const BlogPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               whileHover={{ y: -5 }}
-              className="col-span-12 lg:col-span-6 bg-white dark:bg-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-zinc-100 dark:border-zinc-700/50"
+              className="col-span-12 lg:col-span-6 h-full bg-white dark:bg-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-zinc-100 dark:border-zinc-700/50"
             >
               <Link href={featuredPosts[0].slug}>
                 <div className="relative h-64 w-full overflow-hidden">
@@ -174,9 +174,9 @@ const BlogPage = () => {
               </Link>
             </motion.div>
 
-            {/* Right column: next 2 featured cards in vertical list-style layout */}
-            <div className="col-span-12 lg:col-span-6 flex flex-col gap-6">
-              {featuredPosts.slice(1).map((post, index) => (
+            {/* Right column: next 4 featured cards in vertical list-style layout */}
+            <div className="col-span-12 lg:col-span-6 h-full flex flex-col gap-6">
+              {featuredPosts.slice(1, 5).map((post, index) => (
                 <motion.div
                   key={post.id}
                   initial={{ opacity: 0, y: 20 }}
