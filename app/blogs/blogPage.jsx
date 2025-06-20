@@ -133,7 +133,7 @@ const BlogPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               whileHover={{ y: -5 }}
-              className="lg:col-span-6 bg-white dark:bg-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-zinc-100 dark:border-zinc-700/50"
+              className="col-span-12 lg:col-span-6 bg-white dark:bg-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-zinc-100 dark:border-zinc-700/50"
             >
               <Link href={featuredPosts[0].slug}>
                 <div className="relative h-64 w-full overflow-hidden">
@@ -175,7 +175,7 @@ const BlogPage = () => {
             </motion.div>
 
             {/* Right column: next 2 featured cards in vertical list-style layout */}
-            <div className="lg:col-span-6 flex flex-col gap-6">
+            <div className="col-span-12 lg:col-span-6 flex flex-col gap-6">
               {featuredPosts.slice(1).map((post, index) => (
                 <motion.div
                   key={post.id}
