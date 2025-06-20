@@ -1,4 +1,4 @@
-import Animation from "@/app/visualizer/linkedList/operations/merge/animation";
+import Animation from "@/app/visualizer/linkedList/operations/reverse/animation";
 import Navbar from "@/app/components/navbarinner";
 
 export const metadata = {
