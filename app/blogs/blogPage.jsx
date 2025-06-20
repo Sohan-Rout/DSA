@@ -98,7 +98,7 @@ const BlogPage = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-2xl mx-auto"
           >
-            <div className="flex flex-col sm:flex-row items-center gap-1 shadow-lg">
+            <div className="flex flex-col sm:flex-row rounded-full bg-none items-center gap-1">
               <input
                 type="email"
                 placeholder="Enter your email to subscribe..."
@@ -251,7 +251,7 @@ const BlogPage = () => {
             </span>
           </h2>
 
-          <div className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredBlogs.length > 0 ? (
               filteredBlogs.map((post) => (
                 <motion.article
@@ -259,53 +259,43 @@ const BlogPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
-                  whileHover={{ x: 5 }}
-                  className="group"
+                  whileHover={{ y: -3 }}
+                  className="bg-white dark:bg-zinc-800 rounded-2xl overflow-hidden shadow hover:shadow-md transition-shadow border border-zinc-100 dark:border-zinc-700/50"
                 >
                   <Link href={post.slug}>
-                    <div className="flex flex-col md:flex-row gap-6 bg-white dark:bg-zinc-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-zinc-100 dark:border-zinc-700/50">
-                      <div className="md:w-1/3">
-                        <div className="aspect-video overflow-hidden rounded-xl relative">
-                          <img
-                            src={post.image}
-                            alt={post.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
-                        </div>
+                    <div className="flex flex-col h-full">
+                      <div className="aspect-video overflow-hidden relative">
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        />
                       </div>
-                      <div className="md:w-2/3">
-                        <div className="flex items-center mb-3">
-                          <span className="text-xs font-medium px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
-                            {post.category}
-                          </span>
-                          <span className="mx-2 text-zinc-300 dark:text-zinc-600">
-                            •
-                          </span>
-                          <span className="text-sm text-zinc-500 dark:text-zinc-400 flex items-center">
-                            <FiCalendar className="mr-1.5" /> {post.date}
-                          </span>
+                      <div className="p-5 flex flex-col gap-3 flex-grow">
+                        <div className="flex items-center justify-between text-sm text-zinc-500 dark:text-zinc-400">
+                          <div className="flex items-center">
+                            <FiCalendar className="mr-1.5" />
+                            <span>{post.date}</span>
+                          </div>
+                          <div className="text-blue-600 dark:text-blue-400 flex items-center font-medium">
+                            Read article <FiArrowRight className="ml-1" />
+                          </div>
                         </div>
-                        <h3 className="text-xl md:text-2xl font-bold text-zinc-800 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        <span className="inline-block text-xs font-medium px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full w-fit">
+                          {post.category}
+                        </span>
+                        <h3 className="text-lg font-bold text-zinc-800 dark:text-white">
                           {post.title}
                         </h3>
-                        <p className="text-zinc-600 dark:text-zinc-300 mb-4 line-clamp-2">
-                          {post.excerpt}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <div className="flex flex-wrap gap-2">
-                            {post.tags.slice(0, 2).map((tag, i) => (
-                              <span
-                                key={i}
-                                className="text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 rounded-full text-zinc-700 dark:text-zinc-300"
-                              >
-                                #{tag}
-                              </span>
-                            ))}
-                          </div>
-                          <span className="text-sm text-blue-600 dark:text-blue-400 flex items-center">
-                            Read article <FiArrowRight className="ml-1" />
-                          </span>
+                        <div className="flex flex-wrap gap-2 mt-auto">
+                          {post.tags.map((tag, i) => (
+                            <span
+                              key={i}
+                              className="text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 rounded-full text-zinc-700 dark:text-zinc-300"
+                            >
+                              #{tag}
+                            </span>
+                          ))}
                         </div>
                       </div>
                     </div>
