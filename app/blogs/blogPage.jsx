@@ -2,11 +2,8 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
-  FiSearch,
-  FiChevronRight,
   FiClock,
   FiCalendar,
-  FiTag,
   FiArrowRight,
 } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
