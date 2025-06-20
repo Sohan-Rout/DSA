@@ -31,5 +31,16 @@
       "category": "Computer Science Fundamentals ",
       "tags": ["Data Structures", "DSA", "Algorithms", "Beginner Programming"],
       "image": "/blog/whatIsDS.png"
+    },
+    {
+      "id": 4,
+      "title": "Time Required to Learn and Master DSA",
+      "excerpt": "Find out how long it takes to learn and master DSA for web development. Explore realistic timelines, learning strategies, and tips for success.",
+      "date": "Jun 20, 2025",
+      "readTime": "10 min read",
+      "slug": "/blogs/Content/timeRequired",
+      "category": "DSA",
+      "tags": ["Data Structures", "DSA", "Algorithms", "Beginner Programming"],
+      "image": "/blog/timeRequired.png"
     }
   ]

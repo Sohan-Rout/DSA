@@ -12,11 +12,11 @@ const BlogContent = () => {
   };
 
   const Paragraphs = [
-    `If you're a web developer or someone aspiring to be one, you've likely wondered if learning data structures and algorithms (DSA) is truly necessary. After all, modern web development is often about building user interfaces and connecting APIs, right? Let's explore this question in depth.`,
-    `At first glance, these tasks don't seem to require deep algorithm knowledge. However, the underlying principles become crucial as applications scale.`,
-    `Understanding concepts like time complexity helps you choose the right approach when dealing with large datasets or performance-critical operations.`,
-    `Instead of just solving abstract problems, apply DSA concepts directly to web development:`,
-    `While you can be a productive web developer without deep DSA knowledge, understanding these concepts will make you more versatile and valuable. You'll write better code, solve problems more efficiently, and have an edge in technical interviews. The key is learning DSA in the context of web development rather than as abstract computer science concepts.`,
+    `If you're a student, developer, or career switcher, you've likely asked: "How long will it take to learn Data Structures and Algorithms (DSA)?" The answer isn't one-size-fits-all — it depends on your goals, consistency, and background.`,
+    `Before estimating time, let's define what “mastering” DSA really means. Mastery isn't just knowing syntax or solving rote problems. It means pattern recognition, approaching unseen questions with confidence, and making trade-offs in real-world system design.`,
+    `For most learners, 3 months gets you foundational knowledge, 6–9 months develops confidence for interviews, and 12+ months results in true mastery. DSA is a long-term game.`,
+    `Here's a simple 12-week roadmap:\n\n- Weeks 1–2: Arrays, Strings, HashMaps\n- Weeks 3–4: Stacks, Queues, Recursion\n- Weeks 5–6: Linked Lists, Trees\n- Weeks 7–8: Heaps, Binary Trees, BSTs\n- Weeks 9–10: Graphs, DFS/BFS\n- Weeks 11–12: DP, Tries, Bit Manipulation`,
+    `Avoid common traps: passively watching tutorials, skipping fundamentals, not reviewing problems. Instead, learn → code → revise. Tools like LeetCode, NeetCode, and your own notes/GitHub repo will accelerate learning.`
   ];
 
   const tasks = [
@@ -97,16 +97,16 @@ const BlogContent = () => {
         </h1>
 
         <div className="flex items-center text-gray-500 dark:text-zinc-400 text-sm">
-          <span>Published on May 17, 2025</span>
+          <span>Published on June 20, 2025</span>
           <span className="mx-2">•</span>
-          <span>8 min read</span>
+          <span>10 min read</span>
         </div>
       </header>
 
       {/* Featured Image */}
       <div className="relative w-full h-64 md:h-96 bg-gray-100 dark:bg-zinc-800 rounded-xl mb-12 overflow-hidden">
         <img
-          src="/blog/dsaWebDev.png"
+          src="/blog/timeRequired.png"
           alt="Web developer working with algorithms"
           className="w-full h-full object-cover"
         />
