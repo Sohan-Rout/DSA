@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 import GoBackButton from "@/app/components/ui/goback";
 import Footer from '@/app/components/footer';
 import Content from '@/app/visualizer/stack/push-pop/content';
@@ -14,13 +15,27 @@ const StackVisualizer = () => {
     const [operation, setOperation] = useState(null);
     const [message, setMessage] = useState('Stack is empty');
     const [isAnimating, setIsAnimating] = useState(false);
-  
+    const stackRefs = useRef([]);
+
     // Reset stack
     const reset = () => {
       setStack([]);
       setMessage('Stack is empty');
       setOperation(null);
     };
+
+    useEffect(() => {
+      if (isAnimating && stackRefs.current.length > 0) {
+        const el = stackRefs.current[0];
+        if (operation?.includes("pushed")) {
+          gsap.fromTo(el, { y: -50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" });
+        } else if (operation?.includes("popped")) {
+          gsap.to(el, { y: 50, opacity: 0, duration: 0.3, ease: "power1.in" });
+        } else if (operation?.includes("Peek")) {
+          gsap.fromTo(el, { scale: 1 }, { scale: 1.2, yoyo: true, repeat: 1, duration: 0.2 });
+        }
+      }
+    }, [stack, operation, isAnimating]);
 
     return (
     <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
@@ -91,18 +106,16 @@ const StackVisualizer = () => {
                   ) : (
                     <div className="space-y-1">
                       {stack.map((item, index) => (
-                        <div 
+                        <div
                           key={index}
+                          ref={el => stackRefs.current[index] = el}
                           className={`p-3 border-2 rounded text-center font-medium transition-all duration-300 ${
                             index === 0 ? 
                               'bg-blue-100 dark:bg-blue-900 border-blue-300 dark:border-blue-700' : 
                               'bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600'
-                          } ${
-                            isAnimating && index === 0 && operation?.includes('Peek') ? 'animate-pulse' : 
-                            isAnimating && index === 0 ? 'animate-bounce' : ''
                           }`}
                         >
-                          {item}
+                          <div>{item}</div>
                           {index === 0 && (
                             <div className="text-xs mt-1 text-gray-500 dark:text-gray-400">
                               (Top)
