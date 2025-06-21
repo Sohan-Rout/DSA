@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
 import 'highlight.js/styles/github-dark.css';
+import CodeExamples from "@/app/visualizer/linkedList/operations/merge/data/codeExamples.json";
 
 export const highlightCode = (code, language) => {
   const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
@@ -35,141 +36,7 @@ const CodeBlock = () => {
     }
   };
   
-const codeExamples = {
-  javascript: `class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
-  }
-}
-
-function mergeLists(l1, l2) {
-  const dummy = new Node(0);
-  let current = dummy;
-
-  while (l1 && l2) {
-    if (l1.data < l2.data) {
-      current.next = l1;
-      l1 = l1.next;
-    } else {
-      current.next = l2;
-      l2 = l2.next;
-    }
-    current = current.next;
-  }
-
-  current.next = l1 || l2;
-  return dummy.next;
-}`,
-
-  python: `class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-
-def merge_lists(l1, l2):
-    dummy = Node(0)
-    current = dummy
-
-    while l1 and l2:
-        if l1.data < l2.data:
-            current.next = l1
-            l1 = l1.next
-        else:
-            current.next = l2
-            l2 = l2.next
-        current = current.next
-
-    current.next = l1 or l2
-    return dummy.next`,
-
-  java: `class Node {
-    int data;
-    Node next;
-    Node(int data) {
-        this.data = data;
-        this.next = null;
-    }
-}
-
-public class MergeLists {
-    public static Node merge(Node l1, Node l2) {
-        Node dummy = new Node(0);
-        Node current = dummy;
-
-        while (l1 != null && l2 != null) {
-            if (l1.data < l2.data) {
-                current.next = l1;
-                l1 = l1.next;
-            } else {
-                current.next = l2;
-                l2 = l2.next;
-            }
-            current = current.next;
-        }
-
-        current.next = (l1 != null) ? l1 : l2;
-        return dummy.next;
-    }
-}`,
-
-  c: `#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct Node {
-    int data;
-    struct Node* next;
-} Node;
-
-Node* mergeLists(Node* l1, Node* l2) {
-    Node dummy;
-    Node* current = &dummy;
-    dummy.next = NULL;
-
-    while (l1 && l2) {
-        if (l1->data < l2->data) {
-            current->next = l1;
-            l1 = l1->next;
-        } else {
-            current->next = l2;
-            l2 = l2->next;
-        }
-        current = current->next;
-    }
-
-    current->next = l1 ? l1 : l2;
-    return dummy.next;
-}`,
-
-  cpp: `#include <iostream>
-using namespace std;
-
-class Node {
-public:
-    int data;
-    Node* next;
-    Node(int d) : data(d), next(nullptr) {}
-};
-
-Node* mergeLists(Node* l1, Node* l2) {
-    Node dummy(0);
-    Node* current = &dummy;
-
-    while (l1 && l2) {
-        if (l1->data < l2->data) {
-            current->next = l1;
-            l1 = l1->next;
-        } else {
-            current->next = l2;
-            l2 = l2->next;
-        }
-        current = current->next;
-    }
-
-    current->next = l1 ? l1 : l2;
-    return dummy.next;
-}`
-};
+const codeExamples = CodeExamples;
 
   return (
        <div
