@@ -3,12 +3,18 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from 'next/link';
+import { event } from '@/lib/gtag';
 
 const HeroSection = () => {
   const router = useRouter();
   
 
   const handleStartVisualizing = () => {
+    event({
+      action: 'click_start_visualizing',
+      category: 'Hero',
+      label: 'Start Visualizing Button'
+    });
     router.push("/visualizer");
   };
 
