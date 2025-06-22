@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
 import 'highlight.js/styles/github-dark.css';
+import CodeExamples from "@/app/visualizer/linkedList/operations/traversal/data/codeExamples.json"
 
 export const highlightCode = (code, language) => {
   const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
@@ -35,137 +36,7 @@ const CodeBlock = () => {
     }
   };
   
-const codeExamples = {
-  javascript: `class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
-  }
-}
-
-function traverse(head) {
-  let current = head;
-  while (current) {
-    console.log(current.data);
-    current = current.next;
-  }
-}
-
-let head = new Node(1);
-head.next = new Node(2);
-head.next.next = new Node(3);
-traverse(head);`,
-
-  python: `class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-
-def traverse(head):
-    current = head
-    while current:
-        print(current.data)
-        current = current.next
-
-head = Node(1)
-head.next = Node(2)
-head.next.next = Node(3)
-traverse(head)`,
-
-  java: `class Node {
-    int data;
-    Node next;
-    Node(int data) {
-        this.data = data;
-        this.next = null;
-    }
-}
-
-public class Main {
-    public static void traverse(Node head) {
-        Node current = head;
-        while (current != null) {
-            System.out.println(current.data);
-            current = current.next;
-        }
-    }
-
-    public static void main(String[] args) {
-        Node head = new Node(1);
-        head.next = new Node(2);
-        head.next.next = new Node(3);
-        traverse(head);
-    }
-}`,
-
-  c: `#include <stdio.h>
-#include <stdlib.h>
-
-struct Node {
-    int data;
-    struct Node* next;
-};
-
-void traverse(struct Node* head) {
-    struct Node* current = head;
-    while (current != NULL) {
-        printf("%d\\n", current->data);
-        current = current->next;
-    }
-}
-
-int main() {
-    struct node * head = (struct node *)malloc(sizeof(struct node));
-    struct node * second = (struct node *)malloc(sizeof(struct node));
-    struct node * third = (struct node *)malloc(sizeof(struct node));
-
-    head->data = 1;
-    head->next = second;
-    second->data = 2;
-    second->next = third;
-    third->data = 3;
-    third->next = NULL;
-
-    traverse(head);
-
-    return 0;
-}`,
-
-  cpp: `#include <iostream>
-using namespace std;
-
-class Node {
-public:
-    int data;
-    Node* next;
-    Node(int data) : data(data), next(nullptr) {}
-};
-
-void traverse(Node* head) {
-    Node* current = head;
-    while (current != nullptr) {
-        cout << current->data << endl;
-        current = current->next;
-    }
-}
-
-int main() {
-    Node* head = new Node(1);
-    head->next = new Node(2);
-    head->next->next = new Node(3);
-    traverse(head);
-
-    // Free memory
-    Node* temp;
-    while (head != nullptr) {
-        temp = head;
-        head = head->next;
-        delete temp;
-    }
-
-    return 0;
-}`
-};
+const codeExamples = CodeExamples;
 
   return (
        <div
