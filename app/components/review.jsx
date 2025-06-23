@@ -67,7 +67,7 @@ const TestimonialsSection = () => {
           <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-blue-200/20 dark:bg-blue-800/10 rounded-full filter blur-3xl -z-10 animate-float-slower"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 mt-5 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -75,8 +75,8 @@ const TestimonialsSection = () => {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto text-center mb-12"
         >
-          <h2 className="text-4xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Share <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-400">Your Experience</span>
+          <h2 className="md:text-5xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Share <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600">Your Experience</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             We value your feedback to help us improve our services
