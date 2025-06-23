@@ -230,8 +230,8 @@ const TestimonialsSection = () => {
         </motion.div>
       </div>
 
-      {/* Divider */}
-        <div className="w-[80%] mx-auto h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent my-10"></div>
+{/* Divider */}
+        <div className="mt-20 mx-auto h-[1px] max-w-4xl bg-gradient-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
     </section>
   );
 };

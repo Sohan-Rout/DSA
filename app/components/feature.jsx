@@ -7,9 +7,9 @@ const FeaturesSection = () => {
     {
       title: "Interactive Visualizations",
       description: "See algorithms in action with step-by-step animations that turn complex concepts into clear, interactive visuals.",
-      icon: <FiCpu className="w-8 h-8" />,
+      icon: <FiCpu className="w-6 h-6" />,
       color: "text-blue-500",
-      bgColor: "bg-blue-100 dark:bg-blue-900/30",
+      bgColor: "bg-blue-50 dark:bg-blue-900/20",
       benefits: [
         "Real-time algorithm tracing",
         "Adjustable animation speeds",
@@ -19,9 +19,9 @@ const FeaturesSection = () => {
     {
       title: "Comprehensive Learning",
       description: "Master DSA from basic arrays to advanced graph algorithms with structured learning paths.",
-      icon: <FiBookOpen className="w-8 h-8" />,
+      icon: <FiBookOpen className="w-6 h-6" />,
       color: "text-purple-500",
-      bgColor: "bg-purple-100 dark:bg-purple-900/30",
+      bgColor: "bg-purple-50 dark:bg-purple-900/20",
       benefits: [
         "100+ DSA topics covered",
         "Beginner to advanced levels",
@@ -31,79 +31,77 @@ const FeaturesSection = () => {
     {
       title: "Knowledge Testing",
       description: "Reinforce learning with inbuilt quizzes and get immediate feedback on your progress.",
-      icon: <FiAward className="w-8 h-8" />,
+      icon: <FiAward className="w-6 h-6" />,
       color: "text-emerald-500",
-      bgColor: "bg-emerald-100 dark:bg-emerald-900/30",
+      bgColor: "bg-emerald-50 dark:bg-emerald-900/20",
       benefits: [
         "Topic-specific challenges",
         "Performance analytics",
+        "Progress tracking"
       ]
     }
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % features.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + features.length) % features.length);
-  };
-
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
-
   return (
-    <section className="relative overflow-hidden py-12">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-white dark:bg-black z-0"></div>
+    <section className="py-15 bg-white dark:bg-black overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-100/30 dark:bg-blue-900/10 rounded-full filter blur-3xl animate-float-slow"></div>
+        <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-blue-100/30 dark:bg-blue-900/10 rounded-full filter blur-3xl animate-float-slower"></div>
+      </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Heading */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
+          <span className="inline-block text-blue-500 dark:text-blue-400 text-sm font-semibold tracking-wider uppercase mb-4">
+            Features we offer
+          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Elevate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-300">DSA Mastery</span>
+            Elevate Your <span className="text-blue-600 dark:text-blue-400">DSA Mastery</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Modern tools designed to transform how you understand algorithms
           </p>
         </div>
 
-        {/* Desktop Grid (shows all cards) */}
-        <div className="hidden md:grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {/* Desktop Grid */}
+        <div className="hidden md:grid grid-cols-1 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+              className="relative group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
             >
-              <div className="p-8 h-full flex flex-col">
-                {/* Icon Card */}
-                <div className={`flex-shrink-0 w-20 h-20 ${feature.bgColor} rounded-2xl flex items-center justify-center ${feature.color} mb-6 transition-all duration-500 hover:rotate-6 hover:scale-110`}>
+              {/* Hover effect background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-gray-800 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300"></div>
+              
+              <div className="relative z-10">
+                {/* Icon */}
+                <div className={`w-14 h-14 ${feature.bgColor} rounded-xl flex items-center justify-center ${feature.color} mb-6 transition-all duration-300 group-hover:rotate-6 group-hover:scale-110`}>
                   {feature.icon}
                 </div>
                 
                 {/* Content */}
-                <div className="flex-grow space-y-4">
+                <div className="space-y-4">
                   <div>
-                    <div className="text-xs font-semibold tracking-wider text-blue-500 dark:text-blue-400 uppercase mb-1">
+                    <span className="text-xs font-semibold tracking-wider text-blue-500 dark:text-blue-400 uppercase">
                       Feature 0{index + 1}
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                    </span>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-2">
                       {feature.title}
                     </h3>
                   </div>
                   
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-gray-600 dark:text-gray-300">
                     {feature.description}
                   </p>
                   
                   <ul className="space-y-3 mt-4">
                     {feature.benefits.map((benefit, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <div className={`flex-shrink-0 mt-1 w-5 h-5 ${feature.color} rounded-full flex items-center justify-center`}>
-                          <svg className="w-3 h-3 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className={`flex-shrink-0 mt-1 w-5 h-5 ${feature.color} rounded-full flex items-center justify-center bg-blue-100 dark:bg-blue-900/30`}>
+                          <svg className="w-3 h-3 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
                           </svg>
                         </div>
@@ -117,104 +115,74 @@ const FeaturesSection = () => {
           ))}
         </div>
 
-        {/* Mobile Carousel (hidden on desktop) */}
-        <div className="md:hidden relative max-w-5xl mx-auto">
-          {/* Floating background elements */}
-          <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-200/20 dark:bg-blue-800/10 rounded-full filter blur-3xl -z-10 animate-float-slow"></div>
-          <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-blue-200/20 dark:bg-blue-800/10 rounded-full filter blur-3xl -z-10 animate-float-slower"></div>
-          
-          <div className="overflow-hidden rounded-3xl">
-            <div className="relative w-full" style={{ paddingBottom: '120%' }}> {/* Maintain aspect ratio */}
+        {/* Mobile Carousel */}
+        <div className="md:hidden relative overflow-hidden">
+          <div 
+            className="flex transition-transform duration-300 ease-in-out"
+            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          >
+            {features.map((feature, index) => (
               <div 
-                className="flex absolute inset-0 transition-transform duration-300 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                key={index} 
+                className="w-full flex-shrink-0 px-2"
               >
-                {features.map((feature, index) => (
-                  <div 
-                    key={index} 
-                    className="w-full flex-shrink-0 px-4"
-                  >
-                    <div className="bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-3xl overflow-hidden shadow-lg h-full">
-                      <div className="p-8 flex flex-col h-full">
-                        {/* Icon Card */}
-                        <div className={`flex-shrink-0 w-20 h-20 ${feature.bgColor} rounded-2xl flex items-center justify-center ${feature.color} mb-6`}>
-                          {feature.icon}
-                        </div>
-                        
-                        {/* Content */}
-                        <div className="space-y-4 flex-grow">
-                          <div>
-                            <div className="text-xs font-semibold tracking-wider text-blue-500 dark:text-blue-400 uppercase mb-1">
-                              Feature 0{index + 1}
-                            </div>
-                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                              {feature.title}
-                            </h3>
-                          </div>
-                          
-                          <p className="text-gray-600 dark:text-gray-400">
-                            {feature.description}
-                          </p>
-                          
-                          <ul className="space-y-3 mt-4">
-                            {feature.benefits.map((benefit, i) => (
-                              <li key={i} className="flex items-start gap-3">
-                                <div className={`flex-shrink-0 mt-1 w-5 h-5 ${feature.color} rounded-full flex items-center justify-center`}>
-                                  <svg className="w-3 h-3 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
-                                  </svg>
-                                </div>
-                                <span className="text-gray-700 dark:text-gray-300">{benefit}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+                  {/* Icon */}
+                  <div className={`w-14 h-14 ${feature.bgColor} rounded-xl flex items-center justify-center ${feature.color} mb-6`}>
+                    {feature.icon}
                   </div>
-                ))}
+                  
+                  {/* Content */}
+                  <div className="space-y-4">
+                    <div>
+                      <span className="text-xs font-semibold tracking-wider text-blue-500 dark:text-blue-400 uppercase">
+                        Feature 0{index + 1}
+                      </span>
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-2">
+                        {feature.title}
+                      </h3>
+                    </div>
+                    
+                    <p className="text-gray-600 dark:text-gray-300">
+                      {feature.description}
+                    </p>
+                    
+                    <ul className="space-y-3 mt-4">
+                      {feature.benefits.map((benefit, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <div className={`flex-shrink-0 mt-1 w-5 h-5 ${feature.color} rounded-full flex items-center justify-center bg-blue-100 dark:bg-blue-900/30`}>
+                            <svg className="w-3 h-3 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                          </div>
+                          <span className="text-gray-700 dark:text-gray-300">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
 
-          {/* Navigation Controls */}
-          <div className="flex justify-center gap-4 mt-6">
-            <button
-              onClick={prevSlide}
-              className="w-12 h-12 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-            >
-              <svg className="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-              </svg>
-            </button>
-            
-            <div className="flex items-center gap-2">
-              {features.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    currentSlide === index
-                      ? 'bg-blue-600 dark:bg-blue-400'
-                      : 'bg-gray-300 dark:bg-gray-600'
-                  }`}
-                />
-              ))}
-            </div>
-            
-            <button
-              onClick={nextSlide}
-              className="w-12 h-12 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-            >
-              <svg className="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </button>
+          {/* Navigation Dots */}
+          <div className="flex justify-center gap-2 mt-6">
+            {features.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                  currentSlide === index
+                    ? 'bg-blue-600 dark:bg-blue-400'
+                    : 'bg-gray-300 dark:bg-gray-600'
+                }`}
+              />
+            ))}
           </div>
         </div>
 
         {/* Divider */}
-        <div className="w-[80%] mx-auto h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent my-20"></div>
+        <div className="mt-20 mx-auto h-[1px] max-w-4xl bg-gradient-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
       </div>
     </section>
   );

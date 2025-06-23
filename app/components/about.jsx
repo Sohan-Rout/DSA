@@ -26,7 +26,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section className="relative py-12 bg-gradient-to-b from-blue-50 to-white dark:from-black dark:to-black overflow-hidden">
+    <section className="relative py-12 bg-white dark:bg-black overflow-hidden">
       {/* Floating background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-0 w-64 h-64 bg-blue-400/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
@@ -106,8 +106,8 @@ const AboutSection = () => {
           </a>
         </div>
 
-        {/* Divider */}
-        <div className="w-full max-w-4xl mx-auto h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent my-10"></div>
+{/* Divider */}
+        <div className="mt-20 mx-auto h-[1px] max-w-4xl bg-gradient-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
       </div>
     </section>
   );

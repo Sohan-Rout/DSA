@@ -13,13 +13,13 @@ const TestimonialSection = () => {
     {
       name: 'Pratham Batra',
       email: '@Co-founder, Geekroom',
-      review: `This is damn impressive seriously, no words. It genuinely feels like a strong alternative to platforms like GeeksforGeeks and W3Schools. Honestly, as a user, this feels even better. Everything is perfect. The only thing I’d love to see next is a custom code feature based on user input. But overall, this is fantastic.`,
+      review: `This is damn impressive seriously, no words. It genuinely feels like a strong alternative to platforms like GeeksforGeeks and W3Schools. Honestly, as a user, this feels even better. Everything is perfect. The only thing I'd love to see next is a custom code feature based on user input. But overall, this is fantastic.`,
       stars: 4,
     },
     {
       name: 'Arnav Gupta',
       email: '@Co-founder, Geekroom',
-      review: `DSA Visualizer, this could be the upcoming game-changer. When you’re stuck on LeetCode or trying to debug your logic, it helps you actually see what your code is doing at each step. Whether you're just starting out or deep into competitive programming, this is something which can make learning DSA so much more intuitive and less frustrating. Well! my opinion says in the future, I’d love to see a built-in compiler or a feature where users can test their own code with custom inputs — that would take it to the next level. But even now, it’s incredibly helpful and super polished!”`,
+      review: `DSA Visualizer, this could be the upcoming game-changer. When you're stuck on LeetCode or trying to debug your logic, it helps you actually see what your code is doing at each step. Whether you're just starting out or deep into competitive programming, this is something which can make learning DSA so much more intuitive and less frustrating. Well! my opinion says in the future, I'd love to see a built-in compiler or a feature where users can test their own code with custom inputs — that would take it to the next level. But even now, it's incredibly helpful and super polished!”`,
       stars: 4,
     },
     {
@@ -31,7 +31,7 @@ const TestimonialSection = () => {
     {
       name: 'kartik',
       email: '@kartik2005221',
-      review: `This platform made DSA so much easier to grasp. Everything’s in one place — topics, visualizations, and practice. It really helped me connect the dots between theory and how things actually work.`,
+      review: `This platform made DSA so much easier to grasp. Everything's in one place — topics, visualizations, and practice. It really helped me connect the dots between theory and how things actually work.`,
       stars: 5,
     },
     {
@@ -58,20 +58,9 @@ const TestimonialSection = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [expandedReviews, setExpandedReviews] = useState({});
 
-  const loadMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 3, testimonials.length));
-  };
-
-  const showLess = () => {
-    setVisibleCount(3);
-  };
-
-  const toggleReview = (index) => {
-    setExpandedReviews(prev => ({
-      ...prev,
-      [index]: !prev[index]
-    }));
-  };
+  const loadMore = () => setVisibleCount(prev => Math.min(prev + 3, testimonials.length));
+  const showLess = () => setVisibleCount(3);
+  const toggleReview = (index) => setExpandedReviews(prev => ({ ...prev, [index]: !prev[index] }));
 
   const filteredTestimonials = activeFilter === 'all' 
     ? testimonials 
@@ -100,118 +89,126 @@ const TestimonialSection = () => {
   };
 
   return (
-    <section className="py-10 bg-white dark:bg-black overflow-hidden relative">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-                  {/* Floating background elements */}
-          <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-200/20 dark:bg-blue-800/10 rounded-full filter blur-3xl -z-10 animate-float-slow"></div>
-          <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-blue-200/20 dark:bg-blue-800/10 rounded-full filter blur-3xl -z-10 animate-float-slower"></div>
-          {/* Section Heading */}
-        <div className="text-center mb-20">
+    <section className="py-10 bg-gradient-to-b from-blue-100/60 to-white dark:from-black dark:to-black ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Heading */}
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-300">Users Say</span>
+            What Our <span className="text-blue-500 dark:text-blue-400">Users Say</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Trusted by students and professionals worldwide
           </p>
         </div>
 
-        <div className="flex justify-center mb-8 flex-wrap gap-2">
+        {/* Filter Buttons */}
+        <div className="flex justify-center mb-12 gap-3">
           <button
             onClick={() => setActiveFilter('all')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeFilter === 'all' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}`}
+            className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${activeFilter === 'all' ? 'bg-blue-600 text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'}`}
           >
             All Reviews
           </button>
           <button
             onClick={() => setActiveFilter('5')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeFilter === '5' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}`}
+            className={`px-5 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeFilter === '5' ? 'bg-blue-600 text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'}`}
           >
             <span>5 Stars</span>
             <FaStar className="text-yellow-400" />
           </button>
           <button
             onClick={() => setActiveFilter('4')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeFilter === '4' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}`}
+            className={`px-5 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeFilter === '4' ? 'bg-blue-600 text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'}`}
           >
             <span>4+ Stars</span>
             <FaStar className="text-yellow-400" />
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredTestimonials.slice(0, visibleCount).map((testimonial, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-md hover:border-blue-200 dark:hover:border-blue-800 group"
+              className="relative group bg-white dark:bg-gray-800 rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
             >
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white font-semibold mr-4">
-                  {getInitials(testimonial.name)}
+              {/* Gradient background on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-gray-800 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300"></div>
+              
+              <div className="relative z-10">
+                {/* Avatar and Info */}
+                <div className="flex items-center mb-6">
+                  <div className="w-14 h-14 rounded-full bg-gray-800 dark:bg-gray-700 text-white flex items-center justify-center text-xl font-semibold mr-4">
+                    {getInitials(testimonial.name)}
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      {testimonial.email}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h3>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    {testimonial.email}
+                
+                {/* Star Rating */}
+                <div className="mb-4">
+                  <StarRating rating={testimonial.stars} />
+                </div>
+                
+                {/* Review Text */}
+                <div className="relative">
+                  <p className={`text-gray-600 dark:text-gray-300 mb-4 ${!expandedReviews[index] && 'line-clamp-3'}`}>
+                    {testimonial.review}
                   </p>
+                  {testimonial.review.length > 150 && (
+                    <button 
+                      onClick={() => toggleReview(index)}
+                      className="text-blue-600 dark:text-blue-400 text-sm font-medium flex items-center gap-1 hover:underline"
+                    >
+                      {expandedReviews[index] ? (
+                        <>
+                          <span>Show less</span>
+                          <FaChevronUp size={12} />
+                        </>
+                      ) : (
+                        <>
+                          <span>Read more</span>
+                          <FaChevronDown size={12} />
+                        </>
+                      )}
+                    </button>
+                  )}
                 </div>
-              </div>
-              
-              <div className="mb-4">
-                <StarRating rating={testimonial.stars} />
-              </div>
-              
-              <div className="relative">
-                <p className={`text-gray-600 dark:text-gray-300 mb-4 ${!expandedReviews[index] && 'line-clamp-3'}`}>
-                  {testimonial.review}
-                </p>
-                {testimonial.review.length > 150 && (
-                  <button 
-                    onClick={() => toggleReview(index)}
-                    className="text-blue-600 dark:text-blue-400 text-sm font-medium flex items-center gap-1 hover:underline"
-                  >
-                    {expandedReviews[index] ? (
-                      <>
-                        <span>Show less</span>
-                        <FaChevronUp size={12} />
-                      </>
-                    ) : (
-                      <>
-                        <span>Show more</span>
-                        <FaChevronDown size={12} />
-                      </>
-                    )}
-                  </button>
-                )}
-              </div>
-              
-              <div className="text-xs text-gray-400 dark:text-gray-500 mt-4 pt-3 border-t border-gray-100 dark:border-gray-700">
-                Verified User • {testimonial.stars.toFixed(1)} Rating
+                
+                {/* Footer */}
+                <div className="text-xs text-gray-400 dark:text-gray-500 mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+                  Verified User • {testimonial.stars.toFixed(1)} Rating
+                </div>
               </div>
             </div>
           ))}
         </div>
 
+        {/* Load More Button */}
         <div className="text-center mt-12">
           {visibleCount < filteredTestimonials.length ? (
             <button
               onClick={loadMore}
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
+              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
             >
-              Load More Testimonials
+              Load More
             </button>
           ) : visibleCount > 3 && (
             <button
               onClick={showLess}
-              className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-300 font-medium rounded-lg transition-all duration-300"
+              className="px-8 py-3 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium rounded-lg transition-all duration-300 border border-gray-200 dark:border-gray-700"
             >
               Show Less
             </button>
           )}
         </div>
 
-      {/* Divider */}
-        <div className="w-[80%] mx-auto h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent my-20"></div>
+        {/* Divider */}
+        <div className="mt-20 mx-auto h-[1px] max-w-4xl bg-gradient-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
       </div>
     </section>
   );

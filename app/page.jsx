@@ -49,17 +49,17 @@ export default function Home() {
       <div id="hero">
         <Hero />
       </div>
-      <div id="about">
-        <About />
+      <div id="testimonial">
+        <Testimonial/>
       </div>
       <div id="features">
         <Feature />
       </div>
+      <div id="about">
+        <About />
+      </div>
       <div id="faq">
         <Faq />
-      </div>
-      <div id="testimonial">
-        <Testimonial/>
       </div>
       <div id="review">
         <Review/>
