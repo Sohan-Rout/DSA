@@ -333,11 +333,11 @@ const sections = [
         items: [
           {
             name: "Structure & Properties",
-            path: "/visualizer/trees/binary-tree/properties",
+            path: "/visualizer/trees/binaryTree/properties",
           },
           {
             name: "Types of Binary Trees",
-            path: "/visualizer/trees/binary-tree/types",
+            path: "/visualizer/trees/binaryTree/types",
           },
         ],
       },
