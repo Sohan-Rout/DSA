@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiTarget, FiEye, FiCode, FiUsers } from 'react-icons/fi';
+import { FiTarget, FiEye, FiUsers } from 'react-icons/fi';
 
 const AboutSection = () => {
   const features = [
@@ -12,11 +12,6 @@ const AboutSection = () => {
       icon: <FiEye className="w-6 h-6" />,
       title: "Visual Learning",
       description: "See algorithms come to life with animations"
-    },
-    {
-      icon: <FiCode className="w-6 h-6" />,
-      title: "Hands-on Practice",
-      description: "Interactive coding environment"
     },
     {
       icon: <FiUsers className="w-6 h-6" />,
@@ -52,7 +47,7 @@ const AboutSection = () => {
         </div>
 
         {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {features.map((feature, index) => (
             <div 
               key={index}
