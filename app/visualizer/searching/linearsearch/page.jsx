@@ -39,6 +39,16 @@ export const metadata = {
     "Test Your Linear Search Skills",
   ],
   robots: "index, follow",
+  openGraph: {
+    images: [
+      {
+        url: "/og/linearSearch.png",
+        width: 1200,
+        height: 630,
+        alt: "Linear Search Algorithm Visualization",
+      },
+    ],
+  },
 };
 
 export default function Page() {
