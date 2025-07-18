@@ -33,7 +33,7 @@ const content = () => {
 
     return (
       <main className="max-w-4xl mx-auto">
-  <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+  <article className="bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
     {/* What is Binary Search */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
       <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
