@@ -80,6 +80,13 @@ export default function Navbar() {
                 Start with Basics
               </span>
             </Link>
+            <Link
+              href="/dashboard"
+              onClick={closeMenu}
+              className="pr-2 py-2 rounded font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            >
+              Dashboard
+            </Link>
             {user ? (
               <>
                 <img
@@ -171,6 +178,13 @@ export default function Navbar() {
               className="px-4 py-2 rounded font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition"
             >
               Start with Basics
+            </Link>
+            <Link
+              href="/dashboard"
+              onClick={closeMenu}
+              className="px-4 py-2 rounded font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            >
+              Dashboard
             </Link>
             {user ? (
               <>
