@@ -218,6 +218,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const router = useRouter();
   const { user, setUser } = useUser();
 
@@ -306,19 +307,34 @@ const handleLogout = async () => {
           {/* User Auth Section */}
           <li>
             {user ? (
-              <div className="flex items-center gap-3">
-  <img
-    src={`https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(user.email)}`}
-    alt="User Avatar"
-    className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
-  />
-  <button
-    onClick={handleLogout}
-    className="px-3 py-1 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md"
-  >
-    Logout
-  </button>
-</div>
+              <div className="relative">
+                <img
+                  src={`https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(user.email)}`}
+                  alt="User Avatar"
+                  className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600 cursor-pointer"
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                />
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 z-50">
+                    <Link
+                      href="/dashboard"
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      onClick={() => setIsUserMenuOpen(false)}
+                    >
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        setIsUserMenuOpen(false);
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
               <Link
                 href="/login"
@@ -415,19 +431,38 @@ const handleLogout = async () => {
           {/* Mobile User Auth Section */}
           <li>
             {user ? (
-              <div className="flex items-center gap-3">
-  <img
-    src={`https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(user.email)}`}
-    alt="User Avatar"
-    className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
-  />
-  <button
-    onClick={handleLogout}
-    className="px-3 py-1 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md"
-  >
-    Logout
-  </button>
-</div>
+              <div className="relative">
+                <img
+                  src={`https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(user.email)}`}
+                  alt="User Avatar"
+                  className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600 cursor-pointer"
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                />
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 z-50">
+                    <Link
+                      href="/dashboard"
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      onClick={() => {
+                        setIsUserMenuOpen(false);
+                        closeMobileMenu();
+                      }}
+                    >
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        setIsUserMenuOpen(false);
+                        closeMobileMenu();
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
               <Link
                 href="/login"
