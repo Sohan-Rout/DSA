@@ -82,9 +82,11 @@ export default function Navbar() {
             </Link>
             {user ? (
               <>
-                <span className="text-green-600 font-medium">
-                  Welcome, {user.email.split("@")[0]}
-                </span>
+                <img
+                  src={`https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(user.email)}`}
+                  alt="User Avatar"
+                  className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
+                />
                 <button
                   onClick={handleLogout}
                   className="ml-4 px-4 py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md"
@@ -172,9 +174,11 @@ export default function Navbar() {
             </Link>
             {user ? (
               <>
-                <span className="text-green-600 font-medium px-4 py-2">
-                  Welcome, {user.email.split("@")[0]}
-                </span>
+                <img
+                  src={`https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(user.email)}`}
+                  alt="User Avatar"
+                  className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600 ml-4"
+                />
                 <button
                   onClick={handleLogout}
                   className="px-4 py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md"
