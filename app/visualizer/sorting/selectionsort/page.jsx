@@ -21,6 +21,16 @@ export const metadata = {
     'Selection Sort Code Examples',
   ],
   robots: "index, follow",
+  openGraph: {
+    images: [
+      {
+        url: "/og/selectionSort.png",
+        width: 1200,
+        height: 630,
+        alt: "Selection Sort Algorithm Visualization",
+      },
+    ],
+  },
 };
 
 export default function Page() {
