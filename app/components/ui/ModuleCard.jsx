@@ -4,10 +4,34 @@ import { supabase } from "@/lib/supabase";
 import { useUser } from "@/app/contexts/UserContext";
 import { toast } from "react-hot-toast";
 import { TriangleAlert } from "lucide-react";
+import { useEffect } from "react";
+
 
 export default function ModuleCard({ moduleId, description, initialDone }) {
   const { user } = useUser();
   const [isDone, setIsDone] = useState(initialDone);
+  
+  useEffect(() => {
+  const fetchUserProgress = async () => {
+    if (!user) return;
+
+    const { data, error } = await supabase
+      .from("user_progress")
+      .select("is_done")
+      .eq("user_id", user.id)
+      .eq("module_id", moduleId)
+      .single();
+
+    if (error) {
+      console.error("Error fetching user progress:", error);
+      return;
+    }
+
+    setIsDone(data?.is_done ?? false);
+  };
+
+  fetchUserProgress();
+}, [user, moduleId]);
 
   async function toggleCompletion() {
     if (!user) {
