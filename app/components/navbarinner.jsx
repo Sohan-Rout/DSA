@@ -83,7 +83,7 @@ export default function Navbar() {
             <Link
               href="/dashboard"
               onClick={closeMenu}
-              className="pr-2 py-2 rounded font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+              className="pr-2 py-2 rounded font-medium hover:text-blue-500 transition"
             >
               Dashboard
             </Link>
@@ -182,7 +182,7 @@ export default function Navbar() {
             <Link
               href="/dashboard"
               onClick={closeMenu}
-              className="px-4 py-2 rounded font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+              className="px-4 py-2 rounded font-medium hover:text-blue-500 transition"
             >
               Dashboard
             </Link>

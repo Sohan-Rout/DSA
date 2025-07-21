@@ -12,7 +12,7 @@ const LinearSearch = () => {
   const [foundIndex, setFoundIndex] = useState(-1);
   const [isAnimating, setIsAnimating] = useState(false);
   const [message, setMessage] = useState("");
-  const [speed, setSpeed] = useState(1);
+  const [speed] = useState(1);
   const animationRef = useRef(null);
   const formRef = useRef(null);
   const elementRefs = useRef([]);
@@ -58,30 +58,6 @@ const LinearSearch = () => {
       Math.floor(Math.random() * 100)
     );
     setArrayElements(elements.join(", "));
-  };
-
-  const skipAnimation = () => {
-    if (!isAnimating) return;
-
-    clearTimeout(animationRef.current);
-    setIsAnimating(false);
-
-    const targetValue = parseInt(target);
-    const foundIdx = array.findIndex((el) => el === targetValue);
-
-    if (foundIdx !== -1) {
-      setFoundIndex(foundIdx);
-      setCurrentIndex(foundIdx);
-      setMessage(`Element ${targetValue} found at index ${foundIdx}!`);
-      gsap.to(elementRefs.current[foundIdx], {
-        backgroundColor: "#22C55E",
-        borderColor: "#15803D",
-        duration: 0.3,
-      });
-    } else {
-      setCurrentIndex(array.length - 1);
-      setMessage(`Element ${targetValue} not found in the array.`);
-    }
   };
 
   const handleGo = (e) => {
