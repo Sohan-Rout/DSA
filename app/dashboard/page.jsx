@@ -15,13 +15,13 @@ export default function Dashboard() {
   const [modules, setModules] = useState([]);
   const [progress, setProgress] = useState({});
 
-  {/*useEffect(() => {
+  useEffect(() => {
     if (!user) {
       router.push("/login");
     } else {
       fetchModules();
     }
-  }, [user]);*/}
+  }, [user]);
 
   async function fetchModules() {
     const { data: modulesData, error: modulesError } = await supabase
@@ -92,10 +92,12 @@ export default function Dashboard() {
             </span>
           </div>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start mb-8">
-          <div className="md:col-span-2 space-y-4">
-            {modules.filter((mod) => progress[mod.id]?.is_done).length > 0 ? (
-              modules
+
+        <section className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Modules Completed</h2>
+          {modules.filter((mod) => progress[mod.id]?.is_done).length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {modules
                 .filter((mod) => progress[mod.id]?.is_done)
                 .map((mod) => (
                   <div
@@ -110,50 +112,22 @@ export default function Dashboard() {
                       Completed on: {new Date(progress[mod.id].updated_at).toLocaleDateString()}
                     </div>
                   </div>
-                ))
-            ) : (
-              <div className="text-center text-gray-500 dark:text-gray-400 py-8">
-                Start learning and mark modules as completed to see your progress here.
-              </div>
-            )}
-          </div>
-          <div className="border rounded-lg p-4 bg-white dark:bg-zinc-900 shadow-sm">
-            <h3 className="text-md font-semibold text-gray-800 dark:text-gray-200 mb-2">
-              📅 Learning Streak
-            </h3>
-            <Calendar
-              onChange={setDate}
-              value={date}
-              className="w-full rounded-lg"
-            />
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          {modules.map((mod) => (
-            <div
-              key={mod.id}
-              className={`flex items-center justify-between border rounded-lg p-4 ${
-                progress[mod.id] ? "bg-green-50 dark:bg-green-900/30" : "bg-white dark:bg-zinc-900"
-              }`}
-            >
-              <div>
-                <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{mod.title}</h2>
-                <p className="text-sm text-gray-500 dark:text-gray-400">{mod.description}</p>
-              </div>
-              <button
-                onClick={() => toggleDone(mod.id)}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition duration-300 ${
-                  progress[mod.id]
-                    ? "bg-green-600 text-white hover:bg-green-700"
-                    : "bg-blue-600 text-white hover:bg-blue-700"
-                }`}
-              >
-                {progress[mod.id] ? "Done" : "Mark as Done"}
-              </button>
+                ))}
             </div>
-          ))}
-        </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-8 text-center">
+              <p className="text-gray-500 dark:text-gray-400 mb-4">
+                You haven't completed any modules yet.
+              </p>
+              <Link
+                href="/visualizer"
+                className="px-4 py-2 rounded-full font-medium bg-blue-600 text-white hover:bg-blue-700 transition duration-300"
+              >
+                Start Learning
+              </Link>
+            </div>
+          )}
+        </section>
 
         <Link
           href="/"
