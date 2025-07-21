@@ -65,14 +65,21 @@ export default function ModuleCard({ moduleId, description, initialDone }) {
       return;
     }
 
-    const { error } = await supabase.from("user_progress").upsert({
-      user_id: user.id,
-      module_id: moduleId,
-      is_done: !isDone,
-    });
+    const { error } = await supabase
+      .from("user_progress")
+      .upsert(
+        {
+          user_id: user.id,
+          module_id: moduleId,
+          is_done: !isDone,
+          updated_at: new Date(),
+        },
+        { onConflict: ["user_id", "module_id"] }
+      );
 
     if (error) {
-      console.error(error);
+      console.error("Error updating progress:", error);
+      toast.error("Failed to update progress. Please try again.");
       return;
     }
 
