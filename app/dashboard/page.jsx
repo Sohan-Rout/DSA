@@ -15,13 +15,13 @@ export default function Dashboard() {
   const [modules, setModules] = useState([]);
   const [progress, setProgress] = useState({});
 
-  useEffect(() => {
+  {/*useEffect(() => {
     if (!user) {
       router.push("/login");
     } else {
       fetchModules();
     }
-  }, [user]);
+  }, [user]);*/}
 
   async function fetchModules() {
     const { data: modulesData, error: modulesError } = await supabase

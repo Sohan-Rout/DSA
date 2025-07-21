@@ -8,6 +8,8 @@ import Quiz from "@/app/visualizer/searching/binarysearch/quiz";
 import Content from '@/app/visualizer/searching/binarysearch/content';
 import Breadcrumbs from "@/app/components/ui/Breadcrumbs";
 import ArticleActions from "@/app/components/ui/ArticleActions";
+import ModuleCard from "@/app/components/ui/ModuleCard";
+import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   title: "Binary Search Algorithm | Step-by-Step Animation",
@@ -97,6 +99,15 @@ export default function Page() {
 
         <section>
           <CodeBlock />
+        </section>
+
+        <section className="px-6 md:px-12 my-12">
+          <ModuleCard
+            moduleId={MODULE_MAPS.binarySearch}
+            title="Binary Search"
+            description="Learn and mark the Binary Search module as completed when you finish."
+            initialDone={false}
+          />
         </section>
 
         <section>
