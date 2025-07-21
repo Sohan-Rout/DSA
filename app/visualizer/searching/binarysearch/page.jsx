@@ -105,7 +105,7 @@ export default function Page() {
           <ModuleCard
             moduleId={MODULE_MAPS.binarySearch}
             title="Binary Search"
-            description="Learn and mark the Binary Search module as completed when you finish."
+            description="Mark binary search as done and view it on your dashboard"
             initialDone={false}
           />
         </section>

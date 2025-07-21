@@ -3,6 +3,7 @@ import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { AuthProvider } from '@/app/contexts/AuthContext';
 import { UserProvider } from '@/app/contexts/UserContext';
+import ClientLayoutWrapper from "@/app/components/ui/ClientLayoutWrapper";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -84,7 +85,9 @@ export default function RootLayout({ children }) {
       <body>
         <AuthProvider>
         <UserProvider>
-          {children}
+          <ClientLayoutWrapper>
+            {children}
+          </ClientLayoutWrapper>
         </UserProvider>
         </AuthProvider>
       </body>
