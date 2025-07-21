@@ -8,6 +8,8 @@ import Quiz from "@/app/visualizer/searching/linearsearch/quiz";
 import Content from "@/app/visualizer/searching/linearsearch/content";
 import Breadcrumbs from "@/app/components/ui/Breadcrumbs";
 import ArticleActions from "@/app/components/ui/ArticleActions";
+import ModuleCard from "@/app/components/ui/ModuleCard";
+import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   title: "Linear Search Algorithm | Step-by-Step Animation",
@@ -67,11 +69,13 @@ export default function Page() {
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
         <section className="px-6 md:px-12">
           <div className="mt-10 sm:mt-10">
-            <Breadcrumbs paths={paths}/>
+            <Breadcrumbs paths={paths} />
           </div>
           <div className="flex items-center flex-col">
             <div className="flex">
-              <p className="uppercase tracking-wide bg-green-500 dark:text-black px-4 py-1 mb-2 rounded-full">Searching</p>
+              <p className="uppercase tracking-wide bg-green-500 dark:text-black px-4 py-1 mb-2 rounded-full">
+                Searching
+              </p>
             </div>
             <h1 className="text-4xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-0">
               Linear Search
@@ -95,6 +99,15 @@ export default function Page() {
 
         <section>
           <Code />
+        </section>
+
+        <section className="px-6 md:px-12 my-12">
+          <ModuleCard
+            moduleId={MODULE_MAPS.linearSearch}
+            title="Linear Search"
+            description="Mark linear search as done and view it on your dashboard"
+            initialDone={false}
+          />
         </section>
 
         <section>
