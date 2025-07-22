@@ -1,3 +1,6 @@
+"use client";
+import ComplexityGraph from "@/app/components/ui/graph";
+
 const content = () => {
   const paragraph = [
     `Selection Sort is an in-place comparison sorting algorithm that divides the input list into two parts: a sorted sublist which is built up from left to right, and a remaining unsorted sublist. It repeatedly selects the smallest (or largest) element from the unsorted portion and moves it to the sorted portion.`,
@@ -71,7 +74,7 @@ const content = () => {
 
   return (
     <main className="max-w-4xl mx-auto">
-      <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+      <article className="bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* What is Selection Sort */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -175,9 +178,19 @@ const content = () => {
                 </li>
               ))}
             </ul>
+
             <p className="text-gray-700 dark:text-gray-300 mt-4 leading-relaxed">
               {paragraph[1]}
             </p>
+
+            <div className="mt-8">
+          <ComplexityGraph
+            bestCase={(n) => n*n}
+            averageCase={(n) => n*n}
+            worstCase={(n) => n*n}
+            maxN={25}
+          />
+        </div>
           </div>
         </section>
 

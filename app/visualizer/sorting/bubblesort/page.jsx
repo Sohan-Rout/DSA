@@ -53,7 +53,7 @@ export default function Page() {
   const paths = [
     { name: "Home", href: "/" },
     { name: "Visulaizer", href: "/visualizer" },
-    { name: "Linear Search", href: "" },
+    { name: "Bubble Sort", href: "" },
   ];
 
   return (

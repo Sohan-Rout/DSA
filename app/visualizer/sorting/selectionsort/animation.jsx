@@ -1,15 +1,8 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import { gsap } from "gsap";
-import Footer from '@/app/components/footer';
-import Content from '@/app/visualizer/sorting/selectionsort/content';
 import ArrayGenerator from '@/app/components/ui/randomArray';
 import CustomArrayInput from '@/app/components/ui/customArrayInput';
-import ExploreOther from '@/app/components/ui/exploreOther';
-import CodeBlock from '@/app/visualizer/sorting/selectionsort/codeBlock';
-import Quiz from '@/app/visualizer/sorting/selectionsort/quiz';
-import GoBackButton from '@/app/components/ui/goback';
-import BackToTop from '@/app/components/ui/backtotop';
 
 const SelectionSortVisualizer = () => {
     const [array, setArray] = useState([]);
@@ -156,20 +149,7 @@ const SelectionSortVisualizer = () => {
     }, []);
   
     return (
-          <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
-      <main className="container mx-auto px-6 pt-16 pb-4">
-
-          { /* go back block here */}
-          <div className="mt-10 sm:mt-10">
-            <GoBackButton />
-          </div>
-
-          { /* main logic here */}
-          <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
-            <span className="text-black dark:text-white">Selection Sort</span>
-          </h1>
-          <div className='bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5'></div>
-          <Content />
+      <main className="container mx-auto px-6 py-6">
         <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
             Visualize Selection Sort as it repeatedly selects the smallest
             element and swaps it to its correct position in the array.
@@ -177,9 +157,9 @@ const SelectionSortVisualizer = () => {
 
           <div className="max-w-4xl mx-auto">
             {/* Controls */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
+            <div className="bg-white dark:bg-neutral-950 p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <ArrayGenerator
                     onGenerate={handleGenerateRandomArray}
                     disabled={sorting}
@@ -193,17 +173,17 @@ const SelectionSortVisualizer = () => {
                     placeholder="e.g. 5, 3, 8, 1, 2"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col">
                   <button
                     onClick={selectionSort}
                     disabled={!array.length || sorting || sorted}
-                    className="w-full bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:border-blue-500 disabled:text-blue-500 disabled:dark:border-blue-500 disabled:dark:text-blue-500"
+                    className="w-full bg-green-500 text-black px-4 py-2 rounded disabled:opacity-50"
                   >
                     {sorting ? "Sorting..." : "Start Selection Sort"}
                   </button>
                   <button
                     onClick={reset}
-                    className="w-full bg-none border border-black dark:border-white text-black dark:text-white mt-4 px-4 py-2 rounded"
+                    className="w-full bg-red-500 text-white mt-4 px-4 py-2 rounded"
                   >
                     Reset All
                   </button>
@@ -230,11 +210,11 @@ const SelectionSortVisualizer = () => {
 
               {/* Stats */}
               <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded">
+                <div className="bg-gray-100 dark:bg-neutral-900 p-3 rounded">
                   <div className="font-medium">Comparisons:</div>
                   <div className="text-2xl">{comparisons}</div>
                 </div>
-                <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded">
+                <div className="bg-gray-100 dark:bg-neutral-900 p-3 rounded">
                   <div className="font-medium">Swaps:</div>
                   <div className="text-2xl">{swaps}</div>
                 </div>
@@ -242,7 +222,7 @@ const SelectionSortVisualizer = () => {
             </div>
 
             {/* Visualization */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+            <div className="bg-white dark:bg-neutral-950 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
               <h2 className="text-xl font-semibold mb-4">
                 Array Visualization
               </h2>
@@ -287,34 +267,7 @@ const SelectionSortVisualizer = () => {
               )}
             </div>
           </div>
-
-          { /* quiz block here */}
-          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
-            Test Your Knowledge before moving forward!
-          </p>
-          <Quiz />
-
-          <CodeBlock />
-          <ExploreOther
-            title="Explore Sorting Algorithms"
-            links={[
-              { text: "Quick Sort", url: "/visualizer/sorting/quicksort" },
-              { text: "Bubble Sort", url: "/visualizer/sorting/bubblesort" },
-              {
-                text: "Insertion Sort",
-                url: "/visualizer/sorting/insertionsort",
-              },
-              { text: "Merge Sort", url: "/visualizer/sorting/mergesort" },
-              { text: "Heap Sort", url: "/algorithms/sorting/heap" },
-            ]}
-          />
         </main>
-        <div>
-          <div className="bg-gray-700 z-10 h-[1px]"></div>
-        </div>
-        <BackToTop />
-        <Footer />
-      </div>
     );
   };
   
