@@ -1,3 +1,6 @@
+"use client";
+import ComplexityGraph from "@/app/components/ui/graph";
+
 const content = () => {
   const paragraphs = [
     `Binary Search is an efficient algorithm for finding an item in a sorted list. It works by repeatedly dividing the search interval in half. If the target value is less than the middle element, the search continues in the lower half. Otherwise, it continues in the upper half. This process repeats until the value is found.`,
@@ -123,6 +126,15 @@ const content = () => {
             </li>
           ))}
         </ul>
+
+        <div className="mt-8">
+          <ComplexityGraph
+            bestCase={(n) => 1}
+            averageCase={(n) => Math.log2(n)}
+            worstCase={(n) => Math.log2(n)}
+            maxN={25}
+          />
+        </div>
         
         <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
