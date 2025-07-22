@@ -5,9 +5,6 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { useUser } from "@/app/contexts/UserContext";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-
-const Calendar = dynamic(() => import("react-calendar"), { ssr: false });
 
 export default function Dashboard() {
   const router = useRouter();
@@ -53,26 +50,6 @@ export default function Dashboard() {
 
     setModules(modulesData);
     setProgress(progressMap);
-  }
-
-  async function toggleDone(moduleId) {
-    const newStatus = !progress[moduleId];
-
-    const { error } = await supabase.from("user_progress").upsert({
-      user_id: user.id,
-      module_id: moduleId,
-      is_done: newStatus,
-    });
-
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    setProgress((prev) => ({
-      ...prev,
-      [moduleId]: newStatus,
-    }));
   }
 
   return (
