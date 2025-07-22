@@ -75,10 +75,6 @@ export default function Dashboard() {
     }));
   }
 
-  const completedCount = Object.values(progress).filter(Boolean).length;
-  const progressPercent = modules.length > 0 ? Math.round((completedCount / modules.length) * 100) : 0;
-  const [date, setDate] = useState(new Date());
-
   return (
     <div className="bg-white dark:bg-black min-h-screen">
       <div>
@@ -105,6 +101,11 @@ export default function Dashboard() {
                     className="border rounded-lg p-4 bg-white dark:bg-zinc-900 shadow-sm flex flex-col justify-between"
                   >
                     <div>
+                      <img
+                        src={`/og/${mod.image}`}
+                        alt={mod.title}
+                        className="w-full h-40 object-cover rounded-md mb-2"
+                      />
                       <h3 className="text-md font-semibold text-gray-800 dark:text-gray-200">{mod.title}</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">{mod.description}</p>
                     </div>
