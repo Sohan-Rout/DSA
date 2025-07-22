@@ -1,3 +1,6 @@
+"use client";
+import ComplexityGraph from "@/app/components/ui/graph";
+
 const content = () => {
   const paragraphs = [
     `Linear Search is a simple method to find a particular value in a list. It checks each element one by one from the start until it finds the target value. If the value is found, it returns its position; otherwise, it says the value is not present.`,
@@ -113,6 +116,15 @@ const content = () => {
             </li>
           ))}
         </ul>
+
+        <div className="mt-8">
+          <ComplexityGraph
+            bestCase={(n) => 1}
+            averageCase={(n) => n}
+            worstCase={(n) => n}
+            maxN={25}
+          />
+        </div>
         
         <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
