@@ -79,7 +79,7 @@ export default function Dashboard() {
                   >
                     <div>
                       <img
-                        src={`/og/${mod.image}`}
+                        src={`/modules/${mod.image}`}
                         alt={mod.title}
                         className="w-full h-40 object-cover rounded-md mb-2"
                       />
