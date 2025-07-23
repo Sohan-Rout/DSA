@@ -150,7 +150,7 @@ const SelectionSortVisualizer = () => {
   
     return (
       <main className="container mx-auto px-6 py-6">
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+        <p className="text-lg max-w-4xl mx-auto text-center text-gray-600 dark:text-gray-400 mb-8">
             Visualize Selection Sort as it repeatedly selects the smallest
             element and swaps it to its correct position in the array.
           </p>
