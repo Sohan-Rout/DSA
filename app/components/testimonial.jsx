@@ -35,15 +35,15 @@ const TestimonialSection = () => {
       stars: 5,
     },
     {
-      name: 'Priya Sharma',
-      email: '@priya.s',
-      review: `As a visual learner, this tool has been revolutionary for me. Being able to see the algorithms in action with different speeds makes all the difference. The color coding helps distinguish between different operations clearly.`,
+      name: 'Vansh Saini',
+      email: '@Vanshsaini9311',
+      review: `The data structure application website is an excellent platform for both beginners and advanced learners. It offers clear, interactive demonstrations of essential data structures like stacks, queues, trees, and graphs. The real-time visualizations make complex topics easier to understand, and the practical examples enhance learning. The clean, responsive design and user-friendly navigation add to its appeal. Whether you're a student or a developer, this site is a valuable resource for strengthening your understanding of algorithms and data structures.`,
       stars: 5,
     },
     {
-      name: 'Amit Patel',
-      email: '@amit.p',
-      review: `Excellent resource for interview preparation. The way it visualizes time and space complexity helps build intuition. I've recommended it to all my friends who are preparing for technical interviews.`,
+      name: 'Priya Sharma',
+      email: '@priya.s',
+      review: `As a visual learner, this tool has been revolutionary for me. Being able to see the algorithms in action with different speeds makes all the difference. The color coding helps distinguish between different operations clearly.`,
       stars: 5,
     },
     {
