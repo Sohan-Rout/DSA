@@ -37,6 +37,16 @@ export const metadata = {
     "Insertion Sort Code Examples",
   ],
   robots: "index, follow",
+  openGraph: {
+    images: [
+      {
+        url: "/og/sorting/insertionSort.png",
+        width: 1200,
+        height: 630,
+        alt: "Insertion Sort Algorithm Visualization",
+      },
+    ],
+  },
 };
 
 export default function Page() {
