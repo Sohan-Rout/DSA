@@ -56,7 +56,7 @@ export const metadata = {
 export default function Page() {
   const paths = [
     { name: "Home", href: "/" },
-    { name: "Visulaizer", href: "/visualizer" },
+    { name: "Visualizer", href: "/visualizer" },
     { name: "Binary Search", href: "" },
   ];
 

@@ -40,7 +40,7 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og/bubbleSort.png",
+        url: "/og/sorting/bubbleSort.png",
         width: 1200,
         height: 630,
         alt: "Bubble Sort Algorithm Visualization",
@@ -52,7 +52,7 @@ export const metadata = {
 export default function Page() {
   const paths = [
     { name: "Home", href: "/" },
-    { name: "Visulaizer", href: "/visualizer" },
+    { name: "Visualizer", href: "/visualizer" },
     { name: "Bubble Sort", href: "" },
   ];
 

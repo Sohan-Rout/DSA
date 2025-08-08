@@ -73,8 +73,30 @@ const content = () => {
   ];
 
   return (
-    <main className="max-w-4xl mx-auto">
-      <article className="bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+    <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 md:gap-4">
+      <div className="col-span-1">
+        <div className="hidden md:block">
+          <iframe
+            src="https://hw.glich.co/resources/embed/daily/dsa"
+            width="100%"
+            height="400"
+            title="Daily DSA Challenge"
+          ></iframe>
+        </div>
+        <div className="flex justify-center">
+          <span className="text-xs hidden md:block">
+            Powered by{" "}
+            <a
+              href="https://hw.glich.co/resources/daily"
+              target="_blank"
+              className="underline hover:text-blue-500 duration-300"
+            >
+              Hello World
+            </a>
+          </span>
+        </div>
+      </div>
+      <article className="col-span-4 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* What is Selection Sort */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -172,9 +194,7 @@ const content = () => {
                   <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-sm">
                     {items.points}
                   </span>
-                  <span className="ml-2">
-                    {items.subpoints}
-                  </span>
+                  <span className="ml-2">{items.subpoints}</span>
                 </li>
               ))}
             </ul>
@@ -184,13 +204,13 @@ const content = () => {
             </p>
 
             <div className="mt-8">
-          <ComplexityGraph
-            bestCase={(n) => n*n}
-            averageCase={(n) => n*n}
-            worstCase={(n) => n*n}
-            maxN={25}
-          />
-        </div>
+              <ComplexityGraph
+                bestCase={(n) => n * n}
+                averageCase={(n) => n * n}
+                worstCase={(n) => n * n}
+                maxN={25}
+              />
+            </div>
           </div>
         </section>
 
@@ -250,7 +270,7 @@ const content = () => {
         {/* Additional Info */}
         <section className="p-6">
           <div className="prose dark:prose-invert max-w-none">
-            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <div className="px-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 {paragraph[3]}
               </p>

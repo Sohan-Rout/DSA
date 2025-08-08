@@ -36,7 +36,7 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og/selectionSort.png",
+        url: "/og/sorting/selectionSort.png",
         width: 1200,
         height: 630,
         alt: "Selection Sort Algorithm Visualization",
@@ -60,7 +60,7 @@ export default function Page() {
 
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
         <section className="px-6 md:px-12">
-          <div className="mt-10 sm:mt-10">
+          <div className="mt-10 sm:mt-10 mb-4">
             <Breadcrumbs paths={paths} />
           </div>
 
@@ -84,14 +84,14 @@ export default function Page() {
           <Animation />
         </section>
 
-        <section>
+        <section className="px-6">
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-2">
             Test Your Knowledge before moving forward!
           </p>
           <Quiz />
         </section>
 
-        <section>
+        <section className="px-6">
           <Code />
         </section>
 
@@ -104,7 +104,7 @@ export default function Page() {
           />
         </section>
 
-        <section>
+        <section className="px-6">
           <ExploreOther
             title="Explore Sorting Algorithms"
             links={[
