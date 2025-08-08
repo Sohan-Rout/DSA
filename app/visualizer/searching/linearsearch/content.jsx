@@ -35,22 +35,19 @@ const content = () => {
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 md:gap-4">
       <div className="col-span-1">
-        <a
-          href="https://hw.glich.co/resources/daily"
-          target="_blank"
-          className="text-xs"
-        >
-          Daily DSA Challenge by Hello, World!
-        </a>
-        <iframe
-          src="https://hw.glich.co/resources/embed/daily/dsa"
-          width="100%"
-          height="400"
-          style={{ marginTop: "8px" }}
-          title="Daily DSA Challenge"
-        ></iframe>
+        <div className="hidden md:block">
+          <iframe
+            src="https://hw.glich.co/resources/embed/daily/dsa"
+            width="100%"
+            height="400"
+            title="Daily DSA Challenge"
+          ></iframe>
+        </div>
+        <div className="flex justify-center">
+          <span className="text-xs hidden md:block">Powered by <a href="https://hw.glich.co/resources/daily" target="_blank" className="underline hover:text-blue-500 duration-300">Hello World</a></span>
+        </div>
       </div>
-  <article className="col-span-4 bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+  <article className="col-span-4 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
     {/* What is Linear Search */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
       <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
