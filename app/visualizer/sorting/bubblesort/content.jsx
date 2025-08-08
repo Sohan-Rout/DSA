@@ -215,7 +215,7 @@ const content = () => {
         {/* Additional Info */}
         <section className="p-6">
           <div className="prose dark:prose-invert max-w-none">
-            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <div className="px-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 {paragraph[2]}
               </p>

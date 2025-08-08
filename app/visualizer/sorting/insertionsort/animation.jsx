@@ -1,15 +1,8 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
-import Footer from "@/app/components/footer";
 import RandomArray from "@/app/components/ui/randomArray";
 import CustomArrayInput from "@/app/components/ui/customArrayInput";
-import Content from "@/app/visualizer/sorting/insertionsort/content";
-import ExploreOther from "@/app/components/ui/exploreOther";
-import CodeBlock from "@/app/visualizer/sorting/insertionsort/codeBlock";
-import Quiz from "@/app/visualizer/sorting/insertionsort/quiz";
-import GoBackButton from '@/app/components/ui/goback';
-import BackToTop from "@/app/components/ui/backtotop";
 
 const InsertionSortVisualizer = () => {
   const [array, setArray] = useState([]);
@@ -92,7 +85,11 @@ const InsertionSortVisualizer = () => {
         const movingBar = barRefs.current[j + 1];
         if (movingBar) {
           await gsap.to(movingBar, { y: -20, duration: 0.2 });
-          await gsap.to(movingBar, { x: "+=70", duration: 0.3, ease: "power2.inOut" });
+          await gsap.to(movingBar, {
+            x: "+=70",
+            duration: 0.3,
+            ease: "power2.inOut",
+          });
           await gsap.to(movingBar, { y: 0, duration: 0.2 });
           gsap.set(movingBar, { clearProps: "transform" });
         }
@@ -120,7 +117,11 @@ const InsertionSortVisualizer = () => {
       if (insertBar) {
         const moveX = (j + 1 - i) * 70;
         await gsap.to(insertBar, { y: -20, duration: 0.2 });
-        await gsap.to(insertBar, { x: moveX, duration: 0.3, ease: "power2.inOut" });
+        await gsap.to(insertBar, {
+          x: moveX,
+          duration: 0.3,
+          ease: "power2.inOut",
+        });
         await gsap.to(insertBar, { y: 0, duration: 0.2 });
         gsap.set(insertBar, { clearProps: "transform" });
       }
@@ -169,100 +170,84 @@ const InsertionSortVisualizer = () => {
   }, []);
 
   return (
-    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
-      <main className="container mx-auto px-6 pt-16 pb-4">
+    <main className="container mx-auto px-6 pb-6">
+      <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+        Visualize how Insertion Sort builds the final sorted array.
+      </p>
 
-          { /* go back block here */}
-          <div className="mt-10 sm:mt-10">
-            <GoBackButton />
-          </div>
-
-          { /* main logic here */}
-          <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
-            <span className="text-black dark:text-white">Insertion Sort</span>
-          </h1>
-          <div className='bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5'></div>
-          <Content />
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-          Visualize how Insertion Sort builds the final sorted array one element
-          at a time.
-        </p>
-
-        <div className="max-w-4xl mx-auto">
-          {/* Controls */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="space-y-4">
-                <RandomArray
-                  onGenerate={handleRandomArray}
-                  disabled={sorting}
-                />
-                <CustomArrayInput
-                  onSubmit={handleCustomArray}
-                  disabled={sorting}
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <button
-                  onClick={insertionSort}
-                  disabled={!array.length || sorting || sorted}
-                  className="w-full bg-none-600 border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:bg-none disabled:border-blue-500 disabled:dark:border-blue-500 disabled:text-blue-500"
-                >
-                  {sorting ? "Sorting..." : "Start Insertion Sort"}
-                </button>
-                <button
-                  onClick={reset}
-                  className="w-full bg-none border border-black dark:border-white text-black dark:text-white px-4 mt-4 py-2 rounded"
-                >
-                  Reset All
-                </button>
-              </div>
-            </div>
-
-            {/* Speed controls */}
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-gray-700 dark:text-gray-300">Speed:</span>
-              <input
-                type="range"
-                min="0.5"
-                max="5"
-                step="0.5"
-                value={speed}
-                onChange={(e) => setSpeed(parseFloat(e.target.value))}
-                className="w-32"
+      <div className="max-w-4xl mx-auto">
+        {/* Controls */}
+<div className="bg-white dark:bg-neutral-950 p-4 sm:p-6 rounded-lg shadow-md mb-6 md:mb-8 border border-gray-200 dark:border-gray-700">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+            <div className="flex flex-col gap-1">
+              <RandomArray onGenerate={handleRandomArray} disabled={sorting} />
+              <CustomArrayInput
+                onSubmit={handleCustomArray}
                 disabled={sorting}
+                className="w-full"
               />
-              <span className="text-gray-700 dark:text-gray-300">{speed}x</span>
             </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded">
-                <div className="font-medium">Comparisons:</div>
-                <div className="text-2xl">{comparisons}</div>
-              </div>
-              <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded">
-                <div className="font-medium">Shifts:</div>
-                <div className="text-2xl">{swaps}</div>
-              </div>
+            <div className="flex flex-col gap-1 justify-between">
+              <button
+                onClick={insertionSort}
+                disabled={!array.length || sorting || sorted}
+                className="w-full disabled:opacity-75 bg-none bg-green-500 px-4 py-2 rounded shadow-sm transition-all duration-300 text-sm sm:text-base text-black"
+              >
+                {sorting ? "Sorting..." : "Start Insertion Sort"}
+              </button>
+              <button
+                onClick={reset}
+                className="w-full bg-none text-white bg-red-500 px-4 py-2 rounded transition-colors text-sm sm:text-base"
+              >
+                Reset All
+              </button>
             </div>
           </div>
 
-          {/* Visualization */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-            <h2 className="text-xl font-semibold mb-4">Array Visualization</h2>
-            {array.length > 0 ? (
-              <div className="flex flex-wrap gap-4 justify-center">
-                {array.map((value, index) => {
-                  const isCurrent = index === currentIndices.current;
-                  const isComparing = index === currentIndices.comparing;
-                  const isSorted = index <= currentIndices.sortedUpTo || sorted;
+          {/* Speed controls */}
+          <div className="flex items-center gap-4 mb-4">
+            <span className="text-gray-700 dark:text-gray-300">Speed:</span>
+            <input
+              type="range"
+              min="0.5"
+              max="5"
+              step="0.5"
+              value={speed}
+              onChange={(e) => setSpeed(parseFloat(e.target.value))}
+              className="w-32"
+              disabled={sorting}
+            />
+            <span className="text-gray-700 dark:text-gray-300">{speed}x</span>
+          </div>
 
-                  return (
-                    <div key={index} className="flex flex-col items-center">
-                      <div
-                        ref={(el) => (barRefs.current[index] = el)}
-                        className={`bar w-16 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-lg font-medium
+          {/* Stats */}
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded">
+              <div className="font-medium">Comparisons:</div>
+              <div className="text-2xl">{comparisons}</div>
+            </div>
+            <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded">
+              <div className="font-medium">Shifts:</div>
+              <div className="text-2xl">{swaps}</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Visualization */}
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+          <h2 className="text-xl font-semibold mb-4">Array Visualization</h2>
+          {array.length > 0 ? (
+            <div className="flex flex-wrap gap-4 justify-center">
+              {array.map((value, index) => {
+                const isCurrent = index === currentIndices.current;
+                const isComparing = index === currentIndices.comparing;
+                const isSorted = index <= currentIndices.sortedUpTo || sorted;
+
+                return (
+                  <div key={index} className="flex flex-col items-center">
+                    <div
+                      ref={(el) => (barRefs.current[index] = el)}
+                      className={`bar w-16 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-300 text-lg font-medium
                             ${
                               isCurrent
                                 ? "bg-yellow-400 dark:bg-yellow-400 border-yellow-600 dark:border-yellow-600 dark:text-gray-800"
@@ -272,90 +257,66 @@ const InsertionSortVisualizer = () => {
                                 ? "bg-green-400 dark:bg-green-400 border-green-600 dark:border-green-600 dark:text-gray-800"
                                 : "bg-blue-400 dark:bg-blue-400 border-blue-600 dark:border-blue-600 dark:text-gray-800"
                             }`}
-                      >
-                        {value}
-                      </div>
-                      <div className="mt-1 text-xs text-gray-600 dark:text-gray-400">
-                        {index}
-                        {isCurrent && " (current)"}
-                        {isComparing && " (comparing)"}
-                        {isSorted && !isCurrent && !isComparing && " (sorted)"}
-                      </div>
+                    >
+                      {value}
                     </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="text-center py-8 text-gray-500">
-                {sorting ? "Sorting..." : "Generate or enter an array to begin"}
-              </div>
-            )}
+                    <div className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+                      {index}
+                      {isCurrent && " (current)"}
+                      {isComparing && " (comparing)"}
+                      {isSorted && !isCurrent && !isComparing && " (sorted)"}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-8 text-gray-500">
+              {sorting ? "Sorting..." : "Generate or enter an array to begin"}
+            </div>
+          )}
 
-            {/* Algorithm Steps Visualization */}
-            {sorting && array.length > 0 && (
-              <div className="mt-8 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
-                <h3 className="text-lg font-semibold mb-2">Current Step</h3>
-                <div className="flex items-center justify-center space-x-4 mb-4">
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-yellow-400 dark:bg-yellow-600 rounded-full mr-2"></div>
-                    <span>Current element being inserted</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-red-400 dark:bg-red-600 rounded-full mr-2"></div>
-                    <span>Element being compared</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-green-400 dark:bg-green-600 rounded-full mr-2"></div>
-                    <span>Sorted portion</span>
-                  </div>
+          {/* Algorithm Steps Visualization */}
+          {sorting && array.length > 0 && (
+            <div className="mt-8 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-2">Current Step</h3>
+              <div className="flex items-center justify-center space-x-4 mb-4">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-yellow-400 dark:bg-yellow-600 rounded-full mr-2"></div>
+                  <span>Current element being inserted</span>
                 </div>
-
-                <div className="bg-white dark:bg-gray-800 p-4 rounded border border-gray-200 dark:border-gray-700">
-                  <p className="text-center">
-                    {currentIndices.current >= 0 ? (
-                      <>
-                        Inserting{" "}
-                        <strong>
-                          array[{currentIndices.current}] ={" "}
-                          {array[currentIndices.current]}
-                        </strong>{" "}
-                        into the sorted portion (indexes 0 to{" "}
-                        {currentIndices.sortedUpTo})
-                      </>
-                    ) : (
-                      "Starting sort..."
-                    )}
-                  </p>
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-red-400 dark:bg-red-600 rounded-full mr-2"></div>
+                  <span>Element being compared</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-green-400 dark:bg-green-600 rounded-full mr-2"></div>
+                  <span>Sorted portion</span>
                 </div>
               </div>
-            )}
-          </div>
+
+              <div className="bg-white dark:bg-gray-800 p-4 rounded border border-gray-200 dark:border-gray-700">
+                <p className="text-center">
+                  {currentIndices.current >= 0 ? (
+                    <>
+                      Inserting{" "}
+                      <strong>
+                        array[{currentIndices.current}] ={" "}
+                        {array[currentIndices.current]}
+                      </strong>{" "}
+                      into the sorted portion (indexes 0 to{" "}
+                      {currentIndices.sortedUpTo})
+                    </>
+                  ) : (
+                    "Starting sort..."
+                  )}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
-
-        { /* quiz block here */}
-          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
-            Test Your Knowledge before moving forward!
-          </p>
-          <Quiz />
-
-        <CodeBlock/>
-        <ExploreOther
-          title="Explore Sorting Algorithms"
-          links={[
-            { text: "Selection Sort", url: "/visualizer/sorting/selectionsort" },
-            { text: "Bubble Sort", url: "/visualizer/sorting/bubblesort" },
-            { text: "Merge Sort", url: "/visualizer/sorting/mergesort" },
-            { text: "Quick Sort" , url: "/visualizer/sorting/quicksort"},
-            { text: "Heap Sort", url: "/algorithms/sorting/heap" },
-          ]}
-        />
-      </main>
-      <div>
-        <div className="bg-gray-700 z-10 h-[1px]"></div>
       </div>
-      <BackToTop/>
-      <Footer />
-    </div>
+    </main>
   );
 };
 
