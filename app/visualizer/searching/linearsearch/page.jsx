@@ -86,18 +86,18 @@ export default function Page() {
           <Content />
         </section>
 
-        <section>
+        <section className="px-6">
           <LinearSearchAnimation />
         </section>
 
-        <section>
+        <section className="px-6">
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-2">
             Test Your Knowledge before moving forward!
           </p>
           <Quiz />
         </section>
 
-        <section>
+        <section className="px-6">
           <Code />
         </section>
 
@@ -110,7 +110,7 @@ export default function Page() {
           />
         </section>
 
-        <section>
+        <section className="px-6">
           <ExploreOther
             title="Explore other operations"
             links={[{ text: "Binary Search", url: "./binarysearch" }]}

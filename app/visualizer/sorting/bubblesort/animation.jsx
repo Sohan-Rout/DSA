@@ -116,97 +116,97 @@ const BubbleSortVisualizer = () => {
   }, []);
 
   return (
-        <main className="container mx-auto px-6 pb-4">
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-          Watch Bubble Sort in action as it repeatedly swaps adjacent elements
-          to sort the array step by step.
-        </p>
+    <main className="container mx-auto px-6 pb-4">
+      <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+        Watch Bubble Sort in action as it repeatedly swaps adjacent elements to
+        sort the array step by step.
+      </p>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Controls */}
-          <div className="bg-white dark:bg-neutral-950 p-4 sm:p-6 rounded-lg shadow-md mb-6 md:mb-8 border border-gray-200 dark:border-gray-700">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
-              <div className="flex flex-col gap-1">
-                <ArrayGenerator
-                  onGenerate={handleArrayGenerated}
-                  disabled={sorting}
-                />
-                <CustomArrayInput
-                  onUseCustomArray={(arr) => {
-                    setArray(arr);
-                    setSorted(false);
-                    resetStats();
-                  }}
-                  disabled={sorting}
-                  className="w-full"
-                />
-              </div>
-              <div className="flex flex-col gap-2 justify-between">
-                <button
-                  onClick={bubbleSort}
-                  disabled={!array.length || sorting || sorted}
-                  className="w-full disabled:opacity-75 bg-none bg-green-500 px-4 py-2 rounded shadow-sm transition-all duration-300 text-sm sm:text-base text-black"
-                >
-                  {sorting ? "Sorting..." : "Start Bubble Sort"}
-                </button>
-                <button
-                  onClick={reset}
-                  className="w-full bg-none text-white bg-red-500 px-4 py-2 rounded transition-colors text-sm sm:text-base"
-                >
-                  Reset All
-                </button>
-              </div>
-            </div>
-
-            {/* Speed controls */}
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
-                Speed:
-              </span>
-              <input
-                type="range"
-                min="0.5"
-                max="5"
-                step="0.5"
-                value={speed}
-                onChange={(e) => setSpeed(parseFloat(e.target.value))}
-                className="w-24 sm:w-32"
+      <div className="max-w-4xl mx-auto">
+        {/* Controls */}
+        <div className="bg-white dark:bg-neutral-950 p-4 sm:p-6 rounded-lg shadow-md mb-6 md:mb-8 border border-gray-200 dark:border-gray-700">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+            <div className="flex flex-col gap-1">
+              <ArrayGenerator
+                onGenerate={handleArrayGenerated}
                 disabled={sorting}
               />
-              <span className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
-                {speed}x
-              </span>
+              <CustomArrayInput
+                onUseCustomArray={(arr) => {
+                  setArray(arr);
+                  setSorted(false);
+                  resetStats();
+                }}
+                disabled={sorting}
+                className="w-full"
+              />
             </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 text-sm sm:text-base">
-              <div className="bg-gray-100 dark:bg-neutral-900 p-3 rounded">
-                <div className="font-medium">Comparisons:</div>
-                <div className="text-xl sm:text-2xl">{comparisons}</div>
-              </div>
-              <div className="bg-gray-100 dark:bg-neutral-900 p-3 rounded">
-                <div className="font-medium">Swaps:</div>
-                <div className="text-xl sm:text-2xl">{swaps}</div>
-              </div>
+            <div className="flex flex-col gap-2 justify-between">
+              <button
+                onClick={bubbleSort}
+                disabled={!array.length || sorting || sorted}
+                className="w-full disabled:opacity-75 bg-none bg-green-500 px-4 py-2 rounded shadow-sm transition-all duration-300 text-sm sm:text-base text-black"
+              >
+                {sorting ? "Sorting..." : "Start Bubble Sort"}
+              </button>
+              <button
+                onClick={reset}
+                className="w-full bg-none text-white bg-red-500 px-4 py-2 rounded transition-colors text-sm sm:text-base"
+              >
+                Reset All
+              </button>
             </div>
           </div>
 
-          {/* Visualization */}
-          <div className="bg-white dark:bg-neutral-950 p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">
-              Array Visualization
-            </h2>
-            {array.length > 0 ? (
-              <div className="flex flex-wrap gap-2 sm:gap-4 justify-center">
-                {array.map((value, index) => {
-                  const isComparing =
-                    index === currentIndices.i || index === currentIndices.j;
-                  const isSorted = sorted;
+          {/* Speed controls */}
+          <div className="flex items-center gap-4 mb-4">
+            <span className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
+              Speed:
+            </span>
+            <input
+              type="range"
+              min="0.5"
+              max="5"
+              step="0.5"
+              value={speed}
+              onChange={(e) => setSpeed(parseFloat(e.target.value))}
+              className="w-24 sm:w-32"
+              disabled={sorting}
+            />
+            <span className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
+              {speed}x
+            </span>
+          </div>
 
-                  return (
-                    <div key={index} className="flex flex-col items-center">
-                      <div
-                        className={`bar w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-lg border-2 shadow-md dark:shadow-blue-900 transition-all duration-300 text-sm sm:text-lg font-bold
+          {/* Stats */}
+          <div className="grid grid-cols-2 gap-4 text-sm sm:text-base">
+            <div className="bg-gray-100 dark:bg-neutral-900 p-3 rounded">
+              <div className="font-medium">Comparisons:</div>
+              <div className="text-xl sm:text-2xl">{comparisons}</div>
+            </div>
+            <div className="bg-gray-100 dark:bg-neutral-900 p-3 rounded">
+              <div className="font-medium">Swaps:</div>
+              <div className="text-xl sm:text-2xl">{swaps}</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Visualization */}
+        <div className="bg-white dark:bg-neutral-950 p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+          <h2 className="text-lg sm:text-xl font-semibold mb-4">
+            Array Visualization
+          </h2>
+          {array.length > 0 ? (
+            <div className="flex flex-wrap gap-2 sm:gap-4 justify-center">
+              {array.map((value, index) => {
+                const isComparing =
+                  index === currentIndices.i || index === currentIndices.j;
+                const isSorted = sorted;
+
+                return (
+                  <div key={index} className="flex flex-col items-center">
+                    <div
+                      className={`bar w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-lg border-2 shadow-md dark:shadow-blue-900 transition-all duration-300 text-sm sm:text-lg font-bold
                             ${
                               isComparing
                                 ? "bg-yellow-400 dark:bg-yellow-400 border-yellow-600 dark:border-yellow-600 dark:text-gray-900"
@@ -214,25 +214,25 @@ const BubbleSortVisualizer = () => {
                                 ? "bg-green-400 dark:bg-green-400 border-green-600 dark:border-green-600 dark:text-gray-900"
                                 : "bg-blue-400 dark:bg-blue-400 border-blue-600 dark:border-blue-600 dark:text-gray-900"
                             }`}
-                      >
-                        {value}
-                      </div>
-                      <div className="mt-1 text-xs text-gray-700 dark:text-blue-300 font-semibold">
-                        {index === currentIndices.i && "i"}
-                        {index === currentIndices.j && "j"}
-                      </div>
+                    >
+                      {value}
                     </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="text-center py-8 text-gray-500 text-sm sm:text-base">
-                {sorting ? "Sorting..." : "Generate or enter an array to begin"}
-              </div>
-            )}
-          </div>
+                    <div className="mt-1 text-xs text-gray-700 dark:text-blue-300 font-semibold">
+                      {index === currentIndices.i && "i"}
+                      {index === currentIndices.j && "j"}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-8 text-gray-500 text-sm sm:text-base">
+              {sorting ? "Sorting..." : "Generate or enter an array to begin"}
+            </div>
+          )}
         </div>
-      </main>
+      </div>
+    </main>
   );
 };
 

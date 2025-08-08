@@ -66,15 +66,12 @@ const LinearSearchQuiz = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
-  const [setQuizCompleted] = useState(false);
+  const [quizCompleted, setQuizCompleted] = useState(false);
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
-  const [showExplanation, setShowExplanation] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
   const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
-  const [penaltyApplied, setPenaltyApplied] = useState(false);
 
   const handleAnswerSelect = (optionIndex) => {
-    if (selectedAnswer !== null) return; // Prevent changing answer after selection
     setSelectedAnswer(optionIndex);
     const newAnswers = [...answers];
     newAnswers[currentQuestion] = optionIndex;
@@ -83,20 +80,11 @@ const LinearSearchQuiz = () => {
 
   const handleNextQuestion = () => {
     if (selectedAnswer === null) return;
-    
-    // Apply penalty if explanation was shown
-    if (showExplanation && !penaltyApplied) {
-      setScore(prevScore => Math.max(0, prevScore - 0.5));
-      setPenaltyApplied(true);
-    }
 
     if (selectedAnswer === questions[currentQuestion].correctAnswer) {
       setScore(score + 1);
     }
-    
-    setShowExplanation(false);
-    setPenaltyApplied(false);
-    
+
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
@@ -111,7 +99,6 @@ const LinearSearchQuiz = () => {
   };
 
   const handlePreviousQuestion = () => {
-    setShowExplanation(false);
     setCurrentQuestion(currentQuestion - 1);
     setSelectedAnswer(answers[currentQuestion - 1]);
   };
@@ -123,9 +110,7 @@ const LinearSearchQuiz = () => {
     setShowResult(false);
     setQuizCompleted(false);
     setAnswers(Array(questions.length).fill(null));
-    setShowExplanation(false);
     setShowIntro(true);
-    setPenaltyApplied(false);
   };
 
   const calculateWeakAreas = () => {
@@ -294,29 +279,6 @@ const LinearSearchQuiz = () => {
               ))}
             </div>
             
-            {selectedAnswer !== null && (
-              <div className="mb-6">
-                <button
-                  onClick={() => setShowExplanation(!showExplanation)}
-                  className="text-sm flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-2"
-                >
-                  <FaInfoCircle className="mr-1" />
-                  {showExplanation ? 'Hide Explanation' : 'Show Explanation'}
-                </button>
-                <AnimatePresence>
-                  {showExplanation && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-sm overflow-hidden"
-                    >
-                      {questions[currentQuestion].explanation}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            )}
           </motion.div>
           
           <div className="flex justify-between">
