@@ -6,17 +6,6 @@ const content = () => {
     `Merge Sort is particularly useful when sorting linked lists (where random access is expensive) and is the algorithm of choice for many standard library sorting implementations when stability is required. It's also commonly used in external sorting where data doesn't fit in memory.`,
   ];
 
-  const divide = [
-    { points : "Split the array into two halves: [38, 27, 43] and [3, 9, 82, 10]" },
-    { points : "Recursively split each half until single elements remain" },
-  ];
-
-  const merge = [
-    { points : "Merge single elements into sorted pairs: [27, 38], [3, 43], [9, 82], [10]" },
-    { points : "Merge pairs: [3, 27, 38, 43] and [9, 10, 82]" },
-    { points : "Final merge: [3, 9, 10, 27, 38, 43, 82]" },
-  ];
-
   const algorithm = [
     { points : "Divide:",
       subpoints : [
@@ -66,62 +55,6 @@ const content = () => {
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
           {paragraph[0]}
         </p>
-      </div>
-    </section>
-
-    {/* How Does It Work */}
-    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
-        How Does It Work?
-      </h1>
-      <div className="prose dark:prose-invert max-w-none">
-        <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-          Consider this unsorted array: [38, 27, 43, 3, 9, 82, 10]
-        </p>
-        
-        <div className="space-y-4">
-          <div>
-            <span className="font-semibold text-gray-900 dark:text-white">Divide Phase:</span>
-            <ol className="mt-2 space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-              {divide.map((item, index) => (
-                <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
-                  {item.points}
-                </li>
-              ))}
-            </ol>
-          </div>
-          
-          <div>
-            <span className="font-semibold text-gray-900 dark:text-white">Merge Phase:</span>
-            <ol className="mt-2 space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-              {merge.map((item, index) => (
-                <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
-                  {item.points}
-                </li>
-              ))}
-            </ol>
-          </div>
-          
-          <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
-            <pre className="text-sm font-mono text-gray-800 dark:text-gray-300 overflow-x-auto">
-              {`Original: 
-[38, 27, 43, 3, 9, 82, 10]
-Divide:   
-[38,27,43][3,9,82,10]
-Divide:   
-[38][27,43] | [3,9][82,10]
-Divide:   
-[38][27][43] | [3][9][82][10]
-Merge:    
-[27,38][43] | [3,9][10,82]
-Merge:    
-[27,38,43] | [3,9,10,82]
-Final:    
-[3,9,10,27,38,43,82]`}
-            </pre>
-          </div>
-        </div>
       </div>
     </section>
 
