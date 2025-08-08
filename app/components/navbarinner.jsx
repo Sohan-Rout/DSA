@@ -72,6 +72,7 @@ export default function Navbar() {
                 Blogs
               </span>
             </Link>
+            {/* 
             <Link
               href="https://learn.dsavisualizer.in/"
               className="relative pr-2 py-2 font-medium text-black dark:text-white bg-transparent overflow-hidden items-center transition-all duration-300 hover:text-blue-500 dark:hover:text-blue-400"
@@ -80,6 +81,7 @@ export default function Navbar() {
                 Start with Basics
               </span>
             </Link>
+            */}
             <Link
               href="/dashboard"
               onClick={closeMenu}
