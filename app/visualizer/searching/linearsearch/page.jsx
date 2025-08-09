@@ -44,7 +44,7 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og/linearSearch.png",
+        url: "/og/searching/linearSearch.png",
         width: 1200,
         height: 630,
         alt: "Linear Search Algorithm Visualization",

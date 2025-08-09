@@ -234,7 +234,7 @@ const InsertionSortVisualizer = () => {
         </div>
 
         {/* Visualization */}
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-neutral-950 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
           <h2 className="text-xl font-semibold mb-4">Array Visualization</h2>
           {array.length > 0 ? (
             <div className="flex flex-wrap gap-4 justify-center">

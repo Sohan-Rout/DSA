@@ -1,15 +1,8 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
-import Footer from "@/app/components/footer";
-import Content from "@/app/visualizer/sorting/mergesort/content";
 import ArrayGenerator from "@/app/components/ui/randomArray";
 import CustomArrayInput from "@/app/components/ui/customArrayInput";
-import ExploreOther from "@/app/components/ui/exploreOther";
-import CodeBlock from "@/app/visualizer/sorting/mergesort/codeBlock";
-import Quiz from "@/app/visualizer/sorting/mergesort/quiz";
-import GoBackButton from "@/app/components/ui/goback";
-import BackToTop from "@/app/components/ui/backtotop";
 
 const MergeSortVisualizer = () => {
   const [array, setArray] = useState([]);
@@ -228,20 +221,7 @@ const MergeSortVisualizer = () => {
 
 
   return (
-    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
-      <main className="container mx-auto px-6 pt-16 pb-4">
-
-          { /* go back block here */}
-          <div className="mt-10 sm:mt-10">
-            <GoBackButton />
-          </div>
-
-          { /* main logic here */}
-          <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
-            <span className="text-black dark:text-white">Merge Sort</span>
-          </h1>
-          <div className='bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5'></div>
-          <Content />
+      <main className="container mx-auto px-6 pt-2 pb-6">
         <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
           Visualize the divide-and-conquer approach of Merge Sort with recursive
           splitting and merging.
@@ -364,57 +344,8 @@ const MergeSortVisualizer = () => {
               </div>
             )}
           </div>
-
-          {/* Enhanced Recursion Tree */}
-
-          {/* Algorithm Explanation with Visual Guide */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 mt-8">
-            <h2 className="text-xl font-semibold mb-4">Merge Sort Process</h2>
-            <div>
-              <div>
-                <h3 className="font-medium mb-2">Steps:</h3>
-                <ol className="list-decimal pl-5 space-y-2">
-                  <li>
-                    Divide array into halves recursively until single elements
-                  </li>
-                  <li>Merge adjacent subarrays in sorted order</li>
-                  <li>Continue merging until whole array is sorted</li>
-                </ol>
-              </div>
-            </div>
-          </div>
         </div>
-
-        { /* quiz block here */}
-          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
-            Test Your Knowledge before moving forward!
-          </p>
-          <Quiz />
-
-        <CodeBlock />
-        <ExploreOther
-          title="Explore Sorting Algorithms"
-          links={[
-            {
-              text: "Selection Sort",
-              url: "/visualizer/sorting/selectionsort",
-            },
-            { text: "Bubble Sort", url: "/visualizer/sorting/bubblesort" },
-            {
-              text: "Insertion Sort",
-              url: "/visualizer/sorting/insertionsort",
-            },
-            { text: "Quick Sort", url: "/visualizer/sorting/quicksort" },
-            { text: "Heap Sort", url: "/algorithms/sorting/heap" },
-          ]}
-        />
       </main>
-      <div>
-        <div className="bg-gray-700 z-10 h-[1px]"></div>
-      </div>
-      <BackToTop/>
-      <Footer />
-    </div>
   );
 };
 

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { FaCheck, FaTimes, FaArrowRight, FaArrowLeft, FaInfoCircle, FaRedo, FaTrophy, FaStar, FaAward } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -89,37 +90,28 @@ const MergeSortQuiz = () => {
   const [showResult, setShowResult] = useState(false);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
-  const [showExplanation, setShowExplanation] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
   const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
-  const [penaltyApplied, setPenaltyApplied] = useState(false);
 
   const handleAnswerSelect = (optionIndex) => {
-    if (selectedAnswer !== null) return;
     setSelectedAnswer(optionIndex);
-    const newAnswers = [...answers];
-    newAnswers[currentQuestion] = optionIndex;
-    setAnswers(newAnswers);
   };
 
   const handleNextQuestion = () => {
     if (selectedAnswer === null) return;
-    
-    if (showExplanation && !penaltyApplied) {
-      setScore(prevScore => Math.max(0, prevScore - 0.5));
-      setPenaltyApplied(true);
-    }
 
-    if (selectedAnswer === questions[currentQuestion].correctAnswer) {
-      setScore(score + 1);
-    }
-    
-    setShowExplanation(false);
-    setPenaltyApplied(false);
-    
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = selectedAnswer;
+    setAnswers(newAnswers);
+
+    const newScore = newAnswers.reduce((acc, ans, idx) => {
+      return ans === questions[idx].correctAnswer ? acc + 1 : acc;
+    }, 0);
+    setScore(newScore);
+
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
-      setSelectedAnswer(null);
+      setSelectedAnswer(newAnswers[currentQuestion + 1]);
     } else {
       setShowSuccessAnimation(true);
       setTimeout(() => {
@@ -131,7 +123,6 @@ const MergeSortQuiz = () => {
   };
 
   const handlePreviousQuestion = () => {
-    setShowExplanation(false);
     setCurrentQuestion(currentQuestion - 1);
     setSelectedAnswer(answers[currentQuestion - 1]);
   };
@@ -143,9 +134,7 @@ const MergeSortQuiz = () => {
     setShowResult(false);
     setQuizCompleted(false);
     setAnswers(Array(questions.length).fill(null));
-    setShowExplanation(false);
     setShowIntro(true);
-    setPenaltyApplied(false);
   };
 
   const calculateWeakAreas = () => {
@@ -218,10 +207,6 @@ const MergeSortQuiz = () => {
               <li className="flex items-start">
                 <FaTimes className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
                 <span>0 points for wrong answers</span>
-              </li>
-              <li className="flex items-start">
-                <FaInfoCircle className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
-                <span>-0.5 point penalty for viewing explanations</span>
               </li>
               <li className="flex items-start">
                 <FaTrophy className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
@@ -324,29 +309,6 @@ const MergeSortQuiz = () => {
               ))}
             </div>
 
-            {selectedAnswer !== null && (
-              <div className="mb-6">
-                <button
-                  onClick={() => setShowExplanation(!showExplanation)}
-                  className="text-sm flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-2"
-                >
-                  <FaInfoCircle className="mr-1" />
-                  {showExplanation ? "Hide Explanation" : "Show Explanation"}
-                </button>
-                <AnimatePresence>
-                  {showExplanation && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-sm overflow-hidden"
-                    >
-                      {questions[currentQuestion].explanation}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            )}
           </motion.div>
 
           <div className="flex justify-between">

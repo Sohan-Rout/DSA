@@ -44,7 +44,7 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og/binarySearch.png",
+        url: "/og/searching/binarySearch.png",
         width: 1200,
         height: 630,
         alt: "Binary Search Algorithm Visualization",
