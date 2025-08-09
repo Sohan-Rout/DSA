@@ -157,9 +157,9 @@ const content = () => {
             </p>
             <div className="mt-8">
               <ComplexityGraph
-                bestCase={(n) => n * Math.log(n)}
-                averageCase={(n) => n * Math.log(n)}
-                worstCase={(n) => n * Math.log(n)}
+                bestCase={(n) => n * Math.log2(n)}
+                averageCase={(n) => n * Math.log2(n)}
+                worstCase={(n) => n * Math.log2(n)}
                 maxN={25}
               />
             </div>
