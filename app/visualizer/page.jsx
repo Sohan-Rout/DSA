@@ -55,6 +55,16 @@ export const metadata = {
     'DSA with Code'
   ],
   robots: 'index, follow',
+  openGraph: {
+    images: [
+      {
+        url: "/og/visualizer.png",
+        width: 1200,
+        height: 630,
+        alt: "Algorithm Visualization",
+      },
+    ],
+  },
 };
 
 const sections = [

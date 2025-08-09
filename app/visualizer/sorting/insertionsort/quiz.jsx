@@ -181,7 +181,7 @@ const InsertionSortQuiz = () => {
   };
 
   return (
-    <section className="max-w-4xl mx-auto shadow-lg rounded-xl bg-white dark:bg-gray-800 mt-8 mb-8 p-6 border border-gray-200 dark:border-gray-700">
+    <section className="max-w-4xl mx-auto shadow-lg rounded-xl bg-white dark:bg-neutral-950 mt-8 mb-8 p-6 border border-gray-200 dark:border-gray-700">
           {showIntro ? (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -189,14 +189,14 @@ const InsertionSortQuiz = () => {
               className="text-center"
             >
               <div className="flex justify-center mb-6">
-                <div className="bg-blue-100 dark:bg-blue-900/30 p-4 rounded-full">
+                <div className="bg-blue-100 dark:bg-neutral-900 p-4 rounded-full">
                   <FaAward className="text-4xl text-blue-500 dark:text-blue-500" />
                 </div>
               </div>
               <h2 className="text-2xl font-bold mb-4 text-black dark:text-gray-100">
                 Insertion Sort Quiz Challenge
               </h2>
-              <div className="bg-white dark:bg-gray-700 p-4 rounded-lg mb-6 text-left shadow-inner">
+              <div className="bg-white dark:bg-neutral-900 p-4 rounded-lg mb-6 text-left shadow-inner">
                 <h3 className="font-bold mb-2 flex items-center text-blue-600 dark:text-blue-400">
                   <FaInfoCircle className="mr-2" /> How it works:
                 </h3>
