@@ -229,7 +229,7 @@ const MergeSortVisualizer = () => {
 
         <div className="max-w-4xl mx-auto">
           {/* Controls */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-neutral-950 p-4 sm:p-6 rounded-lg shadow-md mb-6 md:mb-8 border border-gray-200 dark:border-gray-700">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <ArrayGenerator
@@ -254,13 +254,13 @@ const MergeSortVisualizer = () => {
                 <button
                   onClick={mergeSort}
                   disabled={!array.length || sorting || sorted}
-                  className="w-full bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:text-blue-500 disabled:border-blue-500 disabled:dark:border-blue-500 disabled:dark:text-blue-500"
+                  className="w-full disabled:opacity-75 bg-none bg-green-500 px-4 py-2 rounded shadow-sm transition-all duration-300 text-sm sm:text-base text-black"
                 >
                   {sorting ? "Sorting..." : "Start Merge Sort"}
                 </button>
                 <button
                   onClick={reset}
-                  className="w-full bg-none border border-black dark:border-white text-balck dark:text-white px-4 py-2 rounded"
+                  className="w-full bg-none text-white bg-red-500 px-4 py-2 rounded transition-colors text-sm sm:text-base"
                 >
                   Reset All
                 </button>
@@ -285,11 +285,11 @@ const MergeSortVisualizer = () => {
 
             {/* Stats */}
             <div className="grid grid-cols-2 gap-4 text-sm">
-              <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded">
+              <div className="bg-gray-100 dark:bg-neutral-900 p-3 rounded">
                 <div className="font-medium">Comparisons:</div>
                 <div className="text-2xl">{comparisons}</div>
               </div>
-              <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded">
+              <div className="bg-gray-100 dark:bg-neutral-900 p-3 rounded">
                 <div className="font-medium">Merges:</div>
                 <div className="text-2xl">{swaps}</div>
               </div>
@@ -297,7 +297,7 @@ const MergeSortVisualizer = () => {
           </div>
 
           {/* Main Array Visualization */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-neutral-950 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
             <h2 className="text-xl font-semibold mb-4">Main Array</h2>
             {array.length > 0 ? (
               <div className="flex flex-wrap gap-4 justify-center">
