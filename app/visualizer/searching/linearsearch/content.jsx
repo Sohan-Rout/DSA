@@ -215,7 +215,7 @@ const content = () => {
                 : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
             }
             width="100%"
-            height="300"
+            height="320"
             title="Daily DSA Challenge"
           ></iframe>
         )}
