@@ -86,7 +86,7 @@ export default function Page() {
           <Content />
         </section>
 
-        <section className="px-6">
+        <section>
           <LinearSearchAnimation />
         </section>
 

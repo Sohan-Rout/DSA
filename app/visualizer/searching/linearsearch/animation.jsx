@@ -151,7 +151,7 @@ const LinearSearch = () => {
             className="block text-gray-700 dark:text-gray-300 mb-2"
             htmlFor="arrayElements"
           >
-            Array Elements (comma-separated)
+            Array Elements
           </label>
           <div className="flex gap-2">
             <input

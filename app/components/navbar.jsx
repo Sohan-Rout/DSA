@@ -244,12 +244,12 @@ const handleLogout = async () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Toggle theme and save to localStorage
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
     document.documentElement.classList.toggle("dark", newTheme === "dark");
+    window.dispatchEvent(new Event("themeChange"));
   };
 
   // Close mobile menu

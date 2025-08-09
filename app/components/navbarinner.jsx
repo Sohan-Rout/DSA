@@ -22,6 +22,7 @@ export default function Navbar() {
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    window.dispatchEvent(new Event('themeChange'));
   };
 
   const handleLogout = async () => {

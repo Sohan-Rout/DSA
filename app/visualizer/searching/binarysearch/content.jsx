@@ -1,7 +1,29 @@
 "use client";
 import ComplexityGraph from "@/app/components/ui/graph";
+import { useEffect, useState } from "react";
 
 const content = () => {
+  const [theme, setTheme] = useState('light');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      setTheme(savedTheme);
+    };
+
+    updateTheme();
+    setMounted(true);
+
+    window.addEventListener('storage', updateTheme);
+    window.addEventListener('themeChange', updateTheme);
+
+    return () => {
+      window.removeEventListener('storage', updateTheme);
+      window.removeEventListener('themeChange', updateTheme);
+    };
+  }, []);
+
   const paragraphs = [
     `Binary Search is an efficient algorithm for finding an item in a sorted list. It works by repeatedly dividing the search interval in half. If the target value is less than the middle element, the search continues in the lower half. Otherwise, it continues in the upper half. This process repeats until the value is found.`,
     `If the number is not in the list (e.g., searching for 8), the search ends when the subarray becomes empty.`,
@@ -42,12 +64,19 @@ const content = () => {
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 md:gap-4">
       <div className="col-span-1">
         <div className="hidden md:block">
-          <iframe
-            src="https://hw.glich.co/resources/embed/daily/dsa"
-            width="100%"
-            height="400"
-            title="Daily DSA Challenge"
-          ></iframe>
+          {mounted && (
+            <iframe
+              key={theme}
+              src={
+                theme === "dark"
+                  ? "https://hw.glich.co/resources/embed/daily/dsa?theme=dark"
+                  : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
+              }
+              width="100%"
+              height="400"
+              title="Daily DSA Challenge"
+            ></iframe>
+          )}
         </div>
         <div className="flex justify-center">
           <span className="text-xs hidden md:block">
