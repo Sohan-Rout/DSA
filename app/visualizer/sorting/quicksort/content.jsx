@@ -1,7 +1,29 @@
 "use client";
 import ComplexityGraph from "@/app/components/ui/graph";
+import { useEffect, useState } from "react";
 
 const content = () => {
+  const [theme, setTheme] = useState('light');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      setTheme(savedTheme);
+    };
+
+    updateTheme();
+    setMounted(true);
+
+    window.addEventListener('storage', updateTheme);
+    window.addEventListener('themeChange', updateTheme);
+
+    return () => {
+      window.removeEventListener('storage', updateTheme);
+      window.removeEventListener('themeChange', updateTheme);
+    };
+  }, []);
+
   const paragraphs = [
     `Quick Sort is an efficient, comparison-based sorting algorithm that follows the divide-and-conquer approach. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays according to whether they are less than or greater than the pivot. The sub-arrays are then recursively sorted.`,
     `The log n factor comes from the division steps when partitions are balanced. The n² occurs when the pivot selection consistently creates unbalanced partitions.`,
@@ -107,12 +129,19 @@ const content = () => {
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 md:gap-4">
       <div className="col-span-1">
         <div className="hidden md:block">
-          <iframe
-            src="https://hw.glich.co/resources/embed/daily/dsa"
-            width="100%"
-            height="400"
-            title="Daily DSA Challenge"
-          ></iframe>
+          {mounted && (
+            <iframe
+              key={theme}
+              src={
+                theme === "dark"
+                  ? "https://hw.glich.co/resources/embed/daily/dsa?theme=dark"
+                  : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
+              }
+              width="100%"
+              height="400"
+              title="Daily DSA Challenge"
+            ></iframe>
+          )}
         </div>
         <div className="flex justify-center">
           <span className="text-xs hidden md:block">
@@ -325,6 +354,35 @@ const content = () => {
           </div>
         </section>
       </article>
+
+      {/* Mobile iframe at bottom */}
+      <div className="block md:hidden w-full">
+        {mounted && (
+          <iframe
+            key={theme}
+            src={
+              theme === "dark"
+                ? "https://hw.glich.co/resources/embed/daily/dsa?theme=dark"
+                : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
+            }
+            width="100%"
+            height="320"
+            title="Daily DSA Challenge"
+          ></iframe>
+        )}
+        <div className="flex justify-center pb-8">
+          <span className="text-xs">
+            Powered by{" "}
+            <a
+              href="https://hw.glich.co/resources/daily"
+              target="_blank"
+              className="underline hover:text-blue-500 duration-300"
+            >
+              Hello World
+            </a>
+          </span>
+        </div>
+      </div>
     </main>
   );
 };
