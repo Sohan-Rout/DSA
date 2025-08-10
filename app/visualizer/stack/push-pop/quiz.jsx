@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { FaCheck, FaTimes, FaArrowRight, FaArrowLeft, FaInfoCircle, FaRedo, FaTrophy, FaStar, FaAward } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -122,37 +123,28 @@ const StackQuiz = () => {
   const [showResult, setShowResult] = useState(false);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
-  const [showExplanation, setShowExplanation] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
   const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
-  const [penaltyApplied, setPenaltyApplied] = useState(false);
 
   const handleAnswerSelect = (optionIndex) => {
-    if (selectedAnswer !== null) return;
     setSelectedAnswer(optionIndex);
-    const newAnswers = [...answers];
-    newAnswers[currentQuestion] = optionIndex;
-    setAnswers(newAnswers);
   };
 
   const handleNextQuestion = () => {
     if (selectedAnswer === null) return;
-    
-    if (showExplanation && !penaltyApplied) {
-      setScore(prevScore => Math.max(0, prevScore - 0.5));
-      setPenaltyApplied(true);
-    }
 
-    if (selectedAnswer === questions[currentQuestion].correctAnswer) {
-      setScore(score + 1);
-    }
-    
-    setShowExplanation(false);
-    setPenaltyApplied(false);
-    
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = selectedAnswer;
+    setAnswers(newAnswers);
+
+    const newScore = newAnswers.reduce((acc, ans, idx) => {
+      return ans === questions[idx].correctAnswer ? acc + 1 : acc;
+    }, 0);
+    setScore(newScore);
+
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
-      setSelectedAnswer(null);
+      setSelectedAnswer(newAnswers[currentQuestion + 1]);
     } else {
       setShowSuccessAnimation(true);
       setTimeout(() => {
@@ -164,7 +156,6 @@ const StackQuiz = () => {
   };
 
   const handlePreviousQuestion = () => {
-    setShowExplanation(false);
     setCurrentQuestion(currentQuestion - 1);
     setSelectedAnswer(answers[currentQuestion - 1]);
   };
@@ -176,9 +167,7 @@ const StackQuiz = () => {
     setShowResult(false);
     setQuizCompleted(false);
     setAnswers(Array(questions.length).fill(null));
-    setShowExplanation(false);
     setShowIntro(true);
-    setPenaltyApplied(false);
   };
 
   const calculateWeakAreas = () => {
@@ -224,7 +213,7 @@ const StackQuiz = () => {
   };
 
   return (
-    <section className="max-w-2xl mx-auto shadow-lg rounded-xl bg-white dark:bg-gray-800 mt-8 mb-8 p-6 border border-gray-200 dark:border-gray-700">
+    <section className="max-w-4xl mx-auto shadow-lg rounded-xl bg-white dark:bg-neutral-950 mt-8 mb-8 p-6 border border-gray-200 dark:border-gray-700">
       {showIntro ? (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -232,35 +221,31 @@ const StackQuiz = () => {
           className="text-center"
         >
           <div className="flex justify-center mb-6">
-            <div className="bg-blue-100 dark:bg-blue-900/30 p-4 rounded-full">
+            <div className="bg-blue-100 dark:bg-neutral-900 p-4 rounded-full">
               <FaAward className="text-4xl text-blue-500 dark:text-blue-500" />
             </div>
           </div>
           <h2 className="text-2xl font-bold mb-4 text-black dark:text-gray-100">
             Stack Quiz Challenge
           </h2>
-          <div className="bg-white dark:bg-gray-700 p-4 rounded-lg mb-6 text-left shadow-inner">
+          <div className="bg-white dark:bg-neutral-900 p-4 rounded-lg mb-6 text-left shadow-inner">
             <h3 className="font-bold mb-2 flex items-center text-blue-600 dark:text-blue-400">
               <FaInfoCircle className="mr-2" /> How it works:
             </h3>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-start">
-                <FaCheck className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
-                <span>+1 point for each correct answer</span>
-              </li>
-              <li className="flex items-start">
-                <FaTimes className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
-                <span>0 points for wrong answers</span>
-              </li>
-              <li className="flex items-start">
-                <FaInfoCircle className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
-                <span>-0.5 point penalty for viewing explanations</span>
-              </li>
-              <li className="flex items-start">
-                <FaTrophy className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
-                <span>Earn stars based on your final score (max 5 stars)</span>
-              </li>
-            </ul>
+          <ul className="space-y-2 text-sm">
+            <li className="flex items-start">
+              <FaCheck className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
+              <span>+1 point for each correct answer</span>
+            </li>
+            <li className="flex items-start">
+              <FaTimes className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
+              <span>0 points for wrong answers</span>
+            </li>
+            <li className="flex items-start">
+              <FaTrophy className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
+              <span>Earn stars based on your final score (max 5 stars)</span>
+            </li>
+          </ul>
           </div>
           <button
             onClick={startQuiz}
@@ -357,29 +342,7 @@ const StackQuiz = () => {
               ))}
             </div>
 
-            {selectedAnswer !== null && (
-              <div className="mb-6">
-                <button
-                  onClick={() => setShowExplanation(!showExplanation)}
-                  className="text-sm flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-2"
-                >
-                  <FaInfoCircle className="mr-1" />
-                  {showExplanation ? "Hide Explanation" : "Show Explanation"}
-                </button>
-                <AnimatePresence>
-                  {showExplanation && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-sm overflow-hidden"
-                    >
-                      {questions[currentQuestion].explanation}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            )}
+
           </motion.div>
 
           <div className="flex justify-between">

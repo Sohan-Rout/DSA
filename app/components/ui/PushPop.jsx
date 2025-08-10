@@ -61,14 +61,14 @@ const PushPop = ({ stack, setStack, isAnimating, setIsAnimating, setMessage, set
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4 border border-gray-200 dark:border-gray-700">
+    <div className="bg-white dark:bg-neutral-950 p-6 rounded-lg shadow-md mb-4 border border-gray-200 dark:border-gray-700">
       <div className="flex flex-col sm:flex-row gap-2 mb-4">
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Enter value"
-          className="flex-1 p-2 border rounded dark:bg-gray-700 focus:ring-2 focus:ring-blue-500"
+          className="flex-1 p-2 border rounded dark:bg-neutral-900 focus:ring-2 focus:ring-blue-500"
           disabled={isAnimating}
         />
         <button
@@ -83,20 +83,20 @@ const PushPop = ({ stack, setStack, isAnimating, setIsAnimating, setMessage, set
         <button
           onClick={pop}
           disabled={isAnimating || stack.length === 0}
-          className="bg-none border border-black dark:border-white text-balck dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:dark:border-blue-500 disabled:text-blue-500 disabled:border-blue-500 dark:disabled:text-blue-500"
+          className="bg-green-500 text-black px-4 py-2 rounded disabled:opacity-50"
         >
           Pop
         </button>
         <button
           onClick={peek}
           disabled={isAnimating || stack.length === 0}
-          className="bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 disabled:dark:text-blue-500 disabled:text-blue-500 disabled:border-blue-500 dark:disabled:border-blue-500"
+          className="bg-amber-500 text-black px-4 py-2 rounded disabled:opacity-50"
         >
           Peek
         </button>
         <button
           onClick={() => setStack([])}
-          className="bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50 col-span-2 sm:col-span-1"
+          className="bg-red-500 text-white px-4 py-2 rounded col-span-2 sm:col-span-1"
           disabled={isAnimating}
         >
           Reset
