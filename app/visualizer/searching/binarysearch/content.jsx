@@ -80,7 +80,7 @@ const content = () => {
         </div>
         <div className="flex justify-center">
           <span className="text-xs hidden md:block">
-            Powered by{" "}
+            Daily DSA Challenge by{" "}
             <a
               href="https://hw.glich.co/resources/daily"
               target="_blank"
@@ -231,7 +231,7 @@ const content = () => {
         )}
         <div className="flex justify-center pb-8">
           <span className="text-xs">
-            Powered by{" "}
+            Daily DSA Challenge by{" "}
             <a
               href="https://hw.glich.co/resources/daily"
               target="_blank"
