@@ -285,7 +285,7 @@ const content = () => {
         )}
         <div className="flex justify-center pb-8">
           <span className="text-xs">
-            Powered by{" "}
+            Daily DSA Challenge By{" "}
             <a
               href="https://hw.glich.co/resources/daily"
               target="_blank"
