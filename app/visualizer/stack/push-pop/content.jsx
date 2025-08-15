@@ -103,7 +103,7 @@ const content = () => {
         </div>
         <div className="flex justify-center">
           <span className="text-xs hidden md:block">
-            Powered by{" "}
+            Daily DSA Challenge by{" "}
             <a
               href="https://hw.glich.co/resources/daily"
               target="_blank"
