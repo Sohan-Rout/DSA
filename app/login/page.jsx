@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation'
 import { FiMail, FiLock, FiUser, FiLogIn, FiUserPlus, FiSun, FiMoon } from 'react-icons/fi'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Turnstile from '@marsidev/react-turnstile'
+import dynamic from 'next/dynamic'
+const Turnstile = dynamic(() => import('@marsidev/react-turnstile'), { ssr: false })
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
