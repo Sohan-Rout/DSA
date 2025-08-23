@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { FiMail, FiLock, FiUser, FiLogIn, FiUserPlus, FiSun, FiMoon } from 'react-icons/fi'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Turnstile from '@marsidev/react-turnstile'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -13,6 +14,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [theme, setTheme] = useState('light')
+  const [captchaToken, setCaptchaToken] = useState(null)
   const router = useRouter()
 
   useEffect(() => {
@@ -38,7 +40,8 @@ export default function LoginPage() {
         if (error) throw error
         router.push('/dashboard')
       } else {
-        const { error } = await supabase.auth.signUp({ email, password })
+        if (!captchaToken) throw new Error('Please complete captcha')
+        const { error } = await supabase.auth.signUp({ email, password, options: { captchaToken } })
         if (error) throw error
         alert('Check your email for confirmation!')
       }
@@ -131,6 +134,15 @@ export default function LoginPage() {
                   type="text"
                   className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
                   placeholder="Full name (optional)"
+                />
+              </div>
+            )}
+
+            {!isLogin && (
+              <div className="flex justify-center">
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                  onSuccess={(token) => setCaptchaToken(token)}
                 />
               </div>
             )}
