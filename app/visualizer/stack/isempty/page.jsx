@@ -37,7 +37,7 @@ export const metadata = {
         url: "/og/stack/isEmpty.png",
         width: 1200,
         height: 630,
-        alt: "Stack Peek Visualization",
+        alt: "Stack isEmpty Visualization",
       },
     ],
   },
