@@ -239,6 +239,35 @@ const content = () => {
           </div>
         </section>
       </article>
+
+        {/* Mobile iframe at bottom */}
+      <div className="block md:hidden w-full">
+        {mounted && (
+          <iframe
+            key={theme}
+            src={
+              theme === "dark"
+                ? "https://hw.glich.co/resources/embed/daily/dsa?theme=dark"
+                : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
+            }
+            width="100%"
+            height="320"
+            title="Daily DSA Challenge"
+          ></iframe>
+        )}
+        <div className="flex justify-center pb-8">
+          <span className="text-xs">
+            Daily DSA Challenge by{" "}
+            <a
+              href="https://hw.glich.co/resources/daily"
+              target="_blank"
+              className="underline hover:text-blue-500 duration-300"
+            >
+              Hello World
+            </a>
+          </span>
+        </div>
+      </div>
     </main>
   );
 };
