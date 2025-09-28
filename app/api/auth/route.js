@@ -43,12 +43,8 @@ export async function POST(req) {
     }
 
     else if (action === 'login') {
-      // Authenticate user using Supabase admin API (signInWithPassword)
-      const { data, error } = await supabase.auth.admin.signInWithPassword({ email, password })
-      if (error) {
-        return new Response(JSON.stringify({ success: false, message: error.message }), { status: 400 })
-      }
-      return new Response(JSON.stringify({ success: true, message: 'Login successful.' }), { status: 200 })
+      // For login, only verify captcha and return success.
+      return new Response(JSON.stringify({ success: true, message: 'Captcha verified. You can now login using email/password.' }), { status: 200 })
     }
 
     // Invalid action
