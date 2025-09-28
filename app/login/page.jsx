@@ -42,23 +42,30 @@ export default function LoginPage() {
     try {
       if (!captchaToken) throw new Error('Please complete captcha')
 
-      const res = await fetch('/auth', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          password,
-          captchaToken,
-          action: isLogin ? 'login' : 'signup'
-        }),
-      })
-
-      const data = await res.json()
-      if (!data.success) throw new Error(data.message || 'Action failed')
-
       if (isLogin) {
+        // Verify captcha first via API route
+        const verifyRes = await fetch('/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, captchaToken, action: 'login' }),
+        })
+        const verifyData = await verifyRes.json()
+        if (!verifyData.success) throw new Error(verifyData.message || 'Captcha verification failed')
+
+        // After captcha verified, login using frontend anon key
+        const { error } = await supabase.auth.signInWithPassword({ email, password })
+        if (error) throw error
+
         router.push('/dashboard')
       } else {
+        // Signup flow remains the same
+        const res = await fetch('/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, captchaToken, action: 'signup' }),
+        })
+        const data = await res.json()
+        if (!data.success) throw new Error(data.message || 'Signup failed')
         alert(data.message)
         setIsLogin(true)
       }
