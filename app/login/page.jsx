@@ -44,7 +44,7 @@ export default function LoginPage() {
 
       if (isLogin) {
         // Verify captcha first via API route
-        const verifyRes = await fetch('/auth', {
+        const verifyRes = await fetch('/api/auth', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password, captchaToken, action: 'login' }),
@@ -59,7 +59,7 @@ export default function LoginPage() {
         router.push('/dashboard')
       } else {
         // Signup flow remains the same
-        const res = await fetch('/auth', {
+        const res = await fetch('/api/auth', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password, captchaToken, action: 'signup' }),
