@@ -40,26 +40,27 @@ export default function LoginPage() {
     setError('')
 
     try {
+      if (!captchaToken) throw new Error('Please complete captcha')
+
+      const res = await fetch('/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          password,
+          captchaToken,
+          action: isLogin ? 'login' : 'signup'
+        }),
+      })
+
+      const data = await res.json()
+      if (!data.success) throw new Error(data.message || 'Action failed')
+
       if (isLogin) {
-        // Login using frontend anon key only, no captcha
-        const { error } = await supabase.auth.signInWithPassword({ email, password })
-        if (error) throw error
         router.push('/dashboard')
       } else {
-        // Signup via API route with Turnstile
-        if (!captchaToken) throw new Error('Please complete captcha')
-
-        const res = await fetch('/auth', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password, captchaToken, action: 'signup' }),
-        })
-
-        const data = await res.json()
-        if (!data.success) throw new Error(data.message || 'Signup failed')
-
         alert(data.message)
-        setIsLogin(true) // switch to login after signup
+        setIsLogin(true)
       }
     } catch (err) {
       setError(err.message || 'Something went wrong')
@@ -141,15 +142,13 @@ export default function LoginPage() {
               </div>
             )}
 
-            {/* Turnstile only for signup */}
-            {!isLogin && (
-              <div className="flex justify-center">
-                <Turnstile
-                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-                  onSuccess={(token) => setCaptchaToken(token)}
-                />
-              </div>
-            )}
+            {/* Turnstile for both login and signup */}
+            <div className="flex justify-center">
+              <Turnstile
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                onSuccess={(token) => setCaptchaToken(token)}
+              />
+            </div>
 
             <button
               onClick={handleAuth}

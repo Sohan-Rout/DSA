@@ -15,39 +15,40 @@ export async function POST(req) {
     if (!email || !password) {
       return new Response(JSON.stringify({ success: false, message: 'Email and password are required' }), { status: 400 })
     }
+    if (!captchaToken) {
+      return new Response(JSON.stringify({ success: false, message: 'Captcha token missing' }), { status: 400 })
+    }
+
+    // Verify Turnstile token for both signup and login
+    const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        secret: process.env.TURNSTILE_SECRET_KEY,
+        response: captchaToken,
+      }),
+    })
+    const verifyData = await verifyRes.json()
+    if (!verifyData.success) {
+      return new Response(JSON.stringify({ success: false, message: 'Captcha verification failed' }), { status: 400 })
+    }
 
     if (action === 'signup') {
-      if (!captchaToken) {
-        return new Response(JSON.stringify({ success: false, message: 'Captcha token missing' }), { status: 400 })
-      }
-
-      // Verify Turnstile token
-      const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          secret: process.env.TURNSTILE_SECRET_KEY,
-          response: captchaToken,
-        }),
-      })
-
-      const verifyData = await verifyRes.json()
-      if (!verifyData.success) {
-        return new Response(JSON.stringify({ success: false, message: 'Captcha verification failed' }), { status: 400 })
-      }
-
       // Create Supabase user
       const { user, error } = await supabase.auth.admin.createUser({ email, password })
       if (error) {
         return new Response(JSON.stringify({ success: false, message: error.message }), { status: 400 })
       }
-
       return new Response(JSON.stringify({ success: true, message: 'Signup successful! Check your email.' }), { status: 200 })
     }
 
-    // Login stays frontend-only
     else if (action === 'login') {
-      return new Response(JSON.stringify({ success: false, message: 'Use frontend login with anon key' }), { status: 400 })
+      // Authenticate user using Supabase admin API (signInWithPassword)
+      const { data, error } = await supabase.auth.admin.signInWithPassword({ email, password })
+      if (error) {
+        return new Response(JSON.stringify({ success: false, message: error.message }), { status: 400 })
+      }
+      return new Response(JSON.stringify({ success: true, message: 'Login successful.' }), { status: 200 })
     }
 
     // Invalid action
