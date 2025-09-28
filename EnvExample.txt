@@ -1,0 +1,10 @@
+EMAIL_USER=Your App Email
+EMAIL_PASSWORD=Your Google App Password
+NEXT_PUBLIC_GA_ID=Your Google Analytics ID
+
+NEXT_PUBLIC_SUPABASE_URL=Your supabase Url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=Your Anon Key
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=Your Cloudfare Captcha Key
+
+TURNSTILE_SECRET_KEY=Your Cloudfare backend route api key
+SUPABASE_SERVICE_KEY=Your supabase service key
