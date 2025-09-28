@@ -7,14 +7,19 @@ const supabase = createClient(
 
 export async function POST(req) {
   try {
-    const { email, password, captchaToken, action } = await req.json()
+    // Parse JSON body safely
+    const body = await req.json()
+    const { email, password, captchaToken, action } = body || {}
 
-    if (!email || !password)
-      return new Response(JSON.stringify({ message: 'Email and password required' }), { status: 400 })
+    // Validate required fields
+    if (!email || !password) {
+      return new Response(JSON.stringify({ success: false, message: 'Email and password are required' }), { status: 400 })
+    }
 
     if (action === 'signup') {
-      if (!captchaToken)
-        return new Response(JSON.stringify({ message: 'Captcha token missing' }), { status: 400 })
+      if (!captchaToken) {
+        return new Response(JSON.stringify({ success: false, message: 'Captcha token missing' }), { status: 400 })
+      }
 
       // Verify Turnstile token
       const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
@@ -26,27 +31,32 @@ export async function POST(req) {
         }),
       })
 
-      const data = await verifyRes.json()
-      if (!data.success)
-        return new Response(JSON.stringify({ message: 'Captcha verification failed' }), { status: 400 })
+      const verifyData = await verifyRes.json()
+      if (!verifyData.success) {
+        return new Response(JSON.stringify({ success: false, message: 'Captcha verification failed' }), { status: 400 })
+      }
 
       // Create Supabase user
       const { user, error } = await supabase.auth.admin.createUser({ email, password })
-      if (error)
-        return new Response(JSON.stringify({ message: error.message }), { status: 400 })
+      if (error) {
+        return new Response(JSON.stringify({ success: false, message: error.message }), { status: 400 })
+      }
 
-      return new Response(JSON.stringify({ message: 'Signup successful! Check your email.' }), { status: 200 })
+      return new Response(JSON.stringify({ success: true, message: 'Signup successful! Check your email.' }), { status: 200 })
     }
 
+    // Login stays frontend-only
     else if (action === 'login') {
-      return new Response(JSON.stringify({ message: 'Use frontend login with anon key' }), { status: 400 })
+      return new Response(JSON.stringify({ success: false, message: 'Use frontend login with anon key' }), { status: 400 })
     }
 
+    // Invalid action
     else {
-      return new Response(JSON.stringify({ message: 'Invalid action' }), { status: 400 })
+      return new Response(JSON.stringify({ success: false, message: 'Invalid action' }), { status: 400 })
     }
+
   } catch (err) {
-    console.error(err)
-    return new Response(JSON.stringify({ message: 'Internal server error' }), { status: 500 })
+    console.error('API Error:', err)
+    return new Response(JSON.stringify({ success: false, message: 'Internal server error' }), { status: 500 })
   }
 }

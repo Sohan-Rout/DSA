@@ -41,7 +41,7 @@ export default function LoginPage() {
 
     try {
       if (isLogin) {
-        // Login with frontend anon key
+        // Login using frontend anon key only, no captcha
         const { error } = await supabase.auth.signInWithPassword({ email, password })
         if (error) throw error
         router.push('/dashboard')
@@ -56,13 +56,13 @@ export default function LoginPage() {
         })
 
         const data = await res.json()
-        if (!res.ok) throw new Error(data.message)
+        if (!data.success) throw new Error(data.message || 'Signup failed')
 
         alert(data.message)
         setIsLogin(true) // switch to login after signup
       }
     } catch (err) {
-      setError(err.message)
+      setError(err.message || 'Something went wrong')
     } finally {
       setLoading(false)
     }
@@ -141,6 +141,7 @@ export default function LoginPage() {
               </div>
             )}
 
+            {/* Turnstile only for signup */}
             {!isLogin && (
               <div className="flex justify-center">
                 <Turnstile
@@ -203,7 +204,8 @@ export default function LoginPage() {
             onClick={handleGoogleSignIn}
             className="w-full flex items-center justify-center py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition-all"
           >
-            Continue with Google
+              <img src="./google.webp" width={24}></img>
+              <span className='mx-2'>Continue with Google</span>
           </button>
 
           <div className="text-center text-xs text-gray-500 dark:text-gray-400 mt-6">
