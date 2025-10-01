@@ -89,7 +89,7 @@ const TestimonialSection = () => {
   };
 
   return (
-    <section className="py-10 bg-gradient-to-b from-blue-100/60 to-white dark:from-black dark:to-black ">
+    <section className="pb-10 bg-gradient-to-b from-white to-white dark:from-neutral-900 dark:to-neutral-900 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center mb-16">
@@ -105,20 +105,20 @@ const TestimonialSection = () => {
         <div className="flex justify-center mb-12 gap-3">
           <button
             onClick={() => setActiveFilter('all')}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${activeFilter === 'all' ? 'bg-blue-600 text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'}`}
+            className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${activeFilter === 'all' ? 'bg-blue-500 text-white shadow-md' : 'bg-white dark:bg-neutral-950 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-black border border-gray-200 dark:border-blue-500'}`}
           >
             All Reviews
           </button>
           <button
             onClick={() => setActiveFilter('5')}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeFilter === '5' ? 'bg-blue-600 text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'}`}
+            className={`px-5 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeFilter === '5' ? 'bg-blue-500 text-white shadow-md' : 'bg-white dark:bg-neutral-950 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-black border border-gray-200 dark:border-blue-500'}`}
           >
             <span>5 Stars</span>
             <FaStar className="text-yellow-400" />
           </button>
           <button
             onClick={() => setActiveFilter('4')}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeFilter === '4' ? 'bg-blue-600 text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'}`}
+            className={`px-5 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeFilter === '4' ? 'bg-blue-500 text-white shadow-md' : 'bg-white dark:bg-neutral-950 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-black border border-gray-200 dark:border-blue-500'}`}
           >
             <span>4+ Stars</span>
             <FaStar className="text-yellow-400" />
@@ -208,7 +208,7 @@ const TestimonialSection = () => {
         </div>
 
         {/* Divider */}
-        <div className="mt-20 mx-auto h-[1px] max-w-4xl bg-gradient-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
+        <div className="mt-10 mx-auto h-[1px] max-w-4xl bg-gradient-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
       </div>
     </section>
   );

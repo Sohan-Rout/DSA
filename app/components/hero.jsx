@@ -29,14 +29,14 @@ const HeroSection = () => {
   };
 
   return (
-      <section className="min-h-screen py-10 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-950 dark:to-black text-gray-900 dark:text-gray-100 relative overflow-hidden">
+      <section className="min-h-screen py-10 flex items-start md:items-center justify-center bg-gradient-to-br from-blue-50 to-white dark:from-neutral-900 dark:to-neutral-900 text-gray-900 dark:text-gray-100 relative overflow-hidden">
   {/* Notification Bar */}
 <div className="hidden md:block absolute mt-14 top-12 left-1/2 transform -translate-x-1/2 z-20 w-full max-w-md px-4">
-  <div className="bg-white dark:bg-gray-800 border border-blue-200 dark:border-blue-900 rounded-full shadow-lg py-2 px-4 flex items-center justify-between">
-    <span className="text-sm font-medium text-blue-600 dark:text-blue-400 flex items-center">
+  <div className="bg-white dark:bg-neutral-950 border border-blue-200 dark:border-blue-900 rounded-full shadow-lg py-2 px-4 flex items-center justify-between">
+    <span className="text-sm font-medium text-blue-500 flex items-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-4 w-4 mr-2 text-blue-600 dark:text-blue-400 animate-draw"
+        className="h-4 w-4 mr-2 text-blue-500 animate-draw"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -75,13 +75,12 @@ const HeroSection = () => {
   {/* Abstract background elements */}
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
     <div className="absolute top-0 left-0 w-64 h-64 bg-blue-400/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-    <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2"></div>
   </div>
 
       <div className="container top-4 mx-auto px-6 py-20 flex flex-col lg:flex-row items-center justify-between relative z-10 gap-12">
         {/* Text Content */}
-        <div className="lg:w-1/2 text-center lg:text-left space-y-6">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
+        <div className="lg:w-1/2 text-center lg:text-left space-y-4 sm:space-y-6">
+          <h1 className="text-4xl sm:text-5xl md:text-5xl font-bold leading-snug md:leading-tight">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300">
               Master DSA
             </span>
@@ -165,34 +164,34 @@ const HeroSection = () => {
     />
 
     {/* Floating algorithm elements - adjusted for mobile */}
-    <div className="absolute top-[15%] -right-4 w-16 h-16 lg:w-24 lg:h-24 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float border-2 border-gray-300 dark:border-gray-600">
-      <div className="text-xs lg:text-base font-mono font-bold text-center p-1 lg:p-2">
+    <div className="absolute top-[15%] -right-4 w-16 h-16 lg:w-24 lg:h-24 bg-white/90 dark:bg-black rounded-full flex items-center justify-center shadow-lg animate-float border-2 border-gray-300 dark:border-blue-500">
+      <div className="text-xs lg:text-base font-mono font-semibold text-center p-1 lg:p-2">
         O(1)
       </div>
     </div>
 
-    <div className="absolute top-[40%] -right-8 w-20 h-20 lg:w-28 lg:h-28 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-2000 border-2 border-gray-300 dark:border-gray-600">
-      <div className="text-sm lg:text-lg font-mono font-bold text-center p-2 lg:p-3">
+    <div className="absolute top-[40%] -right-8 w-20 h-20 lg:w-28 lg:h-28 bg-white/90 dark:bg-black rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-2000 border-2 border-gray-300 dark:border-blue-500">
+      <div className="text-sm lg:text-lg font-mono font-semibold text-center p-2 lg:p-3">
         <span className="text-blue-600 dark:text-blue-400">Hash</span>
         Map
       </div>
     </div>
 
-    <div className="absolute top-[25%] z-[-1] left-[-5] w-20 h-20 lg:w-24 lg:h-24 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-1000 border-2 border-gray-300 dark:border-gray-600">
-      <div className="text-xs lg:text-base font-mono font-bold text-center">
+    <div className="absolute top-[25%] z-[-1] left-[-5] w-20 h-20 lg:w-24 lg:h-24 bg-white/90 dark:bg-black rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-1000 border-2 border-gray-300 dark:border-blue-500">
+      <div className="text-xs lg:text-base font-mono font-semibold text-center">
         Queue
       </div>
     </div>
 
     {/* Additional thought bubbles - adjusted for mobile */}
-    <div className="absolute z-[-1] top-[10%] left-5 w-14 h-14 lg:w-20 lg:h-20 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-1500 border-2 border-gray-300 dark:border-gray-600">
-      <div className="text-xs lg:text-sm font-mono font-bold text-center">
+    <div className="absolute z-[-1] top-[10%] left-5 w-14 h-14 lg:w-20 lg:h-20 bg-white/90 dark:bg-black rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-1500 border-2 border-gray-300 dark:border-blue-500">
+      <div className="text-xs lg:text-sm font-mono font-semibold text-center">
         Stack
       </div>
     </div>
 
-    <div className="absolute top-[5%] right-12 w-14 h-14 lg:w-20 lg:h-20 bg-white/90 dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-2500 border-2 border-gray-300 dark:border-gray-600">
-      <div className="text-xs lg:text-sm font-mono font-bold text-center">
+    <div className="absolute top-[5%] right-12 w-14 h-14 lg:w-20 lg:h-20 bg-white/90 dark:bg-black rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-2500 border-2 border-gray-300 dark:border-blue-500">
+      <div className="text-xs lg:text-sm font-mono font-semibold text-center">
         Tree
       </div>
     </div>
