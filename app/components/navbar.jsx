@@ -193,7 +193,7 @@ const AboutItem = ({ title, description, icon, iconBg, href }) => (
   </Link>
 );
 
-// Abut dropdown component for desktop
+// About dropdown component for desktop
 const AboutServicesDropdown = () => (
   <div className="absolute left-0 mt-2 w-64 origin-top-right dark:bg-black dark:ring-blue-400 bg-white rounded-lg shadow-xl ring-1 ring-gray-200 focus:outline-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 overflow-hidden">
     <div className="py-1">
@@ -315,7 +315,7 @@ const handleLogout = async () => {
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                 />
                 {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 z-50">
+                  <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-neutral-950 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 z-50">
                     <Link
                       href="/dashboard"
                       className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
