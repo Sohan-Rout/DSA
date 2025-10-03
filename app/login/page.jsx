@@ -82,14 +82,14 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50 dark:bg-gray-950">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-white dark:bg-neutral-900">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
+        className="w-full max-w-md bg-white dark:bg-neutral-950 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
       >
         {/* Header */}
-        <div className="bg-blue-600 p-6 text-white flex justify-between items-center">
+        <div className="bg-blue-500 p-6 text-white flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold">{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
             <p className="text-blue-100 dark:text-blue-200">
@@ -116,7 +116,7 @@ export default function LoginPage() {
               </div>
               <input
                 type="email"
-                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-200"
+                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-950 dark:text-gray-200"
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -129,7 +129,7 @@ export default function LoginPage() {
               </div>
               <input
                 type="password"
-                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-200"
+                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-950 dark:text-gray-200"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -143,8 +143,8 @@ export default function LoginPage() {
                 </div>
                 <input
                   type="text"
-                  className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-200"
-                  placeholder="Full name (optional)"
+                  className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-950 dark:text-gray-200"
+                  placeholder="Full name"
                 />
               </div>
             )}
@@ -208,7 +208,7 @@ export default function LoginPage() {
 
           <button
             onClick={handleGoogleSignIn}
-            className="w-full flex items-center justify-center py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition-all"
+            className="w-full flex items-center justify-center py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-950 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition-all"
           >
               <img src="./google.webp" width={24}></img>
               <span className='mx-2'>Continue with Google</span>
