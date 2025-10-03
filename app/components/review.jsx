@@ -60,13 +60,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="relative bg-white dark:bg-black overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 opacity-10 dark:opacity-5">
-          <div className="absolute -top-10 -left-20 w-64 h-64 bg-blue-200/20 dark:bg-blue-800/10 rounded-full filter blur-3xl -z-10 animate-float-slow"></div>
-          <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-blue-200/20 dark:bg-blue-800/10 rounded-full filter blur-3xl -z-10 animate-float-slower"></div>
-      </div>
-
+    <section className="relative bg-white dark:bg-neutral-900 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 mt-5 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -76,7 +70,7 @@ const TestimonialsSection = () => {
           className="max-w-3xl mx-auto text-center mb-12"
         >
           <h2 className="md:text-5xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Share <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600">Your Experience</span>
+            Share <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-300">Your Experience</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             We value your feedback to help us improve our services
@@ -88,7 +82,7 @@ const TestimonialsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: true }}
-          className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 max-w-2xl mx-auto border border-gray-100 dark:border-gray-700/50 backdrop-blur-sm"
+          className="bg-white dark:bg-neutral-950 rounded-2xl shadow-xl p-6 sm:p-8 max-w-2xl mx-auto border border-gray-100 dark:border-gray-700/50 backdrop-blur-sm"
         >
           <AnimatePresence mode="wait">
             {submitSuccess ? (
@@ -134,7 +128,7 @@ const TestimonialsSection = () => {
                       placeholder="John Doe"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700/50 transition-all"
+                      className="w-full text-black dark:text-white px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-neutral-950 transition-all"
                       required
                     />
                   </div>
@@ -149,7 +143,7 @@ const TestimonialsSection = () => {
                       placeholder="john@example.com"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700/50 transition-all"
+                      className="w-full text-black dark:text-white px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-neutral-950 transition-all"
                       required
                     />
                   </div>
@@ -186,7 +180,7 @@ const TestimonialsSection = () => {
                     rows={5}
                     value={formData.review}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700/50 transition-all"
+                    className="w-full dark:text-white text-black px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-neutral-950 transition-all"
                     required
                   />
                 </div>
@@ -207,7 +201,7 @@ const TestimonialsSection = () => {
                     whileTap={{ scale: 0.97 }}
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-400 text-white font-medium rounded-xl transition-all shadow-md hover:shadow-lg flex items-center"
+                    className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-xl transition-all shadow-md hover:shadow-lg flex items-center"
                   >
                     {isSubmitting ? (
                       <>

@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { FiCpu, FiBookOpen, FiAward } from 'react-icons/fi';
+import { HiSparkles } from "react-icons/hi2";
 
 const FeaturesSection = () => {
   const features = [
@@ -55,7 +56,8 @@ const FeaturesSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Heading */}
         <div className="text-center mb-16">
-          <span className="inline-block text-blue-500 dark:text-blue-400 text-sm font-semibold tracking-wider uppercase mb-4">
+          <span className="flex items-center justify-center gap-2 text-blue-500 dark:text-blue-400 text-sm font-semibold tracking-wider uppercase mb-4">
+            <HiSparkles className='text-xl'/>
             Features we offer
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">

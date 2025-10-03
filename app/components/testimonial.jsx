@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
+import { IoChatboxEllipses } from "react-icons/io5";
 import { FaStar, FaRegStar, FaStarHalfAlt, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { gsap } from 'gsap';
 import { motion } from 'framer-motion';
@@ -108,8 +109,8 @@ const TestimonialSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center mb-16">
-          <span className="inline-block text-blue-500 dark:text-blue-400 text-sm font-semibold tracking-wider uppercase mb-4">
-            Reviews
+          <span className="flex items-center justify-center gap-2 text-blue-500 dark:text-blue-400 text-sm font-semibold tracking-wider uppercase mb-4">
+            <IoChatboxEllipses className='text-xl'/>Reviews
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             What Our <span className="text-blue-500 dark:text-blue-400">Users Say</span>
