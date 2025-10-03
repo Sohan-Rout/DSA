@@ -44,7 +44,7 @@ function ActivityDashboard({ userId }) {
         <ChartNoAxesCombined className="text-black dark:text-white"/>
         <h1 className="font-poppins text-lg text-black dark:text-white">Your Stats</h1>
       </div>
-      <div className="flex items-center justify-center flex-row space-x-6">
+      <div className="flex flex-col md:flex-row items-center justify-center md:gap-6">
         <StreakCounter activityDates={activityDates} />
         <ActivityHeatmap activityDates={activityDates} />
       </div>

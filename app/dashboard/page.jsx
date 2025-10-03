@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { useUser } from "@/app/contexts/UserContext";
 import Link from "next/link";
-import Activity from "@/lib/activity";
 import ActivityDashboard from "@/app/components/dashboard/ActivityDashboard";
 
 export default function Dashboard() {
@@ -116,13 +115,6 @@ export default function Dashboard() {
             </div>
           )}
         </section>
-
-        <Link
-          href="/"
-          className="mt-8 inline-block text-blue-600 hover:underline transition duration-300"
-        >
-          ← Back to Home
-        </Link>
       </main>
     </div>
   );

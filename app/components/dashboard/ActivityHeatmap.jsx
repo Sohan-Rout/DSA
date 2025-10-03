@@ -68,8 +68,8 @@ function ActivityHeatmap({ activityDates }) {
   const totalContributions = activityDates.length;
 
   return (
-    <div>
-      <div className="flex">
+    <div className="overflow-x-auto">
+      <div className="flex scale-90 sm:scale-100">
         {/* Left column with month label row height and weekday labels */}
         <div className="flex flex-col">
           {/* Contributions circle at top-left corner */}
@@ -79,14 +79,14 @@ function ActivityHeatmap({ activityDates }) {
             </div>
           </div>
           {/* Weekday labels column */}
-          <div className="grid grid-rows-7 gap-1 mr-1 text-xs text-gray-500 dark:text-gray-400" style={{height: "168px"}}>
+          <div className="grid grid-rows-7 gap-1 mr-1 text-xs md:text-xs text-gray-500 dark:text-gray-400" style={{height: "168px"}}>
             {weekdayLabels.map((day, idx) =>
               visibleWeekdayLabels.includes(day) ? (
-                <div key={day} className="h-6 flex items-center justify-end pr-1">
+                <div key={day} className="h-6 md:h-6 flex items-center justify-end pr-1 text-[10px] md:text-xs">
                   {day}
                 </div>
               ) : (
-                <div key={day} className="h-6"></div>
+                <div key={day} className="h-6 md:h-6"></div>
               )
             )}
           </div>
@@ -95,7 +95,7 @@ function ActivityHeatmap({ activityDates }) {
           {/* Month labels row */}
           <div className="grid grid-cols-[repeat(auto-fit,minmax(24px,1fr))] gap-1 mb-1" style={{gridTemplateColumns: `repeat(${weeks.length}, 24px)`}}>
             {monthLabels.map((month, idx) => (
-              <div key={idx} className="text-xs font-medium text-gray-600 dark:text-gray-300 text-center">
+              <div key={idx} className="text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-300 text-center">
                 {month}
               </div>
             ))}

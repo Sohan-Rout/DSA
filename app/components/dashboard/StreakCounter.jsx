@@ -33,7 +33,7 @@ function StreakCounter({ activityDates }) {
   }, [activityDates]);
 
   return (
-    <main className="p-12">
+    <main className="md:p-12 p-4">
     <div className="flex flex-col items-center space-y-2">
       {/* Circle with fire icon and current streak */}
       <div className="w-24 h-24 rounded-full border-4 border-orange-500 flex flex-col items-center justify-center shadow-lg relative">
