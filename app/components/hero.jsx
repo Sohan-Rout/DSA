@@ -50,7 +50,7 @@ const HeroSection = () => {
                   className="path"
                 />
               </svg>
-              New: New Blogs added!
+              Updates: Stack Visualization Updated !
             </span>
             <Link href="./blogs">
               <button className="text-blue-600 hover:text-blue-700 dark:hover:text-blue-700">
