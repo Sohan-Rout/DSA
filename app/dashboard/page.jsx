@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { useUser } from "@/app/contexts/UserContext";
 import Link from "next/link";
+import Activity from "@/lib/activity";
+import ActivityDashboard from "@/app/components/dashboard/ActivityDashboard";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -53,16 +55,24 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="bg-white dark:bg-black min-h-screen">
+    <div className="bg-white dark:bg-neutral-900 min-h-screen">
       <div>
         <Navbar />
       </div>
       <main className="max-w-4xl mx-auto px-4 py-24">
         {user && (
-          <div className="flex justify-end mb-4">
-            <span className="text-sm text-gray-600 dark:text-gray-300">
+          <div className="flex justify-start mb-4">
+            <div className="bg-gradient-to-br from-blue-600 shadow-md to-blue-400 rounded-full px-6 py-2">
+              <span className="text-lg text-white dark:text-white">
               Welcome, {user.user_metadata?.name || user.email.split("@")[0]}
             </span>
+            </div>
+          </div>
+        )}
+
+        {user && (
+          <div className="mb-8">
+            <ActivityDashboard userId={user.id} />
           </div>
         )}
 
