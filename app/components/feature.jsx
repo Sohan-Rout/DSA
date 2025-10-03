@@ -45,7 +45,7 @@ const FeaturesSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <section className="py-15 bg-white dark:bg-black overflow-hidden">
+    <section className="py-15 bg-white dark:bg-neutral-900 overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-100/30 dark:bg-blue-900/10 rounded-full filter blur-3xl animate-float-slow"></div>
@@ -71,10 +71,10 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="relative group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
+              className="relative group bg-white dark:bg-neutral-950 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
             >
               {/* Hover effect background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-gray-800 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-neutral-900 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300"></div>
               
               <div className="relative z-10">
                 {/* Icon */}
