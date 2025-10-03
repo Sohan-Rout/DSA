@@ -30,17 +30,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="relative py-6 bg-white dark:bg-black overflow-hidden">
-      {/* Floating background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-blue-400/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2"></div>
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-10 dark:opacity-5 bg-[size:40px_40px] [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_80%,transparent)]" 
-             style={{backgroundImage: 'radial-gradient(currentColor 1px, transparent 1px)'}}>
-        </div>
-      </div>
-
+    <section className="relative py-6 bg-white dark:bg-neutral-900 overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="max-w-4xl mx-auto text-center mb-16">
@@ -61,7 +51,7 @@ const FAQSection = () => {
           {faqs.map((faq, index) => (
             <div 
               key={index}
-              className={`bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden transition-all duration-300 ${activeIndex === index ? 'shadow-lg' : 'shadow-sm hover:shadow-md'}`}
+              className={`bg-white/70 dark:bg-neutral-950 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden transition-all duration-300 ${activeIndex === index ? 'shadow-lg' : 'shadow-sm hover:shadow-md'}`}
             >
               <button
                 className="w-full flex items-center justify-between p-6 text-left"
@@ -94,7 +84,7 @@ const FAQSection = () => {
         </div>
 
         {/* Additional Help */}
-          <div className="max-w-3xl mx-auto mt-16 text-center bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-sm">
+          <div className="max-w-3xl mx-auto mt-16 text-center bg-white/50 dark:bg-neutral-950 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-sm">
             <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-500 dark:text-blue-400 mx-auto mb-6">
               <FiMail className="w-8 h-8" />
             </div>

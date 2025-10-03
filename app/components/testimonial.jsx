@@ -1,6 +1,9 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { IoChatboxEllipses } from "react-icons/io5";
 import { FaStar, FaRegStar, FaStarHalfAlt, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { gsap } from 'gsap';
+import { motion } from 'framer-motion';
 
 const TestimonialSection = () => {
   const testimonials = [
@@ -54,17 +57,12 @@ const TestimonialSection = () => {
     },
   ];
 
-  const [visibleCount, setVisibleCount] = useState(3);
-  const [activeFilter, setActiveFilter] = useState('all');
   const [expandedReviews, setExpandedReviews] = useState({});
+  const containerRef = useRef(null);
+  const innerRef = useRef(null);
+  const animationRef = useRef(null);
 
-  const loadMore = () => setVisibleCount(prev => Math.min(prev + 3, testimonials.length));
-  const showLess = () => setVisibleCount(3);
   const toggleReview = (index) => setExpandedReviews(prev => ({ ...prev, [index]: !prev[index] }));
-
-  const filteredTestimonials = activeFilter === 'all' 
-    ? testimonials 
-    : testimonials.filter(t => t.stars >= parseInt(activeFilter));
 
   const getInitials = (name) => {
     return name.split(' ').map(part => part[0]).join('').toUpperCase();
@@ -88,11 +86,32 @@ const TestimonialSection = () => {
     return <div className="flex space-x-1">{stars}</div>;
   };
 
+  useEffect(() => {
+    if (innerRef.current) {
+      animationRef.current = gsap.to(innerRef.current, { x: -innerRef.current.scrollWidth / 2, repeat: -1, duration: 100, ease: "linear" });
+    }
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (animationRef.current) {
+      animationRef.current.pause();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (animationRef.current) {
+      animationRef.current.resume();
+    }
+  };
+
   return (
-    <section className="py-10 bg-gradient-to-b from-blue-100/60 to-white dark:from-black dark:to-black ">
+    <section className="pb-10 bg-gradient-to-b from-white to-white dark:from-neutral-900 dark:to-neutral-900 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center mb-16">
+          <span className="flex items-center justify-center gap-2 text-blue-500 dark:text-blue-400 text-sm font-semibold tracking-wider uppercase mb-4">
+            <IoChatboxEllipses className='text-xl'/>Reviews
+          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             What Our <span className="text-blue-500 dark:text-blue-400">Users Say</span>
           </h2>
@@ -101,114 +120,83 @@ const TestimonialSection = () => {
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex justify-center mb-12 gap-3">
-          <button
-            onClick={() => setActiveFilter('all')}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${activeFilter === 'all' ? 'bg-blue-600 text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'}`}
-          >
-            All Reviews
-          </button>
-          <button
-            onClick={() => setActiveFilter('5')}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeFilter === '5' ? 'bg-blue-600 text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'}`}
-          >
-            <span>5 Stars</span>
-            <FaStar className="text-yellow-400" />
-          </button>
-          <button
-            onClick={() => setActiveFilter('4')}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${activeFilter === '4' ? 'bg-blue-600 text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'}`}
-          >
-            <span>4+ Stars</span>
-            <FaStar className="text-yellow-400" />
-          </button>
-        </div>
-
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredTestimonials.slice(0, visibleCount).map((testimonial, index) => (
-            <div
-              key={index}
-              className="relative group bg-white dark:bg-gray-800 rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
+        <div ref={containerRef} className="overflow-hidden relative">
+          <div 
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <motion.div 
+              ref={innerRef} 
+              className="flex gap-8"
             >
-              {/* Gradient background on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-gray-800 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300"></div>
-              
-              <div className="relative z-10">
-                {/* Avatar and Info */}
-                <div className="flex items-center mb-6">
-                  <div className="w-14 h-14 rounded-full bg-gray-800 dark:bg-gray-700 text-white flex items-center justify-center text-xl font-semibold mr-4">
-                    {getInitials(testimonial.name)}
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      {testimonial.email}
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Star Rating */}
-                <div className="mb-4">
-                  <StarRating rating={testimonial.stars} />
-                </div>
-                
-                {/* Review Text */}
-                <div className="relative">
-                  <p className={`text-gray-600 dark:text-gray-300 mb-4 ${!expandedReviews[index] && 'line-clamp-3'}`}>
-                    {testimonial.review}
-                  </p>
-                  {testimonial.review.length > 150 && (
-                    <button 
-                      onClick={() => toggleReview(index)}
-                      className="text-blue-600 dark:text-blue-400 text-sm font-medium flex items-center gap-1 hover:underline"
-                    >
-                      {expandedReviews[index] ? (
-                        <>
-                          <span>Show less</span>
-                          <FaChevronUp size={12} />
-                        </>
-                      ) : (
-                        <>
-                          <span>Read more</span>
-                          <FaChevronDown size={12} />
-                        </>
+              {[...testimonials, ...testimonials].map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="relative group bg-white dark:bg-neutral-950 rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 w-[350px] max-w-sm flex-shrink-0"
+                >
+                  {/* Gradient background on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-neutral-900 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300"></div>
+                  
+                  <div className="relative z-10">
+                    {/* Avatar and Info */}
+                    <div className="flex items-center mb-6">
+                      <div className="w-14 h-14 rounded-full bg-gray-800 dark:bg-gray-700 text-white flex items-center justify-center text-xl font-semibold mr-4">
+                        {getInitials(testimonial.name)}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          {testimonial.email}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* Star Rating */}
+                    <div className="mb-4">
+                      <StarRating rating={testimonial.stars} />
+                    </div>
+                    
+                    {/* Review Text */}
+                    <div className="relative">
+                      <p className={`text-gray-600 dark:text-gray-300 mb-4 break-words whitespace-normal ${!expandedReviews[index] && 'line-clamp-3'}`}>
+                        {testimonial.review}
+                      </p>
+                      {testimonial.review.length > 150 && (
+                        <button 
+                          onClick={() => toggleReview(index)}
+                          className="text-blue-600 dark:text-blue-400 text-sm font-medium flex items-center gap-1 hover:underline"
+                        >
+                          {expandedReviews[index] ? (
+                            <>
+                              <span>Show less</span>
+                              <FaChevronUp size={12} />
+                            </>
+                          ) : (
+                            <>
+                              <span>Read more</span>
+                              <FaChevronDown size={12} />
+                            </>
+                          )}
+                        </button>
                       )}
-                    </button>
-                  )}
+                    </div>
+                    
+                    {/* Footer */}
+                    <div className="text-xs text-gray-400 dark:text-gray-500 mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+                      Verified User • {testimonial.stars.toFixed(1)} Rating
+                    </div>
+                  </div>
                 </div>
-                
-                {/* Footer */}
-                <div className="text-xs text-gray-400 dark:text-gray-500 mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
-                  Verified User • {testimonial.stars.toFixed(1)} Rating
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Load More Button */}
-        <div className="text-center mt-12">
-          {visibleCount < filteredTestimonials.length ? (
-            <button
-              onClick={loadMore}
-              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
-            >
-              Load More
-            </button>
-          ) : visibleCount > 3 && (
-            <button
-              onClick={showLess}
-              className="px-8 py-3 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium rounded-lg transition-all duration-300 border border-gray-200 dark:border-gray-700"
-            >
-              Show Less
-            </button>
-          )}
+              ))}
+            </motion.div>
+          </div>
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent dark:from-neutral-900 dark:to-transparent pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent dark:from-neutral-900 dark:to-transparent pointer-events-none"></div>
         </div>
 
         {/* Divider */}
-        <div className="mt-20 mx-auto h-[1px] max-w-4xl bg-gradient-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
+        <div className="mt-10 mx-auto h-[1px] max-w-4xl bg-gradient-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
       </div>
     </section>
   );

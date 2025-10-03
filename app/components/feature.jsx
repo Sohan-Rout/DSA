@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { FiCpu, FiBookOpen, FiAward } from 'react-icons/fi';
+import { HiSparkles } from "react-icons/hi2";
 
 const FeaturesSection = () => {
   const features = [
@@ -45,7 +46,7 @@ const FeaturesSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <section className="py-15 bg-white dark:bg-black overflow-hidden">
+    <section className="py-15 bg-white dark:bg-neutral-900 overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-100/30 dark:bg-blue-900/10 rounded-full filter blur-3xl animate-float-slow"></div>
@@ -55,7 +56,8 @@ const FeaturesSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Heading */}
         <div className="text-center mb-16">
-          <span className="inline-block text-blue-500 dark:text-blue-400 text-sm font-semibold tracking-wider uppercase mb-4">
+          <span className="flex items-center justify-center gap-2 text-blue-500 dark:text-blue-400 text-sm font-semibold tracking-wider uppercase mb-4">
+            <HiSparkles className='text-xl'/>
             Features we offer
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -71,10 +73,10 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="relative group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
+              className="relative group bg-white dark:bg-neutral-950 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
             >
               {/* Hover effect background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-gray-800 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-neutral-900 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300"></div>
               
               <div className="relative z-10">
                 {/* Icon */}
