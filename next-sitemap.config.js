@@ -1,24 +1,27 @@
 const fs = require('fs');
 const path = require('path');
 
-// Helper function to recursively get all routes from app/ folder
-function getAllAppRoutes(dir = 'app', prefix = '') {
+// Scan app/ folder recursively, include only folders with page.jsx
+function getAllPages(dir = 'app', prefix = '') {
     const routes = [];
     const items = fs.readdirSync(dir);
 
-    items.forEach((item) => {
+    for (const item of items) {
         const fullPath = path.join(dir, item);
         const stat = fs.statSync(fullPath);
 
         if (stat.isDirectory()) {
-            if (item === 'api') return; // skip API routes
-            routes.push(...getAllAppRoutes(fullPath, `${prefix}/${item}`));
-        } else if (item.endsWith('.js') || item.endsWith('.tsx')) {
-            let route = `${prefix}/${item.replace(/\.js|\.tsx$/, '')}`;
-            if (route.endsWith('/page')) route = route.replace('/page', '');
-            routes.push(route);
+            if (item === 'api' || item.startsWith('_')) continue; // skip API and special folders
+
+            const pageFile = fs.readdirSync(fullPath).find(f => f === 'page.jsx' || f === 'page.tsx');
+            if (pageFile) {
+                routes.push(`${prefix}/${item}`);
+            }
+
+            // Recurse into subfolders
+            routes.push(...getAllPages(fullPath, `${prefix}/${item}`));
         }
-    });
+    }
 
     return routes;
 }
@@ -33,8 +36,8 @@ const config = {
         lastmod: new Date().toISOString(),
     }),
     additionalPaths: async (config) => {
-        const appRoutes = getAllAppRoutes(); // auto-detect all pages
-        return appRoutes.map(route => ({
+        const allRoutes = getAllPages(); // recursively get all module pages
+        return allRoutes.map(route => ({
             loc: route,
             lastmod: new Date().toISOString(),
         }));
