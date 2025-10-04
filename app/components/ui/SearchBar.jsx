@@ -1,5 +1,4 @@
- 'use client';
-
+'use client';
 import { useState, useEffect } from 'react';
 
 const SearchBar = ({ sections, onSearchResults }) => {
@@ -51,11 +50,11 @@ const SearchBar = ({ sections, onSearchResults }) => {
   };
 
   return (
-    <div className="mt-8 max-w-2xl mx-auto relative">
+    <div className="mt-4 max-w-2xl mx-auto relative">
       <input
         type="text"
         placeholder="Search for algorithms..."
-        className="w-full px-6 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-500/75 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+        className="w-full px-6 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-500/75 bg-white dark:bg-neutral-950 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 transition-all"
         value={searchQuery}
         onChange={handleSearch}
       />

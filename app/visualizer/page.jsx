@@ -515,7 +515,7 @@ const sections = [
 
   const Visualizer = () => {
     return (
-      <div className="min-h-screen bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200 flex flex-col">
+      <div className="min-h-screen bg-white dark:bg-neutral-900 text-gray-800 dark:text-gray-200 flex flex-col">
         <Navbar />
         <TutorialOverlay />
         <main className="container mx-auto px-4 sm:px-6 pt-20 pb-16 min-h-[calc(100vh-80px)] flex-grow relative z-10">
@@ -530,8 +530,7 @@ const sections = [
           
           <VisualizerClient initialSections={sections} />
         </main>
-        <div className="bg-black w-full relative z-10">
-          <div className="bg-gray-700 z-10 h-[1px]"></div>
+        <div className="w-full relative z-10">
           <Footer />
         </div>
       </div>

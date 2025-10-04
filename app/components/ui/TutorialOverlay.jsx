@@ -56,7 +56,7 @@ export default function TutorialOverlay() {
       ref={overlayRef}
       className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
     >
-      <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-2xl max-w-sm w-full text-center relative">
+      <div className="bg-white dark:bg-neutral-900 p-6 rounded-2xl shadow-2xl max-w-sm w-full text-center relative">
         <button
           onClick={closeOverlay}
           className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white text-xl"
