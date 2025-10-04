@@ -208,7 +208,7 @@ export default function LoginPage() {
 
           <button
             onClick={handleGoogleSignIn}
-            className="w-full flex items-center justify-center py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-950 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition-all"
+            className="w-full flex items-center justify-center py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-950 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-50 dark:hover:bg-neutral-900 duration-300 transition-all"
           >
               <img src="./google.webp" width={24}></img>
               <span className='mx-2'>Continue with Google</span>
