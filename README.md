@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/DSAVisualizer.png" alt="DSAVisualizer Banner"/>
+  <img src="./public/og.png" alt="DSAVisualizer Banner"/>
 </p>
 
 <h1 align="center">DSAVisualizer</h1>
