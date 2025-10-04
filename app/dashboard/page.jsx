@@ -7,6 +7,7 @@ import { useUser } from "@/app/contexts/UserContext";
 import Link from "next/link";
 import ActivityDashboard from "@/app/components/dashboard/ActivityDashboard";
 import Footer from "@/app/components/footer";
+import { trackActivity } from "@/lib/activity";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -20,6 +21,7 @@ export default function Dashboard() {
       router.push("/login");
     } else {
       fetchModules();
+      trackActivity(user.id, "site_visit");
     }
   }, [user]);
 

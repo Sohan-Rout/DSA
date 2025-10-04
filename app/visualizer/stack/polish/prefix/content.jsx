@@ -1,4 +1,28 @@
-const InfixToPrefixContent = () => {
+"use client";
+import { useEffect, useState } from "react";
+
+const content = () => {
+  const [theme, setTheme] = useState("light");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+    };
+
+    updateTheme();
+    setMounted(true);
+
+    window.addEventListener("storage", updateTheme);
+    window.addEventListener("themeChange", updateTheme);
+
+    return () => {
+      window.removeEventListener("storage", updateTheme);
+      window.removeEventListener("themeChange", updateTheme);
+    };
+  }, []);
+
   const paragraph = [
     `Prefix notation (also called Polish Notation) is a way of writing expressions where the operator comes before the operands.`,
     `For example, the infix expression 3 + 4 becomes + 3 4 in prefix. It removes the need for parentheses by using operator order directly.`,
@@ -20,8 +44,37 @@ const InfixToPrefixContent = () => {
   ];
 
   return (
-    <main className="max-w-4xl mx-auto">
-      <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+    <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 md:gap-4">
+      <div className="col-span-1">
+        <div className="hidden md:block">
+          {mounted && (
+            <iframe
+              key={theme}
+              src={
+                theme === "dark"
+                  ? "https://hw.glich.co/resources/embed/daily/dsa?theme=dark"
+                  : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
+              }
+              width="100%"
+              height="400"
+              title="Daily DSA Challenge"
+            ></iframe>
+          )}
+        </div>
+        <div className="flex justify-center">
+          <span className="text-xs hidden md:block">
+            Daily DSA Challenge by{" "}
+            <a
+              href="https://hw.glich.co/resources/daily"
+              target="_blank"
+              className="underline hover:text-blue-500 duration-300"
+            >
+              Hello World
+            </a>
+          </span>
+        </div>
+      </div>
+      <article className="col-span-4 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* What is Prefix Notation? */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -78,62 +131,62 @@ const InfixToPrefixContent = () => {
             Operator Precedence Table
           </h1>
           <div className="prose dark:prose-invert max-w-none overflow-x-auto">
-            <table className="min-w-full border-collapse border border-blue-700">
+            <table className="min-w-full border-collapse border border-blue-500">
               <thead>
                 <tr className="bg-blue-50 dark:bg-blue-900/20">
-                  <th className="border border-blue-700 px-4 py-2 font-semibold">
+                  <th className="border border-blue-500 px-4 py-2 font-semibold">
                     Operator
                   </th>
-                  <th className="border border-blue-700 px-4 py-2 font-semibold">
+                  <th className="border border-blue-500 px-4 py-2 font-semibold">
                     Meaning
                   </th>
-                  <th className="border border-blue-700 px-4 py-2 font-semibold">
+                  <th className="border border-blue-500 px-4 py-2 font-semibold">
                     Precedence
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                  <td className="border border-blue-500 px-4 py-2 text-gray-700 dark:text-gray-300">
                     ( )
                   </td>
-                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                  <td className="border border-blue-500 px-4 py-2 text-gray-700 dark:text-gray-300">
                     Parentheses
                   </td>
-                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                  <td className="border border-blue-500 px-4 py-2 text-gray-700 dark:text-gray-300">
                     Highest
                   </td>
                 </tr>
                 <tr className="bg-gray-50 dark:bg-gray-700/20">
-                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                  <td className="border border-blue-500 px-4 py-2 text-gray-700 dark:text-gray-300">
                     ^ %
                   </td>
-                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                  <td className="border border-blue-500 px-4 py-2 text-gray-700 dark:text-gray-300">
                     Exponentiation / Modulus
                   </td>
-                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                  <td className="border border-blue-500 px-4 py-2 text-gray-700 dark:text-gray-300">
                     2
                   </td>
                 </tr>
                 <tr>
-                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                  <td className="border border-blue-500 px-4 py-2 text-gray-700 dark:text-gray-300">
                     * /
                   </td>
-                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                  <td className="border border-blue-500 px-4 py-2 text-gray-700 dark:text-gray-300">
                     Multiplication / Division
                   </td>
-                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                  <td className="border border-blue-500 px-4 py-2 text-gray-700 dark:text-gray-300">
                     3
                   </td>
                 </tr>
                 <tr className="bg-gray-50 dark:bg-gray-700/20">
-                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                  <td className="border border-blue-500 px-4 py-2 text-gray-700 dark:text-gray-300">
                     + -
                   </td>
-                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                  <td className="border border-blue-500 px-4 py-2 text-gray-700 dark:text-gray-300">
                     Addition / Subtraction
                   </td>
-                  <td className="border border-blue-700 px-4 py-2 text-gray-700 dark:text-gray-300">
+                  <td className="border border-blue-500 px-4 py-2 text-gray-700 dark:text-gray-300">
                     4 (Lowest)
                   </td>
                 </tr>
@@ -145,8 +198,37 @@ const InfixToPrefixContent = () => {
           </div>
         </section>
       </article>
+
+      {/* Mobile iframe at bottom */}
+      <div className="block md:hidden w-full">
+        {mounted && (
+          <iframe
+            key={theme}
+            src={
+              theme === "dark"
+                ? "https://hw.glich.co/resources/embed/daily/dsa?theme=dark"
+                : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
+            }
+            width="100%"
+            height="320"
+            title="Daily DSA Challenge"
+          ></iframe>
+        )}
+        <div className="flex justify-center pb-8">
+          <span className="text-xs">
+            Daily DSA Challenge by{" "}
+            <a
+              href="https://hw.glich.co/resources/daily"
+              target="_blank"
+              className="underline hover:text-blue-500 duration-300"
+            >
+              Hello World
+            </a>
+          </span>
+        </div>
+      </div>
     </main>
   );
 };
 
-export default InfixToPrefixContent;
+export default content;
