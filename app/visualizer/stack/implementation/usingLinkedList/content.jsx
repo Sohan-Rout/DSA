@@ -1,4 +1,29 @@
-const Content = () => {
+"use client";
+import React from "react";
+import { useEffect, useState } from "react";
+
+const content = () => {
+  const [theme, setTheme] = useState("light");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+    };
+
+    updateTheme();
+    setMounted(true);
+
+    window.addEventListener("storage", updateTheme);
+    window.addEventListener("themeChange", updateTheme);
+
+    return () => {
+      window.removeEventListener("storage", updateTheme);
+      window.removeEventListener("themeChange", updateTheme);
+    };
+  }, []);
+
   const paragraph = [
     `A stack implemented using a linked list follows the LIFO (Last In First Out) principle. Unlike array implementation, linked list stacks dynamically allocate memory for each element and don't have size limitations (until memory is exhausted).`,
   ];
@@ -53,8 +78,37 @@ const Content = () => {
   ];
 
     return (
-     <main className="max-w-4xl mx-auto">
-  <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+    <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 md:gap-4">
+            <div className="col-span-1">
+        <div className="hidden md:block">
+          {mounted && (
+            <iframe
+              key={theme}
+              src={
+                theme === "dark"
+                  ? "https://hw.glich.co/resources/embed/daily/dsa?theme=dark"
+                  : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
+              }
+              width="100%"
+              height="400"
+              title="Daily DSA Challenge"
+            ></iframe>
+          )}
+        </div>
+        <div className="flex justify-center">
+          <span className="text-xs hidden md:block">
+            Daily DSA Challenge by{" "}
+            <a
+              href="https://hw.glich.co/resources/daily"
+              target="_blank"
+              className="underline hover:text-blue-500 duration-300"
+            >
+              Hello World
+            </a>
+          </span>
+        </div>
+      </div>
+      <article className="col-span-4 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
     {/* Header Section */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
       <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -68,42 +122,22 @@ const Content = () => {
       </div>
     </section>
 
-    {/* Core Operations */}
-    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
-        Core Stack Operations
-      </h1>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-        {["push(item)", "pop()", "peek()", "isEmpty()", "size()"].map((op) => (
-          <div
-            key={op}
-            className="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg text-center shadow-sm"
-          >
-            <span className="text-sm sm:text-base font-mono">
-              {op}
-            </span>
-          </div>
-        ))}
-      </div>
-    </section>
-
     {/* Algorithmic Steps */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
-        Algorithmic Steps
-      </h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+            Algorithmic Steps
+          </h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Stack Basic Operations */}
-        <div className="border-2 border-gray-400 dark:border-gray-500 rounded-lg p-4 bg-white dark:bg-gray-800 shadow-md">
+        <div className="rounded-lg p-4 bg-white dark:bg-neutral-950 shadow-md">
           <h2 className="text-lg sm:text-xl mb-3 font-bold text-center">
             Stack Basic Operations
           </h2>
 
           <div className="space-y-4">
-            <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-700">
+            <div className="p-4 rounded-lg bg-gray-50 dark:bg-neutral-900">
               <ul className="space-y-3">
                 {opeartions.map((item, index) => (
                   <li key={index}>
@@ -127,13 +161,13 @@ const Content = () => {
         </div>
 
         {/* Stack Helper Operations */}
-        <div className="border-2 border-gray-400 dark:border-gray-500 rounded-lg p-4 bg-white dark:bg-gray-800 shadow-md">
+        <div className="rounded-lg p-4 bg-white dark:bg-neutral-950 shadow-md">
           <h2 className="text-lg sm:text-xl mb-3 font-bold text-center">
             Stack Helper Operations
           </h2>
 
           <div className="space-y-4">
-            <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-700">
+            <div className="p-4 rounded-lg bg-gray-50 dark:bg-neutral-900">
               <ul className="space-y-3">
                 {helper.map((item, index) => (
                   <li key={index}>
@@ -158,45 +192,6 @@ const Content = () => {
       </div>
     </section>
 
-    {/* Visual Representation */}
-    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
-        Visual Representation
-      </h1>
-      <div className="flex flex-col items-center">
-        <div className="w-full sm:w-80">
-          <div className="flex flex-col items-center">
-            <div className="flex items-center justify-center">
-              <div className="w-16 h-8 border border-gray-400 flex items-center justify-center">
-                Head
-              </div>
-              <div className="w-8 h-1 bg-gray-400"></div>
-              <div className="w-20 h-12 border border-gray-400 rounded flex flex-col items-center justify-center">
-                <div>8</div>
-                <div className="text-xs">(top)</div>
-              </div>
-            </div>
-            <div className="w-8 h-4 bg-gray-400 transform rotate-90"></div>
-            <div className="w-20 h-12 border border-gray-400 rounded flex items-center justify-center">
-              17
-            </div>
-            <div className="w-8 h-4 bg-gray-400 transform rotate-90"></div>
-            <div className="w-20 h-12 border border-gray-400 rounded flex items-center justify-center">
-              42
-            </div>
-            <div className="w-8 h-4 bg-gray-400 transform rotate-90"></div>
-            <div className="w-20 h-12 border border-gray-400 rounded flex items-center justify-center">
-              null
-            </div>
-          </div>
-        </div>
-        <div className="text-sm mt-3 text-center text-gray-700 dark:text-gray-300">
-          Stack after operations: push(42), push(17), push(8)
-        </div>
-      </div>
-    </section>
-
     {/* Time Complexity */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
       <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -206,10 +201,10 @@ const Content = () => {
       <div className="prose dark:prose-invert max-w-none overflow-x-auto">
         <table className="min-w-full border-collapse border border-gray-400">
           <thead>
-            <tr className="bg-gray-100 dark:bg-gray-700">
-              <th className="border border-gray-400 p-3 font-semibold">Operation</th>
-              <th className="border border-gray-400 p-3 font-semibold">Complexity</th>
-              <th className="border border-gray-400 p-3 font-semibold hidden sm:table-cell">
+            <tr className="bg-gray-100 dark:bg-blue-900">
+              <th className="border border-blue-400 p-3 font-semibold">Operation</th>
+              <th className="border border-blue-400 p-3 font-semibold">Complexity</th>
+              <th className="border border-blue-400 p-3 font-semibold hidden sm:table-cell">
                 Reason
               </th>
             </tr>
@@ -224,13 +219,13 @@ const Content = () => {
             ].map(([op, comp, reason], index) => (
               <tr
                 key={op}
-                className={index % 2 === 0 ? "bg-white dark:bg-gray-800" : "bg-gray-50 dark:bg-gray-700"}
+                className={index % 2 === 0 ? "bg-white dark:bg-neutral-950" : "bg-blue-50 dark:bg-neutral-900"}
               >
-                <td className="border border-gray-400 p-3">{op}</td>
-                <td className="border border-gray-400 p-3 font-mono">
+                <td className="border border-blue-400 p-3">{op}</td>
+                <td className="border border-blue-400 p-3 font-mono">
                   {comp}
                 </td>
-                <td className="border border-gray-400 p-3 hidden sm:table-cell">
+                <td className="border border-blue-400 p-3 hidden sm:table-cell">
                   {reason}
                 </td>
               </tr>
@@ -272,10 +267,10 @@ const Content = () => {
       <div className="prose dark:prose-invert max-w-none overflow-x-auto">
         <table className="min-w-full border-collapse border border-gray-400">
           <thead>
-            <tr className="bg-gray-100 dark:bg-gray-700">
-              <th className="border border-gray-400 p-3 font-semibold">Feature</th>
-              <th className="border border-gray-400 p-3 font-semibold">Linked List</th>
-              <th className="border border-gray-400 p-3 font-semibold">Array</th>
+            <tr className="bg-gray-100 dark:bg-blue-900">
+              <th className="border border-blue-400 p-3 font-semibold">Feature</th>
+              <th className="border border-blue-400 p-3 font-semibold">Linked List</th>
+              <th className="border border-blue-400 p-3 font-semibold">Array</th>
             </tr>
           </thead>
           <tbody>
@@ -288,13 +283,13 @@ const Content = () => {
             ].map(([feature, ll, arr], index) => (
               <tr
                 key={feature}
-                className={index % 2 === 0 ? "bg-white dark:bg-gray-800" : "bg-gray-50 dark:bg-gray-700"}
+                className={index % 2 === 0 ? "bg-white dark:bg-neutral-950" : "bg-gray-50 dark:bg-neutral-900"}
               >
-                <td className="border border-gray-400 p-3">{feature}</td>
-                <td className="border border-gray-400 p-3 font-mono">
+                <td className="border border-blue-400 p-3">{feature}</td>
+                <td className="border border-blue-400 p-3 font-mono">
                   {ll}
                 </td>
-                <td className="border border-gray-400 p-3 font-mono">
+                <td className="border border-blue-400 p-3 font-mono">
                   {arr}
                 </td>
               </tr>
@@ -308,4 +303,4 @@ const Content = () => {
     );
   };
   
-  export default Content;
+  export default content;

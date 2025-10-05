@@ -9,7 +9,7 @@ export async function POST(req) {
   try {
     // Parse JSON body safely
     const body = await req.json()
-    const { email, password, captchaToken, action } = body || {}
+    const { email, password, captchaToken, action, name } = body || {}
 
     // Validate required fields
     if (!email || !password) {
@@ -34,8 +34,11 @@ export async function POST(req) {
     }
 
     if (action === 'signup') {
-      // Create Supabase user
-      const { user, error } = await supabase.auth.admin.createUser({ email, password })
+      // Create Supabase user with metadata
+      const { user, error } = await supabase.auth.signUp(
+        { email, password },
+        { data: { display_name: name } }
+      )
       if (error) {
         return new Response(JSON.stringify({ success: false, message: error.message }), { status: 400 })
       }
