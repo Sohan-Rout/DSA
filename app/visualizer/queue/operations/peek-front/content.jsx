@@ -1,4 +1,28 @@
+"use client";
+import { useEffect, useState } from "react";
+
 const content = () => {
+  const [theme, setTheme] = useState('light');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      setTheme(savedTheme);
+    };
+
+    updateTheme();
+    setMounted(true);
+
+    window.addEventListener('storage', updateTheme);
+    window.addEventListener('themeChange', updateTheme);
+
+    return () => {
+      window.removeEventListener('storage', updateTheme);
+      window.removeEventListener('themeChange', updateTheme);
+    };
+  }, []);
+
   const paragraph = [
     `The peek front operation (also called front) retrieves the element at the front of the queue without removing it. This operation allows you to examine the next element to be processed while maintaining the queue's integrity.`,
     `The peek front operation is essential for non-destructive queue inspection, enabling more flexible queue processing patterns while maintaining FIFO order. It's particularly valuable in scenarios where decision-making depends on the next item's properties without committing to its removal.`,
@@ -50,21 +74,38 @@ const content = () => {
     { points : "Debugging queue contents" },
   ];
 
-  const errorHandling = [
-    { points : "Always check isEmpty() before peeking" },
-    { points : "Options for empty queue:", 
-      subpoints : [
-        "Throw exception (e.g., EmptyQueueException)",
-        "Return null/undefined",
-        "Return special sentinel value",
-      ],
-    },
-    { points : "Document behavior in your API" },
-  ];
-
     return (
-      <main className="max-w-4xl mx-auto">
-  <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+          <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 md:gap-4">
+      <div className="col-span-1">
+        <div className="hidden md:block">
+          {mounted && (
+            <iframe
+              key={theme}
+              src={
+                theme === "dark"
+                  ? "https://hw.glich.co/resources/embed/daily/dsa?theme=dark"
+                  : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
+              }
+              width="100%"
+              height="400"
+              title="Daily DSA Challenge"
+            ></iframe>
+          )}
+        </div>
+        <div className="flex justify-center">
+          <span className="text-xs hidden md:block">
+            Daily DSA Challenge by{" "}
+            <a
+              href="https://hw.glich.co/resources/daily"
+              target="_blank"
+              className="underline hover:text-blue-500 duration-300"
+            >
+              Hello World
+            </a>
+          </span>
+        </div>
+      </div>
+      <article className="col-span-4 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
     {/* What is Peek Front Operation? */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
       <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -196,39 +237,10 @@ const content = () => {
       </div>
     </section>
 
-    {/* Error Handling */}
-    <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-        <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
-        Error Handling
-      </h1>
-      <div className="prose dark:prose-invert max-w-none">
-        <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-          Important considerations:
-        </p>
-        <ul className="space-y-3 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-          {errorHandling.map((item, index) => (
-            <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
-              {item.points}
-              {item.subpoints && (
-                <ol className="mt-2 space-y-2 list-decimal pl-5 marker:text-gray-400 dark:marker:text-gray-500">
-                  {item.subpoints.map((subitem, subindex) => (
-                    <li key={subindex} className="text-gray-600 dark:text-gray-400">
-                      {subitem}
-                    </li>
-                  ))}
-                </ol>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-
     {/* Additional Info */}
     <section className="p-6">
       <div className="prose dark:prose-invert max-w-none">
-        <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+        <div className="px-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
             {paragraph[1]}
           </p>
@@ -236,6 +248,35 @@ const content = () => {
       </div>
     </section>
   </article>
+
+  {/* Mobile iframe at bottom */}
+      <div className="block md:hidden w-full">
+        {mounted && (
+          <iframe
+            key={theme}
+            src={
+              theme === "dark"
+                ? "https://hw.glich.co/resources/embed/daily/dsa?theme=dark"
+                : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
+            }
+            width="100%"
+            height="320"
+            title="Daily DSA Challenge"
+          ></iframe>
+        )}
+        <div className="flex justify-center pb-8">
+          <span className="text-xs">
+            Daily DSA Challenge by{" "}
+            <a
+              href="https://hw.glich.co/resources/daily"
+              target="_blank"
+              className="underline hover:text-blue-500 duration-300"
+            >
+              Hello World
+            </a>
+          </span>
+        </div>
+      </div>
 </main>
     );
   };

@@ -9,7 +9,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import Footer from "@/app/components/footer";
-import BackToTop from '@/app/components/ui/backtotop';
+import BackToTop from "@/app/components/ui/backtotop";
 
 export const metadata = {
   title:
@@ -78,40 +78,40 @@ export default function Page() {
           <Content />
         </section>
 
-      <section className="px-6">
-        <Animation />
-      </section>
+        <section className="px-6">
+          <Animation />
+        </section>
 
-      <section className="px-6">
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-          Test Your Knowledge before moving forward!
-        </p>
-        <Quiz />
-      </section>
+        <section className="px-6">
+          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+            Test Your Knowledge before moving forward!
+          </p>
+          <Quiz />
+        </section>
 
-      <section className="px-6">
-        <Code />
-      </section>
+        <section className="px-6">
+          <Code />
+        </section>
 
-      <section className="px-6 md:px-12 my-12">
-        <ModuleCard
-          moduleId={MODULE_MAPS.enqueueDequeue}
-          title="Enqueue Dequeue"
-          description="Mark queue : enqueue & dequeue as done and view it on your dashboard"
-          initialDone={false}
-        />
-      </section>
+        <section className="px-6 md:px-12 my-12">
+          <ModuleCard
+            moduleId={MODULE_MAPS.enqueueDequeue}
+            title="Enqueue Dequeue"
+            description="Mark queue : enqueue & dequeue as done and view it on your dashboard"
+            initialDone={false}
+          />
+        </section>
 
-      <section className="px-6">
-        <ExploreOther
-          title="Explore Other Operations"
-          links={[
-            { text: "Peek Front", url: "./peek-front" },
-            { text: "Is Empty", url: "./isempty" },
-            { text: "Is Full", url: "./isfull" },
-          ]}
-        />
-      </section>
+        <section className="px-6">
+          <ExploreOther
+            title="Explore Other Operations"
+            links={[
+              { text: "Peek Front", url: "./peek-front" },
+              { text: "Is Empty", url: "./isempty" },
+              { text: "Is Full", url: "./isfull" },
+            ]}
+          />
+        </section>
       </div>
 
       <BackToTop />
