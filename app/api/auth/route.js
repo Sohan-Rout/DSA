@@ -35,14 +35,17 @@ export async function POST(req) {
 
     if (action === 'signup') {
       // Create Supabase user with metadata
-      const { user, error } = await supabase.auth.signUp(
-        { email, password },
-        { data: { display_name: name } }
-      )
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { display_name: name },
+        },
+      })
       if (error) {
         return new Response(JSON.stringify({ success: false, message: error.message }), { status: 400 })
       }
-      return new Response(JSON.stringify({ success: true, message: 'Signup successful! Check your email.' }), { status: 200 })
+      return new Response(JSON.stringify({ success: true, message: 'Signup successful. Verification email sent.', trigger: true }), { status: 200 })
     }
 
     else if (action === 'login') {

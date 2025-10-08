@@ -3,7 +3,7 @@ import Navbar from "@/app/components/navbarinner";
 import Footer from "@/app/components/footer";
 import BackToTop from "@/app/components/ui/backtotop";
 import ExploreOther from "@/app/components/ui/exploreOther";
-import CodeBlock from "@/app/visualizer/searching/binarysearch/codeBlock";
+import Code from "@/app/visualizer/searching/binarysearch/codeBlock";
 import Quiz from "@/app/visualizer/searching/binarysearch/quiz";
 import Content from '@/app/visualizer/searching/binarysearch/content';
 import Breadcrumbs from "@/app/components/ui/Breadcrumbs";
@@ -98,7 +98,7 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <CodeBlock />
+          <Code />
         </section>
 
         <section className="px-6 md:px-12 my-12">
