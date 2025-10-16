@@ -1,324 +1,297 @@
-'use client';
-import React, { useState } from 'react';
-import Footer from '@/app/components/footer';
-import CodeBlock from '@/app/visualizer/queue/types/deque/codeBlock';
-import Content from '@/app/visualizer/queue/types/deque/content';
-import ExploreOther from '@/app/components/ui/exploreOther';
-import Quiz from '@/app/visualizer/queue/types/deque/quiz';
-import BackToTop from '@/app/components/ui/backtotop';
-import GoBackButton from "@/app/components/ui/goback";
+"use client";
+import React, { useState } from "react";
 
-const DoubleEndedQueueVisualizer = () => {
+const DequeVisualizer = () => {
   const [deque, setDeque] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [operation, setOperation] = useState(null);
-  const [message, setMessage] = useState('Deque is empty');
-  const [highlightedIndex, setHighlightedIndex] = useState(null);
+  const [message, setMessage] = useState("Deque is empty");
   const [isAnimating, setIsAnimating] = useState(false);
-  const [operationSide, setOperationSide] = useState(null); // 'front' or 'rear'
 
-  // Enqueue at front
-  const enqueueFront = () => {
+  /* ---------- helpers ---------- */
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const showOp = async (txt, ms = 800) => {
+    setOperation(txt);
+    await sleep(ms);
+    setOperation(null);
+  };
+
+  /* ---------- enqueue front ---------- */
+  const enqueueFront = async () => {
     if (!inputValue.trim()) {
-      setMessage('Please enter a value');
+      setMessage("Please enter a value");
       return;
     }
-
     setIsAnimating(true);
-    setOperation(`Adding "${inputValue}" at front...`);
-    setOperationSide('front');
-    setHighlightedIndex(0);
-
-    setTimeout(() => {
-      setDeque([inputValue, ...deque]);
-      setMessage(`"${inputValue}" added to front`);
-      setInputValue('');
-      setOperation(null);
-      setOperationSide(null);
-      setHighlightedIndex(null);
-      setIsAnimating(false);
-    }, 600);
+    await showOp(`Enqueuing "${inputValue}" at front …`);
+    setDeque((d) => [inputValue, ...d]);
+    setMessage(`"${inputValue}" added to front`);
+    setInputValue("");
+    setIsAnimating(false);
   };
 
-  // Enqueue at rear
-  const enqueueRear = () => {
+  /* ---------- enqueue rear ---------- */
+  const enqueueRear = async () => {
     if (!inputValue.trim()) {
-      setMessage('Please enter a value');
+      setMessage("Please enter a value");
       return;
     }
-
     setIsAnimating(true);
-    setOperation(`Adding "${inputValue}" at rear...`);
-    setOperationSide('rear');
-    setHighlightedIndex(deque.length);
-
-    setTimeout(() => {
-      setDeque([...deque, inputValue]);
-      setMessage(`"${inputValue}" added to rear`);
-      setInputValue('');
-      setOperation(null);
-      setOperationSide(null);
-      setHighlightedIndex(null);
-      setIsAnimating(false);
-    }, 600);
+    await showOp(`Enqueuing "${inputValue}" at rear …`);
+    setDeque((d) => [...d, inputValue]);
+    setMessage(`"${inputValue}" added to rear`);
+    setInputValue("");
+    setIsAnimating(false);
   };
 
-  // Dequeue from front
-  const dequeueFront = () => {
+  /* ---------- dequeue front ---------- */
+  const dequeueFront = async () => {
     if (deque.length === 0) {
-      setMessage('Deque is empty!');
+      setMessage("Deque is empty!");
       return;
     }
-
     setIsAnimating(true);
-    setOperation('Removing from front...');
-    setOperationSide('front');
-    setHighlightedIndex(0);
-
-    setTimeout(() => {
-      const dequeued = deque[0];
-      setDeque(deque.slice(1));
-      setMessage(`"${dequeued}" removed from front`);
-      setOperation(null);
-      setOperationSide(null);
-      setHighlightedIndex(null);
-      setIsAnimating(false);
-    }, 600);
+    const front = deque[0];
+    await showOp(`Dequeuing "${front}" from front …`);
+    setDeque((d) => d.slice(1));
+    setMessage(`"${front}" removed from front`);
+    setIsAnimating(false);
   };
 
-  // Dequeue from rear
-  const dequeueRear = () => {
+  /* ---------- dequeue rear ---------- */
+  const dequeueRear = async () => {
     if (deque.length === 0) {
-      setMessage('Deque is empty!');
+      setMessage("Deque is empty!");
       return;
     }
-
     setIsAnimating(true);
-    setOperation('Removing from rear...');
-    setOperationSide('rear');
-    setHighlightedIndex(deque.length - 1);
-
-    setTimeout(() => {
-      const dequeued = deque[deque.length - 1];
-      setDeque(deque.slice(0, -1));
-      setMessage(`"${dequeued}" removed from rear`);
-      setOperation(null);
-      setOperationSide(null);
-      setHighlightedIndex(null);
-      setIsAnimating(false);
-    }, 600);
+    const rear = deque[deque.length - 1];
+    await showOp(`Dequeuing "${rear}" from rear …`);
+    setDeque((d) => d.slice(0, -1));
+    setMessage(`"${rear}" removed from rear`);
+    setIsAnimating(false);
   };
 
-  // Peek front
-  const peekFront = () => {
+  /* ---------- peek front ---------- */
+  const peekFront = async () => {
     if (deque.length === 0) {
-      setMessage('Deque is empty!');
+      setMessage("Deque is empty!");
       return;
     }
     setIsAnimating(true);
-    setOperationSide('front');
-    setHighlightedIndex(0);
     setMessage(`Front element: "${deque[0]}"`);
-    setTimeout(() => {
-      setHighlightedIndex(null);
-      setOperationSide(null);
-      setIsAnimating(false);
-    }, 1500);
+    await sleep(1500);
+    setIsAnimating(false);
   };
 
-  // Peek rear
-  const peekRear = () => {
+  /* ---------- peek rear ---------- */
+  const peekRear = async () => {
     if (deque.length === 0) {
-      setMessage('Deque is empty!');
+      setMessage("Deque is empty!");
       return;
     }
     setIsAnimating(true);
-    setOperationSide('rear');
-    setHighlightedIndex(deque.length - 1);
     setMessage(`Rear element: "${deque[deque.length - 1]}"`);
-    setTimeout(() => {
-      setHighlightedIndex(null);
-      setOperationSide(null);
-      setIsAnimating(false);
-    }, 1500);
+    await sleep(1500);
+    setIsAnimating(false);
   };
 
-  // Reset deque
+  /* ---------- reset ---------- */
   const reset = () => {
     setDeque([]);
-    setMessage('Deque cleared');
+    setInputValue("");
+    setOperation(null);
+    setMessage("Deque cleared");
   };
 
+  /* ---------- UI ---------- */
   return (
-    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
-      <main className="container mx-auto px-6 pt-16 pb-4">
-        {/* go back block here */}
-        <div className="mt-10 sm:mt-10">
-          <GoBackButton />
-        </div>
+    <main className="container mx-auto px-6 pt-4 pb-4">
+      <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+        Double-Ended Queue Visualiser
+      </p>
 
-        {/* main logic here */}
-        <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
-          <span className="text-black dark:text-white">Double Ended Queue</span>
-        </h1>
-        <div className="bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5"></div>
-        <Content />
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-          Visualize Double Ended Queue (Deque) Operations
-        </p>
-        <div className="max-w-2xl mx-auto">
-          {/* Controls */}
-          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
-            <div className="flex flex-col sm:flex-row gap-2 mb-4">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Enter value"
-                className="flex-1 p-2 border rounded dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 transition-all"
-                disabled={isAnimating}
-              />
-              <div className="flex gap-2 w-full sm:w-auto">
-                <button
-                  onClick={enqueueFront}
-                  disabled={isAnimating}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105 flex-0"
-                >
-                  Add Front
-                </button>
-                <button
-                  onClick={enqueueRear}
-                  disabled={isAnimating}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105 flex-0"
-                >
-                  Add Rear
-                </button>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <button
-                onClick={dequeueFront}
-                disabled={isAnimating || deque.length === 0}
-                className="bg-none border border-black dark:border-white text-black dark:text-white disabled:border-blue-600 disabled:dark:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-blue-600 px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
-              >
-                Remove Front
-              </button>
-              <button
-                onClick={dequeueRear}
-                disabled={isAnimating || deque.length === 0}
-                className="bg-none border border-black dark:border-white text-black dark:text-white disabled:border-blue-600 disabled:dark:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-blue-600 px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
-              >
-                Remove Rear
-              </button>
-              <button
-                onClick={peekFront}
-                disabled={isAnimating || deque.length === 0}
-                className="bg-none border border-black dark:border-white text-black dark:text-white disabled:border-blue-600 disabled:dark:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-blue-600 px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
-              >
-                Peek Front
-              </button>
-              <button
-                onClick={peekRear}
-                disabled={isAnimating || deque.length === 0}
-                className="bg-none border border-black dark:border-white text-black dark:text-white disabled:border-blue-600 disabled:dark:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-blue-600 px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
-              >
-                Peek Rear
-              </button>
-            </div>
-            <div className="mt-2">
-              <button
-                onClick={reset}
-                disabled={isAnimating}
-                className="bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 w-full rounded transition-transform hover:scale-105"
-              >
-                Reset
-              </button>
-            </div>
+      <div className="max-w-4xl mx-auto">
+        {/* ----- Controls card ----- */}
+        <div className="bg-white dark:bg-neutral-950 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 mb-8">
+          {/* Value input + dual enqueue buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-4">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Enter value"
+              className="flex-1 p-3 border dark:border-gray-700 rounded-lg dark:bg-neutral-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              disabled={isAnimating}
+              onKeyDown={(e) => e.key === "Enter" && enqueueRear()}
+            />
+            <button
+              onClick={enqueueFront}
+              disabled={isAnimating}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Enqueue Front
+            </button>
+            <button
+              onClick={enqueueRear}
+              disabled={isAnimating}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Enqueue Rear
+            </button>
           </div>
 
-          {/* Operation Status */}
-          {operation && (
-            <div className="mb-4 p-3 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 animate-pulse">
-              {operation}
-            </div>
-          )}
+          {/* Action buttons */}
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+            <button
+              onClick={dequeueFront}
+              disabled={isAnimating || deque.length === 0}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Dequeue Front
+            </button>
+            <button
+              onClick={dequeueRear}
+              disabled={isAnimating || deque.length === 0}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Dequeue Rear
+            </button>
+            <button
+              onClick={peekFront}
+              disabled={isAnimating || deque.length === 0}
+              className="bg-green-500 text-black px-4 py-3 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Peek Front
+            </button>
+            <button
+              onClick={peekRear}
+              disabled={isAnimating || deque.length === 0}
+              className="bg-green-500 text-black px-4 py-3 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Peek Rear
+            </button>
+            <button
+              onClick={reset}
+              disabled={isAnimating}
+              className="bg-red-500 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Reset
+            </button>
+          </div>
 
-          {/* Message Display */}
-          {message && (
-            <div className="mb-4 p-3 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
-              {message}
-            </div>
-          )}
-
-          {/* Deque Visualization */}
-          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-            <div className="flex justify-between mb-2">
-              <span className="text-sm text-blue-600 dark:text-blue-400 font-medium">Front</span>
-              <span className="text-sm text-green-600 dark:text-green-400 font-medium">Rear</span>
-            </div>
-
-            {deque.length === 0 ? (
-              <div className="text-center py-8 border-2 rounded-lg border-gray-300 bg-gray-50 dark:border-gray-700 dark:bg-gray-900/30">
-                <span className="text-gray-600 dark:text-gray-400">Deque is empty</span>
+          {/* Status banners */}
+          <div className="flex flex-col gap-3 mt-4 items-center">
+            {operation && (
+              <div className="p-3 rounded-lg bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-800 flex items-center gap-2 justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 animate-spin"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span>{operation}</span>
               </div>
-            ) : (
-              <div className="flex gap-2 overflow-x-auto pb-4">
-                {deque.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`flex flex-col items-center transition-all duration-300 ${
-                      highlightedIndex === index ? 'transform scale-110' : ''
-                    }`}
-                  >
-                    <div className={`
-                      w-16 sm:w-20 p-3 rounded-lg border-2 text-center font-medium
-                      ${index === 0 ? 'bg-blue-500 text-white border-blue-600 dark:bg-blue-600 dark:border-blue-700' : ''}
-                      ${index === deque.length - 1 ? 'bg-green-500 text-white border-green-600 dark:bg-green-600 dark:border-green-700' : ''}
-                      ${highlightedIndex === index ? 
-                        operationSide === 'front' ? 'ring-4 ring-blue-400 dark:ring-blue-500' : 
-                        operationSide === 'rear' ? 'ring-4 ring-green-400 dark:ring-green-500' : 
-                        'ring-4 ring-yellow-400 dark:ring-yellow-500' : ''}
-                      ${index > 0 && index < deque.length - 1 ? 'bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600' : ''}
-                    `}>
-                      {item}
-                    </div>
-                    {index === 0 && (
-                      <span className="text-xs text-blue-600 dark:text-blue-400 mt-1">Front</span>
-                    )}
-                    {index === deque.length - 1 && (
-                      <span className="text-xs text-green-600 dark:text-green-400 mt-1">Rear</span>
-                    )}
-                  </div>
-                ))}
+            )}
+            {message && (
+              <div
+                className={`p-3 rounded-lg ${
+                  message.includes("added")
+                    ? "bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-800"
+                    : message.includes("removed") || message.includes("element:")
+                    ? "bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-200 border border-yellow-200 dark:border-yellow-800"
+                    : "bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-600"
+                } flex items-center gap-2 justify-center`}
+              >
+                <span>{message}</span>
               </div>
             )}
           </div>
         </div>
 
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
-          Test Your Knowledge before moving forward!
-        </p>
-        <Quiz />
+        {/* ----- Visualisation card (hidden when empty) ----- */}
+        {deque.length > 0 && (
+          <div className="bg-white dark:bg-neutral-950 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+            <h2 className="text-2xl font-semibold mb-6 text-center">Deque Visualisation</h2>
 
-        <CodeBlock/>
-        <ExploreOther
-          title="Explore Other Types"
-          links={[
-            { text: "Single Ended Queue", url: "./singleEnded" },
-            { text: "Circular Queue", url: "./circular" },
-            { text: "Multiple Queue", url: "./multiple" },
-            { text: "Priority Queue", url: "./priority" },
-          ]}
-        />
-      </main>
-      <div>
-        <div className="bg-gray-700 z-10 h-[1px]"></div>
+            <div className="flex items-center gap-3 w-full justify-center">
+              {/* Front pointer */}
+              <div className="text-blue-600 dark:text-blue-400 font-medium flex flex-col items-center">
+                <span>Front</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+
+              {/* Elements */}
+              <div className="flex items-center gap-4">
+                {deque.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`transition-all duration-300 ${
+                      index === 0 && operation?.includes("Dequeuing") && operation?.includes("front")
+                        ? "animate-pulse scale-110"
+                        : index === deque.length - 1 && operation?.includes("Dequeuing") && operation?.includes("rear")
+                        ? "animate-pulse scale-110"
+                        : index === 0 && operation?.includes("Enqueuing") && operation?.includes("front")
+                        ? "animate-bounce"
+                        : index === deque.length - 1 && operation?.includes("Enqueuing") && operation?.includes("rear")
+                        ? "animate-bounce"
+                        : ""
+                    }`}
+                  >
+                    <div
+                      className={`w-24 h-24 rounded-lg shadow-md flex items-center justify-center text-lg font-medium border-2 ${
+                        index === 0
+                          ? "border-blue-300 dark:border-blue-700"
+                          : index === deque.length - 1
+                          ? "border-green-300 dark:border-green-700"
+                          : "border-gray-200 dark:border-gray-600"
+                      } bg-white dark:bg-neutral-900`}
+                    >
+                      {item}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Rear pointer */}
+              <div className="text-green-600 dark:text-green-400 font-medium flex flex-col items-center">
+                <span>Rear</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-      <BackToTop/>
-      <Footer />
-    </div>
+    </main>
   );
 };
 
-export default DoubleEndedQueueVisualizer;
+export default DequeVisualizer;
