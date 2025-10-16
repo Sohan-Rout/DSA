@@ -1,297 +1,253 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import Footer from '@/app/components/footer';
-import CodeBlock from "@/app/visualizer/queue/operations/isfull/codeBlock";
-import Content from "@/app/visualizer/queue/operations/isfull/content";
-import ExploreOther from '@/app/components/ui/exploreOther';
-import Quiz from '@/app/visualizer/queue/operations/isfull/quiz';
-import BackToTop from '@/app/components/ui/backtotop';
-import GoBackButton from "@/app/components/ui/goback";
+"use client";
+import { useState, useEffect } from "react";
 
 const QueueVisualizer = () => {
-  const MAX_SIZE = 5; // Set maximum queue size
   const [queue, setQueue] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
+  const [maxSize, setMaxSize] = useState(5);          // capacity
   const [operation, setOperation] = useState(null);
-  const [message, setMessage] = useState('Queue is empty');
+  const [message, setMessage] = useState("Queue is empty");
   const [isAnimating, setIsAnimating] = useState(false);
-  const [isEmptyStatus, setIsEmptyStatus] = useState(true);
-  const [isFullStatus, setIsFullStatus] = useState(false);
-  const [highlightFull, setHighlightFull] = useState(false);
 
-  // Check if queue is full whenever it changes
-  useEffect(() => {
-    const full = queue.length >= MAX_SIZE;
-    setIsFullStatus(full);
-    if (full) {
-      setMessage(`Queue is full (max ${MAX_SIZE} items)`);
-    }
-  }, [queue]);
+  const isFull = queue.length >= maxSize;
 
-  // Enqueue operation
-  const enqueue = () => {
-    if (isFullStatus) {
-      // Animation for full queue
-      setHighlightFull(true);
-      setTimeout(() => setHighlightFull(false), 1000);
-      setMessage(`Cannot enqueue - queue is full!`);
-      return;
-    }
+  /* ---------- helpers ---------- */
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const showOp = async (txt, ms = 800) => {
+    setOperation(txt);
+    await sleep(ms);
+    setOperation(null);
+  };
 
+  /* ---------- enqueue ---------- */
+  const enqueue = async () => {
     if (!inputValue.trim()) {
-      setMessage('Please enter a value');
+      setMessage("Please enter a value");
       return;
     }
-
+    if (isFull) {
+      setMessage("Queue is full!");
+      return;
+    }
     setIsAnimating(true);
-    setOperation(`Enqueuing "${inputValue}"...`);
-    setIsEmptyStatus(false);
-
-    setTimeout(() => {
-      setQueue((prev) => [...prev, inputValue]);
-      setOperation(null);
-      setMessage(`"${inputValue}" added to queue`);
-      setInputValue('');
-      setIsAnimating(false);
-    }, 800);
+    await showOp(`Enqueuing “${inputValue}” …`);
+    setQueue((q) => [...q, inputValue]);
+    setMessage(`“${inputValue}” added to rear`);
+    setInputValue("");
+    setIsAnimating(false);
   };
 
-  // Dequeue operation
-  const dequeue = () => {
+  /* ---------- dequeue ---------- */
+  const dequeue = async () => {
     if (queue.length === 0) {
-      setMessage('Queue is empty!');
-      setIsEmptyStatus(true);
+      setMessage("Queue is empty!");
       return;
     }
-
     setIsAnimating(true);
-    const dequeuedValue = queue[0];
-    setOperation(`Dequeuing "${dequeuedValue}"...`);
-
-    setTimeout(() => {
-      setQueue((prev) => prev.slice(1));
-      setOperation(null);
-      setMessage(`"${dequeuedValue}" removed from queue`);
-      setIsAnimating(false);
-      setIsEmptyStatus(queue.length === 1);
-    }, 800);
+    const front = queue[0];
+    await showOp(`Dequeuing “${front}” …`);
+    setQueue((q) => q.slice(1));
+    setMessage(`“${front}” removed from front`);
+    setIsAnimating(false);
   };
 
-  // IsEmpty operation
-  const checkEmpty = () => {
+  /* ---------- isFull ---------- */
+  const checkFull = async () => {
     setIsAnimating(true);
-    setOperation('Checking if queue is empty...');
-
-    setTimeout(() => {
-      const empty = queue.length === 0;
-      setIsEmptyStatus(empty);
-      setOperation(null);
-      setMessage(empty ? 'Queue is empty!' : 'Queue is not empty');
-      setIsAnimating(false);
-    }, 800);
+    await showOp("Checking if queue is full …");
+    setMessage(isFull ? "Queue is FULL" : "Queue is NOT full");
+    setIsAnimating(false);
   };
 
-  // IsFull operation
-  const checkFull = () => {
-    setIsAnimating(true);
-    setOperation('Checking if queue is full...');
-    setHighlightFull(true);
-
-    setTimeout(() => {
-      setOperation(null);
-      setMessage(isFullStatus ? `Queue is full (max ${MAX_SIZE} items)` : 'Queue is not full');
-      setIsAnimating(false);
-      setTimeout(() => setHighlightFull(false), 500);
-    }, 800);
-  };
-
-  // Reset queue
+  /* ---------- reset ---------- */
   const reset = () => {
     setQueue([]);
-    setInputValue('');
+    setInputValue("");
     setOperation(null);
-    setMessage('Queue cleared');
-    setIsEmptyStatus(true);
-    setIsFullStatus(false);
+    setMessage("Queue cleared");
   };
 
+  /* ---------- UI ---------- */
   return (
-    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
-  <main className="container mx-auto px-6 pt-16 pb-4">
-    {/* go back block here */}
-    <div className="mt-10 sm:mt-10">
-      <GoBackButton />
-    </div>
+    <main className="container mx-auto px-6 pb-4">
+      <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+        Visualise isFull operation in real-time
+      </p>
 
-    {/* main logic here */}
-    <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
-      <span className="text-black dark:text-white">Queue - IsFull</span>
-    </h1>
-    <div className='bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5'></div>
-    <Content />
-    <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8"></p>
-
-        <div className="max-w-2xl mx-auto">
-          {/* Controls */}
-          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
-            <div className="flex flex-col sm:flex-row gap-2 mb-4">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Enter value"
-                className="flex-1 p-2 border rounded dark:bg-gray-700 focus:ring-2 focus:ring-green-500"
-                disabled={isAnimating || isFullStatus}
-              />
-              <button
-                onClick={enqueue}
-                disabled={isAnimating || isFullStatus}
-                className={`bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded disabled:opacity-50 w-full sm:w-auto ${
-                  isFullStatus ? 'cursor-not-allowed' : ''
-                }`}
-              >
-                Enqueue
-              </button>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              <button
-                onClick={dequeue}
-                disabled={isAnimating || queue.length === 0}
-                className="bg-none border border-black dark:border-white text-black dark:text-white disabled:border-blue-600 dark:disabled:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-blue-600 px-4 py-2 rounded disabled:opacity-50"
-              >
-                Dequeue
-              </button>
-              <button
-                onClick={checkFull}
-                disabled={isAnimating}
-                className="bg-none border dark:border-white border-black text-black dark:text-white px-4 py-2 rounded disabled:opacity-50"
-              >
-                IsFull
-              </button>
-              <button
-                onClick={reset}
-                className="bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 rounded disabled:opacity-50"
-                disabled={isAnimating}
-              >
-                Reset
-              </button>
-            </div>
-            <div className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              Max size: {MAX_SIZE} items
-            </div>
+      <div className="max-w-4xl mx-auto">
+        {/* ----- Controls card ----- */}
+        <div className="bg-white dark:bg-neutral-950 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 mb-8">
+          {/* Value input + Enqueue */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-4">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Enter value"
+              className="flex-1 p-3 border dark:border-gray-700 rounded-lg dark:bg-neutral-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              disabled={isAnimating}
+              onKeyDown={(e) => e.key === "Enter" && enqueue()}
+            />
           </div>
 
-          {/* Queue Visualization */}
-          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-            {/* Operation Status */}
+          {/* Max-size input */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-4">
+            <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+              Queue size (capacity):
+              <input
+                type="number"
+                min="1"
+                max="20"
+                value={maxSize}
+                onChange={(e) => {
+                  const val = Number(e.target.value);
+                  if (val > 0) setMaxSize(val);
+                }}
+                className="w-20 p-2 border dark:border-gray-700 rounded dark:bg-neutral-900"
+                disabled={isAnimating}
+              />
+            </label>
+          </div>
+
+          {/* Action buttons */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button
+              onClick={enqueue}
+              disabled={isAnimating || isFull}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Enqueue
+            </button>
+            <button
+              onClick={dequeue}
+              disabled={isAnimating || queue.length === 0}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Dequeue
+            </button>
+            <button
+              onClick={checkFull}
+              disabled={isAnimating}
+              className="bg-green-500 text-black px-4 py-2 rounded-lg disabled:opacity-50 transition-all"
+            >
+              IsFull
+            </button>
+            <button
+              onClick={reset}
+              disabled={isAnimating}
+              className="bg-red-500 text-white px-4 py-2 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Reset
+            </button>
+          </div>
+
+          {/* Status banners */}
+          <div className="flex flex-col gap-3 mt-4 items-center">
             {operation && (
-              <div className="mb-4 p-3 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
-                {operation}
+              <div className="p-3 rounded-lg bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-800 flex items-center gap-2 justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 animate-spin"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span>{operation}</span>
               </div>
             )}
-
-            {/* Message Display */}
-            <div
-              className={`mb-6 p-3 rounded-lg ${
-                message.includes('added')
-                  ? 'bg-green-100 dark:bg-green-900'
-                  : message.includes('removed')
-                  ? 'bg-red-100 dark:bg-red-900'
-                  : message.includes('full')
-                  ? 'bg-blue-100 dark:bg-blue-900'
-                  : isEmptyStatus
-                  ? 'bg-purple-100 dark:bg-purple-900'
-                  : 'bg-gray-100 dark:bg-gray-700'
-              }`}
-            >
-              {message}
-            </div>
-
-            {/* Horizontal Queue - Left (Front) to Right (Rear) */}
-            <div className="flex flex-col">
-              <div className="flex justify-between mb-2">
-                <span className="text-sm text-green-600 dark:text-green-400 font-medium">
-                  Front
-                </span>
-                <span className="text-sm text-orange-600 dark:text-orange-400 font-medium">
-                  Rear
-                </span>
+            {message && (
+              <div
+                className={`p-3 rounded-lg ${
+                  message.includes("added")
+                    ? "bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-800"
+                    : message.includes("removed") || message.includes("Front element")
+                    ? "bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-200 border border-yellow-200 dark:border-yellow-800"
+                    : "bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-600"
+                } flex items-center gap-2 justify-center`}
+              >
+                <span>{message}</span>
               </div>
-
-              {/* Queue elements */}
-              <div className="min-h-[120px]">
-                {queue.length === 0 ? (
-                  <div
-                    className={`text-center py-8 border-2 rounded-lg ${
-                      isEmptyStatus
-                        ? 'border-gray-300 bg-gray-50 dark:border-gray-700 dark:bg-gray-900/30'
-                        : 'border-dashed border-gray-300 dark:border-gray-600'
-                    }`}
-                  >
-                    <span
-                      className={`${isEmptyStatus ? 'text-gray-600 dark:text-gray-400' : 'text-gray-500'}`}
-                    >
-                      {isEmptyStatus ? 'Queue is empty!' : 'Queue is empty'}
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 overflow-x-auto pb-4">
-                    {Array.from({ length: MAX_SIZE }).map((_, index) => {
-                      const item = queue[index];
-                      return (
-                        <div key={index} className="flex flex-col items-center transition-all duration-300">
-                          <div
-                            className={`w-16 sm:w-20 p-3 rounded-lg border-2 text-center font-medium ${
-                              index < queue.length
-                                ? index === 0
-                                  ? 'bg-green-500 text-white border-green-600'
-                                  : index === queue.length - 1
-                                  ? 'bg-orange-500 text-white border-orange-600'
-                                  : 'bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600'
-                                : highlightFull && index === queue.length
-                                ? 'bg-blue-500 text-white border-blue-600 animate-pulse'
-                                : 'bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400'
-                            } ${
-                              highlightFull && index >= queue.length
-                                ? 'animate-pulse border-blue-500 bg-blue-100 dark:bg-blue-900/50'
-                                : ''
-                            }`}
-                          >
-                            {item || (
-                              <span className="text-gray-400 dark:text-gray-500 text-xs">
-                                {index === queue.length ? 'Next' : 'Empty'}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            </div>
+            )}
           </div>
         </div>
 
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
-            Test Your Knowledge before moving forward!
-          </p>
-          <Quiz />
+        {/* ----- Visualisation card (hidden when empty) ----- */}
+        {queue.length > 0 && (
+          <div className="bg-white dark:bg-neutral-950 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+            <h2 className="text-2xl font-semibold mb-6 text-center">Queue Visualisation</h2>
 
-        <CodeBlock/>
-        <ExploreOther
-          title="Explore Other Operations"
-          links={[
-            { text: "Peek Front", url: "./peek-front" },
-            { text: "Enqueue & Dequeue", url: "./enqueue-dequeue" },
-            { text: "Is Empty", url: "./isempty" },
-          ]}
-        />
-      </main>
-      <div className="bg-gray-700 z-10 h-[1px]"></div>
-      <BackToTop />
-      <Footer />
-    </div>
+            <div className="flex items-center gap-3 w-full justify-center">
+              {/* Front pointer */}
+              <div className="text-blue-600 dark:text-blue-400 font-medium flex flex-col items-center">
+                <span>Front</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+
+              {/* Elements */}
+              <div className="flex items-center gap-4">
+                {queue.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`transition-all duration-300 ${
+                      index === 0 && operation?.includes("Dequeuing")
+                        ? "animate-pulse scale-110"
+                        : index === queue.length - 1 && operation?.includes("Enqueuing")
+                        ? "animate-bounce"
+                        : ""
+                    }`}
+                  >
+                    <div
+                      className={`w-24 h-24 rounded-lg shadow-md flex items-center justify-center text-lg font-medium border-2 ${
+                        index === 0
+                          ? "border-blue-300 dark:border-blue-700"
+                          : index === queue.length - 1
+                          ? "border-green-300 dark:border-green-700"
+                          : "border-gray-200 dark:border-gray-600"
+                      } bg-white dark:bg-neutral-900`}
+                    >
+                      {item}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Rear pointer */}
+              <div className="text-green-600 dark:text-green-400 font-medium flex flex-col items-center">
+                <span>Rear</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </main>
   );
 };
 

@@ -260,7 +260,7 @@ const handleLogout = async () => {
   return (
     <nav
       className={`fixed w-[calc(100%-2rem)] mx-4 mt-4 bg-white/80 dark:bg-black/80 backdrop-blur-lg rounded-2xl border border-gray-200 dark:border-gray-700 text-black dark:text-white z-50 transition-all duration-300 ${
-        isScrolled ? "shadow-xl" : "shadow-md"
+        isScrolled ? "shadow-xl" : "shadow-xl"
       }`}
     >
       <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-3">

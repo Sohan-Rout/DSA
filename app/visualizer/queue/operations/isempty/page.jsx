@@ -36,7 +36,7 @@ export const metadata = {
         url: "/og/queue/isEmpty.png",
         width: 1200,
         height: 630,
-        alt: "Peek Front Algorithm Visualization",
+        alt: "isEmpty Algorithm Visualization",
       },
     ],
   },
