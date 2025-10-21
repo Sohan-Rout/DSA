@@ -55,6 +55,12 @@ const TestimonialSection = () => {
       review: `The breadth of algorithms covered is impressive. From basic sorting to advanced graph algorithms, everything is presented in an accessible way. The only suggestion I have is to add more real-world application examples for each algorithm.`,
       stars: 4,
     },
+    {
+      name: 'Kshitija Ghan',
+      email: '@kshitijaghan24',
+      review: `I got to know about Data Visualizer just a few days ago , yet i feel i learned a lot already . Great platform !!!`,
+      stars: 5,
+    },
   ];
 
   const [expandedReviews, setExpandedReviews] = useState({});
