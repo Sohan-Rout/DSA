@@ -350,14 +350,14 @@ int main() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 transition-colors duration-300"
+        className="bg-white dark:bg-neutral-950 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 transition-colors duration-300"
       >
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-gray-50 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-gray-50 dark:bg-neutral-950 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center mb-2 sm:mb-0">
             <FaCode className="text-blue-500 mr-2 text-lg" />
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
-              Queue Implementation (Enqueue & Dequeue)
+              Implementation Enqueue & Dequeue
             </h3>
           </div>
 
