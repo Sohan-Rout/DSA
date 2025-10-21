@@ -1,288 +1,209 @@
-'use client';
-import React, { useState } from 'react';
-import Footer from '@/app/components/footer';
-import CodeBlock from '@/app/visualizer/queue/types/priority/codeBlock';
-import Content from '@/app/visualizer/queue/types/priority/content';
-import ExploreOther from '@/app/components/ui/exploreOther';
-import Quiz from '@/app/visualizer/queue/types/priority/quiz';
-import BackToTop from '@/app/components/ui/backtotop';
-import GoBackButton from "@/app/components/ui/goback";
+"use client";
+import React, { useState } from "react";
 
 const PriorityQueueVisualizer = () => {
-  const [queue, setQueue] = useState([]);
-  const [value, setValue] = useState('');
-  const [priority, setPriority] = useState(1);
+  /* ---------- state ---------- */
+  const [pq, setPq] = useState([]);          // sorted: [0] = highest priority (min-val)
+  const [inputValue, setInputValue] = useState("");
+  const [inputPriority, setInputPriority] = useState("");
   const [operation, setOperation] = useState(null);
-  const [message, setMessage] = useState('Priority Queue is empty');
-  const [highlightedIndex, setHighlightedIndex] = useState(null);
+  const [message, setMessage] = useState("Priority queue is empty");
   const [isAnimating, setIsAnimating] = useState(false);
-  const [animationType, setAnimationType] = useState('');
 
-  // Helper function to find the insertion index for priority queue
-  const findInsertIndex = (newPriority) => {
-    for (let i = 0; i < queue.length; i++) {
-      if (newPriority < queue[i].priority) {
-        return i;
-      }
-    }
-    return queue.length;
+  /* ---------- helpers ---------- */
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const showOp = async (txt, ms = 800) => {
+    setOperation(txt);
+    await sleep(ms);
+    setOperation(null);
   };
 
-  // Enqueue with priority (inserts in correct position)
-  const enqueue = () => {
-    if (!value.trim()) {
-      setMessage('Please enter a value');
+  /* ---------- insert ---------- */
+  const insert = async () => {
+    if (!inputValue.trim() || inputPriority === "") {
+      setMessage("Please enter both value and priority");
       return;
     }
-
-    const newItem = { value, priority: Number(priority) };
-    const insertIndex = findInsertIndex(newItem.priority);
-
-    setIsAnimating(true);
-    setOperation(`Adding "${value}" with priority ${priority}...`);
-    setAnimationType('enqueue');
-    setHighlightedIndex(insertIndex);
-
-    setTimeout(() => {
-      const newQueue = [...queue];
-      newQueue.splice(insertIndex, 0, newItem);
-      setQueue(newQueue);
-      setMessage(`Added "${value}" with priority ${priority}`);
-      setValue('');
-      setPriority(1);
-      setOperation(null);
-      setHighlightedIndex(null);
-      setAnimationType('');
-      setIsAnimating(false);
-    }, 1000);
-  };
-
-  // Dequeue (remove highest priority item)
-  const dequeue = () => {
-    if (queue.length === 0) {
-      setMessage('Priority Queue is empty!');
+    const pri = Number(inputPriority);
+    if (isNaN(pri)) {
+      setMessage("Priority must be a number");
       return;
     }
-
     setIsAnimating(true);
-    setOperation('Removing highest priority item...');
-    setAnimationType('dequeue');
-    setHighlightedIndex(0);
-
-    setTimeout(() => {
-      const dequeued = queue[0];
-      setQueue(queue.slice(1));
-      setMessage(`Removed "${dequeued.value}" (priority ${dequeued.priority})`);
-      setOperation(null);
-      setHighlightedIndex(null);
-      setAnimationType('');
-      setIsAnimating(false);
-    }, 1000);
+    await showOp(`Inserting "${inputValue}" with priority ${pri} …`);
+    const newEl = { val: inputValue, pri };
+    const newPq = [...pq, newEl].sort((a, b) => a.pri - b.pri);
+    setPq(newPq);
+    setMessage(`"${inputValue}" inserted`);
+    setInputValue("");
+    setInputPriority("");
+    setIsAnimating(false);
   };
 
-  // Peek at highest priority item
-  const peek = () => {
-    if (queue.length === 0) {
-      setMessage('Priority Queue is empty!');
+  /* ---------- extract-min ---------- */
+  const extractMin = async () => {
+    if (pq.length === 0) {
+      setMessage("Priority queue is empty!");
       return;
     }
-
     setIsAnimating(true);
-    setAnimationType('peek');
-    setHighlightedIndex(0);
-    setMessage(`Highest priority: "${queue[0].value}" (priority ${queue[0].priority})`);
-
-    setTimeout(() => {
-      setHighlightedIndex(null);
-      setAnimationType('');
-      setIsAnimating(false);
-    }, 1500);
+    const minEl = pq[0];
+    await showOp(`Extracting min element "${minEl.val}" …`);
+    setPq((p) => p.slice(1));
+    setMessage(`"${minEl.val}" (priority ${minEl.pri}) removed`);
+    setIsAnimating(false);
   };
 
-  // Reset queue
-  const reset = () => {
-    if (queue.length === 0) return;
-    
+  /* ---------- peek-min ---------- */
+  const peekMin = async () => {
+    if (pq.length === 0) {
+      setMessage("Priority queue is empty!");
+      return;
+    }
     setIsAnimating(true);
-    setOperation('Clearing priority queue...');
-    setAnimationType('reset');
-
-    setTimeout(() => {
-      setQueue([]);
-      setMessage('Priority Queue cleared');
-      setOperation(null);
-      setAnimationType('');
-      setIsAnimating(false);
-    }, 800);
+    const minEl = pq[0];
+    setMessage(`Min element: "${minEl.val}" (priority ${minEl.pri})`);
+    await sleep(1500);
+    setIsAnimating(false);
   };
 
+  /* ---------- clear ---------- */
+  const clear = () => {
+    setPq([]);
+    setInputValue("");
+    setInputPriority("");
+    setOperation(null);
+    setMessage("Priority queue cleared");
+  };
+
+  /* ---------- UI ---------- */
   return (
-    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
-      <main className="container mx-auto px-6 pt-16 pb-4">
-        {/* go back block here */}
-        <div className="mt-10 sm:mt-10">
-          <GoBackButton />
-        </div>
+    <main className="container mx-auto px-6 pt-4 pb-4">
+      <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
+        Min-Priority Queue Visualiser (lower number = higher priority)
+      </p>
 
-        {/* main logic here */}
-        <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
-          <span className="text-black dark:text-white">Priority Queue</span>
-        </h1>
-        <div className="bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl mt-2 mb-5"></div>
-        <Content />
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-          Visualize Priority Queue Operations with Animations
-        </p>
-        <div className="max-w-2xl mx-auto">
-          {/* Controls */}
-          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md mb-8 border border-gray-200 dark:border-gray-700">
-            <div className="flex flex-col sm:flex-row gap-2 mb-4">
-              <input
-                type="text"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                placeholder="Enter value"
-                className="flex-1 p-2 border rounded dark:bg-gray-700 focus:ring-2 focus:ring-purple-500 transition-all"
-                disabled={isAnimating}
-              />
-              <select
-                value={priority}
-                onChange={(e) => setPriority(e.target.value)}
-                className="p-2 border rounded dark:bg-gray-700 focus:ring-2 focus:ring-purple-500 transition-all w-24"
-                disabled={isAnimating}
-              >
-                {[1, 2, 3, 4, 5].map((num) => (
-                  <option key={num} value={num}>Priority {num}</option>
-                ))}
-              </select>
-              <button
-                onClick={enqueue}
-                disabled={isAnimating}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded disabled:opacity-50 transition-all hover:scale-105 active:scale-95"
-              >
-                Enqueue
-              </button>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                onClick={dequeue}
-                disabled={isAnimating || queue.length === 0}
-                className="bg-none border border-black dark:border-white text-black dark:text-white disabled:border-blue-600 disabled:dark:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-blue-600 px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
-              >
-                Dequeue
-              </button>
-              <button
-                onClick={peek}
-                disabled={isAnimating || queue.length === 0}
-                className="bg-none border border-black dark:border-white text-black dark:text-white disabled:border-blue-600 disabled:dark:border-blue-600 disabled:bg-transparent disabled:text-blue-600 dark:disabled:text-blue-600 px-4 py-2 rounded disabled:opacity-50 transition-transform hover:scale-105"
-                >
-                Peek
-              </button>
-            </div>
-            <div className="mt-2">
-              <button
-                onClick={reset}
-                disabled={isAnimating || queue.length === 0}
-                className="bg-none border border-black dark:border-white text-black dark:text-white px-4 py-2 w-full rounded transition-transform hover:scale-105"
-              >
-                Reset
-              </button>
-            </div>
+      <div className="max-w-4xl mx-auto">
+        {/* ----- Controls card ----- */}
+        <div className="bg-white dark:bg-neutral-950 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 mb-8">
+          {/* Inputs row */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-4">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Value"
+              className="flex-1 p-3 border dark:border-gray-700 rounded-lg dark:bg-neutral-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              disabled={isAnimating}
+            />
+            <input
+              type="number"
+              value={inputPriority}
+              onChange={(e) => setInputPriority(e.target.value)}
+              placeholder="Priority number"
+              className="flex-1 p-3 border dark:border-gray-700 rounded-lg dark:bg-neutral-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              disabled={isAnimating}
+            />
           </div>
 
-          {/* Message Display */}
-          {message && (
-            <div className="mb-4 p-3 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
-              {message}
-            </div>
-          )}
+          {/* Action buttons */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button
+              onClick={insert}
+              disabled={isAnimating}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Insert
+            </button>
+            <button
+              onClick={extractMin}
+              disabled={isAnimating || pq.length === 0}
+              className="bg-green-500 hover:bg-green-600 text-black px-4 py-3 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Extract-Min
+            </button>
+            <button
+              onClick={peekMin}
+              disabled={isAnimating || pq.length === 0}
+              className="bg-green-500 hover:bg-green-600 text-black px-4 py-3 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Peek-Min
+            </button>
+            <button
+              onClick={clear}
+              disabled={isAnimating}
+              className="bg-red-500 hover:bg-red-600 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all"
+            >
+              Reset
+            </button>
+          </div>
 
-          {/* Priority Queue Visualization */}
-          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-            <div className="flex justify-between mb-2">
-              <span className="text-sm text-purple-600 dark:text-purple-400 font-medium">Highest Priority</span>
-              <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">Lowest Priority</span>
-            </div>
-
-            {queue.length === 0 ? (
-              <div className="text-center py-8 border-2 rounded-lg border-gray-300 bg-gray-50 dark:border-gray-700 dark:bg-gray-900/30">
-                <span className="text-gray-600 dark:text-gray-400">Priority Queue is empty</span>
+          {/* Status banners */}
+          <div className="flex flex-col gap-3 mt-4 items-center">
+            {operation && (
+              <div className="p-3 rounded-lg bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-800 flex items-center gap-2 justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 animate-spin"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span>{operation}</span>
               </div>
-            ) : (
-              <div className="flex flex-col gap-2">
-                {queue.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`flex items-center p-3 rounded-lg border-2 transition-all duration-300 ${
-                      highlightedIndex === index
-                        ? animationType === 'enqueue'
-                          ? 'animate-highlight-insert bg-purple-100 dark:bg-purple-900 border-purple-400'
-                          : animationType === 'dequeue'
-                          ? 'animate-highlight-remove bg-amber-100 dark:bg-amber-900 border-amber-400'
-                          : animationType === 'peek'
-                          ? 'animate-highlight-peek bg-blue-100 dark:bg-blue-900 border-blue-400'
-                          : ''
-                        : getPriorityColor(item.priority)
-                    }`}
-                  >
-                    <div className="w-8 h-8 flex items-center justify-center rounded-full bg-purple-500 text-white font-bold mr-3">
-                      {item.priority}
-                    </div>
-                    <div className="flex-1 font-medium">
-                      {item.value}
-                    </div>
-                    {index === 0 && (
-                      <span className="text-xs text-purple-600 dark:text-purple-400 ml-2">Highest</span>
-                    )}
-                  </div>
-                ))}
+            )}
+            {message && (
+              <div
+                className={`p-3 rounded-lg ${
+                  message.includes("inserted")
+                    ? "bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-800"
+                    : message.includes("removed") || message.includes("element:")
+                    ? "bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-200 border border-yellow-200 dark:border-yellow-800"
+                    : "bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-600"
+                } flex items-center gap-2 justify-center`}
+              >
+                <span>{message}</span>
               </div>
             )}
           </div>
         </div>
 
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
-          Test Your Knowledge before moving forward!
-        </p>
-        <Quiz />
+        {/* ----- Visualisation card (hidden when empty) ----- */}
+        {pq.length > 0 && (
+          <div className="bg-white dark:bg-neutral-950 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+            <h2 className="text-2xl font-semibold mb-6 text-center">Visualisation</h2>
 
-        <CodeBlock/>
-        <ExploreOther
-          title="Explore Other Types"
-          links={[
-            { text: "Single Ended Queue", url: "./singleEnded" },
-            { text: "Circular Queue", url: "./circular" },
-            { text: "Double-Ended Queue", url: "./deque" },
-            { text: "Multiple Queue", url: "./multiple" },
-          ]}
-        />
-      </main>
-      <div>
-        <div className="bg-gray-700 z-10 h-[1px]"></div>
+            <div className="flex items-center gap-3 w-full justify-center flex-wrap">
+              {pq.map((el, idx) => (
+                <div
+                  key={idx}
+                  className={`transition-all duration-300 ${
+                    idx === 0 && operation?.includes("Extracting") ? "animate-pulse scale-110" : ""
+                  }`}
+                >
+                  <div
+                    className={`w-24 h-24 rounded-lg shadow-md flex flex-col items-center justify-center text-lg font-medium border-2 ${
+                      idx === 0
+                        ? "border-blue-300 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200"
+                        : "border-gray-200 dark:border-gray-600 bg-white dark:bg-neutral-900"
+                    }`}
+                  >
+                    <span>{el.val}</span>
+                    <span className="text-xs mt-1 opacity-70">pri: {el.pri}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
-      <BackToTop/>
-      <Footer />
-    </div>
+    </main>
   );
-};
-
-// Helper function for priority-based coloring
-const getPriorityColor = (priority) => {
-  switch(priority) {
-    case 1:
-      return 'bg-red-100 dark:bg-red-900/50 border-red-300 dark:border-red-700';
-    case 2:
-      return 'bg-orange-100 dark:bg-orange-900/50 border-orange-300 dark:border-orange-700';
-    case 3:
-      return 'bg-yellow-100 dark:bg-yellow-900/50 border-yellow-300 dark:border-yellow-700';
-    case 4:
-      return 'bg-green-100 dark:bg-green-900/50 border-green-300 dark:border-green-700';
-    case 5:
-      return 'bg-blue-100 dark:bg-blue-900/50 border-blue-300 dark:border-blue-700';
-    default:
-      return 'bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600';
-  }
 };
 
 export default PriorityQueueVisualizer;
