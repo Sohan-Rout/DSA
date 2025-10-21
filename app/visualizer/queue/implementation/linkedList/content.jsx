@@ -1,4 +1,28 @@
+"use client";
+import { useEffect, useState } from "react";
+
 const content = () => {
+  const [theme, setTheme] = useState("light");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+    };
+
+    updateTheme();
+    setMounted(true);
+
+    window.addEventListener("storage", updateTheme);
+    window.addEventListener("themeChange", updateTheme);
+
+    return () => {
+      window.removeEventListener("storage", updateTheme);
+      window.removeEventListener("themeChange", updateTheme);
+    };
+  }, []);
+
   const paragraph = [
     `Implementing a Queue using a linked list provides dynamic memory allocation and efficient insertion/removal operations. Unlike array implementation, linked list queues don't have fixed capacity limitations and can grow dynamically as needed.`,
     `Each node in the linked list contains the data and a pointer to the next node. The front pointer points to the first node (for dequeue), while the rear pointer points to the last node (for enqueue).`,
@@ -11,26 +35,6 @@ const content = () => {
     { points: "Implement enqueue by adding nodes at the rear" },
     { points: "Implement dequeue by removing nodes from the front" },
     { points: "Maintain proper pointer connections during operations" },
-  ];
-
-  const llImplementationCode = [
-    { code: "class Node {" },
-    { code: "  constructor(data) {" },
-    { code: "    this.data = data;" },
-    { code: "    this.next = null;" },
-    { code: "  }" },
-    { code: "}" },
-    { code: "" },
-    { code: "class LinkedListQueue {" },
-    { code: "  constructor() {" },
-    { code: "    this.front = null;" },
-    { code: "    this.rear = null;" },
-    { code: "    this.size = 0;" },
-    { code: "  }" },
-    { code: "" },
-    { code: "  isEmpty() {" },
-    { code: "    return this.front === null;" },
-    { code: "  }" },
   ];
 
   const enqueueAlgorithm = [
@@ -64,17 +68,38 @@ const content = () => {
     { points: "Cons: Not cache-friendly (nodes may be scattered in memory)" },
   ];
 
-  const visualization = [
-    { step: "Initial empty queue:", state: "front → null, rear → null" },
-    { step: "Enqueue(10):", state: "front → [10|•] → null, rear → [10|•]" },
-    { step: "Enqueue(20):", state: "front → [10|•] → [20|•] → null, rear → [20|•]" },
-    { step: "Enqueue(30):", state: "front → [10|•] → [20|•] → [30|•] → null, rear → [30|•]" },
-    { step: "Dequeue():", state: "Returns 10, front → [20|•] → [30|•] → null, rear → [30|•]" },
-  ];
-
   return (
-    <main className="max-w-4xl mx-auto">
-      <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+    <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 md:gap-4">
+      <div className="col-span-1">
+        <div className="hidden md:block">
+          {mounted && (
+            <iframe
+              key={theme}
+              src={
+                theme === "dark"
+                  ? "https://hw.glich.co/resources/embed/daily/dsa?theme=dark"
+                  : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
+              }
+              width="100%"
+              height="400"
+              title="Daily DSA Challenge"
+            ></iframe>
+          )}
+        </div>
+        <div className="flex justify-center">
+          <span className="text-xs hidden md:block">
+            Daily DSA Challenge by{" "}
+            <a
+              href="https://hw.glich.co/resources/daily"
+              target="_blank"
+              className="underline hover:text-blue-500 duration-300"
+            >
+              Hello World
+            </a>
+          </span>
+        </div>
+      </div>
+      <article className="col-span-4 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* Queue Linked List Implementation Overview */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -105,28 +130,6 @@ const content = () => {
           </div>
         </section>
 
-        {/* Basic Structure */}
-        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
-            Basic Class Structure
-          </h1>
-          <div className="prose dark:prose-invert max-w-none">
-            <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-x-auto">
-              <code className="text-sm font-mono text-gray-800 dark:text-gray-200">
-                {llImplementationCode.map((item, index) => (
-                  <div key={index}>{item.code}</div>
-                ))}
-              </code>
-            </pre>
-            <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                <strong>Note:</strong> Each node contains the data and a reference to the next node. The queue maintains references to both ends (front and rear) for efficient operations.
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* Enqueue Algorithm */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -141,23 +144,6 @@ const content = () => {
                 </li>
               ))}
             </ol>
-            <div className="mt-4 flex justify-center">
-              <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
-                <div className="flex items-center space-x-4">
-                  <div className="text-sm text-gray-600 dark:text-gray-300">Before Enqueue:</div>
-                  <div className="flex items-center">
-                    <div className="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded">front → [A|•] → [B|•] → null</div>
-                  </div>
-                </div>
-                <div className="mt-2 flex items-center space-x-4">
-                  <div className="text-sm text-gray-600 dark:text-gray-300">After Enqueue(C):</div>
-                  <div className="flex items-center">
-                    <div className="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded">front → [A|•] → [B|•] → [C|•] → null</div>
-                    <div className="ml-2 text-sm text-gray-500 dark:text-gray-400">(rear updated)</div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -175,49 +161,6 @@ const content = () => {
                 </li>
               ))}
             </ol>
-            <div className="mt-4 flex justify-center">
-              <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
-                <div className="flex items-center space-x-4">
-                  <div className="text-sm text-gray-600 dark:text-gray-300">Before Dequeue:</div>
-                  <div className="flex items-center">
-                    <div className="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded">front → [A|•] → [B|•] → [C|•] → null</div>
-                  </div>
-                </div>
-                <div className="mt-2 flex items-center space-x-4">
-                  <div className="text-sm text-gray-600 dark:text-gray-300">After Dequeue():</div>
-                  <div className="flex items-center">
-                    <div className="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded">front → [B|•] → [C|•] → null</div>
-                    <div className="ml-2 text-sm text-gray-500 dark:text-gray-400">(returns A)</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Visualization */}
-        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
-            Operation Visualization
-          </h1>
-          <div className="prose dark:prose-invert max-w-none">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-700">
-                <tr>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Step</th>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Queue State</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                {visualization.map((item, index) => (
-                  <tr key={index}>
-                    <td className="px-4 py-2 text-sm text-gray-700 dark:text-gray-300">{item.step}</td>
-                    <td className="px-4 py-2 text-sm font-mono text-gray-900 dark:text-gray-200">{item.state}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
           </div>
         </section>
 
@@ -261,7 +204,7 @@ const content = () => {
         {/* Additional Info */}
         <section className="p-6">
           <div className="prose dark:prose-invert max-w-none">
-            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <div className="px-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">When to Use Linked List Queue</h3>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 {paragraph[2]}
@@ -275,6 +218,35 @@ const content = () => {
           </div>
         </section>
       </article>
+
+      {/* Mobile iframe at bottom */}
+      <div className="block md:hidden w-full">
+        {mounted && (
+          <iframe
+            key={theme}
+            src={
+              theme === "dark"
+                ? "https://hw.glich.co/resources/embed/daily/dsa?theme=dark"
+                : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
+            }
+            width="100%"
+            height="320"
+            title="Daily DSA Challenge"
+          ></iframe>
+        )}
+        <div className="flex justify-center pb-8">
+          <span className="text-xs">
+            Daily DSA Challenge by{" "}
+            <a
+              href="https://hw.glich.co/resources/daily"
+              target="_blank"
+              className="underline hover:text-blue-500 duration-300"
+            >
+              Hello World
+            </a>
+          </span>
+        </div>
+      </div>
     </main>
   );
 };
