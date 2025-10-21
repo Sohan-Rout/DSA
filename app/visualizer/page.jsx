@@ -210,12 +210,11 @@ const sections = [
             path: "/visualizer/queue/types/singleEnded",
           },
           {
-            name: "Double Ended Queue (Deque)",
+            name: "Double Ended Queue",
             path: "/visualizer/queue/types/deque",
           },
           { name: "Circular Queue", path: "/visualizer/queue/types/circular" },
           { name: "Priority Queue", path: "/visualizer/queue/types/priority" },
-          { name: "Multiple Queue", path: "/visualizer/queue/types/multiple" },
         ],
       },
       {
