@@ -3,6 +3,8 @@ import React from "react";
 import Link from "next/link";
 import { useState } from "react";
 import PrivacyPolicyModal from "@/app/components/PrivacyPolicyModal";
+import TermsOfServiceModal from "@/app/components/termsOfServicesModal";
+import CookiePolicyModal from "@/app/components/cookie";
 import { GoHomeFill } from "react-icons/go";
 import { MdAnimation } from "react-icons/md";
 import { IoMdInformationCircle } from "react-icons/io";
@@ -11,6 +13,8 @@ import { RiQuestionLine } from "react-icons/ri";
 
 const Footer = () => {
   const [showPolicyModal, setShowPolicyModal] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [showCookieModal, setShowCookieModal] = useState(false);
 
   const quickLinks = [
     { href: "/", text: "Home", icon: GoHomeFill },
@@ -68,9 +72,9 @@ const Footer = () => {
   ];
 
   const legalLinks = [
-    { href: "/privacy", text: "Privacy Policy", type: "modal" },
-    { href: "/terms", text: "Terms of Service", type: "link" },
-    { href: "/cookies", text: "Cookies", type: "link" },
+    { href: "/privacy", text: "Privacy Policy", type: "policyModal" },
+    { href: "/terms", text: "Terms of Service", type: "termsModal" },
+    { href: "/cookies", text: "Cookies", type: "cookieModal" },
   ];
 
   return (
@@ -107,14 +111,12 @@ const Footer = () => {
                   </a>
                 </span>
               </div>
-              {/*
               <div className="flex items-start">
                 <svg className="w-5 h-5 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:contact@dsavisualizer.com" className="hover:text-blue-400 transition">contact@dsavisualizer.com</a>
+                <a href="mailto:hello@dsavisualizer.in" className="hover:text-blue-400 transition">hello@dsavisualizer.in</a>
               </div>
-              */}
               <div className="flex justify-left">
                 <a
                 className="border rounded-xl"
@@ -163,14 +165,33 @@ const Footer = () => {
               <ul className="space-y-3">
                 {legalLinks.map((link, index) => (
                   <li key={index}>
-                    {link.type === "modal" ? (
+                    {link.type === "policyModal" ? (
                       <button
                         onClick={() => setShowPolicyModal(true)}
                         className="text-gray-500 hover:text-blue-400 transition"
                       >
                         {link.text}
                       </button>
-                    ) : (
+                    ) : 
+                      link.type === "termsModal" ? (
+                        <button
+                        onClick={() => setShowTermsModal(true)}
+                        className="text-gray-500 hover:text-blue-400 transition"
+                      >
+                        {link.text}
+                      </button>
+                      )
+                     :
+                      link.type === "cookieModal" ? (
+                        <button
+                        onClick={() => setShowCookieModal(true)}
+                        className="text-gray-500 hover:text-blue-400 transition"
+                      >
+                        {link.text}
+                      </button>
+                      )
+                      :
+                     (
                       <Link
                         href={link.href}
                         className="text-gray-500 hover:text-blue-400 transition"
@@ -187,6 +208,18 @@ const Footer = () => {
             <PrivacyPolicyModal
               isOpen={showPolicyModal}
               onClose={() => setShowPolicyModal(false)}
+            />
+
+            {/* Render the modal */}
+            <TermsOfServiceModal
+              isOpen={showTermsModal}
+              onClose={() => setShowTermsModal(false)}
+            />
+
+            {/* Render the modal */}
+            <CookiePolicyModal
+              isOpen={showCookieModal}
+              onClose={() => setShowCookieModal(false)}
             />
 
             <div>
