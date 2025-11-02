@@ -1,35 +1,60 @@
 import React, { useEffect } from 'react';
 import { FiX } from 'react-icons/fi';
 
-const policySections = [
+const termsSections = [
   {
-    id : "1",
-    title : "Information We Collect",
-    data : "We collect personal information like name, email address, and usage data (IP, browser, etc.) to provide and improve our services.",
+    id: "1",
+    title: "Acceptance of Terms",
+    data: "By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.",
   },
   {
-    id : "2",
-    title : "How We Use Your Information",
-    points : [
-      "To provide and maintain our services",
-      "Improve user experience and service quality",
-      "Send important updates or support emails",
+    id: "2",
+    title: "Use License",
+    points: [
+      "Permission is granted to temporarily use the materials on this website for personal, non-commercial transitory viewing only",
+      "This is the grant of a license, not a transfer of title",
+      "You may not modify or copy the materials, use them for any commercial purpose, or remove any copyright or proprietary notations",
     ],
   },
   {
-    id : "3",
-    title : "Your Rights",
-    data : "You have the right to request access, correction, or deletion of your personal data at any time by contacting us.",
+    id: "3",
+    title: "User Responsibilities",
+    points: [
+      "Provide accurate and complete information when required",
+      "Maintain the confidentiality of your account credentials",
+      "Notify us immediately of any unauthorized use of your account",
+      "Use the service in compliance with all applicable laws and regulations",
+    ],
   },
   {
-    id : "4",
-    title : "Contact Information",
-    data : "For any privacy-related questions, please contact us at",
-    contact : "hello@dsavisualizer.in",
+    id: "4",
+    title: "Intellectual Property",
+    data: "All content, features, and functionality on this website, including but not limited to text, graphics, logos, and software, are the exclusive property of the company and are protected by international copyright, trademark, and other intellectual property laws.",
+  },
+  {
+    id: "5",
+    title: "Limitation of Liability",
+    data: "In no event shall the company, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.",
+  },
+  {
+    id: "6",
+    title: "Governing Law",
+    data: "These Terms shall be governed and construed in accordance with the laws of the applicable jurisdiction, without regard to its conflict of law provisions.",
+  },
+  {
+    id: "7",
+    title: "Changes to Terms",
+    data: "We reserve the right, at our sole discretion, to modify or replace these Terms at any time. By continuing to access or use our service after those revisions become effective, you agree to be bound by the revised terms.",
+  },
+  {
+    id: "8",
+    title: "Contact Information",
+    data: "If you have any questions about these Terms, please contact us at",
+    contact: "hello@dsavisualizer.in",
   },
 ];
 
-const PrivacyPolicyModal = ({ isOpen, onClose }) => {
+const TermsOfServiceModal = ({ isOpen, onClose }) => {
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -57,7 +82,7 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
         {/* Header with close button */}
         <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 p-4 flex justify-between items-center z-10">
           <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-            Privacy Policy
+            Terms of Service
           </h2>
           <button
             onClick={onClose}
@@ -71,20 +96,20 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
         {/* Scrollable content */}
         <div className="overflow-y-auto p-6">
           <p className="mb-6 text-gray-600 dark:text-gray-300">
-            Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+            Please read these terms and conditions carefully before using our website and services. Your access to and use of the service is conditioned on your acceptance of and compliance with these terms.
           </p>
 
-          {/* Policy sections */}
+          {/* Terms sections */}
           <div className="space-y-6">
             <ul>
-              {policySections.map((item, index) => (
+              {termsSections.map((item, index) => (
                 <li key={index} className='mb-3'>
                   <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg">
                     <div className='flex'>
-                    <span className="w-6 h-6 font-poppins font-semibold bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mr-3">{item.id}</span>
-                    <h3 className="text-xl font-semibold mb-2 flex items-center">
-                      {item.title}
-                    </h3>
+                      <span className="w-6 h-6 font-poppins font-semibold bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mr-3">{item.id}</span>
+                      <h3 className="text-xl font-semibold mb-2 flex items-center">
+                        {item.title}
+                      </h3>
                     </div>
                     {item.points && <ul className="space-y-2 text-gray-600 dark:text-gray-300 pl-9">
                       {item.points.map((subitem, subindex) => (
@@ -94,7 +119,9 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
                       ))}
                     </ul>}
                     <p className="text-gray-600 dark:text-gray-300 pl-9">{item.data}</p>
-                    <span className="font-medium pl-9 text-blue-600 dark:text-blue-400">{item.contact}</span>
+                    {item.contact && (
+                      <span className="font-medium pl-9 text-blue-600 dark:text-blue-400">{item.contact}</span>
+                    )}
                   </div>
                 </li>
               ))}
@@ -114,7 +141,7 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
             onClick={onClose}
             className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300"
           >
-            I Understand
+            I Agree
           </button>
         </div>
       </div>
@@ -122,4 +149,4 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default PrivacyPolicyModal;
+export default TermsOfServiceModal;
