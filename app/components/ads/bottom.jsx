@@ -52,7 +52,7 @@ const BottomAd = () => {
         boxShadow: "0 -2px 8px rgba(0,0,0,0.1)",
         zIndex: 9999,
         transition: "height 0.3s ease",
-        height: minimized ? "36px" : "120px",
+        height: minimized ? "36px" : "100px",
         overflow: "hidden",
         textAlign: "center",
         padding: minimized ? "0" : "4px 0",
