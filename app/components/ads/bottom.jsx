@@ -52,7 +52,7 @@ const BottomAd = () => {
         boxShadow: "0 -2px 8px rgba(0,0,0,0.1)",
         zIndex: 9999,
         transition: "height 0.3s ease",
-        height: minimized ? "36px" : "100px",
+        height: minimized ? "36px" : "120px",
         overflow: "hidden",
         textAlign: "center",
         padding: minimized ? "0" : "4px 0",
@@ -85,13 +85,9 @@ const BottomAd = () => {
       ) : (
         <ins
           className="adsbygoogle"
-          style={{ display: "block", height: "100px" }}
-          data-ad-client={
-            isDev ? "ca-pub-3940256099942544" : "ca-pub-4311738896428559"
-          }
-          data-ad-slot={isDev ? "6300978111" : "2048540881"}
-          data-ad-format="auto"
-          data-full-width-responsive="true"
+          style={{ display: "inline-block", width: "728px", height: "90px" }}
+          data-ad-client="ca-pub-4311738896428559"
+          data-ad-slot="3858222679"
         ></ins>
       )}
     </div>
