@@ -66,9 +66,6 @@ export default function Home() {
         </div>
         <Footer />
       </div>
-
-      {/* Floating Ad — always visible at bottom */}
-      <BottomAd />
     </>
   );
 }

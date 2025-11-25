@@ -104,10 +104,10 @@ const Footer = () => {
                 <span>
                   Made with ♥ by{" "}
                   <a
-                    href="https://www.linkedin.com/in/sohan-rout/"
+                    href="https://asccentify-studio.com/"
                     className="text-blue-400 hover:text-blue-300"
                   >
-                    Sohan Rout
+                    Asccentify Studio
                   </a>
                 </span>
               </div>
