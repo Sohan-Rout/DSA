@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 const content = () => {
   const [theme, setTheme] = useState("light");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const updateTheme = () => {
@@ -13,7 +12,6 @@ const content = () => {
     };
 
     updateTheme();
-    setMounted(true);
 
     window.addEventListener("storage", updateTheme);
     window.addEventListener("themeChange", updateTheme);
@@ -79,35 +77,7 @@ const content = () => {
 
     return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 md:gap-4">
-            <div className="col-span-1">
-        <div className="hidden md:block">
-          {mounted && (
-            <iframe
-              key={theme}
-              src={
-                theme === "dark"
-                  ? "https://hw.glich.co/resources/embed/daily/dsa?theme=dark"
-                  : "https://hw.glich.co/resources/embed/daily/dsa?theme=light"
-              }
-              width="100%"
-              height="400"
-              title="Daily DSA Challenge"
-            ></iframe>
-          )}
-        </div>
-        <div className="flex justify-center">
-          <span className="text-xs hidden md:block">
-            Daily DSA Challenge by{" "}
-            <a
-              href="https://hw.glich.co/resources/daily"
-              target="_blank"
-              className="underline hover:text-blue-500 duration-300"
-            >
-              Hello World
-            </a>
-          </span>
-        </div>
-      </div>
+            <DailyDSAEmbed mobile={false} theme={theme} />
       <article className="col-span-4 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
     {/* Header Section */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
