@@ -4,7 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { AuthProvider } from '@/app/contexts/AuthContext';
 import { UserProvider } from '@/app/contexts/UserContext';
 import ClientLayoutWrapper from "@/app/components/ui/ClientLayoutWrapper";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
@@ -57,7 +57,19 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const supabase = createServerComponentClient({ cookies });
+  const cookieStore = await cookies();
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    {
+      cookies: {
+        getAll: () => cookieStore.getAll(),
+        setAll: () => {
+          // Server Components can't set cookies; middleware/route handlers refresh the session.
+        },
+      },
+    }
+  );
   const {
     data: { session },
   } = await supabase.auth.getSession();

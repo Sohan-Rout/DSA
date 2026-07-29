@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+"use client";
+import { useState } from 'react';
 import { FaCheck, FaTimes, FaArrowRight, FaArrowLeft, FaInfoCircle, FaRedo, FaTrophy, FaStar, FaAward } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 

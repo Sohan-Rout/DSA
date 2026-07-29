@@ -1,3 +1,5 @@
+"use client";
+
 const content = () => {
   const overview = [
     `A Singly Linked List is a linear data structure where each element (node) contains data and a pointer to the next node. Unlike arrays, linked lists don't have fixed sizes and allow efficient insertion/deletion at any position.`,
