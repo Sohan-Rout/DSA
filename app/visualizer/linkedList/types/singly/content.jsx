@@ -1,6 +1,29 @@
 "use client";
+import { useEffect, useState } from "react";
+import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
+
 
 const content = () => {
+
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+    };
+
+    updateTheme();
+
+    window.addEventListener("storage", updateTheme);
+    window.addEventListener("themeChange", updateTheme);
+
+    return () => {
+      window.removeEventListener("storage", updateTheme);
+      window.removeEventListener("themeChange", updateTheme);
+    };
+  }, []);
+
   const overview = [
     `A Singly Linked List is a linear data structure where each element (node) contains data and a pointer to the next node. Unlike arrays, linked lists don't have fixed sizes and allow efficient insertion/deletion at any position.`,
     `The list maintains a head pointer that points to the first node. The last node's next pointer is null, indicating the end of the list. This structure provides O(1) insertion/deletion at the head but O(n) access time for arbitrary elements.`,
@@ -87,8 +110,11 @@ const content = () => {
   ];
 
   return (
-    <main className="max-w-4xl mx-auto">
-      <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+    <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
+      <div className="md:col-span-3">
+        <NewsletterEmbed mobile={false} theme={theme} />
+      </div>
+      <article className="md:col-span-9 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* Overview Section */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -281,6 +307,7 @@ const content = () => {
           </div>
         </section>
       </article>
+      <NewsletterEmbed mobile theme={theme} />
     </main>
   );
 };

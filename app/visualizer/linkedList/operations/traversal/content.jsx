@@ -1,4 +1,28 @@
+"use client";
+import { useEffect, useState } from "react";
+import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
+
 const content = () => {
+
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+    };
+
+    updateTheme();
+
+    window.addEventListener("storage", updateTheme);
+    window.addEventListener("themeChange", updateTheme);
+
+    return () => {
+      window.removeEventListener("storage", updateTheme);
+      window.removeEventListener("themeChange", updateTheme);
+    };
+  }, []);
+
   const overview = [
     `Linked List traversal involves visiting each node in the list exactly once, starting from the head and moving through the next pointers until the end is reached.`,
     `Traversal is essential for operations like searching, displaying, or processing each element of the list. It ensures that all elements are accessed in sequence.`,
@@ -81,8 +105,11 @@ const content = () => {
   ];
 
   return (
-    <main className="max-w-4xl mx-auto">
-      <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+    <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
+      <div className="md:col-span-3">
+        <NewsletterEmbed mobile={false} theme={theme} />
+      </div>
+      <article className="md:col-span-9 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* Overview Section */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -254,6 +281,7 @@ const content = () => {
           </div>
         </section>
       </article>
+      <NewsletterEmbed mobile theme={theme} />
     </main>
   );
 };
