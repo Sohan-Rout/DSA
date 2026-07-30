@@ -6,7 +6,7 @@ const DailyDSAEmbed = ({ mobile = false, theme = "light" }) => {
   const wrapperClasses = mobile
     ? "block md:hidden w-full"
     : "max-w-full hidden md:block";
-  const height = mobile ? 200 : 280;
+  const height = mobile ? 350 : 350;
 
   return (
     <div className={wrapperClasses}>
