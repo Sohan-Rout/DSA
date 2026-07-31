@@ -19,6 +19,7 @@ const HeroSection = () => {
   };
 
   const name = [{ name: "A" }, { name: "S" }, { name: "R" }];
+  const avatarColors = ["bg-orange-600", "bg-amber-500", "bg-emerald-500"];
 
   const getInitials = (name) => {
     return name
@@ -30,7 +31,7 @@ const HeroSection = () => {
 
   return (
     <main className="bg-white dark:bg-neutral-900">
-      <section className="min-h-screen py-10 flex items-start md:items-center justify-center bg-gradient-to-br from-blue-50 to-white dark:from-neutral-900 dark:to-neutral-900 text-gray-900 dark:text-gray-100 relative overflow-hidden">
+      <section className="min-h-screen py-10 flex items-start md:items-center justify-center bg-linear-to-br from-blue-50 to-white dark:from-neutral-900 dark:to-neutral-900 text-gray-900 dark:text-gray-100 relative overflow-hidden">
         {/* Notification Bar */}
         <div className="hidden md:block absolute mt-14 top-12 left-1/2 transform -translate-x-1/2 z-20 w-full max-w-md px-4">
           <div className="bg-white dark:bg-neutral-950 border border-blue-200 dark:border-blue-900 rounded-full shadow-lg py-2 px-4 flex items-center justify-between">
@@ -81,40 +82,26 @@ const HeroSection = () => {
         <div className="container top-4 mx-auto px-6 pt-20 flex flex-col lg:flex-row items-center justify-between relative z-10 gap-12">
           {/* Text Content */}
           <div className="lg:w-1/2 text-center lg:text-left space-y-4 sm:space-y-6">
-            <h1 className="text-4xl sm:text-5xl md:text-5xl font-bold leading-snug md:leading-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300">
+            <h1 className="text-4xl p-0 m-0 sm:text-5xl md:text-6xl font-semibold tracking-tight leading-snug md:leading-tight">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-blue-500 dark:from-blue-500 dark:to-blue-400">
                 Master DSA
               </span>
               <br />
               Through Interactive Visualization
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0">
-              See algorithms come to life in your mind's eye before you code
+            <p className="text-lg md:text-lg text-neutral-700 dark:text-neutral-400 max-w-2xl mx-auto lg:mx-0">
+              See algorithms come to life in your mind{"\'"}s eye before you code
               them. The way developers actually think.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center lg:justify-start">
               <button
                 onClick={handleStartVisualizing}
-                className="relative px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-blue-500/30 group overflow-hidden"
+                className="relative px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-blue-500/30 group overflow-hidden"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Start Visualizing Now
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="absolute inset-0 bg-linear-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </button>
               <Promotion/>
             </div>
@@ -126,7 +113,7 @@ const HeroSection = () => {
                   {name.map((item, index) => (
                     <div
                       key={index}
-                      className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold"
+                      className={`w-8 h-8 rounded-full ${avatarColors[index % avatarColors.length]} flex items-center justify-center text-white font-semibold ring-2 ring-white dark:ring-neutral-900`}
                     >
                       {getInitials(item.name)}
                     </div>
@@ -156,7 +143,7 @@ const HeroSection = () => {
                 alt="Person thinking about algorithms"
                 width={1200}
                 height={1200}
-                className="w-full z-20 h-full max-h-[400px] lg:max-h-[600px] object-contain drop-shadow-2xl"
+                className="w-full z-20 h-full max-h-100 lg:max-h-150 object-contain drop-shadow-2xl"
                 style={{
                   filter: "drop-shadow(0 20px 13px rgba(0, 0, 0, 0.1))",
                   maskImage:
@@ -203,7 +190,7 @@ const HeroSection = () => {
       </section>
       {/* Divider */}
       <div className="pb-10">
-        <div className="mx-auto h-[1px] max-w-4xl bg-gradient-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
+        <div className="mx-auto h-px max-w-4xl bg-linear-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
       </div>
     </main>
   );

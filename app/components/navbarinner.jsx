@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/app/contexts/UserContext';
@@ -79,9 +80,11 @@ export default function Navbar() {
             </Link>
             {user ? (
               <>
-                <img
-                  src={`https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(user.email)}`}
+                <Image
+                  src={`https://api.dicebear.com/8.x/initials/png?seed=${encodeURIComponent(user.email)}`}
                   alt="User Avatar"
+                  width={32}
+                  height={32}
                   className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
                 />
                 <button
@@ -178,9 +181,11 @@ export default function Navbar() {
             </Link>
             {user ? (
               <>
-                <img
-                  src={`https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(user.email)}`}
+                <Image
+                  src={`https://api.dicebear.com/8.x/initials/png?seed=${encodeURIComponent(user.email)}`}
                   alt="User Avatar"
+                  width={32}
+                  height={32}
                   className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600 ml-4"
                 />
                 <button

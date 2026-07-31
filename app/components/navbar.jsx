@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from '@/app/contexts/UserContext';
@@ -188,7 +189,7 @@ const handleLogout = async () => {
   };
 
   return (
-    <nav className="fixed w-[calc(100%-2rem)] mx-4 mt-4 bg-white/80 dark:bg-black/80 backdrop-blur-lg rounded-2xl border border-gray-200 dark:border-gray-700 text-black dark:text-white z-50 shadow-xl transition-all duration-300">
+    <nav className="fixed w-[calc(100%-2rem)] mx-4 mt-4 bg-white/80 dark:bg-black/80 backdrop-blur-lg rounded-2xl border border-gray-200 dark:border-gray-700 text-black dark:text-white z-50 transition-all duration-300">
       <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-3">
         {/* Logo/Brand */}
         <Link
@@ -205,7 +206,7 @@ const handleLogout = async () => {
             <li key={index}>
               <Link
                 href={link.href}
-                className="text-sm lg:text-base font-medium hover:text-blue-400 transition duration-300"
+                className="text-sm lg:text-base hover:text-blue-400 transition duration-300"
               >
                 {link.label}
               </Link>
@@ -214,7 +215,7 @@ const handleLogout = async () => {
 
           {/* Services Dropdown */}
           <li className="relative group">
-            <button className="flex items-center gap-1 text-sm dark:text-white lg:text-base font-medium text-gray-700 hover:text-blue-500 transition-colors duration-200">
+            <button className="flex items-center gap-1 text-sm dark:text-white lg:text-base text-gray-700 hover:text-blue-500 transition-colors duration-200">
               About
               <ChevronIcon />
             </button>
@@ -223,7 +224,7 @@ const handleLogout = async () => {
 
           {/* Services Dropdown */}
           <li className="relative group">
-            <button className="flex items-center gap-1 text-sm dark:text-white lg:text-base font-medium text-gray-700 hover:text-blue-500 transition-colors duration-200">
+            <button className="flex items-center gap-1 text-sm dark:text-white lg:text-base text-gray-700 hover:text-blue-500 transition-colors duration-200">
               Services
               <ChevronIcon />
             </button>
@@ -234,9 +235,11 @@ const handleLogout = async () => {
           <li>
             {user ? (
               <div className="relative">
-                <img
-                  src={`https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(user.email)}`}
+                <Image
+                  src={`https://api.dicebear.com/8.x/initials/png?seed=${encodeURIComponent(user.email)}`}
                   alt="User Avatar"
+                  width={32}
+                  height={32}
                   className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600 cursor-pointer"
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                 />
@@ -264,7 +267,7 @@ const handleLogout = async () => {
             ) : (
               <Link
                 href="/login"
-                className="ml-4 px-4 py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md flex items-center gap-2"
+                className="ml-4 px-4 py-2 rounded-full bg-linear-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 flex items-center gap-2"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -358,9 +361,11 @@ const handleLogout = async () => {
           <li>
             {user ? (
               <div className="relative">
-                <img
-                  src={`https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(user.email)}`}
+                <Image
+                  src={`https://api.dicebear.com/8.x/initials/png?seed=${encodeURIComponent(user.email)}`}
                   alt="User Avatar"
+                  width={32}
+                  height={32}
                   className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600 cursor-pointer"
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                 />
@@ -392,7 +397,7 @@ const handleLogout = async () => {
             ) : (
               <Link
                 href="/login"
-                className="block w-full text-center py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md mt-2"
+                className="block w-full text-center py-2 rounded-full font-medium bg-linear-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md mt-2"
                 onClick={closeMobileMenu}
               >
                 Login/Signup
