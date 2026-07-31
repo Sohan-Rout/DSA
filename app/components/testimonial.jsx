@@ -127,7 +127,7 @@ const TestimonialSection = () => {
           <span className="flex items-center justify-center gap-2 text-blue-500 dark:text-blue-400 text-sm font-semibold tracking-wider uppercase mb-4">
             <IoChatboxEllipses className='text-xl'/>Reviews
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
             What Our <span className="text-blue-500 dark:text-blue-400">Users Say</span>
           </h2>
           <p className="text-xl text-neutral-700 dark:text-neutral-300 max-w-3xl mx-auto">
@@ -148,7 +148,7 @@ const TestimonialSection = () => {
               {[...testimonials, ...testimonials].map((testimonial, index) => (
                 <div
                   key={index}
-                  className="relative group bg-white dark:bg-neutral-950 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 w-87.5 max-w-sm shrink-0"
+                  className="relative group bg-white dark:bg-neutral-950 rounded-2xl p-8 transition-all duration-300 border border-gray-200 dark:border-gray-700 w-87.5 max-w-sm shrink-0"
                 >
                   {/* Gradient background on hover */}
                   <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-neutral-900 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300"></div>
