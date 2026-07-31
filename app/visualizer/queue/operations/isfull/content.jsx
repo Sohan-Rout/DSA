@@ -1,25 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 
 const content = () => {
-  const [theme, setTheme] = useState("light");
-  useEffect(() => {
-    const updateTheme = () => {
-      const savedTheme = localStorage.getItem("theme") || "light";
-      setTheme(savedTheme);
-    };
-
-    updateTheme();
-
-    window.addEventListener("storage", updateTheme);
-    window.addEventListener("themeChange", updateTheme);
-
-    return () => {
-      window.removeEventListener("storage", updateTheme);
-      window.removeEventListener("themeChange", updateTheme);
-    };
-  }, []);
+  const { theme } = useTheme();
 
   const paragraphs = [
     `The isFull operation checks whether a queue has reached its maximum capacity in fixed-size implementations. It returns true if no more elements can be added (queue is full) and false if space remains. This operation is crucial for preventing overflow in array-based queue implementations.`,

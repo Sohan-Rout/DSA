@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from '@/app/contexts/UserContext';
+import { useTheme } from '@/app/contexts/ThemeContext';
 import { supabase } from '@/lib/supabase';
 
 // Constants for services dropdown items
@@ -119,8 +120,8 @@ const ChevronIcon = ({ isOpen = false }) => (
   </svg>
 );
 
-// Service item component for both desktop and mobile
-const ServiceItem = ({ title, description, icon, iconBg, href }) => (
+// Dropdown item, shared by the About and Services menus on both desktop and mobile
+const DropdownItem = ({ title, description, icon, iconBg, href }) => (
   <Link
     href={href}
     className="flex items-center justify-between px-4 py-3 text-sm text-gray-700 dark:text-white hover:bg-blue-50 dark:hover:bg-zinc-900 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-150"
@@ -146,81 +147,34 @@ const ServiceItem = ({ title, description, icon, iconBg, href }) => (
   </Link>
 );
 
-// Services dropdown component for desktop
-const DesktopServicesDropdown = () => (
+// Dropdown menu component for desktop (hover-triggered via group-hover)
+const DesktopDropdown = ({ items }) => (
   <div className="absolute left-0 mt-2 w-64 origin-top-right dark:bg-black dark:ring-blue-400 bg-white rounded-lg shadow-xl ring-1 ring-gray-200 focus:outline-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 overflow-hidden">
     <div className="py-1">
-      {SERVICES.map((service, index) => (
-        <ServiceItem key={index} {...service} />
+      {items.map((item, index) => (
+        <DropdownItem key={index} {...item} />
       ))}
     </div>
   </div>
 );
 
-// Services dropdown component for mobile
-const MobileServicesDropdown = ({ isOpen }) => (
+// Dropdown menu component for mobile (click-triggered via isOpen state)
+const MobileDropdown = ({ items, isOpen }) => (
   <div className={`${isOpen ? 'block' : 'hidden'} pl-4 space-y-1`}>
-    {SERVICES.map((service, index) => (
-      <ServiceItem key={index} {...service} />
-    ))}
-  </div>
-);
-
-// Service item component for both desktop and mobile
-const AboutItem = ({ title, description, icon, iconBg, href }) => (
-  <Link
-    href={href}
-    className="flex items-center justify-between px-4 py-3 text-sm text-gray-700 dark:text-white hover:bg-blue-50 dark:hover:bg-zinc-900 hover:text-blue-600 dark:hover:text-blue-600 transition-colors duration-150"
-  >
-    <div className="flex items-center gap-3">
-      <div className={`p-1.5 rounded-lg ${iconBg}`}>
-        {icon}
-      </div>
-      <div>
-        <div className="font-medium">{title}</div>
-        <div className="text-xs text-gray-500">{description}</div>
-      </div>
-    </div>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-4 w-4 text-gray-400"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-    </svg>
-  </Link>
-);
-
-// About dropdown component for desktop
-const AboutServicesDropdown = () => (
-  <div className="absolute left-0 mt-2 w-64 origin-top-right dark:bg-black dark:ring-blue-400 bg-white rounded-lg shadow-xl ring-1 ring-gray-200 focus:outline-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 overflow-hidden">
-    <div className="py-1">
-      {ABOUT.map((about, index) => (
-        <AboutItem key={index} {...about} />
-      ))}
-    </div>
-  </div>
-);
-
-// Services dropdown component for mobile
-const MobileAboutDropdown = ({ isOpen }) => (
-  <div className={`${isOpen ? 'block' : 'hidden'} pl-4 space-y-1`}>
-    {ABOUT.map((about, index) => (
-      <AboutItem key={index} {...about} />
+    {items.map((item, index) => (
+      <DropdownItem key={index} {...item} />
     ))}
   </div>
 );
 
 export default function Navbar() {
-  const [theme, setTheme] = useState("light");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const router = useRouter();
   const { user, setUser } = useUser();
+  const { theme, toggleTheme } = useTheme();
 
 const handleLogout = async () => {
   await supabase.auth.signOut();
@@ -228,41 +182,13 @@ const handleLogout = async () => {
   router.push('/');
 };
 
-  // Load theme from localStorage on mount and apply it
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
-    document.documentElement.classList.toggle("dark", savedTheme === "dark");
-  }, []);
-
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-    window.dispatchEvent(new Event("themeChange"));
-  };
-
   // Close mobile menu
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
 
   return (
-    <nav
-      className={`fixed w-[calc(100%-2rem)] mx-4 mt-4 bg-white/80 dark:bg-black/80 backdrop-blur-lg rounded-2xl border border-gray-200 dark:border-gray-700 text-black dark:text-white z-50 transition-all duration-300 ${
-        isScrolled ? "shadow-xl" : "shadow-xl"
-      }`}
-    >
+    <nav className="fixed w-[calc(100%-2rem)] mx-4 mt-4 bg-white/80 dark:bg-black/80 backdrop-blur-lg rounded-2xl border border-gray-200 dark:border-gray-700 text-black dark:text-white z-50 shadow-xl transition-all duration-300">
       <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-3">
         {/* Logo/Brand */}
         <Link
@@ -292,16 +218,16 @@ const handleLogout = async () => {
               About
               <ChevronIcon />
             </button>
-            <AboutServicesDropdown />
+            <DesktopDropdown items={ABOUT} />
           </li>
-          
+
           {/* Services Dropdown */}
           <li className="relative group">
             <button className="flex items-center gap-1 text-sm dark:text-white lg:text-base font-medium text-gray-700 hover:text-blue-500 transition-colors duration-200">
               Services
               <ChevronIcon />
             </button>
-            <DesktopServicesDropdown />
+            <DesktopDropdown items={SERVICES} />
           </li>
           
           {/* User Auth Section */}
@@ -384,10 +310,10 @@ const handleLogout = async () => {
       {/* Mobile Menu */}
       <div
         className={`md:hidden bg-white/90 dark:bg-gray-900/90 rounded-xl backdrop-blur-lg transition-all duration-300 overflow-hidden ${
-          mobileMenuOpen ? "max-h-auto py-auto" : "max-h-0 py-0"
+          mobileMenuOpen ? "max-h-128 py-4" : "max-h-0 py-0"
         }`}
       >
-        <ul className="flex flex-col space-y-15 px-6">
+        <ul className="flex flex-col space-y-4 px-6">
           {NAV_LINKS.map((link, index) => (
             <li key={index}>
               <Link
@@ -404,16 +330,16 @@ const handleLogout = async () => {
           <li>
             <div>
               <button
-                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                onClick={() => setIsAboutOpen(!isAboutOpen)}
                 className="w-full flex justify-between items-center py-2 rounded-md text-base font-medium text-gray-700 dark:text-white hover:text-blue-600"
               >
                 About
-                <ChevronIcon isOpen={isServicesOpen} />
+                <ChevronIcon isOpen={isAboutOpen} />
               </button>
-              <MobileAboutDropdown isOpen={isServicesOpen} />
+              <MobileDropdown items={ABOUT} isOpen={isAboutOpen} />
             </div>
           </li>
-          
+
           {/* Mobile Services Dropdown */}
           <li>
             <div>
@@ -424,7 +350,7 @@ const handleLogout = async () => {
                 Services
                 <ChevronIcon isOpen={isServicesOpen} />
               </button>
-              <MobileServicesDropdown isOpen={isServicesOpen} />
+              <MobileDropdown items={SERVICES} isOpen={isServicesOpen} />
             </div>
           </li>
           

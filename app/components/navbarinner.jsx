@@ -1,29 +1,16 @@
 'use client';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/app/contexts/UserContext';
+import { useTheme } from '@/app/contexts/ThemeContext';
 import { supabase } from '@/lib/supabase';
 
 export default function Navbar() {
-  const [theme, setTheme] = useState('light');
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
   const { user, setUser } = useUser();
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    window.dispatchEvent(new Event('themeChange'));
-  };
+  const { theme, toggleTheme } = useTheme();
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
