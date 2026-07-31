@@ -75,7 +75,7 @@ const TestimonialSection = () => {
   };
 
   const avatarColors = [
-    'bg-amber-600', 'bg-orange-500', 'bg-emerald-500', "bg-rose-500", "bg-yellow-500"
+    'bg-amber-600', 'bg-orange-500', 'bg-emerald-500', "bg-rose-500"
   ];
 
   const getAvatarColor = (name) => {
