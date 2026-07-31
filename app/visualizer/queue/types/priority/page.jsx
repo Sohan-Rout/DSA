@@ -75,7 +75,7 @@ export default function Page() {
             </h1>
             <ArticleActions />
           </div>
-          <div className="bg-black border border-none dark:bg-gray-600 w-100 h-[2px] rounded-xl my-10"></div>
+          <div className="bg-black border border-none dark:bg-gray-600 w-full h-[2px] rounded-xl my-10"></div>
           <Content />
         </section>
 

@@ -1,6 +1,7 @@
 "use client";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 
 const content = () => {
   const { theme } = useTheme();
@@ -81,11 +82,12 @@ const content = () => {
   ];
 
   return (
-    <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 md:gap-4">
-      <div className="col-span-1">
+    <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
+      <div className="md:col-span-3">
+        <NewsletterEmbed mobile={false} theme={theme} />
         <DailyDSAEmbed mobile={false} theme={theme} />
       </div>
-      <article className="col-span-4 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+      <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* What is a Single-Ended Queue? */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -272,8 +274,7 @@ const content = () => {
           </div>
         </section>
       </article>
-
-      {/* Mobile iframe at bottom */}
+      <NewsletterEmbed mobile theme={theme} />
       <DailyDSAEmbed mobile theme={theme} />
     </main>
   );
