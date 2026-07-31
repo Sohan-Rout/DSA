@@ -60,10 +60,10 @@ const FeaturesSection = () => {
             <HiSparkles className='text-xl'/>
             Features we offer
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
             Elevate Your <span className="text-blue-600 dark:text-blue-400">DSA Mastery</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
             Modern tools designed to transform how you understand algorithms
           </p>
         </div>
@@ -76,7 +76,7 @@ const FeaturesSection = () => {
               className="relative group bg-white dark:bg-neutral-950 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
             >
               {/* Hover effect background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-neutral-900 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-neutral-900 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300"></div>
               
               <div className="relative z-10">
                 {/* Icon */}
@@ -90,24 +90,24 @@ const FeaturesSection = () => {
                     <span className="text-xs font-semibold tracking-wider text-blue-500 dark:text-blue-400 uppercase">
                       Feature 0{index + 1}
                     </span>
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-2">
+                    <h3 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white mt-2">
                       {feature.title}
                     </h3>
                   </div>
                   
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p className="text-neutral-700 text-sm dark:text-neutral-300">
                     {feature.description}
                   </p>
                   
                   <ul className="space-y-3 mt-4">
                     {feature.benefits.map((benefit, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <div className={`flex-shrink-0 mt-1 w-5 h-5 ${feature.color} rounded-full flex items-center justify-center bg-blue-100 dark:bg-blue-900/30`}>
+                        <div className={`shrink-0 w-5 h-5 ${feature.color} rounded-full flex items-center justify-center bg-blue-100 dark:bg-blue-900/30`}>
                           <svg className="w-3 h-3 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
                           </svg>
                         </div>
-                        <span className="text-gray-700 dark:text-gray-300">{benefit}</span>
+                        <span className="text-neutral-700 text-sm dark:text-neutral-300">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -126,7 +126,7 @@ const FeaturesSection = () => {
             {features.map((feature, index) => (
               <div 
                 key={index} 
-                className="w-full flex-shrink-0 px-2"
+                className="w-full shrink-0 px-2"
               >
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
                   {/* Icon */}
@@ -152,12 +152,12 @@ const FeaturesSection = () => {
                     <ul className="space-y-3 mt-4">
                       {feature.benefits.map((benefit, i) => (
                         <li key={i} className="flex items-start gap-3">
-                          <div className={`flex-shrink-0 mt-1 w-5 h-5 ${feature.color} rounded-full flex items-center justify-center bg-blue-100 dark:bg-blue-900/30`}>
+                          <div className={`shrink-0 mt-1 w-5 h-5 ${feature.color} rounded-full flex items-center justify-center bg-blue-100 dark:bg-blue-900/30`}>
                             <svg className="w-3 h-3 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
                             </svg>
                           </div>
-                          <span className="text-gray-700 dark:text-gray-300">{benefit}</span>
+                          <span className="text-neutral-700 dark:text-neutral-300">{benefit}</span>
                         </li>
                       ))}
                     </ul>
@@ -184,7 +184,7 @@ const FeaturesSection = () => {
         </div>
 
         {/* Divider */}
-        <div className="mt-20 mx-auto h-[1px] max-w-4xl bg-gradient-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
+        <div className="mt-20 mx-auto h-px max-w-4xl bg-linear-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
       </div>
     </section>
   );

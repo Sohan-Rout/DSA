@@ -1,26 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 
 const content = () => {
-  const [theme, setTheme] = useState("light");
-  useEffect(() => {
-    const updateTheme = () => {
-      const savedTheme = localStorage.getItem("theme") || "light";
-      setTheme(savedTheme);
-    };
-
-    updateTheme();
-
-    window.addEventListener("storage", updateTheme);
-    window.addEventListener("themeChange", updateTheme);
-
-    return () => {
-      window.removeEventListener("storage", updateTheme);
-      window.removeEventListener("themeChange", updateTheme);
-    };
-  }, []);
+  const { theme } = useTheme();
 
   const paragraph = [
     `Implementing a Queue using a linked list provides dynamic memory allocation and efficient insertion/removal operations. Unlike array implementation, linked list queues don't have fixed capacity limitations and can grow dynamically as needed.`,

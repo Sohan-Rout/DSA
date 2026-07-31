@@ -1,28 +1,12 @@
 "use client";
 import ComplexityGraph from "@/app/components/ui/graph";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import { useEffect, useState } from "react";
 
 const content = () => {
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    const updateTheme = () => {
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      setTheme(savedTheme);
-    };
-
-    updateTheme();
-
-    window.addEventListener('storage', updateTheme);
-    window.addEventListener('themeChange', updateTheme);
-
-    return () => {
-      window.removeEventListener('storage', updateTheme);
-      window.removeEventListener('themeChange', updateTheme);
-    };
-  }, []);
+  const { theme } = useTheme();
 
   const paragraphs = [
     `Linear Search is a simple method to find a particular value in a list. It checks each element one by one from the start until it finds the target value. If the value is found, it returns its position; otherwise, it says the value is not present.`,

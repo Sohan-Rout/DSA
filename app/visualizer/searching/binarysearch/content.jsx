@@ -1,28 +1,12 @@
 "use client";
 import ComplexityGraph from "@/app/components/ui/graph";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import { useEffect, useState } from "react";
 
 const content = () => {
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    const updateTheme = () => {
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      setTheme(savedTheme);
-    };
-
-    updateTheme();
-
-    window.addEventListener('storage', updateTheme);
-    window.addEventListener('themeChange', updateTheme);
-
-    return () => {
-      window.removeEventListener('storage', updateTheme);
-      window.removeEventListener('themeChange', updateTheme);
-    };
-  }, []);
+  const { theme } = useTheme();
 
   const paragraphs = [
     `Binary Search is an efficient algorithm for finding an item in a sorted list. It works by repeatedly dividing the search interval in half. If the target value is less than the middle element, the search continues in the lower half. Otherwise, it continues in the upper half. This process repeats until the value is found.`,

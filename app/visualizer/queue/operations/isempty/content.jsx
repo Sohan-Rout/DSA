@@ -1,26 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 
 const content = () => {
-  const [theme, setTheme] = useState("light");
-  useEffect(() => {
-    const updateTheme = () => {
-      const savedTheme = localStorage.getItem("theme") || "light";
-      setTheme(savedTheme);
-    };
-
-    updateTheme();
-
-    window.addEventListener("storage", updateTheme);
-    window.addEventListener("themeChange", updateTheme);
-
-    return () => {
-      window.removeEventListener("storage", updateTheme);
-      window.removeEventListener("themeChange", updateTheme);
-    };
-  }, []);
+  const { theme } = useTheme();
 
   const paragraphs = [
     `The isEmpty operation checks whether a queue contains any elements or not. It returns true if the queue is empty (no elements) and false if it contains elements. This is a fundamental operation used to prevent underflow when performing dequeue operations.`,

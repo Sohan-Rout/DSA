@@ -1,28 +1,11 @@
 "use client";
 import ComplexityGraph from "@/app/components/ui/graph";
-import { useEffect, useState } from "react";
+import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 
 const content = () => {
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    const updateTheme = () => {
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      setTheme(savedTheme);
-    };
-
-    updateTheme();
-
-    window.addEventListener('storage', updateTheme);
-    window.addEventListener('themeChange', updateTheme);
-
-    return () => {
-      window.removeEventListener('storage', updateTheme);
-      window.removeEventListener('themeChange', updateTheme);
-    };
-  }, []);
+  const { theme } = useTheme();
 
   const paragraph = [
     `Selection Sort is an in-place comparison sorting algorithm that divides the input list into two parts: a sorted sublist which is built up from left to right, and a remaining unsorted sublist. It repeatedly selects the smallest (or largest) element from the unsorted portion and moves it to the sorted portion.`,

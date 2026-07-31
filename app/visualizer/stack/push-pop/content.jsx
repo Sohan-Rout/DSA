@@ -1,28 +1,11 @@
 "use client";
 import ComplexityGraph from "@/app/components/ui/graph";
-import { useEffect, useState } from "react";
+import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 
 const content = () => {
-  const [theme, setTheme] = useState("light");
-
-  useEffect(() => {
-    const updateTheme = () => {
-      const savedTheme = localStorage.getItem("theme") || "light";
-      setTheme(savedTheme);
-    };
-
-    updateTheme();
-
-    window.addEventListener("storage", updateTheme);
-    window.addEventListener("themeChange", updateTheme);
-
-    return () => {
-      window.removeEventListener("storage", updateTheme);
-      window.removeEventListener("themeChange", updateTheme);
-    };
-  }, []);
+  const { theme } = useTheme();
 
   const paragraphs = [
     `Push and Pop are the two fundamental operations in stack data structure. Stack follows LIFO (Last In First Out) principle - the last element added is the first one to be removed.`,

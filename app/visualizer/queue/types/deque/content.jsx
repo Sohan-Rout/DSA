@@ -1,26 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 
 const content = () => {
-  const [theme, setTheme] = useState("light");
-  useEffect(() => {
-    const updateTheme = () => {
-      const savedTheme = localStorage.getItem("theme") || "light";
-      setTheme(savedTheme);
-    };
-
-    updateTheme();
-
-    window.addEventListener("storage", updateTheme);
-    window.addEventListener("themeChange", updateTheme);
-
-    return () => {
-      window.removeEventListener("storage", updateTheme);
-      window.removeEventListener("themeChange", updateTheme);
-    };
-  }, []);
+  const { theme } = useTheme();
 
   const paragraph = [
     `A Double-Ended Queue (Deque) is a versatile data structure that allows insertion and deletion of elements from both ends (front and rear). Unlike a single-ended queue, it provides more flexibility while maintaining efficient O(1) operations.`,

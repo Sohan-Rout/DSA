@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { FiArrowLeft, FiHome, FiZap } from 'react-icons/fi';
+import Link from 'next/link';
 
 const NotFoundPage = () => {
   const router = useRouter();
@@ -20,7 +21,7 @@ const NotFoundPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 bg-linear-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-20 w-64 h-64 bg-blue-400/10 rounded-full filter blur-3xl animate-float-slow"></div>
@@ -60,7 +61,7 @@ const NotFoundPage = () => {
             Connection Lost
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400">
-            The page you're trying to reach seems to be unplugged or doesn't exist.
+            The page you{"\'"}re trying to reach seems to be unplugged or doesn{"\'"}t exist.
           </p>
         </div>
 
@@ -73,13 +74,13 @@ const NotFoundPage = () => {
             <FiArrowLeft className="w-5 h-5" />
             Go Back
           </button>
-          <a
+          <Link
             href="/"
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white rounded-lg font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/20"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-linear-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white rounded-lg font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/20"
           >
             <FiHome className="w-5 h-5" />
             Return Home
-          </a>
+          </Link>
         </div>
 
         {/* Footer note */}

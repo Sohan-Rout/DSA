@@ -3,6 +3,7 @@ import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { AuthProvider } from '@/app/contexts/AuthContext';
 import { UserProvider } from '@/app/contexts/UserContext';
+import { ThemeProvider } from '@/app/contexts/ThemeContext';
 import ClientLayoutWrapper from "@/app/components/ui/ClientLayoutWrapper";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
@@ -104,9 +105,11 @@ export default async function RootLayout({ children }) {
       <body>
         <AuthProvider session={session}>
         <UserProvider>
-          <ClientLayoutWrapper>
-            {children}
-          </ClientLayoutWrapper>
+          <ThemeProvider>
+            <ClientLayoutWrapper>
+              {children}
+            </ClientLayoutWrapper>
+          </ThemeProvider>
         </UserProvider>
         </AuthProvider>
       </body>

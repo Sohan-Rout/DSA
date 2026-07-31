@@ -1,27 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 
 const content = () => {
-  const [theme, setTheme] = useState("light");
-
-  useEffect(() => {
-    const updateTheme = () => {
-      const savedTheme = localStorage.getItem("theme") || "light";
-      setTheme(savedTheme);
-    };
-
-    updateTheme();
-
-    window.addEventListener("storage", updateTheme);
-    window.addEventListener("themeChange", updateTheme);
-
-    return () => {
-      window.removeEventListener("storage", updateTheme);
-      window.removeEventListener("themeChange", updateTheme);
-    };
-  }, []);
+  const { theme } = useTheme();
 
   const paragraph = [
     `Prefix notation (also called Polish Notation) is a way of writing expressions where the operator comes before the operands.`,

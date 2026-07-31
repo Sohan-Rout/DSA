@@ -38,10 +38,10 @@ const FAQSection = () => {
             <FiHelpCircle className="w-5 h-5" />
             Need Help?
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Frequently <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-300">Asked Questions</span>
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
+            Frequently <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-300">Asked Questions</span>
+          </h1>
+          <p className="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed">
             Quick answers to common questions about our platform
           </p>
         </div>
