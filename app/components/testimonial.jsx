@@ -74,6 +74,15 @@ const TestimonialSection = () => {
     return name.split(' ').map(part => part[0]).join('').toUpperCase();
   };
 
+  const avatarColors = [
+    'bg-amber-600', 'bg-orange-500', 'bg-emerald-500', "bg-rose-500", "bg-yellow-500"
+  ];
+
+  const getAvatarColor = (name) => {
+    const hash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return avatarColors[hash % avatarColors.length];
+  };
+
   const StarRating = ({ rating }) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -111,7 +120,7 @@ const TestimonialSection = () => {
   };
 
   return (
-    <section className="pb-10 bg-gradient-to-b from-white to-white dark:from-neutral-900 dark:to-neutral-900 ">
+    <section className="pb-10 bg-linear-to-b from-white to-white dark:from-neutral-900 dark:to-neutral-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center mb-16">
@@ -121,7 +130,7 @@ const TestimonialSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             What Our <span className="text-blue-500 dark:text-blue-400">Users Say</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-neutral-700 dark:text-neutral-300 max-w-3xl mx-auto">
             Trusted by students and professionals worldwide
           </p>
         </div>
@@ -139,15 +148,15 @@ const TestimonialSection = () => {
               {[...testimonials, ...testimonials].map((testimonial, index) => (
                 <div
                   key={index}
-                  className="relative group bg-white dark:bg-neutral-950 rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 w-[350px] max-w-sm flex-shrink-0"
+                  className="relative group bg-white dark:bg-neutral-950 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 w-87.5 max-w-sm shrink-0"
                 >
                   {/* Gradient background on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-neutral-900 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-neutral-900 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300"></div>
                   
                   <div className="relative z-10">
                     {/* Avatar and Info */}
                     <div className="flex items-center mb-6">
-                      <div className="w-14 h-14 rounded-full bg-gray-800 dark:bg-gray-700 text-white flex items-center justify-center text-xl font-semibold mr-4">
+                      <div className={`w-14 h-14 rounded-full ${getAvatarColor(testimonial.name)} text-white flex items-center justify-center text-xl font-semibold mr-4`}>
                         {getInitials(testimonial.name)}
                       </div>
                       <div>
@@ -165,7 +174,7 @@ const TestimonialSection = () => {
                     
                     {/* Review Text */}
                     <div className="relative">
-                      <p className={`text-gray-600 dark:text-gray-300 mb-4 break-words whitespace-normal ${!expandedReviews[index] && 'line-clamp-3'}`}>
+                      <p className={`text-gray-600 dark:text-gray-300 mb-4 wrap-break-word whitespace-normal ${!expandedReviews[index] && 'line-clamp-3'}`}>
                         {testimonial.review}
                       </p>
                       {testimonial.review.length > 150 && (
@@ -197,12 +206,12 @@ const TestimonialSection = () => {
               ))}
             </motion.div>
           </div>
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent dark:from-neutral-900 dark:to-transparent pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent dark:from-neutral-900 dark:to-transparent pointer-events-none"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-linear-to-r from-white to-transparent dark:from-neutral-900 dark:to-transparent pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-linear-to-l from-white to-transparent dark:from-neutral-900 dark:to-transparent pointer-events-none"></div>
         </div>
 
         {/* Divider */}
-        <div className="mt-10 mx-auto h-[1px] max-w-4xl bg-gradient-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
+        <div className="mt-10 mx-auto h-px max-w-4xl bg-linear-to-r rounded-sm from-transparent via-blue-200 dark:via-blue-800 to-transparent"></div>
       </div>
     </section>
   );
