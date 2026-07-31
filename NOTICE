@@ -1,0 +1,58 @@
+DSA Visualizer
+Copyright 2025 Sohan Rout
+https://dsavisualizer.in
+
+## License
+
+As of 2026, this project is licensed under the PolyForm Shield License
+1.0.0 (see LICENSE). This is NOT a standard permissive open-source
+license. It allows you to view, run, modify, and self-host this code
+for any purpose EXCEPT to build, launch, or operate a product or
+service that competes with DSA Visualizer. See LICENSE for the full,
+binding terms — this file is a plain-language summary, not a
+substitute for it.
+
+Code obtained from this repository before this NOTICE was added may
+have been distributed under the project's prior Apache License 2.0
+terms; those terms do not carry forward to any new copies, forks, or
+distributions made after this change.
+
+## Brand and content — not licensed at all
+
+Separately from the code license, the following are NOT licensed to
+you under any version of this project's license and remain the sole
+property of Sohan Rout:
+
+  - The "DSA Visualizer" name, wordmark, and logo
+  - The site's color scheme, layout, and visual identity as a
+    distinctive whole
+  - Original written content: blog posts, page copy, marketing copy,
+    FAQ answers, and any other prose
+  - SEO metadata, structured data (JSON-LD), page titles/descriptions,
+    and Open Graph content
+
+You may not republish, mirror, or reuse any of the above — in whole
+or in part, modified or unmodified — under a different identity, on a
+different domain, or in a way that suggests your product is DSA
+Visualizer, is affiliated with it, or is endorsed by Sohan Rout.
+
+## Strict rules for anyone reusing this repository
+
+1. You must retain this NOTICE and the LICENSE file, unmodified, in
+   any copy or fork.
+2. You must not use the DSA Visualizer name, logo, brand colors, or
+   layout in a way likely to cause confusion with the original.
+3. You must not copy blog posts, page copy, or SEO/meta content
+   verbatim or near-verbatim and present it as your own.
+4. You must not build a competing DSA-learning/visualization product
+   using this code, per the Noncompete clause in LICENSE.
+5. Any violation is grounds for a DMCA takedown, hosting-provider
+   abuse report, trademark complaint, and/or legal action, in addition
+   to termination of your license under LICENSE Section "Violations."
+
+## Reporting a violation
+
+If you believe someone has copied this project's code, brand, or
+content in violation of these terms, contact:
+
+  sohanrout84@gmail.com
