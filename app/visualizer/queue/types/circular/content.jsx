@@ -2,13 +2,13 @@
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
-
+import InContentAd from "@/app/components/ads/InContentAd";
 const content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `A Circular Queue is an advanced version of a linear queue that connects the end of the queue back to the front, forming a circle. This efficient structure prevents memory wastage and allows better utilization of fixed-size buffers.`,
-    `The circular queue is an essential data structure for systems requiring efficient, fixed-size buffers with constant-time operations. Its circular nature solves the memory wastage problem of linear queues while maintaining simple and predictable performance characteristics, making it ideal for low-level system programming and real-time applications.`,
+    `A circular queue takes a regular array-based queue and wraps its rear index back to the beginning once it hits the end — instead of a straight line, the underlying array is treated like a loop.`,
+    `That one change fixes the biggest annoyance with a plain array queue: slots freed up by earlier dequeues no longer go to waste. It keeps every operation running in constant time, which is why circular queues show up so often in fixed-size buffers, like the ones used in low-level or real-time systems.`,
   ];
 
   const characteristics = [
@@ -162,6 +162,8 @@ const content = () => {
             </li>
           ))}
         </ul>
+
+        <InContentAd />
       </div>
     </section>
 

@@ -4,12 +4,12 @@ import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import { useEffect, useState } from "react";
-
+import InContentAd from "@/app/components/ads/InContentAd";
 const content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Binary Search is an efficient algorithm for finding an item in a sorted list. It works by repeatedly dividing the search interval in half. If the target value is less than the middle element, the search continues in the lower half. Otherwise, it continues in the upper half. This process repeats until the value is found.`,
+    `Binary Search only works because the list is already sorted, and it takes full advantage of that: check the middle element, and if the target is smaller, throw away the entire upper half; if it's larger, throw away the entire lower half. Repeating that halving keeps shrinking the search space until you land on the value.`,
     `If the number is not in the list (e.g., searching for 8), the search ends when the subarray becomes empty.`,
     `Binary Search is extremely fast for large datasets but requires the list to be sorted beforehand. It's much more efficient than Linear Search for sorted data.`,
   ];
@@ -163,6 +163,8 @@ const content = () => {
                 maxN={25}
               />
             </div>
+
+            <InContentAd />
 
             <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">

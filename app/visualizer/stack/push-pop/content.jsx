@@ -3,12 +3,12 @@ import ComplexityGraph from "@/app/components/ui/graph";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
-
+import InContentAd from "@/app/components/ads/InContentAd";
 const content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Push and Pop are the two fundamental operations in stack data structure. Stack follows LIFO (Last In First Out) principle - the last element added is the first one to be removed.`,
+    `Push and pop are the only two moves a stack really needs. Push adds a value on top, pop takes the top value back off, and because of that, whatever went on last is always the first thing to come off — that's the LIFO (Last In, First Out) rule in action.`,
     `Push and Pop operations are fundamental to stack functionality. While simple to implement, stacks are powerful data structures used in many algorithms and system designs.`,
   ];
 
@@ -170,6 +170,8 @@ const content = () => {
                 maxN={25}
               />
             </div>
+
+            <InContentAd />
           </div>
         </section>
 

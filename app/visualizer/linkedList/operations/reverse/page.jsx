@@ -1,5 +1,8 @@
 import Animation from "@/app/visualizer/linkedList/operations/reverse/animation";
 import Navbar from "@/app/components/navbarinner";
+import ModuleHeader from "@/app/components/modules/Header";
+import Footer from "@/app/components/footer";
+import BackToTopButton from "@/app/components/ui/backtotop";
 
 export const metadata = {
     title: 'Linked List Reverse Algorithm | Interactive Visualization & Step-by-Step Guide',
@@ -29,10 +32,30 @@ export const metadata = {
 };
 
 export default function Page() {
+  const paths = [
+    { name: "Home", href: "/" },
+    { name: "Visualizer", href: "/visualizer" },
+    { name: "Linked List : Reverse", href: "" },
+  ];
+
   return (
     <>
-      <Navbar/>
-      <Animation/>
+      <div>
+        <Navbar />
+      </div>
+
+      <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
+        <section className="px-6 md:px-12">
+          <ModuleHeader category="Operations" title="Reverse" paths={paths} />
+        </section>
+
+        <section>
+          <Animation />
+        </section>
+      </div>
+
+      <BackToTopButton />
+      <Footer />
     </>
   );
-};
+}

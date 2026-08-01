@@ -2,13 +2,13 @@
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
-
+import InContentAd from "@/app/components/ads/InContentAd";
 const content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `A Double-Ended Queue (Deque) is a versatile data structure that allows insertion and deletion of elements from both ends (front and rear). Unlike a single-ended queue, it provides more flexibility while maintaining efficient O(1) operations.`,
-    `The double-ended queue is a powerful hybrid data structure that combines the best features of stacks and queues. Its flexibility makes it invaluable for algorithms requiring access to both ends of a dataset, while maintaining efficient constant-time operations for all key functions.`,
+    `A deque drops the "only one end" restriction of a normal queue — you can insert or remove elements at both the front and the rear, and both directions stay O(1).`,
+    `Because it can act like a stack from one end and a queue from the other, a deque is genuinely a hybrid of the two. That flexibility is exactly why it turns up in algorithms that need fast access to both ends of a dataset at once.`,
   ];
 
   const characteristics = [
@@ -189,6 +189,8 @@ const content = () => {
               ))}
             </ul>
           </div>
+
+          <InContentAd />
         </section>
 
         {/* Applications */}

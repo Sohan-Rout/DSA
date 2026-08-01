@@ -1,13 +1,12 @@
 import Animation from "@/app/visualizer/sorting/selectionsort/animation";
 import Navbar from "@/app/components/navbarinner";
+import ModuleHeader from "@/app/components/modules/Header";
 import BackToTopButton from "@/app/components/ui/backtotop";
 import Footer from "@/app/components/footer";
 import Content from '@/app/visualizer/sorting/selectionsort/content';
 import ExploreOther from "@/app/components/ui/exploreOther";
 import Code from "@/app/visualizer/sorting/selectionsort/codeBlock";
 import Quiz from "@/app/visualizer/sorting/selectionsort/quiz";
-import Breadcrumbs from "@/app/components/ui/Breadcrumbs";
-import ArticleActions from "@/app/components/ui/ArticleActions";
 import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
@@ -60,24 +59,7 @@ export default function Page() {
 
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
         <section className="px-6 md:px-12">
-          <div className="mt-10 sm:mt-10 mb-4">
-            <Breadcrumbs paths={paths} />
-          </div>
-
-          <div className="flex items-center flex-col">
-            <div className="flex">
-              <p className="uppercase tracking-wide bg-green-500 dark:text-black px-4 py-1 mb-2 rounded-full">
-                Sorting
-              </p>
-            </div>
-            <h1 className="text-4xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-0">
-              Selection Sort
-            </h1>
-            <ArticleActions />
-          </div>
-
-          <div className="bg-black border border-none dark:bg-gray-600 w-full h-[2px] rounded-xl my-10"></div>
-          <Content />
+          <ModuleHeader category="Sorting" title="Selection Sort" paths={paths} />          <Content />
         </section>
 
         <section>

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
-
+import InContentAd from "@/app/components/ads/InContentAd";
 const content = () => {
 
   const [theme, setTheme] = useState("light");
@@ -24,8 +24,8 @@ const content = () => {
   }, []);
 
   const overview = [
-    `Reversing a linked list involves changing the direction of the pointers so that the last node becomes the head and the head becomes the last node.`,
-    `This operation is fundamental in many algorithms and helps in scenarios where you need to process the list in reverse order without using extra space.`
+    `Reversing a linked list is really just flipping every pointer so it points backward instead of forward — once that's done, what used to be the tail is now the head.`,
+    `It shows up constantly as a building block in other algorithms, and it's the go-to way to process a list back-to-front without allocating any extra space for a copy.`
   ];
 
   const mergeSteps = [
@@ -110,6 +110,8 @@ const content = () => {
             ))}
           </ul>
         </section>
+
+        <InContentAd />
       </article>
       <NewsletterEmbed mobile theme={theme} />
     </main>

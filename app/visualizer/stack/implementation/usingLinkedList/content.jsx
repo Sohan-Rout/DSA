@@ -4,12 +4,13 @@ import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import React from "react";
 import { useTheme } from "@/app/contexts/ThemeContext";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `A stack implemented using a linked list follows the LIFO (Last In First Out) principle. Unlike array implementation, linked list stacks dynamically allocate memory for each element and don't have size limitations (until memory is exhausted).`,
+    `Building a stack with a linked list instead of an array gets you the same LIFO (Last In, First Out) behavior, but without a fixed capacity — every push allocates a fresh node, so the stack can keep growing as long as memory allows.`,
   ];
 
   const opeartions = [
@@ -213,6 +214,8 @@ const content = () => {
               </tbody>
             </table>
           </div>
+
+          <InContentAd />
         </section>
 
         {/* Key Characteristics */}

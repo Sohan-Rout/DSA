@@ -1,5 +1,8 @@
 import Animation from "@/app/visualizer/linkedList/types/doubly/animation";
 import Navbar from "@/app/components/navbarinner";
+import ModuleHeader from "@/app/components/modules/Header";
+import Footer from "@/app/components/footer";
+import BackToTopButton from "@/app/components/ui/backtotop";
 
 export const metadata = {
   title: 'Doubly Linked List Implementation | Visualize Doubly Linked List in JS, C, Python, Java',
@@ -24,10 +27,30 @@ export const metadata = {
 };
 
 export default function Page() {
+  const paths = [
+    { name: "Home", href: "/" },
+    { name: "Visualizer", href: "/visualizer" },
+    { name: "Linked List : Doubly", href: "" },
+  ];
+
   return (
     <>
-    <Navbar/>
-    <Animation/>
+      <div>
+        <Navbar />
+      </div>
+
+      <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
+        <section className="px-6 md:px-12">
+          <ModuleHeader category="Types" title="Doubly Linked List" paths={paths} />
+        </section>
+
+        <section>
+          <Animation />
+        </section>
+      </div>
+
+      <BackToTopButton />
+      <Footer />
     </>
   );
-};
+}

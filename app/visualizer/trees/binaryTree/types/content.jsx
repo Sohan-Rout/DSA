@@ -4,6 +4,7 @@ import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 /*  content.jsx  */
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import InContentAd from "@/app/components/ads/InContentAd";
 
 /* ------------- tiny helper to draw a tree ------------- */
 function drawTree(
@@ -206,17 +207,17 @@ export default function content() {
               {
                 title: 'Full Binary Tree',
                 svgRef: fullSvg,
-                description: 'A Full Binary Tree is a type of binary tree in which every node has either 0 or 2 children. It is perfectly structured, and all internal nodes have exactly two children while leaves are aligned at the same or adjacent levels, making it balanced for operations and ideal for understanding fundamental tree structures.'
+                description: "In a Full Binary Tree, there's no such thing as a node with just one child — every node has either zero children or exactly two. That strict rule keeps the tree evenly shaped, with leaves sitting at the same level or one level apart, which makes it a good starting point for understanding how balanced trees behave."
               },
               {
                 title: 'Degenerate (Skewed) Tree',
                 svgRef: degenSvg,
-                description: 'A Degenerate or Skewed Tree is a tree where each parent has only one child, making it essentially a linked list. It has the worst-case height of Θ(n), which can occur in unbalanced binary search trees when inserting sorted data without balancing, leading to inefficient operations.'
+                description: "A Degenerate, or Skewed, Tree is what you get when every parent node has only a single child — at that point it's really just a linked list wearing a tree's name. This is the worst case for height, Θ(n), and it typically happens when you insert already-sorted data into a binary search tree with no rebalancing, which tanks the performance benefits a tree is supposed to give you."
               },
               {
                 title: 'Complete Binary Tree',
                 svgRef: completeSvg,
-                description: 'A Complete Binary Tree is a binary tree in which all levels are fully filled except possibly the last, which is filled from left to right. It is the structure used by heaps, ensuring operations can be performed efficiently with predictable height and balanced shape.'
+                description: "A Complete Binary Tree fills every level entirely except possibly the last one, and even that last level has to fill up left-to-right with no gaps. That predictable, gap-free shape is exactly what heaps are built on, since it guarantees a compact height and keeps operations efficient."
               },
             ].map(({ title, svgRef, description }, i) => (
               <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -317,6 +318,8 @@ export default function content() {
               </tbody>
             </table>
           </div>
+
+          <InContentAd />
         </section>
       </article>
       <NewsletterEmbed mobile theme={theme} />

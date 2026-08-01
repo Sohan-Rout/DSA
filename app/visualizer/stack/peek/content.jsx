@@ -3,12 +3,12 @@ import ComplexityGraph from "@/app/components/ui/graph";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
-
+import InContentAd from "@/app/components/ads/InContentAd";
 const content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Returns the topmost element from the stack without removing it.`,
+    `Peek gives you a look at whatever's currently on top of the stack, but it leaves the stack exactly as it was — nothing gets popped.`,
     `The peek operation is useful when you need to inspect the top element before deciding whether to pop it or push another element onto the stack.`,
   ];
 
@@ -79,6 +79,8 @@ const content = () => {
                 maxN={25}
               />
             </div>
+
+            <InContentAd />
 
             <p className="text-gray-700 dark:text-gray-300 mt-4 leading-relaxed">
               {paragraphs[1]}

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
-
+import InContentAd from "@/app/components/ads/InContentAd";
 const content = () => {
 
   const [theme, setTheme] = useState("light");
@@ -24,9 +24,9 @@ const content = () => {
   }, []);
 
   const overview = [
-    `Linked List traversal involves visiting each node in the list exactly once, starting from the head and moving through the next pointers until the end is reached.`,
-    `Traversal is essential for operations like searching, displaying, or processing each element of the list. It ensures that all elements are accessed in sequence.`,
-    `Understanding traversal is a foundational step for more advanced linked list algorithms, including deletion, reversal, and cycle detection.`,
+    `Traversing a linked list is simply following the chain: start at the head, visit each node once, and keep hopping to the next pointer until you hit the end.`,
+    `It sounds trivial, but it's the mechanism underneath almost everything else you'd do with a list — searching for a value, printing every element, or running any per-node logic all rely on visiting nodes in order.`,
+    `It's worth getting comfortable with early, since deletion, reversal, and cycle detection all build directly on the same idea of walking the list node by node.`,
   ];
 
   const traversalTypes = [
@@ -280,6 +280,8 @@ const content = () => {
             </ul>
           </div>
         </section>
+
+        <InContentAd />
       </article>
       <NewsletterEmbed mobile theme={theme} />
     </main>

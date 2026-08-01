@@ -1,10 +1,6 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { useState } from "react";
-import PrivacyPolicyModal from "@/app/components/PrivacyPolicyModal";
-import TermsOfServiceModal from "@/app/components/termsOfServicesModal";
-import CookiePolicyModal from "@/app/components/cookie";
 import { GoHomeFill } from "react-icons/go";
 import { MdAnimation } from "react-icons/md";
 import { IoMdInformationCircle } from "react-icons/io";
@@ -12,10 +8,6 @@ import { HiSparkles } from "react-icons/hi2";
 import { RiQuestionLine } from "react-icons/ri";
 
 const Footer = () => {
-  const [showPolicyModal, setShowPolicyModal] = useState(false);
-  const [showTermsModal, setShowTermsModal] = useState(false);
-  const [showCookieModal, setShowCookieModal] = useState(false);
-
   const quickLinks = [
     { href: "/", text: "Home", icon: GoHomeFill },
     { href: "/#features", text: "Features", icon: HiSparkles },
@@ -72,9 +64,9 @@ const Footer = () => {
   ];
 
   const legalLinks = [
-    { href: "/privacy", text: "Privacy Policy", type: "policyModal" },
-    { href: "/terms", text: "Terms of Service", type: "termsModal" },
-    { href: "/cookies", text: "Cookies", type: "cookieModal" },
+    { href: "/privacy", text: "Privacy Policy" },
+    { href: "/terms", text: "Terms of Service" },
+    { href: "/cookies", text: "Cookies" },
   ];
 
   return (
@@ -165,62 +157,16 @@ const Footer = () => {
               <ul className="space-y-3">
                 {legalLinks.map((link, index) => (
                   <li key={index}>
-                    {link.type === "policyModal" ? (
-                      <button
-                        onClick={() => setShowPolicyModal(true)}
-                        className="text-gray-500 hover:text-blue-400 transition"
-                      >
-                        {link.text}
-                      </button>
-                    ) : 
-                      link.type === "termsModal" ? (
-                        <button
-                        onClick={() => setShowTermsModal(true)}
-                        className="text-gray-500 hover:text-blue-400 transition"
-                      >
-                        {link.text}
-                      </button>
-                      )
-                     :
-                      link.type === "cookieModal" ? (
-                        <button
-                        onClick={() => setShowCookieModal(true)}
-                        className="text-gray-500 hover:text-blue-400 transition"
-                      >
-                        {link.text}
-                      </button>
-                      )
-                      :
-                     (
-                      <Link
-                        href={link.href}
-                        className="text-gray-500 hover:text-blue-400 transition"
-                      >
-                        {link.text}
-                      </Link>
-                    )}
+                    <Link
+                      href={link.href}
+                      className="text-gray-500 hover:text-blue-400 transition"
+                    >
+                      {link.text}
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
-
-            {/* Render the modal */}
-            <PrivacyPolicyModal
-              isOpen={showPolicyModal}
-              onClose={() => setShowPolicyModal(false)}
-            />
-
-            {/* Render the modal */}
-            <TermsOfServiceModal
-              isOpen={showTermsModal}
-              onClose={() => setShowTermsModal(false)}
-            />
-
-            {/* Render the modal */}
-            <CookiePolicyModal
-              isOpen={showCookieModal}
-              onClose={() => setShowCookieModal(false)}
-            />
 
             <div>
               <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">

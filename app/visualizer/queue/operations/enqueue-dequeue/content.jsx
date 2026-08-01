@@ -3,12 +3,12 @@ import ComplexityGraph from "@/app/components/ui/graph";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
-
+import InContentAd from "@/app/components/ads/InContentAd";
 const content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `A Queue is a linear data structure that follows the First-In-First-Out (FIFO) principle. Elements are added at the rear (enqueue) and removed from the front (dequeue). It operates much like a real-world queue (line) where the first person to arrive is the first to be served.`,
+    `A queue works exactly like a line of people waiting: whoever joins first at the back gets served first at the front. In data-structure terms, new items go in at the rear through enqueue, and items come out from the front through dequeue — first in, first out.`,
     `The space complexity is O(n) where n is the number of elements in the queue, as it needs to store all elements.`,
     `Queues are fundamental in computer science and are used in various applications like CPU scheduling, disk scheduling, handling interrupts, breadth-first search, and any scenario where you need to maintain order of processing.`,
   ];
@@ -178,6 +178,8 @@ const content = () => {
                 maxN={25}
               />
             </div>
+
+        <InContentAd />
       </div>
     </section>
 

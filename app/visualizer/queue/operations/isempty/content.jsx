@@ -2,12 +2,12 @@
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
-
+import InContentAd from "@/app/components/ads/InContentAd";
 const content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `The isEmpty operation checks whether a queue contains any elements or not. It returns true if the queue is empty (no elements) and false if it contains elements. This is a fundamental operation used to prevent underflow when performing dequeue operations.`,
+    `isEmpty is a quick yes/no check on a queue: true if there's nothing in it, false if there's at least one element waiting. Its whole job is to act as a guard before a dequeue, so you never try to pull an item from a queue that has none.`,
     `The isEmpty operation is a simple but crucial part of queue functionality, serving as a safety check before removal operations and helping manage queue processing flow in algorithms and applications.`,
   ];
 
@@ -192,6 +192,8 @@ const content = () => {
               ))}
             </ul>
           </div>
+
+          <InContentAd />
         </section>
 
         {/* Practical Usage */}

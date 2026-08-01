@@ -3,12 +3,12 @@ import ComplexityGraph from "@/app/components/ui/graph";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
-
+import InContentAd from "@/app/components/ads/InContentAd";
 const content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `The Is Full operation checks whether a stack has reached its maximum capacity. This is particularly relevant for fixed-size stack implementations (arrays) rather than dynamic implementations (linked lists).`,
+    `isFull tells you whether a stack has run out of room to accept another push. It only really matters for a fixed-capacity stack like an array-backed one — a linked-list stack can just keep allocating nodes, so it rarely needs this check.`,
     `The Is Full operation is crucial when working with fixed-size stacks to prevent overflow errors. While not needed for dynamically-sized stacks, it's an essential safety check in many system-level implementations.`,
   ];
 
@@ -125,6 +125,8 @@ const content = () => {
                 maxN={25}
               />
             </div>
+
+            <InContentAd />
           </div>
         </section>
 
