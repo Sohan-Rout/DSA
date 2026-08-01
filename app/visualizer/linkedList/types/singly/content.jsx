@@ -1,7 +1,29 @@
 "use client";
-import InContentAd from "@/app/components/ads/InContentAd";
+import { useEffect, useState } from "react";
+import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 
+import InContentAd from "@/app/components/ads/InContentAd";
 const content = () => {
+
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+    };
+
+    updateTheme();
+
+    window.addEventListener("storage", updateTheme);
+    window.addEventListener("themeChange", updateTheme);
+
+    return () => {
+      window.removeEventListener("storage", updateTheme);
+      window.removeEventListener("themeChange", updateTheme);
+    };
+  }, []);
+
   const overview = [
     `A singly linked list is a chain of nodes where each node holds a value and a single pointer to the node after it. There's no fixed size to worry about — nodes are created and linked in as needed, which is what makes insertion and deletion so cheap compared to an array.`,
     `A head pointer marks where the chain starts, and the last node's pointer is simply null, marking where it ends. Adding or removing right at the head is O(1), but reaching some node in the middle means walking node-by-node from the start, which costs O(n).`,
@@ -88,8 +110,11 @@ const content = () => {
   ];
 
   return (
-    <main className="max-w-4xl mx-auto">
-      <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+    <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
+      <div className="md:col-span-3">
+        <NewsletterEmbed mobile={false} theme={theme} />
+      </div>
+      <article className="md:col-span-9 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* Overview Section */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -284,6 +309,7 @@ const content = () => {
 
         <InContentAd />
       </article>
+      <NewsletterEmbed mobile theme={theme} />
     </main>
   );
 };

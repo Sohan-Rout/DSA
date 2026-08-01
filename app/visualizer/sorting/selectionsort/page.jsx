@@ -59,8 +59,7 @@ export default function Page() {
 
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
         <section className="px-6 md:px-12">
-          <ModuleHeader category="Sorting" title="Selection Sort" paths={paths} />
-          <Content />
+          <ModuleHeader category="Sorting" title="Selection Sort" paths={paths} />          <Content />
         </section>
 
         <section>

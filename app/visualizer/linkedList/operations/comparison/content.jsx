@@ -1,6 +1,28 @@
+"use client";
+import { useEffect, useState } from "react";
+import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import InContentAd from "@/app/components/ads/InContentAd";
-
 const content = () => {
+
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+    };
+
+    updateTheme();
+
+    window.addEventListener("storage", updateTheme);
+    window.addEventListener("themeChange", updateTheme);
+
+    return () => {
+      window.removeEventListener("storage", updateTheme);
+      window.removeEventListener("themeChange", updateTheme);
+    };
+  }, []);
+
   const overview = [
     `To compare two linked lists, you're really asking one question: do both lists hold the exact same values, in the exact same order?`,
     `The usual way to answer that is to walk both lists at the same time with two separate pointers, checking that the values line up at every step along the way.`
@@ -31,8 +53,11 @@ const content = () => {
   ];
 
   return (
-    <main className="max-w-4xl mx-auto">
-      <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+    <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
+      <div className="md:col-span-3">
+        <NewsletterEmbed mobile={false} theme={theme} />
+      </div>
+      <article className="md:col-span-9 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* Overview */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -87,6 +112,7 @@ const content = () => {
 
         <InContentAd />
       </article>
+      <NewsletterEmbed mobile theme={theme} />
     </main>
   );
 };
