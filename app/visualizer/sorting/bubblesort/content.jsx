@@ -4,7 +4,7 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import InContentAd from "@/app/components/ads/InContentAd";
-const content = () => {
+const Content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
@@ -218,4 +218,4 @@ const content = () => {
   );
 };
 
-export default content;
+export default Content;

@@ -6,7 +6,7 @@ import React from "react";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import InContentAd from "@/app/components/ads/InContentAd";
 
-const content = () => {
+const Content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
@@ -309,4 +309,4 @@ const content = () => {
   );
 };
 
-export default content;
+export default Content;

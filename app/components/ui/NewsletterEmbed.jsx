@@ -1,10 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 const NewsletterEmbed = ({ mobile = false, theme = "light" }) => {
-  const pageUrl =
-    typeof window !== "undefined"
-      ? encodeURIComponent(window.location.href)
-      : "";
+  const [pageUrl, setPageUrl] = useState("");
+
+  useEffect(() => {
+    setPageUrl(encodeURIComponent(window.location.href));
+  }, []);
+
   const src = `https://scaleengineer.com/embed/subscribe?theme=${theme}&utm_campaign=dsa_visualizer&utm_source=${pageUrl}`;
   const wrapperClasses = mobile
     ? "block md:hidden w-full"

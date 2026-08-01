@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import InContentAd from "@/app/components/ads/InContentAd";
-const content = () => {
+const Content = () => {
 
   const [theme, setTheme] = useState("light");
 
@@ -325,4 +325,4 @@ const content = () => {
   );
 };
 
-export default content;
+export default Content;
