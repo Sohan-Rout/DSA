@@ -5,7 +5,7 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import { useEffect, useState } from "react";
 import InContentAd from "@/app/components/ads/InContentAd";
-const content = () => {
+const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
@@ -170,5 +170,5 @@ const content = () => {
   );
 };
 
-export default content;
+export default Content;
 
