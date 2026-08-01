@@ -1,7 +1,9 @@
+import InContentAd from "@/app/components/ads/InContentAd";
+
 const content = () => {
   const overview = [
-    `Comparing two linked lists involves checking whether both lists contain the same sequence of values in the same order.`,
-    `This is typically done using a pointer approach where we traverse both lists simultaneously and compare values at each corresponding node.`
+    `To compare two linked lists, you're really asking one question: do both lists hold the exact same values, in the exact same order?`,
+    `The usual way to answer that is to walk both lists at the same time with two separate pointers, checking that the values line up at every step along the way.`
   ];
 
   const mergeSteps = [
@@ -82,6 +84,8 @@ const content = () => {
             ))}
           </ul>
         </section>
+
+        <InContentAd />
       </article>
     </main>
   );

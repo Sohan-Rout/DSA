@@ -1,13 +1,14 @@
 "use client";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `A single-ended queue (often just called a queue) is a linear data structure that follows the FIFO (First-In-First-Out) principle. Elements are added (enqueued) at the rear and removed (dequeued) from the front, maintaining strict ordering.`,
-    `The single-ended queue is a fundamental data structure in computer science, providing predictable ordering that's essential for many algorithms and system design patterns where processing order matters.`,
+    `A single-ended queue is what most people just mean when they say "queue" — insertion only happens at the rear, removal only happens at the front, and that one-directional flow is what keeps the ordering strictly first-in, first-out.`,
+    `That predictability is the whole point. Plenty of algorithms and system designs depend on knowing that items get processed in exactly the order they arrived, and a single-ended queue is the simplest structure that guarantees it.`,
   ];
 
   const characteristics = [
@@ -213,6 +214,8 @@ const content = () => {
               ))}
             </ul>
           </div>
+
+          <InContentAd />
         </section>
 
         {/* Applications */}

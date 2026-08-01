@@ -1,12 +1,13 @@
 "use client";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `The isFull operation checks whether a queue has reached its maximum capacity in fixed-size implementations. It returns true if no more elements can be added (queue is full) and false if space remains. This operation is crucial for preventing overflow in array-based queue implementations.`,
+    `isFull only matters for queues with a hard capacity limit, like array-backed ones. It tells you true when there's no room left for another enqueue, and false when there's still space — a guard that stops you from writing past the end of the underlying array.`,
     `The isFull operation is critical for robust queue implementations in fixed-capacity scenarios, ensuring data integrity by preventing buffer overflow conditions in system programming and embedded applications.`,
   ];
 
@@ -206,6 +207,8 @@ const content = () => {
               ))}
             </ul>
           </div>
+
+          <InContentAd />
         </section>
 
         {/* Practical Usage */}

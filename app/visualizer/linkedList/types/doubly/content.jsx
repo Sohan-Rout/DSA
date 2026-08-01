@@ -1,8 +1,10 @@
+import InContentAd from "@/app/components/ads/InContentAd";
+
 const content = () => {
   const overview = [
-    `A Doubly Linked List is an advanced variation of the linked list where each node contains data and two pointers - one to the next node and another to the previous node. This bidirectional linkage enables traversal in both directions.`,
-    `The list maintains head and tail pointers, allowing O(1) operations at both ends. Each node's previous pointer forms the backward chain, while the next pointer forms the forward chain.`,
-    `Doubly linked lists are particularly useful when you need frequent backward traversal or operations at both ends of the list, providing more flexibility than singly linked lists at the cost of slightly higher memory overhead.`,
+    `A doubly linked list gives every node two pointers instead of one — one pointing forward to the next node, and one pointing backward to the previous node. That extra backward link is what lets you walk the list in either direction.`,
+    `Because both a head and tail pointer are kept, you get O(1) access at either end. The chain of "next" pointers reads the list forward, while the chain of "previous" pointers reads it backward.`,
+    `The tradeoff is straightforward: you pay for an extra pointer per node in memory, but in exchange you get backward traversal and fast operations at both ends, which a singly linked list can't offer as cheaply.`,
   ];
 
   const basicOperations = [
@@ -329,6 +331,8 @@ const content = () => {
             </div>
           </div>
         </section>
+
+        <InContentAd />
       </article>
     </main>
   );

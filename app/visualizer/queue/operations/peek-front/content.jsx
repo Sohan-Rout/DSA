@@ -1,12 +1,13 @@
 "use client";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `The peek front operation (also called front) retrieves the element at the front of the queue without removing it. This operation allows you to examine the next element to be processed while maintaining the queue's integrity.`,
+    `Peek front (sometimes just called front) lets you look at whatever's sitting at the head of the queue — the next thing due to be dequeued — without actually taking it out. Nothing about the queue changes; you're just reading its current state.`,
     `The peek front operation is essential for non-destructive queue inspection, enabling more flexible queue processing patterns while maintaining FIFO order. It's particularly valuable in scenarios where decision-making depends on the next item's properties without committing to its removal.`,
   ];
 
@@ -177,6 +178,8 @@ const content = () => {
                 </li>
               ))}
             </ul>
+
+            <InContentAd />
           </div>
         </section>
 

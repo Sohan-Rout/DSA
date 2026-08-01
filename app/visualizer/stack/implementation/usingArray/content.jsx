@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
@@ -58,7 +59,7 @@ const content = () => {
           </h1>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              A stack is a linear data structure that follows the LIFO (Last In First Out) principle. Arrays provide a simple way to implement stack operations with constant time complexity.
+              A stack follows LIFO — Last In, First Out — meaning whatever you pushed most recently is the first thing that comes back out. Backing it with an array is the most direct way to build one, since push and pop just work on the array's last index in constant time.
             </p>
           </div>
         </section>
@@ -171,6 +172,8 @@ const content = () => {
               </tbody>
             </table>
           </div>
+
+          <InContentAd />
         </section>
 
         <section className="p-6">

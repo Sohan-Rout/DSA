@@ -2,12 +2,13 @@
 import ComplexityGraph from "@/app/components/ui/graph";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import { useTheme } from "@/app/contexts/ThemeContext";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Linear Search is a simple method to find a particular value in a list. It checks each element one by one from the start until it finds the target value. If the value is found, it returns its position; otherwise, it says the value is not present.`,
+    `Linear Search doesn't assume anything about the list's order — it just starts at the beginning and checks one element at a time until it either finds a match or runs out of elements to check. Simple, but it works on any list, sorted or not.`,
     `Imagine you have a list of numbers: [5, 3, 8, 1, 9] and you want to find the number 8.`,
     `If the number is not in the list (e.g., searching for 10), the search ends without success.`,
     `Linear Search is easy to understand but can be slow for large lists compared to faster methods like Binary Search.`,
@@ -148,6 +149,8 @@ const content = () => {
                 maxN={25}
               />
             </div>
+
+            <InContentAd />
 
             <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">

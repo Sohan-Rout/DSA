@@ -1,7 +1,9 @@
+import InContentAd from "@/app/components/ads/InContentAd";
+
 const content = () => {
   const overview = [
-    `Merging two linked lists involves combining the nodes of both lists into one sorted list. This is typically done using a two-pointer approach where we repeatedly compare the heads of both lists and append the smaller node to the result.`,
-    `This operation is especially useful when both input lists are already sorted. The result is also a sorted list without requiring additional sorting operations.`
+    `Merging two linked lists means weaving their nodes together into a single ordered chain. The common technique is a two-pointer walk: look at both current heads, pick whichever is smaller, attach it to the result, and move that pointer forward.`,
+    `This trick only pays off when both lists were already sorted going in — you end up with a fully sorted merged list without ever needing to run a separate sort afterward.`
   ];
 
   const mergeSteps = [
@@ -83,6 +85,8 @@ const content = () => {
             ))}
           </ul>
         </section>
+
+        <InContentAd />
       </article>
     </main>
   );

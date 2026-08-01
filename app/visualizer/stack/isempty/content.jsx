@@ -2,12 +2,13 @@
 import ComplexityGraph from "@/app/components/ui/graph";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `The isEmpty operation checks whether a stack contains any elements or not. It's a fundamental operation that helps prevent errors when trying to perform operations like pop() or peek() on an empty stack.`,
+    `isEmpty just tells you whether there's anything on the stack at all. It exists so you can guard pop() and peek() calls — checking first avoids trying to read or remove from a stack that has nothing in it.`,
     `The isEmpty operation is a simple but crucial part of stack implementation, ensuring safe stack manipulation and preventing runtime errors.`,
   ];
 
@@ -147,6 +148,8 @@ const content = () => {
                 maxN={25}
               />
             </div>
+
+            <InContentAd />
             </div>
           </section>
 

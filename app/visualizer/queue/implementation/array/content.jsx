@@ -1,13 +1,14 @@
 "use client";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `Implementing a Queue using an array is a fundamental approach where we use a fixed-size or dynamic array to store elements while maintaining FIFO order. The array implementation requires careful handling of front and rear pointers to efficiently enqueue and dequeue elements.`,
-    `In a circular array implementation, we treat the array as circular to maximize space utilization. When either pointer reaches the end of the array, it wraps around to the beginning.`,
+    `The simplest way to build a queue is to back it with an array and track a front index and a rear index. As long as those two indices are updated correctly on every enqueue and dequeue, the array behaves like a proper FIFO queue.`,
+    `The catch with a plain array is wasted space at the front once you've dequeued a few elements — the circular-array trick fixes that by letting the rear index wrap back around to index 0 once it hits the end.`,
     `Queues are widely used in scenarios like printer job scheduling, call center systems, and network packet handling where order preservation is crucial.`,
   ];
 
@@ -175,6 +176,8 @@ const content = () => {
               ))}
             </ul>
           </div>
+
+          <InContentAd />
         </section>
 
         {/* Pros and Cons */}

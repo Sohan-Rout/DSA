@@ -2,12 +2,13 @@
 import ComplexityGraph from "@/app/components/ui/graph";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Quick Sort is an efficient, comparison-based sorting algorithm that follows the divide-and-conquer approach. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays according to whether they are less than or greater than the pivot. The sub-arrays are then recursively sorted.`,
+    `Quick Sort picks one element as a 'pivot' and uses it to split the rest of the array into two groups — everything smaller goes left of the pivot, everything larger goes right. Each of those groups then gets the same treatment recursively, until the whole array falls into place.`,
     `The log n factor comes from the division steps when partitions are balanced. The n² occurs when the pivot selection consistently creates unbalanced partitions.`,
     `Quick Sort is O(log n) space complexity for the call stack in the average case, but can degrade to O(n) in the worst case with unbalanced partitions. It is generally considered an in-place algorithm as it doesn't require significant additional space.`,
     `Quick Sort is the algorithm of choice for most standard library sorting implementations (like C's qsort, Java's Arrays.sort for primitives) due to its excellent average-case performance. It's particularly effective for large datasets that fit in memory.`,
@@ -220,6 +221,8 @@ const content = () => {
                 maxN={25}
               />
             </div>
+
+            <InContentAd />
           </div>
         </section>
 

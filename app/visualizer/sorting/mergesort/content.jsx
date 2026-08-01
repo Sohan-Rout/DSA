@@ -2,12 +2,13 @@
 import ComplexityGraph from "@/app/components/ui/graph";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `Merge Sort is an efficient, stable, comparison-based sorting algorithm that follows the divide-and-conquer approach. It works by recursively dividing the unsorted list into sublists until each sublist contains a single element, then repeatedly merges these sublists to produce new sorted sublists until there is only one sorted list remaining.`,
+    `Merge Sort takes the divide-and-conquer route: keep splitting the array in half until you're left with pieces of a single element each (which are trivially sorted), then merge those pieces back together two at a time, producing bigger and bigger sorted chunks until only one sorted array remains.`,
     `The log n factor comes from the division steps, while the n factor comes from the merge steps.`,
     `Merge Sort requires O(n) additional space for the temporary arrays during merging. This makes it not an in-place sorting algorithm, unlike Insertion Sort or Bubble Sort.`,
     `Merge Sort is particularly useful when sorting linked lists (where random access is expensive) and is the algorithm of choice for many standard library sorting implementations when stability is required. It's also commonly used in external sorting where data doesn't fit in memory.`,
@@ -146,6 +147,8 @@ const content = () => {
                 maxN={25}
               />
             </div>
+
+            <InContentAd />
           </div>
         </section>
 

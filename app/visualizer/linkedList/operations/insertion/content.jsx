@@ -1,8 +1,10 @@
+import InContentAd from "@/app/components/ads/InContentAd";
+
 const content = () => {
   const overview = [
-    `Linked List insertion involves adding new nodes to the linked data structure at various positions. Unlike arrays, linked lists allow efficient insertion at any point without reallocation or shifting of existing elements.`,
-    `Insertion is a fundamental operation that enables dynamic growth of the list. The efficiency varies based on insertion position, from O(1) for head/tail (with tail pointer) to O(n) for arbitrary positions.`,
-    `Mastering insertion techniques is crucial for building more complex data structures and algorithms that utilize linked lists as their foundation.`,
+    `Inserting into a linked list just means creating a new node and pointing the surrounding nodes at it correctly. Arrays would need to shift everything after the insertion point, but a linked list just rewires a couple of pointers.`,
+    `Where you insert changes the cost: adding at the head, or at the tail if you're keeping a tail pointer, is O(1). Inserting somewhere in the middle means walking the list to get there first, which is O(n).`,
+    `Getting comfortable with insertion is worth it early on, since it's the building block a lot of other linked-list-based structures and algorithms lean on.`,
   ];
 
   const insertionTypes = [
@@ -344,6 +346,8 @@ const content = () => {
             </ul>
           </div>
         </section>
+
+        <InContentAd />
       </article>
     </main>
   );

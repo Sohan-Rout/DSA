@@ -2,13 +2,14 @@
 import ComplexityGraph from "@/app/components/ui/graph";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
 
   const paragraph = [
-    `Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time. It works similarly to how you might sort playing cards in your hands - you take each new card and insert it into its proper position among the already sorted cards.`,
+    `Insertion Sort grows a sorted section of the array one element at a time, which is basically how most people sort a hand of playing cards — pick up the next card and slide it into the spot where it belongs among the cards you've already arranged.`,
     `The algorithm maintains a "sorted sublist" that grows with each iteration.`,
     `Insertion Sort is often used when the data is nearly sorted (where it approaches O(n) time) or when the dataset is small. Some hybrid algorithms like TimSort use Insertion Sort for small subarrays due to its low overhead.`,
   ];
@@ -192,6 +193,8 @@ const content = () => {
               maxN={25}
             />
           </div>
+
+          <InContentAd />
         </section>
 
         {/* Advantages */}

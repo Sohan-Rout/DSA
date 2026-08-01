@@ -2,12 +2,13 @@
 import ComplexityGraph from "@/app/components/ui/graph";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. It gets its name because smaller elements "bubble" to the top of the list.`,
+    `Bubble Sort walks through the array from one end to the other, checking each pair of neighboring values as it goes and swapping them whenever they're in the wrong order. One full walkthrough is called a pass, and the array keeps getting passed over again until a pass finishes without needing a single swap. The name comes from how the largest unsorted value rises toward its correct position with every pass, similar to a bubble floating up.`,
     `Bubble Sort is an in-place sorting algorithm, meaning it requires only O(1) additional space (for temporary storage during swaps).`,
     `Bubble Sort is simple to understand and implement but inefficient for large datasets. It's mainly used for educational purposes to introduce sorting algorithms. In practice, more efficient algorithms like QuickSort or MergeSort are preferred.`,
   ];
@@ -180,6 +181,8 @@ const content = () => {
               maxN={25}
             />
           </div>
+
+          <InContentAd />
         </section>
 
         {/* Space Complexity */}

@@ -1,8 +1,10 @@
+import InContentAd from "@/app/components/ads/InContentAd";
+
 const content = () => {
   const overview = [
-    `Linked List deletion involves removing nodes from the linked data structure at various positions. Unlike arrays, linked lists allow efficient deletion at any point without requiring shifting of remaining elements.`,
-    `Deletion is a fundamental operation that enables dynamic modification of the list. The efficiency varies based on deletion position, from O(1) for head to O(n) for arbitrary positions or tail (without tail pointer).`,
-    `Proper deletion requires careful pointer manipulation to maintain list integrity and avoid memory leaks (in languages without garbage collection).`,
+    `Deleting from a linked list means removing a node and re-linking the nodes around it so the chain stays intact. That's the big advantage over arrays: nothing has to shift, you just point around the node you're removing.`,
+    `How fast that deletion is depends entirely on where the node sits. Removing the head is a constant-time O(1) fix, but reaching an arbitrary node or the tail (if you don't keep a tail pointer) means walking the list first, which costs O(n).`,
+    `The tricky part isn't the removal itself, it's getting the pointer rewiring right so you don't accidentally orphan part of the list or leave a dangling reference behind.`,
   ];
 
   const deletionTypes = [
@@ -397,6 +399,8 @@ const content = () => {
             </ul>
           </div>
         </section>
+
+        <InContentAd />
       </article>
     </main>
   );

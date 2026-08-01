@@ -1,13 +1,14 @@
 "use client";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `A Priority Queue is an abstract data type where each element has a priority value, and elements are served based on priority rather than insertion order. Unlike a standard queue (FIFO), higher-priority elements are dequeued before lower-priority ones, regardless of when they were added.`,
-    `The priority queue is a fundamental data structure that enables efficient management of elements based on their importance or urgency. Its ability to always provide access to the highest (or lowest) priority item makes it indispensable in algorithms where processing order significantly impacts performance or correctness. The choice of implementation (heap, BST, etc.) depends on the specific application's requirements for insertion, extraction, and auxiliary operations.`,
+    `A priority queue throws out the "first come, first served" rule that a normal queue follows. Every element carries a priority, and whichever element has the most urgent priority gets dequeued next — it doesn't matter how long it's been sitting there.`,
+    `What makes it so useful is that it always hands you the most important item on demand, which is exactly what a lot of algorithms need. Under the hood it's usually built on a heap, though a balanced BST works too — which one you pick depends on how the application balances insertion speed against extraction speed.`,
   ];
 
   const characteristic = [
@@ -236,6 +237,8 @@ const content = () => {
             </div>
           </div>
         </section>
+
+        <InContentAd />
       </article>
 
       {/* Mobile iframe at bottom */}

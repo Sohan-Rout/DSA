@@ -1,10 +1,11 @@
 "use client";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const overview = [
-    `A Singly Linked List is a linear data structure where each element (node) contains data and a pointer to the next node. Unlike arrays, linked lists don't have fixed sizes and allow efficient insertion/deletion at any position.`,
-    `The list maintains a head pointer that points to the first node. The last node's next pointer is null, indicating the end of the list. This structure provides O(1) insertion/deletion at the head but O(n) access time for arbitrary elements.`,
-    `Singly linked lists are fundamental building blocks for more complex data structures like stacks, queues, and adjacency lists for graphs.`,
+    `A singly linked list is a chain of nodes where each node holds a value and a single pointer to the node after it. There's no fixed size to worry about — nodes are created and linked in as needed, which is what makes insertion and deletion so cheap compared to an array.`,
+    `A head pointer marks where the chain starts, and the last node's pointer is simply null, marking where it ends. Adding or removing right at the head is O(1), but reaching some node in the middle means walking node-by-node from the start, which costs O(n).`,
+    `It's one of the simplest data structures around, which is exactly why it shows up as the foundation for stacks, queues, and even graph adjacency lists.`,
   ];
 
   const basicOperations = [
@@ -280,6 +281,8 @@ const content = () => {
             </div>
           </div>
         </section>
+
+        <InContentAd />
       </article>
     </main>
   );

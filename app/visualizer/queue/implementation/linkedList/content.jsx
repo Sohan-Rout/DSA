@@ -1,13 +1,14 @@
 "use client";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `Implementing a Queue using a linked list provides dynamic memory allocation and efficient insertion/removal operations. Unlike array implementation, linked list queues don't have fixed capacity limitations and can grow dynamically as needed.`,
-    `Each node in the linked list contains the data and a pointer to the next node. The front pointer points to the first node (for dequeue), while the rear pointer points to the last node (for enqueue).`,
+    `Building a queue on top of a linked list sidesteps the fixed-capacity problem that array-backed queues have — nodes get allocated on demand, so the queue can keep growing as long as there's memory available.`,
+    `Two pointers are all it takes to manage it: a front pointer that tracks the node to dequeue next, and a rear pointer that tracks where new nodes get attached during an enqueue.`,
     `Linked list queues are particularly useful when the maximum size isn't known in advance or when frequent insertions/deletions are required.`,
   ];
 
@@ -138,6 +139,8 @@ const content = () => {
               ))}
             </ul>
           </div>
+
+          <InContentAd />
         </section>
 
         {/* Pros and Cons */}

@@ -2,12 +2,13 @@
 import ComplexityGraph from "@/app/components/ui/graph";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
+import InContentAd from "@/app/components/ads/InContentAd";
 
 const content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `Selection Sort is an in-place comparison sorting algorithm that divides the input list into two parts: a sorted sublist which is built up from left to right, and a remaining unsorted sublist. It repeatedly selects the smallest (or largest) element from the unsorted portion and moves it to the sorted portion.`,
+    `Selection Sort splits the array into a sorted part on the left and an unsorted part on the right, and on every pass it scans the unsorted part for the smallest remaining value and swaps it into place at the boundary. The sorted section grows by exactly one element each time.`,
     `The quadratic time complexity occurs because it performs O(n) comparisons for each of the O(n) elements.`,
     `Selection Sort is an in-place algorithm, requiring only O(1) additional space for temporary variables during swaps.`,
     `Selection Sort is primarily used for educational purposes to introduce sorting concepts. In practice, it's outperformed by more advanced algorithms like QuickSort and MergeSort, but can be useful when memory writes are expensive (since it makes only O(n) swaps).`,
@@ -194,6 +195,8 @@ const content = () => {
                 maxN={25}
               />
             </div>
+
+            <InContentAd />
           </div>
         </section>
 

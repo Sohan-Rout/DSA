@@ -1,4 +1,8 @@
 import Animation from "@/app/visualizer/trees/traversing/in-order/animation";
+import Navbar from "@/app/components/navbarinner";
+import ModuleHeader from "@/app/components/modules/Header";
+import Footer from "@/app/components/footer";
+import BackToTopButton from "@/app/components/ui/backtotop";
 
 export const metadata = {
   title: 'Tree Visualizer | Learn Tree Data Structures with Animation',
@@ -8,8 +12,31 @@ export const metadata = {
 };
 
 const TreeVisualizer = () => {
+  const paths = [
+    { name: "Home", href: "/" },
+    { name: "Visualizer", href: "/visualizer" },
+    { name: "Trees : In-order Traversal", href: "" },
+  ];
+
   return (
-    <Animation />
+    <>
+      <div>
+        <Navbar />
+      </div>
+
+      <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
+        <section className="px-6 md:px-12">
+          <ModuleHeader category="Trees" title="In-order Traversal" paths={paths} />
+        </section>
+
+        <section>
+          <Animation />
+        </section>
+      </div>
+
+      <BackToTopButton />
+      <Footer />
+    </>
   );
 };
 
