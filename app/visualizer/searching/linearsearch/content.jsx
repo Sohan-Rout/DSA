@@ -5,6 +5,95 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import { useEffect, useState } from "react";
 import InContentAd from "@/app/components/ads/InContentAd";
+
+const ArrayCheckDiagram = ({ values, current, checked, found, keyPrefix }) => {
+  const boxSize = 40;
+  const gap = 8;
+  const paddingX = 8;
+  const topPadding = 26;
+  const width = values.length * (boxSize + gap) - gap + paddingX * 2;
+  const height = boxSize + topPadding + 22;
+
+  const boxX = (idx) => paddingX + idx * (boxSize + gap);
+  const boxY = topPadding;
+  const cx = (idx) => boxX(idx) + boxSize / 2;
+
+  const fillFor = (idx) => {
+    if (idx === current) return found ? "#10b981" : "#f59e0b";
+    if (checked.includes(idx)) return "#94a3b8";
+    return "#3b82f6";
+  };
+
+  const opacityFor = (idx) =>
+    idx === current || checked.includes(idx) ? "0.9" : "0.25";
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="mx-auto"
+      style={{ width: `${width}px`, maxWidth: "100%" }}
+    >
+      <defs>
+        <marker
+          id={`${keyPrefix}-ptr-arrow`}
+          markerWidth="7"
+          markerHeight="7"
+          refX="6"
+          refY="3.5"
+          orient="auto"
+        >
+          <path d="M0,0 L7,3.5 L0,7 Z" fill={found ? "#10b981" : "#f59e0b"} />
+        </marker>
+      </defs>
+
+      <line
+        x1={cx(current)}
+        y1={boxY - 14}
+        x2={cx(current)}
+        y2={boxY - 4}
+        stroke={found ? "#10b981" : "#f59e0b"}
+        strokeWidth="1.5"
+        markerEnd={`url(#${keyPrefix}-ptr-arrow)`}
+      />
+
+      {values.map((val, idx) => (
+        <g key={`${keyPrefix}-box-${idx}`}>
+          <rect
+            x={boxX(idx)}
+            y={boxY}
+            width={boxSize}
+            height={boxSize}
+            rx="6"
+            fill={fillFor(idx)}
+            opacity={opacityFor(idx)}
+            stroke={fillFor(idx)}
+            strokeWidth="2"
+          />
+          <text
+            x={cx(idx)}
+            y={boxY + boxSize / 2 + 5}
+            textAnchor="middle"
+            className="fill-gray-800 dark:fill-gray-100"
+            fontSize="14"
+            fontWeight="700"
+          >
+            {val}
+          </text>
+          <text
+            x={cx(idx)}
+            y={boxY + boxSize + 16}
+            textAnchor="middle"
+            className="fill-gray-400 dark:fill-gray-500"
+            fontSize="9"
+          >
+            {idx}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+};
+
 const Content = () => {
   const { theme } = useTheme();
 
@@ -15,12 +104,27 @@ const Content = () => {
     `Linear Search is easy to understand but can be slow for large lists compared to faster methods like Binary Search.`,
   ];
 
+  const searchArray = [5, 3, 8, 1, 9];
+
   const working = [
-    { points: "Start from the first number (5). Is 5 equal to 8? No." },
-    { points: "Move to the next number (3). Is 3 equal to 8? No." },
+    {
+      points: "Start from the first number (5). Is 5 equal to 8? No.",
+      current: 0,
+      checked: [],
+      found: false,
+    },
+    {
+      points: "Move to the next number (3). Is 3 equal to 8? No.",
+      current: 1,
+      checked: [0],
+      found: false,
+    },
     {
       points:
         "Move to the next number (8). Is 8 equal to 8? Yes! Stop here. The position is 2 (or 3 if counting starts from 1).",
+      current: 2,
+      checked: [0, 1],
+      found: true,
     },
   ];
 
@@ -75,16 +179,40 @@ const Content = () => {
               {paragraphs[1]}
             </p>
 
-            <ol className="space-y-3 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+            <ol className="space-y-5 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {working.map((item, index) => (
                 <li
                   key={index}
                   className="text-gray-700 dark:text-gray-300 pl-2"
                 >
                   {item.points}
+                  <div className="mt-3 not-prose">
+                    <ArrayCheckDiagram
+                      keyPrefix={`ls-step${index}`}
+                      values={searchArray}
+                      current={item.current}
+                      checked={item.checked}
+                      found={item.found}
+                    />
+                  </div>
                 </li>
               ))}
             </ol>
+
+            <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-amber-500 inline-block"></span>
+                Currently checking
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-slate-400 inline-block"></span>
+                Checked, no match
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-emerald-500 inline-block"></span>
+                Match found
+              </span>
+            </div>
 
             <p className="text-gray-700 dark:text-gray-300 mt-4 leading-relaxed">
               {paragraphs[2]}
