@@ -91,6 +91,7 @@ export default function Page() {
             title="Explore Other Tree Topics"
             links={[
               { text: "BST Deletion", url: "./deletion" },
+              { text: "BST Searching", url: "./searching" },
               { text: "Binary Tree Types", url: "../binaryTree/types" },
               { text: "Structure & Properties", url: "../binaryTree/properties" },
             ]}

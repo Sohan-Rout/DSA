@@ -1,4 +1,4 @@
-import Animation from "@/app/visualizer/trees/bst/deletion/animation";
+import Animation from "@/app/visualizer/trees/bst/searching/animation";
 import Navbar from "@/app/components/navbarinner";
 import ModuleHeader from "@/app/components/modules/Header";
 import Footer from "@/app/components/footer";
@@ -6,27 +6,26 @@ import BackToTop from "@/app/components/ui/backtotop";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import CodeBlock from "@/app/components/modules/CodeBlock";
 import codeExamples from "./code";
-import Quiz from "@/app/visualizer/trees/bst/deletion/quiz";
-import Content from "@/app/visualizer/trees/bst/deletion/content";
+import Quiz from "@/app/visualizer/trees/bst/searching/quiz";
+import Content from "@/app/visualizer/trees/bst/searching/content";
 import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
-  title: "Binary Search Tree Deletion | Step-by-Step Animation & Explanation",
+  title: "Binary Search Tree Searching | Step-by-Step Animation & Explanation",
   description:
-    "Learn how deletion works in a Binary Search Tree — leaf, one-child, and two-children cases, in-order successor replacement — with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
+    "Learn how searching works in a Binary Search Tree with an interactive visualizer, a step-by-step comparison-path walkthrough, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [
-    "Binary Search Tree Deletion",
-    "BST Deletion",
-    "BST Deletion Visualization",
-    "BST Deletion Algorithm",
-    "In-order Successor",
+    "Binary Search Tree Searching",
+    "BST Search",
+    "BST Searching Visualization",
+    "BST Search Algorithm",
     "Binary Search Tree Animation",
-    "Delete from BST",
-    "BST Deletion in JavaScript",
-    "BST Deletion in C",
-    "BST Deletion in Python",
-    "BST Deletion in Java",
+    "Search in BST",
+    "BST Search in JavaScript",
+    "BST Search in C",
+    "BST Search in Python",
+    "BST Search in Java",
     "DSA Binary Search Tree",
     "Learn Binary Search Trees",
     "BST Quiz",
@@ -38,7 +37,7 @@ export const metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Binary Search Tree Deletion Visualization",
+        alt: "Binary Search Tree Searching Visualization",
       },
     ],
   },
@@ -48,7 +47,7 @@ export default function Page() {
   const paths = [
     { name: "Home", href: "/" },
     { name: "Visualizer", href: "/visualizer" },
-    { name: "Trees : BST Deletion", href: "" },
+    { name: "Trees : BST Searching", href: "" },
   ];
 
   return (
@@ -59,7 +58,7 @@ export default function Page() {
 
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
         <section className="px-6 md:px-12">
-          <ModuleHeader category="Binary Search Tree" title="Deletion" paths={paths} />
+          <ModuleHeader category="Binary Search Tree" title="Searching" paths={paths} />
           <Content />
         </section>
 
@@ -75,14 +74,14 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <CodeBlock title="Binary Search Tree Deletion Implementation" codeExamples={codeExamples} />
+          <CodeBlock title="Binary Search Tree Searching Implementation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">
           <ModuleCard
-            moduleId={MODULE_MAPS.bstDeletion}
-            title="BST Deletion"
-            description="Mark BST Deletion as done and view it on your dashboard"
+            moduleId={MODULE_MAPS.bstSearching}
+            title="BST Searching"
+            description="Mark BST Searching as done and view it on your dashboard"
             initialDone={false}
           />
         </section>
@@ -92,7 +91,7 @@ export default function Page() {
             title="Explore Other Tree Topics"
             links={[
               { text: "BST Insertion", url: "./insertion" },
-              { text: "BST Searching", url: "./searching" },
+              { text: "BST Deletion", url: "./deletion" },
               { text: "Binary Tree Types", url: "../binaryTree/types" },
               { text: "Structure & Properties", url: "../binaryTree/properties" },
             ]}
