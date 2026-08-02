@@ -1,14 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import Footer from '@/app/components/footer';
 import ResetButton from '@/app/components/ui/resetButton';
-import ExploreOther from '@/app/components/ui/exploreOther';
-import Content from "@/app/visualizer/linkedList/types/circular/content";
-import Quiz from '@/app/visualizer/linkedList/types/circular/quiz';
-import CodeBlock from "@/app/visualizer/linkedList/types/circular/codeBlock";
-import BackToTop from '@/app/components/ui/backtotop';
-import GoBackButton from "@/app/components/ui/goback";
 
 const CircularLinkedListVisualizer = () => {
   const [inputValue, setInputValue] = useState('');
@@ -92,25 +85,13 @@ const CircularLinkedListVisualizer = () => {
   }, [list]);
 
   return (
-    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
       <main className="container mx-auto px-6 pt-16 pb-4">
-        {/* go back block here */}
-        <div className="mt-10 sm:mt-10">
-          <GoBackButton />
-        </div>
-
-        {/* main logic here */}
-        <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
-          <span className="text-black dark:text-white">Circular Linked List</span>
-        </h1>
-        <div className="bg-black border border-none dark:bg-gray-600 w-full h-[2px] rounded-xl mt-2 mb-5"></div>
-        <Content />
         <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
           Visualize Circular Linked List Operations
         </p>
         
         {/* Input Form */}
-        <div className="max-w-md mx-auto bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md mb-8 border border-gray-200 dark:border-gray-700">
+        <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md mb-8 border border-gray-200 dark:border-gray-700">
           <div className="mb-4">
             <label className="block text-gray-700 dark:text-gray-300 mb-2 text-sm font-medium">
               Node Value
@@ -160,7 +141,7 @@ const CircularLinkedListVisualizer = () => {
                   const centerY = 0;
                   const nodeX = centerX + radius * Math.cos(angle);
                   const nodeY = centerY + radius * Math.sin(angle);
-                  
+
                   return (
                     <div
                       key={node.id}
@@ -211,11 +192,11 @@ const CircularLinkedListVisualizer = () => {
                       const startY = 50 + (radius * Math.sin(angle1)) / 5;
                       const endX = 50 + (radius * Math.cos(angle2)) / 5;
                       const endY = 50 + (radius * Math.sin(angle2)) / 5;
-                      
+
                       // Calculate control points for curved arrows
                       const controlX = 50;
                       const controlY = 50;
-                      
+
                       return (
                         <g key={`connection-${node.id}`} className="connection-arrow">
                           {/* Curved path */}
@@ -226,19 +207,19 @@ const CircularLinkedListVisualizer = () => {
                             strokeWidth="2"
                             strokeDasharray={index === list.length - 1 ? "5,5" : "0"}
                           />
-                          
+
                           {/* Arrowhead */}
-                          <marker 
-                            id={`arrowhead-${node.id}`} 
-                            markerWidth="10" 
-                            markerHeight="7" 
-                            refX="9" 
-                            refY="3.5" 
+                          <marker
+                            id={`arrowhead-${node.id}`}
+                            markerWidth="10"
+                            markerHeight="7"
+                            refX="9"
+                            refY="3.5"
                             orient="auto"
                           >
                             <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" />
                           </marker>
-                          
+
                           {/* Arrow line with arrowhead */}
                           <path
                             d={`M ${startX}% ${startY}% Q ${controlX}% ${controlY}%, ${endX}% ${endY}%`}
@@ -257,26 +238,7 @@ const CircularLinkedListVisualizer = () => {
             </div>
           )}
         </div>
-
-        <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
-          Test Your Knowledge before moving forward!
-        </p>
-        <Quiz />
-
-        <CodeBlock/>
-
-        <ExploreOther
-          title="Explore Other Types"
-          links={[
-            { text: "Singly Linked List", url: "./singly" },
-            { text: "Doubly Linked List", url: "./doubly" },
-          ]}
-        />
-
       </main>
-      <BackToTop/>
-      <Footer />
-    </div>
   );
 };
 

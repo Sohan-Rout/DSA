@@ -2,6 +2,113 @@
 import { useEffect, useState } from "react";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import InContentAd from "@/app/components/ads/InContentAd";
+
+const LoopDiagram = ({ nodes, keyPrefix }) => {
+  const size = 220;
+  const topPadding = 24;
+  const height = size + topPadding;
+  const centerX = size / 2;
+  const centerY = size / 2 + topPadding;
+  const radius = 70;
+  const nodeRadius = 26;
+
+  const positions = nodes.map((_, i) => {
+    const angle = (-90 + i * (360 / nodes.length)) * (Math.PI / 180);
+    return {
+      x: centerX + radius * Math.cos(angle),
+      y: centerY + radius * Math.sin(angle),
+    };
+  });
+
+  return (
+    <svg viewBox={`0 0 ${size} ${height}`} className="w-full max-w-[220px] mx-auto">
+      <defs>
+        <marker
+          id={`${keyPrefix}-arrow`}
+          markerWidth="8"
+          markerHeight="8"
+          refX="7"
+          refY="4"
+          orient="auto"
+        >
+          <path d="M0,0 L8,4 L0,8 Z" fill="#6366f1" />
+        </marker>
+      </defs>
+
+      {positions.map((pos, i) => {
+        const next = positions[(i + 1) % positions.length];
+        const dx = next.x - pos.x;
+        const dy = next.y - pos.y;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        const ux = dx / dist;
+        const uy = dy / dist;
+        const startX = pos.x + ux * (nodeRadius + 2);
+        const startY = pos.y + uy * (nodeRadius + 2);
+        const endX = next.x - ux * (nodeRadius + 6);
+        const endY = next.y - uy * (nodeRadius + 6);
+        const midX = (startX + endX) / 2;
+        const midY = (startY + endY) / 2;
+        const controlX = midX + (centerX - midX) * 0.35;
+        const controlY = midY + (centerY - midY) * 0.35;
+
+        return (
+          <path
+            key={`${keyPrefix}-edge-${i}`}
+            d={`M ${startX} ${startY} Q ${controlX} ${controlY} ${endX} ${endY}`}
+            fill="none"
+            stroke="#6366f1"
+            strokeWidth="2"
+            markerEnd={`url(#${keyPrefix}-arrow)`}
+          />
+        );
+      })}
+
+      {positions.map((pos, i) => (
+        <g key={`${keyPrefix}-node-${i}`}>
+          <circle
+            cx={pos.x}
+            cy={pos.y}
+            r={nodeRadius}
+            fill={i === 0 ? "#10b981" : "#3b82f6"}
+            opacity="0.15"
+          />
+          <circle
+            cx={pos.x}
+            cy={pos.y}
+            r={nodeRadius}
+            fill="none"
+            stroke={i === 0 ? "#10b981" : "#3b82f6"}
+            strokeWidth="2"
+          />
+          <text
+            x={pos.x}
+            y={pos.y + 5}
+            textAnchor="middle"
+            className="fill-gray-800 dark:fill-gray-100"
+            fontSize="13"
+            fontWeight="600"
+          >
+            {nodes[i]}
+          </text>
+        </g>
+      ))}
+
+      {positions[0] && (
+        <text
+          x={positions[0].x}
+          y={positions[0].y - nodeRadius - 8}
+          textAnchor="middle"
+          className="fill-emerald-600 dark:fill-emerald-400"
+          fontSize="11"
+          fontWeight="700"
+        >
+          head
+        </text>
+      )}
+    </svg>
+  );
+};
+
 const Content = () => {
 
   const [theme, setTheme] = useState("light");
@@ -39,21 +146,21 @@ const Content = () => {
   ];
 
   const insertionSteps = [
-    { step: "1. Create new node with data" },
-    { step: "2. If list is empty, set head and tail to new node" },
-    { step: "3. Make new node point to itself (circular reference)" },
-    { step: "4. For non-empty list, set new node's next to current head" },
-    { step: "5. Update tail's next pointer to new node" },
-    { step: "6. Move head pointer to new node" },
+    { step: "Create new node with data" },
+    { step: "If list is empty, set head and tail to new node" },
+    { step: "Make new node point to itself (circular reference)" },
+    { step: "For non-empty list, set new node's next to current head" },
+    { step: "Update tail's next pointer to new node" },
+    { step: "Move head pointer to new node" },
   ];
 
   const deletionSteps = [
-    { step: "1. Check if list is empty" },
-    { step: "2. If single node exists, set head and tail to null" },
-    { step: "3. For head deletion, update head to head.next" },
-    { step: "4. Update tail's next pointer to new head" },
-    { step: "5. For middle deletion, find node and update previous node's pointer" },
-    { step: "6. Handle special case when deleting last node" },
+    { step: "Check if list is empty" },
+    { step: "If single node exists, set head and tail to null" },
+    { step: "For head deletion, update head to head.next" },
+    { step: "Update tail's next pointer to new head" },
+    { step: "For middle deletion, find node and update previous node's pointer" },
+    { step: "Handle special case when deleting last node" },
   ];
 
   const prosCons = [
@@ -113,7 +220,7 @@ const Content = () => {
             ))}
             <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                <strong>Key Property:</strong> The last node's next pointer always points back to the first node, creating a continuous loop.
+                <strong>Key Property:</strong> The last node{"\'"}s next pointer always points back to the first node, creating a continuous loop.
               </p>
             </div>
           </div>
@@ -147,35 +254,24 @@ const Content = () => {
         {/* Insertion Process */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Insertion Process</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-                {insertionSteps.map((step, index) => (
-                  <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
-                    {step.step}
-                  </li>
-                ))}
-              </ol>
-            </div>
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
-              <div className="flex flex-col items-center space-y-4">
-                <div className="relative">
-                  <div className="w-64 h-32 rounded-full border-2 border-blue-400 flex items-center justify-center">
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">head</div>
-                    <div className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">[A]</div>
-                    <div className="absolute top-1/2 right-1/4 transform translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">[B]</div>
-                  </div>
-                  <div className="text-center mt-4 text-gray-600 dark:text-gray-300">Existing circular list</div>
-                </div>
-                <div className="text-center text-gray-600 dark:text-gray-300">↓ Insert X at head ↓</div>
-                <div className="relative">
-                  <div className="w-64 h-32 rounded-full border-2 border-blue-400 flex items-center justify-center">
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">head</div>
-                    <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">[X]</div>
-                    <div className="absolute top-3/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">[A]</div>
-                    <div className="absolute top-3/4 right-1/4 transform translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">[B]</div>
-                  </div>
-                </div>
+          <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+            {insertionSteps.map((step, index) => (
+              <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
+                {step.step}
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-6 bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+              <div>
+                <LoopDiagram nodes={["A", "B"]} keyPrefix="insert-before" />
+                <div className="text-center mt-2 text-gray-600 dark:text-gray-300">Existing circular list</div>
+              </div>
+              <div className="text-gray-500 dark:text-gray-400 text-2xl rotate-90 sm:rotate-0">→</div>
+              <div>
+                <LoopDiagram nodes={["X", "A", "B"]} keyPrefix="insert-after" />
+                <div className="text-center mt-2 text-gray-600 dark:text-gray-300">After inserting X at head</div>
               </div>
             </div>
           </div>
@@ -184,35 +280,24 @@ const Content = () => {
         {/* Deletion Process */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Deletion Process</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-                {deletionSteps.map((step, index) => (
-                  <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
-                    {step.step}
-                  </li>
-                ))}
-              </ol>
-            </div>
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
-              <div className="flex flex-col items-center space-y-4">
-                <div className="relative">
-                  <div className="w-64 h-32 rounded-full border-2 border-blue-400 flex items-center justify-center">
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">head</div>
-                    <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">[X]</div>
-                    <div className="absolute top-3/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">[A]</div>
-                    <div className="absolute top-3/4 right-1/4 transform translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">[B]</div>
-                  </div>
-                  <div className="text-center mt-4 text-gray-600 dark:text-gray-300">Current circular list</div>
-                </div>
-                <div className="text-center text-gray-600 dark:text-gray-300">↓ Delete X (head) ↓</div>
-                <div className="relative">
-                  <div className="w-64 h-32 rounded-full border-2 border-blue-400 flex items-center justify-center">
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">head</div>
-                    <div className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">[A]</div>
-                    <div className="absolute top-1/2 right-1/4 transform translate-x-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded">[B]</div>
-                  </div>
-                </div>
+          <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+            {deletionSteps.map((step, index) => (
+              <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
+                {step.step}
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-6 bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+              <div>
+                <LoopDiagram nodes={["X", "A", "B"]} keyPrefix="delete-before" />
+                <div className="text-center mt-2 text-gray-600 dark:text-gray-300">Current circular list</div>
+              </div>
+              <div className="text-gray-500 dark:text-gray-400 text-2xl rotate-90 sm:rotate-0">→</div>
+              <div>
+                <LoopDiagram nodes={["A", "B"]} keyPrefix="delete-after" />
+                <div className="text-center mt-2 text-gray-600 dark:text-gray-300">After deleting X (head)</div>
               </div>
             </div>
           </div>
@@ -263,39 +348,6 @@ const Content = () => {
                 ))}
               </tbody>
             </table>
-          </div>
-        </section>
-
-        {/* Pros and Cons */}
-        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Pros and Cons</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 mb-3">Advantages</h3>
-              <ul className="space-y-2">
-                {prosCons.filter(item => item.type === "pro").map((item, index) => (
-                  <li key={index} className="flex items-start">
-                    <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-700 dark:text-gray-300">{item.point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-red-600 dark:text-red-400 mb-3">Limitations</h3>
-              <ul className="space-y-2">
-                {prosCons.filter(item => item.type === "con").map((item, index) => (
-                  <li key={index} className="flex items-start">
-                    <svg className="h-5 w-5 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    <span className="text-gray-700 dark:text-gray-300">{item.point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </section>
 
