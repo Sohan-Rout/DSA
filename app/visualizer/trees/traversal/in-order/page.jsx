@@ -93,6 +93,8 @@ export default function Page() {
             title="Explore Other Tree Topics"
             links={[
               { text: "Pre-order Traversal", url: "../pre-order" },
+              { text: "Post-order Traversal", url: "../post-order" },
+              { text: "Level-order Traversal", url: "../level-order" },
               { text: "BST Insertion", url: "../bst/insertion" },
               { text: "BST Deletion", url: "../bst/deletion" },
               { text: "BST Searching", url: "../bst/searching" },
