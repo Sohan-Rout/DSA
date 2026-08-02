@@ -92,6 +92,7 @@ export default function Page() {
             links={[
               { text: "BST Deletion", url: "./deletion" },
               { text: "BST Searching", url: "./searching" },
+              { text: "AVL Balancing", url: "./avl" },
               { text: "Binary Tree Types", url: "../binaryTree/types" },
               { text: "Structure & Properties", url: "../binaryTree/properties" },
             ]}
