@@ -57,17 +57,14 @@ const LabeledTreeDiagram = () => {
       ))}
 
       {edges.map(([from, to], i) => (
-        <motion.line
+        <motion.path
           key={`${from}-${to}`}
-          x1={byId[from].x}
-          y1={byId[from].y}
-          x2={byId[to].x}
-          y2={byId[to].y}
+          d={`M ${byId[from].x} ${byId[from].y} L ${byId[to].x} ${byId[to].y}`}
+          fill="none"
           stroke="#6366f1"
           strokeWidth="2"
           initial={{ pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.6 }}
+          animate={{ pathLength: 1, opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.15 + i * 0.08, ease: "easeInOut" }}
         />
       ))}
@@ -76,8 +73,7 @@ const LabeledTreeDiagram = () => {
         <motion.g
           key={n.id}
           initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.6 }}
+          animate={{ scale: 1, opacity: 1 }}
           transition={{
             duration: 0.4,
             delay: 0.15 + n.depth * 0.25 + i * 0.03,
