@@ -5,7 +5,8 @@ import Footer from "@/app/components/footer";
 import BackToTopButton from "@/app/components/ui/backtotop";
 import Content from "./content";
 import Quiz from "./quiz";
-import Code from "./codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 import ExploreOther from "@/app/components/ui/exploreOther";
@@ -86,7 +87,7 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <Code />
+          <CodeBlock title="Circular Linked List Implementation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">

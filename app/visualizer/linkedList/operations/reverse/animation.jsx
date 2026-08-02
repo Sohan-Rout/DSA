@@ -7,7 +7,8 @@ import BackToTop from '@/app/components/ui/backtotop';
 import GoBackButton from "@/app/components/ui/goback";
 import Content from "@/app/visualizer/linkedList/operations/reverse/content";
 import Quiz from "@/app/visualizer/linkedList/operations/reverse/quiz";
-import CodeBlock from "@/app/visualizer/linkedList/operations/reverse/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 
 const LinkedListReverse = () => {
   const [list, setList] = useState([]);
@@ -357,7 +358,7 @@ const LinkedListReverse = () => {
           Test Your Knowledge Before Moving Forward!
         </p>
         <Quiz />
-        <CodeBlock />
+        <CodeBlock title="Linked List Reversal Implementation" codeExamples={codeExamples} />
 
         <ExploreOther
           title="Explore Other Operations"

@@ -5,7 +5,8 @@ import Footer from '@/app/components/footer';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import Content from "@/app/visualizer/linkedList/operations/traversal/content";
 import Quiz from '@/app/visualizer/linkedList/operations/traversal/quiz';
-import CodeBlock from "@/app/visualizer/linkedList/operations/traversal/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import BackToTop from '@/app/components/ui/backtotop';
 import GoBackButton from "@/app/components/ui/goback";
 
@@ -283,7 +284,7 @@ const LinkedListTraversal = () => {
         </p>
         <Quiz />
 
-        <CodeBlock />
+        <CodeBlock title="Linked List Traversal Implementation" codeExamples={codeExamples} />
 
         <ExploreOther
           title="Explore Other Operations"

@@ -2,7 +2,8 @@
 import Footer from "@/app/components/footer";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import Content from "@/app/visualizer/trees/binaryTree/types/content";
-import CodeBlock from "@/app/visualizer/trees/binaryTree/types/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import GoBackButton from "@/app/components/ui/goback";
 import BackToTop from "@/app/components/ui/backtotop";
 
@@ -23,7 +24,7 @@ const InfixToPostfixVisualizer = () => {
           <div className='bg-black border border-none dark:bg-gray-600 w-full h-[2px] rounded-xl mt-2 mb-5'></div>
           <Content />
         <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8"></p>
-        <CodeBlock />
+        <CodeBlock title="Binary tree types" codeExamples={codeExamples} />
         <ExploreOther
           title="Explore other implementation"
           links={[{ text: "Structure & Properties", url: "./properties" }]}

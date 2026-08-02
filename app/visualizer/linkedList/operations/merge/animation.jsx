@@ -5,7 +5,8 @@ import Footer from '@/app/components/footer';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import Content from "@/app/visualizer/linkedList/operations/merge/content";
 import Quiz from '@/app/visualizer/linkedList/operations/merge/quiz';
-import CodeBlock from "@/app/visualizer/linkedList/operations/merge/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import BackToTop from '@/app/components/ui/backtotop';
 import GoBackButton from "@/app/components/ui/goback";
 
@@ -392,7 +393,7 @@ const LinkedListMerge = () => {
         </p>
         <Quiz />
 
-        <CodeBlock />
+        <CodeBlock title="Linked List Merging Implementation" codeExamples={codeExamples} />
 
         <ExploreOther
           title="Explore Other Operations"

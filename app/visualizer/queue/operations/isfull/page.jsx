@@ -3,7 +3,8 @@ import Navbar from "@/app/components/navbarinner";
 import ModuleHeader from "@/app/components/modules/Header";
 import Content from "@/app/visualizer/queue/operations/isfull/content";
 import Quiz from '@/app/visualizer/queue/operations/isfull/quiz';
-import Code from "@/app/visualizer/queue/operations/isfull/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 import ExploreOther from '@/app/components/ui/exploreOther';
@@ -71,7 +72,7 @@ export default function page() {
         </section>
 
         <section className="px-6">
-          <Code />
+          <CodeBlock title="Queue IsFull Operation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">

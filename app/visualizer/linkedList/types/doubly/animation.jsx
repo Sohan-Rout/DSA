@@ -5,7 +5,8 @@ import ResetButton from '@/app/components/ui/resetButton';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import Content from "@/app/visualizer/linkedList/types/doubly/content";
 import Quiz from '@/app/visualizer/linkedList/types/doubly/quiz';
-import CodeBlock from "@/app/visualizer/linkedList/types/doubly/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import BackToTop from '@/app/components/ui/backtotop';
 import GoBackButton from "@/app/components/ui/goback";
 
@@ -211,7 +212,7 @@ const DoublyLinkedListVisualizer = () => {
         </p>
         <Quiz />
 
-        <CodeBlock/>
+        <CodeBlock title="Doubly Linked List Implementation" codeExamples={codeExamples} />
 
         <ExploreOther
           title="Explore Other Types"

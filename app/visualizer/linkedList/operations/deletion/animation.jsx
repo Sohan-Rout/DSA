@@ -5,7 +5,8 @@ import Footer from '@/app/components/footer';
 import ExploreOther from '@/app/components/ui/exploreOther';
 import Content from "@/app/visualizer/linkedList/operations/deletion/content";
 import Quiz from '@/app/visualizer/linkedList/operations/deletion/quiz';
-import CodeBlock from "@/app/visualizer/linkedList/operations/deletion/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import BackToTop from '@/app/components/ui/backtotop';
 import GoBackButton from "@/app/components/ui/goback";
 
@@ -236,7 +237,7 @@ const LinkedListVisualizer = () => {
         </p>
         <Quiz />
 
-        <CodeBlock/>
+        <CodeBlock title="Linked List Deletion Implementation" codeExamples={codeExamples} />
 
         <ExploreOther
           title="Explore Other Types"
