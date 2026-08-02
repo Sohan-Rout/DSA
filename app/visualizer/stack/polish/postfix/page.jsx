@@ -3,7 +3,8 @@ import Navbar from "@/app/components/navbarinner";
 import ModuleHeader from "@/app/components/modules/Header";
 import Content from "@/app/visualizer/stack/polish/postfix/content";
 import Quiz from "@/app/visualizer/stack/polish/postfix/quiz";
-import Code from "@/app/visualizer/stack/polish/postfix/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 import Footer from "@/app/components/footer";
@@ -73,7 +74,7 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <Code />
+          <CodeBlock title="PostFix implementation using Stack" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">

@@ -4,7 +4,8 @@ import ModuleHeader from "@/app/components/modules/Header";
 import Footer from "@/app/components/footer";
 import BackToTop from "@/app/components/ui/backtotop";
 import ExploreOther from "@/app/components/ui/exploreOther";
-import Code from "@/app/visualizer/searching/binarysearch/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import Quiz from "@/app/visualizer/searching/binarysearch/quiz";
 import Content from '@/app/visualizer/searching/binarysearch/content';
 import ModuleCard from "@/app/components/ui/ModuleCard";
@@ -83,7 +84,7 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <Code />
+          <CodeBlock title="Binary Search Implementation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">

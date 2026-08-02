@@ -3,7 +3,8 @@ import Navbar from "@/app/components/navbarinner";
 import ModuleHeader from "@/app/components/modules/Header";
 import Content from "@/app/visualizer/queue/types/singleEnded/content";
 import Quiz from "@/app/visualizer/queue/types/singleEnded/quiz";
-import Code from "@/app/visualizer/queue/types/singleEnded/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 import ExploreOther from '@/app/components/ui/exploreOther';
@@ -70,7 +71,7 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <Code />
+          <CodeBlock title="Single Ended Queue Implementation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">

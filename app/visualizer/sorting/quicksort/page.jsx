@@ -3,7 +3,8 @@ import Navbar from "@/app/components/navbarinner";
 import ModuleHeader from "@/app/components/modules/Header";
 import Content from "@/app/visualizer/sorting/quicksort/content";
 import Quiz from "@/app/visualizer/sorting/quicksort/quiz";
-import Code from "@/app/visualizer/sorting/quicksort/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import BackToTopButton from "@/app/components/ui/backtotop";
 import Footer from "@/app/components/footer";
@@ -77,7 +78,7 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <Code />
+          <CodeBlock title="Quick Sort Implementation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">

@@ -1,13 +1,6 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
-import Footer from '@/app/components/footer';
 import ResetButton from '@/app/components/ui/resetButton';
-import ExploreOther from '@/app/components/ui/exploreOther';
-import Content from "@/app/visualizer/linkedList/types/doubly/content";
-import Quiz from '@/app/visualizer/linkedList/types/doubly/quiz';
-import CodeBlock from "@/app/visualizer/linkedList/types/doubly/codeBlock";
-import BackToTop from '@/app/components/ui/backtotop';
-import GoBackButton from "@/app/components/ui/goback";
 
 const DoublyLinkedListVisualizer = () => {
   const [inputValue, setInputValue] = useState('');
@@ -62,19 +55,7 @@ const DoublyLinkedListVisualizer = () => {
   }, []);
 
   return (
-    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
-      <main className="container mx-auto px-6 pt-16 pb-4">
-        {/* go back block here */}
-        <div className="mt-10 sm:mt-10">
-          <GoBackButton />
-        </div>
-
-        {/* main logic here */}
-        <h1 className="text-4xl md:text-4xl mt-6 ml-10 font-bold text-left text-gray-900 dark:text-white mb-0">
-          <span className="text-black dark:text-white">Doubly Linked List</span>
-        </h1>
-        <div className="bg-black border border-none dark:bg-gray-600 w-full h-[2px] rounded-xl mt-2 mb-5"></div>
-        <Content />
+    <div className="container mx-auto px-2 sm:px-6 pb-4">
         <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
           Visualize Singly Linked List Operations
         </p>
@@ -205,28 +186,6 @@ const DoublyLinkedListVisualizer = () => {
               </div>
             )}
           </div>
-
-         <p className="text-lg text-center text-gray-600 dark:text-gray-400 mt-8 mb-8">
-          Test Your Knowledge before moving forward!
-        </p>
-        <Quiz />
-
-        <CodeBlock/>
-
-        <ExploreOther
-          title="Explore Other Types"
-          links={[
-            { text: "Singly Linked List", url: "./singly" },
-            { text: "Circular Linked List", url: "./circular" },
-          ]}
-        />
-      </main>
-      <div>
-        <div className="bg-gray-700 z-10 h-[1px]"></div>
-      </div>
-      <div className="bg-gray-700 z-10 h-[1px]"></div>
-      <BackToTop />
-      <Footer />
     </div>
   );
 };

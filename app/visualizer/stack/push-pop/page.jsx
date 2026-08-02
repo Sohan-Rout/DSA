@@ -3,7 +3,8 @@ import Navbar from "@/app/components/navbarinner";
 import ModuleHeader from "@/app/components/modules/Header";
 import Content from "@/app/visualizer/stack/push-pop/content";
 import Quiz from "@/app/visualizer/stack/push-pop/quiz";
-import Code from "@/app/visualizer/stack/push-pop/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
@@ -77,7 +78,7 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <Code />
+          <CodeBlock title="Stack Push & Pop Implementation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">

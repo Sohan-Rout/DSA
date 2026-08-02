@@ -4,7 +4,8 @@ import ModuleHeader from "@/app/components/modules/Header";
 import BackToTopButton from "@/app/components/ui/backtotop";
 import Footer from "@/app/components/footer";
 import ExploreOther from "@/app/components/ui/exploreOther";
-import Code from "@/app/visualizer/searching/linearsearch/codeBlock";
+import CodeBlock from "@/app/components/modules/CodeBlock";
+import codeExamples from "./code";
 import Quiz from "@/app/visualizer/searching/linearsearch/quiz";
 import Content from "@/app/visualizer/searching/linearsearch/content";
 import ModuleCard from "@/app/components/ui/ModuleCard";
@@ -82,7 +83,7 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <Code />
+          <CodeBlock title="Linear Search Implementation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">
