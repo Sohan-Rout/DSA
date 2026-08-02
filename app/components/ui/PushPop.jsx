@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Plus, ArrowUpFromLine, Eye, RotateCcw } from 'lucide-react';
 
 const PushPop = ({ stack, setStack, isAnimating, setIsAnimating, setMessage, setOperation }) => {
   const [inputValue, setInputValue] = useState('');
@@ -61,44 +62,49 @@ const PushPop = ({ stack, setStack, isAnimating, setIsAnimating, setMessage, set
   };
 
   return (
-    <div className="bg-white dark:bg-neutral-950 p-6 rounded-lg shadow-md mb-4 border border-gray-200 dark:border-gray-700">
-      <div className="flex flex-col sm:flex-row gap-2 mb-4">
+    <div className="bg-white dark:bg-neutral-950 p-4 rounded-xl border border-gray-200 dark:border-gray-800 mb-4">
+      <div className="flex gap-2 mb-3">
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Enter value"
-          className="flex-1 p-2 border rounded dark:bg-neutral-900 focus:ring-2 focus:ring-blue-500"
+          onKeyDown={(e) => e.key === 'Enter' && push()}
+          placeholder="Enter a value"
+          className="flex-1 min-w-0 px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-neutral-900 text-gray-800 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition disabled:opacity-50"
           disabled={isAnimating}
         />
         <button
           onClick={push}
           disabled={isAnimating}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50 sm:w-auto w-full"
+          className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition disabled:opacity-40 disabled:pointer-events-none"
         >
+          <Plus size={16} strokeWidth={2.5} />
           Push
         </button>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+      <div className="flex gap-2">
         <button
           onClick={pop}
           disabled={isAnimating || stack.length === 0}
-          className="bg-green-500 text-black px-4 py-2 rounded disabled:opacity-50"
+          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg bg-green-500 hover:bg-green-600 text-white transition disabled:opacity-40 disabled:pointer-events-none"
         >
+          <ArrowUpFromLine size={15} />
           Pop
         </button>
         <button
           onClick={peek}
           disabled={isAnimating || stack.length === 0}
-          className="bg-amber-500 text-black px-4 py-2 rounded disabled:opacity-50"
+          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg bg-amber-500 hover:bg-amber-600 text-white transition disabled:opacity-40 disabled:pointer-events-none"
         >
+          <Eye size={15} />
           Peek
         </button>
         <button
           onClick={() => setStack([])}
-          className="bg-red-500 text-white px-4 py-2 rounded col-span-2 sm:col-span-1"
           disabled={isAnimating}
+          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-700 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition disabled:opacity-40 disabled:pointer-events-none"
         >
+          <RotateCcw size={15} />
           Reset
         </button>
       </div>

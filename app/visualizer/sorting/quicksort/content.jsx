@@ -4,6 +4,204 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import InContentAd from "@/app/components/ads/InContentAd";
+
+const MiniArrayGroup = ({ values, keyPrefix, accent }) => {
+  const boxSize = 34;
+  const gap = 6;
+  const paddingX = 6;
+  const paddingY = 6;
+  const width = Math.max(values.length, 1) * (boxSize + gap) - gap + paddingX * 2;
+  const height = boxSize + paddingY * 2;
+
+  const fill =
+    accent === "final" ? "#10b981" : accent === "pivot" ? "#f59e0b" : accent === "dim" ? "#94a3b8" : "#3b82f6";
+
+  if (values.length === 0) {
+    return (
+      <span className="inline-block align-middle text-xs text-gray-400 dark:text-gray-500 italic px-2">
+        empty
+      </span>
+    );
+  }
+
+  const boxX = (idx) => paddingX + idx * (boxSize + gap);
+  const cx = (idx) => boxX(idx) + boxSize / 2;
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="inline-block align-middle"
+      style={{ width: `${width}px`, maxWidth: "100%" }}
+    >
+      {values.map((val, idx) => (
+        <g key={`${keyPrefix}-box-${idx}`}>
+          <rect
+            x={boxX(idx)}
+            y={paddingY}
+            width={boxSize}
+            height={boxSize}
+            rx="6"
+            fill={fill}
+            opacity={accent === "final" || accent === "pivot" ? "0.9" : "0.35"}
+            stroke={fill}
+            strokeWidth="2"
+          />
+          <text
+            x={cx(idx)}
+            y={paddingY + boxSize / 2 + 5}
+            textAnchor="middle"
+            className="fill-gray-800 dark:fill-gray-100"
+            fontSize="13"
+            fontWeight="700"
+          >
+            {val}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+};
+
+const PartitionFlowDiagram = ({
+  beforeValues,
+  pivotIndex,
+  afterValues,
+  pivotFinalIndex,
+  keyPrefix,
+}) => {
+  const boxSize = 36;
+  const gap = 6;
+  const paddingX = 8;
+  const row1Y = 24;
+  const rowGap = 46;
+  const row2Y = row1Y + boxSize + rowGap;
+  const pivotValue = beforeValues[pivotIndex];
+  const width = beforeValues.length * (boxSize + gap) - gap + paddingX * 2;
+  const height = row2Y + boxSize + 4;
+
+  const boxX = (idx) => paddingX + idx * (boxSize + gap);
+  const cx = (idx) => boxX(idx) + boxSize / 2;
+
+  const beforeFill = (idx) => {
+    if (idx === pivotIndex) return "#f59e0b";
+    return beforeValues[idx] < pivotValue ? "#3b82f6" : "#94a3b8";
+  };
+
+  const afterFill = (idx) => {
+    if (idx === pivotFinalIndex) return "#10b981";
+    return idx < pivotFinalIndex ? "#3b82f6" : "#94a3b8";
+  };
+
+  const arrowStartX = cx(pivotIndex);
+  const arrowStartY = row1Y + boxSize + 4;
+  const arrowEndX = cx(pivotFinalIndex);
+  const arrowEndY = row2Y - 4;
+  const arrowControlY = (arrowStartY + arrowEndY) / 2;
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="mx-auto"
+      style={{ width: `${width}px`, maxWidth: "100%" }}
+    >
+      <defs>
+        <marker
+          id={`${keyPrefix}-pivot-arrow`}
+          markerWidth="7"
+          markerHeight="7"
+          refX="6"
+          refY="3.5"
+          orient="auto"
+        >
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="#f59e0b" />
+        </marker>
+      </defs>
+
+      <path
+        d={`M ${arrowStartX} ${arrowStartY} Q ${(arrowStartX + arrowEndX) / 2} ${arrowControlY} ${arrowEndX} ${arrowEndY}`}
+        fill="none"
+        stroke="#f59e0b"
+        strokeWidth="1.5"
+        markerEnd={`url(#${keyPrefix}-pivot-arrow)`}
+      />
+
+      {beforeValues.map((val, idx) => (
+        <g key={`${keyPrefix}-before-${idx}`}>
+          {idx === pivotIndex && (
+            <text
+              x={cx(idx)}
+              y={row1Y - 8}
+              textAnchor="middle"
+              fill="#f59e0b"
+              fontSize="9"
+              fontWeight="700"
+            >
+              pivot
+            </text>
+          )}
+          <rect
+            x={boxX(idx)}
+            y={row1Y}
+            width={boxSize}
+            height={boxSize}
+            rx="6"
+            fill={beforeFill(idx)}
+            opacity="0.9"
+            stroke={beforeFill(idx)}
+            strokeWidth="2"
+          />
+          <text
+            x={cx(idx)}
+            y={row1Y + boxSize / 2 + 5}
+            textAnchor="middle"
+            className="fill-gray-800 dark:fill-gray-100"
+            fontSize="14"
+            fontWeight="700"
+          >
+            {val}
+          </text>
+        </g>
+      ))}
+
+      {afterValues.map((val, idx) => (
+        <g key={`${keyPrefix}-after-${idx}`}>
+          <rect
+            x={boxX(idx)}
+            y={row2Y}
+            width={boxSize}
+            height={boxSize}
+            rx="6"
+            fill={afterFill(idx)}
+            opacity="0.9"
+            stroke={afterFill(idx)}
+            strokeWidth="2"
+          />
+          <text
+            x={cx(idx)}
+            y={row2Y + boxSize / 2 + 5}
+            textAnchor="middle"
+            className="fill-gray-800 dark:fill-gray-100"
+            fontSize="14"
+            fontWeight="700"
+          >
+            {val}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+};
+
+const StepArrow = ({ down }) => (
+  <span
+    className={`text-gray-400 dark:text-gray-500 font-bold align-middle ${
+      down ? "block my-1 text-center" : "mx-2"
+    }`}
+  >
+    {down ? "↓" : "→"}
+  </span>
+);
+
 const Content = () => {
   const { theme } = useTheme();
 
@@ -139,7 +337,7 @@ const Content = () => {
               Consider this unsorted array: [10, 80, 30, 90, 40, 50, 70]
             </p>
 
-            <ul className="space-y-3">
+            <ul className="space-y-5">
               {working.map((item, index) => (
                 <li key={index} className="text-gray-700 dark:text-gray-300">
                   <span className="font-semibold">{item.steps}</span>
@@ -155,9 +353,87 @@ const Content = () => {
                       ))}
                     </ol>
                   )}
+
+                  {index === 0 && (
+                    <div className="mt-3 not-prose">
+                      <PartitionFlowDiagram
+                        keyPrefix="qs-partition"
+                        beforeValues={[10, 80, 30, 90, 40, 50, 70]}
+                        pivotIndex={6}
+                        afterValues={[10, 30, 40, 50, 70, 80, 90]}
+                        pivotFinalIndex={4}
+                      />
+                    </div>
+                  )}
+
+                  {index === 1 && (
+                    <div className="mt-3 not-prose space-y-4">
+                      <div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                          Partition [10, 30, 40, 50]:
+                        </div>
+                        <PartitionFlowDiagram
+                          keyPrefix="qs-rec-left"
+                          beforeValues={[10, 30, 40, 50]}
+                          pivotIndex={3}
+                          afterValues={[10, 30, 40, 50]}
+                          pivotFinalIndex={3}
+                        />
+                      </div>
+
+                      <div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                          Partition [80, 90]:
+                        </div>
+                        <PartitionFlowDiagram
+                          keyPrefix="qs-rec-right"
+                          beforeValues={[80, 90]}
+                          pivotIndex={1}
+                          afterValues={[80, 90]}
+                          pivotFinalIndex={1}
+                        />
+                      </div>
+
+                      <div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                          Combine sorted left + pivot + sorted right:
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <MiniArrayGroup keyPrefix="qs-comb-left" values={[10, 30, 40, 50]} />
+                          <MiniArrayGroup keyPrefix="qs-comb-pivot" values={[70]} accent="pivot" />
+                          <MiniArrayGroup keyPrefix="qs-comb-right" values={[80, 90]} />
+                          <StepArrow />
+                          <MiniArrayGroup
+                            keyPrefix="qs-final"
+                            values={[10, 30, 40, 50, 70, 80, 90]}
+                            accent="final"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
+
+            <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-amber-500 inline-block"></span>
+                Pivot
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-blue-500 inline-block"></span>
+                Less than pivot
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-slate-400 inline-block"></span>
+                Greater than pivot
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-emerald-500 inline-block"></span>
+                Fully sorted
+              </span>
+            </div>
           </div>
         </section>
 
