@@ -4,6 +4,137 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import InContentAd from "@/app/components/ads/InContentAd";
+
+const InsertionStepDiagram = ({
+  values,
+  sortedFrom,
+  keyIndex,
+  targetIndex,
+  keyPrefix,
+}) => {
+  const boxSize = 40;
+  const gap = 8;
+  const paddingX = 8;
+  const topPadding = 42;
+  const width = values.length * (boxSize + gap) - gap + paddingX * 2;
+  const height = boxSize + topPadding + 22;
+
+  const boxX = (idx) => paddingX + idx * (boxSize + gap);
+  const boxY = topPadding;
+  const cx = (idx) => boxX(idx) + boxSize / 2;
+
+  const shifts = (idx) =>
+    targetIndex !== null &&
+    keyIndex !== targetIndex &&
+    idx >= targetIndex &&
+    idx < keyIndex;
+
+  const fillFor = (idx) => {
+    if (idx === keyIndex) return "#f59e0b";
+    if (shifts(idx)) return "#94a3b8";
+    if (idx < sortedFrom) return "#10b981";
+    return "#3b82f6";
+  };
+
+  const opacityFor = (idx) => {
+    if (idx === keyIndex || idx < sortedFrom) return "0.9";
+    if (shifts(idx)) return "0.5";
+    return "0.25";
+  };
+
+  const labelFor = (idx) => {
+    if (idx === keyIndex) return "key";
+    if (targetIndex !== null && idx === targetIndex && idx !== keyIndex)
+      return "insert here";
+    return null;
+  };
+
+  const moves = targetIndex !== null && keyIndex !== targetIndex;
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="mx-auto"
+      style={{ width: `${width}px`, maxWidth: "100%" }}
+    >
+      <defs>
+        <marker
+          id={`${keyPrefix}-move-arrow`}
+          markerWidth="7"
+          markerHeight="7"
+          refX="6"
+          refY="3.5"
+          orient="auto"
+        >
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="#f59e0b" />
+        </marker>
+      </defs>
+
+      {moves && (
+        <path
+          d={`M ${cx(keyIndex)} ${boxY - 6} Q ${(cx(keyIndex) + cx(targetIndex)) / 2} ${
+            boxY - 20
+          } ${cx(targetIndex)} ${boxY - 6}`}
+          fill="none"
+          stroke="#f59e0b"
+          strokeWidth="1.5"
+          markerEnd={`url(#${keyPrefix}-move-arrow)`}
+        />
+      )}
+
+      {values.map((val, idx) => {
+        const label = labelFor(idx);
+        return (
+          <g key={`${keyPrefix}-box-${idx}`}>
+            {label && (
+              <text
+                x={cx(idx)}
+                y={boxY - 26}
+                textAnchor="middle"
+                fill="#f59e0b"
+                fontSize="9"
+                fontWeight="700"
+              >
+                {label}
+              </text>
+            )}
+            <rect
+              x={boxX(idx)}
+              y={boxY}
+              width={boxSize}
+              height={boxSize}
+              rx="6"
+              fill={fillFor(idx)}
+              opacity={opacityFor(idx)}
+              stroke={fillFor(idx)}
+              strokeWidth="2"
+            />
+            <text
+              x={cx(idx)}
+              y={boxY + boxSize / 2 + 5}
+              textAnchor="middle"
+              className="fill-gray-800 dark:fill-gray-100"
+              fontSize="14"
+              fontWeight="700"
+            >
+              {val}
+            </text>
+            <text
+              x={cx(idx)}
+              y={boxY + boxSize + 16}
+              textAnchor="middle"
+              className="fill-gray-400 dark:fill-gray-500"
+              fontSize="9"
+            >
+              {idx}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+};
+
 const Content = () => {
   const { theme } = useTheme();
 
@@ -18,22 +149,42 @@ const Content = () => {
     {
       points: "First Element (7):",
       subpoints: ['Already "sorted" as the first item', "→ [7, 3, 5, 2, 1]"],
+      array: [7, 3, 5, 2, 1],
+      sortedFrom: 0,
+      keyIndex: 0,
+      targetIndex: 0,
     },
     {
       points: "Second Element (3):",
       subpoints: ["Insert before 7", "→ [3, 7, 5, 2, 1]"],
+      array: [7, 3, 5, 2, 1],
+      sortedFrom: 1,
+      keyIndex: 1,
+      targetIndex: 0,
     },
     {
       points: "Third Element (5):",
       subpoints: ["Insert between 3 and 7", "→ [3, 5, 7, 2, 1]"],
+      array: [3, 7, 5, 2, 1],
+      sortedFrom: 2,
+      keyIndex: 2,
+      targetIndex: 1,
     },
     {
       points: "Fourth Element (2):",
       subpoints: ["Insert at beginning", "→ [2, 3, 5, 7, 1]"],
+      array: [3, 5, 7, 2, 1],
+      sortedFrom: 3,
+      keyIndex: 3,
+      targetIndex: 0,
     },
     {
       points: "Fifth Element (1):",
       subpoints: ["Insert at beginning", "→ [1, 2, 3, 5, 7]"],
+      array: [2, 3, 5, 7, 1],
+      sortedFrom: 4,
+      keyIndex: 4,
+      targetIndex: 0,
     },
   ];
 
@@ -106,7 +257,7 @@ const Content = () => {
               Consider this unsorted array: [7, 3, 5, 2, 1]
             </p>
 
-            <ol className="space-y-3 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+            <ol className="space-y-5 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {working.map((items, index) => (
                 <li
                   key={index}
@@ -125,9 +276,35 @@ const Content = () => {
                       ))}
                     </ul>
                   )}
+                  {items.array && (
+                    <div className="mt-3 not-prose">
+                      <InsertionStepDiagram
+                        keyPrefix={`is-step${index}`}
+                        values={items.array}
+                        sortedFrom={items.sortedFrom}
+                        keyIndex={items.keyIndex}
+                        targetIndex={items.targetIndex}
+                      />
+                    </div>
+                  )}
                 </li>
               ))}
             </ol>
+
+            <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-amber-500 inline-block"></span>
+                Key (being inserted)
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-slate-400 inline-block"></span>
+                Shifts right
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-emerald-500 inline-block"></span>
+                Sorted portion
+              </span>
+            </div>
 
             <p className="text-gray-700 dark:text-gray-300 mt-4 leading-relaxed">
               {paragraph[1]}

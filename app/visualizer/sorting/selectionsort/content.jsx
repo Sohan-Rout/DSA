@@ -4,6 +4,130 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import InContentAd from "@/app/components/ads/InContentAd";
+
+const SelectionStepDiagram = ({
+  values,
+  sortedFrom,
+  boundary,
+  minIndex,
+  swapped,
+  keyPrefix,
+}) => {
+  const boxSize = 40;
+  const gap = 8;
+  const paddingX = 8;
+  const topPadding = 42;
+  const width = values.length * (boxSize + gap) - gap + paddingX * 2;
+  const height = boxSize + topPadding + 22;
+
+  const boxX = (idx) => paddingX + idx * (boxSize + gap);
+  const boxY = topPadding;
+  const cx = (idx) => boxX(idx) + boxSize / 2;
+
+  const fillFor = (idx) => {
+    if (idx === boundary && idx === minIndex) return "#f59e0b";
+    if (idx === minIndex) return "#3b82f6";
+    if (idx === boundary) return "#f59e0b";
+    if (idx < sortedFrom) return "#10b981";
+    return "#3b82f6";
+  };
+
+  const opacityFor = (idx) => {
+    if (idx === boundary || idx === minIndex || idx < sortedFrom) return "0.9";
+    return "0.25";
+  };
+
+  const labelFor = (idx) => {
+    if (idx === boundary && idx === minIndex) return "pos";
+    if (idx === minIndex) return "min";
+    if (idx === boundary) return "pos";
+    return null;
+  };
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="mx-auto"
+      style={{ width: `${width}px`, maxWidth: "100%" }}
+    >
+      <defs>
+        <marker
+          id={`${keyPrefix}-swap-arrow`}
+          markerWidth="7"
+          markerHeight="7"
+          refX="6"
+          refY="3.5"
+          orient="auto"
+        >
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="#f59e0b" />
+        </marker>
+      </defs>
+
+      {swapped && (
+        <path
+          d={`M ${cx(boundary)} ${boxY - 6} Q ${(cx(boundary) + cx(minIndex)) / 2} ${
+            boxY - 20
+          } ${cx(minIndex)} ${boxY - 6}`}
+          fill="none"
+          stroke="#f59e0b"
+          strokeWidth="1.5"
+          markerEnd={`url(#${keyPrefix}-swap-arrow)`}
+        />
+      )}
+
+      {values.map((val, idx) => {
+        const label = labelFor(idx);
+        return (
+          <g key={`${keyPrefix}-box-${idx}`}>
+            {label && (
+              <text
+                x={cx(idx)}
+                y={boxY - 26}
+                textAnchor="middle"
+                fill={idx === minIndex && idx !== boundary ? "#3b82f6" : "#f59e0b"}
+                fontSize="9"
+                fontWeight="700"
+              >
+                {label}
+              </text>
+            )}
+            <rect
+              x={boxX(idx)}
+              y={boxY}
+              width={boxSize}
+              height={boxSize}
+              rx="6"
+              fill={fillFor(idx)}
+              opacity={opacityFor(idx)}
+              stroke={fillFor(idx)}
+              strokeWidth="2"
+            />
+            <text
+              x={cx(idx)}
+              y={boxY + boxSize / 2 + 5}
+              textAnchor="middle"
+              className="fill-gray-800 dark:fill-gray-100"
+              fontSize="14"
+              fontWeight="700"
+            >
+              {val}
+            </text>
+            <text
+              x={cx(idx)}
+              y={boxY + boxSize + 16}
+              textAnchor="middle"
+              className="fill-gray-400 dark:fill-gray-500"
+              fontSize="9"
+            >
+              {idx}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+};
+
 const Content = () => {
   const { theme } = useTheme();
 
@@ -21,6 +145,11 @@ const Content = () => {
         "Find the minimum in [64, 25, 12, 22, 11] → 11 at index 4",
         "Swap with first element → [11, 25, 12, 22, 64]",
       ],
+      array: [64, 25, 12, 22, 11],
+      sortedFrom: 0,
+      boundary: 0,
+      minIndex: 4,
+      swapped: true,
     },
     {
       pass: "Second Pass:",
@@ -28,6 +157,11 @@ const Content = () => {
         "Find minimum in [25, 12, 22, 64] → 12 at index 2",
         "Swap with first element → [11, 12, 25, 22, 64]",
       ],
+      array: [11, 25, 12, 22, 64],
+      sortedFrom: 1,
+      boundary: 1,
+      minIndex: 2,
+      swapped: true,
     },
     {
       pass: "Third Pass:",
@@ -35,6 +169,11 @@ const Content = () => {
         "Find minimum in [25, 22, 64] → 22 at index 2",
         "Swap with first element → [11, 12, 22, 25, 64]",
       ],
+      array: [11, 12, 25, 22, 64],
+      sortedFrom: 2,
+      boundary: 2,
+      minIndex: 3,
+      swapped: true,
     },
     {
       pass: "Fourth Pass:",
@@ -42,8 +181,21 @@ const Content = () => {
         "Find minimum in [25, 64] → 25 at index 0",
         "No swap needed → [11, 12, 22, 25, 64]",
       ],
+      array: [11, 12, 22, 25, 64],
+      sortedFrom: 3,
+      boundary: 3,
+      minIndex: 3,
+      swapped: false,
     },
-    { pass: "Result:", points: ["[11, 12, 22, 25, 64]"] },
+    {
+      pass: "Result:",
+      points: ["[11, 12, 22, 25, 64]"],
+      array: [11, 12, 22, 25, 64],
+      sortedFrom: 5,
+      boundary: null,
+      minIndex: null,
+      swapped: false,
+    },
   ];
 
   const algorithm = [
@@ -108,7 +260,7 @@ const Content = () => {
               Consider this unsorted array: [64, 25, 12, 22, 11]
             </p>
 
-            <ol className="space-y-3 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+            <ol className="space-y-5 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {working.map((items, index) => (
                 <li
                   key={index}
@@ -127,9 +279,36 @@ const Content = () => {
                       ))}
                     </ul>
                   )}
+                  {items.array && (
+                    <div className="mt-3 not-prose">
+                      <SelectionStepDiagram
+                        keyPrefix={`ss-pass${index}`}
+                        values={items.array}
+                        sortedFrom={items.sortedFrom}
+                        boundary={items.boundary}
+                        minIndex={items.minIndex}
+                        swapped={items.swapped}
+                      />
+                    </div>
+                  )}
                 </li>
               ))}
             </ol>
+
+            <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-amber-500 inline-block"></span>
+                Boundary position
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-blue-500 inline-block"></span>
+                Smallest found so far
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-emerald-500 inline-block"></span>
+                Sorted portion
+              </span>
+            </div>
           </div>
         </section>
 
