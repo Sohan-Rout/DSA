@@ -1,4 +1,4 @@
-import Animation from "@/app/visualizer/trees/algorithms/tree-isomorphism/animation";
+import Animation from "@/app/visualizer/trees/applications/decision-trees/animation";
 import Navbar from "@/app/components/navbarinner";
 import ModuleHeader from "@/app/components/modules/Header";
 import Footer from "@/app/components/footer";
@@ -6,33 +6,30 @@ import BackToTop from "@/app/components/ui/backtotop";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import CodeBlock from "@/app/components/modules/CodeBlock";
 import codeExamples from "./code";
-import Quiz from "@/app/visualizer/trees/algorithms/tree-isomorphism/quiz";
-import Content from "@/app/visualizer/trees/algorithms/tree-isomorphism/content";
+import Quiz from "@/app/visualizer/trees/applications/decision-trees/quiz";
+import Content from "@/app/visualizer/trees/applications/decision-trees/content";
 import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
-  title: "Tree Isomorphism | Animation and Explanation",
+  title: "Decision Trees | Animation and Explanation",
   description:
-    "Learn how to check whether two binary trees are isomorphic — identical once children can be freely swapped at any node — with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
+    "Learn how a decision tree greedily splits data using Gini impurity to build an interpretable classifier, with an interactive visualizer showing both the dataset and the resulting tree, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [
-    "Tree Isomorphism",
-    "Binary Tree Isomorphism",
-    "Isomorphic Trees",
-    "Tree Isomorphism Algorithm",
-    "Isomorphic Trees Algorithm",
-    "Tree Isomorphism Visualization",
-    "Isomorphic Trees Visualization",
-    "Flip Equivalent Binary Trees",
-    "Tree Isomorphism in JavaScript",
-    "Isomorphic Trees in JavaScript",
-    "Tree Isomorphism in C",
-    "Isomorphic Trees in C",
-    "Tree Isomorphism in Python",
-    "Isomorphic Trees in Python",
-    "Tree Isomorphism in Java",
-    "Isomorphic Trees in Java",
-    "Tree Algorithms",
+    "Decision Trees",
+    "Decision Tree Algorithm",
+    "Decision Tree Visualization",
+    "Gini Impurity",
+    "Gini Index",
+    "Decision Tree Classifier",
+    "Decision Tree Machine Learning",
+    "CART Algorithm",
+    "Decision Tree in JavaScript",
+    "Decision Tree in C",
+    "Decision Tree in Python",
+    "Decision Tree in Java",
+    "Machine Learning Trees",
+    "Tree Applications",
     "DSA Trees",
     "Learn Trees",
     "Tree Quiz",
@@ -44,7 +41,7 @@ export const metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Tree Isomorphism Visualization",
+        alt: "Decision Tree Visualization",
       },
     ],
   },
@@ -54,7 +51,7 @@ export default function Page() {
   const paths = [
     { name: "Home", href: "/" },
     { name: "Visualizer", href: "/visualizer" },
-    { name: "Trees : Tree Isomorphism", href: "" },
+    { name: "Trees : Decision Trees", href: "" },
   ];
 
   return (
@@ -65,7 +62,7 @@ export default function Page() {
 
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
         <section className="px-6 md:px-12">
-          <ModuleHeader category="Tree Algorithms" title="Tree Isomorphism" paths={paths} />
+          <ModuleHeader category="Tree Applications" title="Decision Trees" paths={paths} />
           <Content />
         </section>
 
@@ -81,14 +78,14 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <CodeBlock title="Tree Isomorphism Implementation" codeExamples={codeExamples} />
+          <CodeBlock title="Decision Tree Implementation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">
           <ModuleCard
-            moduleId={MODULE_MAPS.treeIsomorphism}
-            title="Tree Isomorphism"
-            description="Mark Tree Isomorphism as done and view it on your dashboard"
+            moduleId={MODULE_MAPS.decisionTrees}
+            title="Decision Trees"
+            description="Mark Decision Trees as done and view it on your dashboard"
             initialDone={false}
           />
         </section>
@@ -97,11 +94,11 @@ export default function Page() {
           <ExploreOther
             title="Explore Other Tree Topics"
             links={[
-              { text: "Tree Diameter", url: "./tree-diameter" },
-              { text: "Lowest Common Ancestor", url: "./lowest-common-ancestor" },
-              { text: "Serialize/Deserialize", url: "./serialize-deserialize" },
-              { text: "BST Insertion", url: "../bst/insertion" },
-              { text: "In-order Traversal", url: "../traversal/in-order" },
+              { text: "Huffman Coding", url: "./huffman-coding" },
+              { text: "Heap Sort", url: "./heap-sort" },
+              { text: "Syntax Trees", url: "./syntax-trees" },
+              { text: "Tree Diameter", url: "../algorithms/tree-diameter" },
+              { text: "Level-order Traversal", url: "../traversal/level-order" },
               { text: "Structure & Properties", url: "../binaryTree/properties" },
             ]}
           />
