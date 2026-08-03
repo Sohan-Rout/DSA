@@ -95,6 +95,8 @@ export default function Page() {
             links={[
               { text: "Red-Black Tree", url: "./red-black" },
               { text: "B-Tree", url: "./b-trees" },
+              { text: "Segment Tree", url: "./segment-trees" },
+              { text: "Fenwick Tree", url: "./fenwick-tree" },
               { text: "AVL Balancing", url: "../bst/avl" },
               { text: "BST Insertion", url: "../bst/insertion" },
               { text: "BST Searching", url: "../bst/searching" },

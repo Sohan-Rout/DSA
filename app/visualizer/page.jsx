@@ -390,8 +390,8 @@ const sections = [
             name: "Trie (Prefix Tree)",
             path: "/visualizer/trees/advanced/prefix-tree",
           },
-          { name: "Segment Trees", path: "/visualizer/trees/advanced/segment" },
-          { name: "Fenwick Trees", path: "/visualizer/trees/advanced/fenwick" },
+          { name: "Segment Trees", path: "/visualizer/trees/advanced/segment-trees" },
+          { name: "Fenwick Trees", path: "/visualizer/trees/advanced/fenwick-tree" },
         ],
       },
       {
@@ -399,7 +399,7 @@ const sections = [
         items: [
           {
             name: "Lowest Common Ancestor",
-            path: "/visualizer/trees/algorithms/lca",
+            path: "/visualizer/trees/algorithms/lowest-common-ancestor",
           },
           {
             name: "Tree Diameter",
