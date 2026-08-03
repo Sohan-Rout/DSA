@@ -93,6 +93,7 @@ export default function Page() {
               { text: "BST Insertion", url: "./insertion" },
               { text: "BST Deletion", url: "./deletion" },
               { text: "AVL Balancing", url: "./avl" },
+              { text: "Lowest Common Ancestor", url: "../algorithms/lowest-common-ancestor" },
               { text: "Binary Tree Types", url: "../binaryTree/types" },
               { text: "Structure & Properties", url: "../binaryTree/properties" },
             ]}
