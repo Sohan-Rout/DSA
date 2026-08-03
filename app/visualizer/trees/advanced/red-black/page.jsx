@@ -1,4 +1,4 @@
-import Animation from "@/app/visualizer/trees/bst/avl/animation";
+import Animation from "@/app/visualizer/trees/advanced/red-black/animation";
 import Navbar from "@/app/components/navbarinner";
 import ModuleHeader from "@/app/components/modules/Header";
 import Footer from "@/app/components/footer";
@@ -6,29 +6,28 @@ import BackToTop from "@/app/components/ui/backtotop";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import CodeBlock from "@/app/components/modules/CodeBlock";
 import codeExamples from "./code";
-import Quiz from "@/app/visualizer/trees/bst/avl/quiz";
-import Content from "@/app/visualizer/trees/bst/avl/content";
+import Quiz from "@/app/visualizer/trees/advanced/red-black/quiz";
+import Content from "@/app/visualizer/trees/advanced/red-black/content";
 import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
-  title: "AVL Tree Balancing | Step-by-Step Rotation Animation & Explanation",
+  title: "Red-Black Tree | Insertion & Rotation Animation and Explanation",
   description:
-    "Learn how AVL trees self-balance a Binary Search Tree with rotations — Left-Left, Right-Right, Left-Right, Right-Left — with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
+    "Learn how Red-Black Trees self-balance using color rules and rotations, with an interactive insertion visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [
-    "AVL Tree",
-    "AVL Tree Balancing",
-    "AVL Rotation",
+    "Red-Black Tree",
+    "Red Black Tree Insertion",
+    "Red Black Tree Rotation",
     "Self-Balancing Binary Search Tree",
-    "Left-Left Rotation",
-    "Right-Right Rotation",
-    "Left-Right Rotation",
-    "Right-Left Rotation",
-    "AVL Tree Visualization",
-    "AVL Tree in JavaScript",
-    "AVL Tree in C",
-    "AVL Tree in Python",
-    "AVL Tree in Java",
+    "Red Black Tree Properties",
+    "Red Black Tree Visualization",
+    "Red Black Tree vs AVL",
+    "Red Black Tree in JavaScript",
+    "Red Black Tree in C",
+    "Red Black Tree in Python",
+    "Red Black Tree in Java",
+    "Advanced Trees",
     "DSA Binary Search Tree",
     "Learn Binary Search Trees",
     "BST Quiz",
@@ -40,7 +39,7 @@ export const metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "AVL Tree Balancing Visualization",
+        alt: "Red-Black Tree Visualization",
       },
     ],
   },
@@ -50,7 +49,7 @@ export default function Page() {
   const paths = [
     { name: "Home", href: "/" },
     { name: "Visualizer", href: "/visualizer" },
-    { name: "Trees : AVL Balancing", href: "" },
+    { name: "Trees : Red-Black Tree", href: "" },
   ];
 
   return (
@@ -61,7 +60,7 @@ export default function Page() {
 
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
         <section className="px-6 md:px-12">
-          <ModuleHeader category="Binary Search Tree" title="Balancing (AVL)" paths={paths} />
+          <ModuleHeader category="Advanced Trees" title="Red-Black Tree" paths={paths} />
           <Content />
         </section>
 
@@ -77,14 +76,14 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <CodeBlock title="AVL Tree Insertion Implementation" codeExamples={codeExamples} />
+          <CodeBlock title="Red-Black Tree Insertion Implementation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">
           <ModuleCard
-            moduleId={MODULE_MAPS.bstAvl}
-            title="AVL Tree Balancing"
-            description="Mark AVL Tree Balancing as done and view it on your dashboard"
+            moduleId={MODULE_MAPS.redBlackTree}
+            title="Red-Black Tree"
+            description="Mark Red-Black Tree as done and view it on your dashboard"
             initialDone={false}
           />
         </section>
@@ -93,11 +92,12 @@ export default function Page() {
           <ExploreOther
             title="Explore Other Tree Topics"
             links={[
-              { text: "BST Insertion", url: "./insertion" },
-              { text: "BST Deletion", url: "./deletion" },
-              { text: "BST Searching", url: "./searching" },
-              { text: "Red-Black Tree", url: "../advanced/red-black" },
-              { text: "Binary Tree Types", url: "../binaryTree/types" },
+              { text: "B-Tree", url: "./b-trees" },
+              { text: "Trie (Prefix Tree)", url: "./prefix-tree" },
+              { text: "AVL Balancing", url: "../bst/avl" },
+              { text: "BST Insertion", url: "../bst/insertion" },
+              { text: "BST Deletion", url: "../bst/deletion" },
+              { text: "In-order Traversal", url: "../traversal/in-order" },
               { text: "Structure & Properties", url: "../binaryTree/properties" },
             ]}
           />

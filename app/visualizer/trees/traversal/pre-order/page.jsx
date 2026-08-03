@@ -95,6 +95,7 @@ export default function Page() {
               { text: "In-order Traversal", url: "../in-order" },
               { text: "Post-order Traversal", url: "../post-order" },
               { text: "Level-order Traversal", url: "../level-order" },
+              { text: "Morris Traversal", url: "../morris" },
               { text: "BST Insertion", url: "../bst/insertion" },
               { text: "BST Deletion", url: "../bst/deletion" },
               { text: "BST Searching", url: "../bst/searching" },

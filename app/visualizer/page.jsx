@@ -388,7 +388,7 @@ const sections = [
           { name: "B-Trees", path: "/visualizer/trees/advanced/b-trees" },
           {
             name: "Trie (Prefix Tree)",
-            path: "/visualizer/trees/advanced/trie",
+            path: "/visualizer/trees/advanced/prefix-tree",
           },
           { name: "Segment Trees", path: "/visualizer/trees/advanced/segment" },
           { name: "Fenwick Trees", path: "/visualizer/trees/advanced/fenwick" },
