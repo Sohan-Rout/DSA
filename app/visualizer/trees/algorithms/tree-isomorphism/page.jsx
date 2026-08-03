@@ -1,4 +1,4 @@
-import Animation from "@/app/visualizer/trees/algorithms/lowest-common-ancestor/animation";
+import Animation from "@/app/visualizer/trees/algorithms/tree-isomorphism/animation";
 import Navbar from "@/app/components/navbarinner";
 import ModuleHeader from "@/app/components/modules/Header";
 import Footer from "@/app/components/footer";
@@ -6,35 +6,32 @@ import BackToTop from "@/app/components/ui/backtotop";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import CodeBlock from "@/app/components/modules/CodeBlock";
 import codeExamples from "./code";
-import Quiz from "@/app/visualizer/trees/algorithms/lowest-common-ancestor/quiz";
-import Content from "@/app/visualizer/trees/algorithms/lowest-common-ancestor/content";
+import Quiz from "@/app/visualizer/trees/algorithms/tree-isomorphism/quiz";
+import Content from "@/app/visualizer/trees/algorithms/tree-isomorphism/content";
 import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
-  title: "Lowest Common Ancestor (LCA) | Animation and Explanation",
+  title: "Tree Isomorphism | Animation and Explanation",
   description:
-    "Learn how to find the Lowest Common Ancestor of two nodes in a Binary Search Tree by walking down from the root until their paths diverge, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
+    "Learn how to check whether two binary trees are isomorphic — identical once children can be freely swapped at any node — with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [
-    "Lowest Common Ancestor",
-    "LCA",
-    "Lowest Common Ancestor Binary Search Tree",
-    "LCA Binary Search Tree",
-    "Lowest Common Ancestor Binary Tree",
-    "LCA Binary Tree",
-    "Lowest Common Ancestor Algorithm",
-    "LCA Algorithm",
-    "Lowest Common Ancestor Visualization",
-    "LCA Visualization",
-    "Git Merge Base",
-    "Lowest Common Ancestor in JavaScript",
-    "LCA in JavaScript",
-    "Lowest Common Ancestor in C",
-    "LCA in C",
-    "Lowest Common Ancestor in Python",
-    "LCA in Python",
-    "Lowest Common Ancestor in Java",
-    "LCA in Java",
+    "Tree Isomorphism",
+    "Binary Tree Isomorphism",
+    "Isomorphic Trees",
+    "Tree Isomorphism Algorithm",
+    "Isomorphic Trees Algorithm",
+    "Tree Isomorphism Visualization",
+    "Isomorphic Trees Visualization",
+    "Flip Equivalent Binary Trees",
+    "Tree Isomorphism in JavaScript",
+    "Isomorphic Trees in JavaScript",
+    "Tree Isomorphism in C",
+    "Isomorphic Trees in C",
+    "Tree Isomorphism in Python",
+    "Isomorphic Trees in Python",
+    "Tree Isomorphism in Java",
+    "Isomorphic Trees in Java",
     "Tree Algorithms",
     "DSA Trees",
     "Learn Trees",
@@ -47,7 +44,7 @@ export const metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Lowest Common Ancestor Visualization",
+        alt: "Tree Isomorphism Visualization",
       },
     ],
   },
@@ -57,7 +54,7 @@ export default function Page() {
   const paths = [
     { name: "Home", href: "/" },
     { name: "Visualizer", href: "/visualizer" },
-    { name: "Trees : Lowest Common Ancestor", href: "" },
+    { name: "Trees : Tree Isomorphism", href: "" },
   ];
 
   return (
@@ -68,7 +65,7 @@ export default function Page() {
 
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
         <section className="px-6 md:px-12">
-          <ModuleHeader category="Tree Algorithms" title="Lowest Common Ancestor" paths={paths} />
+          <ModuleHeader category="Tree Algorithms" title="Tree Isomorphism" paths={paths} />
           <Content />
         </section>
 
@@ -84,14 +81,14 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <CodeBlock title="Lowest Common Ancestor Implementation" codeExamples={codeExamples} />
+          <CodeBlock title="Tree Isomorphism Implementation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">
           <ModuleCard
-            moduleId={MODULE_MAPS.lowestCommonAncestor}
-            title="Lowest Common Ancestor"
-            description="Mark Lowest Common Ancestor as done and view it on your dashboard"
+            moduleId={MODULE_MAPS.treeIsomorphism}
+            title="Tree Isomorphism"
+            description="Mark Tree Isomorphism as done and view it on your dashboard"
             initialDone={false}
           />
         </section>
@@ -101,10 +98,8 @@ export default function Page() {
             title="Explore Other Tree Topics"
             links={[
               { text: "Tree Diameter", url: "./tree-diameter" },
-              { text: "Tree Isomorphism", url: "./tree-isomorphism" },
-              { text: "BST Searching", url: "../bst/searching" },
+              { text: "Lowest Common Ancestor", url: "./lowest-common-ancestor" },
               { text: "BST Insertion", url: "../bst/insertion" },
-              { text: "AVL Balancing", url: "../bst/avl" },
               { text: "In-order Traversal", url: "../traversal/in-order" },
               { text: "Structure & Properties", url: "../binaryTree/properties" },
             ]}
