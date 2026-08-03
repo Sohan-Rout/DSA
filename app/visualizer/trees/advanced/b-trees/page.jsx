@@ -1,4 +1,4 @@
-import Animation from "@/app/visualizer/trees/bst/avl/animation";
+import Animation from "@/app/visualizer/trees/advanced/b-trees/animation";
 import Navbar from "@/app/components/navbarinner";
 import ModuleHeader from "@/app/components/modules/Header";
 import Footer from "@/app/components/footer";
@@ -6,32 +6,32 @@ import BackToTop from "@/app/components/ui/backtotop";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import CodeBlock from "@/app/components/modules/CodeBlock";
 import codeExamples from "./code";
-import Quiz from "@/app/visualizer/trees/bst/avl/quiz";
-import Content from "@/app/visualizer/trees/bst/avl/content";
+import Quiz from "@/app/visualizer/trees/advanced/b-trees/quiz";
+import Content from "@/app/visualizer/trees/advanced/b-trees/content";
 import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
-  title: "AVL Tree Balancing | Step-by-Step Rotation Animation & Explanation",
+  title: "B-Trees | Node Split Insertion Animation and Explanation",
   description:
-    "Learn how AVL trees self-balance a Binary Search Tree with rotations — Left-Left, Right-Right, Left-Right, Right-Left — with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
+    "Learn how B-Trees stay balanced by splitting full multi-key nodes, why they're the standard on-disk index structure for databases and filesystems, with an interactive insertion visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [
-    "AVL Tree",
-    "AVL Tree Balancing",
-    "AVL Rotation",
-    "Self-Balancing Binary Search Tree",
-    "Left-Left Rotation",
-    "Right-Right Rotation",
-    "Left-Right Rotation",
-    "Right-Left Rotation",
-    "AVL Tree Visualization",
-    "AVL Tree in JavaScript",
-    "AVL Tree in C",
-    "AVL Tree in Python",
-    "AVL Tree in Java",
-    "DSA Binary Search Tree",
-    "Learn Binary Search Trees",
-    "BST Quiz",
+    "B-Tree",
+    "B Tree Insertion",
+    "B Tree Node Split",
+    "Self-Balancing Tree",
+    "B Tree Properties",
+    "B Tree Visualization",
+    "Database Index Structure",
+    "B Tree vs BST",
+    "B Tree in JavaScript",
+    "B Tree in C",
+    "B Tree in Python",
+    "B Tree in Java",
+    "Advanced Trees",
+    "DSA Trees",
+    "Learn Trees",
+    "Tree Quiz",
   ],
   robots: "index, follow",
   openGraph: {
@@ -40,7 +40,7 @@ export const metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "AVL Tree Balancing Visualization",
+        alt: "B-Tree Visualization",
       },
     ],
   },
@@ -50,7 +50,7 @@ export default function Page() {
   const paths = [
     { name: "Home", href: "/" },
     { name: "Visualizer", href: "/visualizer" },
-    { name: "Trees : AVL Balancing", href: "" },
+    { name: "Trees : B-Tree", href: "" },
   ];
 
   return (
@@ -61,7 +61,7 @@ export default function Page() {
 
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
         <section className="px-6 md:px-12">
-          <ModuleHeader category="Binary Search Tree" title="Balancing (AVL)" paths={paths} />
+          <ModuleHeader category="Advanced Trees" title="B-Tree" paths={paths} />
           <Content />
         </section>
 
@@ -77,14 +77,14 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <CodeBlock title="AVL Tree Insertion Implementation" codeExamples={codeExamples} />
+          <CodeBlock title="B-Tree Insertion Implementation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">
           <ModuleCard
-            moduleId={MODULE_MAPS.bstAvl}
-            title="AVL Tree Balancing"
-            description="Mark AVL Tree Balancing as done and view it on your dashboard"
+            moduleId={MODULE_MAPS.bTree}
+            title="B-Tree"
+            description="Mark B-Tree as done and view it on your dashboard"
             initialDone={false}
           />
         </section>
@@ -93,11 +93,11 @@ export default function Page() {
           <ExploreOther
             title="Explore Other Tree Topics"
             links={[
-              { text: "BST Insertion", url: "./insertion" },
-              { text: "BST Deletion", url: "./deletion" },
-              { text: "BST Searching", url: "./searching" },
-              { text: "Red-Black Tree", url: "../advanced/red-black" },
-              { text: "Binary Tree Types", url: "../binaryTree/types" },
+              { text: "Red-Black Tree", url: "./red-black" },
+              { text: "Trie (Prefix Tree)", url: "./prefix-tree" },
+              { text: "AVL Balancing", url: "../bst/avl" },
+              { text: "BST Insertion", url: "../bst/insertion" },
+              { text: "In-order Traversal", url: "../traversal/in-order" },
               { text: "Structure & Properties", url: "../binaryTree/properties" },
             ]}
           />
