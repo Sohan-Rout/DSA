@@ -1,4 +1,4 @@
-import Animation from "@/app/visualizer/graph/traversal/bfs/animation";
+import Animation from "@/app/visualizer/graph/algorithms/dijkstra/animation";
 import Navbar from "@/app/components/navbarinner";
 import ModuleHeader from "@/app/components/modules/Header";
 import Footer from "@/app/components/footer";
@@ -6,32 +6,32 @@ import BackToTop from "@/app/components/ui/backtotop";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import CodeBlock from "@/app/components/modules/CodeBlock";
 import codeExamples from "./code";
-import Quiz from "@/app/visualizer/graph/traversal/bfs/quiz";
-import Content from "@/app/visualizer/graph/traversal/bfs/content";
+import Quiz from "@/app/visualizer/graph/algorithms/dijkstra/quiz";
+import Content from "@/app/visualizer/graph/algorithms/dijkstra/content";
 import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
-  title: "Breadth-First Search (BFS) | Animation and Explanation",
+  title: "Dijkstra's Algorithm | Animation and Explanation",
   description:
-    "Learn how Breadth-First Search explores a graph outward one distance-ring at a time using a queue, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
+    "Learn how Dijkstra's algorithm finds the shortest weighted-distance path from a start vertex to every other vertex by greedily finalizing the closest unvisited vertex, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [
-    "Breadth-First Search",
-    "BFS",
-    "Breadth-First Search Algorithm",
-    "BFS Algorithm",
-    "Breadth-First Search Visualization",
-    "BFS Visualization",
-    "Graph Traversal",
-    "Shortest Path Unweighted Graph",
-    "Breadth-First Search in JavaScript",
-    "BFS in JavaScript",
-    "Breadth-First Search in C",
-    "BFS in C",
-    "Breadth-First Search in Python",
-    "BFS in Python",
-    "Breadth-First Search in Java",
-    "BFS in Java",
+    "Dijkstra's Algorithm",
+    "Dijkstra Algorithm",
+    "Dijkstra's Shortest Path",
+    "Dijkstra Algorithm Visualization",
+    "Shortest Path Algorithm",
+    "Weighted Graph Shortest Path",
+    "Single Source Shortest Path",
+    "Priority Queue Shortest Path",
+    "Dijkstra's Algorithm in JavaScript",
+    "Dijkstra Algorithm in JavaScript",
+    "Dijkstra's Algorithm in C",
+    "Dijkstra Algorithm in C",
+    "Dijkstra's Algorithm in Python",
+    "Dijkstra Algorithm in Python",
+    "Dijkstra's Algorithm in Java",
+    "Dijkstra Algorithm in Java",
     "Graph Algorithms",
     "DSA Graphs",
     "Learn Graphs",
@@ -44,7 +44,7 @@ export const metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Breadth-First Search Visualization",
+        alt: "Dijkstra's Algorithm Visualization",
       },
     ],
   },
@@ -54,7 +54,7 @@ export default function Page() {
   const paths = [
     { name: "Home", href: "/" },
     { name: "Visualizer", href: "/visualizer" },
-    { name: "Graph : Breadth-First Search", href: "" },
+    { name: "Graph : Dijkstra's Algorithm", href: "" },
   ];
 
   return (
@@ -65,7 +65,7 @@ export default function Page() {
 
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
         <section className="px-6 md:px-12">
-          <ModuleHeader category="Graph Traversal" title="Breadth-First Search" paths={paths} />
+          <ModuleHeader category="Graph Algorithms" title="Dijkstra's Algorithm" paths={paths} />
           <Content />
         </section>
 
@@ -81,14 +81,14 @@ export default function Page() {
         </section>
 
         <section className="px-6">
-          <CodeBlock title="Breadth-First Search Implementation" codeExamples={codeExamples} />
+          <CodeBlock title="Dijkstra's Algorithm Implementation" codeExamples={codeExamples} />
         </section>
 
         <section className="px-6 md:px-12 my-12">
           <ModuleCard
-            moduleId={MODULE_MAPS.graphBfs}
-            title="Breadth-First Search"
-            description="Mark Breadth-First Search as done and view it on your dashboard"
+            moduleId={MODULE_MAPS.dijkstra}
+            title="Dijkstra's Algorithm"
+            description="Mark Dijkstra's Algorithm as done and view it on your dashboard"
             initialDone={false}
           />
         </section>
@@ -97,12 +97,13 @@ export default function Page() {
           <ExploreOther
             title="Explore Other Topics"
             links={[
-              { text: "Depth-First Search", url: "./dfs" },
-              { text: "Dijkstra's Algorithm", url: "../algorithms/dijkstra" },
+              { text: "Kruskal's Algorithm", url: "./kruskal" },
+              { text: "Prim's Algorithm", url: "./prim" },
+              { text: "Topological Sort", url: "./topological-sort" },
+              { text: "Breadth-First Search", url: "../traversal/bfs" },
+              { text: "Depth-First Search", url: "../traversal/dfs" },
               { text: "Adjacency List", url: "../representation/adjacency-list" },
               { text: "Adjacency Matrix", url: "../representation/adjacency-matrix" },
-              { text: "Binary Search", url: "../../searching/binarysearch" },
-              { text: "Structure & Properties", url: "../../trees/binaryTree/properties" },
             ]}
           />
         </section>

@@ -98,6 +98,7 @@ export default function Page() {
             title="Explore Other Topics"
             links={[
               { text: "Breadth-First Search", url: "./bfs" },
+              { text: "Dijkstra's Algorithm", url: "../algorithms/dijkstra" },
               { text: "Adjacency List", url: "../representation/adjacency-list" },
               { text: "Adjacency Matrix", url: "../representation/adjacency-matrix" },
               { text: "Structure & Properties", url: "../../trees/binaryTree/properties" },
