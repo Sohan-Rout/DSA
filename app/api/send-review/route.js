@@ -1,7 +1,26 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+// Simple in-memory rate limiter: max 5 requests per IP per 15 minutes
+const rateLimit = new Map();
+const LIMIT = 5;
+const WINDOW_MS = 15 * 60 * 1000;
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const entry = rateLimit.get(ip) || { count: 0, start: now };
+  if (now - entry.start > WINDOW_MS) { rateLimit.set(ip, { count: 1, start: now }); return false; }
+  if (entry.count >= LIMIT) return true;
+  entry.count++;
+  rateLimit.set(ip, entry);
+  return false;
+}
+
 export async function POST(request) {
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  if (isRateLimited(ip)) {
+    return NextResponse.json({ success: false, error: 'Too many requests' }, { status: 429 });
+  }
   const { name, email, review, rating, to } = await request.json();
 
   try {
