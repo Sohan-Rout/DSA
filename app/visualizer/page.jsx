@@ -411,7 +411,7 @@ const sections = [
           },
           {
             name: "Serialize/Deserialize",
-            path: "/visualizer/trees/algorithms/serialization",
+            path: "/visualizer/trees/algorithms/serialize-deserialize",
           },
         ],
       },
@@ -420,11 +420,11 @@ const sections = [
         items: [
           {
             name: "Heap Sort",
-            path: "/visualizer/trees/applications/heapsort",
+            path: "/visualizer/trees/applications/heap-sort",
           },
           {
             name: "Huffman Coding",
-            path: "/visualizer/trees/applications/huffman",
+            path: "/visualizer/trees/applications/huffman-coding",
           },
           {
             name: "Decision Trees",

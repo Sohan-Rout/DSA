@@ -102,6 +102,7 @@ export default function Page() {
             links={[
               { text: "Tree Diameter", url: "./tree-diameter" },
               { text: "Tree Isomorphism", url: "./tree-isomorphism" },
+              { text: "Serialize/Deserialize", url: "./serialize-deserialize" },
               { text: "BST Searching", url: "../bst/searching" },
               { text: "BST Insertion", url: "../bst/insertion" },
               { text: "AVL Balancing", url: "../bst/avl" },
