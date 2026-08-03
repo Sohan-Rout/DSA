@@ -403,11 +403,11 @@ const sections = [
           },
           {
             name: "Tree Diameter",
-            path: "/visualizer/trees/algorithms/diameter",
+            path: "/visualizer/trees/algorithms/tree-diameter",
           },
           {
             name: "Tree Isomorphism",
-            path: "/visualizer/trees/algorithms/isomorphism",
+            path: "/visualizer/trees/algorithms/tree-isomorphism",
           },
           {
             name: "Serialize/Deserialize",
