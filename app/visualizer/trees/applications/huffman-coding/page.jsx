@@ -94,7 +94,9 @@ export default function Page() {
           <ExploreOther
             title="Explore Other Tree Topics"
             links={[
-              { text: "Heap Sort", url: "../heap-sort" },
+              { text: "Heap Sort", url: "./heap-sort" },
+              { text: "Decision Trees", url: "./decision-trees" },
+              { text: "Syntax Trees", url: "./syntax-trees" },
               { text: "Tree Diameter", url: "../algorithms/tree-diameter" },
               { text: "Lowest Common Ancestor", url: "../algorithms/lowest-common-ancestor" },
               { text: "Level-order Traversal", url: "../traversal/level-order" },
