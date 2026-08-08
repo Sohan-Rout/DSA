@@ -37,10 +37,10 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og/stack/isFull.png",
+        url: "/og/linkedList/singlyLinkedList.png",
         width: 1200,
         height: 630,
-        alt: "Stack isFull Visualization",
+        alt: "Singly Linked List Visualization",
       },
     ],
   },
@@ -61,15 +61,16 @@ export default function Page() {
 
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
         <section className="px-6 md:px-12">
-          <ModuleHeader category="Types" title="Singly Linked List" paths={paths} />          <Content />
+          <ModuleHeader category="Types" title="Singly Linked List" paths={paths} />
+          <Content />
         </section>
 
-        <section>
+        <section className="px-6">
           <Animation />
         </section>
 
         <section className="px-6">
-          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-2">
+          <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
             Test Your Knowledge before moving forward!
           </p>
           <Quiz />
@@ -88,14 +89,14 @@ export default function Page() {
           />
         </section>
 
-        <section>
+        <section className="px-6">
           <ExploreOther
-          title="Explore Other Types"
-          links={[
-            { text: "Doubly Linked List", url: "./doubly" },
-            { text: "Circular Linked List", url: "./circular" },
-          ]}
-        />
+            title="Explore Other Types"
+            links={[
+              { text: "Doubly Linked List", url: "./doubly" },
+              { text: "Circular Linked List", url: "./circular" },
+            ]}
+          />
         </section>
       </div>
 

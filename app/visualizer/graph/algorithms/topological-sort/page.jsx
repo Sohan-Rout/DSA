@@ -41,7 +41,7 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og.png",
+        url: "/og/graphs/topologicalSort.png",
         width: 1200,
         height: 630,
         alt: "Topological Sort Visualization",

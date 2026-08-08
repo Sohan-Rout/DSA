@@ -6,11 +6,8 @@ const SinglyLinkedListVisualizer = () => {
   const [inputValue, setInputValue] = useState('');
   const [list, setList] = useState([]);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [explanation, setExplanation] = useState('Enter a value and click "Add Node" to start.');
   const nodeIdCounter = useRef(1);
   const animationRef = useRef(null);
-  const isMounted = useRef(true);
 
   // Generate random memory addresses for visualization
   const generateMemoryAddress = () => {
@@ -19,47 +16,29 @@ const SinglyLinkedListVisualizer = () => {
 
   const addNode = () => {
     if (!inputValue || isAnimating) return;
-
     setIsAnimating(true);
-    setCurrentStep(0);
-    setExplanation(explanations[0]);
 
-    let step = 0;
-    const animateStep = () => {
-      if (!isMounted.current) return;
+    animationRef.current = setTimeout(() => {
+      const newNode = {
+        value: inputValue,
+        id: nodeIdCounter.current++,
+        address: generateMemoryAddress(),
+        next: null
+      };
 
-      setCurrentStep(step);
-      setExplanation(explanations[step]);
-      step++;
+      setList(prev => {
+        if (prev.length > 0) {
+          // Update previous node's next pointer
+          const updatedList = [...prev];
+          updatedList[updatedList.length - 1].next = newNode.address;
+          return [...updatedList, newNode];
+        }
+        return [newNode];
+      });
 
-      if (step < steps.length) {
-        animationRef.current = setTimeout(animateStep, 0);
-      } else {
-        // Animation complete - add the node
-        const newNode = {
-          value: inputValue,
-          id: nodeIdCounter.current++,
-          address: generateMemoryAddress(),
-          next: null
-        };
-
-        setList(prev => {
-          if (prev.length > 0) {
-            // Update previous node's next pointer
-            const updatedList = [...prev];
-            updatedList[updatedList.length - 1].next = newNode.address;
-            return [...updatedList, newNode];
-          }
-          return [newNode];
-        });
-
-        setInputValue('');
-        setExplanation(explanations[explanations.length - 1]);
-        setIsAnimating(false);
-      }
-    };
-
-    animateStep();
+      setInputValue('');
+      setIsAnimating(false);
+    }, 500);
   };
 
   const resetList = () => {
@@ -67,26 +46,21 @@ const SinglyLinkedListVisualizer = () => {
     setList([]);
     setInputValue('');
     setIsAnimating(false);
-    setCurrentStep(0);
     nodeIdCounter.current = 1;
-    setExplanation('Enter a value and click "Add Node" to start.');
   };
 
   useEffect(() => {
-    isMounted.current = true;
     return () => {
-      isMounted.current = false;
       clearTimeout(animationRef.current);
     };
   }, []);
 
   return (
-    <div className="min-h-screen max-h-auto bg-gray-100 dark:bg-zinc-950 text-gray-800 dark:text-gray-200">
-      <main className="container mx-auto px-6 pt-16 pb-4">
+      <main className="container mx-auto px-6 pb-4">
         <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
           Visualize Singly Linked List Operations
         </p>
-          
+
           {/* Input Form */}
           <div className="bg-white max-w-4xl mx-auto dark:bg-gray-800 p-4 rounded-lg shadow-md mb-6 border border-gray-200 dark:border-gray-700">
             <div className="mb-3">
@@ -98,7 +72,7 @@ const SinglyLinkedListVisualizer = () => {
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  className="w-full p-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className="w-full p-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   placeholder="Enter value"
                   disabled={isAnimating}
                   onKeyDown={(e) => e.key === 'Enter' && addNode()}
@@ -194,7 +168,6 @@ const SinglyLinkedListVisualizer = () => {
             )}
           </div>
       </main>
-    </div>
   );
 };
 

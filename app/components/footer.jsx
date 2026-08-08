@@ -213,7 +213,7 @@ const Footer = () => {
                 Sitemap
               </Link>
               <Link
-                href="/#review"
+                href="mailto:hello@dsavisualizer.in"
                 className="text-sm text-gray-500 hover:text-blue-400 transition"
               >
                 Contact

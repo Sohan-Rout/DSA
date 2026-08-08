@@ -1,25 +1,36 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useSyncExternalStore } from "react";
 import gsap from "gsap";
 
+function subscribeNoop() {
+  return () => {};
+}
+
+function getSnapshot() {
+  return !localStorage.getItem("tutorialSeen");
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
 export default function TutorialOverlay() {
-  const [showOverlay, setShowOverlay] = useState(false);
+  const tutorialUnseen = useSyncExternalStore(subscribeNoop, getSnapshot, getServerSnapshot);
+  const [dismissed, setDismissed] = useState(false);
   const [step, setStep] = useState(0);
   const overlayRef = useRef();
 
-  useEffect(() => {
-    const seenTutorial = localStorage.getItem("tutorialSeen");
+  const showOverlay = tutorialUnseen && !dismissed;
 
-    if (!seenTutorial) {
-      setShowOverlay(true);
-      gsap.fromTo(
-        overlayRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: "power2.out" }
-      );
-    }
-  }, []);
+  useEffect(() => {
+    if (!showOverlay) return;
+    gsap.fromTo(
+      overlayRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.5, ease: "power2.out" }
+    );
+  }, [showOverlay]);
 
   const nextStep = () => {
     if (step < 2) {
@@ -31,7 +42,7 @@ export default function TutorialOverlay() {
         ease: "power2.in",
         onComplete: () => {
           localStorage.setItem("tutorialSeen", "true");
-          setShowOverlay(false);
+          setDismissed(true);
         },
       });
     }
@@ -44,7 +55,7 @@ export default function TutorialOverlay() {
       ease: "power2.in",
       onComplete: () => {
         localStorage.setItem("tutorialSeen", "true");
-        setShowOverlay(false);
+        setDismissed(true);
       },
     });
   };
@@ -54,7 +65,7 @@ export default function TutorialOverlay() {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
     >
       <div className="bg-white dark:bg-neutral-900 p-6 rounded-2xl shadow-2xl max-w-sm w-full text-center relative">
         <button
