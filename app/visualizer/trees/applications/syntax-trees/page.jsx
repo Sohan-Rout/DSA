@@ -12,7 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
-  title: "Syntax Trees (Expression Trees) | Animation and Explanation",
+  title: "Syntax Trees or Expression Trees | Animation and Explanation",
   description:
     "Learn how a syntax tree (expression tree) represents an arithmetic expression's structure, how recursive-descent parsing builds one, and how post-order traversal evaluates it, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [
@@ -43,7 +43,7 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og.png",
+        url: "/og/trees/syntaxTrees.png",
         width: 1200,
         height: 630,
         alt: "Syntax Tree Visualization",

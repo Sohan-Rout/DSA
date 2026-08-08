@@ -247,7 +247,7 @@ const questions = [
   };
 
   return (
-    <section className="max-w-2xl mx-auto shadow-lg rounded-xl bg-white dark:bg-gray-800 mt-8 mb-8 p-6 border border-gray-200 dark:border-gray-700">
+    <section className="max-w-4xl mx-auto shadow-lg rounded-xl bg-white dark:bg-neutral-950 mt-8 mb-8 p-6 border border-gray-200 dark:border-gray-700">
       {showIntro ? (
         <motion.div
           initial={{ opacity: 0, y: 20 }}

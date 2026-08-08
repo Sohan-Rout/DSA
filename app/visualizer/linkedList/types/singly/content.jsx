@@ -3,6 +3,121 @@ import { useEffect, useState } from "react";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 
 import InContentAd from "@/app/components/ads/InContentAd";
+
+const ListDiagram = ({ nodes, highlight, keyPrefix }) => {
+  const boxSize = 40;
+  const gap = 36;
+  const startX = 40;
+  const topPadding = 22;
+  const width = startX + Math.max(nodes.length, 1) * (boxSize + gap) + 34;
+  const height = boxSize + topPadding + 18;
+
+  const boxX = (idx) => startX + idx * (boxSize + gap);
+  const boxY = topPadding;
+  const cy = boxY + boxSize / 2;
+
+  const colorFor = (idx) => (highlight === idx ? "#10b981" : "#3b82f6");
+
+  if (nodes.length === 0) {
+    return (
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        className="mx-auto"
+        style={{ width: `${width}px`, maxWidth: "100%" }}
+        role="img"
+        aria-label="empty linked list"
+      >
+        <defs>
+          <marker id={`${keyPrefix}-arrow`} markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <path d="M0,0 L7,3.5 L0,7 Z" fill="#94a3b8" />
+          </marker>
+        </defs>
+        <text x="0" y={cy + 4} className="fill-gray-500 dark:fill-gray-400" fontSize="12" fontFamily="monospace">
+          head
+        </text>
+        <line x1="30" y1={cy} x2={boxX(0)} y2={cy} stroke="#94a3b8" strokeWidth="1.5" markerEnd={`url(#${keyPrefix}-arrow)`} />
+        <text x={boxX(0) + 4} y={cy + 4} className="fill-gray-400 dark:fill-gray-500" fontSize="12" fontFamily="monospace">
+          null
+        </text>
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="mx-auto"
+      style={{ width: `${width}px`, maxWidth: "100%" }}
+      role="img"
+      aria-label="linked list diagram"
+    >
+      <defs>
+        <marker id={`${keyPrefix}-arrow`} markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="#94a3b8" />
+        </marker>
+      </defs>
+
+      <text x="0" y={cy + 4} className="fill-gray-500 dark:fill-gray-400" fontSize="12" fontFamily="monospace">
+        head
+      </text>
+      <line
+        x1="30"
+        y1={cy}
+        x2={boxX(0)}
+        y2={cy}
+        stroke="#94a3b8"
+        strokeWidth="1.5"
+        markerEnd={`url(#${keyPrefix}-arrow)`}
+      />
+
+      {nodes.map((label, idx) => (
+        <g key={`${keyPrefix}-box-${idx}`}>
+          <rect
+            x={boxX(idx)}
+            y={boxY}
+            width={boxSize}
+            height={boxSize}
+            rx="6"
+            fill={colorFor(idx)}
+            opacity={highlight === idx ? "0.9" : "0.25"}
+            stroke={colorFor(idx)}
+            strokeWidth="2"
+          />
+          <text
+            x={boxX(idx) + boxSize / 2}
+            y={cy + 5}
+            textAnchor="middle"
+            className="fill-gray-800 dark:fill-gray-100"
+            fontSize="14"
+            fontWeight="700"
+          >
+            {label}
+          </text>
+          <line
+            x1={boxX(idx) + boxSize}
+            y1={cy}
+            x2={boxX(idx) + boxSize + gap}
+            y2={cy}
+            stroke="#94a3b8"
+            strokeWidth="1.5"
+            markerEnd={`url(#${keyPrefix}-arrow)`}
+          />
+        </g>
+      ))}
+
+      <text
+        x={boxX(nodes.length - 1) + boxSize + gap + 4}
+        y={cy + 4}
+        className="fill-gray-400 dark:fill-gray-500"
+        fontSize="12"
+        fontFamily="monospace"
+      >
+        null
+      </text>
+    </svg>
+  );
+};
+
 const Content = () => {
 
   const [theme, setTheme] = useState("light");
@@ -39,49 +154,6 @@ const Content = () => {
     { name: "Access by Index", complexity: "O(n)", description: "Traverse list until reaching desired position" },
   ];
 
-  const implementationCode = [
-    { code: "class Node {" },
-    { code: "  constructor(data) {" },
-    { code: "    this.data = data;" },
-    { code: "    this.next = null;" },
-    { code: "  }" },
-    { code: "}" },
-    { code: "" },
-    { code: "class SinglyLinkedList {" },
-    { code: "  constructor() {" },
-    { code: "    this.head = null;" },
-    { code: "    this.size = 0;" },
-    { code: "  }" },
-    { code: "" },
-    { code: "  // Check if list is empty" },
-    { code: "  isEmpty() {" },
-    { code: "    return this.head === null;" },
-    { code: "  }" },
-    { code: "" },
-    { code: "  // Insert at head" },
-    { code: "  insertFirst(data) {" },
-    { code: "    const newNode = new Node(data);" },
-    { code: "    newNode.next = this.head;" },
-    { code: "    this.head = newNode;" },
-    { code: "    this.size++;" },
-    { code: "  }" },
-  ];
-
-  const insertionAtHeadSteps = [
-    { step: "1. Create new node with given data" },
-    { step: "2. Set new node's next to current head" },
-    { step: "3. Update head pointer to new node" },
-    { step: "4. Increment list size counter" },
-  ];
-
-  const deletionSteps = [
-    { step: "1. Check if list is empty (head === null)" },
-    { step: "2. If deleting head, update head to head.next" },
-    { step: "3. For middle deletion, find previous node and update its next pointer" },
-    { step: "4. Decrement list size counter" },
-    { step: "5. Return deleted data (if needed)" },
-  ];
-
   const prosCons = [
     { point: "Dynamic size - grows as needed", type: "pro" },
     { point: "Efficient insertion/deletion at head", type: "pro" },
@@ -89,15 +161,6 @@ const Content = () => {
     { point: "No random access - must traverse from head", type: "con" },
     { point: "Extra memory for next pointers", type: "con" },
     { point: "Not cache-friendly (nodes scattered in memory)", type: "con" },
-  ];
-
-  const visualization = [
-    { operation: "Initialization", state: "head → null" },
-    { operation: "insertFirst(10)", state: "head → [10|•] → null" },
-    { operation: "insertFirst(20)", state: "head → [20|•] → [10|•] → null" },
-    { operation: "insertLast(30)", state: "head → [20|•] → [10|•] → [30|•] → null" },
-    { operation: "deleteFirst()", state: "head → [10|•] → [30|•] → null" },
-    { operation: "delete(30)", state: "head → [10|•] → null" },
   ];
 
   const applications = [
@@ -114,7 +177,7 @@ const Content = () => {
       <div className="md:col-span-3">
         <NewsletterEmbed mobile={false} theme={theme} />
       </div>
-      <article className="md:col-span-9 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+      <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* Overview Section */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -160,98 +223,29 @@ const Content = () => {
           </div>
         </section>
 
-        {/* Implementation */}
-        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Implementation</h2>
-          <div className="prose dark:prose-invert max-w-none">
-            <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-x-auto">
-              <code className="text-sm font-mono text-gray-800 dark:text-gray-200">
-                {implementationCode.map((line, index) => (
-                  <div key={index}>{line.code}</div>
-                ))}
-              </code>
-            </pre>
-          </div>
-        </section>
-
         {/* Insertion at Head */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Insertion at Head</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-                {insertionAtHeadSteps.map((step, index) => (
-                  <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
-                    {step.step}
-                  </li>
-                ))}
-              </ol>
-            </div>
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
-              <div className="flex flex-col space-y-4">
-                <div className="flex items-center">
-                  <span className="font-mono mr-2">head →</span>
-                  <div className="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded">[A|•] → [B|•] → null</div>
-                </div>
-                <div className="text-center text-gray-600 dark:text-gray-300">↓ Insert X at head ↓</div>
-                <div className="flex items-center">
-                  <span className="font-mono mr-2">head →</span>
-                  <div className="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded">[X|•] → [A|•] → [B|•] → null</div>
-                </div>
-              </div>
-            </div>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            A new node is created pointing to the current head, then the head pointer is repointed to the new node. No traversal is needed, so this runs in O(1).
+          </p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg space-y-3 overflow-x-auto">
+            <ListDiagram nodes={["A", "B"]} keyPrefix="ins-before" />
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400">↓ insert X at head ↓</p>
+            <ListDiagram nodes={["X", "A", "B"]} highlight={0} keyPrefix="ins-after" />
           </div>
         </section>
 
         {/* Deletion */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Deletion Operations</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-                {deletionSteps.map((step, index) => (
-                  <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
-                    {step.step}
-                  </li>
-                ))}
-              </ol>
-            </div>
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
-              <div className="flex flex-col space-y-4">
-                <div className="flex items-center">
-                  <span className="font-mono mr-2">head →</span>
-                  <div className="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded">[X|•] → [A|•] → [B|•] → null</div>
-                </div>
-                <div className="text-center text-gray-600 dark:text-gray-300">↓ Delete A ↓</div>
-                <div className="flex items-center">
-                  <span className="font-mono mr-2">head →</span>
-                  <div className="px-3 py-1 bg-gray-200 dark:bg-gray-600 rounded">[X|•] → [B|•] → null</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Visualization */}
-        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Operation Visualization</h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-700">
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Operation</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">List State</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                {visualization.map((item, index) => (
-                  <tr key={index}>
-                    <td className="px-4 py-3 text-sm font-mono text-gray-900 dark:text-white">{item.operation}</td>
-                    <td className="px-4 py-3 text-sm font-mono text-gray-700 dark:text-gray-300">{item.state}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Deletion</h2>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            The node before the one being removed has its pointer redirected past it to the following node. Removing the head is O(1); removing from the middle first requires walking to the node before it, making it O(n).
+          </p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg space-y-3 overflow-x-auto">
+            <ListDiagram nodes={["X", "A", "B"]} keyPrefix="del-before" />
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400">↓ delete A ↓</p>
+            <ListDiagram nodes={["X", "B"]} keyPrefix="del-after" />
           </div>
         </section>
 
