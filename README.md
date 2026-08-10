@@ -60,7 +60,7 @@ This is **not** a permissive open-source license. In short:
 - ❌ You may **not** use the "DSA Visualizer" name, logo, brand colors/layout, or original written content (blog posts, page copy, SEO metadata) to represent your project as DSA Visualizer or as affiliated with/endorsed by Sohan Rout — none of that is licensed to you at all, under any circumstance.
 - ✅ You must keep the `LICENSE` and [`NOTICE`](./NOTICE) files intact in any copy or fork.
 
-Violating these terms ends your license immediately (see `LICENSE`) and may result in a DMCA takedown, hosting-provider abuse report, trademark complaint, and/or legal action. Full details and strict rules are in [`NOTICE`](./NOTICE). To report a violation, contact sohanrout2@gmail.com.
+Violating these terms ends your license immediately (see `LICENSE`) and may result in a DMCA takedown, hosting-provider abuse report, trademark complaint, and/or legal action. Full details and strict rules are in [`NOTICE`](./NOTICE). To report a violation, contact sohanrout84@gmail.com.
 
 # Contribution  
 

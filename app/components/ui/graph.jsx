@@ -72,47 +72,48 @@ const ComplexityGraph = ({
   };
 
   return (
-    <div className="w-full h-[400px] my-1 p-2 bg-neutral-50 dark:bg-neutral-900 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-      <h2 className="text-center text-2xl font-bold mb-1 text-gray-800 dark:text-gray-100">
+    <div className="w-full h-75 sm:h-100 my-1 p-2 bg-neutral-50 dark:bg-neutral-900 rounded-2xl overflow-x-auto">
+      <h2 className="text-center text-lg sm:text-2xl font-bold mb-1 text-gray-800 dark:text-gray-100">
         {title}
       </h2>
-      
-      <ResponsiveContainer width="100%" height="70%">
+
+      <ResponsiveContainer width="100%" height="70%" minWidth={260}>
         <LineChart
           data={data}
-          margin={{ top: 5, right: 30, left: 30, bottom: 20 }}
+          margin={{ top: 5, right: 10, left: 0, bottom: 20 }}
         >
-          <CartesianGrid 
-            strokeDasharray="3 3" 
+          <CartesianGrid
+            strokeDasharray="3 3"
             strokeOpacity={0.2}
             vertical={false}
           />
-          
-          <XAxis 
+
+          <XAxis
             dataKey="n"
             axisLine={{ stroke: '#6b7280', strokeWidth: 0.5 }}
-            tick={{ fill: '#6b7280', fontSize: 12 }}
+            tick={{ fill: '#6b7280', fontSize: 11 }}
             tickLine={{ stroke: '#6b7280' }}
             label={{
               value: "Input Size (n)",
               position: "insideBottomRight",
               offset: -10,
               fill: '#6b7280',
-              fontSize: 12
+              fontSize: 11
             }}
           />
-          
-          <YAxis 
+
+          <YAxis
             axisLine={{ stroke: '#6b7280', strokeWidth: 0.5 }}
-            tick={{ fill: '#6b7280', fontSize: 12 }}
+            tick={{ fill: '#6b7280', fontSize: 11 }}
             tickLine={{ stroke: '#6b7280' }}
+            width={36}
             label={{
               value: "Operations",
               angle: -90,
               position: "insideLeft",
               fill: '#6b7280',
-              fontSize: 12,
-              dy: 40
+              fontSize: 11,
+              dy: 30
             }}
           />
           
