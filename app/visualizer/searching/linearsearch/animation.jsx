@@ -3,12 +3,17 @@ import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import ResetButton from "@/app/components/ui/resetButton";
 import GoButton from "@/app/components/ui/goButton";
+import { useTheme } from "@/app/contexts/ThemeContext";
 
 const LinearSearch = () => {
+  const { theme } = useTheme();
+  const idleColors =
+    theme === "dark"
+      ? { backgroundColor: "#111827", borderColor: "#4B5563" }
+      : { backgroundColor: "#E5E7EB", borderColor: "#D1D5DB" };
   const [arrayElements, setArrayElements] = useState("");
   const [target, setTarget] = useState("");
   const [array, setArray] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(-1);
   const [foundIndex, setFoundIndex] = useState(-1);
   const [isAnimating, setIsAnimating] = useState(false);
   const [message, setMessage] = useState("");
@@ -28,7 +33,6 @@ const LinearSearch = () => {
 
   const handleReset = () => {
     setArray([]);
-    setCurrentIndex(-1);
     setFoundIndex(-1);
     setMessage("");
     setIsAnimating(false);
@@ -44,8 +48,7 @@ const LinearSearch = () => {
     // Reset GSAP animations
     elementRefs.current.forEach((ref) => {
       gsap.to(ref, {
-        backgroundColor: "#E5E7EB",
-        borderColor: "#D1D5DB",
+        ...idleColors,
         duration: 0,
       });
     });
@@ -87,8 +90,6 @@ const LinearSearch = () => {
 
     const step = () => {
       if (index < arr.length) {
-        setCurrentIndex(index);
-
         // GSAP animation for current element
         gsap.to(elementRefs.current[index], {
           backgroundColor: "#EAB308",
@@ -102,8 +103,7 @@ const LinearSearch = () => {
             } else {
               // Reset previous element's style
               gsap.to(elementRefs.current[index], {
-                backgroundColor: "#E5E7EB",
-                borderColor: "#D1D5DB",
+                ...idleColors,
                 duration: 0.3,
               });
               index++;
@@ -219,25 +219,20 @@ const LinearSearch = () => {
 
       {/* Visualization */}
       {array.length > 0 && (
-        <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+        <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md overflow-x-auto">
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-4">
             Array Visualization
           </h2>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-x-3 gap-y-4 sm:gap-4 justify-center">
             {array.map((element, index) => (
-              <div
-                key={index}
-                ref={(el) => (elementRefs.current[index] = el)}
-                className={`relative w-20 h-20 flex flex-col items-center justify-center rounded-lg border-2 transition-all duration-300 ${
-                  currentIndex === index && foundIndex === -1
-                    ? "bg-yellow-600 dark:bg-yellow-600 border-yellow-700 dark:border-yellow-400 text-gray-800 dark:text-white"
-                    : foundIndex === index
-                    ? "bg-green-500 dark:bg-green-600 border-green-700 dark:border-green-400 text-gray-800 dark:text-white"
-                    : "bg-gray-200 dark:bg-gray-900 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white"
-                }`}
-              >
-                <span className="text-xl font-bold">{element}</span>
-                <span className="absolute -bottom-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+              <div key={index} className="flex flex-col items-center gap-1">
+                <div
+                  ref={(el) => (elementRefs.current[index] = el)}
+                  className="w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center rounded-lg border-2 bg-gray-200 dark:bg-gray-900 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white"
+                >
+                  <span className="text-base sm:text-xl font-bold">{element}</span>
+                </div>
+                <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">
                   [{index}]
                 </span>
               </div>

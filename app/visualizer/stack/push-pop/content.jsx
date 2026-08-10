@@ -4,6 +4,115 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import InContentAd from "@/app/components/ads/InContentAd";
+
+const StackDiagram = ({ values, highlight, keyPrefix }) => {
+  const boxWidth = 84;
+  const boxHeight = 36;
+  const topPadding = 22;
+  const bottomPadding = 8;
+  const sideMargin = 26;
+  const slotCount = Math.max(values.length, 1);
+  const height = topPadding + slotCount * boxHeight + bottomPadding;
+  const width = sideMargin + boxWidth + 70;
+
+  const containerTop = topPadding - 6;
+  const containerBottom = topPadding + values.length * boxHeight;
+
+  const boxY = (idx) => containerBottom - (idx + 1) * boxHeight;
+
+  const colorFor = (idx) => {
+    if (highlight && idx === values.length - 1) {
+      return highlight === "pop" ? "#f59e0b" : "#10b981";
+    }
+    return "#3b82f6";
+  };
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="mx-auto"
+      style={{ width: `${width}px`, maxWidth: "100%" }}
+      role="img"
+      aria-label="stack diagram"
+    >
+      <defs>
+        <marker id={`${keyPrefix}-top-arrow`} markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="#94a3b8" />
+        </marker>
+      </defs>
+
+      <path
+        d={`M ${sideMargin} ${containerTop} L ${sideMargin} ${containerBottom} L ${sideMargin + boxWidth} ${containerBottom} L ${sideMargin + boxWidth} ${containerTop}`}
+        fill="none"
+        className="stroke-gray-400 dark:stroke-gray-500"
+        strokeWidth="2"
+      />
+
+      {values.length === 0 && (
+        <text
+          x={sideMargin + boxWidth / 2}
+          y={containerBottom - 14}
+          textAnchor="middle"
+          className="fill-gray-400 dark:fill-gray-500"
+          fontSize="11"
+          fontFamily="monospace"
+        >
+          empty
+        </text>
+      )}
+
+      {values.map((val, idx) => (
+        <g key={`${keyPrefix}-box-${idx}`}>
+          <rect
+            x={sideMargin + 3}
+            y={boxY(idx)}
+            width={boxWidth - 6}
+            height={boxHeight - 4}
+            rx="6"
+            fill={colorFor(idx)}
+            opacity={idx === values.length - 1 ? "0.9" : "0.25"}
+            stroke={colorFor(idx)}
+            strokeWidth="2"
+          />
+          <text
+            x={sideMargin + boxWidth / 2}
+            y={boxY(idx) + (boxHeight - 4) / 2 + 5}
+            textAnchor="middle"
+            className="fill-gray-800 dark:fill-gray-100"
+            fontSize="14"
+            fontWeight="700"
+          >
+            {val}
+          </text>
+        </g>
+      ))}
+
+      {values.length > 0 && (
+        <g>
+          <line
+            x1={sideMargin + boxWidth + 26}
+            y1={boxY(values.length - 1) + (boxHeight - 4) / 2}
+            x2={sideMargin + boxWidth + 8}
+            y2={boxY(values.length - 1) + (boxHeight - 4) / 2}
+            stroke="#94a3b8"
+            strokeWidth="1.5"
+            markerEnd={`url(#${keyPrefix}-top-arrow)`}
+          />
+          <text
+            x={sideMargin + boxWidth + 30}
+            y={boxY(values.length - 1) + (boxHeight - 4) / 2 + 4}
+            className="fill-gray-500 dark:fill-gray-400"
+            fontSize="11"
+            fontFamily="monospace"
+          >
+            top
+          </text>
+        </g>
+      )}
+    </svg>
+  );
+};
+
 const Content = () => {
   const { theme } = useTheme();
 
@@ -13,10 +122,10 @@ const Content = () => {
   ];
 
   const examplePush = [
-    { points: "Start with empty stack: [ ]" },
-    { points: "Push 5: [5]" },
-    { points: "Push 3: [3, 5]" },
-    { points: "Push 7: [7, 3, 5]" },
+    { points: "Start with empty stack", stack: [] },
+    { points: "Push 5", stack: [5], highlight: "push" },
+    { points: "Push 3", stack: [5, 3], highlight: "push" },
+    { points: "Push 7", stack: [5, 3, 7], highlight: "push" },
   ];
 
   const pushComplexity = [
@@ -25,10 +134,10 @@ const Content = () => {
   ];
 
   const examplePop = [
-    { points: "Current stack: [7, 3, 5]" },
-    { points: "Pop → returns 7: [3, 5]" },
-    { points: "Pop → returns 3: [5]" },
-    { points: "Pop → returns 5: [ ]" },
+    { points: "Current stack, 7 on top", stack: [5, 3, 7] },
+    { points: "Pop → returns 7", stack: [5, 3], highlight: "pop" },
+    { points: "Pop → returns 3", stack: [5], highlight: "pop" },
+    { points: "Pop → returns 5", stack: [] },
   ];
 
   const popComplexity = [
@@ -99,13 +208,16 @@ const Content = () => {
             <p className="text-gray-700 dark:text-gray-300 font-medium mb-2">
               Example: Pushing elements onto a stack
             </p>
-            <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+            <ol className="space-y-5 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {examplePush.map((item, index) => (
                 <li
                   key={index}
                   className="text-gray-700 dark:text-gray-300 pl-2"
                 >
                   {item.points}
+                  <div className="mt-3 not-prose">
+                    <StackDiagram keyPrefix={`push-step${index}`} values={item.stack} highlight={item.highlight} />
+                  </div>
                 </li>
               ))}
             </ol>
@@ -138,13 +250,16 @@ const Content = () => {
             <p className="text-gray-700 dark:text-gray-300 font-medium mb-2">
               Example: Popping elements from a stack
             </p>
-            <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
+            <ol className="space-y-5 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {examplePop.map((item, index) => (
                 <li
                   key={index}
                   className="text-gray-700 dark:text-gray-300 pl-2"
                 >
                   {item.points}
+                  <div className="mt-3 not-prose">
+                    <StackDiagram keyPrefix={`pop-step${index}`} values={item.stack} highlight={item.highlight} />
+                  </div>
                 </li>
               ))}
             </ol>
