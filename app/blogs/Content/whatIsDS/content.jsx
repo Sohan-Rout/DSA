@@ -12,19 +12,19 @@ const BlogContent = () => {
   };
 
   const Paragraphs = [
-    `If you're new to coding, you've probably come across terms like array, stack, or linked list and thought, "What does that even mean?" Don't worry — you're not alone. These are all types of data structures, and they form the foundation of how programs organize and process information.`,
-    `In this guide, we'll break down what data structures are, why they matter, and introduce you to the most common types — all in simple language with relatable examples.`,
+    `If you're new to coding, you've probably come across terms like array, stack, or linked list and thought, "What does that even mean?" Don't worry, you're not alone. These are all types of data structures, and they form the foundation of how programs organize and process information.`,
+    `In this guide, we'll break down what data structures are, why they matter, and introduce you to the most common types, all in simple language with relatable examples.`,
     `A data structure is a way to organize and store data in a computer so it can be used efficiently.`,
     `Think of it like organizing your wardrobe: shirts go in one drawer, pants in another, socks in a box. Each drawer (or structure) is designed to hold and access a specific type of item. Similarly, in programming, different data structures are used depending on the type of data and what you want to do with it.`,
     `Here's why every programmer needs to understand data structures:`,
-    `Data structures are the toolbox every programmer must carry. Mastering them helps you build efficient, scalable, and real-world applications. Start small — practice with basic structures, and slowly move up to complex ones. If you're consistent, what once felt like intimidating jargon will become second nature.`,
+    `Data structures are the toolbox every programmer must carry. Mastering them helps you build efficient, scalable, and real-world applications. Start small: practice with basic structures, and slowly move up to complex ones. If you're consistent, what once felt like intimidating jargon will become second nature.`,
   ];
 
   const importancePoints = [
     { points: "Efficiency: The right structure makes programs faster and less memory-hungry" },
     { points: "Scalability: Handles larger data more smoothly" },
     { points: "Problem Solving: Many coding problems are based on data structures" },
-    { points: "Real-World Use: From social media feeds to navigation systems — they're everywhere" },
+    { points: "Real-World Use: From social media feeds to navigation systems, they're everywhere" },
   ];
 
   const dataStructures = [

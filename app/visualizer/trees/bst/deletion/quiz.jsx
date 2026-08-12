@@ -9,7 +9,7 @@ const BstDeletionQuiz = () => {
       question: "How do you delete a leaf node from a BST?",
       options: [
         "Replace it with its parent",
-        "Simply remove it — its parent's pointer becomes null",
+        "Simply remove it, its parent's pointer becomes null",
         "Find its in-order successor",
         "You can't delete a leaf"
       ],
@@ -58,7 +58,7 @@ const BstDeletionQuiz = () => {
         "It does require handling that case again"
       ],
       correctAnswer: 1,
-      explanation: "Since the successor is found by going as far left as possible, it can't have a left child — so removing it is always the leaf case or the one-child case."
+      explanation: "Since the successor is found by going as far left as possible, it can't have a left child, so removing it is always the leaf case or the one-child case."
     }
   ];
 

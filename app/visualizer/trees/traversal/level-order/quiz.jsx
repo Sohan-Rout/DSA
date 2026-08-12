@@ -29,16 +29,16 @@ const LevelOrderQuiz = () => {
         "Because it visits nodes in sorted order",
         "Because it always finishes exploring one full level (one 'distance' from the root) before moving to the next, so the first time a target is reached is guaranteed to be via the shortest path",
         "Because it uses less memory than DFS",
-        "It isn't — DFS is used for that instead"
+        "It isn't; DFS is used for that instead"
       ],
       correctAnswer: 1,
       explanation: "BFS expands outward in rings of increasing distance from the root, so whichever node it reaches first is reached by the fewest possible edges."
     },
     {
       question: "What is the worst-case space complexity of level-order traversal, in terms of the tree's maximum width w?",
-      options: ["O(1)", "O(h) — the tree's height", "O(w), which can be as large as O(n)", "O(log n)"],
+      options: ["O(1)", "O(h), the tree's height", "O(w), which can be as large as O(n)", "O(log n)"],
       correctAnswer: 2,
-      explanation: "The queue can hold an entire level's worth of nodes at once, so it grows to the width of the widest level — up to O(n) for a wide, shallow tree."
+      explanation: "The queue can hold an entire level's worth of nodes at once, so it grows to the width of the widest level, up to O(n) for a wide, shallow tree."
     }
   ];
 

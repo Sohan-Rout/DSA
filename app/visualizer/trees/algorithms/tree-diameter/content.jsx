@@ -78,14 +78,14 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `The diameter of a tree is the number of edges on the longest path between any two nodes. That path doesn't have to pass through the root — it can start and end anywhere, and in most trees it actually cuts through some node in the middle where two deep subtrees meet.`,
-    `The key insight: for any single node, the longest path that passes *through* it is the height of its left subtree plus the height of its right subtree — one leg going down each side. Checking every node this way and keeping the largest total automatically finds the true diameter, because whichever node happens to be the meeting point of the two longest branches will produce the biggest sum.`,
-    `This means diameter can be computed in a single post-order traversal: recursively find the height of the left and right subtrees first, use them to compute this node's own height (1 + the taller side) and its "path-through" value (left height + right height), then update a running maximum. No repeated re-traversal is needed — every node's height is computed exactly once and reused by its parent.`,
+    `The diameter of a tree is the number of edges on the longest path between any two nodes. That path doesn't have to pass through the root: it can start and end anywhere, and in most trees it actually cuts through some node in the middle where two deep subtrees meet.`,
+    `The key insight: for any single node, the longest path that passes *through* it is the height of its left subtree plus the height of its right subtree, one leg going down each side. Checking every node this way and keeping the largest total automatically finds the true diameter, because whichever node happens to be the meeting point of the two longest branches will produce the biggest sum.`,
+    `This means diameter can be computed in a single post-order traversal: recursively find the height of the left and right subtrees first, use them to compute this node's own height (1 + the taller side) and its "path-through" value (left height + right height), then update a running maximum. No repeated re-traversal is needed, since every node's height is computed exactly once and reused by its parent.`,
     `Diameter shows up whenever "the two most distant points in a hierarchy" matters: the worst-case latency between two nodes in a network topology tree, the longest chain of dependencies in a build graph, or simply describing how "spread out" or "stringy" versus "bushy" a tree's shape is.`,
   ];
 
   const algorithm = [
-    { points: "Run a post-order traversal — process both children before the current node" },
+    { points: "Run a post-order traversal, processing both children before the current node" },
     {
       points: "At each node, using the already-computed heights of its children:",
       subpoints: [
@@ -93,12 +93,12 @@ const Content = () => {
         "The longest path through this node = left child height + right child height",
       ],
     },
-    { points: "Track the maximum path-through value seen across every node — that maximum is the diameter" },
+    { points: "Track the maximum path-through value seen across every node: that maximum is the diameter" },
   ];
 
   const complexity = [
-    { points: "Time Complexity: O(n) — every node's height is computed exactly once in a single traversal." },
-    { points: "Space Complexity: O(h) — recursion stack depth equals the tree's height (O(log n) balanced, O(n) skewed)." },
+    { points: "Time Complexity: O(n), since every node's height is computed exactly once in a single traversal." },
+    { points: "Space Complexity: O(h), where recursion stack depth equals the tree's height (O(log n) balanced, O(n) skewed)." },
   ];
 
   return (
@@ -139,7 +139,7 @@ const Content = () => {
           </div>
 
           <div className="text-sm font-medium text-center text-gray-600 dark:text-gray-400 mb-2">
-            Diameter = 4 edges — the path 1 → 3 → 8 → 10 → 14 turns at node 3
+            Diameter = 4 edges: the path 1 → 3 → 8 → 10 → 14 turns at node 3
           </div>
           <WalkthroughDiagram />
 

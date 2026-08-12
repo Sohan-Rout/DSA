@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { gsap } from "gsap";
 import { Plus, Shuffle, RotateCcw } from "lucide-react";
 
-const T = 2; // minimum degree — max keys per node = 2T-1 = 3, max children = 2T = 4
+const T = 2; // minimum degree: max keys per node = 2T-1 = 3, max children = 2T = 4
 
 class BTreeNode {
   constructor(leaf) {
@@ -31,7 +31,7 @@ const splitChild = (parent, i, events) => {
   parent.keys.splice(i, 0, midKey);
 
   events.push({
-    text: `node [${[...leftKeys, midKey, ...newChild.keys].join(", ")}] was full — split it, moving median ${midKey} up`,
+    text: `node [${[...leftKeys, midKey, ...newChild.keys].join(", ")}] was full, so split it, moving median ${midKey} up`,
     nodes: [fullChild, newChild, parent],
   });
 };
@@ -155,10 +155,10 @@ const BTreeVisualizer = () => {
     setTimeout(() => {
       setRoot(newRoot);
       if (events.length === 0) {
-        setMessage(`Inserted ${value} into a leaf node that had room — no split needed`);
+        setMessage(`Inserted ${value} into a leaf node that had room, so no split was needed`);
         setHighlightNodes([]);
       } else {
-        setMessage(`Inserted ${value} — ${events.map((e) => e.text).join("; then ")}`);
+        setMessage(`Inserted ${value}: ${events.map((e) => e.text).join("; then ")}`);
         setHighlightNodes(events.flatMap((e) => e.nodes));
         setTimeout(() => setHighlightNodes([]), 1400);
       }
@@ -368,7 +368,7 @@ const BTreeVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-                No tree yet — insert a value or generate a random tree
+                No tree yet, insert a value or generate a random tree
               </div>
             )}
           </div>

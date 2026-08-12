@@ -76,24 +76,24 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `An adjacency list represents a graph as a collection of per-vertex neighbor lists: one entry per vertex, holding only the vertices it's actually connected to. Instead of a full V×V grid of mostly zeros, each vertex stores exactly as many entries as it has edges — nothing more.`,
-    `Adding an edge (u, v) appends v to u's list. For an undirected graph, u is also appended to v's list, since the edge goes both ways; for a directed graph, only u's list gets the new entry. Checking whether an edge exists means scanning through one vertex's list looking for the target — proportional to that vertex's degree (its number of neighbors), not the whole graph.`,
-    `This is the mirror image of an adjacency matrix's tradeoffs. A matrix spends O(V²) space no matter what, in exchange for O(1) edge-existence checks. A list spends space proportional to the actual number of edges — O(V + E) — but checking a specific edge now costs O(degree) instead of O(1). For the vast majority of real-world graphs, which are sparse (E is much smaller than V²), that tradeoff strongly favors the list.`,
-    `Adjacency lists are the default choice for most graph algorithms — BFS, DFS, Dijkstra's algorithm, and topological sort all need to repeatedly ask "what are this vertex's neighbors?", which a list answers by directly returning exactly the relevant entries, without wasting time scanning past vertices that aren't connected at all.`,
+    `An adjacency list represents a graph as a collection of per-vertex neighbor lists: one entry per vertex, holding only the vertices it's actually connected to. Instead of a full V×V grid of mostly zeros, each vertex stores exactly as many entries as it has edges, nothing more.`,
+    `Adding an edge (u, v) appends v to u's list. For an undirected graph, u is also appended to v's list, since the edge goes both ways; for a directed graph, only u's list gets the new entry. Checking whether an edge exists means scanning through one vertex's list looking for the target, proportional to that vertex's degree (its number of neighbors), not the whole graph.`,
+    `This is the mirror image of an adjacency matrix's tradeoffs. A matrix spends O(V²) space no matter what, in exchange for O(1) edge-existence checks. A list spends space proportional to the actual number of edges, O(V + E), but checking a specific edge now costs O(degree) instead of O(1). For the vast majority of real-world graphs, which are sparse (E is much smaller than V²), that tradeoff strongly favors the list.`,
+    `Adjacency lists are the default choice for most graph algorithms: BFS, DFS, Dijkstra's algorithm, and topological sort all need to repeatedly ask "what are this vertex's neighbors?", which a list answers by directly returning exactly the relevant entries, without wasting time scanning past vertices that aren't connected at all.`,
   ];
 
   const algorithm = [
     { points: "Create an empty list (or map) for every vertex" },
     { points: "For every edge (u, v) with weight w: append (v, w) to u's list" },
-    { points: "If the graph is undirected, also append (u, w) to v's list — the same edge is recorded from both directions" },
+    { points: "If the graph is undirected, also append (u, w) to v's list, since the same edge is recorded from both directions" },
     { points: "To check if an edge exists between two vertices, scan the source vertex's list for the target" },
   ];
 
   const complexity = [
-    { points: "Space Complexity: O(V + E) — proportional to the actual number of vertices and edges, not V²." },
-    { points: "Check if edge (u, v) exists: O(degree(u)) — scan u's list, which is only as long as u's actual neighbor count." },
-    { points: "Iterate over a vertex's neighbors: O(degree(u)) — the list already holds exactly the relevant entries." },
-    { points: "Add an edge: O(1) — appending to a list." },
+    { points: "Space Complexity: O(V + E), proportional to the actual number of vertices and edges, not V²." },
+    { points: "Check if edge (u, v) exists: O(degree(u)), scan u's list, which is only as long as u's actual neighbor count." },
+    { points: "Iterate over a vertex's neighbors: O(degree(u)), the list already holds exactly the relevant entries." },
+    { points: "Add an edge: O(1), appending to a list." },
   ];
 
   return (
@@ -134,7 +134,7 @@ const Content = () => {
           </div>
 
           <div className="text-sm font-medium text-center text-gray-600 dark:text-gray-400 mb-2">
-            The same triangle graph — every vertex's list holds only its actual neighbors
+            The same triangle graph: every vertex's list holds only its actual neighbors
           </div>
           <WalkthroughDiagram />
         </section>

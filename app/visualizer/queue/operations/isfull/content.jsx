@@ -7,7 +7,7 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `isFull only matters for queues with a hard capacity limit, like array-backed ones. It tells you true when there's no room left for another enqueue, and false when there's still space — a guard that stops you from writing past the end of the underlying array.`,
+    `isFull only matters for queues with a hard capacity limit, like array-backed ones. It tells you true when there's no room left for another enqueue, and false when there's still space: a guard that stops you from writing past the end of the underlying array.`,
     `The isFull operation is critical for robust queue implementations in fixed-capacity scenarios, ensuring data integrity by preventing buffer overflow conditions in system programming and embedded applications.`,
   ];
 

@@ -54,7 +54,7 @@ const WalkthroughDiagram = () => {
         </motion.g>
       ))}
       <text x="100" y="142" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-gray-500 dark:fill-gray-400">
-        visit order: A, B, C, D, E — by distance from A
+        visit order: A, B, C, D, E, by distance from A
       </text>
     </svg>
   );
@@ -64,10 +64,10 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Breadth-First Search explores a graph outward from a starting vertex one "ring" of distance at a time: first the start vertex itself, then all of its direct neighbors, then all of their unvisited neighbors, and so on. The result is that every vertex gets visited in order of its distance (in number of edges) from the start — nothing two hops away is visited before everything one hop away.`,
-    `That ordering comes entirely from using a queue (first-in, first-out) instead of a stack. The start vertex is enqueued first. Then, repeatedly: dequeue a vertex, mark it visited, and enqueue any of its neighbors that haven't been visited yet. Because a queue preserves arrival order, every vertex discovered while processing distance-d vertices gets enqueued *after* all the other distance-d vertices already in the queue — which guarantees they'll all be dequeued (and their own neighbors discovered) before any distance-(d+1) vertex is dequeued.`,
-    `A visited set is essential alongside the queue: without one, a vertex reachable from multiple directions would be enqueued (and processed) more than once, and a graph with a cycle could loop forever. Marking a vertex visited *at the moment it's enqueued* — not when it's dequeued — is what prevents the same vertex from being added to the queue twice while it's still waiting its turn.`,
-    `BFS is the standard choice whenever "shortest path in terms of number of edges" is what's needed — it's how the "N degrees of separation" between two people in a social graph is found, how the fewest moves to solve a sliding puzzle is computed, and how the shortest route in an unweighted road network is found. For weighted graphs where edges have different costs, Dijkstra's algorithm generalizes this same expanding-frontier idea.`,
+    `Breadth-First Search explores a graph outward from a starting vertex one "ring" of distance at a time: first the start vertex itself, then all of its direct neighbors, then all of their unvisited neighbors, and so on. The result is that every vertex gets visited in order of its distance (in number of edges) from the start, so nothing two hops away is visited before everything one hop away.`,
+    `That ordering comes entirely from using a queue (first-in, first-out) instead of a stack. The start vertex is enqueued first. Then, repeatedly: dequeue a vertex, mark it visited, and enqueue any of its neighbors that haven't been visited yet. Because a queue preserves arrival order, every vertex discovered while processing distance-d vertices gets enqueued *after* all the other distance-d vertices already in the queue, which guarantees they'll all be dequeued (and their own neighbors discovered) before any distance-(d+1) vertex is dequeued.`,
+    `A visited set is essential alongside the queue: without one, a vertex reachable from multiple directions would be enqueued (and processed) more than once, and a graph with a cycle could loop forever. Marking a vertex visited *at the moment it's enqueued*, not when it's dequeued, is what prevents the same vertex from being added to the queue twice while it's still waiting its turn.`,
+    `BFS is the standard choice whenever "shortest path in terms of number of edges" is what's needed: it's how the "N degrees of separation" between two people in a social graph is found, how the fewest moves to solve a sliding puzzle is computed, and how the shortest route in an unweighted road network is found. For weighted graphs where edges have different costs, Dijkstra's algorithm generalizes this same expanding-frontier idea.`,
   ];
 
   const algorithm = [
@@ -79,12 +79,12 @@ const Content = () => {
         "For each of its neighbors, if not already visited: mark it visited and enqueue it",
       ],
     },
-    { points: "Stop when the queue is empty — every vertex reachable from the start has been visited" },
+    { points: "Stop when the queue is empty, since every vertex reachable from the start has been visited" },
   ];
 
   const complexity = [
-    { points: "Time Complexity: O(V + E) — every vertex is dequeued once and every edge is examined once across the whole run." },
-    { points: "Space Complexity: O(V) — for the queue and the visited set in the worst case." },
+    { points: "Time Complexity: O(V + E), since every vertex is dequeued once and every edge is examined once across the whole run." },
+    { points: "Space Complexity: O(V), for the queue and the visited set in the worst case." },
   ];
 
   return (
@@ -125,7 +125,7 @@ const Content = () => {
           </div>
 
           <div className="text-sm font-medium text-center text-gray-600 dark:text-gray-400 mb-2">
-            BFS from A visits every vertex in order of distance — amber, then blue, then emerald
+            BFS from A visits every vertex in order of distance: amber, then blue, then emerald
           </div>
           <WalkthroughDiagram />
         </section>

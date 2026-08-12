@@ -18,7 +18,7 @@ const insertNode = (node, value) => {
   return node;
 };
 
-// Preorder traversal that records a "null" token for every empty child —
+// Preorder traversal that records a "null" token for every empty child;
 // that's what lets deserialization know exactly where each subtree ends.
 const serializeWithSteps = (root) => {
   const steps = [];
@@ -251,9 +251,9 @@ const SerializeDeserializeVisualizer = () => {
       setSerializedDisplay(acc.join(","));
       if (s.value !== null) {
         setVisitedSource((prev) => new Set(prev).add(s.value));
-        setMessage(`Visited ${s.value} — appended to the output string`);
+        setMessage(`Visited ${s.value}, appended to the output string`);
       } else {
-        setMessage("Hit an empty child — appended a null marker");
+        setMessage("Hit an empty child, appended a null marker");
       }
       i++;
       if (i < steps.length) {
@@ -261,7 +261,7 @@ const SerializeDeserializeVisualizer = () => {
       } else {
         setTimeout(() => {
           setSerializedInput(acc.join(","));
-          setMessage("Serialization complete — this string fully encodes the tree's shape and values");
+          setMessage("Serialization complete: this string fully encodes the tree's shape and values");
           setBusy(false);
         }, STEP_DELAY);
       }
@@ -293,16 +293,16 @@ const SerializeDeserializeVisualizer = () => {
       const s = steps[i];
       if (s.value !== null) {
         setRevealedRecon((prev) => new Set(prev).add(s.value));
-        setMessage(`Read token "${s.token}" — created node ${s.value}`);
+        setMessage(`Read token "${s.token}", created node ${s.value}`);
       } else {
-        setMessage(`Read token "null" — no node here`);
+        setMessage(`Read token "null", no node here`);
       }
       i++;
       if (i < steps.length) {
         setTimeout(reveal, STEP_DELAY);
       } else {
         setTimeout(() => {
-          setMessage("Deserialization complete — the tree has been fully reconstructed from the string");
+          setMessage("Deserialization complete: the tree has been fully reconstructed from the string");
           setBusy(false);
         }, STEP_DELAY);
       }
@@ -411,7 +411,7 @@ const SerializeDeserializeVisualizer = () => {
             visited={visitedSource}
             ringColor="#f59e0b"
             gradId="ser-src"
-            emptyText="No tree yet — insert a value or generate a random tree"
+            emptyText="No tree yet: insert a value or generate a random tree"
           />
           <TreePanel
             title="Reconstructed Tree"

@@ -14,7 +14,7 @@ const DiameterQuiz = () => {
         "The number of leaf nodes"
       ],
       correctAnswer: 1,
-      explanation: "Diameter is the length (in edges) of the longest path between any two nodes in the tree — that path doesn't have to pass through the root."
+      explanation: "Diameter is the length (in edges) of the longest path between any two nodes in the tree; that path doesn't have to pass through the root."
     },
     {
       question: "For a single node, how is the length of the longest path passing through it calculated?",
@@ -25,23 +25,23 @@ const DiameterQuiz = () => {
         "The depth of the node from the root"
       ],
       correctAnswer: 1,
-      explanation: "A path through a node has one leg going into the left subtree and one into the right subtree — its length is leftHeight + rightHeight edges."
+      explanation: "A path through a node has one leg going into the left subtree and one into the right subtree, so its length is leftHeight + rightHeight edges."
     },
     {
       question: "Does the diameter path always pass through the root?",
       options: [
         "Yes, always",
-        "No — the longest path can turn at any node, wherever the two deepest subtrees happen to meet",
+        "No, the longest path can turn at any node, wherever the two deepest subtrees happen to meet",
         "Only in a Binary Search Tree",
         "Only when the tree is perfectly balanced"
       ],
       correctAnswer: 1,
-      explanation: "The diameter is the maximum path-through value across every node, not just the root — in an unbalanced tree, the widest point is often far from the root."
+      explanation: "The diameter is the maximum path-through value across every node, not just the root; in an unbalanced tree, the widest point is often far from the root."
     },
     {
       question: "Why can the diameter be computed in a single post-order traversal instead of recomputing height repeatedly?",
       options: [
-        "It can't — repeated height computation is required",
+        "It can't, since repeated height computation is required",
         "Each node's height is computed once and reused by its parent, since children are processed before parents",
         "Diameter doesn't depend on height at all",
         "Post-order traversal skips the leaves"

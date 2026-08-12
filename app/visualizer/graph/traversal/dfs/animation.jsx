@@ -29,7 +29,7 @@ const buildAdjList = (vertices, edges) => {
 
 // Iterative DFS with an explicit stack: a vertex is only marked visited when
 // it's popped, not when it's pushed, so the same vertex can appear in the
-// stack more than once — whichever push gets popped first wins, and any
+// stack more than once, whichever push gets popped first wins, and any
 // later pop of an already-visited vertex is simply skipped. Neighbors are
 // pushed in reverse so the first neighbor in the list is popped (and
 // explored) first, matching the order a recursive DFS would visit them in.
@@ -136,7 +136,7 @@ const DfsVisualizer = () => {
     setEdges(EXAMPLE_EDGES);
     setStartVertex("A");
     clearResult();
-    setMessage("Loaded an example graph — click Start DFS");
+    setMessage("Loaded an example graph, click Start DFS");
   };
 
   const reset = () => {
@@ -174,9 +174,9 @@ const DfsVisualizer = () => {
         setMessage(`Pop and visit ${step.vertex}`);
       } else if (step.type === "skip") {
         setActiveEdge({ from: step.from, to: step.vertex });
-        setMessage(`${step.vertex} is already visited — not pushed again`);
+        setMessage(`${step.vertex} is already visited, not pushed again`);
       } else if (step.type === "skip-visited") {
-        setMessage(`Pop ${step.vertex} — already visited earlier via another path, skip`);
+        setMessage(`Pop ${step.vertex}, already visited earlier via another path, skip`);
       }
 
       i++;

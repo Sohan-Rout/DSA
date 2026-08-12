@@ -52,7 +52,7 @@ const fixInsertRB = (root, z, events) => {
         uncle.color = "BLACK";
         grandparent.color = "RED";
         events.push({
-          text: `uncle ${uncle.value} is red — recolor ${parent.value} and ${uncle.value} to black, ${grandparent.value} to red`,
+          text: `uncle ${uncle.value} is red, so recolor ${parent.value} and ${uncle.value} to black, ${grandparent.value} to red`,
           touched: [parent.value, uncle.value, grandparent.value],
         });
         z = grandparent;
@@ -60,7 +60,7 @@ const fixInsertRB = (root, z, events) => {
         if (z === parent.right) {
           z = parent;
           root = rotateLeftRB(root, z);
-          events.push({ text: `zig-zag shape — rotate left at ${z.value}`, touched: [z.value] });
+          events.push({ text: `zig-zag shape, rotate left at ${z.value}`, touched: [z.value] });
         }
         z.parent.color = "BLACK";
         grandparent.color = "RED";
@@ -77,7 +77,7 @@ const fixInsertRB = (root, z, events) => {
         uncle.color = "BLACK";
         grandparent.color = "RED";
         events.push({
-          text: `uncle ${uncle.value} is red — recolor ${parent.value} and ${uncle.value} to black, ${grandparent.value} to red`,
+          text: `uncle ${uncle.value} is red, so recolor ${parent.value} and ${uncle.value} to black, ${grandparent.value} to red`,
           touched: [parent.value, uncle.value, grandparent.value],
         });
         z = grandparent;
@@ -85,7 +85,7 @@ const fixInsertRB = (root, z, events) => {
         if (z === parent.left) {
           z = parent;
           root = rotateRightRB(root, z);
-          events.push({ text: `zig-zag shape — rotate right at ${z.value}`, touched: [z.value] });
+          events.push({ text: `zig-zag shape, rotate right at ${z.value}`, touched: [z.value] });
         }
         z.parent.color = "BLACK";
         grandparent.color = "RED";
@@ -177,13 +177,13 @@ const RedBlackVisualizer = () => {
     setTimeout(() => {
       setRoot(newRoot);
       if (wasEmpty) {
-        setMessage(`Inserted ${value} as the root — colored black`);
+        setMessage(`Inserted ${value} as the root, colored black`);
         setHighlightNodes([]);
       } else if (events.length === 0) {
-        setMessage(`Inserted ${value} as a red leaf — its parent was black, so no fixup was needed`);
+        setMessage(`Inserted ${value} as a red leaf; its parent was black, so no fixup was needed`);
         setHighlightNodes([]);
       } else {
-        setMessage(`Inserted ${value} — ${events.map((e) => e.text).join("; then ")}`);
+        setMessage(`Inserted ${value}: ${events.map((e) => e.text).join("; then ")}`);
         const touched = events.flatMap((e) => e.touched);
         setHighlightNodes(touched);
         setTimeout(() => setHighlightNodes([]), 1400);
@@ -392,7 +392,7 @@ const RedBlackVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-                No tree yet — insert a value or generate a random tree
+                No tree yet, insert a value or generate a random tree
               </div>
             )}
           </div>

@@ -131,9 +131,9 @@ const Content = () => {
   }, []);
 
   const overview = [
-    `Take a regular linked list and change one thing: instead of the last node pointing to null, have it point right back to the first node. That's a circular linked list — a loop with no real end.`,
+    `Take a regular linked list and change one thing: instead of the last node pointing to null, have it point right back to the first node. That's a circular linked list, a loop with no real end.`,
     `It can be built either as a singly-linked loop (one pointer per node) or a doubly-linked loop (two pointers per node). Because the chain never terminates, it's a natural fit for anything that needs to cycle repeatedly, like round-robin scheduling or a circular buffer.`,
-    `Since there's no fixed "first" or "last" node anymore, you can start traversing from anywhere in the loop and eventually visit every node — handy for problems that are inherently cyclic rather than linear.`,
+    `Since there's no fixed "first" or "last" node anymore, you can start traversing from anywhere in the loop and eventually visit every node, handy for problems that are inherently cyclic rather than linear.`,
   ];
 
   const basicOperations = [

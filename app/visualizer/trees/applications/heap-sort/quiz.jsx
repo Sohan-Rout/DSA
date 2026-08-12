@@ -22,10 +22,10 @@ const HeapSortQuiz = () => {
         "At indices i-1 and i+1",
         "At indices 2i+1 and 2i+2",
         "At indices i/2 and i*2",
-        "Children aren't derivable from the index — pointers are required"
+        "Children aren't derivable from the index, so pointers are required"
       ],
       correctAnswer: 1,
-      explanation: "This index arithmetic is what lets a heap live entirely inside a flat array with no pointers — the tree shape is implicit in the indices."
+      explanation: "This index arithmetic is what lets a heap live entirely inside a flat array with no pointers: the tree shape is implicit in the indices."
     },
     {
       question: "What are the two main phases of Heap Sort?",
@@ -43,7 +43,7 @@ const HeapSortQuiz = () => {
       options: [
         "The heap is rebuilt completely from scratch",
         "The new root is sifted down to restore the max-heap property, using the now-smaller heap size",
-        "Nothing — the array is already sorted at that point",
+        "Nothing, since the array is already sorted at that point",
         "The swapped element is sifted down"
       ],
       correctAnswer: 1,
@@ -55,7 +55,7 @@ const HeapSortQuiz = () => {
         "Heap Sort doesn't actually sort correctly in the worst case",
         "Sifting down always costs O(log n) regardless of the input's initial arrangement, so there's no pathological input that degrades it to O(n²)",
         "Heap Sort uses extra memory to avoid worst cases",
-        "It isn't more predictable — both have the same worst case"
+        "It isn't more predictable, since both have the same worst case"
       ],
       correctAnswer: 1,
       explanation: "Quick Sort can degrade to O(n²) on certain inputs depending on pivot choice, but Heap Sort's heap operations stay O(log n) no matter how the input is arranged, keeping it at O(n log n) always."

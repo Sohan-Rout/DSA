@@ -1,49 +1,93 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import InContentAd from "@/app/components/ads/InContentAd";
+
+const CAPACITY = 6;
+
+const StackArrayDiagram = ({ values, keyPrefix }) => {
+  const boxSize = 40;
+  const gap = 8;
+  const paddingX = 8;
+  const topPadding = 28;
+  const width = CAPACITY * (boxSize + gap) - gap + paddingX * 2;
+  const height = boxSize + topPadding + 22;
+
+  const boxX = (idx) => paddingX + idx * (boxSize + gap);
+  const boxY = topPadding;
+  const cx = (idx) => boxX(idx) + boxSize / 2;
+  const topIndex = values.length - 1;
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="mx-auto"
+      style={{ width: `${width}px`, maxWidth: "100%" }}
+      role="img"
+      aria-label="array-backed stack diagram"
+    >
+      <defs>
+        <marker id={`${keyPrefix}-top-arrow`} markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="#3b82f6" />
+        </marker>
+      </defs>
+
+      {topIndex >= 0 ? (
+        <>
+          <text x={cx(topIndex)} y={boxY - 16} textAnchor="middle" className="fill-blue-500 dark:fill-blue-400" fontSize="10" fontWeight="700">
+            top
+          </text>
+          <line
+            x1={cx(topIndex)}
+            y1={boxY - 12}
+            x2={cx(topIndex)}
+            y2={boxY - 3}
+            stroke="#3b82f6"
+            strokeWidth="1.5"
+            markerEnd={`url(#${keyPrefix}-top-arrow)`}
+          />
+        </>
+      ) : (
+        <text x={paddingX} y={boxY - 12} className="fill-gray-400 dark:fill-gray-500" fontSize="10" fontFamily="monospace">
+          top = -1
+        </text>
+      )}
+
+      {Array.from({ length: CAPACITY }).map((_, idx) => {
+        const filled = idx < values.length;
+        return (
+          <g key={`${keyPrefix}-box-${idx}`}>
+            <rect
+              x={boxX(idx)}
+              y={boxY}
+              width={boxSize}
+              height={boxSize}
+              rx="6"
+              fill={filled ? "#3b82f6" : "none"}
+              opacity={filled ? "0.9" : "1"}
+              stroke={filled ? "#3b82f6" : "#94a3b8"}
+              strokeWidth="2"
+              strokeDasharray={filled ? "0" : "4 3"}
+            />
+            {filled && (
+              <text x={cx(idx)} y={boxY + boxSize / 2 + 5} textAnchor="middle" className="fill-white" fontSize="14" fontWeight="700">
+                {values[idx]}
+              </text>
+            )}
+            <text x={cx(idx)} y={boxY + boxSize + 16} textAnchor="middle" className="fill-gray-400 dark:fill-gray-500" fontSize="9">
+              {idx}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+};
+
 const Content = () => {
   const { theme } = useTheme();
-
-  const push = [
-    { points: "Check if stack is full" },
-    { points: 'If full, return "Stack Overflow"' },
-    { points: "Increment top pointer" },
-    { points: "Store element at array[top]" },
-  ];
-
-  const pop = [
-    { points: "Check if stack is empty" },
-    { points: 'If empty, return "Stack Underflow"' },
-    { points: "Access element at array[top]" },
-    { points: "Decrement top pointer" },
-    { points: "Return the element" },
-  ];
-
-  const peek = [
-    { points: "Check if stack is empty" },
-    { points: "If empty, return null" },
-    { points: "Return array[top] without removal" },
-  ];
-
-  const isEmpty = [
-    { points: "Return true if top pointer is -1" },
-    { points: "Return false otherwise" },
-  ];
-
-  const initialize = [
-    { points: "Create an empty array to store elements" },
-    { points: "Initialize top pointer/index to -1" },
-    { points: "Optional: Set maximum size limit" },
-  ];
-
-  const isFull = [
-    { points: "Return true if top equals (max_size - 1)" },
-    { points: "Return false otherwise" },
-  ];
 
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
@@ -60,85 +104,84 @@ const Content = () => {
           </h1>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              A stack follows LIFO — Last In, First Out — meaning whatever you pushed most recently is the first thing that comes back out. Backing it with an array is the most direct way to build one, since push and pop just work on the array's last index in constant time.
+              A stack follows LIFO (Last In, First Out), meaning whatever you pushed most recently is the first thing that comes back out. Backing it with an array is the most direct way to build one, since push and pop just work on the array's last index in constant time.
             </p>
           </div>
         </section>
 
-        {/* -------  ALGORITHMIC STEPS – LIFT CARDS  ------- */}
+        {/* -------  OPERATIONS  ------- */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
-            Algorithmic Steps
+            Initialize
           </h1>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            An empty array is allocated with a fixed capacity, and the top pointer starts at -1 to signal there's nothing on the stack yet.
+          </p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg overflow-x-auto">
+            <StackArrayDiagram values={[]} keyPrefix="init" />
+          </div>
+        </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Basic Operations */}
-            <div className="rounded-lg p-4 bg-white dark:bg-neutral-950 shadow-md">
-              <h2 className="text-lg sm:text-xl mb-3 font-bold text-center">Stack Basic Operations</h2>
-              <div className="space-y-4">
-                {[{t:"Initialize Stack", s:initialize}, {t:"push()", s:push}, {t:"pop()", s:pop}].map(
-                  ({t, s}, idx) => (
-                    <motion.div
-                      key={t}
-                      initial={{ y: 40, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ type: "spring", stiffness: 120, delay: idx * 0.1 }}
-                      whileHover={{ y: -4, boxShadow: "0 10px 20px -5px rgba(0,0,0,0.1)" }}
-                      className="p-4 rounded-lg bg-gray-50 dark:bg-neutral-900
-                                 border border-transparent hover:border-blue-300
-                                 dark:hover:border-blue-500 transition"
-                    >
-                      <span className="inline-block mb-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-indigo-100 dark:bg-blue-900 text-blue-700 dark:text-indigo-200">
-                        Step {idx + 1}
-                      </span>
-                      <h3 className="font-semibold mb-2">{t}</h3>
-                      <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-                        {s.map((p, i) => (
-                          <li key={i} className="text-gray-700 dark:text-gray-300 pl-2">
-                            {p.points}
-                          </li>
-                        ))}
-                      </ol>
-                    </motion.div>
-                  )
-                )}
-              </div>
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+            push()
+          </h1>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            If the array isn't already at capacity, the top pointer is incremented first, then the new value is written at that index, so top always marks the most recently added element.
+          </p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg space-y-3 overflow-x-auto">
+            <StackArrayDiagram values={[5, 3]} keyPrefix="push-before" />
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400">↓ push(7) ↓</p>
+            <StackArrayDiagram values={[5, 3, 7]} keyPrefix="push-after" />
+          </div>
+        </section>
+
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+            pop()
+          </h1>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            The element at array[top] is read and returned, then the top pointer is decremented; the value itself is left in the array, just no longer considered part of the stack.
+          </p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg space-y-3 overflow-x-auto">
+            <StackArrayDiagram values={[5, 3, 7]} keyPrefix="pop-before" />
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400">↓ pop() → returns 7 ↓</p>
+            <StackArrayDiagram values={[5, 3]} keyPrefix="pop-after" />
+          </div>
+        </section>
+
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+            peek()
+          </h1>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            Returns array[top] without touching the pointer, so the stack is left exactly as it was, useful for checking what's on top before deciding whether to pop.
+          </p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg overflow-x-auto">
+            <StackArrayDiagram values={[5, 3, 7]} keyPrefix="peek" />
+          </div>
+        </section>
+
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+            isEmpty() &amp; isFull()
+          </h1>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            Both are just pointer comparisons: <code className="text-sm bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded">isEmpty()</code> is true when top equals -1, and <code className="text-sm bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded">isFull()</code> is true when top reaches the array's last valid index.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg overflow-x-auto">
+              <p className="text-center text-sm font-mono text-gray-600 dark:text-gray-300 mb-3">isEmpty() → true</p>
+              <StackArrayDiagram values={[]} keyPrefix="isempty" />
             </div>
-
-            {/* Helper Operations */}
-            <div className="rounded-lg p-4 bg-white dark:bg-neutral-950 shadow-md">
-              <h2 className="text-lg sm:text-xl mb-3 font-bold text-center">Stack Helper Operations</h2>
-              <div className="space-y-4">
-                {[{t:"peek()", s:peek}, {t:"isEmpty()", s:isEmpty}, {t:"isFull()", s:isFull}].map(
-                  ({t, s}, idx) => (
-                    <motion.div
-                      key={t}
-                      initial={{ y: 40, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ type: "spring", stiffness: 120, delay: idx * 0.1 }}
-                      whileHover={{ y: -4, boxShadow: "0 10px 20px -5px rgba(0,0,0,0.1)" }}
-                      className="p-4 rounded-lg bg-gray-50 dark:bg-neutral-900
-                                 border border-transparent hover:border-blue-300
-                                 dark:hover:border-blue-600 transition"
-                    >
-                      <span className="inline-block mb-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-indigo-100 dark:bg-blue-900 text-blue-700 dark:text-indigo-200">
-                        Step {idx + 1}
-                      </span>
-                      <h3 className="font-semibold mb-2">{t}</h3>
-                      <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-                        {s.map((p, i) => (
-                          <li key={i} className="text-gray-700 dark:text-gray-300 pl-2">
-                            {p.points}
-                          </li>
-                        ))}
-                      </ol>
-                    </motion.div>
-                  )
-                )}
-              </div>
+            <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg overflow-x-auto">
+              <p className="text-center text-sm font-mono text-gray-600 dark:text-gray-300 mb-3">isFull() → true</p>
+              <StackArrayDiagram values={[5, 3, 7, 2, 9, 1]} keyPrefix="isfull" />
             </div>
           </div>
         </section>

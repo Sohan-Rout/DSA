@@ -135,7 +135,7 @@ const LevelOrderVisualizer = () => {
     setVisitedOrder([]);
     setCurrentValue(null);
     setQueueState([root.value]);
-    setMessage("Starting level-order traversal — enqueue the root, then process level by level...");
+    setMessage("Starting level-order traversal: enqueue the root, then process level by level...");
 
     let i = 0;
     const revealStep = () => {
@@ -144,7 +144,7 @@ const LevelOrderVisualizer = () => {
       setVisitedOrder((prev) => [...prev, value]);
       setQueueState(queueAfter);
       setMessage(
-        `Dequeued ${value}${queueAfter.length ? ` — enqueued its children, queue is now [${queueAfter.join(", ")}]` : " — queue is now empty"}`
+        `Dequeued ${value}${queueAfter.length ? `, enqueued its children, queue is now [${queueAfter.join(", ")}]` : ", queue is now empty"}`
       );
       i++;
 
@@ -368,7 +368,7 @@ const LevelOrderVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-                No tree yet — insert a value or generate a random tree
+                No tree yet, insert a value or generate a random tree
               </div>
             )}
           </div>

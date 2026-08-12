@@ -66,7 +66,7 @@ const WalkthroughDiagram = () => {
         transition={{ delay: 1.1, duration: 0.5 }}
         className="fill-gray-500 dark:fill-gray-400"
       >
-        array: [9, 5, 8, 2, 4] — the same heap, stored flat
+        array: [9, 5, 8, 2, 4], the same heap, stored flat
       </motion.text>
     </svg>
   );
@@ -76,10 +76,10 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Heap Sort sorts an array in place by first turning it into a max-heap — a binary tree where every parent is greater than or equal to its children — and then repeatedly removing the largest element (the root) and placing it at the end of the unsorted region. Because the largest remaining value is always at the root of a max-heap, this naturally produces the array in ascending order, one extraction at a time.`,
-    `A binary heap doesn't need pointers or a separate tree structure at all — it can be stored directly in an array. For a node at index i, its children live at indices 2i+1 and 2i+2, and its parent lives at index floor((i-1)/2). This "implicit tree" is exactly what makes Heap Sort an in-place algorithm: the same array that holds the values also encodes the tree shape.`,
-    `The algorithm runs in two phases. First, build a max-heap out of the entire array by sifting down every non-leaf node, starting from the last one and working back to the root — this bottom-up approach builds the heap in linear time. Second, repeatedly swap the root with the last element of the current heap, shrink the heap by one, and sift the new root down to restore the heap property. After n-1 extractions, the array is fully sorted.`,
-    `Because it needs no extra memory beyond a few variables and never degrades on any input, Heap Sort is a reliable choice when worst-case O(n log n) time and O(1) space both matter — it's what backs priority queues, and shows up in hybrid sorts like introsort, which falls back to Heap Sort when Quick Sort's recursion gets too deep.`,
+    `Heap Sort sorts an array in place by first turning it into a max-heap (a binary tree where every parent is greater than or equal to its children) and then repeatedly removing the largest element (the root) and placing it at the end of the unsorted region. Because the largest remaining value is always at the root of a max-heap, this naturally produces the array in ascending order, one extraction at a time.`,
+    `A binary heap doesn't need pointers or a separate tree structure at all: it can be stored directly in an array. For a node at index i, its children live at indices 2i+1 and 2i+2, and its parent lives at index floor((i-1)/2). This "implicit tree" is exactly what makes Heap Sort an in-place algorithm: the same array that holds the values also encodes the tree shape.`,
+    `The algorithm runs in two phases. First, build a max-heap out of the entire array by sifting down every non-leaf node, starting from the last one and working back to the root; this bottom-up approach builds the heap in linear time. Second, repeatedly swap the root with the last element of the current heap, shrink the heap by one, and sift the new root down to restore the heap property. After n-1 extractions, the array is fully sorted.`,
+    `Because it needs no extra memory beyond a few variables and never degrades on any input, Heap Sort is a reliable choice when worst-case O(n log n) time and O(1) space both matter: it's what backs priority queues, and shows up in hybrid sorts like introsort, which falls back to Heap Sort when Quick Sort's recursion gets too deep.`,
   ];
 
   const algorithm = [
@@ -93,18 +93,18 @@ const Content = () => {
       points: "Repeatedly extract the maximum:",
       subpoints: [
         "Swap the root (largest value) with the last element of the current heap",
-        "Shrink the heap size by one — that swapped element is now in its final sorted position",
+        "Shrink the heap size by one, since that swapped element is now in its final sorted position",
         "Sift the new root down to restore the max-heap property",
       ],
     },
-    { points: "Stop once the heap size reaches 1 — the array is fully sorted" },
+    { points: "Stop once the heap size reaches 1, since the array is fully sorted" },
   ];
 
   const complexity = [
-    { points: "Best Case: O(n log n) — building the heap is O(n), and each of the n extractions costs O(log n)." },
-    { points: "Average Case: O(n log n) — same shape of work regardless of the input's initial order." },
-    { points: "Worst Case: O(n log n) — unlike Quick Sort, there's no pathological input that degrades this." },
-    { points: "Space Complexity: O(1) — sorting happens in place within the array." },
+    { points: "Best Case: O(n log n), since building the heap is O(n), and each of the n extractions costs O(log n)." },
+    { points: "Average Case: O(n log n), the same shape of work regardless of the input's initial order." },
+    { points: "Worst Case: O(n log n); unlike Quick Sort, there's no pathological input that degrades this." },
+    { points: "Space Complexity: O(1), since sorting happens in place within the array." },
   ];
 
   return (
@@ -152,7 +152,7 @@ const Content = () => {
           <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs text-gray-500 dark:text-gray-400">
             <span className="flex items-center gap-1.5">
               <span className="w-3 h-3 rounded-full border-2 border-amber-500 inline-block"></span>
-              Root — always the maximum
+              Root, always the maximum
             </span>
           </div>
         </section>

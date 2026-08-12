@@ -80,10 +80,10 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `A decision tree makes predictions by asking a sequence of yes/no questions about the data, one per internal node, until it reaches a leaf that holds the answer. To classify a new example, start at the root, follow the branch that matches its features, and repeat at each node down to a leaf — the leaf's label is the prediction. The appeal is that the tree itself is readable: the path from root to leaf is a plain-language explanation of the decision.`,
-    `Building the tree from data is a greedy, recursive process. At each node, every possible way of splitting the remaining data on a feature is scored by how well it separates the classes — the standard measure is Gini impurity, which is 0 for a perfectly pure group (every example the same class) and higher the more mixed a group is. The split chosen is whichever one minimizes the weighted impurity of the two resulting groups.`,
-    `That same scoring process then repeats independently inside each of the two new groups, splitting further and further until a stopping condition is met — usually that a group is already pure, or a maximum depth is reached, or too few examples remain to split meaningfully. The result is a tree where each split is locally optimal, even though the overall tree isn't guaranteed to be the single best possible tree for the data.`,
-    `Decision trees are valued for being interpretable — a doctor, loan officer, or engineer can read the exact chain of thresholds that led to a prediction, unlike many other models. They're rarely used alone at the state of the art, but they're the building block of ensemble methods like Random Forests and Gradient Boosted Trees, which combine many decision trees to trade away some interpretability for substantially better accuracy.`,
+    `A decision tree makes predictions by asking a sequence of yes/no questions about the data, one per internal node, until it reaches a leaf that holds the answer. To classify a new example, start at the root, follow the branch that matches its features, and repeat at each node down to a leaf: the leaf's label is the prediction. The appeal is that the tree itself is readable: the path from root to leaf is a plain-language explanation of the decision.`,
+    `Building the tree from data is a greedy, recursive process. At each node, every possible way of splitting the remaining data on a feature is scored by how well it separates the classes, using the standard measure of Gini impurity, which is 0 for a perfectly pure group (every example the same class) and higher the more mixed a group is. The split chosen is whichever one minimizes the weighted impurity of the two resulting groups.`,
+    `That same scoring process then repeats independently inside each of the two new groups, splitting further and further until a stopping condition is met: usually that a group is already pure, or a maximum depth is reached, or too few examples remain to split meaningfully. The result is a tree where each split is locally optimal, even though the overall tree isn't guaranteed to be the single best possible tree for the data.`,
+    `Decision trees are valued for being interpretable: a doctor, loan officer, or engineer can read the exact chain of thresholds that led to a prediction, unlike many other models. They're rarely used alone at the state of the art, but they're the building block of ensemble methods like Random Forests and Gradient Boosted Trees, which combine many decision trees to trade away some interpretability for substantially better accuracy.`,
   ];
 
   const algorithm = [
@@ -101,7 +101,7 @@ const Content = () => {
   ];
 
   const complexity = [
-    { points: "Time Complexity: O(n · f · log n) to build, where n is the number of samples and f the number of features — each level considers every feature and threshold across roughly n samples." },
+    { points: "Time Complexity: O(n · f · log n) to build, where n is the number of samples and f the number of features, since each level considers every feature and threshold across roughly n samples." },
     { points: "Space Complexity: O(n) for the tree in the worst case (one leaf per sample), though depth limits keep real trees far smaller." },
   ];
 
@@ -143,7 +143,7 @@ const Content = () => {
           </div>
 
           <div className="text-sm font-medium text-center text-gray-600 dark:text-gray-400 mb-2">
-            Predicting "play outside?" from temperature — two splits fully separate the classes
+            Predicting "play outside?" from temperature: two splits fully separate the classes
           </div>
           <WalkthroughDiagram />
         </section>

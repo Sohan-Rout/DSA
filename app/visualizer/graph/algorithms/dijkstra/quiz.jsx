@@ -14,7 +14,7 @@ const DijkstraQuiz = () => {
         "A random spanning tree of the graph"
       ],
       correctAnswer: 1,
-      explanation: "Dijkstra minimizes the sum of edge weights along the path, not the number of edges — that distinction is what separates it from plain BFS."
+      explanation: "Dijkstra minimizes the sum of edge weights along the path, not the number of edges; that distinction is what separates it from plain BFS."
     },
     {
       question: "What critical requirement must a graph's edge weights satisfy for Dijkstra's algorithm to work correctly?",
@@ -25,7 +25,7 @@ const DijkstraQuiz = () => {
         "There must be no more than 10 edges"
       ],
       correctAnswer: 1,
-      explanation: "A negative edge weight can violate the algorithm's core assumption and produce incorrect shortest-distance results — Bellman-Ford is used instead when negative weights are possible."
+      explanation: "A negative edge weight can violate the algorithm's core assumption and produce incorrect shortest-distance results; Bellman-Ford is used instead when negative weights are possible."
     },
     {
       question: "At each step, which vertex does Dijkstra's algorithm finalize next?",

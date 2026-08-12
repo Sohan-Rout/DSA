@@ -74,9 +74,9 @@ const Content = () => {
 
   const paragraphs = [
     `A minimum spanning tree (MST) of a connected, undirected, weighted graph is a subset of its edges that connects every vertex together, contains no cycles, and has the smallest possible total edge weight among all such subsets. "Spanning" means every vertex is included; "tree" means there's exactly one path between any two vertices in it (n vertices, n-1 edges, no cycles); "minimum" means no other spanning tree costs less.`,
-    `Kruskal's algorithm builds one with a simple greedy rule: sort every edge in the graph by weight, from cheapest to most expensive, then walk through them in that order, adding each edge to the tree unless doing so would create a cycle. An edge creates a cycle exactly when its two endpoints are already connected to each other through edges already accepted — so the only real question at each step is "are these two vertices already in the same connected piece?"`,
+    `Kruskal's algorithm builds one with a simple greedy rule: sort every edge in the graph by weight, from cheapest to most expensive, then walk through them in that order, adding each edge to the tree unless doing so would create a cycle. An edge creates a cycle exactly when its two endpoints are already connected to each other through edges already accepted, so the only real question at each step is "are these two vertices already in the same connected piece?"`,
     `That question is answered efficiently with a Union-Find (disjoint-set) structure, which tracks which connected component each vertex currently belongs to. Checking whether two vertices are in the same component is a "find" operation; accepting an edge and merging two components is a "union" operation. Both run in close to constant time with the right implementation, which is what keeps the whole algorithm fast even though it needs one check per edge.`,
-    `Kruskal's algorithm is the standard choice when a graph is sparse (relatively few edges compared to vertices) since sorting the edge list dominates its cost. It's used to design minimum-cost networks — laying cable or pipe to connect a set of locations as cheaply as possible, building efficient road or utility networks, and as a subroutine in clustering algorithms that group data points by cutting the most expensive edges out of a spanning tree.`,
+    `Kruskal's algorithm is the standard choice when a graph is sparse (relatively few edges compared to vertices) since sorting the edge list dominates its cost. It's used to design minimum-cost networks: laying cable or pipe to connect a set of locations as cheaply as possible, building efficient road or utility networks, and as a subroutine in clustering algorithms that group data points by cutting the most expensive edges out of a spanning tree.`,
   ];
 
   const algorithm = [
@@ -84,16 +84,16 @@ const Content = () => {
     {
       points: "Process edges in that order, and for each one:",
       subpoints: [
-        "If its two endpoints are in different components, accept the edge — add it to the tree and merge the two components",
-        "If its two endpoints are already in the same component, reject the edge — accepting it would create a cycle",
+        "If its two endpoints are in different components, accept the edge: add it to the tree and merge the two components",
+        "If its two endpoints are already in the same component, reject the edge, since accepting it would create a cycle",
       ],
     },
-    { points: "Stop once the tree has (number of vertices − 1) edges — every vertex is now connected" },
+    { points: "Stop once the tree has (number of vertices − 1) edges, since every vertex is now connected" },
   ];
 
   const complexity = [
-    { points: "Time Complexity: O(E log E) — dominated by sorting the edge list; the Union-Find operations that follow are nearly O(1) each." },
-    { points: "Space Complexity: O(V + E) — for the edge list and the Union-Find structure." },
+    { points: "Time Complexity: O(E log E), dominated by sorting the edge list; the Union-Find operations that follow are nearly O(1) each." },
+    { points: "Space Complexity: O(V + E), for the edge list and the Union-Find structure." },
   ];
 
   return (

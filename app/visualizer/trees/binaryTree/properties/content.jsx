@@ -110,9 +110,9 @@ const Content = () => {
 
   const paragraphs = [
     `A Binary Tree is a hierarchical structure built from nodes, where every node has at most two children, conventionally called the left and right child. That two-child limit is what separates it from a general tree, and it's what makes every property below meaningful and calculable.`,
-    `Height and depth are the two measurements that come up constantly when reasoning about a tree's performance — most tree operations run in time proportional to the height, not the number of nodes, which is exactly why keeping a tree balanced matters so much.`,
+    `Height and depth are the two measurements that come up constantly when reasoning about a tree's performance: most tree operations run in time proportional to the height, not the number of nodes, which is exactly why keeping a tree balanced matters so much.`,
     `Space Complexity for storing a binary tree with n nodes is O(n), since each node needs a fixed amount of memory (its value plus two child pointers) regardless of the tree's shape.`,
-    `These structural properties aren't just theory — they're what a balancing algorithm (like in AVL or Red-Black trees) is actively trying to protect. A tree that's allowed to grow unchecked can degrade to the same O(n) worst case as a linked list.`,
+    `These structural properties aren't just theory: they're what a balancing algorithm (like in AVL or Red-Black trees) is actively trying to protect. A tree that's allowed to grow unchecked can degrade to the same O(n) worst case as a linked list.`,
   ];
 
   const terminology = [
@@ -124,7 +124,7 @@ const Content = () => {
     { term: "Edge", def: "The connection/link between a parent and its child." },
     { term: "Depth of a node", def: "Number of edges from the root down to that node." },
     { term: "Height of a node", def: "Number of edges on the longest path from that node down to a leaf." },
-    { term: "Height of the tree", def: "The height of the root node — the longest root-to-leaf path." },
+    { term: "Height of the tree", def: "The height of the root node, the longest root-to-leaf path." },
   ];
 
   const nodeCountFormulas = [
@@ -137,7 +137,7 @@ const Content = () => {
   const balanceComparison = [
     { points: "Balanced tree, n = 7 nodes → height = 2 (as close to log₂ 7 as possible)" },
     { points: "Skewed tree, n = 7 nodes → height = 6 (every node has exactly one child)" },
-    { points: "Same node count, wildly different performance — height is what actually matters" },
+    { points: "Same node count, wildly different performance: height is what actually matters" },
   ];
 
   return (
@@ -278,7 +278,7 @@ const Content = () => {
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
               Since most tree operations (search, insert, delete) walk from the root
-              down to a leaf, their time complexity is O(height) — O(log n) for a
+              down to a leaf, their time complexity is O(height): O(log n) for a
               balanced tree, degrading to O(n) for a skewed one.
             </p>
           </div>

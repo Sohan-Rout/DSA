@@ -124,7 +124,7 @@ const TopologicalSortVisualizer = () => {
     setVertices(EXAMPLE_VERTICES);
     setEdges(EXAMPLE_EDGES);
     clearResult();
-    setMessage("Loaded an example DAG — click Run Topological Sort");
+    setMessage("Loaded an example DAG, click Run Topological Sort");
   };
 
   const reset = () => {
@@ -158,13 +158,13 @@ const TopologicalSortVisualizer = () => {
         setProcessed((prev) => new Set(prev).add(step.vertex));
         setOrder(step.order);
         setActiveEdge(null);
-        setMessage(`${step.vertex} has no remaining prerequisites — place it next in the order`);
+        setMessage(`${step.vertex} has no remaining prerequisites, place it next in the order`);
       } else if (step.type === "decrement") {
         setActiveEdge({ from: step.from, to: step.to });
         setInDegrees((prev) => ({ ...prev, [step.to]: step.newDegree }));
-        setMessage(`${step.from} is done — ${step.to} now has ${step.newDegree} remaining prerequisite${step.newDegree === 1 ? "" : "s"}`);
+        setMessage(`${step.from} is done, ${step.to} now has ${step.newDegree} remaining prerequisite${step.newDegree === 1 ? "" : "s"}`);
       } else if (step.type === "ready") {
-        setMessage(`${step.vertex} has no prerequisites left — it's ready to be processed`);
+        setMessage(`${step.vertex} has no prerequisites left, it's ready to be processed`);
       }
 
       i++;
@@ -177,7 +177,7 @@ const TopologicalSortVisualizer = () => {
           setResult({ order: finalOrder, hasCycle, stuck });
           setMessage(
             hasCycle
-              ? `Cycle detected — ${stuck.join(", ")} could never reach zero remaining prerequisites, so no valid order exists`
+              ? `Cycle detected: ${stuck.join(", ")} could never reach zero remaining prerequisites, so no valid order exists`
               : `Topological Sort complete: ${finalOrder.join(" → ")}`
           );
           setBusy(false);
@@ -271,7 +271,7 @@ const TopologicalSortVisualizer = () => {
 
         {result && (
           <div className={`mb-4 p-3 rounded-lg text-center text-sm font-medium ${result.hasCycle ? "bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-200" : "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200"}`}>
-            {result.hasCycle ? `Cycle detected — stuck at: ${result.stuck.join(", ")}` : `Order: ${result.order.join(" → ")}`}
+            {result.hasCycle ? `Cycle detected, stuck at: ${result.stuck.join(", ")}` : `Order: ${result.order.join(" → ")}`}
           </div>
         )}
 

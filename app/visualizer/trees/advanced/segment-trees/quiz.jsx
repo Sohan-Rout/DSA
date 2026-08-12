@@ -25,35 +25,35 @@ const SegmentTreeQuiz = () => {
         "A pointer to every leaf in the tree"
       ],
       correctAnswer: 1,
-      explanation: "Every node — leaf or internal — represents a range; internal nodes cache the combined result of their two children's ranges so it never needs recomputing from scratch."
+      explanation: "Every node, whether leaf or internal, represents a range; internal nodes cache the combined result of their two children's ranges so it never needs recomputing from scratch."
     },
     {
       question: "During a range query, what happens when a node's range falls entirely inside the query range?",
       options: [
         "The query fails",
-        "Its cached value is used directly — there's no need to look at its children at all",
+        "Its cached value is used directly, so there's no need to look at its children at all",
         "It must still recurse into both children to double-check",
         "It's skipped entirely"
       ],
       correctAnswer: 1,
-      explanation: "This is exactly what makes segment trees fast — a single cached value stands in for an entire subrange, which is what keeps the number of visited nodes at O(log n) instead of O(n)."
+      explanation: "This is exactly what makes segment trees fast: a single cached value stands in for an entire subrange, which is what keeps the number of visited nodes at O(log n) instead of O(n)."
     },
     {
       question: "What happens on a point update?",
       options: [
         "The entire tree is rebuilt from scratch",
-        "Only the path from the root down to the affected leaf is touched — the leaf's value changes, then every ancestor's cached value is recomputed",
+        "Only the path from the root down to the affected leaf is touched: the leaf's value changes, then every ancestor's cached value is recomputed",
         "Only the leaf is updated; ancestors are left stale until the next query",
         "All leaves are updated"
       ],
       correctAnswer: 1,
-      explanation: "Updating one element only invalidates the O(log n) ancestors whose ranges include that index — everything else in the tree stays correct and untouched."
+      explanation: "Updating one element only invalidates the O(log n) ancestors whose ranges include that index; everything else in the tree stays correct and untouched."
     },
     {
       question: "What is the time complexity of building a segment tree over n elements?",
       options: ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
       correctAnswer: 2,
-      explanation: "Every node — there are O(n) of them in total — is computed exactly once during the build, giving O(n) overall."
+      explanation: "Every node (there are O(n) of them in total) is computed exactly once during the build, giving O(n) overall."
     }
   ];
 

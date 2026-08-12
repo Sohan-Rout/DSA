@@ -41,7 +41,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Are Data Structures and Algorithms Different for Different Languages?",
     description:
-      "Do arrays, stacks, or recursion work the same in Python and C++? Learn how the core DSA concepts stay the same—but their implementation varies.",
+      "Do arrays, stacks, or recursion work the same in Python and C++? Learn how the core DSA concepts stay the same, but their implementation varies.",
     images: ["./blog/dsaDifferent.png"],
   },
   category: "Technology",

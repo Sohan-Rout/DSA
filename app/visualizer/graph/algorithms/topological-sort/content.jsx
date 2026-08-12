@@ -67,9 +67,9 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `A topological sort takes a directed acyclic graph (a DAG — directed edges, no cycles) and arranges every vertex into a linear order such that, for every edge u → v, u appears before v in that order. Think of each edge as a "must come before" constraint: topological sort finds an order that satisfies every constraint at once. Multiple valid orders can exist for the same graph — the algorithm just needs to find one of them.`,
-    `Kahn's algorithm builds the order using each vertex's in-degree — the number of edges pointing into it, which represents "how many prerequisites are left." Any vertex with in-degree 0 has no unmet prerequisites, so it's safe to place next in the order right away. Whenever a vertex is placed, its outgoing edges are "removed" by decrementing the in-degree of everything it points to — which may free up new vertices to become in-degree 0 and get queued themselves.`,
-    `That queue-driven process is exactly why the algorithm doubles as a cycle detector: if the graph really is acyclic, every vertex eventually reaches in-degree 0 and gets processed. But if a cycle exists, every vertex in that cycle keeps at least one unmet prerequisite forever — none of them can ever reach in-degree 0, so they're never queued. If the final order doesn't include every vertex, the graph must contain a cycle, and no valid topological order exists at all.`,
+    `A topological sort takes a directed acyclic graph (a DAG, meaning directed edges and no cycles) and arranges every vertex into a linear order such that, for every edge u → v, u appears before v in that order. Think of each edge as a "must come before" constraint: topological sort finds an order that satisfies every constraint at once. Multiple valid orders can exist for the same graph, and the algorithm just needs to find one of them.`,
+    `Kahn's algorithm builds the order using each vertex's in-degree, the number of edges pointing into it, which represents "how many prerequisites are left." Any vertex with in-degree 0 has no unmet prerequisites, so it's safe to place next in the order right away. Whenever a vertex is placed, its outgoing edges are "removed" by decrementing the in-degree of everything it points to, which may free up new vertices to become in-degree 0 and get queued themselves.`,
+    `That queue-driven process is exactly why the algorithm doubles as a cycle detector: if the graph really is acyclic, every vertex eventually reaches in-degree 0 and gets processed. But if a cycle exists, every vertex in that cycle keeps at least one unmet prerequisite forever; none of them can ever reach in-degree 0, so they're never queued. If the final order doesn't include every vertex, the graph must contain a cycle, and no valid topological order exists at all.`,
     `Topological sort is the standard tool for scheduling problems with dependencies: build systems compiling files in the right order, package managers installing dependencies before the packages that need them, course prerequisite planning, and task schedulers in project management tools that need to respect "this must finish before that starts" constraints.`,
   ];
 
@@ -88,8 +88,8 @@ const Content = () => {
   ];
 
   const complexity = [
-    { points: "Time Complexity: O(V + E) — every vertex is enqueued once and every edge is examined once during in-degree updates." },
-    { points: "Space Complexity: O(V) — for the in-degree array and the queue." },
+    { points: "Time Complexity: O(V + E), since every vertex is enqueued once and every edge is examined once during in-degree updates." },
+    { points: "Space Complexity: O(V), for the in-degree array and the queue." },
   ];
 
   return (

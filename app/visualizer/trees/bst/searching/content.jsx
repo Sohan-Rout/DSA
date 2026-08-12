@@ -72,10 +72,10 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Searching a Binary Search Tree is just insertion's walk without the final "attach a node" step — start at the root, compare the target against the current node, and let the BST property tell you exactly which way to go: smaller means left, larger means right. Either you land on the value, or you eventually fall off the tree (hit a null pointer), which means it isn't there.`,
-    `This is the entire reason a BST is useful in the first place — the sorted structure lets you eliminate an entire subtree with every comparison, the same way binary search eliminates half of a sorted array. That's what gets search down to O(log n) instead of the O(n) you'd need to scan an unsorted structure.`,
-    `Search needs O(1) additional space (excluding the recursion call stack), since it never creates or modifies any nodes — it's a read-only walk.`,
-    `Because search, insertion, and deletion all follow this same root-to-leaf comparison walk, they share the same best/worst-case complexity profile — which is exactly why keeping a BST balanced (see AVL trees) matters for all three operations, not just one.`,
+    `Searching a Binary Search Tree is just insertion's walk without the final "attach a node" step: start at the root, compare the target against the current node, and let the BST property tell you exactly which way to go, smaller means left, larger means right. Either you land on the value, or you eventually fall off the tree (hit a null pointer), which means it isn't there.`,
+    `This is the entire reason a BST is useful in the first place. The sorted structure lets you eliminate an entire subtree with every comparison, the same way binary search eliminates half of a sorted array. That's what gets search down to O(log n) instead of the O(n) you'd need to scan an unsorted structure.`,
+    `Search needs O(1) additional space (excluding the recursion call stack), since it never creates or modifies any nodes: it's a read-only walk.`,
+    `Because search, insertion, and deletion all follow this same root-to-leaf comparison walk, they share the same best/worst-case complexity profile, which is exactly why keeping a BST balanced (see AVL trees) matters for all three operations, not just one.`,
   ];
 
   const walkthrough = [
@@ -89,7 +89,7 @@ const Content = () => {
     { points: "Searching for a value that isn't present follows the same path logic" },
     { points: "The walk continues left/right based on comparisons" },
     { points: "Eventually it reaches a null pointer instead of a matching node" },
-    { points: "That null pointer means the value isn't in the tree — search stops there" },
+    { points: "That null pointer means the value isn't in the tree, so search stops there" },
   ];
 
   const algorithm = [
@@ -97,7 +97,7 @@ const Content = () => {
     {
       points: "Compare the target value with the current node:",
       subpoints: [
-        "If equal, return the node — found",
+        "If equal, return the node (found)",
         "If smaller, move to the left child",
         "If larger, move to the right child",
       ],

@@ -32,7 +32,7 @@ const tokenize = (input) => {
 };
 
 // Standard recursive-descent parser respecting + - (lowest precedence),
-// * / (higher precedence), and parentheses — grammar:
+// * / (higher precedence), and parentheses. Grammar:
 // expression := term (('+'|'-') term)*
 // term       := factor (('*'|'/') factor)*
 // factor     := NUMBER | '(' expression ')'
@@ -194,7 +194,7 @@ const SyntaxTreeVisualizer = () => {
       setTraversals({ prefix: toPrefix(tree), infix: toInfix(tree), postfix: toPostfix(tree) });
       setError("");
       clearResult();
-      setMessage("Parsed into a syntax tree — operators are internal nodes, numbers are leaves");
+      setMessage("Parsed into a syntax tree: operators are internal nodes, numbers are leaves");
     } catch (e) {
       setError(e.message);
       setRoot(null);
@@ -222,7 +222,7 @@ const SyntaxTreeVisualizer = () => {
       } else {
         setTimeout(() => {
           setActiveIds([]);
-          setMessage(`Evaluation complete — result is ${steps[steps.length - 1].result}`);
+          setMessage(`Evaluation complete: result is ${steps[steps.length - 1].result}`);
           setBusy(false);
         }, STEP_DELAY);
       }

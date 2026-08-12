@@ -20,7 +20,7 @@ const DfsQuiz = () => {
       question: "What data structure does DFS use to control visit order, and why?",
       options: [
         "A queue, because first-in-first-out order matches DFS's behavior",
-        "A stack, because last-in-first-out order means the most recently discovered vertex is explored next — which is exactly 'go deeper'",
+        "A stack, because last-in-first-out order means the most recently discovered vertex is explored next, which is exactly 'go deeper'",
         "A priority queue sorted by degree",
         "No auxiliary structure is needed"
       ],
@@ -31,7 +31,7 @@ const DfsQuiz = () => {
       question: "In the iterative (explicit stack) version of DFS, when is a vertex marked visited?",
       options: [
         "The moment it's pushed onto the stack",
-        "When it's popped off the stack — not when it's pushed",
+        "When it's popped off the stack, not when it's pushed",
         "Only after all its neighbors have been pushed",
         "DFS never marks vertices visited"
       ],
@@ -42,7 +42,7 @@ const DfsQuiz = () => {
       question: "How can DFS be implemented without an explicit stack data structure?",
       options: [
         "It's impossible without an explicit stack",
-        "Recursion — the call stack itself plays the role of the stack",
+        "Recursion, since the call stack itself plays the role of the stack",
         "By using a queue instead",
         "By sorting all vertices first"
       ],
@@ -58,7 +58,7 @@ const DfsQuiz = () => {
         "Sorting an array of numbers"
       ],
       correctAnswer: 1,
-      explanation: "DFS's backtracking structure — fully exploring one branch before returning to try another — is exactly what cycle detection and topological sorting rely on."
+      explanation: "DFS's backtracking structure, fully exploring one branch before returning to try another, is exactly what cycle detection and topological sorting rely on."
     }
   ];
 

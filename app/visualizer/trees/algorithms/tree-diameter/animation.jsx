@@ -23,7 +23,7 @@ const height = (node) => (node ? 1 + Math.max(height(node.left), height(node.rig
 
 // Post-order pass: at every node, the longest path *through* it is
 // leftHeight + rightHeight edges. The overall diameter is the max of that
-// value across every node — not necessarily the one at the root.
+// value across every node, not necessarily the one at the root.
 const computeDiameter = (root) => {
   const steps = [];
   let best = { diameter: -1, node: null };
@@ -134,7 +134,7 @@ const DiameterVisualizer = () => {
     const revealStep = () => {
       const s = steps[step];
       setComputedHeights((prev) => ({ ...prev, [s.value]: s.h }));
-      setMessage(`height(${s.value}) = ${s.h} — longest path through ${s.value} spans ${s.diameter} edge${s.diameter === 1 ? "" : "s"}`);
+      setMessage(`height(${s.value}) = ${s.h}: longest path through ${s.value} spans ${s.diameter} edge${s.diameter === 1 ? "" : "s"}`);
       step++;
 
       if (step < steps.length) {
@@ -365,7 +365,7 @@ const DiameterVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-                No tree yet — insert a value or generate a random tree
+                No tree yet, insert a value or generate a random tree
               </div>
             )}
           </div>

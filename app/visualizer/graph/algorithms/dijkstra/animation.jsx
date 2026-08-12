@@ -28,7 +28,7 @@ const buildWeightedAdjList = (vertices, edges) => {
 };
 
 // Greedy relaxation: always finalize whichever unvisited vertex currently
-// has the smallest tentative distance — since all weights are non-negative,
+// has the smallest tentative distance, since all weights are non-negative,
 // no edge discovered later could ever produce a shorter path to it.
 const dijkstraWithSteps = (vertices, adjList, start) => {
   const dist = {};
@@ -167,7 +167,7 @@ const DijkstraVisualizer = () => {
     setStartVertex("A");
     setTargetVertex("E");
     clearResult();
-    setMessage("Loaded an example graph — click Run Dijkstra");
+    setMessage("Loaded an example graph, click Run Dijkstra");
   };
 
   const reset = () => {
@@ -202,7 +202,7 @@ const DijkstraVisualizer = () => {
         setCurrent(step.vertex);
         setVisited((p) => new Set(p).add(step.vertex));
         setActiveEdge(null);
-        setMessage(`Finalize ${step.vertex} — no shorter path to it can exist now`);
+        setMessage(`Finalize ${step.vertex}: no shorter path to it can exist now`);
       } else if (step.type === "relax") {
         setActiveEdge({ from: step.from, to: step.to });
         setDistances((prevD) => ({ ...prevD, [step.to]: step.newDist }));
@@ -220,7 +220,7 @@ const DijkstraVisualizer = () => {
           setCurrent(null);
           setActiveEdge(null);
           setFinalPrev(prev);
-          setMessage("Dijkstra complete — every vertex now has its shortest distance from the start");
+          setMessage("Dijkstra complete: every vertex now has its shortest distance from the start");
           setBusy(false);
         }, STEP_DELAY);
       }

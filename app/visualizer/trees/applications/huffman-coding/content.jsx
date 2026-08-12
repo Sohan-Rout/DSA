@@ -77,10 +77,10 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Huffman coding compresses data by giving frequent symbols short binary codes and rare symbols longer ones — the opposite of fixed-width encodings like ASCII, where every character costs the same 8 bits regardless of how often it appears. The codes it produces are prefix-free: no character's code is a prefix of another's, which means a stream of bits can be decoded unambiguously without any separators between codes.`,
+    `Huffman coding compresses data by giving frequent symbols short binary codes and rare symbols longer ones, the opposite of fixed-width encodings like ASCII, where every character costs the same 8 bits regardless of how often it appears. The codes it produces are prefix-free: no character's code is a prefix of another's, which means a stream of bits can be decoded unambiguously without any separators between codes.`,
     `The codes come directly out of a binary tree built specifically for this purpose. Every leaf holds one symbol, and a symbol's code is the sequence of left/right turns (0s and 1s) on the path from the root down to its leaf. Because frequent symbols end up near the root and rare ones get pushed deeper, frequent symbols naturally get shorter codes.`,
-    `That tree is built greedily, bottom-up: start with every symbol as its own single-node tree, weighted by its frequency. Repeatedly take the two trees with the smallest total weight and merge them under a new parent node (weight = the sum of the two), putting the result back into the pool. After enough merges only one tree remains — the Huffman tree — and it's provably optimal: no other prefix-free code achieves a shorter total encoded length for that exact frequency distribution.`,
-    `Huffman coding is a building block inside many real compression formats — it's the final entropy-coding stage in DEFLATE (used by ZIP and gzip), JPEG, and MP3, typically applied after some other transform has already reduced redundancy in the data.`,
+    `That tree is built greedily, bottom-up: start with every symbol as its own single-node tree, weighted by its frequency. Repeatedly take the two trees with the smallest total weight and merge them under a new parent node (weight = the sum of the two), putting the result back into the pool. After enough merges only one tree remains, the Huffman tree, and it's provably optimal: no other prefix-free code achieves a shorter total encoded length for that exact frequency distribution.`,
+    `Huffman coding is a building block inside many real compression formats: it's the final entropy-coding stage in DEFLATE (used by ZIP and gzip), JPEG, and MP3, typically applied after some other transform has already reduced redundancy in the data.`,
   ];
 
   const algorithm = [
@@ -94,11 +94,11 @@ const Content = () => {
         "Insert the merged tree back into the queue",
       ],
     },
-    { points: "Assign each symbol's code by reading the path from the root to its leaf — 0 for left, 1 for right" },
+    { points: "Assign each symbol's code by reading the path from the root to its leaf, using 0 for left and 1 for right" },
   ];
 
   const complexity = [
-    { points: "Time Complexity: O(n log n), where n is the number of distinct symbols — each of the n-1 merges costs O(log n) with a priority queue." },
+    { points: "Time Complexity: O(n log n), where n is the number of distinct symbols, since each of the n-1 merges costs O(log n) with a priority queue." },
     { points: "Space Complexity: O(n) for the tree and the code table." },
   ];
 

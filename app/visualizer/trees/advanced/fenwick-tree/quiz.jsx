@@ -14,13 +14,13 @@ const FenwickQuiz = () => {
         "It's chosen randomly during construction"
       ],
       correctAnswer: 1,
-      explanation: "BIT[i] covers exactly lowbit(i) elements ending at position i — e.g. index 6 (binary 110) has lowbit 2, so it covers 2 elements."
+      explanation: "BIT[i] covers exactly lowbit(i) elements ending at position i, e.g. index 6 (binary 110) has lowbit 2, so it covers 2 elements."
     },
     {
       question: "During a point update, how does the algorithm move from one BIT index to the next?",
       options: ["i = i * 2", "i += lowbit(i)", "i -= lowbit(i)", "i = i / 2"],
       correctAnswer: 1,
-      explanation: "Adding the lowbit moves to the next larger range that also needs to include this update — this is how the update propagates upward through all responsible ranges."
+      explanation: "Adding the lowbit moves to the next larger range that also needs to include this update: this is how the update propagates upward through all responsible ranges."
     },
     {
       question: "During a prefix sum query, how does the algorithm move from one BIT index to the next?",
@@ -48,7 +48,7 @@ const FenwickQuiz = () => {
         "Because Fenwick trees can only store one number total"
       ],
       correctAnswer: 1,
-      explanation: "Subtraction only works to 'undo' addition. There's no way to 'subtract out' a minimum from a combined minimum, so that trick — and therefore a plain Fenwick Tree — doesn't work for min/max; a Segment Tree is used instead."
+      explanation: "Subtraction only works to 'undo' addition. There's no way to 'subtract out' a minimum from a combined minimum, so that trick, and therefore a plain Fenwick Tree, doesn't work for min/max; a Segment Tree is used instead."
     }
   ];
 

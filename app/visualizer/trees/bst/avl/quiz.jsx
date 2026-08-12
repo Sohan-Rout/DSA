@@ -14,7 +14,7 @@ const AvlQuiz = () => {
         "Values must be inserted in sorted order"
       ],
       correctAnswer: 1,
-      explanation: "This is the AVL balance condition — for every node, |height(left) - height(right)| ≤ 1."
+      explanation: "This is the AVL balance condition: for every node, |height(left) - height(right)| ≤ 1."
     },
     {
       question: "When does an AVL tree perform a rotation?",
@@ -22,7 +22,7 @@ const AvlQuiz = () => {
         "After every single insertion, regardless of balance",
         "Only when explicitly requested by the user",
         "When a node's balance factor becomes +2 or -2 after an insert/delete",
-        "Never — AVL trees don't use rotations"
+        "Never, AVL trees don't use rotations"
       ],
       correctAnswer: 2,
       explanation: "A rotation is only triggered when an operation pushes some node's balance factor outside the allowed [-1, 1] range."
@@ -42,7 +42,7 @@ const AvlQuiz = () => {
       question: "What is the worst-case height of an AVL tree with n nodes?",
       options: ["O(n)", "O(n log n)", "O(log n)", "O(1)"],
       correctAnswer: 2,
-      explanation: "The balance condition guarantees the height stays O(log n) no matter what order values are inserted in — this is the whole point of AVL trees."
+      explanation: "The balance condition guarantees the height stays O(log n) no matter what order values are inserted in, which is the whole point of AVL trees."
     },
     {
       question: "Why do AVL trees exist when plain BSTs already support search, insert, and delete?",
@@ -53,7 +53,7 @@ const AvlQuiz = () => {
         "AVL trees are always faster to build from scratch"
       ],
       correctAnswer: 1,
-      explanation: "A plain BST's performance depends entirely on insertion order. AVL trees pay a small extra cost on every insert/delete to guarantee the height — and therefore every operation — stays O(log n)."
+      explanation: "A plain BST's performance depends entirely on insertion order. AVL trees pay a small extra cost on every insert/delete to guarantee the height, and therefore every operation, stays O(log n)."
     }
   ];
 

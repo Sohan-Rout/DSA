@@ -21,17 +21,17 @@ const SerializeDeserializeQuiz = () => {
       options: [
         "Values can't be written as text",
         "A list of values alone loses information about which nodes were children of which and where children were missing",
-        "It's actually enough — no extra information is needed",
+        "It's actually enough, no extra information is needed",
         "Lists can only hold numbers, not tree nodes"
       ],
       correctAnswer: 1,
-      explanation: "Without recording the shape — including exactly where children are absent — many different trees could produce the same list of values."
+      explanation: "Without recording the shape, including exactly where children are absent, many different trees could produce the same list of values."
     },
     {
       question: "What does the null marker represent during serialization?",
       options: [
         "A node with value zero",
-        "An empty child — the traversal reached a spot where no node exists",
+        "An empty child: the traversal reached a spot where no node exists",
         "The end of the entire string",
         "A duplicate value that should be skipped"
       ],
@@ -47,7 +47,7 @@ const SerializeDeserializeQuiz = () => {
         "It reconstructs the tree in reverse order"
       ],
       correctAnswer: 2,
-      explanation: "A null marker is a direct signal to stop — there's no child here, so the recursive call returns without consuming any more tokens for that branch."
+      explanation: "A null marker is a direct signal to stop: there's no child here, so the recursive call returns without consuming any more tokens for that branch."
     },
     {
       question: "What is the time complexity of both serialize and deserialize?",

@@ -32,7 +32,7 @@ const BinaryTreePropertiesQuiz = () => {
         "A leaf always has two children"
       ],
       correctAnswer: 1,
-      explanation: "A leaf node is any node with no children at all — both its left and right pointers are null."
+      explanation: "A leaf node is any node with no children at all: both its left and right pointers are null."
     },
     {
       question: "Why does a skewed (degenerate) binary tree perform worse than a balanced one?",

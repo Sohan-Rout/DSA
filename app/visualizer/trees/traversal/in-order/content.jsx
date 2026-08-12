@@ -64,19 +64,19 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `In-order traversal visits a node's left subtree, then the node itself, then its right subtree — the order is Left, Root, Right. The "in" refers to the root being processed in between its two children, rather than before or after both of them.`,
-    `In-order traversal has one property that makes it stand out from pre-order and post-order: when run on a Binary Search Tree, it visits every value in strictly ascending sorted order. That falls directly out of the BST invariant — every value in a node's left subtree is smaller than the node, and every value in its right subtree is larger, so visiting left-root-right at every level naturally produces sorted output.`,
-    `This is why in-order traversal is the standard way to read a BST's contents in sorted order without needing a separate sort step, and why it's used to validate whether a tree actually satisfies the BST property — if the in-order sequence isn't strictly increasing, the tree isn't a valid BST.`,
-    `Traversal needs O(h) extra space for the recursion call stack, where h is the tree's height — O(log n) for a balanced tree, but O(n) in the worst case of a completely skewed tree.`,
+    `In-order traversal visits a node's left subtree, then the node itself, then its right subtree, so the order is Left, Root, Right. The "in" refers to the root being processed in between its two children, rather than before or after both of them.`,
+    `In-order traversal has one property that makes it stand out from pre-order and post-order: when run on a Binary Search Tree, it visits every value in strictly ascending sorted order. That falls directly out of the BST invariant: every value in a node's left subtree is smaller than the node, and every value in its right subtree is larger, so visiting left-root-right at every level naturally produces sorted output.`,
+    `This is why in-order traversal is the standard way to read a BST's contents in sorted order without needing a separate sort step, and why it's used to validate whether a tree actually satisfies the BST property. If the in-order sequence isn't strictly increasing, the tree isn't a valid BST.`,
+    `Traversal needs O(h) extra space for the recursion call stack, where h is the tree's height: O(log n) for a balanced tree, but O(n) in the worst case of a completely skewed tree.`,
   ];
 
   const walkthrough = [
-    { points: "Start at the root (8), but don't visit it yet — first go left" },
-    { points: "At 3, go left again first: reach 1 (a leaf) — visit it: 1" },
-    { points: "Back at 3, its left is done — visit 3: 1, 3" },
-    { points: "Now go right from 3: reach 6 (a leaf) — visit it: 1, 3, 6" },
-    { points: "Back at 8, its left subtree is fully done — visit 8: 1, 3, 6, 8" },
-    { points: "Go right from 8: reach 10 — visit it: 1, 3, 6, 8, 10 (sorted!)" },
+    { points: "Start at the root (8), but don't visit it yet: first go left" },
+    { points: "At 3, go left again first: reach 1 (a leaf) and visit it: 1" },
+    { points: "Back at 3, its left is done: visit 3: 1, 3" },
+    { points: "Now go right from 3: reach 6 (a leaf) and visit it: 1, 3, 6" },
+    { points: "Back at 8, its left subtree is fully done: visit 8: 1, 3, 6, 8" },
+    { points: "Go right from 8: reach 10 and visit it: 1, 3, 6, 8, 10 (sorted!)" },
   ];
 
   const algorithm = [

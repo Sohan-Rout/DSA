@@ -128,7 +128,7 @@ const BfsVisualizer = () => {
     setEdges(EXAMPLE_EDGES);
     setStartVertex("A");
     clearResult();
-    setMessage("Loaded an example graph — click Start BFS");
+    setMessage("Loaded an example graph, click Start BFS");
   };
 
   const reset = () => {
@@ -158,7 +158,7 @@ const BfsVisualizer = () => {
       if (step.type === "enqueue") {
         setVisited((prev) => new Set(prev).add(step.vertex));
         if (step.from) setActiveEdge({ from: step.from, to: step.vertex });
-        setMessage(step.from ? `Discovered ${step.vertex} from ${step.from} — added to the queue` : `Start at ${step.vertex} — added to the queue`);
+        setMessage(step.from ? `Discovered ${step.vertex} from ${step.from}, added to the queue` : `Start at ${step.vertex}, added to the queue`);
       } else if (step.type === "visit") {
         setCurrent(step.vertex);
         setActiveEdge(null);
@@ -166,7 +166,7 @@ const BfsVisualizer = () => {
         setMessage(`Dequeue and visit ${step.vertex}`);
       } else if (step.type === "skip") {
         setActiveEdge({ from: step.from, to: step.vertex });
-        setMessage(`${step.vertex} is already visited — skip`);
+        setMessage(`${step.vertex} is already visited, skip`);
       }
 
       i++;

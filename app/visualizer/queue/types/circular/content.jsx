@@ -7,7 +7,7 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `A circular queue takes a regular array-based queue and wraps its rear index back to the beginning once it hits the end — instead of a straight line, the underlying array is treated like a loop.`,
+    `A circular queue takes a regular array-based queue and wraps its rear index back to the beginning once it hits the end: instead of a straight line, the underlying array is treated like a loop.`,
     `That one change fixes the biggest annoyance with a plain array queue: slots freed up by earlier dequeues no longer go to waste. It keeps every operation running in constant time, which is why circular queues show up so often in fixed-size buffers, like the ones used in low-level or real-time systems.`,
   ];
 
@@ -221,4 +221,4 @@ const Content = () => {
     );
   };
   
-  export default content;
+  export default Content;

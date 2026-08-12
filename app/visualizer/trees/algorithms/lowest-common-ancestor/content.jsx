@@ -72,9 +72,9 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `The Lowest Common Ancestor of two nodes A and B is the deepest node in the tree that has both A and B as descendants (a node counts as its own descendant, so LCA(A, A) is just A). It's "lowest" in the sense of being as far from the root as possible while still being an ancestor of both — the point where the paths from A and B up to the root first merge.`,
-    `On a general binary tree (no ordering guarantee), finding the LCA needs to search the whole tree: recursively check the left and right subtrees for A and B. If a node's left subtree contains one of them and its right subtree contains the other, that node is the split point — the LCA. If only one subtree contains either of them, the LCA must be further down inside that subtree.`,
-    `A Binary Search Tree's ordering turns this into something far cheaper. Starting at the root and comparing both values against the current node: if both A and B are smaller, the LCA must be somewhere in the left subtree (skip the right entirely). If both are larger, it must be in the right subtree. The moment they're no longer both on the same side — one is smaller (or equal) and the other is larger (or equal) — the paths to A and B have just diverged, and the current node is the LCA. No backtracking, no exploring the "wrong" subtree at all.`,
+    `The Lowest Common Ancestor of two nodes A and B is the deepest node in the tree that has both A and B as descendants (a node counts as its own descendant, so LCA(A, A) is just A). It's "lowest" in the sense of being as far from the root as possible while still being an ancestor of both: the point where the paths from A and B up to the root first merge.`,
+    `On a general binary tree (no ordering guarantee), finding the LCA needs to search the whole tree: recursively check the left and right subtrees for A and B. If a node's left subtree contains one of them and its right subtree contains the other, that node is the split point: the LCA. If only one subtree contains either of them, the LCA must be further down inside that subtree.`,
+    `A Binary Search Tree's ordering turns this into something far cheaper. Starting at the root and comparing both values against the current node: if both A and B are smaller, the LCA must be somewhere in the left subtree (skip the right entirely). If both are larger, it must be in the right subtree. The moment they're no longer both on the same side (one is smaller-or-equal and the other is larger-or-equal), the paths to A and B have just diverged, and the current node is the LCA. No backtracking, no exploring the "wrong" subtree at all.`,
     `LCA queries show up any time a "closest shared point" needs to be found across two positions in a hierarchy: git's merge-base command (the common ancestor commit two branches diverged from), routing decisions in network topology trees, and evolutionary/phylogenetic trees (the most recent common ancestor of two species). When the same tree needs many repeated LCA queries, the answers are often precomputed into an O(1)-per-query structure using techniques built on top of range-minimum queries.`,
   ];
 
@@ -85,7 +85,7 @@ const Content = () => {
       subpoints: [
         "If both are smaller, move to the left child",
         "If both are larger, move to the right child",
-        "Otherwise (one is smaller-or-equal and the other is larger-or-equal), the current node is the LCA — stop",
+        "Otherwise (one is smaller-or-equal and the other is larger-or-equal), the current node is the LCA, so stop",
       ],
     },
     { points: "Repeat until the split point is found" },
@@ -134,7 +134,7 @@ const Content = () => {
           </div>
 
           <div className="text-sm font-medium text-center text-gray-600 dark:text-gray-400 mb-2">
-            LCA(1, 6) — paths to 1 and 6 split apart at node 3
+            LCA(1, 6): paths to 1 and 6 split apart at node 3
           </div>
           <WalkthroughDiagram />
 

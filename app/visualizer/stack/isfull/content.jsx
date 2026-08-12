@@ -8,7 +8,7 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `isFull tells you whether a stack has run out of room to accept another push. It only really matters for a fixed-capacity stack like an array-backed one — a linked-list stack can just keep allocating nodes, so it rarely needs this check.`,
+    `isFull tells you whether a stack has run out of room to accept another push. It only really matters for a fixed-capacity stack like an array-backed one; a linked-list stack can just keep allocating nodes, so it rarely needs this check.`,
     `The Is Full operation is crucial when working with fixed-size stacks to prevent overflow errors. While not needed for dynamically-sized stacks, it's an essential safety check in many system-level implementations.`,
   ];
 

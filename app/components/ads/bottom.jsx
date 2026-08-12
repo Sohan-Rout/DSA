@@ -80,7 +80,7 @@ const BottomAd = () => {
 
       {minimized ? (
         <div style={{ fontSize: "13px", padding: "6px", color: "#555" }}>
-          Ad minimized — click ▲ to reopen
+          Ad minimized. Click ▲ to reopen
         </div>
       ) : (
         <ins

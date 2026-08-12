@@ -56,7 +56,7 @@ const WalkthroughDiagram = () => {
         </motion.g>
       ))}
       <text x="100" y="142" textAnchor="middle" fontSize="8" fontFamily="monospace" className="fill-gray-500 dark:fill-gray-400">
-        visit order: A, B, D, E, C — one path fully explored before backtracking
+        visit order: A, B, D, E, C, one path fully explored before backtracking
       </text>
     </svg>
   );
@@ -66,10 +66,10 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Depth-First Search explores a graph by plunging as deep as possible down one path before ever backing up: from the current vertex, move to an unvisited neighbor, then from there to one of its unvisited neighbors, and so on — only backtracking to try a different branch once a path runs out of new vertices to reach. Unlike BFS's expanding rings, DFS traces out one long tendril at a time.`,
-    `That behavior comes from using a stack (last-in, first-out) instead of a queue. Whichever vertex was discovered most recently is the one explored next, which is exactly what "keep going deeper" means — the newest neighbor found always jumps ahead of anything discovered earlier and still waiting. A stack can be explicit (an array used as a stack) or implicit, via the call stack of a recursive function — both produce the same traversal order.`,
-    `A subtlety worth noting: with an explicit stack, a vertex can end up pushed more than once before it's actually processed, if two different vertices both discover it as a neighbor before it's popped. That's fine — a visited check happens when a vertex is popped, not when it's pushed, so any duplicate is simply skipped once it's already been handled. This is a real difference from BFS, which marks a vertex visited the moment it's enqueued specifically to prevent that kind of duplication.`,
-    `DFS is the natural tool whenever "is there a path at all" matters more than "what's the shortest path" — detecting cycles, finding connected components, topological sorting of a dependency graph, and solving maze- or puzzle-like search spaces where backtracking through one failed branch to try another is exactly the desired behavior.`,
+    `Depth-First Search explores a graph by plunging as deep as possible down one path before ever backing up: from the current vertex, move to an unvisited neighbor, then from there to one of its unvisited neighbors, and so on, only backtracking to try a different branch once a path runs out of new vertices to reach. Unlike BFS's expanding rings, DFS traces out one long tendril at a time.`,
+    `That behavior comes from using a stack (last-in, first-out) instead of a queue. Whichever vertex was discovered most recently is the one explored next, which is exactly what "keep going deeper" means: the newest neighbor found always jumps ahead of anything discovered earlier and still waiting. A stack can be explicit (an array used as a stack) or implicit, via the call stack of a recursive function; both produce the same traversal order.`,
+    `A subtlety worth noting: with an explicit stack, a vertex can end up pushed more than once before it's actually processed, if two different vertices both discover it as a neighbor before it's popped. That's fine: a visited check happens when a vertex is popped, not when it's pushed, so any duplicate is simply skipped once it's already been handled. This is a real difference from BFS, which marks a vertex visited the moment it's enqueued specifically to prevent that kind of duplication.`,
+    `DFS is the natural tool whenever "is there a path at all" matters more than "what's the shortest path": detecting cycles, finding connected components, topological sorting of a dependency graph, and solving maze- or puzzle-like search spaces where backtracking through one failed branch to try another is exactly the desired behavior.`,
   ];
 
   const algorithm = [
@@ -82,12 +82,12 @@ const Content = () => {
         "Push each of its unvisited neighbors onto the stack",
       ],
     },
-    { points: "Stop when the stack is empty — every vertex reachable from the start has been visited" },
+    { points: "Stop when the stack is empty, since every vertex reachable from the start has been visited" },
   ];
 
   const complexity = [
-    { points: "Time Complexity: O(V + E) — every vertex is popped and processed once, and every edge is examined once across the whole run." },
-    { points: "Space Complexity: O(V) — for the stack (explicit or via recursion) and the visited set in the worst case." },
+    { points: "Time Complexity: O(V + E), since every vertex is popped and processed once, and every edge is examined once across the whole run." },
+    { points: "Space Complexity: O(V), for the stack (explicit or via recursion) and the visited set in the worst case." },
   ];
 
   return (

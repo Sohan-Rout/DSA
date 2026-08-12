@@ -24,7 +24,7 @@ const Content = () => {
   }, []);
 
   const overview = [
-    `Reversing a linked list is really just flipping every pointer so it points backward instead of forward — once that's done, what used to be the tail is now the head.`,
+    `Reversing a linked list is really just flipping every pointer so it points backward instead of forward. Once that's done, what used to be the tail is now the head.`,
     `It shows up constantly as a building block in other algorithms, and it's the go-to way to process a list back-to-front without allocating any extra space for a copy.`
   ];
 

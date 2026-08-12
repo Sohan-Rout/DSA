@@ -52,17 +52,17 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `A Red-Black Tree is a self-balancing Binary Search Tree that keeps itself roughly balanced by coloring every node either red or black and enforcing a small set of rules about how those colors can be arranged. Unlike an AVL tree, which balances strictly by height, a Red-Black Tree balances by color — and that looser constraint is exactly what makes it cheaper to maintain.`,
-    `The five rules (the "red-black properties") together guarantee that the longest possible root-to-leaf path is never more than twice as long as the shortest one. That's a weaker balance guarantee than AVL's, but it's enough to keep every operation at O(log n), and it means Red-Black Trees need at most one or two rotations per insertion or deletion — compared to AVL, which can cascade rotations back up the tree. This is why Red-Black Trees are the default choice inside C++'s \`std::map\`/\`std::set\`, Java's \`TreeMap\`/\`TreeSet\`, and the Linux kernel's process scheduler and virtual memory management.`,
-    `Insertion always starts the same way a plain BST insertion does, and the new node is always colored red. Coloring it red (rather than black) means it can never violate the "same black-height on every path" rule by itself — the only rule a fresh red leaf can break is "a red node can't have a red parent." If that happens, a fixup procedure runs, walking back up the tree recoloring nodes and, when recoloring alone isn't enough, performing at most two rotations to restore all five properties.`,
-    `Insertion (with fixup) needs O(1) extra space beyond the recursion/loop state — only a constant number of pointers get rewired or recolored, no matter how large the tree is.`,
+    `A Red-Black Tree is a self-balancing Binary Search Tree that keeps itself roughly balanced by coloring every node either red or black and enforcing a small set of rules about how those colors can be arranged. Unlike an AVL tree, which balances strictly by height, a Red-Black Tree balances by color, and that looser constraint is exactly what makes it cheaper to maintain.`,
+    `The five rules (the "red-black properties") together guarantee that the longest possible root-to-leaf path is never more than twice as long as the shortest one. That's a weaker balance guarantee than AVL's, but it's enough to keep every operation at O(log n), and it means Red-Black Trees need at most one or two rotations per insertion or deletion, compared to AVL, which can cascade rotations back up the tree. This is why Red-Black Trees are the default choice inside C++'s \`std::map\`/\`std::set\`, Java's \`TreeMap\`/\`TreeSet\`, and the Linux kernel's process scheduler and virtual memory management.`,
+    `Insertion always starts the same way a plain BST insertion does, and the new node is always colored red. Coloring it red (rather than black) means it can never violate the "same black-height on every path" rule by itself: the only rule a fresh red leaf can break is "a red node can't have a red parent." If that happens, a fixup procedure runs, walking back up the tree recoloring nodes and, when recoloring alone isn't enough, performing at most two rotations to restore all five properties.`,
+    `Insertion (with fixup) needs O(1) extra space beyond the recursion/loop state: only a constant number of pointers get rewired or recolored, no matter how large the tree is.`,
   ];
 
   const properties = [
     { title: "1. Every node is red or black", body: "Each node stores one extra bit of information: its color." },
     { title: "2. The root is always black", body: "If an insertion colors the root red, it's flipped back to black once the fixup finishes." },
     { title: "3. Every NIL leaf is black", body: "The (implicit) null children at the bottom of the tree are treated as black leaves." },
-    { title: "4. No red node has a red child", body: "Two reds can never appear back-to-back on any path — this is the rule a new red insertion can violate." },
+    { title: "4. No red node has a red child", body: "Two reds can never appear back-to-back on any path; this is the rule a new red insertion can violate." },
     { title: "5. Equal black-height on every path", body: "Every path from a node to any of its descendant NIL leaves passes through the same number of black nodes." },
   ];
 
@@ -171,7 +171,7 @@ const Content = () => {
             </div>
             <div>
               <div className="text-sm font-medium text-center text-gray-600 dark:text-gray-400 mb-2">
-                A right rotation at 10 fixes it — black-height unchanged
+                A right rotation at 10 fixes it, black-height unchanged
               </div>
               <MiniTree keyPrefix="after" nodes={afterNodes} edges={afterEdges} />
             </div>

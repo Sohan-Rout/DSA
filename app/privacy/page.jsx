@@ -38,11 +38,11 @@ const policySections = [
     title: "Third-Party Services",
     data: "We use the following third-party services, each of which may process data according to its own privacy policy:",
     points: [
-      "Supabase — authentication and database storage for accounts and progress data",
-      "Google Analytics — website usage analytics",
-      "Google AdSense — displays ads and may use cookies to personalize them based on your visits to this and other sites; you can manage ad personalization at adssettings.google.com",
-      "Cloudflare Turnstile — bot/spam protection on login and signup",
-      "Vercel — hosting and performance analytics",
+      "Supabase: authentication and database storage for accounts and progress data",
+      "Google Analytics: website usage analytics",
+      "Google AdSense: displays ads and may use cookies to personalize them based on your visits to this and other sites; you can manage ad personalization at adssettings.google.com",
+      "Cloudflare Turnstile: bot/spam protection on login and signup",
+      "Vercel: hosting and performance analytics",
     ],
   },
   {

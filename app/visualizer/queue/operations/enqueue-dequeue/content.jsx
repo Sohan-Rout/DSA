@@ -4,11 +4,111 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import InContentAd from "@/app/components/ads/InContentAd";
+
+const QueueDiagram = ({ values, highlight, keyPrefix }) => {
+  const boxSize = 40;
+  const gap = 8;
+  const paddingX = 8;
+  const topPadding = 34;
+  const width = Math.max(values.length, 1) * (boxSize + gap) - gap + paddingX * 2;
+  const height = boxSize + topPadding + 10;
+
+  const boxX = (idx) => paddingX + idx * (boxSize + gap);
+  const boxY = topPadding;
+  const cx = (idx) => boxX(idx) + boxSize / 2;
+
+  const colorFor = (idx) => (highlight === idx ? "#10b981" : "#3b82f6");
+
+  if (values.length === 0) {
+    return (
+      <svg
+        viewBox={`0 0 200 ${height}`}
+        className="mx-auto"
+        style={{ width: "200px", maxWidth: "100%" }}
+        role="img"
+        aria-label="empty queue"
+      >
+        <rect x={paddingX} y={boxY} width={boxSize} height={boxSize} rx="6" fill="none" stroke="#94a3b8" strokeWidth="2" strokeDasharray="4 3" />
+        <text x={paddingX + boxSize + 12} y={boxY + boxSize / 2 + 5} className="fill-gray-400 dark:fill-gray-500" fontSize="12" fontFamily="monospace">
+          queue is empty
+        </text>
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="mx-auto"
+      style={{ width: `${width}px`, maxWidth: "100%" }}
+      role="img"
+      aria-label="queue diagram"
+    >
+      <defs>
+        <marker id={`${keyPrefix}-front-arrow`} markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="#3b82f6" />
+        </marker>
+        <marker id={`${keyPrefix}-rear-arrow`} markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="#10b981" />
+        </marker>
+      </defs>
+
+      <text x={cx(0)} y="10" textAnchor="middle" className="fill-blue-500 dark:fill-blue-400" fontSize="10" fontWeight="700">
+        front
+      </text>
+      <line x1={cx(0)} y1="14" x2={cx(0)} y2={boxY - 3} stroke="#3b82f6" strokeWidth="1.5" markerEnd={`url(#${keyPrefix}-front-arrow)`} />
+
+      {values.length > 1 && (
+        <>
+          <text x={cx(values.length - 1)} y="10" textAnchor="middle" className="fill-emerald-500 dark:fill-emerald-400" fontSize="10" fontWeight="700">
+            rear
+          </text>
+          <line
+            x1={cx(values.length - 1)}
+            y1="14"
+            x2={cx(values.length - 1)}
+            y2={boxY - 3}
+            stroke="#10b981"
+            strokeWidth="1.5"
+            markerEnd={`url(#${keyPrefix}-rear-arrow)`}
+          />
+        </>
+      )}
+
+      {values.map((val, idx) => (
+        <g key={`${keyPrefix}-box-${idx}`}>
+          <rect
+            x={boxX(idx)}
+            y={boxY}
+            width={boxSize}
+            height={boxSize}
+            rx="6"
+            fill={colorFor(idx)}
+            opacity={idx === highlight ? "0.9" : "0.25"}
+            stroke={colorFor(idx)}
+            strokeWidth="2"
+          />
+          <text
+            x={cx(idx)}
+            y={boxY + boxSize / 2 + 5}
+            textAnchor="middle"
+            className="fill-gray-800 dark:fill-gray-100"
+            fontSize="14"
+            fontWeight="700"
+          >
+            {val}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+};
+
 const Content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `A queue works exactly like a line of people waiting: whoever joins first at the back gets served first at the front. In data-structure terms, new items go in at the rear through enqueue, and items come out from the front through dequeue — first in, first out.`,
+    `A queue works exactly like a line of people waiting: whoever joins first at the back gets served first at the front. In data-structure terms, new items go in at the rear through enqueue, and items come out from the front through dequeue, first in, first out.`,
     `The space complexity is O(n) where n is the number of elements in the queue, as it needs to store all elements.`,
     `Queues are fundamental in computer science and are used in various applications like CPU scheduling, disk scheduling, handling interrupts, breadth-first search, and any scenario where you need to maintain order of processing.`,
   ];
@@ -20,24 +120,12 @@ const Content = () => {
     { points : "Add the new element at the rear position" },
   ];
 
-  const opeartionEnqueue = [
-    { points : "Before Enqueue: [10, 20, 30]" },
-    { points : "Enqueue(40): Add 40 to the rear" },
-    { points : "Enqueue(40): Add 40 to the rear" },
-  ];
-
   const dequeue = [
     { points : "Check if the queue is empty" },
     { points : "If empty, return underflow error" },
     { points : "Access the data at the front of the queue" },
     { points : "Increment the front pointer to the next element" },
     { points : "Return the accessed data" },
-  ];
-
-  const operationDequeue = [
-    { points : "Before Dequeue: [10, 20, 30, 40]" },
-    { points : "Dequeue(): Remove and return 10" },
-    { points : "After Dequeue: [20, 30, 40]" },
   ];
 
   const complexity = [
@@ -73,17 +161,15 @@ const Content = () => {
       </h1>
       <div className="prose dark:prose-invert max-w-none">
         <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-          Enqueue adds an element to the end (rear) of the queue. Example with queue: [10, 20, 30]
+          Enqueue adds an element to the end (rear) of the queue. The front pointer never moves, and the new element becomes the new rear.
         </p>
-        
-        <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-          {opeartionEnqueue.map((item, index) => (
-            <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
-              {item.points}
-            </li>
-          ))}
-        </ol>
-        
+
+        <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg space-y-3 overflow-x-auto not-prose">
+          <QueueDiagram values={["10", "20", "30"]} keyPrefix="enq-before" />
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400">↓ enqueue(40) ↓</p>
+          <QueueDiagram values={["10", "20", "30", "40"]} highlight={3} keyPrefix="enq-after" />
+        </div>
+
         <p className="text-gray-700 dark:text-gray-300 mt-4 leading-relaxed">
           The new element always goes to the end of the queue.
         </p>
@@ -98,20 +184,15 @@ const Content = () => {
       </h1>
       <div className="prose dark:prose-invert max-w-none">
         <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-          Dequeue removes and returns the element from the front (head) of the queue.
+          Dequeue removes and returns the element from the front (head) of the queue. The rear pointer never moves, and whichever element was second in line becomes the new front.
         </p>
-        <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-          Example with queue: <span className="font-mono dark:text-amber-500 text-purple-600">[10, 20, 30, 40]</span>
-        </p>
-        
-        <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-          {operationDequeue.map((item, index) => (
-            <li key={index} className="text-gray-700 dark:text-gray-300 pl-2">
-              {item.points}
-            </li>
-          ))}
-        </ol>
-        
+
+        <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg space-y-3 overflow-x-auto not-prose">
+          <QueueDiagram values={["10", "20", "30", "40"]} keyPrefix="deq-before" />
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400">↓ dequeue() → returns 10 ↓</p>
+          <QueueDiagram values={["20", "30", "40"]} keyPrefix="deq-after" />
+        </div>
+
         <p className="text-gray-700 dark:text-gray-300 mt-4 leading-relaxed">
           The oldest element (first one added) is always removed first.
         </p>
@@ -213,4 +294,4 @@ const Content = () => {
     );
   };
   
-  export default content;
+  export default Content;

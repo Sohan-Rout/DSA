@@ -20,7 +20,7 @@ const DecisionTreeQuiz = () => {
       question: "What does a Gini impurity of 0 for a group of data mean?",
       options: [
         "The group is empty",
-        "The group is perfectly pure — every example belongs to the same class",
+        "The group is perfectly pure, since every example belongs to the same class",
         "The group has the maximum possible mixture of classes",
         "The group's feature values are all zero"
       ],
@@ -41,7 +41,7 @@ const DecisionTreeQuiz = () => {
     {
       question: "When does the recursive splitting process stop and create a leaf?",
       options: [
-        "It never stops — trees are always infinite",
+        "It never stops, since trees are always infinite",
         "When the node's data is pure, a depth limit is reached, or too few samples remain to split usefully",
         "As soon as the first split is made",
         "Only when every feature has been used exactly once"

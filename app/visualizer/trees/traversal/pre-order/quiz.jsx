@@ -30,7 +30,7 @@ const PreOrderQuiz = () => {
     },
     {
       question: "Pre-order traversal corresponds to which notation for writing expression trees?",
-      options: ["Infix notation", "Postfix (Reverse Polish) notation", "Prefix (Polish) notation", "None — traversal order doesn't relate to notation"],
+      options: ["Infix notation", "Postfix (Reverse Polish) notation", "Prefix (Polish) notation", "None, traversal order doesn't relate to notation"],
       correctAnswer: 2,
       explanation: "In prefix notation the operator comes before its operands, exactly matching pre-order's Root-then-children order."
     },

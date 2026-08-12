@@ -47,23 +47,23 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `A Fenwick Tree (also called a Binary Indexed Tree, or BIT) solves the same core problem a Segment Tree does — prefix/range sums with fast point updates — but with a much smaller footprint: one plain array, no explicit tree nodes or pointers at all. The "tree" is implicit, encoded entirely in the binary representation of each index.`,
-    `Every index i in the BIT array is responsible for a range of the original array whose length is exactly the value of i's lowest set bit (its "lowbit"). Index 6 in binary is 110, whose lowest set bit is 2, so BIT[6] covers a range of 2 elements. Index 8 is 1000, whose lowest set bit is 8, so BIT[8] covers all 8 elements up to it. This single bit trick is the entire structure — no recursion, no children pointers, just index arithmetic.`,
+    `A Fenwick Tree (also called a Binary Indexed Tree, or BIT) solves the same core problem a Segment Tree does, prefix/range sums with fast point updates, but with a much smaller footprint: one plain array, no explicit tree nodes or pointers at all. The "tree" is implicit, encoded entirely in the binary representation of each index.`,
+    `Every index i in the BIT array is responsible for a range of the original array whose length is exactly the value of i's lowest set bit (its "lowbit"). Index 6 in binary is 110, whose lowest set bit is 2, so BIT[6] covers a range of 2 elements. Index 8 is 1000, whose lowest set bit is 8, so BIT[8] covers all 8 elements up to it. This single bit trick is the entire structure: no recursion, no children pointers, just index arithmetic.`,
     `Moving between indices uses that same lowbit value: adding it to an index walks up toward larger ranges (used when propagating a point update to every range that includes it), and subtracting it walks down toward smaller ranges (used when accumulating a prefix sum). Both walks take exactly O(log n) steps, because each step clears or sets one more bit in the index.`,
-    `The tradeoff for this smaller footprint is flexibility: a Fenwick Tree's range query only works by combining prefix sums (range[l,r] = prefix(r) - prefix(l-1)), which requires the underlying operation to have an inverse. That works great for sum, but not for operations like minimum or maximum, which don't have an inverse — a Segment Tree is needed for those instead.`,
+    `The tradeoff for this smaller footprint is flexibility: a Fenwick Tree's range query only works by combining prefix sums (range[l,r] = prefix(r) - prefix(l-1)), which requires the underlying operation to have an inverse. That works great for sum, but not for operations like minimum or maximum, which don't have an inverse, so a Segment Tree is needed for those instead.`,
   ];
 
   const algorithm = [
     { points: "Build: start with an all-zero BIT array, then apply a point update for every element of the input array" },
     {
-      points: "Point Update(index, delta) — add delta to the element at index:",
+      points: "Point Update(index, delta): add delta to the element at index:",
       subpoints: [
         "Convert to 1-indexed: i = index + 1",
         "While i is within bounds: add delta to BIT[i], then move to the next responsible index with i += lowbit(i)",
       ],
     },
     {
-      points: "Prefix Sum(index) — sum of everything from 0 to index:",
+      points: "Prefix Sum(index): sum of everything from 0 to index:",
       subpoints: [
         "Convert to 1-indexed: i = index + 1",
         "While i > 0: add BIT[i] to the running total, then move down with i -= lowbit(i)",
@@ -74,8 +74,8 @@ const Content = () => {
 
   const complexity = [
     { points: "Build: O(n log n) naively (n point updates), or O(n) with a direct construction trick." },
-    { points: "Point Update: O(log n) — one walk upward through responsible ranges." },
-    { points: "Prefix/Range Query: O(log n) — one walk downward accumulating partial sums." },
+    { points: "Point Update: O(log n), one walk upward through responsible ranges." },
+    { points: "Prefix/Range Query: O(log n), one walk downward accumulating partial sums." },
   ];
 
   return (

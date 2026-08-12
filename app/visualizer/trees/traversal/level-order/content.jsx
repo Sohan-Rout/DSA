@@ -68,24 +68,24 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Level-order traversal visits a tree one depth level at a time — every node at depth 0 (the root), then every node at depth 1, then every node at depth 2, and so on, left to right within each level. It's also called Breadth-First Search (BFS) on a tree, and unlike pre-order, in-order, and post-order, it isn't defined recursively — it's naturally iterative, built around a queue instead of the call stack.`,
-    `The algorithm starts by enqueueing the root. Then it repeatedly dequeues the front node, visits it, and enqueues that node's children (left, then right). Because a queue is FIFO, nodes come back out in exactly the order they were discovered — which guarantees an entire level finishes before the next one starts.`,
+    `Level-order traversal visits a tree one depth level at a time: every node at depth 0 (the root), then every node at depth 1, then every node at depth 2, and so on, left to right within each level. It's also called Breadth-First Search (BFS) on a tree, and unlike pre-order, in-order, and post-order, it isn't defined recursively. It's naturally iterative, built around a queue instead of the call stack.`,
+    `The algorithm starts by enqueueing the root. Then it repeatedly dequeues the front node, visits it, and enqueues that node's children (left, then right). Because a queue is FIFO, nodes come back out in exactly the order they were discovered, guaranteeing that an entire level finishes before the next one starts.`,
     `This queue-driven, level-by-level structure is why BFS is the traversal used whenever "closer" needs to mean something concrete: finding the shortest path in an unweighted tree/graph, computing a node's minimum depth, or serializing a tree in a way that's easy to reconstruct row by row (e.g. printing a tree layer by layer for display).`,
-    `Level-order needs O(w) extra space for the queue, where w is the maximum width of the tree (the largest number of nodes at any single level) — this can be as large as O(n) for a wide, shallow tree, unlike the O(h) stack space used by the recursive DFS traversals.`,
+    `Level-order needs O(w) extra space for the queue, where w is the maximum width of the tree (the largest number of nodes at any single level). This can be as large as O(n) for a wide, shallow tree, unlike the O(h) stack space used by the recursive DFS traversals.`,
   ];
 
   const walkthrough = [
     { points: "Enqueue the root, 8. Queue: [8]" },
     { points: "Dequeue 8, visit it, enqueue its children 3 and 10. Queue: [3, 10]" },
     { points: "Dequeue 3, visit it, enqueue its children 1 and 6. Queue: [10, 1, 6]" },
-    { points: "Dequeue 10, visit it — it has no children. Queue: [1, 6]" },
-    { points: "Dequeue 1, visit it — it has no children. Queue: [6]" },
-    { points: "Dequeue 6, visit it — it has no children. Queue is now empty, traversal ends" },
-    { points: "Final sequence: [8, 3, 10, 1, 6] — notice level 0, then all of level 1, then all of level 2" },
+    { points: "Dequeue 10, visit it; it has no children. Queue: [1, 6]" },
+    { points: "Dequeue 1, visit it; it has no children. Queue: [6]" },
+    { points: "Dequeue 6, visit it; it has no children. Queue is now empty, traversal ends" },
+    { points: "Final sequence: [8, 3, 10, 1, 6]: notice level 0, then all of level 1, then all of level 2" },
   ];
 
   const algorithm = [
-    { points: "If the root is null, return immediately — there's nothing to traverse" },
+    { points: "If the root is null, return immediately, since there's nothing to traverse" },
     { points: "Create a queue and enqueue the root" },
     {
       points: "While the queue isn't empty, repeat:",

@@ -18,7 +18,7 @@ const layoutCircle = (vertices) => {
 };
 
 // Every edge sets one (or, for undirected edges, two mirrored) cells in the
-// matrix — adding an edge to the edge list and setting a matrix cell are the
+// matrix, adding an edge to the edge list and setting a matrix cell are the
 // same operation viewed from two different representations.
 const buildMatrix = (vertices, edges) => {
   const n = vertices.length;
@@ -89,7 +89,7 @@ const AdjacencyMatrixVisualizer = () => {
 
     setRecentEdge({ from: fromVertex, to: toVertex, directed: directedMode });
     setSelectedCell(null);
-    setMessage(`Set edge ${fromVertex} → ${toVertex} (weight ${weight})${directedMode ? "" : " — mirrored both ways since the graph is undirected"}`);
+    setMessage(`Set edge ${fromVertex} → ${toVertex} (weight ${weight})${directedMode ? "" : ", mirrored both ways since the graph is undirected"}`);
 
     const bars = document.querySelectorAll(".matrix-cell-active");
     if (bars.length > 0) {
@@ -127,7 +127,7 @@ const AdjacencyMatrixVisualizer = () => {
     setSelectedCell({ i, j });
     setRecentEdge(null);
     const matrix = buildMatrix(vertices, edges);
-    setMessage(matrix[i][j] !== 0 ? `Cell (${a}, ${b}) = ${matrix[i][j]} — there is an edge from ${a} to ${b}` : `Cell (${a}, ${b}) = 0 — no edge from ${a} to ${b}`);
+    setMessage(matrix[i][j] !== 0 ? `Cell (${a}, ${b}) = ${matrix[i][j]}, there is an edge from ${a} to ${b}` : `Cell (${a}, ${b}) = 0, no edge from ${a} to ${b}`);
   };
 
   const positions = layoutCircle(vertices);

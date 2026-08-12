@@ -65,10 +65,10 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `A Segment Tree answers a question that neither a plain array nor a running-total (prefix-sum) array handles well at the same time: "what's the sum (or min, max, gcd...) of elements from index l to r?", while also supporting fast updates to individual elements. A prefix-sum array answers range queries in O(1), but a single update forces you to recompute every prefix after it — O(n) per update. A segment tree gets both operations down to O(log n).`,
-    `Every node in a segment tree represents a contiguous range of the underlying array. Leaves represent single elements; every internal node represents the union of its two children's ranges, and stores the combined result of some associative operation (sum, min, max, etc.) over that whole range — computed once and cached, not recomputed from scratch on every query.`,
-    `A range query works by decomposing the query range into a small number of these pre-combined node ranges. Starting from the root, if a node's range falls entirely outside the query, it's skipped. If it falls entirely inside the query, its cached value is used directly — no need to look at its children at all. Only when a node's range partially overlaps the query does the search recurse into both children. This decomposition never needs more than O(log n) nodes to cover any range.`,
-    `A point update walks straight from the root down to the one leaf that needs to change, updates it, and then recomputes each ancestor's cached value on the way back up — exactly one path of length O(log n), touching nothing else in the tree.`,
+    `A Segment Tree answers a question that neither a plain array nor a running-total (prefix-sum) array handles well at the same time: "what's the sum (or min, max, gcd...) of elements from index l to r?", while also supporting fast updates to individual elements. A prefix-sum array answers range queries in O(1), but a single update forces you to recompute every prefix after it, O(n) per update. A segment tree gets both operations down to O(log n).`,
+    `Every node in a segment tree represents a contiguous range of the underlying array. Leaves represent single elements; every internal node represents the union of its two children's ranges, and stores the combined result of some associative operation (sum, min, max, etc.) over that whole range, computed once and cached, not recomputed from scratch on every query.`,
+    `A range query works by decomposing the query range into a small number of these pre-combined node ranges. Starting from the root, if a node's range falls entirely outside the query, it's skipped. If it falls entirely inside the query, its cached value is used directly, no need to look at its children at all. Only when a node's range partially overlaps the query does the search recurse into both children. This decomposition never needs more than O(log n) nodes to cover any range.`,
+    `A point update walks straight from the root down to the one leaf that needs to change, updates it, and then recomputes each ancestor's cached value on the way back up, exactly one path of length O(log n), touching nothing else in the tree.`,
   ];
 
   const algorithm = [
@@ -85,9 +85,9 @@ const Content = () => {
   ];
 
   const complexity = [
-    { points: "Build: O(n) — every node is computed exactly once." },
-    { points: "Range Query: O(log n) — at most a constant number of nodes per level are visited." },
-    { points: "Point Update: O(log n) — exactly one root-to-leaf path is touched." },
+    { points: "Build: O(n), every node is computed exactly once." },
+    { points: "Range Query: O(log n), at most a constant number of nodes per level are visited." },
+    { points: "Point Update: O(log n), exactly one root-to-leaf path is touched." },
   ];
 
   return (

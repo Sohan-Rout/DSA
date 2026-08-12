@@ -17,7 +17,7 @@ const layoutCircle = (vertices) => {
   });
 };
 
-// Unlike a matrix, a list only stores entries for edges that actually exist —
+// Unlike a matrix, a list only stores entries for edges that actually exist:
 // each vertex's row is exactly as long as its number of neighbors.
 const buildAdjList = (vertices, edges) => {
   const list = {};
@@ -85,7 +85,7 @@ const AdjacencyListVisualizer = () => {
 
     setRecentEdge({ from: fromVertex, to: toVertex, directed: directedMode });
     setSelectedEdge(null);
-    setMessage(`Appended ${toVertex} to ${fromVertex}'s list${directedMode ? "" : `, and ${fromVertex} to ${toVertex}'s list — undirected edges are mirrored`}`);
+    setMessage(`Appended ${toVertex} to ${fromVertex}'s list${directedMode ? "" : `, and ${fromVertex} to ${toVertex}'s list, since undirected edges are mirrored`}`);
 
     const chips = document.querySelectorAll(".list-chip-active");
     if (chips.length > 0) {

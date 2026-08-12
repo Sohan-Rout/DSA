@@ -6,63 +6,125 @@ import React from "react";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import InContentAd from "@/app/components/ads/InContentAd";
 
+const StackListDiagram = ({ nodes, highlight, keyPrefix }) => {
+  const boxSize = 40;
+  const gap = 36;
+  const startX = 56;
+  const topPadding = 22;
+  const width = startX + Math.max(nodes.length, 1) * (boxSize + gap) + 34;
+  const height = boxSize + topPadding + 18;
+
+  const boxX = (idx) => startX + idx * (boxSize + gap);
+  const boxY = topPadding;
+  const cy = boxY + boxSize / 2;
+
+  const colorFor = (idx) => (highlight === idx ? "#10b981" : "#3b82f6");
+
+  if (nodes.length === 0) {
+    return (
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        className="mx-auto"
+        style={{ width: `${width}px`, maxWidth: "100%" }}
+        role="img"
+        aria-label="empty linked-list stack"
+      >
+        <defs>
+          <marker id={`${keyPrefix}-arrow`} markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <path d="M0,0 L7,3.5 L0,7 Z" fill="#94a3b8" />
+          </marker>
+        </defs>
+        <text x="0" y={cy + 4} className="fill-gray-500 dark:fill-gray-400" fontSize="12" fontFamily="monospace">
+          top
+        </text>
+        <line x1="26" y1={cy} x2={boxX(0)} y2={cy} stroke="#94a3b8" strokeWidth="1.5" markerEnd={`url(#${keyPrefix}-arrow)`} />
+        <text x={boxX(0) + 4} y={cy + 4} className="fill-gray-400 dark:fill-gray-500" fontSize="12" fontFamily="monospace">
+          null
+        </text>
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="mx-auto"
+      style={{ width: `${width}px`, maxWidth: "100%" }}
+      role="img"
+      aria-label="linked-list stack diagram"
+    >
+      <defs>
+        <marker id={`${keyPrefix}-arrow`} markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="#94a3b8" />
+        </marker>
+      </defs>
+
+      <text x="0" y={cy + 4} className="fill-gray-500 dark:fill-gray-400" fontSize="12" fontFamily="monospace">
+        top
+      </text>
+      <line
+        x1="26"
+        y1={cy}
+        x2={boxX(0)}
+        y2={cy}
+        stroke="#94a3b8"
+        strokeWidth="1.5"
+        markerEnd={`url(#${keyPrefix}-arrow)`}
+      />
+
+      {nodes.map((label, idx) => (
+        <g key={`${keyPrefix}-box-${idx}`}>
+          <rect
+            x={boxX(idx)}
+            y={boxY}
+            width={boxSize}
+            height={boxSize}
+            rx="6"
+            fill={colorFor(idx)}
+            opacity={highlight === idx ? "0.9" : "0.25"}
+            stroke={colorFor(idx)}
+            strokeWidth="2"
+          />
+          <text
+            x={boxX(idx) + boxSize / 2}
+            y={cy + 5}
+            textAnchor="middle"
+            className="fill-gray-800 dark:fill-gray-100"
+            fontSize="14"
+            fontWeight="700"
+          >
+            {label}
+          </text>
+          <line
+            x1={boxX(idx) + boxSize}
+            y1={cy}
+            x2={boxX(idx) + boxSize + gap}
+            y2={cy}
+            stroke="#94a3b8"
+            strokeWidth="1.5"
+            markerEnd={`url(#${keyPrefix}-arrow)`}
+          />
+        </g>
+      ))}
+
+      <text
+        x={boxX(nodes.length - 1) + boxSize + gap + 4}
+        y={cy + 4}
+        className="fill-gray-400 dark:fill-gray-500"
+        fontSize="12"
+        fontFamily="monospace"
+      >
+        null
+      </text>
+    </svg>
+  );
+};
+
 const Content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `Building a stack with a linked list instead of an array gets you the same LIFO (Last In, First Out) behavior, but without a fixed capacity — every push allocates a fresh node, so the stack can keep growing as long as memory allows.`,
-  ];
-
-  const opeartions = [
-    {
-      points: "Initialize Stack",
-      subpoints: [
-        "Create a head pointer initialized to null.",
-        "Optional: Maintain a size counter initialized to 0.",
-      ],
-    },
-    {
-      points: "push()",
-      subpoints: [
-        "Create a new node with the given data.",
-        "Set new node's next pointer to current head.",
-        "Update head to point to the new node.",
-        "Increment size counter (if maintained).",
-      ],
-    },
-    {
-      points: "pop()",
-      subpoints: [
-        "Check if stack is empty (head is null).",
-        `If empty, return "Stack Underflow".`,
-        "Store current head node in a temporary variabl.",
-        "Update head to point to the next node.",
-        "Decrement size counter (if maintained).",
-        "Return data from the temporary node.",
-      ],
-    },
-  ];
-
-  const helper = [
-    {
-      points: "peek()",
-      subpoints: [
-        "Check if stack is empty (head is null).",
-        "If empty, return null.",
-        "Return data from head node without removal.",
-      ],
-    },
-    {
-      points: "isEmpty()",
-      subpoints: ["Return true if head is null.", "Return false otherwise."],
-    },
-    {
-      points: "size()",
-      subpoints: [
-        "If size counter is maintained, return its value.",
-        "Otherwise, traverse the list and count nodes.",
-      ],
-    },
+    `Building a stack with a linked list instead of an array gets you the same LIFO (Last In, First Out) behavior, but without a fixed capacity: every push allocates a fresh node, so the stack can keep growing as long as memory allows.`,
   ];
 
   return (
@@ -85,79 +147,78 @@ const Content = () => {
           </div>
         </section>
 
-        {/* Algorithmic Steps */}
+        {/* Initialize */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
-            Algorithmic Steps
+            Initialize
           </h1>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            A top pointer is created and set to null, meaning there are no nodes yet. Some implementations also keep a size counter, initialized to 0, so size() doesn't need to walk the whole list.
+          </p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg overflow-x-auto">
+            <StackListDiagram nodes={[]} keyPrefix="init" />
+          </div>
+        </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Stack Basic Operations */}
-            <div className="rounded-lg p-4 bg-white dark:bg-neutral-950 shadow-md">
-              <h2 className="text-lg sm:text-xl mb-3 font-bold text-center">
-                Stack Basic Operations
-              </h2>
+        {/* push() */}
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+            push()
+          </h1>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            A new node is created pointing to whatever top currently points to, then top is repointed to the new node. Nothing else in the list is touched, which is why this runs in O(1).
+          </p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg space-y-3 overflow-x-auto">
+            <StackListDiagram nodes={["5", "3"]} keyPrefix="push-before" />
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400">↓ push(7) ↓</p>
+            <StackListDiagram nodes={["7", "5", "3"]} highlight={0} keyPrefix="push-after" />
+          </div>
+        </section>
 
-              <div className="space-y-4">
-                <div className="p-4 rounded-lg bg-gray-50 dark:bg-neutral-900">
-                  <ul className="space-y-3">
-                    {opeartions.map((item, index) => (
-                      <li key={index}>
-                        <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">
-                          {item.points}
-                        </h3>
-                        {item.subpoints && (
-                          <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-                            {item.subpoints.map((subitem, subindex) => (
-                              <li
-                                key={subindex}
-                                className="text-gray-700 dark:text-gray-300 pl-2"
-                              >
-                                {subitem}
-                              </li>
-                            ))}
-                          </ol>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
+        {/* pop() */}
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+            pop()
+          </h1>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            If top is null there's nothing to remove, so pop reports "Stack Underflow". Otherwise the data at top is saved, top is moved to point at the next node, and the saved data is returned. The old top node itself is left for garbage collection.
+          </p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg space-y-3 overflow-x-auto">
+            <StackListDiagram nodes={["7", "5", "3"]} keyPrefix="pop-before" />
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400">↓ pop() → returns 7 ↓</p>
+            <StackListDiagram nodes={["5", "3"]} keyPrefix="pop-after" />
+          </div>
+        </section>
 
-            {/* Stack Helper Operations */}
-            <div className="rounded-lg p-4 bg-white dark:bg-neutral-950 shadow-md">
-              <h2 className="text-lg sm:text-xl mb-3 font-bold text-center">
-                Stack Helper Operations
-              </h2>
+        {/* peek() */}
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+            peek()
+          </h1>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            Returns the data at the top node without moving the top pointer, so the stack is left exactly as it was. If top is null, it returns null instead.
+          </p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg overflow-x-auto">
+            <StackListDiagram nodes={["7", "5", "3"]} keyPrefix="peek" />
+          </div>
+        </section>
 
-              <div className="space-y-4">
-                <div className="p-4 rounded-lg bg-gray-50 dark:bg-neutral-900">
-                  <ul className="space-y-3">
-                    {helper.map((item, index) => (
-                      <li key={index}>
-                        <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">
-                          {item.points}
-                        </h3>
-                        {item.subpoints && (
-                          <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
-                            {item.subpoints.map((subitem, subindex) => (
-                              <li
-                                key={subindex}
-                                className="text-gray-700 dark:text-gray-300 pl-2"
-                              >
-                                {subitem}
-                              </li>
-                            ))}
-                          </ol>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
+        {/* isEmpty() & size() */}
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
+            isEmpty() &amp; size()
+          </h1>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            <code className="text-sm bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded">isEmpty()</code> is just a null check on top. <code className="text-sm bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded">size()</code> is O(1) if a counter is maintained on every push/pop, or O(n) if it has to walk the whole list counting nodes instead.
+          </p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg overflow-x-auto">
+            <p className="text-center text-sm font-mono text-gray-600 dark:text-gray-300 mb-3">isEmpty() → true</p>
+            <StackListDiagram nodes={[]} keyPrefix="isempty" />
           </div>
         </section>
 
