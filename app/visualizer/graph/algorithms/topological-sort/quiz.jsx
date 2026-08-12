@@ -20,12 +20,12 @@ const TopologicalSortQuiz = () => {
       question: "What kind of graph can be topologically sorted?",
       options: [
         "Any undirected graph",
-        "A directed acyclic graph (a DAG) — directed edges with no cycles",
+        "A directed acyclic graph (a DAG), meaning directed edges with no cycles",
         "Only graphs with exactly one vertex",
         "Any weighted graph"
       ],
       correctAnswer: 1,
-      explanation: "A cycle would require some vertex to come both before and after another, which is impossible to satisfy in a linear order — so cycles rule out a valid topological sort entirely."
+      explanation: "A cycle would require some vertex to come both before and after another, which is impossible to satisfy in a linear order, so cycles rule out a valid topological sort entirely."
     },
     {
       question: "In Kahn's algorithm, what does a vertex's in-degree represent, and why does in-degree 0 matter?",
@@ -47,18 +47,18 @@ const TopologicalSortQuiz = () => {
         "All neighbors are immediately removed from the graph"
       ],
       correctAnswer: 1,
-      explanation: "Processing a vertex effectively \"removes\" its outgoing edges, which decreases the in-degree of everything it pointed to — possibly freeing those vertices up to be queued."
+      explanation: "Processing a vertex effectively \"removes\" its outgoing edges, which decreases the in-degree of everything it pointed to, possibly freeing those vertices up to be queued."
     },
     {
       question: "How does Kahn's algorithm detect that a graph contains a cycle?",
       options: [
-        "It doesn't — cycles cause an infinite loop",
+        "It doesn't, cycles cause an infinite loop",
         "If the final output order has fewer vertices than the graph, the remaining vertices never reached in-degree 0, which only happens because of a cycle",
         "It checks whether any edge has a negative weight",
         "It counts the total number of edges before starting"
       ],
       correctAnswer: 1,
-      explanation: "Every vertex in a cycle keeps at least one unmet prerequisite forever, so it never gets queued — an incomplete final order is the tell-tale sign of a cycle."
+      explanation: "Every vertex in a cycle keeps at least one unmet prerequisite forever, so it never gets queued; an incomplete final order is the tell-tale sign of a cycle."
     }
   ];
 

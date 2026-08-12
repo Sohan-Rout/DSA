@@ -84,10 +84,10 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Every traversal seen so far — pre-order, in-order, post-order, level-order — needs extra memory to remember "where to come back to": recursive traversals use the call stack, and level-order uses an explicit queue. Morris traversal is a clever technique that produces the exact same in-order sequence using O(1) extra space, no stack and no queue at all.`,
-    `The trick is to temporarily repurpose the tree's own empty pointers to remember the way back. For any node with a left child, Morris traversal finds that node's in-order predecessor — the rightmost node in its left subtree — and threads a temporary link from the predecessor's (normally null) right pointer back to the current node. This thread is exactly the "return address" a stack frame or queue entry would otherwise store.`,
-    `Once a node with a thread pointing at it is reached again, the algorithm recognizes the thread (its predecessor's right pointer already points at the current node), visits the node, and then removes the thread — restoring the original tree structure exactly as it was before traversal started. By the time the traversal finishes, no threads remain and the tree is completely unmodified.`,
-    `Morris traversal needs O(1) extra space — no recursion, no explicit stack or queue — which is exactly why it's used in memory-constrained environments or when a tree needs to stay usable by other code while being traversed without paying any extra memory cost.`,
+    `Every traversal seen so far (pre-order, in-order, post-order, level-order) needs extra memory to remember "where to come back to": recursive traversals use the call stack, and level-order uses an explicit queue. Morris traversal is a clever technique that produces the exact same in-order sequence using O(1) extra space, no stack and no queue at all.`,
+    `The trick is to temporarily repurpose the tree's own empty pointers to remember the way back. For any node with a left child, Morris traversal finds that node's in-order predecessor, the rightmost node in its left subtree, and threads a temporary link from the predecessor's (normally null) right pointer back to the current node. This thread is exactly the "return address" a stack frame or queue entry would otherwise store.`,
+    `Once a node with a thread pointing at it is reached again, the algorithm recognizes the thread (its predecessor's right pointer already points at the current node), visits the node, and then removes the thread, restoring the original tree structure exactly as it was before traversal started. By the time the traversal finishes, no threads remain and the tree is completely unmodified.`,
+    `Morris traversal needs O(1) extra space, with no recursion and no explicit stack or queue, which is exactly why it's used in memory-constrained environments or when a tree needs to stay usable by other code while being traversed without paying any extra memory cost.`,
   ];
 
   const algorithm = [
@@ -96,7 +96,7 @@ const Content = () => {
       points: "While curr is not null, repeat:",
       subpoints: [
         "If curr has no left child: visit curr, then move curr to curr.right",
-        "Otherwise, find curr's in-order predecessor — the rightmost node in curr's left subtree",
+        "Otherwise, find curr's in-order predecessor, the rightmost node in curr's left subtree",
         "If the predecessor's right pointer is null: thread it to curr (predecessor.right = curr), then move curr to curr.left",
         "If the predecessor's right pointer already points to curr: remove the thread (predecessor.right = null), visit curr, then move curr to curr.right",
       ],
@@ -105,7 +105,7 @@ const Content = () => {
 
   const complexity = [
     { points: "Time Complexity: Each edge is traversed at most twice (once to create the thread, once to remove it) → O(n)." },
-    { points: "Space Complexity: No recursion stack, no queue — only a couple of pointer variables → O(1)." },
+    { points: "Space Complexity: No recursion stack, no queue, only a couple of pointer variables → O(1)." },
   ];
 
   return (

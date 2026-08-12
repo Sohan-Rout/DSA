@@ -73,9 +73,9 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Serialization converts a tree into a flat string (or byte stream) that can be saved to disk, sent over a network, or stored in a database. Deserialization is the reverse: reading that string back and rebuilding a tree that's structurally identical to the original — same shape, same values, same left/right placement everywhere.`,
-    `The tricky part isn't encoding the values — it's encoding the *shape*. A plain list of values loses information about which nodes were children of which, and where branches were missing. The standard fix is to explicitly record empty children with a marker (commonly "null" or "#") at every point a node is absent, using a preorder traversal: visit the node, then recurse left, then recurse right, writing a marker whenever a child doesn't exist.`,
-    `Because every empty spot is explicitly recorded, deserialization can rebuild the exact structure by reading tokens in that same preorder sequence: read one token — if it's a null marker, that subtree is empty; otherwise create a node from it, then recursively build its left child from the next tokens, then its right child. The reader never needs to guess where one subtree ends and another begins.`,
+    `Serialization converts a tree into a flat string (or byte stream) that can be saved to disk, sent over a network, or stored in a database. Deserialization is the reverse: reading that string back and rebuilding a tree that's structurally identical to the original: same shape, same values, same left/right placement everywhere.`,
+    `The tricky part isn't encoding the values; it's encoding the *shape*. A plain list of values loses information about which nodes were children of which, and where branches were missing. The standard fix is to explicitly record empty children with a marker (commonly "null" or "#") at every point a node is absent, using a preorder traversal: visit the node, then recurse left, then recurse right, writing a marker whenever a child doesn't exist.`,
+    `Because every empty spot is explicitly recorded, deserialization can rebuild the exact structure by reading tokens in that same preorder sequence: read one token, and if it's a null marker, that subtree is empty; otherwise create a node from it, then recursively build its left child from the next tokens, then its right child. The reader never needs to guess where one subtree ends and another begins.`,
     `This pattern shows up anywhere tree-shaped data needs to survive outside memory: saving a game's scene graph, sending a parsed expression tree between services, caching a computed index structure, or simply persisting any hierarchical data model to JSON or a file.`,
   ];
 
@@ -92,14 +92,14 @@ const Content = () => {
       points: "Deserialize (read tokens in the same order they were written):",
       subpoints: [
         "Read the next token",
-        "If it's a null marker, this subtree is empty — return immediately",
+        "If it's a null marker, this subtree is empty, so return immediately",
         "Otherwise, create a node from it, then recursively read its left child, then its right child",
       ],
     },
   ];
 
   const complexity = [
-    { points: "Time Complexity: O(n) for both serialize and deserialize — every node and every null marker is visited exactly once." },
+    { points: "Time Complexity: O(n) for both serialize and deserialize, since every node and every null marker is visited exactly once." },
     { points: "Space Complexity: O(n) for the output string, plus O(h) recursion stack for the traversal." },
   ];
 

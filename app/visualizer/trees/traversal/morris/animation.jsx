@@ -46,7 +46,7 @@ const generateMorrisFrames = (originalRoot) => {
         predecessorValue: null,
         threads: [...activeThreads],
         visitedSoFar: [...visited],
-        message: `${curr.value} has no left child — visit it directly, then move right`,
+        message: `${curr.value} has no left child, so visit it directly, then move right`,
       });
       curr = curr.right;
     } else {
@@ -61,7 +61,7 @@ const generateMorrisFrames = (originalRoot) => {
           predecessorValue: pred.value,
           threads: [...activeThreads],
           visitedSoFar: [...visited],
-          message: `Found in-order predecessor ${pred.value} of ${curr.value} — thread it back to ${curr.value}, then descend left`,
+          message: `Found in-order predecessor ${pred.value} of ${curr.value}: thread it back to ${curr.value}, then descend left`,
         });
         curr = curr.left;
       } else {
@@ -76,7 +76,7 @@ const generateMorrisFrames = (originalRoot) => {
           predecessorValue: pred.value,
           threads: [...activeThreads],
           visitedSoFar: [...visited],
-          message: `Back at ${curr.value} via the thread from ${pred.value} — remove the thread, visit ${curr.value}, then move right`,
+          message: `Back at ${curr.value} via the thread from ${pred.value}: remove the thread, visit ${curr.value}, then move right`,
         });
         curr = curr.right;
       }
@@ -88,7 +88,7 @@ const generateMorrisFrames = (originalRoot) => {
     predecessorValue: null,
     threads: [],
     visitedSoFar: [...visited],
-    message: `Morris traversal complete: [${visited.join(", ")}] — tree structure fully restored, no threads remain`,
+    message: `Morris traversal complete: [${visited.join(", ")}], tree structure fully restored, no threads remain`,
   });
 
   return frames;
@@ -453,7 +453,7 @@ const MorrisVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-                No tree yet — insert a value or generate a random tree
+                No tree yet, insert a value or generate a random tree
               </div>
             )}
           </div>

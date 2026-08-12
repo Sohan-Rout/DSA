@@ -7,7 +7,7 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `Peek front (sometimes just called front) lets you look at whatever's sitting at the head of the queue — the next thing due to be dequeued — without actually taking it out. Nothing about the queue changes; you're just reading its current state.`,
+    `Peek front (sometimes just called front) lets you look at whatever's sitting at the head of the queue (the next thing due to be dequeued) without actually taking it out. Nothing about the queue changes; you're just reading its current state.`,
     `The peek front operation is essential for non-destructive queue inspection, enabling more flexible queue processing patterns while maintaining FIFO order. It's particularly valuable in scenarios where decision-making depends on the next item's properties without committing to its removal.`,
   ];
 

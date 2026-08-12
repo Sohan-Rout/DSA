@@ -54,16 +54,16 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Deleting from a Binary Search Tree starts the same way insertion does — you search for the value by comparing and moving left or right — but once you find it, keeping the tree a valid BST afterward takes more care than insertion ever did, because removing a node can leave a gap that needs to be patched correctly.`,
-    `There are exactly three shapes the node-to-delete can have, and each is handled differently: a leaf is simply removed, a node with one child is replaced by that child, and a node with two children is trickier — you can't just delete it without breaking the ordering, so you borrow a replacement value from elsewhere in the tree.`,
-    `Deletion needs O(1) extra space beyond the recursion stack — no matter which of the three cases applies, only a constant number of pointers get rewired.`,
-    `Repeated deletions (and insertions) can gradually unbalance a BST even if it started out balanced, which is exactly the problem self-balancing trees like AVL and Red-Black trees are designed to prevent — they perform extra rotation work on every insert/delete specifically to keep the height close to log n.`,
+    `Deleting from a Binary Search Tree starts the same way insertion does: you search for the value by comparing and moving left or right. But once you find it, keeping the tree a valid BST afterward takes more care than insertion ever did, because removing a node can leave a gap that needs to be patched correctly.`,
+    `There are exactly three shapes the node-to-delete can have, and each is handled differently: a leaf is simply removed, a node with one child is replaced by that child, and a node with two children is trickier, since you can't just delete it without breaking the ordering, so you borrow a replacement value from elsewhere in the tree.`,
+    `Deletion needs O(1) extra space beyond the recursion stack, since no matter which of the three cases applies, only a constant number of pointers get rewired.`,
+    `Repeated deletions (and insertions) can gradually unbalance a BST even if it started out balanced, which is exactly the problem self-balancing trees like AVL and Red-Black trees are designed to prevent: they perform extra rotation work on every insert/delete specifically to keep the height close to log n.`,
   ];
 
   const cases = [
     {
       title: "Case 1: Deleting a leaf",
-      body: "No children to worry about — just remove the node outright. The parent's pointer to it becomes null.",
+      body: "No children to worry about, just remove the node outright. The parent's pointer to it becomes null.",
     },
     {
       title: "Case 2: Deleting a node with one child",
@@ -71,7 +71,7 @@ const Content = () => {
     },
     {
       title: "Case 3: Deleting a node with two children",
-      body: "Find the in-order successor (the smallest value in the right subtree), copy that value into the node being deleted, then delete the successor from its original spot — which is guaranteed to be a leaf or have only a right child, so it reduces to Case 1 or Case 2.",
+      body: "Find the in-order successor (the smallest value in the right subtree), copy that value into the node being deleted, then delete the successor from its original spot, which is guaranteed to be a leaf or have only a right child, so it reduces to Case 1 or Case 2.",
     },
   ];
 

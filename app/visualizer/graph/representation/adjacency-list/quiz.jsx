@@ -14,7 +14,7 @@ const AdjacencyListQuiz = () => {
         "A single boolean indicating whether it has any edges"
       ],
       correctAnswer: 1,
-      explanation: "Unlike a matrix, a list only stores entries for edges that actually exist — no wasted space on non-edges."
+      explanation: "Unlike a matrix, a list only stores entries for edges that actually exist, with no wasted space on non-edges."
     },
     {
       question: "When an undirected edge (u, v) is added, what happens to the lists?",
@@ -29,15 +29,15 @@ const AdjacencyListQuiz = () => {
     },
     {
       question: "What is the space complexity of an adjacency list?",
-      options: ["O(V²) always", "O(V + E) — proportional to vertices and edges actually present", "O(1)", "O(E²)"],
+      options: ["O(V²) always", "O(V + E), proportional to vertices and edges actually present", "O(1)", "O(E²)"],
       correctAnswer: 1,
       explanation: "Space scales with the actual number of vertices and edges, unlike a matrix's fixed O(V²) regardless of edge count."
     },
     {
       question: "What is the time complexity of checking whether an edge (u, v) exists using an adjacency list?",
-      options: ["O(1) always", "O(degree(u)) — proportional to how many neighbors u actually has", "O(V²)", "O(log V)"],
+      options: ["O(1) always", "O(degree(u)), proportional to how many neighbors u actually has", "O(V²)", "O(log V)"],
       correctAnswer: 1,
-      explanation: "Finding v means scanning u's list, so the cost depends on how many neighbors u has — not the size of the whole graph."
+      explanation: "Finding v means scanning u's list, so the cost depends on how many neighbors u has, not the size of the whole graph."
     },
     {
       question: "Why are adjacency lists the default choice for algorithms like BFS, DFS, and Dijkstra's algorithm?",
@@ -48,7 +48,7 @@ const AdjacencyListQuiz = () => {
         "Matrices don't support weighted edges"
       ],
       correctAnswer: 1,
-      explanation: "Since these algorithms are fundamentally about visiting neighbors, a structure that returns exactly the relevant neighbors — with no wasted scanning — fits naturally, especially on the sparse graphs most real-world problems involve."
+      explanation: "Since these algorithms are fundamentally about visiting neighbors, a structure that returns exactly the relevant neighbors, with no wasted scanning, fits naturally, especially on the sparse graphs most real-world problems involve."
     }
   ];
 

@@ -12,7 +12,7 @@ const BlogContent = () => {
   };
 
   const Paragraphs = [
-    `If you're a student, developer, or career switcher, you've likely asked: "How long will it take to learn Data Structures and Algorithms (DSA)?" The answer isn't one-size-fits-all — it depends on your goals, consistency, and background.`,
+    `If you're a student, developer, or career switcher, you've likely asked: "How long will it take to learn Data Structures and Algorithms (DSA)?" The answer isn't one-size-fits-all: it depends on your goals, consistency, and background.`,
     `Before estimating time, let's define what “mastering” DSA really means. Mastery isn't just knowing syntax or solving rote problems. It means pattern recognition, approaching unseen questions with confidence, and making trade-offs in real-world system design.`,
     `For most learners, 3 months gets you foundational knowledge, 6–9 months develops confidence for interviews, and 12+ months results in true mastery. DSA is a long-term game.`,
     `Here's a simple 12-week roadmap:\n\n- Weeks 1–2: Arrays, Strings, HashMaps\n- Weeks 3–4: Stacks, Queues, Recursion\n- Weeks 5–6: Linked Lists, Trees\n- Weeks 7–8: Heaps, Binary Trees, BSTs\n- Weeks 9–10: Graphs, DFS/BFS\n- Weeks 11–12: DP, Tries, Bit Manipulation`,

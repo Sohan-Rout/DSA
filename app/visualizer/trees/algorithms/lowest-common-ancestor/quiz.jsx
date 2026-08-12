@@ -14,7 +14,7 @@ const LcaQuiz = () => {
         "The root of the tree, always"
       ],
       correctAnswer: 1,
-      explanation: "LCA(A, B) is the deepest (furthest from the root) node that still has both A and B as descendants — the point where their paths up to the root first merge."
+      explanation: "LCA(A, B) is the deepest (furthest from the root) node that still has both A and B as descendants: the point where their paths up to the root first merge."
     },
     {
       question: "On a Binary Search Tree, if both target values are smaller than the current node's value, what does that tell you?",
@@ -25,7 +25,7 @@ const LcaQuiz = () => {
         "Nothing can be concluded"
       ],
       correctAnswer: 1,
-      explanation: "If both values are smaller, both nodes live in the left subtree, so the LCA must be there too — the BST ordering means the right subtree never needs to be checked."
+      explanation: "If both values are smaller, both nodes live in the left subtree, so the LCA must be there too; the BST ordering means the right subtree never needs to be checked."
     },
     {
       question: "At what point does the BST LCA algorithm stop and declare the current node the answer?",
@@ -33,15 +33,15 @@ const LcaQuiz = () => {
         "As soon as it reaches a leaf",
         "The moment the two target values are no longer both on the same side of the current node",
         "After visiting every node in the tree",
-        "It never stops early — it always reaches a leaf"
+        "It never stops early; it always reaches a leaf"
       ],
       correctAnswer: 1,
-      explanation: "That's exactly the split point — one target is on the left, the other on the right (or one equals the current node) — meaning their paths diverge right here."
+      explanation: "That's exactly the split point: one target is on the left, the other on the right (or one equals the current node), meaning their paths diverge right here."
     },
     {
       question: "Why doesn't the general (non-BST) LCA algorithm get to skip checking one whole subtree the way the BST version does?",
       options: [
-        "It doesn't need to — general trees are always small",
+        "It doesn't need to, since general trees are always small",
         "Without an ordering guarantee, there's no way to know in advance which subtree contains a given value, so both must be searched",
         "General trees don't have subtrees",
         "It's actually just as fast as the BST version in every case"
@@ -53,7 +53,7 @@ const LcaQuiz = () => {
       question: "What is the time complexity of the BST-specific LCA algorithm in the worst case (a completely skewed tree)?",
       options: ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
       correctAnswer: 2,
-      explanation: "Just like BST search, insertion, and deletion, a degenerate (linked-list-shaped) tree makes every operation — including LCA — degrade to O(n)."
+      explanation: "Just like BST search, insertion, and deletion, a degenerate (linked-list-shaped) tree makes every operation, including LCA, degrade to O(n)."
     }
   ];
 

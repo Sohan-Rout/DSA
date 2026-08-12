@@ -183,7 +183,7 @@ const TreePropertiesVisualizer = () => {
           <div className="grid grid-cols-3 gap-2 mb-4">
             <div className="bg-gray-100 dark:bg-neutral-900 p-2 rounded-lg text-center">
               <div className="text-xs text-gray-500 dark:text-gray-400">Height</div>
-              <div className="font-bold text-lg">{root ? stats.height : "—"}</div>
+              <div className="font-bold text-lg">{root ? stats.height : "N/A"}</div>
             </div>
             <div className="bg-gray-100 dark:bg-neutral-900 p-2 rounded-lg text-center">
               <div className="text-xs text-gray-500 dark:text-gray-400">Total Nodes</div>
@@ -290,7 +290,7 @@ const TreePropertiesVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-                No tree yet — insert a value or generate a random tree
+                No tree yet, insert a value or generate a random tree
               </div>
             )}
           </div>

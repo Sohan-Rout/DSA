@@ -39,7 +39,7 @@ const SplitDiagram = () => (
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
     <div>
       <div className="text-sm font-medium text-center text-gray-600 dark:text-gray-400 mb-2">
-        Node [10, 20, 30] is full — inserting 25 triggers a split
+        Node [10, 20, 30] is full: inserting 25 triggers a split
       </div>
       <svg viewBox="0 0 200 90" className="w-full max-w-xs mx-auto">
         <BoxNode keys={[10, 20, 30]} x={100} y={45} ring="#ef4444" delay={0.1} />
@@ -81,21 +81,21 @@ const Content = () => {
 
   const paragraphs = [
     `A B-Tree generalizes the Binary Search Tree by letting each node hold multiple sorted keys and have more than two children. Instead of "smaller left, larger right," a node with k keys has k+1 children, and each child's entire range of values falls between two adjacent keys in the parent (or before the first / after the last).`,
-    `This wide branching factor is the entire point: B-Trees were designed for data that lives on disk, not in memory. Reading from disk is orders of magnitude slower than reading from RAM, and each disk read typically pulls in a whole block regardless of how much of it you actually need — so it makes sense to pack as many keys as possible into a single node/block and minimize the number of levels (and therefore disk reads) needed to find anything. This is exactly why B-Trees (and their variant, B+ Trees) are the standard on-disk index structure in databases like PostgreSQL and MySQL's InnoDB, and in filesystems like NTFS and ext4.`,
-    `Every B-Tree has a minimum degree t that fixes its shape: every node (except the root) must hold at least t-1 keys and at most 2t-1 keys, giving it between t and 2t children. Crucially, every leaf sits at exactly the same depth — a B-Tree never becomes lopsided the way an unbalanced BST can, because it grows upward from the root instead of downward from the leaves.`,
-    `Insertion needs O(1) extra space per split — no recursion stack proportional to the tree's key count, just a constant amount of bookkeeping per level the insertion touches, and the visualizer here uses t = 2 (so nodes can hold up to 3 keys) purely to keep the diagram small; real-world B-Trees typically use a t sized to match a disk block, often in the hundreds.`,
+    `This wide branching factor is the entire point: B-Trees were designed for data that lives on disk, not in memory. Reading from disk is orders of magnitude slower than reading from RAM, and each disk read typically pulls in a whole block regardless of how much of it you actually need, so it makes sense to pack as many keys as possible into a single node/block and minimize the number of levels (and therefore disk reads) needed to find anything. This is exactly why B-Trees (and their variant, B+ Trees) are the standard on-disk index structure in databases like PostgreSQL and MySQL's InnoDB, and in filesystems like NTFS and ext4.`,
+    `Every B-Tree has a minimum degree t that fixes its shape: every node (except the root) must hold at least t-1 keys and at most 2t-1 keys, giving it between t and 2t children. Crucially, every leaf sits at exactly the same depth: a B-Tree never becomes lopsided the way an unbalanced BST can, because it grows upward from the root instead of downward from the leaves.`,
+    `Insertion needs O(1) extra space per split: no recursion stack proportional to the tree's key count, just a constant amount of bookkeeping per level the insertion touches, and the visualizer here uses t = 2 (so nodes can hold up to 3 keys) purely to keep the diagram small; real-world B-Trees typically use a t sized to match a disk block, often in the hundreds.`,
   ];
 
   const properties = [
-    { title: "Every node holds sorted keys", body: "A node with k keys has exactly k+1 children — one for each gap between (and around) its keys." },
+    { title: "Every node holds sorted keys", body: "A node with k keys has exactly k+1 children, one for each gap between (and around) its keys." },
     { title: "Keys per node are bounded", body: "Every non-root node holds between t-1 and 2t-1 keys, where t is the tree's minimum degree." },
-    { title: "All leaves are at the same depth", body: "Unlike a plain BST, a B-Tree grows in height only by splitting the root — every leaf is always exactly the same distance from the root." },
+    { title: "All leaves are at the same depth", body: "Unlike a plain BST, a B-Tree grows in height only by splitting the root: every leaf is always exactly the same distance from the root." },
     { title: "Splits happen proactively", body: "This visualizer splits a full node on the way down before inserting into it, so a single insertion never has to backtrack up the tree." },
   ];
 
   const algorithm = [
     { points: "If the tree is empty, create a new leaf node holding just the new key" },
-    { points: "If the root itself is full (has 2t-1 keys), split it first — this is the only way the tree grows taller" },
+    { points: "If the root itself is full (has 2t-1 keys), split it first: this is the only way the tree grows taller" },
     {
       points: "Walk down from the root looking for the leaf where the key belongs. At each internal node:",
       subpoints: [
@@ -108,7 +108,7 @@ const Content = () => {
   ];
 
   const complexity = [
-    { points: "Time Complexity: Height is O(log_t n) — search, insert, and delete all cost O(log_t n)." },
+    { points: "Time Complexity: Height is O(log_t n), so search, insert, and delete all cost O(log_t n)." },
     { points: "Disk I/O: Since each node is one block, height directly bounds the number of disk reads needed." },
   ];
 

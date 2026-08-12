@@ -25,7 +25,7 @@ const BfsQuiz = () => {
         "No auxiliary structure is needed"
       ],
       correctAnswer: 1,
-      explanation: "A queue's FIFO order is exactly what ensures every same-distance vertex is dequeued before any farther vertex — that's the mechanism behind BFS's ring-by-ring exploration."
+      explanation: "A queue's FIFO order is exactly what ensures every same-distance vertex is dequeued before any farther vertex; that's the mechanism behind BFS's ring-by-ring exploration."
     },
     {
       question: "Why must a vertex be marked visited at the moment it's enqueued, not when it's dequeued?",
@@ -53,7 +53,7 @@ const BfsQuiz = () => {
         "Finding connected components"
       ],
       correctAnswer: 1,
-      explanation: "Because BFS visits vertices in strict order of distance from the start, the first time it reaches any vertex is guaranteed to be via a shortest unweighted path — DFS gives no such guarantee."
+      explanation: "Because BFS visits vertices in strict order of distance from the start, the first time it reaches any vertex is guaranteed to be via a shortest unweighted path; DFS gives no such guarantee."
     }
   ];
 

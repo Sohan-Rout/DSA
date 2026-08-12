@@ -7,8 +7,8 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `A priority queue throws out the "first come, first served" rule that a normal queue follows. Every element carries a priority, and whichever element has the most urgent priority gets dequeued next — it doesn't matter how long it's been sitting there.`,
-    `What makes it so useful is that it always hands you the most important item on demand, which is exactly what a lot of algorithms need. Under the hood it's usually built on a heap, though a balanced BST works too — which one you pick depends on how the application balances insertion speed against extraction speed.`,
+    `A priority queue throws out the "first come, first served" rule that a normal queue follows. Every element carries a priority, and whichever element has the most urgent priority gets dequeued next; it doesn't matter how long it's been sitting there.`,
+    `What makes it so useful is that it always hands you the most important item on demand, which is exactly what a lot of algorithms need. Under the hood it's usually built on a heap, though a balanced BST works too, and which one you pick depends on how the application balances insertion speed against extraction speed.`,
   ];
 
   const characteristic = [

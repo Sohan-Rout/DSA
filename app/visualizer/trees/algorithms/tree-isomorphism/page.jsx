@@ -14,7 +14,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 export const metadata = {
   title: "Tree Isomorphism | Animation and Explanation",
   description:
-    "Learn how to check whether two binary trees are isomorphic — identical once children can be freely swapped at any node — with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
+    "Learn how to check whether two binary trees are isomorphic (identical once children can be freely swapped at any node) with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [
     "Tree Isomorphism",
     "Binary Tree Isomorphism",

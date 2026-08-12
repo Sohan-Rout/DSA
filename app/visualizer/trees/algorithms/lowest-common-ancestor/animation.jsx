@@ -35,8 +35,8 @@ const collectValues = (node, out = []) => {
   return out;
 };
 
-// Walks from the root toward the split point where p and q's paths diverge —
-// that split point is the LCA — recording, at each step, every value in the
+// Walks from the root toward the split point where p and q's paths diverge,
+// that split point is the LCA, recording, at each step, every value in the
 // subtree ruled out by that comparison.
 const lcaWithElimination = (root, p, q) => {
   const path = [];
@@ -152,9 +152,9 @@ const LcaVisualizer = () => {
       setHighlightPath((prev) => [...prev, current]);
       setDimmedValues((prev) => [...prev, ...(eliminatedPerStep[step] || [])]);
       if (step < path.length - 1) {
-        setMessage(`Both ${p} and ${q} are on the same side of ${current} — descending further`);
+        setMessage(`Both ${p} and ${q} are on the same side of ${current}, descending further`);
       } else {
-        setMessage(`${p} and ${q} split apart at ${current} — this is the LCA`);
+        setMessage(`${p} and ${q} split apart at ${current}: this is the LCA`);
       }
       step++;
 
@@ -388,7 +388,7 @@ const LcaVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-                No tree yet — insert a value or generate a random tree
+                No tree yet: insert a value or generate a random tree
               </div>
             )}
           </div>

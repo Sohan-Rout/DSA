@@ -14,7 +14,7 @@ const AdjacencyMatrixQuiz = () => {
         "The degree of vertex i"
       ],
       correctAnswer: 1,
-      explanation: "Each cell directly encodes one potential edge — nonzero (often the weight) if that edge exists, zero if it doesn't."
+      explanation: "Each cell directly encodes one potential edge: nonzero (often the weight) if that edge exists, zero if it doesn't."
     },
     {
       question: "Why is an adjacency matrix for an undirected graph always symmetric?",
@@ -35,14 +35,14 @@ const AdjacencyMatrixQuiz = () => {
     },
     {
       question: "What is the time complexity of listing all of a single vertex's neighbors?",
-      options: ["O(1)", "O(V) — the entire row must be scanned", "O(log V)", "O(E)"],
+      options: ["O(1)", "O(V), the entire row must be scanned", "O(log V)", "O(E)"],
       correctAnswer: 1,
       explanation: "Even if a vertex has very few actual neighbors, finding them means scanning across its full row of V cells looking for nonzero entries."
     },
     {
       question: "Why do adjacency matrices waste memory on sparse graphs?",
       options: [
-        "They don't — memory usage matches the number of edges exactly",
+        "They don't, memory usage matches the number of edges exactly",
         "The matrix always uses O(V²) space regardless of edge count, so a graph with far fewer than V² edges stores mostly zeros",
         "Sparse graphs can't be represented as matrices at all",
         "Matrices only work for graphs with fewer than 10 vertices"

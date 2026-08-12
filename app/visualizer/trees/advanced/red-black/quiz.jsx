@@ -7,15 +7,15 @@ const RedBlackQuiz = () => {
   const questions = [
     {
       question: "What color is the root of a Red-Black Tree always required to be?",
-      options: ["Red", "Black", "Either — it doesn't matter", "It alternates on every insertion"],
+      options: ["Red", "Black", "Either, it doesn't matter", "It alternates on every insertion"],
       correctAnswer: 1,
-      explanation: "Property 2 requires the root to always be black — if an insertion's fixup ever colors it red, it's flipped back to black at the very end."
+      explanation: "Property 2 requires the root to always be black; if an insertion's fixup ever colors it red, it's flipped back to black at the very end."
     },
     {
       question: "What color is a newly inserted node given, and why?",
       options: [
         "Black, so it never violates the black-height rule",
-        "Red, because a red node can't violate the equal-black-height rule by itself — the only rule it might break is having a red parent",
+        "Red, because a red node can't violate the equal-black-height rule by itself; the only rule it might break is having a red parent",
         "It's colored randomly",
         "It takes on its parent's color"
       ],
@@ -28,10 +28,10 @@ const RedBlackQuiz = () => {
         "Rotate immediately",
         "Recolor the parent and uncle to black and the grandparent to red, then continue checking from the grandparent",
         "Delete the uncle",
-        "Nothing — a red uncle means no violation exists"
+        "Nothing, a red uncle means no violation exists"
       ],
       correctAnswer: 1,
-      explanation: "A red uncle means recoloring three nodes fixes the local violation without any rotation — but it can push a new violation up to the grandparent, so the fixup continues from there."
+      explanation: "A red uncle means recoloring three nodes fixes the local violation without any rotation, but it can push a new violation up to the grandparent, so the fixup continues from there."
     },
     {
       question: "Why do Red-Black Trees generally need fewer rotations per insertion than AVL trees?",
@@ -48,7 +48,7 @@ const RedBlackQuiz = () => {
       question: "What is the worst-case time complexity of insertion, deletion, and search in a Red-Black Tree?",
       options: ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
       correctAnswer: 1,
-      explanation: "The red-black properties guarantee the longest root-to-leaf path is never more than twice the shortest, which caps the height — and every operation — at O(log n)."
+      explanation: "The red-black properties guarantee the longest root-to-leaf path is never more than twice the shortest, which caps the height, and every operation, at O(log n)."
     }
   ];
 

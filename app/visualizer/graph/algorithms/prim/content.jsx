@@ -76,10 +76,10 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Prim's algorithm builds a minimum spanning tree the same way Kruskal's does — greedily, ending up with the cheapest possible set of edges connecting every vertex with no cycles — but it grows outward from a single starting vertex instead of considering edges from the whole graph in sorted order. At every step, the tree adds whichever edge is cheapest among all the edges connecting the current tree to a vertex not yet in it.`,
+    `Prim's algorithm builds a minimum spanning tree the same way Kruskal's does, greedily, ending up with the cheapest possible set of edges connecting every vertex with no cycles, but it grows outward from a single starting vertex instead of considering edges from the whole graph in sorted order. At every step, the tree adds whichever edge is cheapest among all the edges connecting the current tree to a vertex not yet in it.`,
     `Rather than sorting the whole edge list up front, Prim's algorithm tracks a "key" value for every vertex outside the tree: the weight of the cheapest edge discovered so far connecting it directly to the tree (infinity if none is known yet). At each step, the algorithm pulls in whichever outside vertex has the smallest key, adds the edge that earned it that key, and then checks whether any of its edges give some other outside vertex an even cheaper way into the (now larger) tree.`,
-    `This "key" is deliberately different from Dijkstra's "distance": Dijkstra's distance is the cumulative weight of the entire path from the start, while Prim's key is just the weight of one direct edge into the tree, regardless of how far the tree has traveled to get there. That's exactly why Prim's algorithm finds a minimum spanning tree — cheapest total connections — while Dijkstra finds shortest paths — cheapest cumulative routes. They look almost identical in code, but they're solving genuinely different problems.`,
-    `Prim's algorithm tends to be the better choice on dense graphs (many edges relative to vertices), since it never needs to sort the full edge list the way Kruskal's does — with a good priority queue it can outperform Kruskal's as edge count grows. Like Kruskal's, it's used for minimum-cost network design: wiring, piping, or cabling a set of locations together as cheaply as possible.`,
+    `This "key" is deliberately different from Dijkstra's "distance": Dijkstra's distance is the cumulative weight of the entire path from the start, while Prim's key is just the weight of one direct edge into the tree, regardless of how far the tree has traveled to get there. That's exactly why Prim's algorithm finds a minimum spanning tree (cheapest total connections) while Dijkstra finds shortest paths (cheapest cumulative routes). They look almost identical in code, but they're solving genuinely different problems.`,
+    `Prim's algorithm tends to be the better choice on dense graphs (many edges relative to vertices), since it never needs to sort the full edge list the way Kruskal's does: with a good priority queue it can outperform Kruskal's as edge count grows. Like Kruskal's, it's used for minimum-cost network design: wiring, piping, or cabling a set of locations together as cheaply as possible.`,
   ];
 
   const algorithm = [
@@ -95,8 +95,8 @@ const Content = () => {
   ];
 
   const complexity = [
-    { points: "Time Complexity: O((V + E) log V) with a binary heap priority queue — comparable to Dijkstra's, and often faster than Kruskal's on dense graphs." },
-    { points: "Space Complexity: O(V) — for the key array, the parent pointers, and the priority queue." },
+    { points: "Time Complexity: O((V + E) log V) with a binary heap priority queue, comparable to Dijkstra's, and often faster than Kruskal's on dense graphs." },
+    { points: "Space Complexity: O(V), for the key array, the parent pointers, and the priority queue." },
   ];
 
   return (

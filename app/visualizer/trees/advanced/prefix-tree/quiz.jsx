@@ -20,12 +20,12 @@ const PrefixTreeQuiz = () => {
         "Because both words are the same length"
       ],
       correctAnswer: 1,
-      explanation: "A trie only branches where words actually differ — 'cat' and 'car' both follow c -> a and only split into separate 't' and 'r' children."
+      explanation: "A trie only branches where words actually differ: 'cat' and 'car' both follow c -> a and only split into separate 't' and 'r' children."
     },
     {
       question: "If searching for a word successfully follows an edge for every character, why isn't that enough to confirm the word is in the trie?",
       options: [
-        "It actually is enough — nothing else needs to be checked",
+        "It actually is enough, nothing else needs to be checked",
         "Because reaching that node only proves the string is a prefix of something stored; you still need to check that node's end-of-word flag",
         "Because trie searches are always inaccurate",
         "Because you'd need to check every other node in the tree too"
@@ -42,7 +42,7 @@ const PrefixTreeQuiz = () => {
         "There's no real difference between the two"
       ],
       correctAnswer: 1,
-      explanation: "Once you walk to the node for a prefix, everything below it in the trie is, by construction, every stored word that starts with that prefix — a hash set has no equivalent structure to exploit."
+      explanation: "Once you walk to the node for a prefix, everything below it in the trie is, by construction, every stored word that starts with that prefix, while a hash set has no equivalent structure to exploit."
     },
     {
       question: "What is the time complexity of inserting or searching for a word of length L in a trie?",

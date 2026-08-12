@@ -79,7 +79,7 @@ const STEP_DELAY = 500;
 const SegmentTreeVisualizer = () => {
   const [arr, setArr] = useState(null);
   const [root, setRoot] = useState(null);
-  const [message, setMessage] = useState("No segment tree yet — build one over a random array");
+  const [message, setMessage] = useState("No segment tree yet, build one over a random array");
   const [updateIndex, setUpdateIndex] = useState("");
   const [updateValue, setUpdateValue] = useState("");
   const [queryL, setQueryL] = useState("");
@@ -135,7 +135,7 @@ const SegmentTreeVisualizer = () => {
     let i = 0;
     const revealStep = () => {
       setHighlightPath(path.slice(0, i + 1));
-      setMessage(`Updating index ${index} to ${value} — recomputing range [${path[i]}]`);
+      setMessage(`Updating index ${index} to ${value}, recomputing range [${path[i]}]`);
       i++;
       if (i < path.length) {
         setTimeout(revealStep, STEP_DELAY);
@@ -143,7 +143,7 @@ const SegmentTreeVisualizer = () => {
         setTimeout(() => {
           setRoot(clonedRoot);
           setArr(newArr);
-          setMessage(`Index ${index} updated to ${value} — sums recomputed along the path to the root`);
+          setMessage(`Index ${index} updated to ${value}, sums recomputed along the path to the root`);
           setTimeout(() => setHighlightPath([]), 900);
           setBusy(false);
         }, STEP_DELAY);
@@ -172,8 +172,8 @@ const SegmentTreeVisualizer = () => {
     const revealStep = () => {
       const step = touched[i];
       setQueryHighlights((prev) => ({ ...prev, [step.key]: step.type }));
-      const verb = step.type === "include" ? "fully inside range — add its sum" : step.type === "skip" ? "fully outside range — skip it" : "partially overlaps — decompose into children";
-      setMessage(`Visiting [${step.key.replace(":", ", ")}] — ${verb}`);
+      const verb = step.type === "include" ? "fully inside range, add its sum" : step.type === "skip" ? "fully outside range, skip it" : "partially overlaps, decompose into children";
+      setMessage(`Visiting [${step.key.replace(":", ", ")}]: ${verb}`);
       i++;
       if (i < touched.length) {
         setTimeout(revealStep, STEP_DELAY);
@@ -191,7 +191,7 @@ const SegmentTreeVisualizer = () => {
     if (busy) return;
     setArr(null);
     setRoot(null);
-    setMessage("No segment tree yet — build one over a random array");
+    setMessage("No segment tree yet, build one over a random array");
     setUpdateIndex("");
     setUpdateValue("");
     setQueryL("");
@@ -431,7 +431,7 @@ const SegmentTreeVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-                No tree yet — build one over a random array
+                No tree yet, build one over a random array
               </div>
             )}
           </div>

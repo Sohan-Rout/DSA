@@ -31,7 +31,7 @@ const InOrderQuiz = () => {
     {
       question: "Why can in-order traversal be used to check whether a binary tree is a valid BST?",
       options: [
-        "It can't — validity must be checked another way",
+        "It can't: validity must be checked another way",
         "Because a valid BST's in-order sequence is guaranteed to be strictly increasing; if it isn't, the tree violates the BST property",
         "Because in-order traversal is faster than other traversals",
         "Because in-order traversal always visits the root first"

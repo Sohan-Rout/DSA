@@ -144,10 +144,10 @@ const BstDeletionVisualizer = () => {
     setSuccessorValue(successor);
     setMessage(
       successor !== null
-        ? `Deleting ${value} — replacing it with in-order successor ${successor}`
+        ? `Deleting ${value}, replacing it with in-order successor ${successor}`
         : hasLeft || hasRight
-        ? `Deleting ${value} — promoting its only child`
-        : `Deleting ${value} — it's a leaf, simply removed`
+        ? `Deleting ${value}, promoting its only child`
+        : `Deleting ${value}, it's a leaf, simply removed`
     );
 
     setTimeout(() => {
@@ -392,7 +392,7 @@ const BstDeletionVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-                No tree yet — insert a value or generate a random tree
+                No tree yet, insert a value or generate a random tree
               </div>
             )}
           </div>

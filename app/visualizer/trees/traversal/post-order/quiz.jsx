@@ -26,11 +26,11 @@ const PostOrderQuiz = () => {
         "Post-order doesn't actually visit every node"
       ],
       correctAnswer: 1,
-      explanation: "If you freed a parent before its children, you'd lose the pointers needed to reach and free those children — post-order avoids that by always finishing children first."
+      explanation: "If you freed a parent before its children, you'd lose the pointers needed to reach and free those children, so post-order avoids that by always finishing children first."
     },
     {
       question: "Post-order traversal corresponds to which notation for writing expression trees?",
-      options: ["Infix notation", "Prefix (Polish) notation", "Postfix (Reverse Polish) notation", "None — traversal order doesn't relate to notation"],
+      options: ["Infix notation", "Prefix (Polish) notation", "Postfix (Reverse Polish) notation", "None, traversal order doesn't relate to notation"],
       correctAnswer: 2,
       explanation: "In postfix notation the operands come before the operator, exactly matching post-order's children-then-root order."
     },

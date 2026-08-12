@@ -14,24 +14,24 @@ const SyntaxTreeQuiz = () => {
         "The tree has no leaves, only internal nodes"
       ],
       correctAnswer: 1,
-      explanation: "Every operator becomes an internal node with its operands as children, while literal values sit at the leaves — the tree's shape itself encodes structure."
+      explanation: "Every operator becomes an internal node with its operands as children, while literal values sit at the leaves, so the tree's shape itself encodes structure."
     },
     {
       question: "How does a recursive-descent parser handle operator precedence (e.g. * binding tighter than +)?",
       options: [
-        "It doesn't — precedence must be added afterward",
+        "It doesn't: precedence must be added afterward",
         "Separate parsing functions handle each precedence level, with higher-precedence operators parsed by functions called deeper in the recursion",
         "It sorts all operators alphabetically",
         "Precedence is looked up in a table after the whole tree is built"
       ],
       correctAnswer: 1,
-      explanation: "A function for +/- calls a function for */ which calls a function for factors/parentheses — that call structure directly mirrors the grammar's precedence levels."
+      explanation: "A function for +/- calls a function for */ which calls a function for factors/parentheses, and that call structure directly mirrors the grammar's precedence levels."
     },
     {
       question: "Why must both children of an operator node be evaluated before the operator itself can be applied?",
       options: [
-        "They don't need to be — order doesn't matter",
-        "The operator combines its operands' values, so both values must be known first — this is exactly what a post-order traversal guarantees",
+        "They don't need to be, since order doesn't matter",
+        "The operator combines its operands' values, so both values must be known first, which is exactly what a post-order traversal guarantees",
         "Only the left child needs to be evaluated",
         "Evaluation happens in pre-order, before the children"
       ],
@@ -47,7 +47,7 @@ const SyntaxTreeQuiz = () => {
         "A sorted list of operands"
       ],
       correctAnswer: 1,
-      explanation: "Pre-order visits the operator before its operands, which is exactly what prefix notation looks like — the operator written before its arguments."
+      explanation: "Pre-order visits the operator before its operands, which is exactly what prefix notation looks like: the operator written before its arguments."
     },
     {
       question: "Why don't prefix and postfix notation need parentheses to remove ambiguity?",
@@ -58,7 +58,7 @@ const SyntaxTreeQuiz = () => {
         "Because addition and subtraction aren't allowed in those notations"
       ],
       correctAnswer: 1,
-      explanation: "Since every operator has a known, fixed number of operands and the traversal order is unambiguous, there's no other way to parse the sequence back — unlike infix notation, which needs precedence rules and parentheses."
+      explanation: "Since every operator has a known, fixed number of operands and the traversal order is unambiguous, there's no other way to parse the sequence back, unlike infix notation, which needs precedence rules and parentheses."
     }
   ];
 

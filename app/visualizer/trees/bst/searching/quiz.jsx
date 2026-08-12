@@ -20,7 +20,7 @@ const BstSearchingQuiz = () => {
         "It always assumes the value exists"
       ],
       correctAnswer: 1,
-      explanation: "The search keeps following the comparison-based path until it either finds a match or falls off the tree onto a null pointer — that null is the 'not found' signal."
+      explanation: "The search keeps following the comparison-based path until it either finds a match or falls off the tree onto a null pointer. That null is the 'not found' signal."
     },
     {
       question: "Why is searching a BST faster than searching an unsorted linked list?",
@@ -37,7 +37,7 @@ const BstSearchingQuiz = () => {
       question: "What is the best-case time complexity for BST search?",
       options: ["O(log n)", "O(n)", "O(1)", "O(n log n)"],
       correctAnswer: 2,
-      explanation: "If the target happens to be the root, it's found in a single comparison — O(1)."
+      explanation: "If the target happens to be the root, it's found in a single comparison: O(1)."
     },
     {
       question: "Why do search, insertion, and deletion all share the same worst-case complexity in a BST?",
@@ -48,7 +48,7 @@ const BstSearchingQuiz = () => {
         "They don't share the same complexity"
       ],
       correctAnswer: 1,
-      explanation: "Insertion and deletion both start with essentially the same search used for lookup, so all three are O(height) — which is why a skewed tree hurts all of them equally."
+      explanation: "Insertion and deletion both start with essentially the same search used for lookup, so all three are O(height), which is why a skewed tree hurts all of them equally."
     }
   ];
 

@@ -64,19 +64,19 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Post-order traversal visits both of a node's subtrees before the node itself — the order is Left, Right, Root. It's called "post" because the root is processed after everything below it has already been dealt with, the exact opposite of pre-order.`,
+    `Post-order traversal visits both of a node's subtrees before the node itself, in the order Left, Right, Root. It's called "post" because the root is processed after everything below it has already been dealt with, the exact opposite of pre-order.`,
     `That "children before parent" ordering makes post-order the natural choice whenever you need to fully finish with a node's descendants before touching the node itself. The two classic examples are deleting or freeing a tree's memory (you must free the children before the parent, otherwise you'd lose your only reference to them) and evaluating an expression tree (you can't compute an operator's result until both of its operand subtrees have already been evaluated).`,
     `Post-order also mirrors how you'd write a postfix (Reverse Polish) expression from an expression tree: the operands come first and the operator comes last, e.g. \`3 4 +\` instead of \`3 + 4\`.`,
-    `Traversal needs O(h) extra space for the recursion call stack, where h is the tree's height — O(log n) for a balanced tree, but O(n) in the worst case of a completely skewed tree.`,
+    `Traversal needs O(h) extra space for the recursion call stack, where h is the tree's height: O(log n) for a balanced tree, but O(n) in the worst case of a completely skewed tree.`,
   ];
 
   const walkthrough = [
-    { points: "Start at the root (8), but don't visit it yet — first fully process the left subtree" },
-    { points: "At 3, also hold off — go left first: reach 1 (a leaf) — visit it: 1" },
-    { points: "Back at 3, go right: reach 6 (a leaf) — visit it: 1, 6" },
-    { points: "Both of 3's children are done — now visit 3: 1, 6, 3" },
-    { points: "Back at 8, its left subtree is fully done — go right: reach 10 — visit it: 1, 6, 3, 10" },
-    { points: "Both of 8's subtrees are done — finally visit 8 (the root, last): 1, 6, 3, 10, 8" },
+    { points: "Start at the root (8), but don't visit it yet; first fully process the left subtree" },
+    { points: "At 3, also hold off, go left first: reach 1 (a leaf), then visit it: 1" },
+    { points: "Back at 3, go right: reach 6 (a leaf), then visit it: 1, 6" },
+    { points: "Both of 3's children are done, so now visit 3: 1, 6, 3" },
+    { points: "Back at 8, its left subtree is fully done, so go right: reach 10, then visit it: 1, 6, 3, 10" },
+    { points: "Both of 8's subtrees are done, so finally visit 8 (the root, last): 1, 6, 3, 10, 8" },
   ];
 
   const algorithm = [

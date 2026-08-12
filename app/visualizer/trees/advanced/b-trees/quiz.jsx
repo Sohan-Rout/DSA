@@ -9,7 +9,7 @@ const BTreeQuiz = () => {
       question: "How does a B-Tree node with k keys relate to its number of children?",
       options: ["It always has exactly 2 children", "It has k+1 children", "It has k-1 children", "It has no fixed relationship to k"],
       correctAnswer: 1,
-      explanation: "Each key acts as a boundary, so a node with k sorted keys has k+1 gaps — one child per gap."
+      explanation: "Each key acts as a boundary, so a node with k sorted keys has k+1 gaps, one child per gap."
     },
     {
       question: "Why were B-Trees specifically designed with a wide branching factor?",
@@ -20,7 +20,7 @@ const BTreeQuiz = () => {
         "Wide branching has no particular benefit"
       ],
       correctAnswer: 1,
-      explanation: "Disk reads are slow and pull in a whole block at a time, so packing many keys into each node minimizes the number of levels — and disk reads — needed to find anything."
+      explanation: "Disk reads are slow and pull in a whole block at a time, so packing many keys into each node minimizes the number of levels, and disk reads, needed to find anything."
     },
     {
       question: "In this visualizer's B-Tree (minimum degree t = 2), what triggers a node split during insertion?",

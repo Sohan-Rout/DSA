@@ -43,10 +43,10 @@ const cookieSections = [
     title: "Third-Party Cookies",
     data: "We use cookies from the following third-party services, each governed by its own privacy policy:",
     points: [
-      "Google Analytics — measures site traffic and usage patterns",
-      "Google AdSense — serves ads and may use cookies to personalize ads based on your visits to this and other sites",
-      "Supabase — sets authentication cookies to keep you signed in",
-      "Cloudflare Turnstile — sets cookies to verify you're not a bot on login and signup",
+      "Google Analytics: measures site traffic and usage patterns",
+      "Google AdSense: serves ads and may use cookies to personalize ads based on your visits to this and other sites",
+      "Supabase: sets authentication cookies to keep you signed in",
+      "Cloudflare Turnstile: sets cookies to verify you're not a bot on login and signup",
     ],
   },
   {

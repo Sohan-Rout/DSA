@@ -22,7 +22,7 @@ export const metadata = {
   openGraph: {
     title: "Is Data Structures and Algorithms Important for Web Developers?",
     description:
-      "Explore how learning DSA can boost your efficiency, optimize performance, and prepare you for tech interviews—even as a web developer.",
+      "Explore how learning DSA can boost your efficiency, optimize performance, and prepare you for tech interviews, even as a web developer.",
     url: "./blog/dsaWebDev.png",
     siteName: "DSA Visualizer",
     locale: "en_IN",

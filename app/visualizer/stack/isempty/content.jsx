@@ -8,7 +8,7 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `isEmpty just tells you whether there's anything on the stack at all. It exists so you can guard pop() and peek() calls — checking first avoids trying to read or remove from a stack that has nothing in it.`,
+    `isEmpty just tells you whether there's anything on the stack at all. It exists so you can guard pop() and peek() calls: checking first avoids trying to read or remove from a stack that has nothing in it.`,
     `The isEmpty operation is a simple but crucial part of stack implementation, ensuring safe stack manipulation and preventing runtime errors.`,
   ];
 
@@ -191,4 +191,4 @@ const Content = () => {
     );
   };
   
-  export default content;
+  export default Content;

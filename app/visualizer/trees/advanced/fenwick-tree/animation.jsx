@@ -45,7 +45,7 @@ const STEP_DELAY = 550;
 const FenwickVisualizer = () => {
   const [arr, setArr] = useState(null);
   const [bit, setBit] = useState(null);
-  const [message, setMessage] = useState("No Fenwick tree yet — build one over a random array");
+  const [message, setMessage] = useState("No Fenwick tree yet, build one over a random array");
   const [updateIndex, setUpdateIndex] = useState("");
   const [updateValue, setUpdateValue] = useState("");
   const [queryIndex, setQueryIndex] = useState("");
@@ -102,7 +102,7 @@ const FenwickVisualizer = () => {
     let i = 0;
     const revealStep = () => {
       setHighlightUpdate(path.slice(0, i + 1));
-      setMessage(`Updating index ${index} by ${delta >= 0 ? "+" : ""}${delta} — adding to BIT[${path[i]}]`);
+      setMessage(`Updating index ${index} by ${delta >= 0 ? "+" : ""}${delta}, adding to BIT[${path[i]}]`);
       i++;
       if (i < path.length) {
         setTimeout(revealStep, STEP_DELAY);
@@ -110,7 +110,7 @@ const FenwickVisualizer = () => {
         setTimeout(() => {
           setBit(newBit);
           setArr(newArr);
-          setMessage(`Index ${index} updated to ${value} — propagated to ${path.length} BIT node(s): [${path.join(", ")}]`);
+          setMessage(`Index ${index} updated to ${value}, propagated to ${path.length} BIT node(s): [${path.join(", ")}]`);
           setTimeout(() => setHighlightUpdate([]), 900);
           setBusy(false);
         }, STEP_DELAY);
@@ -135,7 +135,7 @@ const FenwickVisualizer = () => {
     let i = 0;
     const revealStep = () => {
       setHighlightAdd(path.slice(0, i + 1));
-      setMessage(`Summing BIT[${path[i]}] — accumulated so far`);
+      setMessage(`Summing BIT[${path[i]}], accumulated so far`);
       i++;
       if (i < path.length) {
         setTimeout(revealStep, STEP_DELAY);
@@ -168,7 +168,7 @@ const FenwickVisualizer = () => {
     let i = 0;
     const revealAdd = () => {
       setHighlightAdd(pathR.slice(0, i + 1));
-      setMessage(`Computing prefix sum [0, ${r}] — summing BIT[${pathR[i]}]`);
+      setMessage(`Computing prefix sum [0, ${r}], summing BIT[${pathR[i]}]`);
       i++;
       if (i < pathR.length) {
         setTimeout(revealAdd, STEP_DELAY);
@@ -184,7 +184,7 @@ const FenwickVisualizer = () => {
         return;
       }
       setHighlightSub(pathL.slice(0, j + 1));
-      setMessage(`Computing prefix sum [0, ${l - 1}] to subtract — summing BIT[${pathL[j]}]`);
+      setMessage(`Computing prefix sum [0, ${l - 1}] to subtract, summing BIT[${pathL[j]}]`);
       j++;
       if (j < pathL.length) {
         setTimeout(revealSub, STEP_DELAY);
@@ -205,7 +205,7 @@ const FenwickVisualizer = () => {
     if (busy) return;
     setArr(null);
     setBit(null);
-    setMessage("No Fenwick tree yet — build one over a random array");
+    setMessage("No Fenwick tree yet, build one over a random array");
     setUpdateIndex("");
     setUpdateValue("");
     setQueryIndex("");
@@ -411,7 +411,7 @@ const FenwickVisualizer = () => {
             </div>
           ) : (
             <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-              No Fenwick tree yet — build one over a random array
+              No Fenwick tree yet, build one over a random array
             </div>
           )}
 

@@ -136,7 +136,7 @@ const HuffmanVisualizer = () => {
       setTimeout(() => {
         setRoot(finalRoot);
         setCodes(computeCodes(finalRoot));
-        setMessage("Only one distinct character — it gets the trivial code \"0\"");
+        setMessage("Only one distinct character, so it gets the trivial code \"0\"");
         setBusy(false);
       }, STEP_DELAY);
       return;
@@ -159,7 +159,7 @@ const HuffmanVisualizer = () => {
           setTimeout(() => {
             setRoot(finalRoot);
             setCodes(computeCodes(finalRoot));
-            setMessage("Huffman tree complete — codes assigned by root-to-leaf path (0 = left, 1 = right)");
+            setMessage("Huffman tree complete: codes assigned by root-to-leaf path (0 = left, 1 = right)");
             setBusy(false);
           }, STEP_DELAY);
         }

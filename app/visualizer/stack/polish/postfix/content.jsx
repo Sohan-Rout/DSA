@@ -8,7 +8,7 @@ const Content = () => {
 
   const paragraph = [
     `In postfix notation, also known as Reverse Polish Notation, you write the operator right after its two operands instead of between them.`,
-    `So the everyday expression 3 + 4 becomes 3 4 + once converted. There's no ambiguity about order of operations here — the position of each operator in the string already tells you exactly when to apply it, so parentheses become unnecessary.`,
+    `So the everyday expression 3 + 4 becomes 3 4 + once converted. There's no ambiguity about order of operations here: the position of each operator in the string already tells you exactly when to apply it, so parentheses become unnecessary.`,
     `Note: Higher precedence means the operation will happen first. When operators have equal precedence, they are evaluated left-to-right (except for exponentiation which is right-to-left).`,
   ];
 
@@ -169,4 +169,4 @@ const Content = () => {
   );
   };
   
-  export default content;
+  export default Content;

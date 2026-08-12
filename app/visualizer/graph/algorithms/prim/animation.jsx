@@ -155,7 +155,7 @@ const PrimVisualizer = () => {
     setEdges(EXAMPLE_EDGES);
     setStartVertex("A");
     clearResult();
-    setMessage("Loaded an example graph — click Run Prim's");
+    setMessage("Loaded an example graph, click Run Prim's");
   };
 
   const reset = () => {
@@ -211,7 +211,7 @@ const PrimVisualizer = () => {
           setActiveEdge(null);
           setMstEdges(finalMst);
           setTotalWeight(tw);
-          setMessage(`Prim's complete — minimum spanning tree total weight is ${tw}`);
+          setMessage(`Prim's complete: minimum spanning tree total weight is ${tw}`);
           setBusy(false);
         }, STEP_DELAY);
       }
@@ -320,7 +320,7 @@ const PrimVisualizer = () => {
 
         {totalWeight !== null && (
           <div className="mb-4 p-3 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 text-center text-sm font-medium">
-            MST edges: {mstEdges.map((e) => `${e.from}-${e.to}`).join(", ")} — total weight {totalWeight}
+            MST edges: {mstEdges.map((e) => `${e.from}-${e.to}`).join(", ")}, total weight {totalWeight}
           </div>
         )}
 

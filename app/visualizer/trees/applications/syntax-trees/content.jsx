@@ -64,9 +64,9 @@ const Content = () => {
 
   const paragraphs = [
     `A syntax tree (also called an expression tree, or more generally an Abstract Syntax Tree/AST) captures the grammatical structure of an expression or piece of code, rather than its raw text. For arithmetic expressions specifically, every operator becomes an internal node with its operands as children, and every literal value becomes a leaf. The shape of the tree, not the order characters appear on the page, is what encodes precedence and grouping.`,
-    `Building one from an infix expression like "3 + 4 * (2 - 1)" requires a parser that respects operator precedence and parentheses — multiplication and division bind tighter than addition and subtraction, and anything inside parentheses is parsed as its own self-contained sub-expression first. A common approach is recursive-descent parsing: one function handles addition/subtraction terms, which calls another handling multiplication/division factors, which calls another handling numbers and parenthesized groups — the recursive call structure mirrors the grammar's precedence levels directly.`,
-    `Once built, the tree makes evaluation and notation conversion almost mechanical, because each is just a different tree traversal. Evaluating the expression is a post-order traversal: recursively compute both children's values first, then apply the operator to combine them — by the time an operator node is processed, both its operands are already known. Reading the tree with a pre-order traversal produces prefix notation, and post-order traversal produces postfix notation; both eliminate the need for parentheses or precedence rules entirely, since the tree structure alone determines evaluation order.`,
-    `Syntax trees are the intermediate representation nearly every compiler and interpreter builds after parsing source code, before generating machine code or bytecode from it. The same idea powers calculator apps, spreadsheet formula engines, and query planners in databases — anywhere text needs to become something with an unambiguous, machine-processable structure.`,
+    `Building one from an infix expression like "3 + 4 * (2 - 1)" requires a parser that respects operator precedence and parentheses: multiplication and division bind tighter than addition and subtraction, and anything inside parentheses is parsed as its own self-contained sub-expression first. A common approach is recursive-descent parsing: one function handles addition/subtraction terms, which calls another handling multiplication/division factors, which calls another handling numbers and parenthesized groups, and this recursive call structure mirrors the grammar's precedence levels directly.`,
+    `Once built, the tree makes evaluation and notation conversion almost mechanical, because each is just a different tree traversal. Evaluating the expression is a post-order traversal: recursively compute both children's values first, then apply the operator to combine them, since by the time an operator node is processed, both its operands are already known. Reading the tree with a pre-order traversal produces prefix notation, and post-order traversal produces postfix notation; both eliminate the need for parentheses or precedence rules entirely, since the tree structure alone determines evaluation order.`,
+    `Syntax trees are the intermediate representation nearly every compiler and interpreter builds after parsing source code, before generating machine code or bytecode from it. The same idea powers calculator apps, spreadsheet formula engines, and query planners in databases: anywhere text needs to become something with an unambiguous, machine-processable structure.`,
   ];
 
   const algorithm = [
@@ -84,8 +84,8 @@ const Content = () => {
   ];
 
   const complexity = [
-    { points: "Parsing Time: O(n) — each token is consumed exactly once by the recursive-descent parser." },
-    { points: "Evaluation Time: O(n) — each node in the tree is visited exactly once during the post-order traversal." },
+    { points: "Parsing Time: O(n), since each token is consumed exactly once by the recursive-descent parser." },
+    { points: "Evaluation Time: O(n), since each node in the tree is visited exactly once during the post-order traversal." },
     { points: "Space Complexity: O(n) for the tree, plus O(h) recursion stack depth for parsing and evaluating." },
   ];
 
@@ -127,7 +127,7 @@ const Content = () => {
           </div>
 
           <div className="text-sm font-medium text-center text-gray-600 dark:text-gray-400 mb-2">
-            The syntax tree for 3 + 4 * (2 - 1) — its shape alone encodes precedence, no parentheses needed
+            The syntax tree for 3 + 4 * (2 - 1): its shape alone encodes precedence, no parentheses needed
           </div>
           <WalkthroughDiagram />
         </section>

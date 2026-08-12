@@ -117,7 +117,7 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Push and pop are the only two moves a stack really needs. Push adds a value on top, pop takes the top value back off, and because of that, whatever went on last is always the first thing to come off — that's the LIFO (Last In, First Out) rule in action.`,
+    `Push and pop are the only two moves a stack really needs. Push adds a value on top, pop takes the top value back off, and because of that, whatever went on last is always the first thing to come off: that's the LIFO (Last In, First Out) rule in action.`,
     `Push and Pop operations are fundamental to stack functionality. While simple to implement, stacks are powerful data structures used in many algorithms and system designs.`,
   ];
 

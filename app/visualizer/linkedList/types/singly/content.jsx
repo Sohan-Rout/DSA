@@ -7,7 +7,7 @@ import InContentAd from "@/app/components/ads/InContentAd";
 const ListDiagram = ({ nodes, highlight, keyPrefix }) => {
   const boxSize = 40;
   const gap = 36;
-  const startX = 40;
+  const startX = 60;
   const topPadding = 22;
   const width = startX + Math.max(nodes.length, 1) * (boxSize + gap) + 34;
   const height = boxSize + topPadding + 18;
@@ -35,7 +35,7 @@ const ListDiagram = ({ nodes, highlight, keyPrefix }) => {
         <text x="0" y={cy + 4} className="fill-gray-500 dark:fill-gray-400" fontSize="12" fontFamily="monospace">
           head
         </text>
-        <line x1="30" y1={cy} x2={boxX(0)} y2={cy} stroke="#94a3b8" strokeWidth="1.5" markerEnd={`url(#${keyPrefix}-arrow)`} />
+        <line x1="34" y1={cy} x2={boxX(0)} y2={cy} stroke="#94a3b8" strokeWidth="1.5" markerEnd={`url(#${keyPrefix}-arrow)`} />
         <text x={boxX(0) + 4} y={cy + 4} className="fill-gray-400 dark:fill-gray-500" fontSize="12" fontFamily="monospace">
           null
         </text>
@@ -61,7 +61,7 @@ const ListDiagram = ({ nodes, highlight, keyPrefix }) => {
         head
       </text>
       <line
-        x1="30"
+        x1="34"
         y1={cy}
         x2={boxX(0)}
         y2={cy}
@@ -140,10 +140,25 @@ const Content = () => {
   }, []);
 
   const overview = [
-    `A singly linked list is a chain of nodes where each node holds a value and a single pointer to the node after it. There's no fixed size to worry about — nodes are created and linked in as needed, which is what makes insertion and deletion so cheap compared to an array.`,
+    `A singly linked list is a chain of nodes where each node holds a value and a single pointer to the node after it. There's no fixed size to worry about: nodes are created and linked in as needed, which is what makes insertion and deletion so cheap compared to an array.`,
     `A head pointer marks where the chain starts, and the last node's pointer is simply null, marking where it ends. Adding or removing right at the head is O(1), but reaching some node in the middle means walking node-by-node from the start, which costs O(n).`,
     `It's one of the simplest data structures around, which is exactly why it shows up as the foundation for stacks, queues, and even graph adjacency lists.`,
   ];
+
+  const memoryNotes = [
+    `Unlike an array, a linked list's nodes aren't stored in one contiguous block of memory. Each node is allocated separately, wherever the runtime finds room, and gets linked to the next one purely through its pointer, so the "list" only exists because of those pointers, not because of physical ordering in memory.`,
+    `That's the trade-off worth knowing: arrays are cache-friendly because reading array[i] and array[i+1] usually pulls both into the same cache line, while a linked list's scattered nodes mean each traversal step is likely a cache miss. It's part of why linked lists, despite matching or beating arrays on paper for insertion and deletion, can still lose to arrays in practice for pure iteration.`,
+  ];
+
+  const tailPointerNote = `A plain singly linked list only tracks head, which is why "Insertion at Tail" costs O(n): you have to walk the whole chain to find the last node before you can attach a new one. A common optimization is to also keep a tail pointer that always points at the last node. With that in hand, insertion at the tail drops to O(1) too, at the cost of a little extra bookkeeping (the tail pointer has to be updated on every tail insertion and, trickier, on deleting the last node).`;
+
+  const insertionAtTail = {
+    before: ["A", "B"],
+    after: ["A", "B", "C"],
+    highlight: 2,
+  };
+
+  const searchNote = `Searching means starting at head and following next pointers one node at a time, comparing each node's value against the target, until either a match is found or the chain runs out (next is null). There's no way to jump ahead or look backward, so in the worst case (value at the end, or not present at all) every node gets visited, making search O(n) just like deletion by value.`;
 
   const basicOperations = [
     { name: "Insertion at Head", complexity: "O(1)", description: "Add new node at beginning by updating head pointer" },
@@ -198,6 +213,18 @@ const Content = () => {
           </div>
         </section>
 
+        {/* Memory Representation */}
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">How It Lives in Memory</h2>
+          <div className="prose dark:prose-invert max-w-none">
+            {memoryNotes.map((para, index) => (
+              <p key={index} className="text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">
+                {para}
+              </p>
+            ))}
+          </div>
+        </section>
+
         {/* Basic Operations */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Basic Operations</h2>
@@ -236,6 +263,24 @@ const Content = () => {
           </div>
         </section>
 
+        {/* Insertion at Tail */}
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Insertion at Tail</h2>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            Without a tail pointer, adding a node at the end means walking the whole chain first to find the current last node, then attaching the new one after it. That traversal is what makes this O(n) instead of O(1).
+          </p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg space-y-3 overflow-x-auto">
+            <ListDiagram nodes={insertionAtTail.before} keyPrefix="tail-before" />
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400">↓ insert C at tail ↓</p>
+            <ListDiagram nodes={insertionAtTail.after} highlight={insertionAtTail.highlight} keyPrefix="tail-after" />
+          </div>
+          <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              <strong>Optimization:</strong> {tailPointerNote}
+            </p>
+          </div>
+        </section>
+
         {/* Deletion */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Deletion</h2>
@@ -246,6 +291,15 @@ const Content = () => {
             <ListDiagram nodes={["X", "A", "B"]} keyPrefix="del-before" />
             <p className="text-center text-sm text-gray-500 dark:text-gray-400">↓ delete A ↓</p>
             <ListDiagram nodes={["X", "B"]} keyPrefix="del-after" />
+          </div>
+        </section>
+
+        {/* Search & Traversal */}
+        <section className="p-6 border-b border-gray-100 dark:border-gray-700">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Search &amp; Traversal</h2>
+          <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{searchNote}</p>
+          <div className="bg-gray-50 dark:bg-gray-900/40 p-4 rounded-lg overflow-x-auto">
+            <ListDiagram nodes={["5", "3", "7"]} highlight={2} keyPrefix="search" />
           </div>
         </section>
 

@@ -63,10 +63,10 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Pre-order traversal visits a node before either of its subtrees — the order is Root, then Left, then Right. It's called "pre" because the root is processed pre-emptively, ahead of anything below it, which makes it the natural way to reconstruct a tree's structure from scratch: whatever value you see first is guaranteed to be some subtree's root.`,
-    `Because the root is always recorded before its children, pre-order output preserves enough structural information to rebuild the exact same tree (given the traversal is unambiguous, e.g. paired with node count or null markers). This is exactly why pre-order is the traversal used for serializing a tree to a file and for copying/cloning a tree — you can reconstruct it top-down as you read the sequence.`,
+    `Pre-order traversal visits a node before either of its subtrees, in the order Root, then Left, then Right. It's called "pre" because the root is processed pre-emptively, ahead of anything below it, which makes it the natural way to reconstruct a tree's structure from scratch: whatever value you see first is guaranteed to be some subtree's root.`,
+    `Because the root is always recorded before its children, pre-order output preserves enough structural information to rebuild the exact same tree (given the traversal is unambiguous, e.g. paired with node count or null markers). This is exactly why pre-order is the traversal used for serializing a tree to a file and for copying/cloning a tree, since you can reconstruct it top-down as you read the sequence.`,
     `Pre-order also mirrors how you'd write a prefix (Polish notation) expression from an expression tree: the operator (root) comes before its operands (children), e.g. \`+ 3 4\` instead of \`3 + 4\`.`,
-    `Traversal needs O(h) extra space for the recursion call stack, where h is the tree's height — O(log n) for a balanced tree, but O(n) in the worst case of a completely skewed tree.`,
+    `Traversal needs O(h) extra space for the recursion call stack, where h is the tree's height: O(log n) for a balanced tree, but O(n) in the worst case of a completely skewed tree.`,
   ];
 
   const walkthrough = [
@@ -74,7 +74,7 @@ const Content = () => {
     { points: "Recurse into the left subtree, visiting its root first: 3" },
     { points: "Recurse further left: 1 (a leaf, so no children to descend into)" },
     { points: "Back up to 3, now recurse right: 6" },
-    { points: "All of 8's left subtree is done — recurse into 8's right subtree: 10" },
+    { points: "All of 8's left subtree is done, so recurse into 8's right subtree: 10" },
     { points: "Final sequence: [8, 3, 1, 6, 10]" },
   ];
 

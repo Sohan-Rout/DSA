@@ -36,7 +36,7 @@ const MorrisQuiz = () => {
         "The node visited immediately before it in pre-order"
       ],
       correctAnswer: 1,
-      explanation: "Following left once and then right as far as possible lands on the rightmost node of the left subtree — exactly the node that would be visited right before the current one in in-order."
+      explanation: "Following left once and then right as far as possible lands on the rightmost node of the left subtree, exactly the node that would be visited right before the current one in in-order."
     },
     {
       question: "What happens to the tree's structure after a full Morris traversal completes?",
@@ -47,13 +47,13 @@ const MorrisQuiz = () => {
         "Half of the nodes are deleted"
       ],
       correctAnswer: 1,
-      explanation: "Every thread that gets created is later detected and removed in a subsequent step, so once traversal finishes the tree looks exactly as it did before — no side effects remain."
+      explanation: "Every thread that gets created is later detected and removed in a subsequent step, so once traversal finishes the tree looks exactly as it did before, with no side effects remaining."
     },
     {
       question: "What is the time complexity of Morris traversal, despite doing extra work to create and remove threads?",
       options: ["O(log n)", "O(n)", "O(n log n)", "O(n²)"],
       correctAnswer: 1,
-      explanation: "Each edge is traversed at most twice (once while threading, once while removing the thread), which is still a constant amount of extra work per node — the total stays O(n)."
+      explanation: "Each edge is traversed at most twice (once while threading, once while removing the thread), which is still a constant amount of extra work per node, so the total stays O(n)."
     }
   ];
 

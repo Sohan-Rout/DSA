@@ -15,7 +15,7 @@ const BstInsertionQuiz = () => {
       question: "Where does a newly inserted value always end up in a BST?",
       options: ["At the root", "As a leaf node", "As the left child of the root", "Wherever there's the most free space"],
       correctAnswer: 1,
-      explanation: "Insertion follows the same path a search would take until it falls off the tree (hits a null pointer) — that's always at some leaf position."
+      explanation: "Insertion follows the same path a search would take until it falls off the tree (hits a null pointer), which is always at some leaf position."
     },
     {
       question: "Why doesn't inserting into a BST ever require moving existing nodes?",
@@ -26,7 +26,7 @@ const BstInsertionQuiz = () => {
         "It does require moving nodes"
       ],
       correctAnswer: 1,
-      explanation: "Since insertion is just a search that stops at a null pointer, only one new connection is created — nothing else in the tree has to shift."
+      explanation: "Since insertion is just a search that stops at a null pointer, only one new connection is created, so nothing else in the tree has to shift."
     },
     {
       question: "What is the time complexity of insertion in a balanced BST?",
@@ -43,7 +43,7 @@ const BstInsertionQuiz = () => {
         "Insertion fails"
       ],
       correctAnswer: 2,
-      explanation: "Sorted input makes every new node attach as the only child of the previous one, producing a degenerate tree with O(n) height — and O(n) insertion time."
+      explanation: "Sorted input makes every new node attach as the only child of the previous one, producing a degenerate tree with O(n) height and O(n) insertion time."
     }
   ];
 

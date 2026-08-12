@@ -139,7 +139,7 @@ const PostOrderVisualizer = () => {
         setTimeout(revealStep, STEP_DELAY);
       } else {
         setTimeout(() => {
-          setMessage(`Post-order traversal complete: [${sequence.join(", ")}] — the root is always visited last`);
+          setMessage(`Post-order traversal complete: [${sequence.join(", ")}], the root is always visited last`);
           setCurrentValue(null);
           setBusy(false);
         }, STEP_DELAY);
@@ -341,7 +341,7 @@ const PostOrderVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-                No tree yet — insert a value or generate a random tree
+                No tree yet, insert a value or generate a random tree
               </div>
             )}
           </div>

@@ -140,7 +140,7 @@ const Content = () => {
 
 
   const paragraph = [
-    `Insertion Sort grows a sorted section of the array one element at a time, which is basically how most people sort a hand of playing cards — pick up the next card and slide it into the spot where it belongs among the cards you've already arranged.`,
+    `Insertion Sort grows a sorted section of the array one element at a time, which is basically how most people sort a hand of playing cards: pick up the next card and slide it into the spot where it belongs among the cards you've already arranged.`,
     `The algorithm maintains a "sorted sublist" that grows with each iteration.`,
     `Insertion Sort is often used when the data is nearly sorted (where it approaches O(n) time) or when the dataset is small. Some hybrid algorithms like TimSort use Insertion Sort for small subarrays due to its low overhead.`,
   ];

@@ -8,7 +8,7 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Peek gives you a look at whatever's currently on top of the stack, but it leaves the stack exactly as it was — nothing gets popped.`,
+    `Peek gives you a look at whatever's currently on top of the stack, but it leaves the stack exactly as it was: nothing gets popped.`,
     `The peek operation is useful when you need to inspect the top element before deciding whether to pop it or push another element onto the stack.`,
   ];
 

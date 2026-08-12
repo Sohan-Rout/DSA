@@ -146,11 +146,11 @@ const AvlVisualizer = () => {
       setRoot(newRoot);
       if (rotations.length > 0) {
         const r = rotations[rotations.length - 1];
-        setMessage(`Inserted ${value} — ${r.type} case detected, rotated at node ${r.at} to restore balance`);
+        setMessage(`Inserted ${value}: ${r.type} case detected, rotated at node ${r.at} to restore balance`);
         setRotatedValue(r.at);
         setTimeout(() => setRotatedValue(null), 1300);
       } else {
-        setMessage(`Inserted ${value} — tree stayed balanced, no rotation needed`);
+        setMessage(`Inserted ${value}, tree stayed balanced, no rotation needed`);
       }
       setInputValue("");
       setBusy(false);
@@ -373,7 +373,7 @@ const AvlVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-                No tree yet — insert a value or generate a random tree
+                No tree yet, insert a value or generate a random tree
               </div>
             )}
           </div>

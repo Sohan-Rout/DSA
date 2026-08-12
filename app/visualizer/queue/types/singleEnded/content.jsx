@@ -7,7 +7,7 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `A single-ended queue is what most people just mean when they say "queue" — insertion only happens at the rear, removal only happens at the front, and that one-directional flow is what keeps the ordering strictly first-in, first-out.`,
+    `A single-ended queue is what most people just mean when they say "queue": insertion only happens at the rear, removal only happens at the front, and that one-directional flow is what keeps the ordering strictly first-in, first-out.`,
     `That predictability is the whole point. Plenty of algorithms and system designs depend on knowing that items get processed in exactly the order they arrived, and a single-ended queue is the simplest structure that guarantees it.`,
   ];
 

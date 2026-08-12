@@ -74,9 +74,9 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Dijkstra's algorithm finds the shortest-distance path from a single start vertex to every other vertex in a weighted graph — "shortest" meaning the smallest total edge weight along the path, not the fewest edges (which is what plain BFS finds on an unweighted graph). It requires every edge weight to be non-negative; a single negative weight can break its core assumption and produce wrong answers.`,
-    `The algorithm keeps a tentative distance for every vertex, starting at 0 for the source and infinity for everything else. At each step, it finalizes whichever unvisited vertex currently has the smallest tentative distance — once a vertex is finalized, its distance is guaranteed correct and will never be revised again. Then it "relaxes" every edge out of that vertex: for each neighbor, if going through the just-finalized vertex would produce a shorter distance than what's currently recorded, the neighbor's distance is updated.`,
-    `The key insight behind why picking the smallest unvisited distance is always safe: since every edge weight is non-negative, any path to that vertex through a still-unvisited (and therefore farther-or-equal) vertex could only be equal or longer. There's no way a shortcut could still be waiting to be discovered. That guarantee is exactly what breaks down if a negative edge weight is allowed — a path through a vertex that currently looks farther away could later turn out shorter, and algorithms like Bellman-Ford exist specifically to handle that case.`,
+    `Dijkstra's algorithm finds the shortest-distance path from a single start vertex to every other vertex in a weighted graph: "shortest" meaning the smallest total edge weight along the path, not the fewest edges (which is what plain BFS finds on an unweighted graph). It requires every edge weight to be non-negative; a single negative weight can break its core assumption and produce wrong answers.`,
+    `The algorithm keeps a tentative distance for every vertex, starting at 0 for the source and infinity for everything else. At each step, it finalizes whichever unvisited vertex currently has the smallest tentative distance. Once a vertex is finalized, its distance is guaranteed correct and will never be revised again. Then it "relaxes" every edge out of that vertex: for each neighbor, if going through the just-finalized vertex would produce a shorter distance than what's currently recorded, the neighbor's distance is updated.`,
+    `The key insight behind why picking the smallest unvisited distance is always safe: since every edge weight is non-negative, any path to that vertex through a still-unvisited (and therefore farther-or-equal) vertex could only be equal or longer. There's no way a shortcut could still be waiting to be discovered. That guarantee is exactly what breaks down if a negative edge weight is allowed: a path through a vertex that currently looks farther away could later turn out shorter, and algorithms like Bellman-Ford exist specifically to handle that case.`,
     `Dijkstra's algorithm (typically implemented with a min-priority-queue for efficiency) is the standard tool behind GPS and mapping route-finding, network routing protocols that pick the cheapest path between routers, and any scenario where "cheapest route through a weighted network" needs an exact answer rather than an approximation.`,
   ];
 
@@ -94,8 +94,8 @@ const Content = () => {
   ];
 
   const complexity = [
-    { points: "Time Complexity: O((V + E) log V) with a binary heap priority queue — each vertex is extracted once and each edge triggers at most one relaxation, both at logarithmic cost." },
-    { points: "Space Complexity: O(V) — for the distance array, the previous-vertex pointers, and the priority queue." },
+    { points: "Time Complexity: O((V + E) log V) with a binary heap priority queue, since each vertex is extracted once and each edge triggers at most one relaxation, both at logarithmic cost." },
+    { points: "Space Complexity: O(V), for the distance array, the previous-vertex pointers, and the priority queue." },
   ];
 
   return (
@@ -136,7 +136,7 @@ const Content = () => {
           </div>
 
           <div className="text-sm font-medium text-center text-gray-600 dark:text-gray-400 mb-2">
-            Shortest distances from A — the path A→C→B→D (1+1+3=5) beats A→B→D directly (3+3=6)
+            Shortest distances from A: the path A→C→B→D (1+1+3=5) beats A→B→D directly (3+3=6)
           </div>
           <WalkthroughDiagram />
         </section>

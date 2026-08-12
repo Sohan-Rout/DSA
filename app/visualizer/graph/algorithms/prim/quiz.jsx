@@ -25,12 +25,12 @@ const PrimQuiz = () => {
         "The total number of edges it has"
       ],
       correctAnswer: 1,
-      explanation: "The key is just one edge's weight — the best direct connection into the tree found so far — not a running total like Dijkstra's distance."
+      explanation: "The key is just one edge's weight (the best direct connection into the tree found so far), not a running total like Dijkstra's distance."
     },
     {
       question: "What is the key difference between Prim's \"key\" and Dijkstra's \"distance\", even though the algorithms look very similar?",
       options: [
-        "There is no real difference — they compute exactly the same thing",
+        "There is no real difference, they compute exactly the same thing",
         "Prim's key is the weight of one direct edge into the tree; Dijkstra's distance is the cumulative weight of the whole path from the start",
         "Dijkstra's algorithm doesn't use a key or distance value at all",
         "Prim's algorithm only works on unweighted graphs"
@@ -41,13 +41,13 @@ const PrimQuiz = () => {
     {
       question: "When is a vertex's key value updated during the algorithm?",
       options: [
-        "Never — keys are fixed once set",
+        "Never, keys are fixed once set",
         "Whenever an edge from a vertex just added to the tree offers a cheaper direct connection than the vertex's current key",
         "Only at the very start of the algorithm",
         "Every time any edge in the graph is examined, regardless of relevance"
       ],
       correctAnswer: 1,
-      explanation: "After pulling a vertex into the tree, its edges are checked — if one offers some other outside vertex a cheaper way in than it currently has, that vertex's key improves."
+      explanation: "After pulling a vertex into the tree, its edges are checked; if one offers some other outside vertex a cheaper way in than it currently has, that vertex's key improves."
     },
     {
       question: "On which kind of graph does Prim's algorithm tend to outperform Kruskal's?",

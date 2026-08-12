@@ -25,7 +25,7 @@ const find = (parent, v) => {
 
 // Process edges cheapest-first; a Union-Find (disjoint set) tracks which
 // vertices are already connected. An edge is only added if its two
-// endpoints are in different sets — accepting it would otherwise create a
+// endpoints are in different sets: accepting it would otherwise create a
 // cycle, since both endpoints are already reachable from each other.
 const kruskalWithSteps = (vertices, edges) => {
   const parent = {};
@@ -139,7 +139,7 @@ const KruskalVisualizer = () => {
     setVertices(EXAMPLE_VERTICES);
     setEdges(EXAMPLE_EDGES);
     clearResult();
-    setMessage("Loaded an example graph — click Run Kruskal's");
+    setMessage("Loaded an example graph, click Run Kruskal's");
   };
 
   const reset = () => {
@@ -174,14 +174,14 @@ const KruskalVisualizer = () => {
       if (step.type === "accept") {
         setVertexColors(componentColors(vertices, step.parentSnapshot));
         setMstEdges((prev) => [...prev, step.edge]);
-        setMessage(`Accept ${step.edge.from}-${step.edge.to} (weight ${step.edge.weight}) — connects two separate components`);
+        setMessage(`Accept ${step.edge.from}-${step.edge.to} (weight ${step.edge.weight}): connects two separate components`);
 
         const bars = document.querySelectorAll(".kruskal-node-active");
         if (bars.length > 0) {
           gsap.fromTo(bars, { scale: 1 }, { scale: 1.12, duration: 0.2, yoyo: true, repeat: 1 });
         }
       } else {
-        setMessage(`Reject ${step.edge.from}-${step.edge.to} (weight ${step.edge.weight}) — both endpoints are already connected, would create a cycle`);
+        setMessage(`Reject ${step.edge.from}-${step.edge.to} (weight ${step.edge.weight}): both endpoints are already connected, would create a cycle`);
       }
 
       i++;
@@ -190,7 +190,7 @@ const KruskalVisualizer = () => {
       } else {
         setTimeout(() => {
           setTotalWeight(tw);
-          setMessage(`Kruskal's complete — minimum spanning tree total weight is ${tw}`);
+          setMessage(`Kruskal's complete: minimum spanning tree total weight is ${tw}`);
           setBusy(false);
         }, STEP_DELAY);
       }
@@ -291,7 +291,7 @@ const KruskalVisualizer = () => {
 
         {totalWeight !== null && (
           <div className="mb-4 p-3 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 text-center text-sm font-medium">
-            MST edges: {mstEdges.map((e) => `${e.from}-${e.to}`).join(", ")} — total weight {totalWeight}
+            MST edges: {mstEdges.map((e) => `${e.from}-${e.to}`).join(", ")}, total weight {totalWeight}
           </div>
         )}
 

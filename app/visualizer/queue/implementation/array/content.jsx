@@ -8,7 +8,7 @@ const Content = () => {
 
   const paragraph = [
     `The simplest way to build a queue is to back it with an array and track a front index and a rear index. As long as those two indices are updated correctly on every enqueue and dequeue, the array behaves like a proper FIFO queue.`,
-    `The catch with a plain array is wasted space at the front once you've dequeued a few elements — the circular-array trick fixes that by letting the rear index wrap back around to index 0 once it hits the end.`,
+    `The catch with a plain array is wasted space at the front once you've dequeued a few elements: the circular-array trick fixes that by letting the rear index wrap back around to index 0 once it hits the end.`,
     `Queues are widely used in scenarios like printer job scheduling, call center systems, and network packet handling where order preservation is crucial.`,
   ];
 

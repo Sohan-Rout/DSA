@@ -31,7 +31,7 @@ const KruskalQuiz = () => {
       question: "When does Kruskal's algorithm reject an edge?",
       options: [
         "When its weight is above some fixed threshold",
-        "When its two endpoints are already in the same connected component — accepting it would create a cycle",
+        "When its two endpoints are already in the same connected component, since accepting it would create a cycle",
         "When one of its endpoints has too many other edges",
         "Kruskal's algorithm never rejects edges"
       ],
@@ -52,10 +52,10 @@ const KruskalQuiz = () => {
     {
       question: "What is the overall time complexity of Kruskal's algorithm, and what dominates it?",
       options: [
-        "O(V) — dominated by visiting each vertex once",
-        "O(E log E) — dominated by sorting the edge list",
-        "O(V²) — dominated by checking every pair of vertices",
-        "O(1) — Union-Find makes it constant time"
+        "O(V), dominated by visiting each vertex once",
+        "O(E log E), dominated by sorting the edge list",
+        "O(V²), dominated by checking every pair of vertices",
+        "O(1), since Union-Find makes it constant time"
       ],
       correctAnswer: 1,
       explanation: "The Union-Find operations are nearly O(1) each, so sorting all the edges up front is what actually determines the algorithm's overall cost."

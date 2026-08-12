@@ -7,7 +7,7 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraph = [
-    `A deque drops the "only one end" restriction of a normal queue — you can insert or remove elements at both the front and the rear, and both directions stay O(1).`,
+    `A deque drops the "only one end" restriction of a normal queue: you can insert or remove elements at both the front and the rear, and both directions stay O(1).`,
     `Because it can act like a stack from one end and a queue from the other, a deque is genuinely a hybrid of the two. That flexibility is exactly why it turns up in algorithms that need fast access to both ends of a dataset at once.`,
   ];
 

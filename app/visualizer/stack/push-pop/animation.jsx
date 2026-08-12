@@ -33,7 +33,7 @@ const StackVisualizer = () => {
     setStack(next);
   };
 
-  // Runs the moment a new "top" box mounts in the DOM — a reliable
+  // Runs the moment a new "top" box mounts in the DOM: a reliable
   // drop-in entrance that doesn't depend on any surrounding state timing.
   const animateDropIn = (el) => {
     if (!el || el.dataset.dropped) return;

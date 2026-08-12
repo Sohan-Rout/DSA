@@ -71,10 +71,10 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `A Binary Search Tree keeps every node's left subtree smaller and its right subtree larger, and insertion is what builds that ordering up one value at a time. To insert a new value, you walk down from the root exactly the way you'd search for it — go left when the value is smaller, go right when it's larger — and the moment you fall off the tree (hit a null pointer), that's where the new node gets attached.`,
-    `Because every insertion is really just a failed search, the new node always becomes a leaf. Nothing above it has to move or shift — inserting into a BST never requires shuffling existing nodes around, only adding one new connection at the bottom.`,
+    `A Binary Search Tree keeps every node's left subtree smaller and its right subtree larger, and insertion is what builds that ordering up one value at a time. To insert a new value, you walk down from the root exactly the way you'd search for it: go left when the value is smaller, go right when it's larger, and the moment you fall off the tree (hit a null pointer), that's where the new node gets attached.`,
+    `Because every insertion is really just a failed search, the new node always becomes a leaf. Nothing above it has to move or shift, since inserting into a BST never requires shuffling existing nodes around, only adding one new connection at the bottom.`,
     `Insertion needs O(1) extra space beyond the recursion stack, since it only ever creates a single new node.`,
-    `The shape you end up with depends entirely on insertion order. Insert already-sorted data and you get a degenerate, linked-list-shaped tree (see Binary Tree Types) with Θ(n) height. Insert in a randomized order and the tree tends to stay close to balanced, keeping height near Θ(log n) — this is exactly why self-balancing trees like AVL exist.`,
+    `The shape you end up with depends entirely on insertion order. Insert already-sorted data and you get a degenerate, linked-list-shaped tree (see Binary Tree Types) with Θ(n) height. Insert in a randomized order and the tree tends to stay close to balanced, keeping height near Θ(log n), which is exactly why self-balancing trees like AVL exist.`,
   ];
 
   const walkthrough = [
@@ -92,7 +92,7 @@ const Content = () => {
       subpoints: [
         "If smaller, move to the left child",
         "If larger, move to the right child",
-        "If equal, stop (duplicate — most BSTs ignore or reject it)",
+        "If equal, stop (duplicate, which most BSTs ignore or reject)",
       ],
     },
     { points: "Repeat until you reach a null (empty) pointer" },

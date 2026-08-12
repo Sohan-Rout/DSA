@@ -139,9 +139,9 @@ const PrefixTreeVisualizer = () => {
     if (createdPrefixes.length === 0 && alreadyExisted) {
       setMessage(`"${word}" is already in the trie`);
     } else if (createdPrefixes.length === 0) {
-      setMessage(`"${word}" existed only as a prefix of another word — now marked complete too`);
+      setMessage(`"${word}" existed only as a prefix of another word, now marked complete too`);
     } else {
-      setMessage(`Inserted "${word}" — created ${createdPrefixes.length} new node${createdPrefixes.length === 1 ? "" : "s"}`);
+      setMessage(`Inserted "${word}": created ${createdPrefixes.length} new node${createdPrefixes.length === 1 ? "" : "s"}`);
     }
     setHighlightCreated(createdPrefixes);
     setTimeout(() => setHighlightCreated([]), 1300);
@@ -164,16 +164,16 @@ const PrefixTreeVisualizer = () => {
     const revealStep = () => {
       if (i < steps.length) {
         setHighlightPath(steps.slice(0, i + 1));
-        setMessage(`Following '${word[i]}' — path so far: "${steps[i]}"`);
+        setMessage(`Following '${word[i]}', path so far: "${steps[i]}"`);
         i++;
         setTimeout(revealStep, STEP_DELAY);
       } else {
         if (brokeAt) {
-          setMessage(`"${word}" isn't in the trie — no branch for prefix "${brokeAt}"`);
+          setMessage(`"${word}" isn't in the trie: no branch for prefix "${brokeAt}"`);
         } else if (found) {
-          setMessage(`Found "${word}" — it's a complete word in the trie`);
+          setMessage(`Found "${word}": it's a complete word in the trie`);
         } else {
-          setMessage(`"${word}" is only a prefix of other words — not itself stored as a complete word`);
+          setMessage(`"${word}" is only a prefix of other words, not itself stored as a complete word`);
         }
         setBusy(false);
       }
@@ -373,7 +373,7 @@ const PrefixTreeVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-16">
-                No trie yet — insert a word or generate random words
+                No trie yet, insert a word or generate random words
               </div>
             )}
           </div>

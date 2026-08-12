@@ -14,14 +14,14 @@ const IsomorphismQuiz = () => {
         "They contain the same set of values, in any arrangement"
       ],
       correctAnswer: 1,
-      explanation: "Isomorphism allows the left/right children at any node to be swapped — the trees just need to end up with matching values and branching structure after those swaps."
+      explanation: "Isomorphism allows the left/right children at any node to be swapped: the trees just need to end up with matching values and branching structure after those swaps."
     },
     {
       question: "When comparing two nodes during the isomorphism check, what happens if exactly one of them is null?",
       options: [
         "They're automatically considered isomorphic",
         "The algorithm swaps children and tries again",
-        "The trees are not isomorphic — one has a node here and the other doesn't",
+        "The trees are not isomorphic, since one has a node here and the other doesn't",
         "The null node is treated as a wildcard that matches anything"
       ],
       correctAnswer: 2,
@@ -31,7 +31,7 @@ const IsomorphismQuiz = () => {
       question: "What two comparisons does the algorithm try at each pair of nodes?",
       options: [
         "Only left-with-left and right-with-right",
-        "Straight (left-left, right-right) and flipped (left-right, right-left) — if either succeeds, the nodes match",
+        "Straight (left-left, right-right) and flipped (left-right, right-left): if either succeeds, the nodes match",
         "It compares every node in tree A against every node in tree B",
         "It only compares the root nodes"
       ],
@@ -52,13 +52,13 @@ const IsomorphismQuiz = () => {
     {
       question: "In the worst case, why can the naive isomorphism check be more expensive than a simple equality check?",
       options: [
-        "It never is — they're always the same cost",
+        "It never is, since they're always the same cost",
         "At every node it may need to try both the straight and flipped pairings, multiplying the work down each branch",
         "It has to sort both trees first",
         "It rebuilds both trees from scratch on each call"
       ],
       correctAnswer: 1,
-      explanation: "Every extra flip attempt branches the recursion further, which is why the worst-case cost is higher than a single-pass equality check — though most real trees short-circuit well before that."
+      explanation: "Every extra flip attempt branches the recursion further, which is why the worst-case cost is higher than a single-pass equality check, though most real trees short-circuit well before that."
     }
   ];
 

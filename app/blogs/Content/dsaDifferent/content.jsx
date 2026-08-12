@@ -104,7 +104,7 @@ const BlogContent = () => {
     { points: "Use language-specific benchmarks to verify performance assumptions" },
     { points: "Study standard library implementations of common structures" },
     { points: "Understand how your language's memory model affects data structures" },
-    { points: "Don’t just translate code between languages—adapt it to leverage language strengths" }
+    { points: "Don’t just translate code between languages, adapt it to leverage language strengths" }
   ];
 
   return (

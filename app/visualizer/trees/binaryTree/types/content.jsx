@@ -194,13 +194,13 @@ const Content = () => {
                 title: "Full Binary Tree",
                 svgRef: fullSvg,
                 description:
-                  "In a Full Binary Tree, there's no such thing as a node with just one child — every node has either zero children or exactly two. That strict rule keeps the tree evenly shaped, with leaves sitting at the same level or one level apart, which makes it a good starting point for understanding how balanced trees behave.",
+                  "In a Full Binary Tree, there's no such thing as a node with just one child: every node has either zero children or exactly two. That strict rule keeps the tree evenly shaped, with leaves sitting at the same level or one level apart, which makes it a good starting point for understanding how balanced trees behave.",
               },
               {
                 title: "Degenerate (Skewed) Tree",
                 svgRef: degenSvg,
                 description:
-                  "A Degenerate, or Skewed, Tree is what you get when every parent node has only a single child — at that point it's really just a linked list wearing a tree's name. This is the worst case for height, Θ(n), and it typically happens when you insert already-sorted data into a binary search tree with no rebalancing, which tanks the performance benefits a tree is supposed to give you.",
+                  "A Degenerate, or Skewed, Tree is what you get when every parent node has only a single child, at which point it's really just a linked list wearing a tree's name. This is the worst case for height, Θ(n), and it typically happens when you insert already-sorted data into a binary search tree with no rebalancing, which tanks the performance benefits a tree is supposed to give you.",
               },
               {
                 title: "Complete Binary Tree",

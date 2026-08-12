@@ -25,7 +25,7 @@ const Content = () => {
 
   const overview = [
     `Traversing a linked list is simply following the chain: start at the head, visit each node once, and keep hopping to the next pointer until you hit the end.`,
-    `It sounds trivial, but it's the mechanism underneath almost everything else you'd do with a list — searching for a value, printing every element, or running any per-node logic all rely on visiting nodes in order.`,
+    `It sounds trivial, but it's the mechanism underneath almost everything else you'd do with a list: searching for a value, printing every element, or running any per-node logic all rely on visiting nodes in order.`,
     `It's worth getting comfortable with early, since deletion, reversal, and cycle detection all build directly on the same idea of walking the list node by node.`,
   ];
 
@@ -124,7 +124,7 @@ const Content = () => {
             ))}
             <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                <strong>Key Insight:</strong> Traversal is the basis for all linked list operations—ensure you visit every node, and beware of cycles that can cause infinite loops.
+                <strong>Key Insight:</strong> Traversal is the basis for all linked list operations: ensure you visit every node, and beware of cycles that can cause infinite loops.
               </p>
             </div>
           </div>

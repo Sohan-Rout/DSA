@@ -22,7 +22,7 @@ const TestimonialSection = () => {
     {
       name: 'Arnav Gupta',
       email: '@Co-founder, Geekroom',
-      review: `DSA Visualizer, this could be the upcoming game-changer. When you're stuck on LeetCode or trying to debug your logic, it helps you actually see what your code is doing at each step. Whether you're just starting out or deep into competitive programming, this is something which can make learning DSA so much more intuitive and less frustrating. Well! my opinion says in the future, I'd love to see a built-in compiler or a feature where users can test their own code with custom inputs — that would take it to the next level. But even now, it's incredibly helpful and super polished!”`,
+      review: `DSA Visualizer, this could be the upcoming game-changer. When you're stuck on LeetCode or trying to debug your logic, it helps you actually see what your code is doing at each step. Whether you're just starting out or deep into competitive programming, this is something which can make learning DSA so much more intuitive and less frustrating. Well! my opinion says in the future, I'd love to see a built-in compiler or a feature where users can test their own code with custom inputs, that would take it to the next level. But even now, it's incredibly helpful and super polished!”`,
       stars: 4,
     },
     {
@@ -34,7 +34,7 @@ const TestimonialSection = () => {
     {
       name: 'kartik',
       email: '@kartik2005221',
-      review: `This platform made DSA so much easier to grasp. Everything's in one place — topics, visualizations, and practice. It really helped me connect the dots between theory and how things actually work.`,
+      review: `This platform made DSA so much easier to grasp. Everything's in one place: topics, visualizations, and practice. It really helped me connect the dots between theory and how things actually work.`,
       stars: 5,
     },
     {

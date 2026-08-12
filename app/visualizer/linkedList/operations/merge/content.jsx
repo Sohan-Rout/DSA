@@ -25,7 +25,7 @@ const Content = () => {
 
   const overview = [
     `Merging two linked lists means weaving their nodes together into a single ordered chain. The common technique is a two-pointer walk: look at both current heads, pick whichever is smaller, attach it to the result, and move that pointer forward.`,
-    `This trick only pays off when both lists were already sorted going in — you end up with a fully sorted merged list without ever needing to run a separate sort afterward.`
+    `This trick only pays off when both lists were already sorted going in: you end up with a fully sorted merged list without ever needing to run a separate sort afterward.`
   ];
 
   const mergeSteps = [

@@ -98,7 +98,7 @@ const Content = () => {
   const { theme } = useTheme();
 
   const paragraphs = [
-    `Linear Search doesn't assume anything about the list's order — it just starts at the beginning and checks one element at a time until it either finds a match or runs out of elements to check. Simple, but it works on any list, sorted or not.`,
+    `Linear Search doesn't assume anything about the list's order. It just starts at the beginning and checks one element at a time until it either finds a match or runs out of elements to check. Simple, but it works on any list, sorted or not.`,
     `Imagine you have a list of numbers: [5, 3, 8, 1, 9] and you want to find the number 8.`,
     `If the number is not in the list (e.g., searching for 10), the search ends without success.`,
     `Linear Search is easy to understand but can be slow for large lists compared to faster methods like Binary Search.`,

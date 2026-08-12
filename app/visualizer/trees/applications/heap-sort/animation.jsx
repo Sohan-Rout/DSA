@@ -6,7 +6,7 @@ import ArrayGenerator from "@/app/components/ui/randomArray";
 import CustomArrayInput from "@/app/components/ui/customArrayInput";
 
 // Builds a max-heap in place, then repeatedly moves the root (the largest
-// remaining value) to the end of the array and shrinks the heap by one —
+// remaining value) to the end of the array and shrinks the heap by one,
 // recording every comparison, swap, and boundary change along the way.
 const heapSortSteps = (input) => {
   const a = [...input];
@@ -33,7 +33,7 @@ const heapSortSteps = (input) => {
 
       steps.push({ array: [...a], type: "swap", indices: [i, largest], heapSize, message: `Swap ${a[i]} and ${a[largest]} to restore the heap property` });
       [a[i], a[largest]] = [a[largest], a[i]];
-      steps.push({ array: [...a], type: "swapped", indices: [i, largest], heapSize, message: "Swapped — continue sifting down" });
+      steps.push({ array: [...a], type: "swapped", indices: [i, largest], heapSize, message: "Swapped, continue sifting down" });
       i = largest;
     }
   };
@@ -41,10 +41,10 @@ const heapSortSteps = (input) => {
   for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
     siftDown(n, i);
   }
-  steps.push({ array: [...a], type: "heap-built", indices: [], heapSize: n, message: "Max-heap built — the largest value is now at the root" });
+  steps.push({ array: [...a], type: "heap-built", indices: [], heapSize: n, message: "Max-heap built: the largest value is now at the root" });
 
   for (let end = n - 1; end > 0; end--) {
-    steps.push({ array: [...a], type: "swap", indices: [0, end], heapSize: end + 1, message: `Move the root ${a[0]} to index ${end} — it's the largest value left in the heap` });
+    steps.push({ array: [...a], type: "swap", indices: [0, end], heapSize: end + 1, message: `Move the root ${a[0]} to index ${end}, since it's the largest value left in the heap` });
     [a[0], a[end]] = [a[end], a[0]];
     steps.push({ array: [...a], type: "sorted", indices: [end], heapSize: end, message: `${a[end]} is now in its final sorted position` });
     siftDown(end, 0);
@@ -118,7 +118,7 @@ const HeapSortVisualizer = () => {
     setHeapSize(newArray.length);
     setSorted(false);
     resetStats();
-    setMessage("Array loaded — click Start Heap Sort");
+    setMessage("Array loaded, click Start Heap Sort");
   };
 
   const reset = () => {
@@ -360,7 +360,7 @@ const HeapSortVisualizer = () => {
               </svg>
             ) : (
               <div className="w-full flex items-center justify-center text-sm text-gray-500 dark:text-gray-400 border-2 border-dashed rounded-lg dark:border-gray-700 py-12">
-                {sorted ? "Heap is empty — every element has been extracted in sorted order" : "The heap view fills in once sorting starts"}
+                {sorted ? "Heap is empty, every element has been extracted in sorted order" : "The heap view fills in once sorting starts"}
               </div>
             )}
           </div>

@@ -93,23 +93,23 @@ const Content = () => {
 
   const paragraphs = [
     `An adjacency matrix represents a graph as a 2D grid: a V×V table where V is the number of vertices. The cell at row i, column j holds a nonzero value (often just 1, or an edge's weight) if there's an edge from vertex i to vertex j, and 0 otherwise. For an undirected graph, an edge sets both cell (i, j) and cell (j, i), so the matrix is symmetric across its diagonal; for a directed graph, only the one cell matching the edge's direction is set.`,
-    `The main advantage is speed for a very specific question: "is there an edge between these two vertices?" Checking cell (i, j) is a single array lookup — O(1) — regardless of how many edges the graph has. Iterating over all of a vertex's neighbors, though, means scanning an entire row, which costs O(V) even if that vertex only has one or two actual edges.`,
-    `That scanning cost is what makes adjacency matrices a poor fit for sparse graphs — graphs where the number of edges is much smaller than V². A social network with millions of users but only a few hundred friends each would waste almost the entire matrix on zeros, both in memory (O(V²) regardless of edge count) and in wasted iteration time. Adjacency lists exist specifically to fix this by only storing the edges that actually exist.`,
+    `The main advantage is speed for a very specific question: "is there an edge between these two vertices?" Checking cell (i, j) is a single array lookup, O(1), regardless of how many edges the graph has. Iterating over all of a vertex's neighbors, though, means scanning an entire row, which costs O(V) even if that vertex only has one or two actual edges.`,
+    `That scanning cost is what makes adjacency matrices a poor fit for sparse graphs, graphs where the number of edges is much smaller than V². A social network with millions of users but only a few hundred friends each would waste almost the entire matrix on zeros, both in memory (O(V²) regardless of edge count) and in wasted iteration time. Adjacency lists exist specifically to fix this by only storing the edges that actually exist.`,
     `Adjacency matrices earn their keep on dense graphs (where edges approach V²), in algorithms that need fast edge-existence checks (like Floyd-Warshall's all-pairs shortest paths, which is naturally matrix-based), and in small, fixed-size graphs where the O(V²) memory cost is negligible and the O(1) lookup is worth it.`,
   ];
 
   const algorithm = [
     { points: "Create a V×V grid, initialized to all zeros" },
     { points: "For every edge (u, v) with weight w: set matrix[u][v] = w" },
-    { points: "If the graph is undirected, also set matrix[v][u] = w — the same edge is recorded from both directions" },
+    { points: "If the graph is undirected, also set matrix[v][u] = w, since the same edge is recorded from both directions" },
     { points: "To check if an edge exists between two vertices, read matrix[u][v] directly" },
   ];
 
   const complexity = [
-    { points: "Space Complexity: O(V²) — regardless of how many edges actually exist." },
-    { points: "Check if edge (u, v) exists: O(1) — a single cell lookup." },
-    { points: "Iterate over a vertex's neighbors: O(V) — the entire row must be scanned." },
-    { points: "Add or remove an edge: O(1) — updating a single (or mirrored pair of) cells." },
+    { points: "Space Complexity: O(V²), regardless of how many edges actually exist." },
+    { points: "Check if edge (u, v) exists: O(1), a single cell lookup." },
+    { points: "Iterate over a vertex's neighbors: O(V), the entire row must be scanned." },
+    { points: "Add or remove an edge: O(1), updating a single (or mirrored pair of) cells." },
   ];
 
   return (
@@ -150,7 +150,7 @@ const Content = () => {
           </div>
 
           <div className="text-sm font-medium text-center text-gray-600 dark:text-gray-400 mb-2">
-            An undirected triangle graph — its matrix is symmetric, and the diagonal stays 0 (no self-loops)
+            An undirected triangle graph: its matrix is symmetric, and the diagonal stays 0 (no self-loops)
           </div>
           <WalkthroughDiagram />
         </section>

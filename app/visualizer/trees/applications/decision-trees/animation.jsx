@@ -189,7 +189,7 @@ const DecisionTreeVisualizer = () => {
       setRevealed((prev) => new Set(prev).add(step.nodeId));
       if (step.type === "split") {
         setThresholds((prev) => [...prev, step.threshold]);
-        setMessage(`Split on value ≤ ${step.threshold} — impurity ${step.impurity.toFixed(2)} → weighted ${step.weighted.toFixed(2)} after the split`);
+        setMessage(`Split on value ≤ ${step.threshold}, impurity ${step.impurity.toFixed(2)} → weighted ${step.weighted.toFixed(2)} after the split`);
       } else {
         setMessage(`Leaf: predict "${step.node.prediction}" (${step.node.count} sample${step.node.count === 1 ? "" : "s"}, impurity ${step.node.impurity.toFixed(2)})`);
       }

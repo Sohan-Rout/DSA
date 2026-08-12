@@ -247,7 +247,7 @@ const IsomorphismVisualizer = () => {
     setTreeA(parseLevelOrder(inputA));
     setTreeB(parseLevelOrder(inputB));
     clearResult();
-    setMessage("Trees built — click Check Isomorphism");
+    setMessage("Trees built, click Check Isomorphism");
   };
 
   const loadExample = (key) => {
@@ -294,7 +294,7 @@ const IsomorphismVisualizer = () => {
         } else {
           setTimeout(() => {
             setVerdict("isomorphic");
-            setMessage("Trees are isomorphic — one becomes the other by swapping children at some nodes");
+            setMessage("Trees are isomorphic: one becomes the other by swapping children at some nodes");
             setBusy(false);
           }, STEP_DELAY);
         }
@@ -306,7 +306,7 @@ const IsomorphismVisualizer = () => {
         setMismatchB(result.mismatch.bValue);
         setVerdict("not-isomorphic");
         setMessage(
-          `Trees are not isomorphic — mismatch at ${result.mismatch.aValue ?? "∅"} vs ${result.mismatch.bValue ?? "∅"}`
+          `Trees are not isomorphic: mismatch at ${result.mismatch.aValue ?? "∅"} vs ${result.mismatch.bValue ?? "∅"}`
         );
         setBusy(false);
       }, STEP_DELAY);
@@ -319,7 +319,7 @@ const IsomorphismVisualizer = () => {
   return (
     <main className="container mx-auto px-2 sm:px-6 pb-4">
       <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-        Check whether two trees are isomorphic — identical in structure once children can be freely swapped
+        Check whether two trees are isomorphic, identical in structure once children can be freely swapped
       </p>
 
       <div className="max-w-4xl mx-auto">

@@ -14,7 +14,7 @@ const BinaryTreeTypesQuiz = () => {
         "Every node has exactly one child"
       ],
       correctAnswer: 1,
-      explanation: "A Full Binary Tree only requires that no node has exactly one child — every node has either zero children (a leaf) or two."
+      explanation: "A Full Binary Tree only requires that no node has exactly one child: every node has either zero children (a leaf) or two."
     },
     {
       question: "A Degenerate (Skewed) Binary Tree behaves most like which other data structure?",
