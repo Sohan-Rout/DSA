@@ -21,11 +21,22 @@ on:
                 required: false
                 type: string
 
+# See the note in test.yml: Supabase clients are constructed at module scope, so
+# the build needs these to be present even though nothing contacts Supabase here.
+env:
+    NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key
+    SUPABASE_SERVICE_KEY: placeholder-service-key
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+    TURNSTILE_SECRET_KEY: 1x0000000000000000000000000000000AA
+    EMAIL_USER: ci@example.com
+    EMAIL_PASSWORD: placeholder
+
 jobs:
     load-test:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
 
             - name: Set up Bun
               uses: oven-sh/setup-bun@v2
