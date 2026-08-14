@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "check:pages": "bun scripts/check-pages.mjs",
+    "load:smoke": "k6 run -e PROFILE=smoke scripts/load-test.js",
+    "load:test": "k6 run -e PROFILE=load scripts/load-test.js",
+    "load:stress": "k6 run -e PROFILE=stress scripts/load-test.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

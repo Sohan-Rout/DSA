@@ -32,7 +32,7 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og/queue/singleEnded.png",
+        url: "/og/queue/singleEndedQueue.png",
         width: 1200,
         height: 630,
         alt: "Single Ended Queue Algorithm Visualization",

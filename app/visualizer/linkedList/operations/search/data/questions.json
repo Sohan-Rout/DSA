@@ -1,0 +1,112 @@
+[
+  {
+    "question": "What is the main purpose of searching in a linked list?",
+    "options": [
+      "To reverse the order of nodes",
+      "To find whether a value exists and locate its node",
+      "To sort the list",
+      "To merge two lists"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Searching walks the list to determine whether a target value exists and, if so, where it is."
+  },
+  {
+    "question": "What is the time complexity of searching for a value in a singly linked list with n nodes?",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)"
+    ],
+    "correctAnswer": 2,
+    "explanation": "In the worst case every node must be checked, giving O(n) time."
+  },
+  {
+    "question": "Why can't binary search be used directly on a singly linked list, even if the values are sorted?",
+    "options": [
+      "Linked lists cannot be sorted",
+      "Binary search needs O(1) random access to the middle element, which linked lists don't provide",
+      "Binary search only works on arrays of numbers",
+      "It is possible and commonly used"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Jumping straight to the middle element requires random access; a linked list only supports sequential access via next pointers, so reaching the midpoint still costs O(n)."
+  },
+  {
+    "question": "Which pointer is typically used to walk the list while searching?",
+    "options": [
+      "prev",
+      "tail",
+      "current",
+      "root"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A 'current' pointer starts at head and advances via next until the value is found or the list ends."
+  },
+  {
+    "question": "When does a search on a singly linked list conclude that a value is not present?",
+    "options": [
+      "When current equals head again",
+      "When current becomes null",
+      "After exactly n/2 comparisons",
+      "When two pointers meet"
+    ],
+    "correctAnswer": 1,
+    "explanation": "If current reaches null without a match, the value isn't in the list."
+  },
+  {
+    "question": "What does a recursive search function typically return when the list is empty?",
+    "options": [
+      "0",
+      "The head node",
+      "null or false",
+      "An infinite loop"
+    ],
+    "correctAnswer": 2,
+    "explanation": "An empty list (head is null) is the base case, and the function should immediately report the value wasn't found."
+  },
+  {
+    "question": "Compared to searching a sorted array, what is the key disadvantage of searching a linked list?",
+    "options": [
+      "Linked lists use more memory per search",
+      "Linked lists can't hold duplicate values",
+      "You lose the ability to binary search, so a sorted linked list still takes O(n) time to search",
+      "Linked lists can only store strings"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Even a sorted linked list requires sequential traversal, so sorting doesn't speed up the search the way it does for arrays."
+  },
+  {
+    "question": "In a doubly linked list, how does searching typically differ from a singly linked list?",
+    "options": [
+      "It's impossible in a doubly linked list",
+      "It can start from either end and move in either direction, sometimes narrowing the traversal",
+      "It runs in O(log n) automatically",
+      "It never needs a current pointer"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The prev pointer lets you also traverse backward from the tail, which can help when the target is expected to be near one end."
+  },
+  {
+    "question": "What happens to the pointer used for searching once a match is found?",
+    "options": [
+      "It resets to head",
+      "It keeps advancing past the match",
+      "It stays at the matching node, which the search returns or reports",
+      "It is deleted"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Once a match is found the traversal stops, and the current node (or its index/address) is what gets returned."
+  },
+  {
+    "question": "Which scenario is NOT something a search implementation needs to handle?",
+    "options": [
+      "Searching an empty list",
+      "The target being at the head",
+      "The target being at the tail",
+      "Rebalancing the list after the search"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Rebalancing applies to trees, not linked lists; search only needs to handle empty, head, tail, middle, and not-found cases."
+  }
+]

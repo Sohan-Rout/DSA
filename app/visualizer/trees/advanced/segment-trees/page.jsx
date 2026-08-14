@@ -35,7 +35,7 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og.png",
+        url: "/og/trees/segmentTrees.png",
         width: 1200,
         height: 630,
         alt: "Segment Tree Visualization",
