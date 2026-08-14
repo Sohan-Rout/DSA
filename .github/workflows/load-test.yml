@@ -1,0 +1,90 @@
+name: Load Test
+
+# Manual trigger only. Load tests take minutes and, when pointed at a deployed
+# URL, generate real traffic and real cost, so they should never fire
+# automatically on every push or pull request.
+on:
+    workflow_dispatch:
+        inputs:
+            profile:
+                description: "Load profile to run"
+                required: true
+                default: "load"
+                type: choice
+                options:
+                    - smoke
+                    - load
+                    - stress
+                    - spike
+            base_url:
+                description: "Target URL. Leave blank to build and test this branch locally (recommended). Only point this at a deployed environment you own and intend to load."
+                required: false
+                type: string
+
+jobs:
+    load-test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Set up Bun
+              uses: oven-sh/setup-bun@v2
+              with:
+                bun-version: latest
+
+            - name: Install k6
+              run: |
+                  sudo gpg -k
+                  sudo gpg --no-default-keyring \
+                    --keyring /usr/share/keyrings/k6-archive-keyring.gpg \
+                    --keyserver hkp://keyserver.ubuntu.com:80 \
+                    --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+                  echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" \
+                    | sudo tee /etc/apt/sources.list.d/k6.list
+                  sudo apt-get update
+                  sudo apt-get install -y k6
+
+            - name: Install dependencies
+              if: inputs.base_url == ''
+              run: bun install --frozen-lockfile
+
+            - name: Build Next.js
+              if: inputs.base_url == ''
+              run: bun run build
+
+            - name: Start local server
+              if: inputs.base_url == ''
+              run: |
+                  bun run start &
+                  echo "SERVER_PID=$!" >> $GITHUB_ENV
+
+                  for i in $(seq 1 30); do
+                    if curl -s -o /dev/null http://localhost:3000; then
+                      echo "Server is up"
+                      exit 0
+                    fi
+                    sleep 2
+                  done
+
+                  echo "Server failed to start"
+                  exit 1
+
+            - name: Run k6
+              run: |
+                  TARGET="${{ inputs.base_url }}"
+                  if [ -z "$TARGET" ]; then
+                    TARGET="http://localhost:3000"
+                  fi
+                  echo "Running '${{ inputs.profile }}' profile against $TARGET"
+                  k6 run \
+                    -e PROFILE="${{ inputs.profile }}" \
+                    -e BASE_URL="$TARGET" \
+                    --summary-export=k6-summary.json \
+                    scripts/load-test.js
+
+            - name: Upload results
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: k6-summary-${{ inputs.profile }}
+                  path: k6-summary.json
