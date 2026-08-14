@@ -5,14 +5,31 @@ on:
         branches:
             - main
 
+# The app instantiates Supabase clients at module scope (see app/api/auth/route.js),
+# so `next build` fails with "supabaseUrl is required" when these are unset.
+# Placeholders rather than repository secrets, deliberately: this workflow runs on
+# pull_request, and GitHub does not expose secrets to pull requests from forks, so
+# secrets here would still leave external contributors with a red build. Nothing in
+# the build or the page check talks to Supabase, so placeholder values are enough.
+env:
+    NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key
+    SUPABASE_SERVICE_KEY: placeholder-service-key
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+    TURNSTILE_SECRET_KEY: 1x0000000000000000000000000000000AA
+    EMAIL_USER: ci@example.com
+    EMAIL_PASSWORD: placeholder
+
 jobs:
-    test:
+    build:
+        name: Build
         strategy:
+            fail-fast: false
             matrix:
                 os: [ubuntu-latest, macos-latest, windows-latest]
         runs-on: ${{ matrix.os }}
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
 
             - name: Set up Bun
               uses: oven-sh/setup-bun@v2
@@ -29,7 +46,7 @@ jobs:
         name: Check all pages return OK
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
 
             - name: Set up Bun
               uses: oven-sh/setup-bun@v2
@@ -56,8 +73,10 @@ jobs:
                     sleep 2
                   done
 
+                  set +e
                   bun run check:pages
                   STATUS=$?
+                  set -e
 
-                  kill $SERVER_PID
+                  kill $SERVER_PID 2>/dev/null || true
                   exit $STATUS
