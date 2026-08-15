@@ -76,7 +76,7 @@ export default async function RootLayout({ children }) {
   } = await supabase.auth.getSession();
 
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <head>
         <meta name="application-name" content="DSA Visualizer" />
         <meta property="og:site_name" content="DSA Visualizer" />

@@ -33,7 +33,7 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og/queue/isEmpty.png",
+        url: "/og/queue/queueIsEmpty.png",
         width: 1200,
         height: 630,
         alt: "isEmpty Algorithm Visualization",
