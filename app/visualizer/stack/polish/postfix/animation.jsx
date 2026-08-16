@@ -107,7 +107,7 @@ const InfixToPostfixVisualizer = () => {
 
   /* ----------  UI  ---------- */
   return (
-    <main className="container mx-auto px-6">
+    <main className="container mx-auto px-2">
       <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">Visualize the conversion from infix to postfix notation</p>
       <div className="max-w-4xl mx-auto">
         {/* Input & Controls – same as before */}

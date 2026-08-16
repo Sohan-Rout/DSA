@@ -252,7 +252,7 @@ const QuickSortVisualizer = () => {
   };
 
   return (
-    <main className="container mx-auto px-6 pt-4 pb-6">
+    <main className="container mx-auto px-2 pt-4 pb-6">
       <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
         Visualize Quick Sort's divide-and-conquer approach with interactive
         partitions

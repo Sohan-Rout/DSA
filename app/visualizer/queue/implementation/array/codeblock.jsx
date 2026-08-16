@@ -2,14 +2,11 @@
 import { useState, useRef } from 'react';
 import { FaCopy, FaCheck, FaCode } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import hljs from 'highlight.js';
+import { highlightCode } from '@/app/components/modules/CodeBlock';
 import 'highlight.js/styles/github.css';
 import 'highlight.js/styles/github-dark.css';
 
-export const highlightCode = (code, language) => {
-  const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
-  return hljs.highlight(code, { language: validLanguage }).value;
-};
+export { highlightCode };
 
 const CodeBlock = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("javascript");

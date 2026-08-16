@@ -3,7 +3,6 @@ import ComplexityGraph from "@/app/components/ui/graph";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
-import { useEffect, useState } from "react";
 import InContentAd from "@/app/components/ads/InContentAd";
 
 const ArrayCheckDiagram = ({ values, current, checked, found, keyPrefix }) => {

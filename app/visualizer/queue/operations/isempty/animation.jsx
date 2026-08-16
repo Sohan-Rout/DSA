@@ -63,7 +63,7 @@ const QueueVisualizer = () => {
 
   /* ---------- UI ---------- */
   return (
-    <main className="container mx-auto px-6 py-4">
+    <main className="container mx-auto px-2 py-4">
       <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
         Visualise isEmpty operation in real-time
       </p>
