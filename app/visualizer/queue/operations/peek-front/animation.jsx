@@ -1,235 +1,261 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { gsap } from "gsap";
 
 const QueueVisualizer = () => {
   const [queue, setQueue] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [operation, setOperation] = useState(null);
   const [message, setMessage] = useState("");
+  const [tone, setTone] = useState("info");
+  const [peeked, setPeeked] = useState(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const itemRefs = useRef([]);
+  // Stable ids, so React unmounts the node that was animated out rather than
+  // reusing it for the next item along with its leftover inline styles.
+  const nextId = useRef(0);
+  const makeItem = (value) => ({ id: nextId.current++, value });
 
-  /* ---------- core helpers ---------- */
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-  const showOp = async (text, ms = 1000) => {
-    setOperation(text);
-    await sleep(ms);
-    setOperation(null);
+  const say = (text, nextTone = "info") => {
+    setMessage(text);
+    setTone(nextTone);
   };
 
-  /* ---------- enqueue ---------- */
-  const enqueue = async () => {
-    if (!inputValue.trim()) {
-      setMessage("Please enter a value");
+  // Runs the moment a new rear item mounts: a slide-in from the rear side,
+  // so enqueue reads as "joining the back of the line".
+  const animateEnter = (el) => {
+    if (!el || el.dataset.entered) return;
+    el.dataset.entered = "true";
+    gsap.fromTo(
+      el,
+      { x: 40, opacity: 0, scale: 0.8 },
+      { x: 0, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.4)" }
+    );
+  };
+
+  const enqueue = () => {
+    const value = inputValue.trim();
+    if (!value) {
+      say("Please enter a value", "info");
       return;
     }
-    setIsAnimating(true);
-    await showOp(`Enqueuing "${inputValue}" to rear...`);
-    setQueue((q) => [...q, inputValue]);
-    setMessage(`"${inputValue}" added to rear`);
+    setPeeked(null);
+    setQueue((q) => [...q, makeItem(value)]);
+    say(`"${value}" joined the rear`, "success");
     setInputValue("");
-    setIsAnimating(false);
   };
 
-  /* ---------- peek front ---------- */
+  // Dequeue removes the front, so the element leaves from the front side.
+  const dequeue = () => {
+    if (!queue.length || isAnimating) return;
+    const leaving = queue[0].value;
+    const el = itemRefs.current[0];
+    setIsAnimating(true);
+    setPeeked(null);
+
+    const finish = () => {
+      setQueue((q) => q.slice(1));
+      say(`"${leaving}" removed from the front`, "warning");
+      setIsAnimating(false);
+    };
+
+    if (!el) return finish();
+
+    gsap.to(el, {
+      x: -60,
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.35,
+      ease: "power2.in",
+      onComplete: finish,
+    });
+  };
+
+  // Peek only reads: the front element lifts and glows, then settles back
+  // exactly where it was.
   const peekFront = () => {
-    if (queue.length === 0) {
-      setMessage("Queue is empty – nothing to peek");
-      return;
-    }
-    setMessage(`Front element is "${queue[0]}"`);
+    if (!queue.length || isAnimating) return;
+    const el = itemRefs.current[0];
+    setIsAnimating(true);
+    setPeeked(queue[0].value);
+    say(`Front element is "${queue[0].value}" — the queue is unchanged`, "peek");
+
+    if (!el) return setIsAnimating(false);
+
+    gsap
+      .timeline({ onComplete: () => setIsAnimating(false) })
+      .to(el, { y: -10, scale: 1.08, duration: 0.25, ease: "power2.out" })
+      .to(el, { y: 0, scale: 1, duration: 0.3, ease: "elastic.out(1, 0.5)" }, "+=0.5");
   };
 
-  /* ---------- random queue ---------- */
   const generateRandomQueue = () => {
     if (isAnimating) return;
-    const len = Math.floor(Math.random() * 5) + 3; // 3-7 items
-    const nums = Array.from({ length: len }, () =>
-      String(Math.floor(Math.random() * 90) + 10)
-    ); // 10-99
-    setQueue(nums);
-    setMessage("Random queue generated");
+    // Kept short so the row still fits a phone screen without scrolling.
+    const length = 4 + Math.floor(Math.random() * 2);
+    setPeeked(null);
+    setQueue(
+      Array.from({ length }, () =>
+        makeItem(String(Math.floor(Math.random() * 90) + 10))
+      )
+    );
+    say("Random queue generated", "info");
   };
 
-  /* ---------- reset ---------- */
   const reset = () => {
     if (isAnimating) return;
     setQueue([]);
     setInputValue("");
-    setOperation(null);
-    setMessage("");
+    setPeeked(null);
+    say("", "info");
   };
 
-  /* ---------- UI ---------- */
+  const toneClasses = {
+    success:
+      "bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 border-green-200 dark:border-green-800",
+    warning:
+      "bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200 border-amber-200 dark:border-amber-800",
+    peek: "bg-violet-100 dark:bg-violet-900/50 text-violet-800 dark:text-violet-200 border-violet-200 dark:border-violet-800",
+    info: "bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200 border-gray-200 dark:border-gray-600",
+  };
+
+  itemRefs.current.length = queue.length;
+
   return (
-    <main className="container mx-auto">
+    <main className="container mx-auto px-2 pb-4">
       <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-        Visualize First-In-First-Out (FIFO) operations in real-time
+        Read the front of the queue without removing it
       </p>
 
-      {/* ------- Controls ------- */}
-      <div className="flex flex-col items-center">
-        <div className="bg-white max-w-4xl dark:bg-neutral-950 p-6 rounded-xl shadow-lg mb-8 border border-gray-200 dark:border-gray-700 w-full flex flex-col items-center">
-          {/* input + classic buttons */}
-
-          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center items-center">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full sm:w-auto">
-              <button
-                onClick={generateRandomQueue}
-                disabled={isAnimating}
-                className="bg-blue-500 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all flex items-center justify-center gap-2 col-span-2 sm:col-span-1"
-              >
-                Random Queue
-              </button>
-              <button
-                onClick={peekFront}
-                disabled={isAnimating || queue.length === 0}
-                className="bg-green-500 text-black px-4 py-3 rounded-lg disabled:opacity-50 transition-all flex items-center justify-center gap-2"
-              >
-                Peek Front
-              </button>
-              <button
-                onClick={reset}
-                className="bg-red-500 text-white px-4 py-3 rounded-lg disabled:opacity-50 transition-all flex items-center justify-center gap-2"
-                disabled={isAnimating}
-              >
-                Reset
-              </button>
-            </div>
+      <div className="max-w-4xl mx-auto">
+        <div className="bg-white dark:bg-neutral-950 p-4 rounded-xl border border-gray-200 dark:border-gray-800 mb-4">
+          <div className="flex gap-2 mb-3">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && enqueue()}
+              placeholder="Enter a value"
+              disabled={isAnimating}
+              className="flex-1 min-w-0 px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-neutral-900 text-gray-800 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition disabled:opacity-50"
+            />
+            <button
+              onClick={enqueue}
+              disabled={isAnimating}
+              className="px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition disabled:opacity-40 disabled:pointer-events-none"
+            >
+              Enqueue
+            </button>
           </div>
 
-          {/* status / operation banners */}
-          <div className="flex flex-col gap-3 w-full items-center">
-            {operation && (
-              <div className="p-3 rounded-lg bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-800 flex items-center gap-2 justify-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 animate-spin"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>{operation}</span>
-              </div>
-            )}
-            {message && (
-              <div
-                className={`p-3 mt-4 rounded-lg ${
-                  message.includes("added")
-                    ? "bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-800"
-                    : message.includes("removed") || message.includes("Front element")
-                    ? "bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-200 border border-yellow-200 dark:border-yellow-800"
-                    : "bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-600"
-                } flex items-center gap-2 justify-center`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  {message.includes("added") ? (
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  ) : message.includes("removed") || message.includes("Front element") ? (
-                    <path
-                      fillRule="evenodd"
-                      d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                      clipRule="evenodd"
-                    />
-                  ) : (
-                    <path
-                      fillRule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z"
-                      clipRule="evenodd"
-                    />
-                  )}
-                </svg>
-                <span>{message}</span>
-              </div>
-            )}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button
+              onClick={peekFront}
+              disabled={isAnimating || queue.length === 0}
+              className="px-3 py-2 text-sm font-medium rounded-lg bg-violet-500 hover:bg-violet-600 text-white transition disabled:opacity-40 disabled:pointer-events-none"
+            >
+              Peek Front
+            </button>
+            <button
+              onClick={dequeue}
+              disabled={isAnimating || queue.length === 0}
+              className="px-3 py-2 text-sm font-medium rounded-lg bg-amber-500 hover:bg-amber-600 text-white transition disabled:opacity-40 disabled:pointer-events-none"
+            >
+              Dequeue
+            </button>
+            <button
+              onClick={generateRandomQueue}
+              disabled={isAnimating}
+              className="px-3 py-2 text-sm font-medium rounded-lg bg-blue-500 hover:bg-blue-600 text-white transition disabled:opacity-40 disabled:pointer-events-none"
+            >
+              Random
+            </button>
+            <button
+              onClick={reset}
+              disabled={isAnimating}
+              className="px-3 py-2 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-700 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition disabled:opacity-40 disabled:pointer-events-none"
+            >
+              Reset
+            </button>
           </div>
         </div>
 
-        {/* ------- Queue Visualization (only when not empty) ------- */}
-        {queue.length > 0 && (
-          <div className="bg-white dark:bg-neutral-950 mb-6 p-6 max-w-4xl rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 w-full flex flex-col items-center">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Queue Visualization</h2>
+        <div className="bg-white dark:bg-neutral-950 p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+          {message && (
+            <div
+              className={`mb-4 p-3 rounded-lg border text-center text-sm font-medium ${toneClasses[tone]}`}
+            >
+              {message}
+            </div>
+          )}
 
-            {/* Front – items – Rear */}
-            <div className="flex items-center gap-3 w-full justify-center">
-              {/* Front label */}
-              <div className="text-blue-600 dark:text-blue-400 font-medium flex flex-col items-center">
-                <span>Front</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+          <div className="flex items-end justify-center gap-2 sm:gap-4 min-h-[132px] overflow-x-auto pb-1">
+            {queue.length === 0 ? (
+              <div className="m-auto text-sm text-gray-400 dark:text-gray-600">
+                Queue is empty
               </div>
-
-              {/* Elements */}
-              <div className="flex items-center gap-4">
-                {queue.map((item, index) => (
+            ) : (
+              queue.map((item, index) => {
+                const isFront = index === 0;
+                const isRear = index === queue.length - 1;
+                return (
                   <div
-                    key={index}
-                    className={`relative flex flex-col items-center transition-all duration-300 ${
-                      index === 0 && operation?.includes("Dequeuing")
-                        ? "animate-pulse scale-110"
-                        : index === queue.length - 1 && operation?.includes("Enqueuing")
-                        ? "animate-bounce"
-                        : ""
-                    }`}
+                    key={item.id}
+                    className="flex flex-col items-center shrink-0"
                   >
+                    {/* Pointer labels sit directly above their own element */}
+                    <div className="h-9 flex flex-col items-center justify-end">
+                      {isFront && (
+                        <span className="text-[11px] font-semibold text-blue-500 dark:text-blue-400">
+                          front
+                        </span>
+                      )}
+                      {isRear && !isFront && (
+                        <span className="text-[11px] font-semibold text-emerald-500 dark:text-emerald-400">
+                          rear
+                        </span>
+                      )}
+                      {(isFront || isRear) && (
+                        <span
+                          className={`text-xs leading-none ${
+                            isFront
+                              ? "text-blue-500 dark:text-blue-400"
+                              : "text-emerald-500 dark:text-emerald-400"
+                          }`}
+                        >
+                          ▼
+                        </span>
+                      )}
+                    </div>
+
                     <div
-                      className={`w-24 h-24 rounded-lg shadow-md flex items-center justify-center text-lg font-medium border-2 ${
-                        index === 0
-                          ? "border-blue-300 dark:border-blue-700"
-                          : index === queue.length - 1
-                          ? "border-green-300 dark:border-green-700"
-                          : "border-gray-200 dark:border-gray-600"
-                      } bg-white dark:bg-neutral-900`}
+                      ref={(el) => {
+                        itemRefs.current[index] = el;
+                        animateEnter(el);
+                      }}
+                      className={`w-12 h-12 sm:w-16 sm:h-16 rounded-lg shadow-md flex items-center justify-center text-sm sm:text-base font-semibold text-white bg-gradient-to-br ${
+                        isFront
+                          ? peeked !== null
+                            ? "from-violet-500 to-violet-600 ring-2 ring-violet-300 dark:ring-violet-700 ring-offset-2 ring-offset-white dark:ring-offset-neutral-950"
+                            : "from-blue-500 to-blue-600 ring-2 ring-blue-300 dark:ring-blue-700 ring-offset-2 ring-offset-white dark:ring-offset-neutral-950"
+                          : "from-slate-400 to-slate-500 dark:from-slate-600 dark:to-slate-700"
+                      }`}
                     >
-                      {item}
+                      {item.value}
+                    </div>
+
+                    <div className="h-6 mt-1 text-[11px] font-mono text-violet-600 dark:text-violet-400">
+                      {isFront && peeked !== null && `returns ${peeked}`}
                     </div>
                   </div>
-                ))}
-              </div>
-
-              {/* Rear label */}
-              <div className="text-green-600 dark:text-green-400 font-medium flex flex-col items-center">
-                <span>Rear</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-            </div>
+                );
+              })
+            )}
           </div>
-        )}
+
+          <div className="mt-2 text-center text-xs text-gray-500 dark:text-gray-400">
+            size: {queue.length}
+            {peeked !== null && " (unchanged by peek)"}
+          </div>
+        </div>
       </div>
     </main>
   );

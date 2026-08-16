@@ -58,23 +58,30 @@ const LevelsDiagram = ({ levels, mode, keyPrefix }) => {
         </marker>
       </defs>
 
-      {/* Connectors between a group and the groups it splits into / came from */}
-      {placed.slice(0, -1).map((groups, level) =>
-        placed[level + 1].map((child, childIndex) => {
-          const parent = groups.find(
-            (group) => child.start >= group.start && child.end <= group.end
+      {/* Connectors between a group and the groups it splits into / came from.
+          Whichever level holds the finer partition drives the pairing: divide
+          splits downward into smaller groups, merge combines downward into
+          bigger ones, but either way the arrow runs top to bottom. */}
+      {placed.slice(0, -1).map((groups, level) => {
+        const fine = mode === "merge" ? groups : placed[level + 1];
+        const coarse = mode === "merge" ? placed[level + 1] : groups;
+        const fromY = levelY(level) + BOX;
+        const toY = levelY(level + 1);
+
+        return fine.map((fineGroup, index) => {
+          const coarseGroup = coarse.find(
+            (group) =>
+              fineGroup.start >= group.start && fineGroup.end <= group.end
           );
-          if (!parent) return null;
-          const fromY = levelY(level) + BOX;
-          const toY = levelY(level + 1);
-          const [x1, y1, x2, y2] =
+          if (!coarseGroup) return null;
+          const [x1, x2] =
             mode === "merge"
-              ? [groupCenter(child), toY, groupCenter(parent), fromY]
-              : [groupCenter(parent), fromY, groupCenter(child), toY];
+              ? [groupCenter(fineGroup), groupCenter(coarseGroup)]
+              : [groupCenter(coarseGroup), groupCenter(fineGroup)];
           return (
             <path
-              key={`${keyPrefix}-link-${level}-${childIndex}`}
-              d={`M ${x1} ${y1} C ${x1} ${(y1 + y2) / 2}, ${x2} ${(y1 + y2) / 2}, ${x2} ${y2}`}
+              key={`${keyPrefix}-link-${level}-${index}`}
+              d={`M ${x1} ${fromY} C ${x1} ${(fromY + toY) / 2}, ${x2} ${(fromY + toY) / 2}, ${x2} ${toY}`}
               fill="none"
               stroke={accent}
               strokeWidth="1.5"
@@ -82,8 +89,8 @@ const LevelsDiagram = ({ levels, mode, keyPrefix }) => {
               markerEnd={`url(#${keyPrefix}-arrow)`}
             />
           );
-        })
-      )}
+        });
+      })}
 
       {placed.map((groups, level) =>
         groups.map((group, groupIndex) => {
