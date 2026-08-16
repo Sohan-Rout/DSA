@@ -106,7 +106,7 @@ const DequeVisualizer = () => {
 
   /* ---------- UI ---------- */
   return (
-    <main className="container mx-auto px-6 pt-4 pb-4">
+    <main className="container mx-auto px-2 pt-4 pb-4">
       <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
         Double-Ended Queue Visualiser
       </p>

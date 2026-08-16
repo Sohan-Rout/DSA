@@ -221,7 +221,7 @@ const MergeSortVisualizer = () => {
 
 
   return (
-      <main className="container mx-auto px-6 pt-2 pb-6">
+      <main className="container mx-auto px-2 pt-2 pb-6">
         <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
           Visualize the divide-and-conquer approach of Merge Sort with recursive
           splitting and merging.

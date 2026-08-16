@@ -134,7 +134,7 @@ const LinearSearch = () => {
   };
 
   return (
-    <main className="container mx-auto px-6 pb-4">
+    <main className="container mx-auto px-2 pb-4">
       <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
         Visualize how Linear Search works by sequentially checking each element
         in an array.

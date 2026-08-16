@@ -1,27 +1,69 @@
 'use client';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronRight, FiSearch, FiInfo } from 'react-icons/fi';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const InfoPopup = ({ info }) => {
   return (
-    <div className="absolute top-full right-0 mt-2 w-64 bg-white dark:bg-neutral-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 p-4 z-10">
+    <motion.div
+      initial={{ opacity: 0, y: -4 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -4 }}
+      transition={{ duration: 0.15 }}
+      role="tooltip"
+      className="absolute top-full right-0 mt-2 w-64 max-w-[calc(100vw-3rem)] bg-white dark:bg-neutral-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 p-4 z-20"
+    >
       {Object.entries(info).map(([key, value]) => (
         <div key={key} className="mb-2 last:mb-0">
           <span className="font-semibold text-gray-800 dark:text-gray-200">{key}: </span>
           <span className="text-gray-600 dark:text-gray-400">{value}</span>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 
 const SectionsDisplay = ({ sections, searchQuery }) => {
   const [hoveredSection, setHoveredSection] = useState(null);
+  // Touch devices get tap-to-toggle; pointer devices keep the hover behaviour.
+  const [hasHover, setHasHover] = useState(true);
+  const infoRef = useRef(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const update = () => setHasHover(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  // Dismiss the popup on scroll, on a tap outside it, or on Escape.
+  useEffect(() => {
+    if (hoveredSection === null || hasHover) return;
+
+    const close = () => setHoveredSection(null);
+    const onPointerDown = (e) => {
+      if (!infoRef.current?.contains(e.target)) close();
+    };
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') close();
+    };
+
+    window.addEventListener('scroll', close, { passive: true, capture: true });
+    window.addEventListener('resize', close);
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('scroll', close, { capture: true });
+      window.removeEventListener('resize', close);
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [hoveredSection, hasHover]);
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8 px-4 sm:px-1">
+    <div className="max-w-7xl mx-auto space-y-8 px-0 sm:px-1">
       {sections.map((section, sectionIndex) => (
         <motion.div
           key={sectionIndex}
@@ -31,7 +73,7 @@ const SectionsDisplay = ({ sections, searchQuery }) => {
           className="group relative bg-white dark:bg-neutral-950 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700/50 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-blue-400/30 dark:hover:border-blue-500/30"
         >
           {/* Section Header */}
-          <div className="px-6 py-5 border-b border-gray-200 dark:border-gray-700/50 flex items-center justify-between bg-gradient-to-br from-neutral-100 to-white dark:from-neutral-950 dark:to-neutral-900">
+          <div className="px-6 py-5 border-b border-gray-200 dark:border-gray-700/50 flex items-center justify-between bg-linear-to-br from-neutral-100 to-white dark:from-neutral-950 dark:to-neutral-900">
             <div className="flex items-center">
               <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-neutral-950 flex items-center justify-center text-blue-600 dark:text-blue-400 mr-4">
                 {section.icon}
@@ -39,15 +81,30 @@ const SectionsDisplay = ({ sections, searchQuery }) => {
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{section.title}</h2>
             </div>
             {section.info && (
-              <div 
+              <div
                 className="relative"
-                onMouseEnter={() => setHoveredSection(sectionIndex)}
-                onMouseLeave={() => setHoveredSection(null)}
+                ref={hoveredSection === sectionIndex ? infoRef : null}
+                onMouseEnter={hasHover ? () => setHoveredSection(sectionIndex) : undefined}
+                onMouseLeave={hasHover ? () => setHoveredSection(null) : undefined}
               >
-                <FiInfo className="h-5 w-5 text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer" />
-                {hoveredSection === sectionIndex && (
-                  <InfoPopup info={section.info} />
-                )}
+                <button
+                  type="button"
+                  aria-label={`About ${section.title}`}
+                  aria-expanded={hoveredSection === sectionIndex}
+                  onClick={() =>
+                    setHoveredSection((current) =>
+                      current === sectionIndex ? null : sectionIndex
+                    )
+                  }
+                  className="flex items-center justify-center -m-2 p-2 cursor-pointer"
+                >
+                  <FiInfo className="h-5 w-5 text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" />
+                </button>
+                <AnimatePresence>
+                  {hoveredSection === sectionIndex && (
+                    <InfoPopup info={section.info} />
+                  )}
+                </AnimatePresence>
               </div>
             )}
           </div>

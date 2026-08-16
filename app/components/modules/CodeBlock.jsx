@@ -2,9 +2,22 @@
 import { useState } from "react";
 import { FaCopy, FaCheck, FaCode } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import hljs from "highlight.js";
+// Import the core only + the 5 languages we actually ship. The default
+// "highlight.js" entry point bundles ~190 grammars (~900 KiB).
+import hljs from "highlight.js/lib/core";
+import javascript from "highlight.js/lib/languages/javascript";
+import python from "highlight.js/lib/languages/python";
+import java from "highlight.js/lib/languages/java";
+import c from "highlight.js/lib/languages/c";
+import cpp from "highlight.js/lib/languages/cpp";
 import "highlight.js/styles/github.css";
 import "highlight.js/styles/github-dark.css";
+
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("python", python);
+hljs.registerLanguage("java", java);
+hljs.registerLanguage("c", c);
+hljs.registerLanguage("cpp", cpp);
 
 const LANGUAGE_NAMES = {
   javascript: "JavaScript",
@@ -14,9 +27,16 @@ const LANGUAGE_NAMES = {
   cpp: "C++",
 };
 
+const escapeHtml = (code) =>
+  code
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
 export const highlightCode = (code, language) => {
-  const validLanguage = hljs.getLanguage(language) ? language : "plaintext";
-  return hljs.highlight(code, { language: validLanguage }).value;
+  // Core-only build has no "plaintext" grammar, so fall back to escaped text.
+  if (!hljs.getLanguage(language)) return escapeHtml(code);
+  return hljs.highlight(code, { language }).value;
 };
 
 const CodeBlock = ({ title, codeExamples }) => {

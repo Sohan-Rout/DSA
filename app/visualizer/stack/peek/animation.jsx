@@ -8,93 +8,105 @@ const StackVisualizer = () => {
   const [operation, setOperation] = useState(null);
   const [message, setMessage] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
+  const topRef = useRef(null);
 
-  const stackRef = useRef(null);
-  const itemRefs = useRef([]);
-  const peekRef = useRef(null);
+  // Intercept state updates coming from PushPop so a single-item pop
+  // (stack shrinking by exactly one) gets a "fly away" exit animation
+  // before it's actually removed. Pushes and resets pass straight through.
+  const handleSetStack = (updater) => {
+    const next = typeof updater === "function" ? updater(stack) : updater;
 
-  /* ---------- random numbers ---------- */
-  const addRandomStack = () => {
-    if (stack.length > 0) return;
-    setIsAnimating(true);
-    setOperation("create");
-    const nums = Array.from(
-      { length: 3 + Math.floor(Math.random() * 3) },
-      () => Math.floor(Math.random() * 999) + 1
-    );
-    setTimeout(() => {
-      setStack(nums);
-      setOperation(null);
-      setIsAnimating(false);
-    }, 600);
+    if (stack.length - next.length === 1 && topRef.current) {
+      const el = topRef.current;
+      gsap.to(el, {
+        y: -140,
+        x: 36,
+        rotate: 14,
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.in",
+        onComplete: () => setStack(next),
+      });
+      return;
+    }
+
+    setStack(next);
   };
 
-  /* ---------- gsap animations (safe) ---------- */
-  useEffect(() => {
-    itemRefs.current.length = 0;
-    if (!stackRef.current) return;
-
-    /* push */
-    if (operation?.includes("push") && itemRefs.current[0]) {
-      setIsAnimating(true);
-      const el = itemRefs.current[0];
-      gsap.set(el, { scale: 0, y: -60, opacity: 0 });
-      gsap
-        .timeline({ onComplete: () => setIsAnimating(false) })
-        .to(el, { scale: 1, y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.2)" });
-    }
-
-    /* pop */
-    if (operation?.includes("pop") && itemRefs.current[0]) {
-      setIsAnimating(true);
-      const el = itemRefs.current[0];
-      gsap.to(el, {
-        scale: 0,
-        y: -60,
-        opacity: 0,
-        duration: 0.35,
-        ease: "power2.in",
-        onComplete: () => setIsAnimating(false),
-      });
-    }
-
-    /* peek */
-    if (operation?.includes("Peek") && itemRefs.current[0]) {
-      setMessage(`Top value is ${stack[0]}`);           // ONLY message shown
-      setIsAnimating(true);
-      const el = itemRefs.current[0];
-      peekRef.current = el;
-      gsap.to(el, {
-        scale: 1.15,
-        boxShadow: "0 0 20px #a855f7",
-        duration: 0.3,
-        yoyo: true,
-        repeat: 3,
-        ease: "power1.inOut",
-        onComplete: () => setIsAnimating(false),
-      });
-    }
-
-    /* reorder */
+  // Runs the moment a new "top" box mounts in the DOM: a reliable
+  // drop-in entrance that doesn't depend on any surrounding state timing.
+  const animateDropIn = (el) => {
+    if (!el || el.dataset.dropped) return;
+    el.dataset.dropped = "true";
     gsap.fromTo(
-      itemRefs.current.filter(Boolean),
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.06, duration: 0.25, ease: "power2.out" }
+      el,
+      { y: -220, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.55,
+        ease: "bounce.out",
+        onComplete: () => {
+          gsap.fromTo(
+            el,
+            { scaleX: 1, scaleY: 1 },
+            {
+              scaleX: 1.08,
+              scaleY: 0.85,
+              duration: 0.08,
+              yoyo: true,
+              repeat: 1,
+              ease: "power1.out",
+            }
+          );
+        },
+      }
     );
+  };
 
-    return () => { peekRef.current = null; };
-  }, [stack, operation]);
+  const addRandomStack = () => {
+    if (stack.length > 0 || isAnimating) return;
+    setStack(
+      Array.from(
+        { length: 3 + Math.floor(Math.random() * 3) },
+        () => Math.floor(Math.random() * 999) + 1
+      )
+    );
+    setMessage("");
+  };
+
+  // Peek never mutates the stack, so the top box is highlighted in place.
+  useEffect(() => {
+    if (operation?.includes("Peek") && topRef.current) {
+      gsap.fromTo(
+        topRef.current,
+        { scale: 1 },
+        {
+          scale: 1.15,
+          yoyo: true,
+          repeat: 3,
+          duration: 0.2,
+          ease: "power1.inOut",
+        }
+      );
+    }
+  }, [operation]);
+
+  // Oldest first so the container can be laid out column-reverse: the
+  // newest item always lands visually on top without existing items
+  // ever needing to move, matching how a physical stack behaves.
+  const displayStack = [...stack].reverse();
 
   return (
-    <main className="container mx-auto px-6 pb-4">
+    <main className="container mx-auto px-2 pb-4">
       <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
-        Visualize Push, Pop, and Peek operations
+        Visualize the Peek operation on a stack
       </p>
 
-      <div className="max-w-md mx-auto">
+      <div className="max-w-4xl mx-auto">
         <PushPop
           stack={stack}
-          setStack={setStack}
+          setStack={handleSetStack}
           isAnimating={isAnimating}
           setIsAnimating={setIsAnimating}
           setMessage={setMessage}
@@ -103,42 +115,60 @@ const StackVisualizer = () => {
 
         <button
           onClick={addRandomStack}
-          disabled={isAnimating || stack.length}
-          className="w-full mb-4 bg-blue-500 hover:bg-blue-600 text-white dark:text-black px-4 py-2 rounded disabled:opacity-50"
+          disabled={isAnimating || stack.length > 0}
+          className="w-full mb-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition disabled:opacity-50"
         >
           Add Random Stack
         </button>
 
-        <div ref={stackRef} className="bg-white dark:bg-neutral-950 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-          {/* peek-only message */}
-          {message && (
-            <div className="mb-6 p-3 rounded-lg bg-green-200 dark:bg-green-500 text-black">
+        <div className="bg-white dark:bg-neutral-950 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+          {operation && (
+            <div className="mb-4 p-3 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-center text-sm">
+              {operation}
+            </div>
+          )}
+
+          {message && !operation && (
+            <div className="mb-4 p-3 rounded-lg bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 text-center text-sm font-medium">
               {message}
             </div>
           )}
 
-          {/* vertical stack */}
-          <div className="flex flex-col items-center min-h-[200px]">
-            <div className="w-full max-w-xs">
-              {stack.length === 0 ? (
-                <div className="text-center py-8 text-gray-500 border-2 border-dashed rounded-lg">
+          <div className="flex flex-col items-center">
+            <div className="h-5 text-sm font-medium text-blue-500 dark:text-blue-400">
+              {stack.length > 0 && "↑ Top"}
+            </div>
+
+            <div className="relative w-40 flex flex-col-reverse items-stretch gap-2 p-2 min-h-[260px] border-l-2 border-r-2 border-b-[6px] border-gray-300 dark:border-gray-700 rounded-b-2xl bg-gradient-to-b from-transparent to-gray-50 dark:to-neutral-900/60">
+              {stack.length === 0 && (
+                <div className="m-auto text-sm text-gray-400 dark:text-gray-600">
                   Stack is empty
                 </div>
-              ) : (
-                <div className="space-y-2">
-                  {stack.map((num, idx) => (
-                    <div
-                      key={idx}
-                      ref={(el) => (itemRefs.current[idx] = el)}
-                      className={`p-4 rounded-lg border-2 text-center font-medium transition-all ${
-                        idx === 0 ? "bg-blue-100 dark:bg-blue-900 border-blue-300 dark:border-blue-700" : "bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600"
-                      }`}
-                    >
-                      {num}
-                    </div>
-                  ))}
-                </div>
               )}
+
+              {displayStack.map((item, i) => {
+                const isTop = i === displayStack.length - 1;
+                return (
+                  <div
+                    key={i}
+                    ref={(el) => {
+                      if (isTop) topRef.current = el;
+                      animateDropIn(el);
+                    }}
+                    className={`h-11 shrink-0 rounded-lg shadow-md flex items-center justify-center font-semibold text-sm text-white bg-gradient-to-br ${
+                      isTop
+                        ? "from-blue-500 to-blue-600 ring-2 ring-blue-300 dark:ring-blue-700 ring-offset-2 ring-offset-white dark:ring-offset-neutral-950"
+                        : "from-slate-400 to-slate-500 dark:from-slate-600 dark:to-slate-700"
+                    }`}
+                  >
+                    {item}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="h-5 text-sm text-gray-500 dark:text-gray-400">
+              {stack.length > 0 && "Bottom"}
             </div>
           </div>
         </div>

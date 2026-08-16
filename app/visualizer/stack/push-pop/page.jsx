@@ -62,7 +62,7 @@ export default function Page() {
       </div>
 
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
-        <section className="px-6 md:px-12">
+        <section className="px-2 md:px-12">
           <ModuleHeader category="Stack" title="Push & Pop" paths={paths} />          <Content />
         </section>
 
@@ -70,18 +70,18 @@ export default function Page() {
           <Animation />
         </section>
 
-        <section className="px-6">
+        <section className="px-2">
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-2">
             Test Your Knowledge before moving forward!
           </p>
           <Quiz />
         </section>
 
-        <section className="px-6">
+        <section className="px-2">
           <CodeBlock title="Stack Push & Pop Implementation" codeExamples={codeExamples} />
         </section>
 
-        <section className="px-6 md:px-12 my-12">
+        <section className="px-2 md:px-12 my-12">
           <ModuleCard
             moduleId={MODULE_MAPS.pushPop}
             title="Stack Push Pop"
@@ -90,7 +90,7 @@ export default function Page() {
           />
         </section>
 
-        <section className="px-6">
+        <section className="px-2">
           <ExploreOther
             title="Explore other operations"
             links={[

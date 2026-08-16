@@ -51,9 +51,9 @@ const HeroSection = () => {
                   className="path"
                 />
               </svg>
-              Updates: Stack Visualization Updated !
+              New : Added Graphs & Trees visualizer !
             </span>
-            <Link href="./blogs">
+            <Link href="./visualizer">
               <button className="text-blue-600 hover:text-blue-700 dark:hover:text-blue-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -234,7 +234,7 @@ const InfixToPrefixVisualizer = () => {
 
   /* ----------  render  ---------- */
   return (
-    <main className="container mx-auto px-6">
+    <main className="container mx-auto px-2">
       <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-8">
         Visualize the conversion from infix to prefix notation
       </p>

@@ -58,15 +58,15 @@ export default function Page() {
       </div>
 
       <div className="py-20 bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-gray-200">
-        <section className="px-6 md:px-12">
+        <section className="px-2 md:px-12">
           <ModuleHeader category="Queue" title="Using Linked List" paths={paths} />          <Content />
         </section>
 
-        <section className="px-6">
+        <section className="px-2">
           <CodeBlock title="Implementation Enqueue & Dequeue" codeExamples={codeExamples} />
         </section>
 
-        <section className="px-6 md:px-12 my-12">
+        <section className="px-2 md:px-12 my-12">
           <ModuleCard
             moduleId={MODULE_MAPS.queueLinkedList}
             title="Queue Using Linked List"
@@ -75,7 +75,7 @@ export default function Page() {
           />
         </section>
 
-        <section className="px-6">
+        <section className="px-2">
           <ExploreOther
             title="Explore other implementation"
             links={[{ text: "Using Array", url: "./array" }]}
