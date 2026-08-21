@@ -1,12 +1,13 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   FiClock,
   FiCalendar,
   FiArrowRight,
 } from "react-icons/fi";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import PopularTopics from "@/app/blogs/components/PopularTopics";
 import blogData from "@/app/blogs/data/blogs.json";
 
@@ -14,8 +15,6 @@ const BlogPage = () => {
   // State management
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const searchRef = useRef(null);
 
   // Filtered blogs
   const filteredBlogs = blogData.filter((blog) => {
@@ -40,30 +39,11 @@ const BlogPage = () => {
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 4);
 
-  // Popular tags
-  const popularTags = [
-    "React",
-    "JavaScript",
-    "CSS",
-    "TypeScript",
-    "Web Dev",
-    "Performance",
-    "DSA",
-  ];
-
-  // Handle click outside search
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setIsSearchFocused(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  // Popular tags, taken from the posts themselves so every chip returns results
+  const popularTags = [...new Set(blogData.flatMap((blog) => blog.tags))];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-900 dark:to-zinc-950">
+    <div className="min-h-screen bg-linear-to-br from-zinc-50 to-zinc-100 dark:from-zinc-900 dark:to-zinc-950">
       <main className="container mx-auto max-w-6xl px-6 pt-32 pb-20">
         {/* Hero Section */}
         <section className="mb-20 text-center">
@@ -74,7 +54,7 @@ const BlogPage = () => {
             className="text-5xl mt-10 md:text-5xl font-bold text-zinc-800 dark:text-white mb-6 leading-tight"
           >
             Insights for{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
               Modern Developers
             </span>
           </motion.h1>
@@ -88,7 +68,10 @@ const BlogPage = () => {
             programming, and more.
           </motion.p>
 
-          {/* Email Subscribe Section */}
+          {/* Email Subscribe Section — hidden until the mailing list backend
+              exists. The form has no submit handler yet, so re-enable this
+              only once there is somewhere for the address to go. */}
+          {/*
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -111,6 +94,7 @@ const BlogPage = () => {
               By clicking "Subscribe", you agree to receive updates when new blogs are published.
             </p>
           </motion.div>
+          */}
         </section>
 
         {/* Featured Posts */}
@@ -134,10 +118,13 @@ const BlogPage = () => {
             >
               <Link href={featuredPosts[0].slug}>
                 <div className="relative h-64 w-full overflow-hidden">
-                  <img
+                  <Image
                     src={featuredPosts[0].image}
                     alt={featuredPosts[0].title}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    priority
+                    className="object-cover transition-transform duration-500 hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <span className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-medium px-2.5 py-1 rounded-full">
@@ -182,11 +169,13 @@ const BlogPage = () => {
                   whileHover={{ y: -5 }}
                   className="flex gap-4 items-start bg-white dark:bg-zinc-800 rounded-xl p-4 shadow hover:shadow-md transition-shadow border border-zinc-100 dark:border-zinc-700/50"
                 >
-                  <div className="w-32 h-24 overflow-hidden rounded-md">
-                    <img
+                  <div className="relative w-32 h-24 shrink-0 overflow-hidden rounded-md">
+                    <Image
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      fill
+                      sizes="128px"
+                      className="object-cover transition-transform duration-500 hover:scale-105"
                     />
                   </div>
                   <div className="flex-1">
@@ -212,6 +201,7 @@ const BlogPage = () => {
         {/* Popular Tags */}
         <PopularTopics
           tags={popularTags}
+          value={searchQuery}
           onTagClick={(tag) => {
             setSearchQuery(tag);
             setActiveCategory("All");
@@ -262,10 +252,12 @@ const BlogPage = () => {
                   <Link href={post.slug}>
                     <div className="flex flex-col h-full">
                       <div className="aspect-video overflow-hidden relative">
-                        <img
+                        <Image
                           src={post.image}
                           alt={post.title}
-                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                          className="object-cover transition-transform duration-500 hover:scale-105"
                         />
                       </div>
                       <div className="p-5 flex flex-col gap-3 flex-grow">
@@ -306,7 +298,7 @@ const BlogPage = () => {
                   No articles found
                 </h3>
                 <p className="text-zinc-500 dark:text-zinc-400 mb-6 max-w-md mx-auto">
-                  We couldn't find any articles matching your search. Try a
+                  We couldn{"\'"}t find any articles matching your search. Try a
                   different term or browse our categories.
                 </p>
                 <button

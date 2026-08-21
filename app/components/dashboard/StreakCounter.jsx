@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import Image from "next/image";
 import { Award } from "lucide-react";
 
 function StreakCounter({ activityDates }) {
@@ -38,7 +39,7 @@ function StreakCounter({ activityDates }) {
       {/* Circle with fire icon and current streak */}
       <div className="w-24 h-24 rounded-full border-4 border-orange-500 flex flex-col items-center justify-center shadow-lg relative">
         <span className="text-3xl">
-          <img src="/assets/fire.svg" className="w-10 h-10" alt="fire" />
+          <Image src="/assets/fire.svg" width={40} height={40} className="w-10 h-10" alt="" />
         </span>
         <span className="text-xl font-bold text-gray-800 dark:text-gray-200">
           {currentStreak}

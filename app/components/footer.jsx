@@ -116,6 +116,10 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  {/* Remote SVG badge from Product Hunt: next/image cannot optimise
+                      SVG, and allowing it would require dangerouslyAllowSVG. Dimensions
+                      are fixed below, so there is no layout shift to fix either. */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={`https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=974127&theme=dark&t=1749182745821`}
                     alt="DSA&#0032;Visualizer - Visualize&#0032;&#0038;&#0032;learn&#0032;dsa&#0032;the&#0032;smart&#0032;way | Product Hunt"

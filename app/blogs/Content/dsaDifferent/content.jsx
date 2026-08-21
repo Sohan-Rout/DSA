@@ -1,314 +1,180 @@
 "use client";
-import { FiCopy, FiBookmark, FiShare2 } from "react-icons/fi";
-import { useState } from "react";
+import {
+  ArticleShell,
+  H2,
+  P,
+  Callout,
+  Timeline,
+  CheckList,
+  BulletList,
+  DataTable,
+  FAQ,
+} from "@/app/blogs/components/article";
 
-const BlogContent = () => {
-  const [copied, setCopied] = useState(false);
+const universalConcepts = [
+  "Time complexity, and reasoning about it in Big O notation.",
+  "Space complexity and the memory a structure really costs.",
+  "How an abstract data type is expected to behave, independent of code.",
+  "Algorithm design patterns — divide and conquer, greedy, two pointers.",
+  "The problem-solving approach itself: recognising which shape a problem has.",
+];
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+const languageNotes = [
+  {
+    title: "JavaScript",
+    description:
+      "Arrays are objects with integer keys, and plain objects double as hash maps that happen to preserve insertion order. There is no built-in heap, so a priority queue is something you write yourself. The single-threaded event loop also shapes how you design anything asynchronous.",
+  },
+  {
+    title: "Python",
+    description:
+      "Lists are dynamic arrays and dictionaries are heavily optimised hash tables, so a lot of algorithms collapse into a couple of lines. Sorting is Timsort, and generator expressions let you iterate huge sequences without materialising them.",
+  },
+  {
+    title: "Java",
+    description:
+      "The Collections framework hands you the structures directly — ArrayList, HashMap, PriorityQueue, TreeMap — with their complexity documented. In exchange you deal with generics, boxing costs, and the garbage collector's timing.",
+  },
+  {
+    title: "C++",
+    description:
+      "The STL gives you vector, map, unordered_map and priority_queue, and manual memory control lets you get closer to the theoretical performance than anywhere else. That control is also the reason it is easier to get wrong.",
+  },
+];
 
-  const Paragraphs = [
-    `A common question among developers learning Data Structures and Algorithms (DSA) is whether these concepts change across programming languages. While the fundamental principles remain consistent, their implementations and optimizations can vary significantly. Let's explore how DSA manifests in different languages and what this means for developers.`,
-    `Programming languages offer different levels of abstraction and built-in utilities. For example, Python's rich standard library makes certain algorithms easier to implement, whereas C++ might offer more control over memory, making it suitable for performance-critical scenarios.`,
-    `This language-agnostic nature is why DSA knowledge transfers well between languages. However, the implementation details and performance characteristics can differ.`,
-    `These differences become particularly important when working on performance-critical applications or when interfacing between multiple languages in a single project.`,
-    `When learning DSA concepts, focus first on understanding the core principles, then explore how your primary language implements these structures. This approach gives you both the theoretical foundation and practical skills needed for real-world development.`,
-  ];
+const sameIdeaTable = [
+  { concept: "Hash map", js: "Object / Map", py: "dict", java: "HashMap" },
+  { concept: "Dynamic array", js: "Array", py: "list", java: "ArrayList" },
+  { concept: "Set", js: "Set", py: "set", java: "HashSet" },
+  { concept: "Priority queue", js: "— (write it)", py: "heapq", java: "PriorityQueue" },
+];
 
-  const universalConcepts = [
-    { points: "Time complexity (Big O notation)" },
-    { points: "Space complexity analysis" },
-    { points: "Abstract data type behaviors" },
-    { points: "Algorithm design patterns" },
-    { points: "Problem-solving approaches" },
-  ];
+const whereItMatters = [
+  {
+    title: "Performance-critical paths",
+    description:
+      "Two languages can implement the same algorithm at the same complexity and still differ by an order of magnitude in wall-clock time, because of memory layout and allocation behaviour.",
+  },
+  {
+    title: "Interfacing between languages",
+    description:
+      "Serialising data across a boundary can quietly turn a cheap structure into an expensive one. A hash map crossing a JSON boundary becomes an object, and its guarantees change with it.",
+  },
+  {
+    title: "Interviews",
+    description:
+      "You will be assessed on the concept, but you write in a specific language. Knowing that your language lacks a heap — and how you would improvise one — is the difference between stalling and continuing.",
+  },
+];
 
-  const languageExamples = [
-    {
-      language: "JavaScript",
-      structures: [
-        "Arrays are actually objects with integer keys",
-        "Objects as hash maps (but with insertion order preserved)",
-        "No built-in heap/priority queue",
-        "TypedArrays for numerical work"
-      ],
-      algorithms: [
-        "Event loop affects async algorithm design",
-        "Single-threaded nature impacts parallel processing",
-        "Prototypal inheritance affects object structures"
-      ]
-    },
-    {
-      language: "Python",
-      structures: [
-        "Lists as dynamic arrays",
-        "Dictionaries as highly optimized hash tables",
-        "Tuples as immutable sequences",
-        "Sets with built-in mathematical operations"
-      ],
-      algorithms: [
-        "List comprehensions enable concise transformations",
-        "Generator expressions for memory-efficient iteration",
-        "Built-in sort uses Timsort algorithm"
-      ]
-    },
-    {
-      language: "Java",
-      structures: [
-        "Primitive arrays vs. ArrayList",
-        "HashMap vs. TreeMap implementations",
-        "Strongly typed collections",
-        "Concurrent collections for threading"
-      ],
-      algorithms: [
-        "JIT compilation affects runtime characteristics",
-        "Garbage collection impacts memory usage",
-        "Bytecode execution adds abstraction layer"
-      ]
-    }
-  ];
+const protips = [
+  "Learn DSA properly in one language first, then compare implementations — not the other way round.",
+  "Read your standard library's implementation of the structures you use most.",
+  "Benchmark rather than assuming; language performance folklore is often years out of date.",
+  "Understand how your language's memory model affects the structures you build.",
+  "Don't translate code between languages line by line — adapt it to that language's strengths.",
+];
 
-  const webDevImplications = [
-    {
-      area: "Frontend (JavaScript)",
-      considerations: [
-        "Virtual DOM diffing algorithms in frameworks",
-        "State management efficiency in large apps",
-        "Memoization techniques for performance"
-      ]
-    },
-    {
-      area: "Backend (Node.js/Python/Java)",
-      considerations: [
-        "Database query optimization",
-        "API response caching strategies",
-        "Load balancing and request processing"
-      ]
-    },
-    {
-      area: "Full-Stack",
-      considerations: [
-        "Data serialization between layers",
-        "Algorithm choice for shared business logic",
-        "Consistent data modeling across boundaries"
-      ]
-    }
-  ];
+const faqs = [
+  {
+    q: "Does my choice of language make DSA harder?",
+    a: "Only marginally, and mostly at the edges. Languages with richer standard libraries hide more of the implementation, which is convenient while learning and occasionally a gap later when you need to build the thing yourself.",
+  },
+  {
+    q: "Will my DSA knowledge transfer if I switch languages?",
+    a: "Almost entirely. The concepts are the transferable part; what you re-learn is which built-in maps to which concept, and where the performance surprises are.",
+  },
+  {
+    q: "Which language should I learn DSA in?",
+    a: "The one you already write most fluently. Struggling with unfamiliar syntax while learning an unfamiliar algorithm doubles the difficulty for no benefit.",
+  },
+];
 
-  const protips = [
-    { points: "Learn DSA in one language first, then compare implementations" },
-    { points: "Use language-specific benchmarks to verify performance assumptions" },
-    { points: "Study standard library implementations of common structures" },
-    { points: "Understand how your language's memory model affects data structures" },
-    { points: "Don’t just translate code between languages, adapt it to leverage language strengths" }
-  ];
+const BlogContent = () => (
+  <ArticleShell
+    category="Programming Languages"
+    title="Are Data Structures and Algorithms Different for Different Languages?"
+    deck="The concepts are identical everywhere. What changes is what's built in, what you write yourself, and where the performance surprises hide."
+    date="May 19, 2025"
+    readTime="8 min read"
+    image="/blog/dsaDifferent.png"
+    imageAlt="Data structures compared across programming languages"
+    imageCaption="Same ideas, different vocabulary — and occasionally different costs."
+    url="https://www.dsavisualizer.in/blogs/Content/dsaDifferent"
+    hashtags="#DSA #Programming #LearnToCode"
+  >
+    <P>
+      A common question among people learning data structures and algorithms is
+      whether any of it changes when you switch languages. Does a stack in Python
+      behave like a stack in C++? Is recursion the same in JavaScript as in Java?
+    </P>
+    <P>
+      The fundamentals stay put. The implementations, the built-ins and the
+      performance characteristics do not.
+    </P>
 
-  return (
-    <article className="max-w-4xl mx-auto px-4 pt-14 py-10">
-      {/* Article Header */}
-      <header className="mb-12 pt-14">
-        <div className="flex items-center justify-between mb-4">
-          <span className="px-3 py-1 rounded-full text-sm font-medium bg-black text-white dark:bg-zinc-700 dark:text-zinc-200">
-            Computer Science
-          </span>
-          <div className="flex space-x-3 text-gray-500 dark:text-zinc-400">
-            <button
-              onClick={handleCopy}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
-              aria-label="Copy link"
-            >
-              {copied ? <span className="text-xs">Copied!</span> : <FiCopy />}
-            </button>
-            <button
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
-              aria-label="Bookmark"
-            >
-              <FiBookmark />
-            </button>
-            <button
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
-              aria-label="Share"
-            >
-              <FiShare2 />
-            </button>
-          </div>
-        </div>
+    <Callout title="The short answer">
+      The <strong>concepts</strong> are language-agnostic and transfer almost
+      completely. The <strong>implementations</strong> vary — which is why your
+      knowledge moves with you, but your code does not.
+    </Callout>
 
-        <h1 className="text-3xl md:text-4xl font-bold text-black dark:text-zinc-100 mb-4 leading-tight">
-          Are Data Structures and Algorithms Different for Different Languages?
-        </h1>
+    <H2 id="universal">What stays the same everywhere</H2>
+    <P>
+      These do not change no matter what you write in, which is what makes the
+      subject worth learning once:
+    </P>
+    <CheckList items={universalConcepts} />
+    <P>
+      A queue is first-in-first-out in every language that has ever existed. That
+      guarantee is the concept; everything below is packaging.
+    </P>
 
-        <div className="flex items-center text-gray-500 dark:text-zinc-400 text-sm">
-          <span>Published on May 20, 2025</span>
-          <span className="mx-2">•</span>
-          <span>10 min read</span>
-        </div>
-      </header>
+    <H2 id="vocabulary">The same idea, four names</H2>
+    <P>
+      Most of the apparent difference between languages is vocabulary. The same
+      four structures, as each language spells them:
+    </P>
+    <DataTable
+      columns={["Concept", "JavaScript", "Python", "Java"]}
+      rows={sameIdeaTable.map((row) => [
+        row.concept,
+        row.js,
+        row.py,
+        row.java,
+      ])}
+    />
+    <P>
+      Note the last row: JavaScript has no built-in priority queue, so what is a
+      one-line import elsewhere is something you implement yourself. That is the
+      kind of difference worth knowing in advance.
+    </P>
 
-      {/* Featured Image */}
-      <div className="relative w-full h-64 md:h-96 bg-gray-100 dark:bg-zinc-800 rounded-xl mb-12 overflow-hidden">
-        <img
-          src="/blog/dsaDifferent.png"
-          alt="Data structures across programming languages"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-30 dark:opacity-50"></div>
-        <div className="absolute bottom-6 left-6 text-white dark:text-zinc-100">
-          <p className="text-sm">
-            Comparing DSA implementations across JavaScript, Python, and Java
-          </p>
-        </div>
-      </div>
+    <H2 id="languages">Where each language actually differs</H2>
+    <Timeline items={languageNotes} />
 
-      {/* Article Content */}
-      <div className="prose prose-lg dark:prose-invert max-w-none">
-        <p className="text-lg text-gray-700 dark:text-zinc-300 leading-relaxed mb-8">
-          {Paragraphs[0]}
-        </p>
+    <H2 id="matters">When the differences start to matter</H2>
+    <P>
+      For most learning, they do not. Three situations where they genuinely do:
+    </P>
+    <Timeline items={whereItMatters} />
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-black dark:text-zinc-100 mb-6 pb-2 border-b border-gray-200 dark:border-zinc-700">
-            Universal DSA Concepts
-          </h2>
-          <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg mb-6">
-            <p className="font-medium text-green-800 dark:text-green-200">
-              Core Insight: The theoretical foundations of data structures and algorithms
-              remain constant regardless of programming language.
-            </p>
-          </div>
-          <ul className="list-disc pl-6 mb-6 space-y-2 dark:text-zinc-300">
-            {universalConcepts.map((item, index) => (
-              <li key={index}>{item.points}</li>
-            ))}
-          </ul>
-          <p className="dark:text-zinc-300">{Paragraphs[2]}</p>
-        </section>
+    <H2 id="approach">How to approach it</H2>
+    <BulletList items={protips} />
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-black dark:text-zinc-100 mb-6 pb-2 border-b border-gray-200 dark:border-zinc-700">
-            Language-Specific Implementations
-          </h2>
+    <H2 id="faq">Common questions</H2>
+    <FAQ items={faqs} />
 
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {languageExamples.map((lang, index) => (
-              <div key={index} className="border dark:border-zinc-700 rounded-lg overflow-hidden">
-                <div className="bg-blue-50 dark:bg-blue-900/30 p-4 border-b dark:border-zinc-700">
-                  <h3 className="font-bold text-lg dark:text-zinc-100">{lang.language}</h3>
-                </div>
-                <div className="p-4">
-                  <h4 className="font-medium dark:text-zinc-200 mb-2">Structures:</h4>
-                  <ul className="list-disc pl-5 mb-4 space-y-1 text-sm dark:text-zinc-300">
-                    {lang.structures.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                  <h4 className="font-medium dark:text-zinc-200 mb-2">Algorithms:</h4>
-                  <ul className="list-disc pl-5 space-y-1 text-sm dark:text-zinc-300">
-                    {lang.algorithms.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="dark:text-zinc-300">
-            These distinctions illustrate that while the same data structure or algorithm may exist across languages, their behavior, performance, or even syntax might differ. Developers should not only know how something works in theory but also how their chosen language expresses and optimizes it.
-          </p>
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-black dark:text-zinc-100 mb-6 pb-2 border-b border-gray-200 dark:border-zinc-700">
-            Web Development Implications
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-6">
-            {webDevImplications.map((item, index) => (
-              <div key={index} className="bg-gray-50 dark:bg-zinc-800 p-5 rounded-lg">
-                <h3 className="font-bold dark:text-zinc-100 mb-3">{item.area}</h3>
-                <ul className="space-y-2">
-                  {item.considerations.map((point, i) => (
-                    <li key={i} className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-2"></span>
-                      <span className="dark:text-zinc-300">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <p className="dark:text-zinc-300">{Paragraphs[3]}</p>
-          <p className="dark:text-zinc-300">
-            Developers building cross-platform or microservice-based architectures especially benefit from understanding how DSA implementations behave differently across tech stacks.
-          </p>
-        </section>
-
-        <section className="dark:bg-zinc-800 bg-gray-100 dark:text-white p-8 rounded-xl mb-12">
-          <h3 className="text-xl font-bold mb-4">
-            Pro Tips for Language-Agnostic DSA Learning
-          </h3>
-          <ul className="list-disc pl-6 space-y-2">
-            {protips.map((item, index) => (
-              <li key={index}>{item.points}</li>
-            ))}
-          </ul>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-black dark:text-zinc-100 mb-4">
-            Key Takeaway
-          </h2>
-          <div className="dark:bg-zinc-800 bg-gray-100 p-6 rounded-lg">
-            <p className="dark:text-white">
-              While data structures and algorithms may be implemented differently across languages,
-              the core concepts remain the same. Master the fundamentals first, then learn how your
-              preferred languages realize these concepts in practice. This dual understanding not only enhances your adaptability but also empowers you to choose the most efficient solution depending on the project requirements and language capabilities.
-            </p>
-          </div>
-        </section>
-      </div>
-
-      {/* Article Footer */}
-      <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-zinc-700">
-        <div className="flex flex-wrap justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <h3 className="font-bold text-black dark:text-zinc-100 mb-2">
-              Share this article
-            </h3>
-            <div className="flex space-x-3">
-              {[
-                {
-                  name: "Twitter",
-                  url: "https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.dsavisualizer.in%2Fblogs%2FContent%2FdsaDifferent&text=Exploring%20if%20Data%20Structures%20and%20Algorithms%20are%20different%20across%20languages%20in%20this%20blog%20post%21%20A%20must-read%20for%20programmers.%20%23DSA%20%23ProgrammingLanguages"
-                },
-                {
-                  name: "LinkedIn",
-                  url: "https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.dsavisualizer.in%2Fblogs%2FContent%2FdsaDifferent"
-                },
-                {
-                  name: "Facebook",
-                  url: "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.dsavisualizer.in%2Fblogs%2FContent%2FdsaDifferent"
-                }
-              ].map((social) => (
-                <button
-                  key={social.name}
-                  onClick={() => window.open(social.url, '_blank')}
-                  className="px-4 py-2 border rounded-lg text-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors dark:border-zinc-600 dark:text-zinc-300"
-                >
-                  {social.name}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
-    </article>
-  );
-};
+    <H2 id="takeaway">Key takeaway</H2>
+    <P>
+      Learn the core principles first, then learn how your primary language
+      implements them. That order gives you a foundation that survives a change
+      of job, framework or language, plus the practical detail you need today.
+    </P>
+    <P>
+      Put differently: learn the idea once, and re-learn only the spelling.
+    </P>
+  </ArticleShell>
+);
 
 export default BlogContent;

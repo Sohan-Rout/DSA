@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { useUser } from "@/app/contexts/UserContext";
 import Link from "next/link";
+import Image from "next/image";
 import ActivityDashboard from "@/app/components/dashboard/ActivityDashboard";
 import Footer from "@/app/components/footer";
 import { trackActivity } from "@/lib/activity";
@@ -94,11 +95,15 @@ export default function Dashboard() {
                         className="border dark:border-gray-600 rounded-lg p-4 bg-white dark:bg-neutral-950 shadow-sm flex flex-col justify-between"
                       >
                         <div>
-                          <img
-                            src={`/modules/${mod.image}`}
-                            alt={mod.title}
-                            className="w-full h-40 object-cover rounded-md mb-2"
-                          />
+                          <div className="relative w-full h-40 mb-2 overflow-hidden rounded-md">
+                            <Image
+                              src={`/modules/${mod.image}`}
+                              alt={mod.title}
+                              fill
+                              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                              className="object-cover"
+                            />
+                          </div>
                           <h3 className="text-md font-semibold text-gray-800 dark:text-gray-200 py-2">{mod.title}</h3>
                           <p className="text-sm text-gray-500 dark:text-gray-400">{mod.description}</p>
                         </div>
