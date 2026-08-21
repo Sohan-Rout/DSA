@@ -1,243 +1,269 @@
 "use client";
-import { FiCopy, FiBookmark, FiShare2 } from "react-icons/fi";
-import { useState } from "react";
+import {
+  ArticleShell,
+  H2,
+  P,
+  Callout,
+  Timeline,
+  CheckList,
+  BulletList,
+  DataTable,
+  FAQ,
+} from "@/app/blogs/components/article";
 
-const BlogContent = () => {
-  const [copied, setCopied] = useState(false);
+const masterySignals = [
+  "You recognise which pattern a new problem belongs to, before writing anything.",
+  "You reach for the right structure without looking it up.",
+  "You can state the time and space cost of your approach, and why.",
+  "You can explain the trade-off out loud, not just code it.",
+  "When an approach stalls halfway, you can debug your own reasoning rather than starting over.",
+];
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+const factors = [
+  {
+    title: "Where you're starting from",
+    description:
+      "A working developer who already writes loops, recursion, and classes comfortably skips the first few weeks entirely. Someone new to programming should budget two to three extra months before DSA proper.",
+  },
+  {
+    title: "Hours per week, not total hours",
+    description:
+      "Ten hours spread across five days beats ten hours on a Sunday, every time. Recall is built by spacing, so the calendar matters as much as the clock.",
+  },
+  {
+    title: "What you're aiming at",
+    description:
+      "Passing a screening round is a far smaller target than being fluent. Interview readiness is a subset of mastery, and it arrives much sooner.",
+  },
+  {
+    title: "Whether you revisit anything",
+    description:
+      "Solving 300 problems once teaches less than solving 150 twice. Learners who never revisit tend to plateau around month four.",
+  },
+];
 
-  const Paragraphs = [
-    `If you're a student, developer, or career switcher, you've likely asked: "How long will it take to learn Data Structures and Algorithms (DSA)?" The answer isn't one-size-fits-all: it depends on your goals, consistency, and background.`,
-    `Before estimating time, let's define what “mastering” DSA really means. Mastery isn't just knowing syntax or solving rote problems. It means pattern recognition, approaching unseen questions with confidence, and making trade-offs in real-world system design.`,
-    `For most learners, 3 months gets you foundational knowledge, 6–9 months develops confidence for interviews, and 12+ months results in true mastery. DSA is a long-term game.`,
-    `Here's a simple 12-week roadmap:\n\n- Weeks 1–2: Arrays, Strings, HashMaps\n- Weeks 3–4: Stacks, Queues, Recursion\n- Weeks 5–6: Linked Lists, Trees\n- Weeks 7–8: Heaps, Binary Trees, BSTs\n- Weeks 9–10: Graphs, DFS/BFS\n- Weeks 11–12: DP, Tries, Bit Manipulation`,
-    `Avoid common traps: passively watching tutorials, skipping fundamentals, not reviewing problems. Instead, learn → code → revise. Tools like LeetCode, NeetCode, and your own notes/GitHub repo will accelerate learning.`
-  ];
+const timelines = [
+  {
+    title: "0–3 months · Foundations",
+    description:
+      "Arrays, strings, hashing, recursion, and basic complexity analysis. You can solve most easy problems unaided, though slowly. Expect to feel like you're memorising rather than understanding — that's normal at this stage.",
+  },
+  {
+    title: "3–6 months · Breadth",
+    description:
+      "Trees, graphs, heaps, and the traversal patterns that keep reappearing. Medium problems stop feeling random and start falling into recognisable families.",
+  },
+  {
+    title: "6–9 months · Interview readiness",
+    description:
+      "Dynamic programming, harder mediums, and — the real difference — speed under time pressure. You can talk through an approach while writing it.",
+  },
+  {
+    title: "12+ months · Fluency",
+    description:
+      "Patterns surface almost immediately, unfamiliar hard problems are approachable, and the trade-offs carry over into system design decisions.",
+  },
+];
 
-  const tasks = [
-    { points: "Creating responsive UIs with HTML/CSS/JavaScript" },
-    { points: "Working with frameworks like React, Next.js, or Vue" },
-    { points: "Integrating RESTful APIs and GraphQL endpoints" },
-    { points: "Implementing state management solutions" },
-    { points: "Optimizing performance and accessibility" },
-  ];
+const hoursTable = [
+  { pace: "5 hrs / week", ready: "~12 months", note: "Alongside a full-time job" },
+  { pace: "10 hrs / week", ready: "~6–7 months", note: "The common sustainable pace" },
+  { pace: "20 hrs / week", ready: "~3–4 months", note: "Between jobs, or full-time study" },
+];
 
-  const scenarios = [
-    { points: "Performance optimization" },
-    { points: "Complex state management" },
-    { points: "Efficient data processing" },
-    { points: "Interview preparation" },
-    { points: "Library/framework development" },
-    { points: "System design decisions" },
-  ];
+const roadmap = [
+  { title: "Weeks 1–2", description: "Arrays, Strings, HashMaps" },
+  { title: "Weeks 3–4", description: "Stacks, Queues, Recursion" },
+  { title: "Weeks 5–6", description: "Linked Lists, Trees" },
+  { title: "Weeks 7–8", description: "Heaps, Binary Trees, BSTs" },
+  { title: "Weeks 9–10", description: "Graphs, DFS / BFS" },
+  { title: "Weeks 11–12", description: "DP, Tries, Bit Manipulation" },
+];
 
-  const examples = [
-    {
-      title: "Autocomplete Search",
-      description: "Trie data structure improves search efficiency",
-    },
-    {
-      title: "Infinite Scroll",
-      description: "Efficient pagination requires proper array handling",
-    },
-    {
-      title: "Form Validation",
-      description: "Graphs can model complex validation rules",
-    },
-    {
-      title: "State Management",
-      description: "Understanding trees helps with state updates",
-    },
-  ];
+const method = [
+  {
+    title: "Learn, code, then leave it",
+    description:
+      "Read or watch the idea once, then implement it from an empty file. Close the tab before you start — copying along teaches your fingers, not your memory.",
+  },
+  {
+    title: "Return after a gap",
+    description:
+      "Redo anything you got wrong three to seven days later. The second attempt is where the pattern actually sticks.",
+  },
+  {
+    title: "Write the pattern down in your own words",
+    description:
+      "One or two lines per problem: what signalled the approach. Re-reading your own phrasing beats re-reading someone else's explanation.",
+  },
+  {
+    title: "Volume last, not first",
+    description:
+      "Grinding problem counts only pays off once the underlying structure makes sense. Before that it is expensive pattern-matching with no foundation.",
+  },
+];
 
-  const protip = [
-    { points: "Implement your own simplified version of React's reconciliation algorithm" },
-    { points: "Build a custom hook that efficiently manages large datasets" },
-    { points: "Create a visualization of how different sorting algorithms work" },
-  ];
+const traps = [
+  "Watching tutorials passively — it feels productive and teaches almost nothing.",
+  "Skipping recursion because it's uncomfortable, then hitting a wall at trees and DP.",
+  "Chasing a new problem every session and never revisiting an old one.",
+  "Optimising for problem count instead of pattern coverage.",
+  "Starting dynamic programming in month one, bouncing off it, and concluding you're bad at this.",
+];
 
-  return (
-    <article className="max-w-4xl mx-auto px-4 pt-14 py-10">
-      {/* Article Header */}
-      <header className="mb-12 pt-14">
-        <div className="flex items-center justify-between mb-4">
-          <span className="px-3 py-1 rounded-full text-sm font-medium bg-black text-white dark:bg-zinc-700 dark:text-zinc-200">
-            Web Development
-          </span>
-          <div className="flex space-x-3 text-gray-500 dark:text-zinc-400">
-            <button
-              onClick={handleCopy}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
-              aria-label="Copy link"
-            >
-              {copied ? <span className="text-xs">Copied!</span> : <FiCopy />}
-            </button>
-            <button
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
-              aria-label="Bookmark"
-            >
-              <FiBookmark />
-            </button>
-            <button
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
-              aria-label="Share"
-            >
-              <FiShare2 />
-            </button>
-          </div>
-        </div>
+const checkpoints = [
+  {
+    title: "End of month 1",
+    description:
+      "You can write a binary search and a hash-map frequency count from memory, and explain why each is O(log n) and O(n).",
+  },
+  {
+    title: "End of month 3",
+    description:
+      "Given an unseen easy problem, you pick an approach within a couple of minutes rather than staring at it.",
+  },
+  {
+    title: "End of month 6",
+    description:
+      "You solve most mediums in under 40 minutes and can narrate your reasoning while coding.",
+  },
+];
 
-        <h1 className="text-3xl md:text-4xl font-bold text-black dark:text-zinc-100 mb-4 leading-tight">
-          Is Data Structures and Algorithms Important for Web Developers?
-        </h1>
+const faqs = [
+  {
+    q: "Can I learn DSA in a month?",
+    a: "You can cover the syllabus in a month. You will not retain much of it. A month of intense study is roughly equivalent to the first foundations block, and it fades quickly without revisiting.",
+  },
+  {
+    q: "Do I need to finish DSA before applying for jobs?",
+    a: "No. Most screening rounds sit in the easy-to-medium band. Six months of consistent work usually clears that bar, and the rest keeps improving while you interview.",
+  },
+  {
+    q: "Which language should I use?",
+    a: "Whichever you already write fluently. Fighting unfamiliar syntax while learning an unfamiliar algorithm doubles the difficulty for no benefit.",
+  },
+  {
+    q: "How many problems is enough?",
+    a: "Coverage matters more than count. Roughly 150–200 problems spread across every major pattern, each revisited once, beats 500 clustered in whatever the site recommended.",
+  },
+];
 
-        <div className="flex items-center text-gray-500 dark:text-zinc-400 text-sm">
-          <span>Published on June 20, 2025</span>
-          <span className="mx-2">•</span>
-          <span>10 min read</span>
-        </div>
-      </header>
+const BlogContent = () => (
+  <ArticleShell
+    category="DSA"
+    title="Time Required to Learn and Master DSA"
+    deck="Honest timelines for going from your first array problem to genuine fluency — and what actually decides which end of the range you land on."
+    date="June 20, 2025"
+    readTime="10 min read"
+    image="/blog/timeRequired.png"
+    imageAlt="A learning timeline for data structures and algorithms"
+    imageCaption="Consistency moves this timeline far more than raw talent does."
+    url="https://www.dsavisualizer.in/blogs/Content/timeRequired"
+    hashtags="#DSA #Programming #LearnToCode"
+  >
+    <P>
+      If you&apos;re a student, a working developer, or switching careers,
+      you&apos;ve probably asked some version of the same question: how long
+      will this take? It gets answered badly almost everywhere — either
+      &quot;three months!&quot; from someone selling a course, or &quot;it
+      depends&quot; from someone who doesn&apos;t want to commit.
+    </P>
+    <P>
+      It does depend, but not on anything mysterious. The variables are known,
+      and once you plug yours in the range narrows considerably.
+    </P>
 
-      {/* Featured Image */}
-      <div className="relative w-full h-64 md:h-96 bg-gray-100 dark:bg-zinc-800 rounded-xl mb-12 overflow-hidden">
-        <img
-          src="/blog/timeRequired.png"
-          alt="Web developer working with algorithms"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-30 dark:opacity-50"></div>
-        <div className="absolute bottom-6 left-6 text-white dark:text-zinc-100">
-          <p className="text-sm">
-            Understanding DSA helps build better web applications
-          </p>
-        </div>
-      </div>
+    <Callout title="The short answer">
+      Around <strong>250–300 focused hours</strong> gets most people to
+      interview-ready. At ten hours a week that is roughly six months. True
+      fluency — unseen hard problems, trade-offs in design discussions — takes a
+      year or more of continued practice.
+    </Callout>
 
-      {/* Article Content */}
-      <div className="prose prose-lg dark:prose-invert max-w-none">
-        <p className="text-lg text-gray-700 dark:text-zinc-300 leading-relaxed mb-8">
-          {Paragraphs[0]}
-        </p>
+    <H2 id="finish-line">First, define the finish line</H2>
+    <P>
+      &quot;Mastering DSA&quot; is uselessly vague as a goal, and vague goals are
+      why people feel like they are never finished. Mastery isn&apos;t knowing
+      syntax or having solved a particular number of problems. It looks like
+      this:
+    </P>
+    <CheckList items={masterySignals} />
+    <P>
+      Notice that none of those are &quot;solved 500 problems&quot;. Problem
+      count is a proxy that stops correlating with skill fairly early.
+    </P>
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-black dark:text-zinc-100 mb-6 pb-2 border-b border-gray-200 dark:border-zinc-700">
-            What Web Developers Actually Do
-          </h2>
-          <p className="mb-4 dark:text-zinc-300">
-            Typical web development tasks include:
-          </p>
-          <ul className="list-disc pl-6 mb-4 space-y-2 dark:text-zinc-300">
-            {tasks.map((item, index) => (
-              <li key={index}>{item.points}</li>
-            ))}
-          </ul>
-          <p className="dark:text-zinc-300">{Paragraphs[1]}</p>
-        </section>
+    <H2 id="factors">What actually moves your timeline</H2>
+    <P>
+      Four things account for most of the variation between two people studying
+      the same material:
+    </P>
+    <Timeline items={factors} />
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-black dark:text-zinc-100 mb-6 pb-2 border-b border-gray-200 dark:border-zinc-700">
-            Where DSA Knowledge Shines in Web Development
-          </h2>
-          <div className="bg-gray-50 dark:bg-zinc-800 p-6 rounded-lg mb-4">
-            <p className="mb-2 font-medium dark:text-zinc-200">
-              Key scenarios where DSA matters:
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {scenarios.map((item, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-white dark:bg-zinc-700 rounded-full text-sm shadow-sm dark:text-zinc-200"
-                >
-                  {item.points}
-                </span>
-              ))}
-            </div>
-          </div>
-          <p className="dark:text-zinc-300">{Paragraphs[2]}</p>
-        </section>
+    <H2 id="timelines">Realistic timelines</H2>
+    <P>
+      Assuming steady, deliberate practice rather than cramming, this is the
+      shape the journey usually takes:
+    </P>
+    <Timeline items={timelines} />
+    <P>
+      Those bands assume roughly ten hours a week. Because the total is closer
+      to fixed than the duration is, your pace sets the calendar:
+    </P>
+    <DataTable
+      columns={["Pace", "Interview-ready", "Typically"]}
+      rows={hoursTable.map((row) => [row.pace, row.ready, row.note])}
+    />
+    <P>
+      The trap in the bottom row is burnout. Twenty hours a week is only faster
+      if you sustain it for all four months, and most people don&apos;t.
+    </P>
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-black dark:text-zinc-100 mb-6 pb-2 border-b border-gray-200 dark:border-zinc-700">
-            Real-World Examples
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6 mb-4">
-            {examples.map((item, index) => (
-              <div
-                key={index}
-                className="border dark:border-zinc-700 p-4 rounded-lg hover:shadow-md dark:hover:shadow-zinc-700/30 transition-shadow"
-              >
-                <h3 className="font-bold mb-1 dark:text-zinc-100">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-zinc-400">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+    <H2 id="roadmap">A 12-week roadmap</H2>
+    <P>
+      This covers the foundations block at eight to ten hours a week. Each
+      section leans on the one before it, so resist skipping ahead to dynamic
+      programming before recursion feels comfortable.
+    </P>
+    <Timeline items={roadmap} />
 
-        <section className="bg-black dark:bg-zinc-800 text-white dark:text-white p-8 rounded-xl mb-12">
-          <h3 className="text-xl font-bold mb-4">
-            Pro Tip: Practical Learning
-          </h3>
-          <p className="mb-2">{Paragraphs[3]}</p>
-          <ul className="list-disc pl-6 space-y-1">
-            {protip.map((item, index) => (
-              <li key={index}>{item.points}</li>
-            ))}
-          </ul>
-        </section>
+    <H2 id="method">How to spend the hours</H2>
+    <P>
+      The gap between finishing in six months and still grinding at two years is
+      almost always method, not ability. Four habits do most of the compressing:
+    </P>
+    <Timeline items={method} />
 
-        <section>
-          <h2 className="text-2xl font-bold text-black dark:text-zinc-100 mb-4">
-            The Verdict
-          </h2>
-          <p className="text-lg dark:text-zinc-300">{Paragraphs[4]}</p>
-        </section>
-      </div>
+    <H2 id="traps">What slows people down</H2>
+    <P>Predictably, and in roughly this order of damage:</P>
+    <BulletList items={traps} />
 
-      {/* Article Footer */}
-      <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-zinc-700">
-        <div className="flex flex-wrap justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <h3 className="font-bold text-black dark:text-zinc-100 mb-2">
-              Share this article
-            </h3>
-            <div className="flex space-x-3">
-              {[
-                {
-                  name: "Twitter",
-                  url: "https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.dsavisualizer.in%2Fblogs%2FContent%2FdsaWebDev&text=Just%20read%20this%20insighful%20blog%3A%20Is%20Data%20Structures%20and%20Algorithms%20Important%20for%20Web%20Developers%3F%20%23WebDev%20%23DSA%20%23Programming"
-                },
-                {
-                  name: "LinkedIn",
-                  url: "https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.dsavisualizer.in%2Fblogs%2FContent%2FdsaWebDev"
-                },
-                {
-                  name: "Facebook",
-                  url: "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.dsavisualizer.in%2Fblogs%2FContent%2FdsaWebDev"
-                }
-              ].map((social) => (
-                <button
-                  key={social.name}
-                  onClick={() => window.open(social.url, '_blank')}
-                  className="px-4 py-2 border rounded-lg text-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors dark:border-zinc-600 dark:text-zinc-300"
-                >
-                  {social.name}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
-    </article>
-  );
-};
+    <H2 id="checkpoints">Checkpoints: are you on track?</H2>
+    <P>
+      Rather than measuring by problems solved, check whether you can do these:
+    </P>
+    <Timeline items={checkpoints} />
+    <Callout>
+      If a checkpoint slips by a month, that is normal and not a signal to
+      restart. If it slips by three, the method is usually the problem — revisit
+      the habits above before adding more hours.
+    </Callout>
+
+    <H2 id="faq">Common questions</H2>
+    <FAQ items={faqs} />
+
+    <H2 id="verdict">The verdict</H2>
+    <P>
+      Three months to be dangerous, six to nine to be interview-ready, a year or
+      more to be genuinely fluent. Those numbers barely move with talent and
+      move enormously with consistency.
+    </P>
+    <P>
+      So pick a pace you can actually hold for six months rather than the one
+      that looks impressive for two weeks. The timeline mostly takes care of
+      itself after that.
+    </P>
+  </ArticleShell>
+);
 
 export default BlogContent;

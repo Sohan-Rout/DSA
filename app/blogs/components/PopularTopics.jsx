@@ -2,14 +2,14 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-const PopularTopics = ({ tags, onTagClick }) => {
+const PopularTopics = ({ tags, value = "", onTagClick }) => {
   const [showFilters, setShowFilters] = useState(false);
   return (
     <section className="mt-20 mb-5">
       <h2 className="text-3xl font-medium text-zinc-800 dark:text-white mb-2">
         Explore Popular Topics
       </h2>
-      <div className='h-[2px] max-w-6xl rounded-full bg-gradient-to-l from-zinc-600 via-black to-zinc-600 mb-6'></div>
+      <div className='h-[2px] max-w-6xl rounded-full bg-gradient-to-r from-blue-500 via-blue-400 to-transparent dark:from-blue-500 dark:via-blue-600 dark:to-transparent mb-6'></div>
       <div className="mb-6 flex flex-col md:flex-row items-center justify-center gap-4 max-w-4xl mx-auto">
         <div className="relative w-full md:w-2/3">
           <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-zinc-500 dark:text-zinc-400">
@@ -20,6 +20,7 @@ const PopularTopics = ({ tags, onTagClick }) => {
           <input
             type="text"
             placeholder="Search articles..."
+            value={value}
             onChange={(e) => onTagClick(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />

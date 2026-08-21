@@ -14,6 +14,7 @@ import {
 } from "react-icons/fi";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import dynamic from "next/dynamic";
 
 const Turnstile = dynamic(
@@ -133,7 +134,7 @@ export default function LoginPage() {
             onClick={handleGoogleSignIn}
             className="w-full flex items-center justify-center py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-950 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-50 dark:hover:bg-neutral-900 duration-300 transition-all"
           >
-            <img src="./google.webp" width={24}></img>
+            <Image src="/google.webp" alt="" width={24} height={24} />
             <span className="mx-2">Continue with Google</span>
           </button>
         </div>

@@ -93,17 +93,40 @@ const HeroSection = () => {
               See algorithms come to life in your mind{"\'"}s eye before you code
               them. The way developers actually think.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center lg:justify-start">
-              <button
-                onClick={handleStartVisualizing}
-                className="relative px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-blue-500/30 group overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Start Visualizing Now
+            {/* Wrapper so the parent's space-y doesn't push the reassurance
+                away from the button it belongs to */}
+            <div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center lg:justify-start">
+                <button
+                  onClick={handleStartVisualizing}
+                  className="relative px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-blue-500/30 group overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Start Visualizing Now
+                  </span>
+                  <span className="absolute inset-0 bg-linear-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                </button>
+                <Promotion/>
+              </div>
+
+              <div className="mt-2 flex justify-center lg:justify-start">
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-emerald-600 dark:text-emerald-400">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 shrink-0"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  No login/signup required
                 </span>
-                <span className="absolute inset-0 bg-linear-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              </button>
-              <Promotion/>
+              </div>
             </div>
 
             {/* Trust indicators */}
