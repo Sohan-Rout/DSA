@@ -12,6 +12,7 @@ import Footer from '@/app/components/footer';
 import BackToTop from '@/app/components/ui/backtotop';
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/queue/types/deque" },
   title: "Double Ended Queue (Deque) | Learn with JS, C, Python, Java Code",
   description:
     "Explore Double Ended Queue (Deque) in Data Structures with visual animations and full code implementations in JavaScript, C, Python, and Java. Perfect for mastering DSA concepts and interview preparation.",

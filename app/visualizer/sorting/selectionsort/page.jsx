@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/sorting/selectionsort" },
   title:
     "Selection Sort Visualizer | Simple Sorting Animation with Code in JS, C, Python, Java",
   description:

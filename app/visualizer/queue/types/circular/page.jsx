@@ -12,6 +12,7 @@ import Footer from "@/app/components/footer";
 import BackToTop from "@/app/components/ui/backtotop";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/queue/types/circular" },
   title: "Circular Queue | Learn with JS, C, Python, Java Code",
   description:
     "Understand how Circular Queue works in Data Structures using animations and complete code examples in JavaScript, C, Python, and Java. Ideal for DSA beginners and interview preparation.",

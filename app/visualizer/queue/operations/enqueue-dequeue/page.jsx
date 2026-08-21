@@ -12,6 +12,7 @@ import Footer from "@/app/components/footer";
 import BackToTop from "@/app/components/ui/backtotop";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/queue/operations/enqueue-dequeue" },
   title:
     "Enqueue and Dequeue Operations in Queue | Learn Queue with JS, C, Python, Java Code",
   description:

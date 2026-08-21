@@ -12,6 +12,7 @@ import Footer from '@/app/components/footer';
 import BackToTopButton from '@/app/components/ui/backtotop';
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/stack/peek" },
   title:
     "Stack Peek Visualizer | Understand Peek Operation in Stack with Code in JS, C, Python, Java",
   description:

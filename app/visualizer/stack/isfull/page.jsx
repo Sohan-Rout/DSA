@@ -12,6 +12,7 @@ import Footer from "@/app/components/footer";
 import BackToTopButton from "@/app/components/ui/backtotop";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/stack/isfull" },
   title:
     "Stack Is Full Visualizer | Check Full Condition in Stack with Code in JS, C, Python, Java",
   description:

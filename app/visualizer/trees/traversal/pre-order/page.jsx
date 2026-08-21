@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/traversal/pre-order" },
   title: "Pre-order Tree Traversal | Step-by-Step Animation & Explanation",
   description:
     "Learn how pre-order traversal (Root, Left, Right) works on a binary tree with an interactive visualizer, a step-by-step visit-order walkthrough, code examples in JavaScript, C, Python, and Java, and a quiz.",

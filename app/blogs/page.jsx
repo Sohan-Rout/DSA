@@ -3,6 +3,14 @@ import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
 
 export const metadata = {
+  openGraph: {
+    url: "/blogs",
+    siteName: "DSA Visualizer",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "DSA Visualizer" }],
+    locale: "en_US",
+    type: "website",
+  },
+  alternates: { canonical: "/blogs" },
   title: 'DSA Blogs & Guides | Learn Data Structures and Algorithms Effectively',
   description:
     'Explore beginner-friendly blogs on Data Structures and Algorithms (DSA) covering Python, Java, C++, Web Development, Machine Learning, and more. Learn, practice, and master DSA through curated insights.',

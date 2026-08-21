@@ -1,7 +1,7 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiMail, FiMessageSquare, FiSend } from 'react-icons/fi';
+import { FiX, FiMail, FiMessageSquare, FiSend, FiChevronRight } from 'react-icons/fi';
 
 const ContactSupportPopup = () => {
   const [isOpen, setIsOpen] = useState(false);

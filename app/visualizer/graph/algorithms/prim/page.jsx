@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/graph/algorithms/prim" },
   title: "Prim's Algorithm | Animation and Explanation",
   description:
     "Learn how Prim's algorithm builds a minimum spanning tree by growing outward from a start vertex, always pulling in the cheapest edge to a new vertex, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",

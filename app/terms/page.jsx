@@ -5,6 +5,14 @@ import ModuleHeader from "@/app/components/modules/Header";
 import PolicyContent from "@/app/components/policy/PolicyContent";
 
 export const metadata = {
+  openGraph: {
+    url: "/terms",
+    siteName: "DSA Visualizer",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "DSA Visualizer" }],
+    locale: "en_US",
+    type: "website",
+  },
+  alternates: { canonical: "/terms" },
   title: "Terms of Service | DSA Visualizer",
   description:
     "Read the DSA Visualizer Terms of Service covering acceptance of terms, use license, user responsibilities, and intellectual property.",

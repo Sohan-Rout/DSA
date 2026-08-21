@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/applications/heap-sort" },
   title: "Heap Sort | Animation and Explanation",
   description:
     "Learn how Heap Sort builds a max-heap from an array and repeatedly extracts the largest element to sort in place, with an interactive visualizer showing both the array and its heap tree, code examples in JavaScript, C, Python, and Java, and a quiz.",

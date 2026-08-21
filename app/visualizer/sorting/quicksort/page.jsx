@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/sorting/quicksort" },
   title:
     "Quick Sort Algorithm | Learn with Interactive Animations",
   description:

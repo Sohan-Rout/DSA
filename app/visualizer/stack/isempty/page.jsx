@@ -12,6 +12,7 @@ import Footer from "@/app/components/footer";
 import BackToTopButton from "@/app/components/ui/backtotop";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/stack/isempty" },
   title:
     "Stack is empty Visualizer | Learn Stack IsEmpty Operation in JS, C, Python, Java",
   description:

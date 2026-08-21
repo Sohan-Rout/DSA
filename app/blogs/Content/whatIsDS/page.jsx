@@ -3,6 +3,7 @@ import Footer from "@/app/components/footer";
 import Content from "@/app/blogs/Content/whatIsDS/content";
 
 export const metadata = {
+  alternates: { canonical: "/blogs/Content/whatIsDS" },
   title: "What Are Data Structures? A Beginner-Friendly Guide",
   description:
     "Confused by arrays, stacks, or linked lists? This beginner-friendly guide breaks down what data structures are, their types, and why they matter for every aspiring programmer.",
@@ -23,7 +24,7 @@ export const metadata = {
     title: "What Are Data Structures? A Beginner-Friendly Guide",
     description:
       "Understand the fundamentals of data structures in simple terms. A must-read guide for anyone new to programming and computer science.",
-    url: "./blog/whatIsDS.png",
+    url: "/blogs/Content/whatIsDS",
     siteName: "DSA Visualizer",
     locale: "en_IN",
     type: "article",

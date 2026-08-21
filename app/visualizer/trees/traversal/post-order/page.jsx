@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/traversal/post-order" },
   title: "Post-order Tree Traversal | Step-by-Step Animation & Explanation",
   description:
     "Learn how post-order traversal (Left, Right, Root) works on a binary tree with an interactive visualizer, a step-by-step visit-order walkthrough, code examples in JavaScript, C, Python, and Java, and a quiz.",

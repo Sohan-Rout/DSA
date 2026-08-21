@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/graph/algorithms/dijkstra" },
   title: "Dijkstra's Algorithm | Animation and Explanation",
   description:
     "Learn how Dijkstra's algorithm finds the shortest weighted-distance path from a start vertex to every other vertex by greedily finalizing the closest unvisited vertex, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",

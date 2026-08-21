@@ -9,6 +9,7 @@ import Footer from '@/app/components/footer';
 import BackToTop from '@/app/components/ui/backtotop';
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/queue/implementation/array" },
   title:
     "Queue Implementation Using Array | Visualize Queue Operations in JS, C, Python, Java",
   description:

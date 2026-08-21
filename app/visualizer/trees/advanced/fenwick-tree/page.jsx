@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/advanced/fenwick-tree" },
   title: "Fenwick Tree (Binary Indexed Tree) | Update & Query Animation and Explanation",
   description:
     "Learn how a Fenwick Tree (Binary Indexed Tree) answers prefix and range sum queries with fast point updates using just one array and the lowbit trick, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",

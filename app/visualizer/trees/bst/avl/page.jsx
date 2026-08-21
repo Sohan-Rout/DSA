@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/bst/avl" },
   title: "AVL Tree Balancing | Step-by-Step Rotation Animation & Explanation",
   description:
     "Learn how AVL trees self-balance a Binary Search Tree with rotations (Left-Left, Right-Right, Left-Right, Right-Left), with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
