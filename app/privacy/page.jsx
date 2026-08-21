@@ -13,7 +13,7 @@ export const metadata = {
     type: "website",
   },
   alternates: { canonical: "/privacy" },
-  title: "Privacy Policy | DSA Visualizer",
+  title: "Privacy Policy",
   description:
     "Read the DSA Visualizer Privacy Policy to learn how we collect, use, and protect your information when you use our interactive DSA learning platform.",
   robots: "index, follow",

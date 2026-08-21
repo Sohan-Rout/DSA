@@ -12,7 +12,12 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata = {
   metadataBase: new URL("https://www.dsavisualizer.in"),
-  title: 'DSA Visualizer | Visualize & Learn DSA the Smart Way',
+  title: {
+    default: 'DSA Visualizer | Visualize & Learn DSA the Smart Way',
+    // Pages set a bare title; the brand is appended here so it stays
+    // consistent and new pages get it automatically.
+    template: '%s | DSA Visualizer',
+  },
   description: 'Master Data Structures and Algorithms with interactive visualizations. Perfect for students, beginners, and interview prep. Visualize Stack, Queue, Tree, Graph, Sorting & more.',
   keywords: [
     'DSA Visualizer',

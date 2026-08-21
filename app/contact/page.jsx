@@ -16,7 +16,7 @@ export const metadata = {
     type: "website",
   },
   alternates: { canonical: "/contact" },
-  title: "Contact Us | DSA Visualizer",
+  title: "Contact Us",
   description:
     "Get in touch with DSA Visualizer — report a bug, correct an explanation, ask about privacy and your data, or suggest a new module. Every message reaches the person who maintains the site.",
   keywords: [

@@ -126,13 +126,13 @@ const SectionsDisplay = ({ sections, searchQuery }) => {
                           className="group/item relative block p-4 rounded-xl border border-gray-200/70 dark:border-gray-700/50 hover:border-blue-400/50 dark:hover:border-blue-500/50 transition-all duration-200 bg-white dark:bg-neutral-950 hover:from-blue-50/70 hover:to-blue-50/30 dark:hover:from-blue-900/20 dark:hover:to-blue-900/10 overflow-hidden"
                         >
                           {/* Hover effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-blue-500/0 opacity-0 group-hover/item:opacity-100 dark:via-blue-600/10 transition-opacity duration-300"></div>
+                          <div className="absolute inset-0 bg-linear-to-r from-blue-500/0 via-blue-500/5 to-blue-500/0 opacity-0 group-hover/item:opacity-100 dark:via-blue-600/10 transition-opacity duration-300"></div>
                           
                           <div className="relative flex items-center justify-between">
                             <span className="text-gray-800 dark:text-gray-200 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 font-medium transition-colors">
                               {item.name}
                             </span>
-                            <FiChevronRight className="h-4 w-4 text-gray-400 group-hover/item:text-blue-500 dark:group-hover/item:text-blue-400 transition-colors flex-shrink-0" />
+                            <FiChevronRight className="h-4 w-4 text-gray-400 group-hover/item:text-blue-500 dark:group-hover/item:text-blue-400 transition-colors shrink-0" />
                           </div>
                         </Link>
                       ))}
@@ -146,16 +146,16 @@ const SectionsDisplay = ({ sections, searchQuery }) => {
                   <Link
                     key={itemIndex}
                     href={item.path}
-                    className="group/item relative block p-4 rounded-xl border border-gray-200/70 dark:border-gray-700/50 hover:border-blue-400/50 dark:hover:border-blue-500/50 transition-all duration-200 bg-gradient-to-b from-white/50 to-white/0 dark:from-gray-800/30 dark:to-gray-800/10 hover:from-blue-50/70 hover:to-blue-50/30 dark:hover:from-blue-900/20 dark:hover:to-blue-900/10 overflow-hidden"
+                    className="group/item relative block p-4 rounded-xl border border-gray-200/70 dark:border-gray-700/50 hover:border-blue-400/50 dark:hover:border-blue-500/50 transition-all duration-200 bg-linear-to-b from-white/50 to-white/0 dark:from-gray-800/30 dark:to-gray-800/10 hover:from-blue-50/70 hover:to-blue-50/30 dark:hover:from-blue-900/20 dark:hover:to-blue-900/10 overflow-hidden"
                   >
                     {/* Hover effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-blue-500/0 opacity-0 group-hover/item:opacity-100 dark:via-blue-600/10 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-linear-to-r from-blue-500/0 via-blue-500/5 to-blue-500/0 opacity-0 group-hover/item:opacity-100 dark:via-blue-600/10 transition-opacity duration-300"></div>
                     
                     <div className="relative flex items-center justify-between">
                       <span className="text-gray-800 dark:text-gray-200 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 font-medium transition-colors">
                         {item.name}
                       </span>
-                      <FiChevronRight className="h-4 w-4 text-gray-400 group-hover/item:text-blue-500 dark:group-hover/item:text-blue-400 transition-colors flex-shrink-0" />
+                      <FiChevronRight className="h-4 w-4 text-gray-400 group-hover/item:text-blue-500 dark:group-hover/item:text-blue-400 transition-colors shrink-0" />
                     </div>
                   </Link>
                 ))}
