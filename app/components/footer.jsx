@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { GoHomeFill } from "react-icons/go";
-import { MdAnimation } from "react-icons/md";
+import { MdAnimation, MdEmail } from "react-icons/md";
 import { IoMdInformationCircle } from "react-icons/io";
 import { HiSparkles } from "react-icons/hi2";
 import { RiQuestionLine } from "react-icons/ri";
@@ -12,7 +12,8 @@ const Footer = () => {
     { href: "/", text: "Home", icon: GoHomeFill },
     { href: "/#features", text: "Features", icon: HiSparkles },
     { href: "/visualizer", text: "Visualizer", icon: MdAnimation },
-    { href: "/#about", text: "About", icon: IoMdInformationCircle },
+    { href: "/about", text: "About", icon: IoMdInformationCircle },
+    { href: "/contact", text: "Contact", icon: MdEmail },
     { href: "/#faq", text: "FAQs", icon: RiQuestionLine },
   ];
 

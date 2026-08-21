@@ -11,6 +11,7 @@ import GraphModal from '@/app/components/models/GraphModal';
 import TutorialOverlay from '@/app/components/ui/TutorialOverlay';
 
 export const metadata = {
+  alternates: { canonical: "/visualizer" },
   title: 'Algorithm Visualizer | DSA Visualizer',
   description: 'Explore visual representations and source code for various DSA algorithms including searching, sorting, stacks, queues, trees, graphs, and stack-based expression evaluation like Polish Notation using arrays and linked lists. Interactive and beginner-friendly!',
   keywords: [

@@ -5,6 +5,14 @@ import ModuleHeader from "@/app/components/modules/Header";
 import PolicyContent from "@/app/components/policy/PolicyContent";
 
 export const metadata = {
+  openGraph: {
+    url: "/cookies",
+    siteName: "DSA Visualizer",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "DSA Visualizer" }],
+    locale: "en_US",
+    type: "website",
+  },
+  alternates: { canonical: "/cookies" },
   title: "Cookie Policy | DSA Visualizer",
   description:
     "Read the DSA Visualizer Cookie Policy to learn what cookies we use, why we use them, and how you can manage your cookie preferences.",

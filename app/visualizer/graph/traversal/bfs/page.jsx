@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/graph/traversal/bfs" },
   title: "Breadth-First Search (BFS) | Animation and Explanation",
   description:
     "Learn how Breadth-First Search explores a graph outward one distance-ring at a time using a queue, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",

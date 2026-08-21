@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/bst/deletion" },
   title: "Binary Search Tree Deletion | Step-by-Step Animation & Explanation",
   description:
     "Learn how deletion works in a Binary Search Tree, covering leaf, one-child, and two-children cases, plus in-order successor replacement, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",

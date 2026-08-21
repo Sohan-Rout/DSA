@@ -12,6 +12,7 @@ import Footer from '@/app/components/footer';
 import BackToTopButton from '@/app/components/ui/backtotop';
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/stack/push-pop" },
   title:
     "Stack Push & Pop Visualizer & Quiz | Learn Stack Operations with Code in JS, C, Python, Java",
   description:

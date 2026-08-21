@@ -3,6 +3,7 @@ import Footer from "@/app/components/footer";
 import Content from "@/app/blogs/Content/dsaWebDev/content";
 
 export const metadata = {
+  alternates: { canonical: "/blogs/Content/dsaWebDev" },
   title: "Is Data Structures and Algorithms Important for Web Developers?",
   description:
     "Discover how DSA can elevate your web development skills. Learn when and why understanding data structures and algorithms matters for frontend and backend web devs.",
@@ -23,7 +24,7 @@ export const metadata = {
     title: "Is Data Structures and Algorithms Important for Web Developers?",
     description:
       "Explore how learning DSA can boost your efficiency, optimize performance, and prepare you for tech interviews, even as a web developer.",
-    url: "./blog/dsaWebDev.png",
+    url: "/blogs/Content/dsaWebDev",
     siteName: "DSA Visualizer",
     locale: "en_IN",
     type: "article",

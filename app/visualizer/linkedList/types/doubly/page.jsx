@@ -12,6 +12,14 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 import ExploreOther from "@/app/components/ui/exploreOther";
 
 export const metadata = {
+  openGraph: {
+    url: "/visualizer/linkedList/types/doubly",
+    siteName: "DSA Visualizer",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "DSA Visualizer" }],
+    locale: "en_US",
+    type: "website",
+  },
+  alternates: { canonical: "/visualizer/linkedList/types/doubly" },
   title: 'Doubly Linked List Implementation | Visualize Doubly Linked List in JS, C, Python, Java',
   description: 'Explore Doubly Linked List implementation with interactive animations and code examples in JavaScript, C, Python, and Java. Learn insertion, deletion, and traversal from both directions. Perfect for DSA beginners and interview preparation.',
   keywords: [

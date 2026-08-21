@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/sorting/bubblesort" },
   title: "Bubble Sort Algorithm | Step-by-Step Animation",
   description:
     "Visualize Bubble Sort in action with interactive animations, code examples in JavaScript, C, Python, and Java, and test your understanding with a dedicated Bubble Sort quiz. Learn how Bubble Sort works through comparisons and swaps in an easy-to-understand format.",

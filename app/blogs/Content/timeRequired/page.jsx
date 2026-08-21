@@ -3,6 +3,7 @@ import Footer from "@/app/components/footer";
 import Content from "@/app/blogs/Content/timeRequired/content";
 
 export const metadata = {
+    alternates: { canonical: "/blogs/Content/timeRequired" },
     title: "Time Required to Learn and Master DSA",
     description:
         "Uncover how much time it takes to learn and master Data Structures and Algorithms (DSA) for web development. Get practical timelines, tips, and strategies for efficient DSA learning.",
@@ -23,7 +24,7 @@ export const metadata = {
         title: "Time Required to Learn and Master DSA",
         description:
             "Find out how long it takes to learn and master DSA for web development. Explore realistic timelines, learning strategies, and tips for success.",
-        url: "./blog/timeRequired.png",
+        url: "/blogs/Content/timeRequired",
         siteName: "DSA Visualizer",
         locale: "en_IN",
         type: "article",

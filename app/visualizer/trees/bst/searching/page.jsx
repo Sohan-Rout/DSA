@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/bst/searching" },
   title: "Binary Search Tree Searching | Step-by-Step Animation & Explanation",
   description:
     "Learn how searching works in a Binary Search Tree with an interactive visualizer, a step-by-step comparison-path walkthrough, code examples in JavaScript, C, Python, and Java, and a quiz.",

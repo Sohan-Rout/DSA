@@ -12,6 +12,7 @@ import BackToTopButton from '@/app/components/ui/backtotop';
 import Footer from '@/app/components/footer';
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/linkedList/types/singly" },
   title:
     "Singly Linked List Implementation | Visualize Linked List in JS, C, Python, Java",
   description:

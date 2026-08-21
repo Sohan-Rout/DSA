@@ -10,6 +10,7 @@ import ExploreOther from "@/app/components/ui/exploreOther";
 import BackToTopButton from "@/app/components/ui/backtotop";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/stack/implementation/usingArray" },
   title:
     "Stack Implementation using Array | Learn Stack in DSA with JS, C, Python, Java Code",
   description:

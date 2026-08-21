@@ -12,6 +12,14 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 import ExploreOther from "@/app/components/ui/exploreOther";
 
 export const metadata = {
+    openGraph: {
+        url: "/visualizer/linkedList/operations/reverse",
+        siteName: "DSA Visualizer",
+        images: [{ url: "/og.png", width: 1200, height: 630, alt: "DSA Visualizer" }],
+        locale: "en_US",
+        type: "website",
+    },
+    alternates: { canonical: "/visualizer/linkedList/operations/reverse" },
     title: 'Linked List Reverse Algorithm | Interactive Visualization & Step-by-Step Guide',
     description:
         'Explore how reversing a linked list works with interactive animations, clear explanations, and hands-on practice. Visualize each step of the reverse process and master linked list algorithms efficiently.',

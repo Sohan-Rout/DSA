@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/advanced/b-trees" },
   title: "B-Trees | Node Split Insertion Animation and Explanation",
   description:
     "Learn how B-Trees stay balanced by splitting full multi-key nodes, why they're the standard on-disk index structure for databases and filesystems, with an interactive insertion visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",

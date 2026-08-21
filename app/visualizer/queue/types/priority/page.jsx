@@ -12,6 +12,7 @@ import Footer from "@/app/components/footer";
 import BackToTop from "@/app/components/ui/backtotop";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/queue/types/priority" },
   title:
     "Priority Queue Algorithm | Visual Guide with Code in JavaScript, C, Python, Java",
   description:

@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/advanced/segment-trees" },
   title: "Segment Trees | Range Query & Update Animation and Explanation",
   description:
     "Learn how Segment Trees answer range queries and point updates in O(log n) by caching combined results over ranges, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",

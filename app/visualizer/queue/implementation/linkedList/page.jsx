@@ -10,6 +10,7 @@ import Footer from "@/app/components/footer";
 import BackToTop from "@/app/components/ui/backtotop";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/queue/implementation/linkedList" },
   title:
     "Queue Implementation Using Linked List | Visualize Queue in JS, C, Python, Java",
   description:

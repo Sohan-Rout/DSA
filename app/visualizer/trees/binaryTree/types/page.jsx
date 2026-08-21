@@ -9,6 +9,7 @@ import Quiz from "@/app/visualizer/trees/binaryTree/types/quiz";
 import Content from "@/app/visualizer/trees/binaryTree/types/content";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/binaryTree/types" },
   title: 'Binary Tree Types | Learn Full, Complete, and Degenerate Binary Trees in DSA',
   description: 'Learn about Binary Tree types in Data Structures and Algorithms, including Full Binary Tree, Complete Binary Tree, and Degenerate Tree with clear visual explanations, animations, and code examples in JavaScript, C, Python, and Java.',
   keywords: [

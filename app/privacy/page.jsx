@@ -5,6 +5,14 @@ import ModuleHeader from "@/app/components/modules/Header";
 import PolicyContent from "@/app/components/policy/PolicyContent";
 
 export const metadata = {
+  openGraph: {
+    url: "/privacy",
+    siteName: "DSA Visualizer",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "DSA Visualizer" }],
+    locale: "en_US",
+    type: "website",
+  },
+  alternates: { canonical: "/privacy" },
   title: "Privacy Policy | DSA Visualizer",
   description:
     "Read the DSA Visualizer Privacy Policy to learn how we collect, use, and protect your information when you use our interactive DSA learning platform.",

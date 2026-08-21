@@ -12,6 +12,7 @@ import ExploreOther from "@/app/components/ui/exploreOther";
 import BackToTopButton from "@/app/components/ui/backtotop";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/stack/polish/prefix" },
   title:
     "Prefix Notation using Stack | Learn Prefix Evaluation in DSA with Code in JS, C, Python, Java",
   description:

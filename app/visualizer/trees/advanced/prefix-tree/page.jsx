@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/advanced/prefix-tree" },
   title: "Trie (Prefix Tree) | Insertion & Search Animation and Explanation",
   description:
     "Learn how a Trie (Prefix Tree) stores words by sharing prefixes across paths, powering autocomplete and spell-checkers, with an interactive insertion and search visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",

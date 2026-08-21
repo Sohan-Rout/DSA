@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/algorithms/tree-isomorphism" },
   title: "Tree Isomorphism | Animation and Explanation",
   description:
     "Learn how to check whether two binary trees are isomorphic (identical once children can be freely swapped at any node) with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",

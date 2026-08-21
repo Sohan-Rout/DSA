@@ -12,6 +12,7 @@ import Footer from '@/app/components/footer';
 import BackToTop from '@/app/components/ui/backtotop';
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/queue/operations/peek-front" },
   title: "Queue Peek Front Operation | Learn with JS, C, Java, Python Code",
   description:
     "Understand the Peek Front operation in Queue with interactive animations and code examples in JavaScript, C, Python, and Java. Ideal for DSA beginners and interview preparation.",

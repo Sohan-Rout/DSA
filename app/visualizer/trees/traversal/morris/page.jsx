@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/traversal/morris" },
   title: "Morris Traversal | O(1) Space Tree Traversal Animation & Explanation",
   description:
     "Learn how Morris traversal visits a binary tree in-order using O(1) extra space by threading temporary links instead of a stack or queue, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",

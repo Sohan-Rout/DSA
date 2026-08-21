@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/sorting/mergesort" },
   title: "Merge Sort Algorithm | Learn with Interactive Animations",
   description:
     "Understand how Merge Sort works through step-by-step animations and test your knowledge with an interactive quiz. Includes code examples in JavaScript, C, Python, and Java. Perfect for beginners learning efficient divide-and-conquer sorting algorithms both visually and through hands-on coding.",

@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/graph/representation/adjacency-list" },
   title: "Adjacency List | Animation and Explanation",
   description:
     "Learn how an adjacency list represents a graph as per-vertex neighbor lists, with an interactive visualizer showing both the graph and its list side by side, code examples in JavaScript, C, Python, and Java, and a quiz.",

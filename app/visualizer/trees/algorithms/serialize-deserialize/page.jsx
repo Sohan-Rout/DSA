@@ -12,6 +12,7 @@ import ModuleCard from "@/app/components/ui/ModuleCard";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
+  alternates: { canonical: "/visualizer/trees/algorithms/serialize-deserialize" },
   title: "Serialize and Deserialize a Binary Tree | Animation and Explanation",
   description:
     "Learn how to serialize a binary tree into a string using preorder traversal with null markers, and deserialize that string back into an identical tree, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
