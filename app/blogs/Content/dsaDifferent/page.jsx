@@ -1,6 +1,9 @@
 import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
 import Content from "@/app/blogs/Content/dsaDifferent/content";
+import JsonLd from "@/app/blogs/components/JsonLd";
+import { articleSchema, faqSchema, breadcrumbSchema } from "@/app/blogs/lib/schema";
+import { faqs } from "./faqs";
 
 export const metadata = {
   alternates: { canonical: "/blogs/Content/dsaDifferent" },
@@ -29,6 +32,9 @@ export const metadata = {
     siteName: "DSA Visualizer",
     locale: "en_IN",
     type: "article",
+    publishedTime: "2025-05-19T08:00:00Z",
+    modifiedTime: "2026-08-21T00:00:00Z",
+    authors: ["Sohan Rout"],
     images: [
       {
         url: "./blog/dsaDifferent.png",
@@ -46,13 +52,33 @@ export const metadata = {
     images: ["./blog/dsaDifferent.png"],
   },
   category: "Technology",
-  publishedTime: "2024-05-15T08:00:00Z",
   robots: "index, follow",
 };
+
+const PATH = "/blogs/Content/dsaDifferent";
+
+const schemas = [
+  articleSchema({
+    headline: metadata.title,
+    description: metadata.description,
+    path: PATH,
+    image: "/blog/dsaDifferent.png",
+    datePublished: metadata.openGraph.publishedTime,
+    dateModified: metadata.openGraph.modifiedTime,
+    section: metadata.category,
+  }),
+  faqSchema(faqs),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Blogs", path: "/blogs" },
+    { name: metadata.title, path: PATH },
+  ]),
+];
 
 const page = () => {
   return(
     <main className="bg-white dark:bg-zinc-950">
+      <JsonLd schemas={schemas} />
       <Navbar/>
       <Content/>
       <Footer/>

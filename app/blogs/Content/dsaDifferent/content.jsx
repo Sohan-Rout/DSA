@@ -1,4 +1,5 @@
 "use client";
+import { faqs } from "./faqs";
 import {
   ArticleShell,
   H2,
@@ -75,20 +76,6 @@ const protips = [
   "Don't translate code between languages line by line — adapt it to that language's strengths.",
 ];
 
-const faqs = [
-  {
-    q: "Does my choice of language make DSA harder?",
-    a: "Only marginally, and mostly at the edges. Languages with richer standard libraries hide more of the implementation, which is convenient while learning and occasionally a gap later when you need to build the thing yourself.",
-  },
-  {
-    q: "Will my DSA knowledge transfer if I switch languages?",
-    a: "Almost entirely. The concepts are the transferable part; what you re-learn is which built-in maps to which concept, and where the performance surprises are.",
-  },
-  {
-    q: "Which language should I learn DSA in?",
-    a: "The one you already write most fluently. Struggling with unfamiliar syntax while learning an unfamiliar algorithm doubles the difficulty for no benefit.",
-  },
-];
 
 const BlogContent = () => (
   <ArticleShell

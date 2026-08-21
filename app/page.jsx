@@ -10,7 +10,7 @@ import BottomAd from "./components/ads/bottom";
 
 export const metadata = {
   alternates: { canonical: "/" },
-  title: 'DSA Visualizer | Visualize & Learn DSA the Smart Way',
+  title: { absolute: 'DSA Visualizer | Visualize & Learn DSA the Smart Way' },
   description: 'Master Data Structures and Algorithms with interactive visualizations. Perfect for students, beginners, and interview prep. Visualize Stack, Queue, Tree, Graph, Sorting & more.',
   keywords: [
     'DSA Visualizer',

@@ -13,7 +13,7 @@ export const metadata = {
     type: "website",
   },
   alternates: { canonical: "/terms" },
-  title: "Terms of Service | DSA Visualizer",
+  title: "Terms of Service",
   description:
     "Read the DSA Visualizer Terms of Service covering acceptance of terms, use license, user responsibilities, and intellectual property.",
   robots: "index, follow",

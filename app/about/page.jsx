@@ -13,7 +13,7 @@ export const metadata = {
     type: "website",
   },
   alternates: { canonical: "/about" },
-  title: "About Us | DSA Visualizer",
+  title: "About Us",
   description:
     "Learn who builds DSA Visualizer, why it exists, and what the platform covers — 67 interactive algorithm modules, quizzes and code examples, free and without a signup.",
   keywords: [

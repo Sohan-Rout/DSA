@@ -104,7 +104,7 @@ const BlogPage = () => {
               Featured Articles
             </h2>
           </div>
-          <div className="h-[2px] max-w-6xl rounded-full bg-gradient-to-l from-zinc-600 via-black to-zinc-600 mb-4"></div>
+          <div className="h-0.5 max-w-6xl rounded-full bg-linear-to-l from-zinc-600 via-black to-zinc-600 mb-4"></div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Left column: recent upload (big card) - vertical layout */}
@@ -126,7 +126,7 @@ const BlogPage = () => {
                     priority
                     className="object-cover transition-transform duration-500 hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
                   <span className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-medium px-2.5 py-1 rounded-full">
                     {featuredPosts[0].category}
                   </span>
@@ -217,7 +217,7 @@ const BlogPage = () => {
                 onClick={() => setActiveCategory(category)}
                 className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeCategory === category
-                    ? "bg-gradient-to-r from-blue-600 to-blue-400 text-white shadow-lg"
+                    ? "bg-linear-to-r from-blue-600 to-blue-400 text-white shadow-lg"
                     : "bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700"
                 }`}
               >
@@ -260,7 +260,7 @@ const BlogPage = () => {
                           className="object-cover transition-transform duration-500 hover:scale-105"
                         />
                       </div>
-                      <div className="p-5 flex flex-col gap-3 flex-grow">
+                      <div className="p-5 flex flex-col gap-3 grow">
                         <div className="flex items-center justify-between text-sm text-zinc-500 dark:text-zinc-400">
                           <div className="flex items-center">
                             <FiCalendar className="mr-1.5" />
@@ -306,7 +306,7 @@ const BlogPage = () => {
                     setSearchQuery("");
                     setActiveCategory("All");
                   }}
-                  className="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
+                  className="px-5 py-2.5 bg-linear-to-r from-blue-600 to-blue-400 text-white rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
                 >
                   Reset filters
                 </button>

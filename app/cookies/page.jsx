@@ -13,7 +13,7 @@ export const metadata = {
     type: "website",
   },
   alternates: { canonical: "/cookies" },
-  title: "Cookie Policy | DSA Visualizer",
+  title: "Cookie Policy",
   description:
     "Read the DSA Visualizer Cookie Policy to learn what cookies we use, why we use them, and how you can manage your cookie preferences.",
   robots: "index, follow",
