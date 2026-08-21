@@ -28,7 +28,7 @@ function getAllPages(dir = 'app', prefix = '') {
 
 /** @type {import('next-sitemap').IConfig} */
 const config = {
-    siteUrl: 'https://dsavisualizer.in',
+    siteUrl: 'https://www.dsavisualizer.in',
     generateRobotsTxt: true,
     sitemapSize: 5000,
     transform: async (config, path) => ({
