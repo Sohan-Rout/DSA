@@ -14,7 +14,7 @@ import BackToTopButton from '@/app/components/ui/backtotop';
 export const metadata = {
   alternates: { canonical: "/visualizer/stack/push-pop" },
   title:
-    "Stack Push & Pop Visualizer & Quiz | Learn Stack Operations with Code in JS, C, Python, Java",
+    "Stack Push & Pop Visualizer",
   description:
     "Understand Stack Push and Pop operations through step-by-step animations and test your knowledge with an interactive quiz. Includes code examples in JavaScript, C, Python, and Java. Ideal for beginners and interview preparation to master stack-based data structures visually and through hands-on coding.",
   keywords: [

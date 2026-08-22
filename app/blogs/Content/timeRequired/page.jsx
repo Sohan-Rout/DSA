@@ -7,7 +7,7 @@ import { faqs } from "./faqs";
 
 export const metadata = {
     alternates: { canonical: "/blogs/Content/timeRequired" },
-    title: "Time Required to Learn and Master DSA",
+    title: "How Long Does It Take to Learn DSA?",
     description:
         "Uncover how much time it takes to learn and master Data Structures and Algorithms (DSA) for web development. Get practical timelines, tips, and strategies for efficient DSA learning.",
     keywords: [
@@ -29,7 +29,7 @@ export const metadata = {
             "Find out how long it takes to learn and master DSA for web development. Explore realistic timelines, learning strategies, and tips for success.",
         url: "/blogs/Content/timeRequired",
         siteName: "DSA Visualizer",
-        locale: "en_IN",
+        locale: "en_US",
         type: "article",
         publishedTime: "2025-06-20T08:00:00Z",
         modifiedTime: "2026-08-21T00:00:00Z",

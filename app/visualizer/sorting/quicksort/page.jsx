@@ -14,7 +14,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 export const metadata = {
   alternates: { canonical: "/visualizer/sorting/quicksort" },
   title:
-    "Quick Sort Algorithm | Learn with Interactive Animations",
+    "Quick Sort Visualizer",
   description:
     "Learn how Quick Sort works with step-by-step animations and test your knowledge with an interactive quiz. Includes code examples in JavaScript, C, Python, and Java. Perfect for beginners learning this efficient divide-and-conquer sorting algorithm visually and through hands-on coding.",
   keywords: [

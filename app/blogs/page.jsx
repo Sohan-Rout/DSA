@@ -11,7 +11,7 @@ export const metadata = {
     type: "website",
   },
   alternates: { canonical: "/blogs" },
-  title: 'DSA Blogs & Guides | Learn Data Structures and Algorithms Effectively',
+  title: "DSA Blogs & Guides",
   description:
     'Explore beginner-friendly blogs on Data Structures and Algorithms (DSA) covering Python, Java, C++, Web Development, Machine Learning, and more. Learn, practice, and master DSA through curated insights.',
   keywords: [

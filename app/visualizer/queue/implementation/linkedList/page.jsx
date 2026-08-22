@@ -12,7 +12,7 @@ import BackToTop from "@/app/components/ui/backtotop";
 export const metadata = {
   alternates: { canonical: "/visualizer/queue/implementation/linkedList" },
   title:
-    "Queue Implementation Using Linked List | Visualize Queue in JS, C, Python, Java",
+    "Queue Using Linked List Visualizer",
   description:
     "Explore Queue implementation using Linked List with real-time visualizations and code examples in JavaScript, C, Python, and Java. Understand how Enqueue and Dequeue work in a dynamic memory structure. Perfect for DSA beginners and interview prep.",
   keywords: [

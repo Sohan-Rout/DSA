@@ -13,7 +13,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/trees/applications/syntax-trees" },
-  title: "Syntax Trees or Expression Trees | Animation and Explanation",
+  title: "Expression Tree Visualizer",
   description:
     "Learn how a syntax tree (expression tree) represents an arithmetic expression's structure, how recursive-descent parsing builds one, and how post-order traversal evaluates it, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [

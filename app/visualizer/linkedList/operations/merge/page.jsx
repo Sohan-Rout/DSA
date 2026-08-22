@@ -20,7 +20,7 @@ export const metadata = {
         type: "website",
     },
     alternates: { canonical: "/visualizer/linkedList/operations/merge" },
-    title: 'Linked List Merge Algorithm | Interactive Visualization & Step-by-Step Guide',
+    title: "Merge Two Linked Lists Visualizer",
     description:
         'Learn how merging works in Linked Lists with interactive animations, detailed explanations, and hands-on practice. Visualize each step of the merge process and master linked list algorithms efficiently.',
     keywords: [

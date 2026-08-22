@@ -14,7 +14,7 @@ import BackToTopButton from "@/app/components/ui/backtotop";
 export const metadata = {
   alternates: { canonical: "/visualizer/stack/polish/prefix" },
   title:
-    "Prefix Notation using Stack | Learn Prefix Evaluation in DSA with Code in JS, C, Python, Java",
+    "Infix to Prefix Visualizer",
   description:
     "Understand how to evaluate Prefix expressions using a Stack with interactive animations and code examples in JavaScript, C, Python, and Java. Essential for mastering DSA concepts and preparing for interviews.",
   keywords: [

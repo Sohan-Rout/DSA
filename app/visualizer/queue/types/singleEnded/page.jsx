@@ -13,7 +13,7 @@ import BackToTop from '@/app/components/ui/backtotop';
 
 export const metadata = {
   alternates: { canonical: "/visualizer/queue/types/singleEnded" },
-  title: "Single Ended Queue | Learn with JS, C, Python, Java Code",
+  title: "Single Ended Queue Visualizer",
   description:
     "Understand Single Ended Queue in Data Structures with animations and full code examples in JavaScript, C, Python, and Java. Ideal for beginners learning queue operations and preparing for interviews.",
   keywords: [

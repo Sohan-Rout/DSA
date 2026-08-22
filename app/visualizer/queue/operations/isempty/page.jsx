@@ -13,7 +13,7 @@ import BackToTop from '@/app/components/ui/backtotop';
 
 export const metadata = {
   alternates: { canonical: "/visualizer/queue/operations/isempty" },
-  title: "Queue Is Empty Operation | Learn with JS, C, Python, Java Code",
+  title: "Queue isEmpty Visualizer",
   description:
     "Learn how to check if a Queue is empty using interactive visualizations and complete code examples in JavaScript, C, Python, and Java. Ideal for DSA beginners and interview prep.",
   keywords: [

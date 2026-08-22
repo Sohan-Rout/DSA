@@ -12,7 +12,7 @@ import BackToTopButton from "@/app/components/ui/backtotop";
 export const metadata = {
   alternates: { canonical: "/visualizer/stack/implementation/usingArray" },
   title:
-    "Stack Implementation using Array | Learn Stack in DSA with JS, C, Python, Java Code",
+    "Stack Using Array Visualizer",
   description:
     "Understand how to implement a Stack using an Array with visual explanations, animations, and complete code examples in JavaScript, C, Python, and Java. Perfect for DSA beginners and interview prep.",
   keywords: [

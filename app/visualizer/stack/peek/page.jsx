@@ -14,7 +14,7 @@ import BackToTopButton from '@/app/components/ui/backtotop';
 export const metadata = {
   alternates: { canonical: "/visualizer/stack/peek" },
   title:
-    "Stack Peek Visualizer | Understand Peek Operation in Stack with Code in JS, C, Python, Java",
+    "Stack Peek Visualizer",
   description:
     "Learn how the Peek operation works in a Stack using interactive animations and code examples in JavaScript, C, Python, and Java. Perfect for beginners and DSA interview preparation.",
   keywords: [

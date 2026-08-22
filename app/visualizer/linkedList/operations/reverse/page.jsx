@@ -20,7 +20,7 @@ export const metadata = {
         type: "website",
     },
     alternates: { canonical: "/visualizer/linkedList/operations/reverse" },
-    title: 'Linked List Reverse Algorithm | Interactive Visualization & Step-by-Step Guide',
+    title: "Reverse a Linked List Visualizer",
     description:
         'Explore how reversing a linked list works with interactive animations, clear explanations, and hands-on practice. Visualize each step of the reverse process and master linked list algorithms efficiently.',
     keywords: [

@@ -13,7 +13,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/searching/linearsearch" },
-  title: "Linear Search Algorithm | Step-by-Step Animation",
+  title: "Linear Search Visualizer",
   description:
     "Visualize the Linear Search algorithm with step-by-step animations, code examples in JavaScript, C, Python, and Java, and a Linear Search Quiz to test your understanding. Build a strong foundation in DSA through interactive learning.",
   keywords: [

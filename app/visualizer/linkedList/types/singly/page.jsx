@@ -14,7 +14,7 @@ import Footer from '@/app/components/footer';
 export const metadata = {
   alternates: { canonical: "/visualizer/linkedList/types/singly" },
   title:
-    "Singly Linked List Implementation | Visualize Linked List in JS, C, Python, Java",
+    "Singly Linked List Visualizer",
   description:
     "Explore Singly Linked List implementation with interactive visualizations and real-time code examples in JavaScript, C, Python, and Java. Learn insertion, deletion, and traversal with step-by-step animations. Perfect for DSA beginners and interview preparation.",
   keywords: [

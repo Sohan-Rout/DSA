@@ -14,7 +14,7 @@ import BackToTopButton from "@/app/components/ui/backtotop";
 export const metadata = {
   alternates: { canonical: "/visualizer/stack/polish/postfix" },
   title:
-    "Postfix Notation using Stack | Learn Postfix Evaluation in DSA with Code in JS, C, Python, Java",
+    "Infix to Postfix Visualizer",
   description:
     "Visualize how Postfix expressions are evaluated using a Stack through interactive animations and code examples in JavaScript, C, Python, and Java. Perfect for DSA beginners and technical interview preparation.",
   keywords: [

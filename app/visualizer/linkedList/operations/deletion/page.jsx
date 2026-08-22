@@ -20,7 +20,7 @@ export const metadata = {
         type: "website",
     },
     alternates: { canonical: "/visualizer/linkedList/operations/deletion" },
-    title: 'Linked List Deletion Algorithm | Interactive Visualization & Step-by-Step Guide',
+    title: "Linked List Deletion Visualizer",
     description:
         'Learn how deletion works in Linked Lists with interactive animations, detailed explanations, and hands-on practice. Visualize each step of the deletion process and master linked list algorithms efficiently.',
     keywords: [

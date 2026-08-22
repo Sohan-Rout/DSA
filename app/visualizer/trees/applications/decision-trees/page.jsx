@@ -13,7 +13,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/trees/applications/decision-trees" },
-  title: "Decision Trees | Animation and Explanation",
+  title: "Decision Tree Visualizer",
   description:
     "Learn how a decision tree greedily splits data using Gini impurity to build an interpretable classifier, with an interactive visualizer showing both the dataset and the resulting tree, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [

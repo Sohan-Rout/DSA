@@ -13,7 +13,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/graph/algorithms/topological-sort" },
-  title: "Topological Sort | Animation and Explanation",
+  title: "Topological Sort Visualizer",
   description:
     "Learn how Topological Sort orders a directed acyclic graph's vertices so every dependency comes before what depends on it, using Kahn's in-degree algorithm, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [

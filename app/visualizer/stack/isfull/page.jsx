@@ -14,7 +14,7 @@ import BackToTopButton from "@/app/components/ui/backtotop";
 export const metadata = {
   alternates: { canonical: "/visualizer/stack/isfull" },
   title:
-    "Stack Is Full Visualizer | Check Full Condition in Stack with Code in JS, C, Python, Java",
+    "Stack isFull Visualizer",
   description:
     "Understand how to check if a Stack is full using interactive animations and code examples in JavaScript, C, Python, and Java. A simple guide for beginners and DSA interview preparation.",
   keywords: [

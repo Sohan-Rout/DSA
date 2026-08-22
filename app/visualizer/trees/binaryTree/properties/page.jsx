@@ -13,7 +13,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/trees/binaryTree/properties" },
-  title: "Binary Tree Properties | Height, Depth, Node Count & Balance Explained",
+  title: "Binary Tree Properties Explained",
   description:
     "Learn the core structural properties of Binary Trees, including height, depth, level, node count formulas, leaf vs internal nodes, and why balance matters, with an interactive tree builder, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [

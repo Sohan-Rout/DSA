@@ -13,7 +13,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/trees/advanced/red-black" },
-  title: "Red-Black Tree | Insertion & Rotation Animation and Explanation",
+  title: "Red-Black Tree Visualizer",
   description:
     "Learn how Red-Black Trees self-balance using color rules and rotations, with an interactive insertion visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [

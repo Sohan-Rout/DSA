@@ -13,7 +13,7 @@ import BackToTop from '@/app/components/ui/backtotop';
 
 export const metadata = {
   alternates: { canonical: "/visualizer/queue/operations/isfull" },
-  title: "Queue Is Full Operation | Learn with JS, C, Python, Java Code",
+  title: "Queue isFull Visualizer",
   description:
     "Understand how to check if a Queue is full using interactive visualizations and detailed code examples in JavaScript, C, Python, and Java. Perfect for mastering DSA and technical interviews.",
   keywords: [
