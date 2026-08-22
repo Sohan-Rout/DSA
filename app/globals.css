@@ -149,3 +149,24 @@ html {
 .bot-wiggle {
   animation: bot-vibe 1s infinite;
 }
+/* Code visualizer — Monaco line decorations.
+   These target nodes Monaco owns, so they can't be Tailwind utilities. */
+.cv-active-line {
+  background: rgba(251, 191, 36, 0.18);
+}
+
+.dark .cv-active-line {
+  background: rgba(251, 191, 36, 0.14);
+}
+
+.cv-active-glyph::before {
+  content: "▶";
+  color: #d97706;
+  font-size: 11px;
+  line-height: inherit;
+  margin-left: 2px;
+}
+
+.cv-error-line {
+  background: rgba(239, 68, 68, 0.16);
+}
