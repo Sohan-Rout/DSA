@@ -14,7 +14,7 @@ import BackToTopButton from "@/app/components/ui/backtotop";
 export const metadata = {
   alternates: { canonical: "/visualizer/stack/isempty" },
   title:
-    "Stack is empty Visualizer | Learn Stack IsEmpty Operation in JS, C, Python, Java",
+    "Stack isEmpty Visualizer",
   description:
     "Visualize how Stack isEmpty operation works in DSA using interactive animations. Great for beginners and interview prep. Includes code examples in JavaScript, C, Python, and Java.",
   keywords: [

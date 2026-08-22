@@ -14,7 +14,7 @@ import BackToTop from "@/app/components/ui/backtotop";
 export const metadata = {
   alternates: { canonical: "/visualizer/queue/types/priority" },
   title:
-    "Priority Queue Algorithm | Visual Guide with Code in JavaScript, C, Python, Java",
+    "Priority Queue Visualizer",
   description:
     "Master Priority Queue in Data Structures with easy-to-understand visualizations and complete code examples in JavaScript, C, Python, and Java. Perfect for DSA learners and coding interview prep.",
   keywords: [

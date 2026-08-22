@@ -13,7 +13,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/trees/algorithms/lowest-common-ancestor" },
-  title: "Lowest Common Ancestor (LCA) | Animation and Explanation",
+  title: "Lowest Common Ancestor Visualizer",
   description:
     "Learn how to find the Lowest Common Ancestor of two nodes in a Binary Search Tree by walking down from the root until their paths diverge, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [

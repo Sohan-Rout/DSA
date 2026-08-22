@@ -12,7 +12,7 @@ import BackToTopButton from "@/app/components/ui/backtotop";
 export const metadata = {
   alternates: { canonical: "/visualizer/stack/implementation/usingLinkedList" },
   title:
-    "Stack Implementation using Linked List | Learn Stack in DSA with JS, C, Python, Java Code",
+    "Stack Using Linked List Visualizer",
   description:
     "Explore how to implement a Stack using a Linked List with step-by-step visual explanations, animations, and complete code in JavaScript, C, Python, and Java. Ideal for DSA learners and coding interview prep.",
   keywords: [

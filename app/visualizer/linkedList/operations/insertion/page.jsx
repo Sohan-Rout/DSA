@@ -20,7 +20,7 @@ export const metadata = {
         type: "website",
     },
     alternates: { canonical: "/visualizer/linkedList/operations/insertion" },
-    title: 'Linked List Insertion Algorithm | Interactive Visualization & Step-by-Step Guide',
+    title: "Linked List Insertion Visualizer",
     description:
         'Learn how insertion works in Linked Lists with interactive animations, detailed explanations, and hands-on practice. Visualize each step of the insertion process and master linked list algorithms efficiently.',
     keywords: [

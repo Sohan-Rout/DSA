@@ -13,7 +13,7 @@ import ExploreOther from "@/app/components/ui/exploreOther";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/linkedList/types/circular" },
-  title: 'Circular Linked List Algorithm | Interactive Learning & Step-by-Step Animation',
+  title: "Circular Linked List Visualizer",
   description:
     'Master Circular Linked Lists with interactive visualizations, quizzes, and implementation code. Learn insertion, deletion, and traversal through animations and practice with hands-on exercises.',
   keywords: [

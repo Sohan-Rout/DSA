@@ -13,7 +13,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/graph/traversal/dfs" },
-  title: "Depth-First Search (DFS) | Animation and Explanation",
+  title: "DFS Visualizer (Depth-First Search)",
   description:
     "Learn how Depth-First Search plunges as deep as possible down one path before backtracking, using a stack (explicit or via recursion), with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [

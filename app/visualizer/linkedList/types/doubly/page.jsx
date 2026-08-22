@@ -20,7 +20,7 @@ export const metadata = {
     type: "website",
   },
   alternates: { canonical: "/visualizer/linkedList/types/doubly" },
-  title: 'Doubly Linked List Implementation | Visualize Doubly Linked List in JS, C, Python, Java',
+  title: "Doubly Linked List Visualizer",
   description: 'Explore Doubly Linked List implementation with interactive animations and code examples in JavaScript, C, Python, and Java. Learn insertion, deletion, and traversal from both directions. Perfect for DSA beginners and interview preparation.',
   keywords: [
     'Doubly Linked List Implementation',

@@ -14,7 +14,7 @@ import BackToTop from "@/app/components/ui/backtotop";
 export const metadata = {
   alternates: { canonical: "/visualizer/queue/operations/enqueue-dequeue" },
   title:
-    "Enqueue and Dequeue Operations in Queue | Learn Queue with JS, C, Python, Java Code",
+    "Enqueue & Dequeue Visualizer",
   description:
     "Visualize and understand the Enqueue and Dequeue operations in a Queue with real-time animations and code examples in JavaScript, C, Python, and Java. Perfect for DSA beginners and interview preparation.",
   keywords: [

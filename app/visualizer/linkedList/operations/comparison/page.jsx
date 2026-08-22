@@ -20,7 +20,7 @@ export const metadata = {
         type: "website",
     },
     alternates: { canonical: "/visualizer/linkedList/operations/comparison" },
-    title: 'Linked List Comparison Algorithm | Interactive Visualization & Step-by-Step Guide',
+    title: "Compare Linked Lists Visualizer",
     description:
         'Learn how comparison works in Linked Lists with interactive animations, detailed explanations, and hands-on practice. Visualize each step of the comparison process and master linked list algorithms efficiently.',
     keywords: [

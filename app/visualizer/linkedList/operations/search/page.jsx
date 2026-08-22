@@ -20,7 +20,7 @@ export const metadata = {
         type: "website",
     },
     alternates: { canonical: "/visualizer/linkedList/operations/search" },
-    title: 'Linked List Searching Algorithm | Interactive Visualization & Step-by-Step Guide',
+    title: "Linked List Search Visualizer",
     description:
         'Explore how linear search works in Linked Lists with interactive animations, clear explanations, and hands-on practice. Visualize each comparison as the search walks the list and master linked list algorithms efficiently.',
     keywords: [

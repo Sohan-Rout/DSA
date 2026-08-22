@@ -14,7 +14,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 export const metadata = {
   alternates: { canonical: "/visualizer/sorting/selectionsort" },
   title:
-    "Selection Sort Visualizer | Simple Sorting Animation with Code in JS, C, Python, Java",
+    "Selection Sort Visualizer",
   description:
     "Visualize Selection Sort in action with step-by-step animations and code examples in JavaScript, C, Python, and Java. A beginner-friendly way to understand this simple sorting algorithm using comparisons and swaps.",
   keywords: [

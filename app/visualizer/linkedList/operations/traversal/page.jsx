@@ -20,7 +20,7 @@ export const metadata = {
         type: "website",
     },
     alternates: { canonical: "/visualizer/linkedList/operations/traversal" },
-    title: 'Linked List Traversal Algorithm | Interactive Visualization & Step-by-Step Guide',
+    title: "Linked List Traversal Visualizer",
     description:
         'Explore how traversal works in Linked Lists with interactive animations, clear explanations, and hands-on practice. Visualize each step of the traversal process and master linked list algorithms efficiently.',
     keywords: [

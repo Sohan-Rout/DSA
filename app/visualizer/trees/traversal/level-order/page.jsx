@@ -13,7 +13,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/trees/traversal/level-order" },
-  title: "Level-order Tree Traversal (BFS) | Step-by-Step Animation & Explanation",
+  title: "Level-order Traversal Visualizer",
   description:
     "Learn how level-order traversal (Breadth-First Search) works on a binary tree with an interactive visualizer showing the queue in action, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [

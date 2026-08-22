@@ -13,7 +13,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/graph/representation/adjacency-matrix" },
-  title: "Adjacency Matrix | Animation and Explanation",
+  title: "Adjacency Matrix Visualizer",
   description:
     "Learn how an adjacency matrix represents a graph as a 2D grid of edges, with an interactive visualizer showing both the graph and its matrix side by side, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [

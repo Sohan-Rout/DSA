@@ -7,7 +7,7 @@ import { faqs } from "./faqs";
 
 export const metadata = {
   alternates: { canonical: "/blogs/Content/dsaDifferent" },
-  title: "Are Data Structures and Algorithms Different for Different Languages?",
+  title: "Is DSA Different in Each Language?",
   description:
     "Uncover the truth behind language-specific implementations of DSA. Learn how data structures and algorithms vary in syntax, performance, and usage across programming languages.",
   keywords: [
@@ -30,7 +30,7 @@ export const metadata = {
       "Explore how DSA implementations differ across languages like Python, JavaScript, Java, and C++. From syntax to performance, understand what's universal and what's not.",
     url: "/blogs/Content/dsaDifferent",
     siteName: "DSA Visualizer",
-    locale: "en_IN",
+    locale: "en_US",
     type: "article",
     publishedTime: "2025-05-19T08:00:00Z",
     modifiedTime: "2026-08-21T00:00:00Z",

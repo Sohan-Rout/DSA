@@ -7,7 +7,7 @@ import { faqs } from "./faqs";
 
 export const metadata = {
   alternates: { canonical: "/blogs/Content/whatIsDS" },
-  title: "What Are Data Structures? A Beginner-Friendly Guide",
+  title: "What Are Data Structures?",
   description:
     "Confused by arrays, stacks, or linked lists? This beginner-friendly guide breaks down what data structures are, their types, and why they matter for every aspiring programmer.",
   keywords: [
@@ -29,7 +29,7 @@ export const metadata = {
       "Understand the fundamentals of data structures in simple terms. A must-read guide for anyone new to programming and computer science.",
     url: "/blogs/Content/whatIsDS",
     siteName: "DSA Visualizer",
-    locale: "en_IN",
+    locale: "en_US",
     type: "article",
     publishedTime: "2025-05-23T08:00:00Z",
     modifiedTime: "2026-08-21T00:00:00Z",

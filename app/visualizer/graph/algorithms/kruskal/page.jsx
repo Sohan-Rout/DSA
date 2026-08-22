@@ -13,7 +13,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/graph/algorithms/kruskal" },
-  title: "Kruskal's Algorithm | Animation and Explanation",
+  title: "Kruskal's Algorithm Visualizer",
   description:
     "Learn how Kruskal's algorithm builds a minimum spanning tree by greedily accepting the cheapest edge that doesn't create a cycle, using Union-Find, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [

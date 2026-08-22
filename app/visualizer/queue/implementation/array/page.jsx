@@ -11,7 +11,7 @@ import BackToTop from '@/app/components/ui/backtotop';
 export const metadata = {
   alternates: { canonical: "/visualizer/queue/implementation/array" },
   title:
-    "Queue Implementation Using Array | Visualize Queue Operations in JS, C, Python, Java",
+    "Queue Using Array Visualizer",
   description:
     "Learn Queue implementation using arrays with real-time visualizations and code examples in JavaScript, C, Python, and Java. Understand how Enqueue and Dequeue work step-by-step without quizzes. Ideal for DSA beginners.",
   keywords: [

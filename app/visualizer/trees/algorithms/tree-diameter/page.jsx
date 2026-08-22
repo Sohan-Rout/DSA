@@ -13,7 +13,7 @@ import { MODULE_MAPS } from "@/lib/modulesMap";
 
 export const metadata = {
   alternates: { canonical: "/visualizer/trees/algorithms/tree-diameter" },
-  title: "Tree Diameter | Animation and Explanation",
+  title: "Tree Diameter Visualizer",
   description:
     "Learn how to find the diameter of a binary tree (the longest path between any two nodes) using a single post-order traversal, with an interactive visualizer, code examples in JavaScript, C, Python, and Java, and a quiz.",
   keywords: [
