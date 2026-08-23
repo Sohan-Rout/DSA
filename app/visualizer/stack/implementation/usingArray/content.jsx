@@ -98,10 +98,10 @@ const Content = () => {
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* -------  HEADER  ------- */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             What is Stack Implementation Using Array?
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               A stack follows LIFO (Last In, First Out), meaning whatever you pushed most recently is the first thing that comes back out. Backing it with an array is the most direct way to build one, since push and pop just work on the array's last index in constant time.
@@ -111,10 +111,10 @@ const Content = () => {
 
         {/* -------  OPERATIONS  ------- */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Initialize
-          </h1>
+          </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
             An empty array is allocated with a fixed capacity, and the top pointer starts at -1 to signal there's nothing on the stack yet.
           </p>
@@ -124,10 +124,10 @@ const Content = () => {
         </section>
 
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             push()
-          </h1>
+          </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
             If the array isn't already at capacity, the top pointer is incremented first, then the new value is written at that index, so top always marks the most recently added element.
           </p>
@@ -139,10 +139,10 @@ const Content = () => {
         </section>
 
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             pop()
-          </h1>
+          </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
             The element at array[top] is read and returned, then the top pointer is decremented; the value itself is left in the array, just no longer considered part of the stack.
           </p>
@@ -154,10 +154,10 @@ const Content = () => {
         </section>
 
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             peek()
-          </h1>
+          </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
             Returns array[top] without touching the pointer, so the stack is left exactly as it was, useful for checking what's on top before deciding whether to pop.
           </p>
@@ -167,10 +167,10 @@ const Content = () => {
         </section>
 
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             isEmpty() &amp; isFull()
-          </h1>
+          </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
             Both are just pointer comparisons: <code className="text-sm bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded">isEmpty()</code> is true when top equals -1, and <code className="text-sm bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded">isFull()</code> is true when top reaches the array's last valid index.
           </p>
@@ -187,10 +187,10 @@ const Content = () => {
         </section>
 
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Time Complexity
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none overflow-x-auto">
             <table className="min-w-full border-collapse border border-blue-400">
               <thead>
@@ -221,10 +221,10 @@ const Content = () => {
         </section>
 
         <section className="p-6">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Key Characteristics
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ul className="space-y-3 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {[

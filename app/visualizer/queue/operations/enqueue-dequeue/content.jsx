@@ -142,10 +142,10 @@ const Content = () => {
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
     {/* What is a Queue? */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
         <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
         What is a Queue?
-      </h1>
+      </h2>
       <div className="prose dark:prose-invert max-w-none">
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
           {paragraph[0]}
@@ -155,10 +155,10 @@ const Content = () => {
 
     {/* Enqueue Operation */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
         <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
         Enqueue Operation
-      </h1>
+      </h2>
       <div className="prose dark:prose-invert max-w-none">
         <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
           Enqueue adds an element to the end (rear) of the queue. The front pointer never moves, and the new element becomes the new rear.
@@ -178,10 +178,10 @@ const Content = () => {
 
     {/* Dequeue Operation */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
         <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
         Dequeue Operation
-      </h1>
+      </h2>
       <div className="prose dark:prose-invert max-w-none">
         <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
           Dequeue removes and returns the element from the front (head) of the queue. The rear pointer never moves, and whichever element was second in line becomes the new front.
@@ -201,10 +201,10 @@ const Content = () => {
 
     {/* Algorithm Steps for Enqueue */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
         <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
         Algorithm Steps for Enqueue
-      </h1>
+      </h2>
       <div className="prose dark:prose-invert max-w-none">
         <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
           {enqueue.map((item, index) => (
@@ -218,10 +218,10 @@ const Content = () => {
 
     {/* Algorithm Steps for Dequeue */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
         <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
         Algorithm Steps for Dequeue
-      </h1>
+      </h2>
       <div className="prose dark:prose-invert max-w-none">
         <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
           {dequeue.map((item, index) => (
@@ -235,10 +235,10 @@ const Content = () => {
 
     {/* Time Complexity */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
         <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
         Time Complexity
-      </h1>
+      </h2>
       <div className="prose dark:prose-invert max-w-none">
         <ul className="space-y-2 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
           {complexity.map((item, index) => (
@@ -266,10 +266,10 @@ const Content = () => {
 
     {/* Space Complexity */}
     <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
         <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
         Space Complexity
-      </h1>
+      </h2>
       <div className="prose dark:prose-invert max-w-none">
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
           {paragraph[1]}

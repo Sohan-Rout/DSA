@@ -136,10 +136,10 @@ const Content = () => {
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* Header Section */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             What is Stack Implementation Using Linked List?
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               {paragraph[0]}
@@ -149,10 +149,10 @@ const Content = () => {
 
         {/* Initialize */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Initialize
-          </h1>
+          </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
             A top pointer is created and set to null, meaning there are no nodes yet. Some implementations also keep a size counter, initialized to 0, so size() doesn't need to walk the whole list.
           </p>
@@ -163,10 +163,10 @@ const Content = () => {
 
         {/* push() */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             push()
-          </h1>
+          </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
             A new node is created pointing to whatever top currently points to, then top is repointed to the new node. Nothing else in the list is touched, which is why this runs in O(1).
           </p>
@@ -179,10 +179,10 @@ const Content = () => {
 
         {/* pop() */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             pop()
-          </h1>
+          </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
             If top is null there's nothing to remove, so pop reports "Stack Underflow". Otherwise the data at top is saved, top is moved to point at the next node, and the saved data is returned. The old top node itself is left for garbage collection.
           </p>
@@ -195,10 +195,10 @@ const Content = () => {
 
         {/* peek() */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             peek()
-          </h1>
+          </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
             Returns the data at the top node without moving the top pointer, so the stack is left exactly as it was. If top is null, it returns null instead.
           </p>
@@ -209,10 +209,10 @@ const Content = () => {
 
         {/* isEmpty() & size() */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             isEmpty() &amp; size()
-          </h1>
+          </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
             <code className="text-sm bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded">isEmpty()</code> is just a null check on top. <code className="text-sm bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded">size()</code> is O(1) if a counter is maintained on every push/pop, or O(n) if it has to walk the whole list counting nodes instead.
           </p>
@@ -224,10 +224,10 @@ const Content = () => {
 
         {/* Time Complexity */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Time Complexity
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none overflow-x-auto">
             <table className="min-w-full border-collapse border border-gray-400">
               <thead>
@@ -281,10 +281,10 @@ const Content = () => {
 
         {/* Key Characteristics */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Key Characteristics
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ul className="space-y-3 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {[
@@ -307,10 +307,10 @@ const Content = () => {
 
         {/* Comparison Section */}
         <section className="p-6">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Linked List vs Array Implementation
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none overflow-x-auto">
             <table className="min-w-full border-collapse border border-gray-400">
               <thead>
