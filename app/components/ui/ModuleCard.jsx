@@ -5,6 +5,7 @@ import { useUser } from "@/app/contexts/UserContext";
 import { toast } from "react-hot-toast";
 import { TriangleAlert } from "lucide-react";
 import { useEffect } from "react";
+import { trackActivity } from "@/lib/activity";
 
 
 export default function ModuleCard({ moduleId, description, initialDone }) {
@@ -12,26 +13,34 @@ export default function ModuleCard({ moduleId, description, initialDone }) {
   const [isDone, setIsDone] = useState(initialDone);
   
   useEffect(() => {
-  const fetchUserProgress = async () => {
     if (!user) return;
 
-    const { data, error } = await supabase
-      .from("user_progress")
-      .select("is_done")
-      .eq("user_id", user.id)
-      .eq("module_id", moduleId)
-      .single();
+    // This card renders on every learning page, so mounting it is the signal
+    // that the user actually studied today — not merely that they opened the
+    // dashboard. Keyed per module so the day's count reflects how many
+    // distinct modules they worked through, not how many times they navigated.
+    trackActivity(user.id, "module_view", `view:${moduleId}`);
 
-    if (error) {
-      console.error("Error fetching user progress:", error);
-      return;
-    }
+    const fetchUserProgress = async () => {
+      // maybeSingle, not single: a module the user has never touched has no
+      // row, and single() treats that as an error worth logging.
+      const { data, error } = await supabase
+        .from("user_progress")
+        .select("is_done")
+        .eq("user_id", user.id)
+        .eq("module_id", moduleId)
+        .maybeSingle();
 
-    setIsDone(data?.is_done ?? false);
-  };
+      if (error) {
+        console.error("Error fetching user progress:", error);
+        return;
+      }
 
-  fetchUserProgress();
-}, [user, moduleId]);
+      setIsDone(data?.is_done ?? false);
+    };
+
+    fetchUserProgress();
+  }, [user, moduleId]);
 
   async function toggleCompletion() {
     if (!user) {
@@ -85,6 +94,7 @@ export default function ModuleCard({ moduleId, description, initialDone }) {
       }
 
       setIsDone(!isDone);
+      if (!isDone) trackActivity(user.id, "module_complete", `done:${moduleId}`);
       toast.success(isDone ? "Module marked as incomplete." : "Module marked as completed!");
     } catch (err) {
       console.error("Unexpected error during progress update:", err);

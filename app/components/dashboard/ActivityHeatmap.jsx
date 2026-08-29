@@ -1,131 +1,186 @@
 import React, { useMemo } from "react";
 
-function ActivityHeatmap({ activityDates }) {
-  // Generate last 90 days
-  const last90Days = useMemo(() => {
-    const dates = [];
+const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+// GitHub-style: only every other row is labelled so the column stays readable.
+const LABELLED_ROWS = new Set([1, 3, 5]);
+
+const LEVEL_CLASS = [
+  "bg-grid-0",
+  "bg-grid-1",
+  "bg-grid-2",
+  "bg-grid-3",
+  "bg-grid-4",
+];
+
+// Local YYYY-MM-DD. toISOString() would shift the date for anyone west of
+// UTC, which silently mis-buckets activity by a day.
+function toKey(date) {
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${date.getFullYear()}-${m}-${d}`;
+}
+
+/**
+ * `activity` accepts either an array of date strings (binary: active/not) or a
+ * Map/object of date -> count. Counts render as graded intensity; a bare list
+ * renders every active day at level 2 so it still reads as a heatmap.
+ */
+function ActivityHeatmap({ activityDates = [], counts = null, weeks: weekCount = 26 }) {
+  const { weeks, monthLabels, total, activeDays } = useMemo(() => {
+    const countMap =
+      counts instanceof Map
+        ? counts
+        : new Map(
+            counts
+              ? Object.entries(counts)
+              : activityDates.map((d) => [d, 1])
+          );
+
+    // Walk back to the Sunday that starts the earliest visible week so the
+    // grid always has clean 7-day columns.
     const today = new Date();
-    for (let i = 89; i >= 0; i--) {
-      const d = new Date();
-      d.setDate(today.getDate() - i);
-      dates.push(d);
-    }
-    return dates;
-  }, []);
+    today.setHours(0, 0, 0, 0);
+    const end = new Date(today);
+    const start = new Date(today);
+    start.setDate(start.getDate() - (weekCount * 7 - 1));
+    start.setDate(start.getDate() - start.getDay());
 
-  // Map activity dates to a Set for O(1) lookup
-  const activitySet = useMemo(() => new Set(activityDates), [activityDates]);
-
-  // Helper to format date YYYY-MM-DD
-  const formatDate = (date) => date.toISOString().split("T")[0];
-
-  // Weekday labels to show on the left (Sun, Mon, Wed, Fri)
-  const weekdayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const visibleWeekdayLabels = ["Sun", "Mon", "Wed", "Fri"];
-
-  // Prepare weeks data (group dates by week starting on Sunday)
-  // We want columns = weeks, rows = days (0=Sun to 6=Sat)
-  const weeks = [];
-  let currentWeek = [];
-  let currentWeekStartDay = last90Days[0].getDay();
-  // Pad first week with nulls if first day is not Sunday
-  for (let i = 0; i < currentWeekStartDay; i++) {
-    currentWeek.push(null);
-  }
-  last90Days.forEach((date) => {
-    if (currentWeek.length === 7) {
-      weeks.push(currentWeek);
-      currentWeek = [];
-    }
-    currentWeek.push(date);
-  });
-  // Fill last week with nulls if needed
-  while (currentWeek.length < 7) {
-    currentWeek.push(null);
-  }
-  weeks.push(currentWeek);
-
-  // Get month labels for top row
-  // For each week, show the month label only once when the month changes
-  const monthLabels = [];
-  let lastMonth = null;
-  weeks.forEach((week) => {
-    // Find first non-null date in week
-    const firstDate = week.find((d) => d !== null);
-    if (firstDate) {
-      const month = firstDate.toLocaleString("default", { month: "short" });
-      if (month !== lastMonth) {
-        monthLabels.push(month);
-        lastMonth = month;
-      } else {
-        monthLabels.push("");
+    const cols = [];
+    const cursor = new Date(start);
+    while (cursor <= end) {
+      const col = [];
+      for (let i = 0; i < 7; i++) {
+        if (cursor > end) {
+          col.push(null);
+        } else {
+          const key = toKey(cursor);
+          col.push({ key, date: new Date(cursor), count: countMap.get(key) ?? 0 });
+        }
+        cursor.setDate(cursor.getDate() + 1);
       }
-    } else {
-      monthLabels.push("");
+      cols.push(col);
     }
-  });
 
-  const totalContributions = activityDates.length;
+    // Month label sits above the first column that contains that month's 1st-7th.
+    const labels = cols.map((col) => {
+      const first = col.find(Boolean);
+      if (!first) return "";
+      return first.date.getDate() <= 7
+        ? first.date.toLocaleString("default", { month: "short" })
+        : "";
+    });
+
+    let sum = 0;
+    let days = 0;
+    countMap.forEach((c) => {
+      sum += c;
+      if (c > 0) days += 1;
+    });
+
+    return { weeks: cols, monthLabels: labels, total: sum, activeDays: days };
+  }, [activityDates, counts, weekCount]);
+
+  // Scale levels against the busiest day so the ramp always uses its full range.
+  const max = useMemo(
+    () => weeks.flat().reduce((m, c) => (c && c.count > m ? c.count : m), 0),
+    [weeks]
+  );
+
+  const levelFor = (count) => {
+    if (!count) return 0;
+    if (max <= 1) return 2;
+    return Math.min(4, Math.max(1, Math.ceil((count / max) * 4)));
+  };
 
   return (
-    <div className="overflow-x-auto">
-      <div className="flex scale-90 sm:scale-100">
-        {/* Left column with month label row height and weekday labels */}
-        <div className="flex flex-col">
-          {/* Contributions circle at top-left corner */}
-          <div className="w-5 h-5 mb-1 flex items-center justify-center">
-            <div className="w-5 h-5 text-sm rounded-full flex items-center justify-center bg-green-500 text-white font-bold">
-              {totalContributions}
-            </div>
-          </div>
-          {/* Weekday labels column */}
-          <div className="grid grid-rows-7 gap-1 mr-1 text-xs md:text-xs text-gray-500 dark:text-gray-400" style={{height: "168px"}}>
-            {weekdayLabels.map((day, idx) =>
-              visibleWeekdayLabels.includes(day) ? (
-                <div key={day} className="h-6 md:h-6 flex items-center justify-end pr-1 text-[10px] md:text-xs">
-                  {day}
-                </div>
-              ) : (
-                <div key={day} className="h-6 md:h-6"></div>
-              )
-            )}
-          </div>
-        </div>
-        <div>
-          {/* Month labels row */}
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(24px,1fr))] gap-1 mb-1" style={{gridTemplateColumns: `repeat(${weeks.length}, 24px)`}}>
-            {monthLabels.map((month, idx) => (
-              <div key={idx} className="text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-300 text-center">
-                {month}
+    <figure className="m-0">
+      <figcaption className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <h3 className="text-sm font-medium text-fg">
+          {activeDays} active {activeDays === 1 ? "day" : "days"}
+        </h3>
+        <span className="text-xs text-fg-subtle">
+          Last {weekCount} weeks
+        </span>
+      </figcaption>
+
+      {/* The grid is wider than a phone; it scrolls in its own track so the
+          page body never scrolls sideways. */}
+      <div className="-mx-1 overflow-x-auto px-1 pb-1">
+        <div className="flex min-w-max gap-1">
+          <div
+            className="grid shrink-0 gap-1 pr-1 pt-5"
+            style={{ gridTemplateRows: "repeat(7, 0.75rem)" }}
+            aria-hidden="true"
+          >
+            {WEEKDAYS.map((day, i) => (
+              <div
+                key={day}
+                className="flex h-3 items-center text-[10px] leading-none text-fg-subtle"
+              >
+                {LABELLED_ROWS.has(i) ? day : ""}
               </div>
             ))}
           </div>
-          {/* Heatmap grid */}
-          <div className="grid grid-rows-7 grid-flow-col gap-1">
-            {weeks.map((week, weekIdx) =>
-              week.map((date, dayIdx) => {
-                if (!date) {
-                  return <div key={`${weekIdx}-${dayIdx}`} className="w-6 h-6"></div>;
-                }
-                const dateStr = formatDate(date);
-                const isActive = activitySet.has(dateStr);
-                return (
-                  <div
-                    key={`${weekIdx}-${dayIdx}`}
-                    title={`${dateStr} - ${isActive ? "Active" : "No Activity"}`}
-                    className={`w-6 h-6 rounded-sm transition-colors duration-300 ${
-                      isActive
-                        ? "bg-green-500"
-                        : "bg-gray-200 dark:bg-gray-700"
-                    }`}
-                  ></div>
-                );
-              })
-            )}
+
+          <div>
+            <div
+              className="grid gap-1"
+              style={{ gridTemplateColumns: `repeat(${weeks.length}, 0.75rem)` }}
+              aria-hidden="true"
+            >
+              {monthLabels.map((label, i) => (
+                <div
+                  key={i}
+                  className="h-4 text-[10px] leading-4 text-fg-subtle"
+                >
+                  {label}
+                </div>
+              ))}
+            </div>
+
+            <div
+              className="grid grid-flow-col gap-1"
+              style={{ gridTemplateRows: "repeat(7, 0.75rem)" }}
+              role="img"
+              aria-label={`Activity heatmap: ${activeDays} active days out of the last ${weekCount * 7}.`}
+            >
+              {weeks.map((col, ci) =>
+                col.map((cell, ri) =>
+                  cell === null ? (
+                    <div key={`${ci}-${ri}`} className="h-3 w-3" />
+                  ) : (
+                    <div
+                      key={cell.key}
+                      title={`${cell.date.toLocaleDateString(undefined, {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })} — ${cell.count || "no"} ${
+                        cell.count === 1 ? "activity" : "activities"
+                      }`}
+                      className={`h-3 w-3 rounded-[3px] ring-1 ring-inset ring-black/[0.04] transition-colors duration-150 dark:ring-white/[0.04] ${
+                        LEVEL_CLASS[levelFor(cell.count)]
+                      }`}
+                    />
+                  )
+                )
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <div className="mt-3 flex items-center justify-end gap-1.5 text-[10px] text-fg-subtle">
+        <span>Less</span>
+        {LEVEL_CLASS.map((cls) => (
+          <span
+            key={cls}
+            className={`h-3 w-3 rounded-[3px] ring-1 ring-inset ring-black/[0.04] dark:ring-white/[0.04] ${cls}`}
+          />
+        ))}
+        <span>More</span>
+      </div>
+    </figure>
   );
 }
 
