@@ -1,12 +1,9 @@
 import "./globals.css";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { AuthProvider } from '@/app/contexts/AuthContext';
 import { UserProvider } from '@/app/contexts/UserContext';
 import { ThemeProvider } from '@/app/contexts/ThemeContext';
 import ClientLayoutWrapper from "@/app/components/ui/ClientLayoutWrapper";
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -62,24 +59,7 @@ export const metadata = {
   },
 };
 
-export default async function RootLayout({ children }) {
-  const cookieStore = await cookies();
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    {
-      cookies: {
-        getAll: () => cookieStore.getAll(),
-        setAll: () => {
-          // Server Components can't set cookies; middleware/route handlers refresh the session.
-        },
-      },
-    }
-  );
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
+export default function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <head>
@@ -108,7 +88,6 @@ export default async function RootLayout({ children }) {
         )}
       </head>
       <body>
-        <AuthProvider session={session}>
         <UserProvider>
           <ThemeProvider>
             <ClientLayoutWrapper>
@@ -116,7 +95,6 @@ export default async function RootLayout({ children }) {
             </ClientLayoutWrapper>
           </ThemeProvider>
         </UserProvider>
-        </AuthProvider>
       </body>
       <SpeedInsights/>
     </html>
