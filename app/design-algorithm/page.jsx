@@ -3,9 +3,6 @@ import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
 import DesignAlgorithmClient from './DesignAlgorithmClient';
 
-// Shape mirrors /visualizer:
-//   { title, icon, info?: { About, ... }, subsections: [{ title, items: [{ name, path }] }] }
-// A section may use a flat `items: [{ name, path }]` instead of `subsections`.
 const sections = [
   {
     title: "Fundamentals of Algorithm Analysis",
