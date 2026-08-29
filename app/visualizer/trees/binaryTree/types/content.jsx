@@ -165,10 +165,10 @@ const Content = () => {
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* Quick tags */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Three Types
-          </h1>
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
             {["Full Binary Tree", "Degenerate / Skewed", "Complete Binary Tree"].map((t) => (
               <div
@@ -183,10 +183,10 @@ const Content = () => {
 
         {/* GSAP trees */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Visual Comparison
-          </h1>
+          </h2>
 
           <div className="space-y-10">
             {[
@@ -232,10 +232,10 @@ const Content = () => {
 
         {/* Structural Rules */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Structural Rules
-          </h1>
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[defFull, defDegenerate, defComplete].map((rules, idx) => (
               <div
@@ -259,10 +259,10 @@ const Content = () => {
 
         {/* Identification */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             How to Identify a Type
-          </h1>
+          </h2>
           <div className="p-4 rounded-lg bg-gray-50 dark:bg-neutral-900 border border-gray-100 dark:border-gray-800">
             <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {identify.map((r, i) => (
@@ -276,10 +276,10 @@ const Content = () => {
 
         {/* Height & Complexity */}
         <section className="p-6">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Height &amp; Complexity
-          </h1>
+          </h2>
           <div className="overflow-x-auto">
             <table className="min-w-full border-collapse">
               <thead>

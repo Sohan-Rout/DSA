@@ -42,7 +42,7 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og.png",
+        url: "/og/graphs/dijkstraAlgorithm.png",
         width: 1200,
         height: 630,
         alt: "Dijkstra's Algorithm Visualization",

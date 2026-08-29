@@ -274,10 +274,10 @@ const Content = () => {
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* What is Peek Front Operation? */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             What is Peek Front Operation?
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               {paragraph[0]}
@@ -287,10 +287,10 @@ const Content = () => {
 
         {/* How Does It Work? */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             How Does It Work?
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
               Peek returns the front element while keeping the queue unchanged.
@@ -354,10 +354,10 @@ const Content = () => {
 
         {/* Algorithm Steps */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Algorithm Steps
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
               Basic peek operation algorithm:
@@ -377,10 +377,10 @@ const Content = () => {
 
         {/* Time Complexity */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Time Complexity
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
               Peek operation always runs in O(1) constant time because:
@@ -402,10 +402,10 @@ const Content = () => {
 
         {/* Practical Applications */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Practical Applications
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
               Common use cases for peek:

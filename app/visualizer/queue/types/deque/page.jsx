@@ -34,7 +34,7 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og/queue/deque.png",
+        url: "/og/queue/doubleEndedQueue.png",
         width: 1200,
         height: 630,
         alt: "Double Ended Queue Algorithm Visualization",

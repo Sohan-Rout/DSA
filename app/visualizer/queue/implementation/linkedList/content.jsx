@@ -408,10 +408,10 @@ const Content = () => {
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* Queue Linked List Implementation Overview */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Queue Implementation Using Linked List
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               {paragraph[0]}
@@ -421,10 +421,10 @@ const Content = () => {
 
         {/* How Does It Work? */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             How Does It Work?
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
               Every node sits somewhere in memory at its own address, shown in
@@ -496,10 +496,10 @@ const Content = () => {
 
         {/* Implementation Steps */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Implementation Steps
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {implementationSteps.map((item, index) => (
@@ -513,10 +513,10 @@ const Content = () => {
 
         {/* Enqueue Algorithm */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Enqueue Algorithm
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {enqueueAlgorithm.map((item, index) => (
@@ -530,10 +530,10 @@ const Content = () => {
 
         {/* Dequeue Algorithm */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Dequeue Algorithm
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ol className="space-y-2 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {dequeueAlgorithm.map((item, index) => (
@@ -547,10 +547,10 @@ const Content = () => {
 
         {/* Time Complexity */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Time & Space Complexity
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ul className="space-y-2 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {complexity.map((item, index) => (
@@ -583,10 +583,10 @@ const Content = () => {
 
         {/* Pros and Cons */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Pros and Cons
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ul className="space-y-2 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {prosCons.map((item, index) => (

@@ -315,10 +315,10 @@ const Content = () => {
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* What is Quick Sort */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             What is Quick Sort?
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               {paragraphs[0]}
@@ -328,10 +328,10 @@ const Content = () => {
 
         {/* How Does It Work */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             How Does It Work?
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
               Consider this unsorted array: [10, 80, 30, 90, 40, 50, 70]
@@ -439,10 +439,10 @@ const Content = () => {
 
         {/* Algorithm Steps */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Algorithm Steps
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ol className="space-y-3 list-decimal pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {algorithm.map((item, index) => (
@@ -471,10 +471,10 @@ const Content = () => {
 
         {/* Time Complexity */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Time Complexity
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ul className="space-y-3 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {timeComplexity.map((item, index) => (
@@ -507,10 +507,10 @@ const Content = () => {
 
         {/* Space Complexity */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Space Complexity
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               {paragraphs[2]}
@@ -520,10 +520,10 @@ const Content = () => {
 
         {/* Advantages */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Advantages
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ul className="space-y-3 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {advantages.map((item, index) => (
@@ -540,10 +540,10 @@ const Content = () => {
 
         {/* Disadvantages */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Disadvantages
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ul className="space-y-3 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {disadvantages.map((item, index) => (
@@ -560,10 +560,10 @@ const Content = () => {
 
         {/* Pivot Selection Strategies */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Pivot Selection Strategies
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ul className="space-y-3 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {CombinedDeatils.map((item, index) => (

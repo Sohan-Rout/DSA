@@ -227,10 +227,10 @@ const Content = () => {
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* What is the "Is Full" Operation? */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             What is the "Is Full" Operation?
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               {paragraphs[0]}
@@ -240,10 +240,10 @@ const Content = () => {
 
         {/* How It Works */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             How It Works
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ul className="space-y-2 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {working.map((item, index) => (
@@ -308,10 +308,10 @@ const Content = () => {
 
         {/* Time and Space Complexity */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Time and Space Complexity
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
               Here's the time and space complexity analysis for stack
@@ -358,10 +358,10 @@ const Content = () => {
 
         {/* Common Use Cases */}
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <span className="w-1 h-6 bg-blue-500 mr-3 rounded-full"></span>
             Common Use Cases
-          </h1>
+          </h2>
           <div className="prose dark:prose-invert max-w-none">
             <ul className="space-y-2 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
               {useCase.map((item, index) => (

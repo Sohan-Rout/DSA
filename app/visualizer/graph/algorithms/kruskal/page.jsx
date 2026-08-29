@@ -42,7 +42,7 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og.png",
+        url: "/og/graphs/kruskalAlgorithm.png",
         width: 1200,
         height: 630,
         alt: "Kruskal's Algorithm Visualization",
