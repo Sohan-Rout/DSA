@@ -6,6 +6,7 @@ import { MdAnimation, MdEmail } from "react-icons/md";
 import { IoMdInformationCircle } from "react-icons/io";
 import { HiSparkles } from "react-icons/hi2";
 import { RiQuestionLine } from "react-icons/ri";
+import FeaturedOn from "@/app/components/ui/FeaturedOn";
 
 const Footer = () => {
   const quickLinks = [
@@ -110,25 +111,8 @@ const Footer = () => {
                 </svg>
                 <a href="mailto:hello@dsavisualizer.in" className="hover:text-blue-400 transition">hello@dsavisualizer.in</a>
               </div>
-              <div className="flex justify-left">
-                <a
-                className="border rounded-xl"
-                  href="https://www.producthunt.com/products/dsa-visualizer?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-dsa&#0045;visualizer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {/* Remote SVG badge from Product Hunt: next/image cannot optimise
-                      SVG, and allowing it would require dangerouslyAllowSVG. Dimensions
-                      are fixed below, so there is no layout shift to fix either. */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=974127&theme=dark&t=1749182745821`}
-                    alt="DSA&#0032;Visualizer - Visualize&#0032;&#0038;&#0032;learn&#0032;dsa&#0032;the&#0032;smart&#0032;way | Product Hunt"
-                    style={{ width: 250, height: 54 }}
-                    width="250"
-                    height="54"
-                  />
-                </a>
+              <div className="pt-1">
+                <FeaturedOn variant="onDark" />
               </div>
             </div>
           </div>
