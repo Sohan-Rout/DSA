@@ -4,8 +4,105 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
+/* Semantic surface and text tokens.
+   Defined as runtime custom properties so the `.dark` class can swap them,
+   then exposed to Tailwind via `@theme inline` so they generate background,
+   text, and border utilities. Every value has a light definition here and
+   `.dark` only overrides, so neither theme can end up undefined. */
+:root {
+  --app-canvas: oklch(99% 0 0);
+  --app-card: oklch(100% 0 0);
+  --app-card-hover: oklch(97.5% 0.002 255);
+  --app-inset: oklch(96.5% 0.003 255);
+
+  --app-line: oklch(92% 0.004 255);
+  --app-line-strong: oklch(86% 0.006 255);
+
+  --app-fg: oklch(23% 0.012 255);
+  --app-fg-muted: oklch(50% 0.014 255);
+  --app-fg-subtle: oklch(64% 0.012 255);
+
+  --app-accent: oklch(58% 0.19 258);
+  --app-accent-hover: oklch(52% 0.19 258);
+  --app-accent-fg: oklch(100% 0 0);
+  --app-accent-soft: oklch(95% 0.03 258);
+
+  --app-streak: oklch(70% 0.17 52);
+  --app-streak-soft: oklch(95% 0.04 52);
+
+  --app-danger: oklch(55% 0.20 25);
+  --app-danger-soft: oklch(95% 0.03 25);
+
+  /* Heatmap ramp — sequential, single hue, perceptually even steps. */
+  --app-grid-0: oklch(93.5% 0.004 255);
+  --app-grid-1: oklch(87% 0.07 152);
+  --app-grid-2: oklch(78% 0.11 152);
+  --app-grid-3: oklch(67% 0.14 152);
+  --app-grid-4: oklch(56% 0.15 152);
+}
+
+.dark {
+  --app-canvas: oklch(17% 0.004 255);
+  --app-card: oklch(21% 0.005 255);
+  --app-card-hover: oklch(25% 0.006 255);
+  --app-inset: oklch(25.5% 0.006 255);
+
+  --app-line: oklch(30% 0.007 255);
+  --app-line-strong: oklch(38% 0.009 255);
+
+  --app-fg: oklch(97% 0.002 255);
+  --app-fg-muted: oklch(74% 0.01 255);
+  --app-fg-subtle: oklch(60% 0.012 255);
+
+  --app-accent: oklch(66% 0.17 258);
+  --app-accent-hover: oklch(72% 0.16 258);
+  --app-accent-fg: oklch(17% 0.02 258);
+  --app-accent-soft: oklch(30% 0.06 258);
+
+  --app-streak: oklch(76% 0.16 52);
+  --app-streak-soft: oklch(31% 0.06 52);
+
+  --app-danger: oklch(70% 0.17 25);
+  --app-danger-soft: oklch(30% 0.07 25);
+
+  --app-grid-0: oklch(27% 0.006 255);
+  --app-grid-1: oklch(38% 0.08 152);
+  --app-grid-2: oklch(50% 0.11 152);
+  --app-grid-3: oklch(63% 0.14 152);
+  --app-grid-4: oklch(76% 0.16 152);
+}
+
+@theme inline {
   --font-poppins: "Poppins", sans-serif;
+
+  --color-canvas: var(--app-canvas);
+  --color-card: var(--app-card);
+  --color-card-hover: var(--app-card-hover);
+  --color-inset: var(--app-inset);
+
+  --color-line: var(--app-line);
+  --color-line-strong: var(--app-line-strong);
+
+  --color-fg: var(--app-fg);
+  --color-fg-muted: var(--app-fg-muted);
+  --color-fg-subtle: var(--app-fg-subtle);
+
+  --color-accent: var(--app-accent);
+  --color-accent-hover: var(--app-accent-hover);
+  --color-accent-fg: var(--app-accent-fg);
+  --color-accent-soft: var(--app-accent-soft);
+
+  --color-streak: var(--app-streak);
+  --color-streak-soft: var(--app-streak-soft);
+
+  --color-danger: var(--app-danger);
+  --color-danger-soft: var(--app-danger-soft);
+
+  --color-grid-0: var(--app-grid-0);
+  --color-grid-1: var(--app-grid-1);
+  --color-grid-2: var(--app-grid-2);
+  --color-grid-3: var(--app-grid-3);
+  --color-grid-4: var(--app-grid-4);
 }
 
 @source "./**/*.{js,ts,jsx,tsx}";
@@ -169,4 +266,27 @@ html {
 
 .cv-error-line {
   background: rgba(239, 68, 68, 0.16);
+}
+
+/* Skeleton shimmer for loading states. */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.skeleton {
+  background: var(--app-inset);
+  animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+/* Users who ask for less motion get none of the ambient loops. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

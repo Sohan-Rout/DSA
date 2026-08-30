@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { event } from "@/lib/gtag";
-import Promotion from "@/app/components/ui/productHunt";
+import FeaturedOn from "@/app/components/ui/FeaturedOn";
 
 const HeroSection = () => {
   const router = useRouter();
@@ -106,7 +106,7 @@ const HeroSection = () => {
                   </span>
                   <span className="absolute inset-0 bg-linear-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 </button>
-                <Promotion/>
+                <FeaturedOn />
               </div>
 
               <div className="mt-2 flex justify-center lg:justify-start">

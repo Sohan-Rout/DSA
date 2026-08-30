@@ -1,14 +1,18 @@
 'use client';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/app/contexts/UserContext';
 import { useTheme } from '@/app/contexts/ThemeContext';
 import { supabase } from '@/lib/supabase';
+import UserMenu from '@/app/components/ui/UserMenu';
+import { SERVICES, ChevronIcon, DesktopDropdown, MobileDropdown } from '@/app/components/ui/navMenus';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [mobileUserMenuOpen, setMobileUserMenuOpen] = useState(false);
   const router = useRouter();
   const { user, setUser } = useUser();
   const { theme, toggleTheme } = useTheme();
@@ -53,37 +57,26 @@ export default function Navbar() {
 
           {/* Desktop Nav Items */}
           <div className="hidden md:flex items-center gap-4">
-            <Link
-              href="/blogs"
-              className="relative pr-2 py-2 font-medium text-black dark:text-white bg-transparent overflow-hidden items-center transition-all duration-300 hover:text-blue-500 dark:hover:text-blue-400"
+            {/* Services replaces the standalone Blogs link — Blogs is one of
+                its entries. Hovering it dismisses the avatar menu so the two
+                can't sit open on top of each other. */}
+            <div
+              className="relative group"
+              onMouseEnter={() => setUserMenuOpen(false)}
             >
-              <span className="z-[1] flex items-center gap-2">
-                Blogs
-              </span>
-            </Link>
-            <Link
-              href="/dashboard"
-              onClick={closeMenu}
-              className="pr-2 py-2 rounded font-medium hover:text-blue-500 transition"
-            >
-              Dashboard
-            </Link>
+              <button className="flex items-center gap-1 py-2 font-medium text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200">
+                Services
+                <ChevronIcon />
+              </button>
+              <DesktopDropdown items={SERVICES} />
+            </div>
             {user ? (
-              <>
-                <Image
-                  src={`https://api.dicebear.com/8.x/initials/png?seed=${encodeURIComponent(user.email)}`}
-                  alt="User Avatar"
-                  width={32}
-                  height={32}
-                  className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
-                />
-                <button
-                  onClick={handleLogout}
-                  className="ml-4 px-4 py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md"
-                >
-                  Logout
-                </button>
-              </>
+              <UserMenu
+                user={user}
+                open={userMenuOpen}
+                onOpenChange={setUserMenuOpen}
+                onLogout={handleLogout}
+              />
             ) : (
               <Link
                 href="/login"
@@ -148,36 +141,31 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {menuOpen && (
           <div className="md:hidden px-6 pb-4 pt-2 flex flex-col gap-2 animate-fade-in-down">
-            <Link
-              href="/blogs"
-              onClick={closeMenu}
-              className="px-4 py-2 rounded font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-            >
-              Blogs
-            </Link>
-            <Link
-              href="/dashboard"
-              onClick={closeMenu}
-              className="px-4 py-2 rounded font-medium hover:text-blue-500 transition"
-            >
-              Dashboard
-            </Link>
+            <div>
+              <button
+                onClick={() => setServicesOpen(!servicesOpen)}
+                aria-expanded={servicesOpen}
+                className="w-full flex justify-between items-center px-4 py-2 rounded font-medium text-black dark:text-white hover:text-blue-500 transition"
+              >
+                Services
+                <ChevronIcon isOpen={servicesOpen} />
+              </button>
+              <MobileDropdown
+                items={SERVICES}
+                isOpen={servicesOpen}
+                onItemClick={closeMenu}
+              />
+            </div>
             {user ? (
-              <>
-                <Image
-                  src={`https://api.dicebear.com/8.x/initials/png?seed=${encodeURIComponent(user.email)}`}
-                  alt="User Avatar"
-                  width={32}
-                  height={32}
-                  className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600 ml-4"
+              <div className="px-4 py-1">
+                <UserMenu
+                  user={user}
+                  open={mobileUserMenuOpen}
+                  onOpenChange={setMobileUserMenuOpen}
+                  onLogout={handleLogout}
+                  onNavigate={closeMenu}
                 />
-                <button
-                  onClick={handleLogout}
-                  className="px-4 py-2 rounded-full font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md"
-                >
-                  Logout
-                </button>
-              </>
+              </div>
             ) : (
               <Link
                 href="/login"

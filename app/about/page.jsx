@@ -1,5 +1,6 @@
 import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
+import ListedOnSection from "@/app/components/ui/ListedOnSection";
 import BackToTopButton from "@/app/components/ui/backtotop";
 import ModuleHeader from "@/app/components/modules/Header";
 import InfoContent from "@/app/components/info/InfoContent";
@@ -114,6 +115,8 @@ export default function AboutPage() {
             sections={aboutSections}
             footnote="Last updated: August 21, 2026"
           />
+
+          <ListedOnSection className="mt-8" />
         </section>
       </div>
 
