@@ -2,6 +2,7 @@
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
+import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
 
 const PRECEDENCE = { "^": 4, "%": 4, "*": 3, "/": 3, "+": 2, "-": 2 };
@@ -389,8 +390,8 @@ const Content = () => {
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
       <div className="md:col-span-3">
-        <NewsletterEmbed mobile={false} theme={theme} />
-        <DailyDSAEmbed mobile={false} theme={theme} />
+        <BackendEngineerCard theme={theme} />
+        <DailyDSAEmbed mobile={false} theme={theme} bordered={false} />
       </div>
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* What is Prefix Notation? */}

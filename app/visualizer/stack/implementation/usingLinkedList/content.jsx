@@ -2,6 +2,7 @@
 
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
+import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import React from "react";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import InContentAd from "@/app/components/ads/InContentAd";
@@ -130,8 +131,8 @@ const Content = () => {
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
       <div className="md:col-span-3">
-        <NewsletterEmbed mobile={false} theme={theme} />
-        <DailyDSAEmbed mobile={false} theme={theme} />
+        <BackendEngineerCard theme={theme} />
+        <DailyDSAEmbed mobile={false} theme={theme} bordered={false} />
       </div>
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* Header Section */}
@@ -220,6 +221,15 @@ const Content = () => {
             <p className="text-center text-sm font-mono text-gray-600 dark:text-gray-300 mb-3">isEmpty() → true</p>
             <StackListDiagram nodes={[]} keyPrefix="isempty" />
           </div>
+        </section>
+
+        {/* Newsletter — inline, directly above Time Complexity.
+            NewsletterEmbed renders null below 768px (desktop-only for
+            mobile performance), so the wrapper hides at the same
+            breakpoint — otherwise this leaves an empty padded, bordered
+            box on phones. */}
+        <section className="hidden border-b border-gray-100 p-6 md:block dark:border-gray-700">
+          <NewsletterEmbed mobile={false} theme={theme} bordered={false} />
         </section>
 
         {/* Time Complexity */}

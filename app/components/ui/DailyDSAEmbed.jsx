@@ -5,7 +5,9 @@ const EMBED_ORIGIN = "https://scaleengineer.com";
 // Used until the embed reports its real height, and if the message never lands.
 const FALLBACK_HEIGHT = 350;
 
-const DailyDSAEmbed = ({ mobile = false, theme = "light" }) => {
+// `bordered` mirrors NewsletterEmbed: defaults to true so existing placements
+// are untouched, opt out per usage.
+const DailyDSAEmbed = ({ mobile = false, theme = "light", bordered = true }) => {
   const [height, setHeight] = useState(FALLBACK_HEIGHT);
   const iframeRef = useRef(null);
 
@@ -42,7 +44,9 @@ const DailyDSAEmbed = ({ mobile = false, theme = "light" }) => {
           width="100%"
           scrolling="no"
           style={{ height: `${height}px` }}
-          className="block w-full border border-black border-dashed rounded-none overflow-hidden"
+          className={`block w-full overflow-hidden ${
+            bordered ? "rounded-none border border-dashed border-black" : "border-0"
+          }`}
           title="Daily DSA Challenge"
           loading="lazy"
         ></iframe>
