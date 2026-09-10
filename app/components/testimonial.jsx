@@ -26,6 +26,12 @@ const TestimonialSection = () => {
       stars: 4,
     },
     {
+      name : 'Soham Wani',
+      email: '@sohamwani967',
+      review: `Man, Just as I wanted, this website is a goldmine for DSA. All concepts are sorted neatly and is a great resource for revising or learning a new concept. Thanks once again hope so it stays free. Goated website.`,
+      stars: 5,
+    },
+    {
       name: 'Rahul Yadav',
       email: '@yadav.rahul05',
       review: `DSA Visualizer made understanding complex algorithms incredibly simple. Its intuitive design and step-by-step visuals helped me grasp DSA concepts faster than traditional methods. A must-use tool for learners! The interface might feel a bit cluttered or difficult to navigate for new users but seriously overall it's actually good. I particularly appreciate how it breaks down each step of the algorithms.`,
