@@ -6,7 +6,10 @@ const EMBED_ORIGIN = "https://scaleengineer.com";
 // Used until the embed reports its real height, and if the message never lands.
 const FALLBACK_HEIGHT = 360;
 
-const NewsletterEmbed = ({ mobile = false, theme = "light" }) => {
+// `bordered` defaults to true so the existing sidebar placements are
+// untouched; inline-in-article usage passes false, where the article already
+// supplies the frame and a second one just boxes a box.
+const NewsletterEmbed = ({ mobile = false, theme = "light", bordered = true }) => {
   const [pageUrl, setPageUrl] = useState("");
   // Only mount the iframe on desktop. Hiding it with CSS still downloads it on
   // phones, which hurts the mobile performance/SEO score.
@@ -59,7 +62,9 @@ const NewsletterEmbed = ({ mobile = false, theme = "light" }) => {
           width="100%"
           scrolling="no"
           style={{ height: `${height}px` }}
-          className="block w-full border border-black border-dashed rounded-none overflow-hidden"
+          className={`block w-full overflow-hidden ${
+            bordered ? "rounded-none border border-dashed border-black" : "border-0"
+          }`}
           title="Newsletter Subscribe"
           loading="lazy"
         ></iframe>

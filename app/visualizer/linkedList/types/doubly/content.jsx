@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
+import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
 
 // Every node is drawn as [prev | data | next], with each pointer cell holding
@@ -405,7 +406,7 @@ const Content = () => {
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
       <div className="md:col-span-3">
-        <NewsletterEmbed mobile={false} theme={theme} />
+        <BackendEngineerCard theme={theme} />
       </div>
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* Overview Section */}

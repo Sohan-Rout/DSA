@@ -3,6 +3,7 @@ import React from "react";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
+import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
 
 const CAPACITY = 6;
@@ -92,8 +93,8 @@ const Content = () => {
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
       <div className="md:col-span-3">
-        <NewsletterEmbed mobile={false} theme={theme} />
-        <DailyDSAEmbed mobile={false} theme={theme} />
+        <BackendEngineerCard theme={theme} />
+        <DailyDSAEmbed mobile={false} theme={theme} bordered={false} />
       </div>
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         {/* -------  HEADER  ------- */}
@@ -184,6 +185,15 @@ const Content = () => {
               <StackArrayDiagram values={[5, 3, 7, 2, 9, 1]} keyPrefix="isfull" />
             </div>
           </div>
+        </section>
+
+        {/* Newsletter — inline, directly above Time Complexity.
+            NewsletterEmbed renders null below 768px (desktop-only for
+            mobile performance), so the wrapper hides at the same
+            breakpoint — otherwise this leaves an empty padded, bordered
+            box on phones. */}
+        <section className="hidden border-b border-gray-100 p-6 md:block dark:border-gray-700">
+          <NewsletterEmbed mobile={false} theme={theme} bordered={false} />
         </section>
 
         <section className="p-6 border-b border-gray-100 dark:border-gray-700">
