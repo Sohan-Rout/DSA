@@ -9,10 +9,11 @@ import React from "react";
  * is a wall — whereas marks stay legible in a row for as long as the list
  * grows. Adding a directory is one entry in LISTINGS.
  *
- * The marks are drawn as inline SVG instead of the vendors' PNGs because both
+ * The marks are drawn as inline SVG instead of the vendors' PNGs because those
  * ship with an opaque background (white for Product Hunt, pale blue for
- * LaunchBuff) that reads as a visible tile in dark mode. Neutral parts use
- * currentColor so they invert with the theme; brand colours stay fixed.
+ * LaunchBuff, black for Aura++) that reads as a visible tile in dark mode.
+ * Neutral parts use currentColor so they invert with the theme; brand colours
+ * stay fixed.
  *
  * `variant="onDark"` is for the footer, which is hard-coded `bg-black` in both
  * themes — the token palette would paint a white card on it.
@@ -37,6 +38,22 @@ const LaunchBuffMark = (props) => (
   </svg>
 );
 
+// Aura++ is a black tile with a white serif A, which would disappear against
+// the black footer. So it is one path with fill-rule="evenodd": the tile is
+// currentColor, the letter is punched through to whatever is behind it, and
+// the A's counter fills back in (nesting depth 1 fill, 2 hole, 3 fill). That
+// keeps it legible on light and dark without a <mask>, whose id would collide
+// when several copies of this mark render on one page.
+const AuraPlusPlusMark = (props) => (
+  <svg viewBox="0 0 24 24" role="img" aria-label="Aura++" {...props}>
+    <path
+      fill="currentColor"
+      fillRule="evenodd"
+      d="M3 0h18a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V3a3 3 0 0 1 3-3ZM12 4l7.6 16h-3.2l-1.5-4.1H9.1L7.6 20H4.4Zm0 4.4 1.9 5.2h-3.8Z"
+    />
+  </svg>
+);
+
 /**
  * Single source of truth for directory listings — the hero pill, the footer
  * pill, and the About page section all render from this. Adding a directory is
@@ -52,6 +69,11 @@ export const LISTINGS = [
     name: "LaunchBuff",
     href: "https://launchbuff.com/products/dsa-visualizer-znscln",
     Mark: LaunchBuffMark,
+  },
+  {
+    name: "Aura++",
+    href: "https://auraplusplus.com/projects/dsa-visualizer",
+    Mark: AuraPlusPlusMark,
   },
 ];
 
