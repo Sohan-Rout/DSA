@@ -11,7 +11,7 @@ export const metadata = {
   alternates: {
     canonical: "/design-algorithm/fundamentals/basics/asymptotic-notation",
   },
-  title: "Asymptotic Notation — Big-O, Big-Ω and Big-Θ Explained",
+  title: "Asymptotic Notation: Big-O, Big-Ω and Big-Θ Explained",
   description:
     "Understand asymptotic notation from the ground up: the formal definitions of Big-O, Big-Omega and Big-Theta, how little-o and little-omega differ, the common growth rates from O(1) to O(n!), the rules for simplifying an operation count, and the mistakes to avoid. Part of the Design & Analysis of Algorithms series.",
   keywords: [
@@ -42,7 +42,7 @@ export const metadata = {
 };
 
 // FAQ answers mirror the "Frequently Asked Questions" section in content.jsx.
-// Keep the two in sync — structured data that does not match the visible page
+// Keep the two in sync: structured data that does not match the visible page
 // is a manual-action risk.
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -53,7 +53,7 @@ const faqJsonLd = {
       name: "What is the difference between Big-O and Big-Theta?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Big-O is only a ceiling: it says the algorithm grows no faster than the given function, so an O(n) algorithm is technically also O(n^2). Big-Theta is a two-sided claim — the function is both an upper and a lower bound — so it pins the growth rate exactly. Theta is the stronger statement, and you can only make it when the best and worst cases share the same growth.",
+        text: "Big-O is only a ceiling: it says the algorithm grows no faster than the given function, so an O(n) algorithm is technically also O(n^2). Big-Theta is a two-sided claim (the function is both an upper and a lower bound), so it pins the growth rate exactly. Theta is the stronger statement, and you can only make it when the best and worst cases share the same growth.",
       },
     },
     {
@@ -61,7 +61,7 @@ const faqJsonLd = {
       name: "Why do we ignore constants and lower-order terms?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Because they stop mattering as n grows. In 3n^2 + 5n + 7, the quadratic term accounts for 84% of the total at n = 10 and over 99.9% at n = 10,000. The constant 3 depends on your language and hardware anyway, so keeping it would make the answer machine-specific — exactly what asymptotic notation exists to avoid.",
+        text: "Because they stop mattering as n grows. In 3n^2 + 5n + 7, the quadratic term accounts for 84% of the total at n = 10 and over 99.9% at n = 10,000. The constant 3 depends on your language and hardware anyway, so keeping it would make the answer machine-specific: exactly what asymptotic notation exists to avoid.",
       },
     },
     {
@@ -77,7 +77,7 @@ const faqJsonLd = {
       name: "Does the base of the logarithm matter in O(log n)?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "No. Changing base multiplies by a constant — log2(n) = log10(n) / log10(2) — and constants are dropped, so log2(n), log10(n) and ln(n) are all written O(log n). This is why binary search and a search that splits into ten parts have the same complexity even though one is measurably faster.",
+        text: "No. Changing base multiplies by a constant (log2(n) = log10(n) / log10(2)), and constants are dropped, so log2(n), log10(n) and ln(n) are all written O(log n). This is why binary search and a search that splits into ten parts have the same complexity even though one is measurably faster.",
       },
     },
     {
@@ -85,7 +85,7 @@ const faqJsonLd = {
       name: "Can an algorithm be both O(n) and O(n^2)?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, and this is the most common source of confusion. Big-O is an upper bound, and n really does grow no faster than n^2, so the statement is true — just uselessly loose. By convention you always quote the tightest upper bound you can prove, which is why nobody writes O(n^2) for a single loop.",
+        text: "Yes, and this is the most common source of confusion. Big-O is an upper bound, and n really does grow no faster than n^2, so the statement is true: just uselessly loose. By convention you always quote the tightest upper bound you can prove, which is why nobody writes O(n^2) for a single loop.",
       },
     },
     {

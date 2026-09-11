@@ -2,6 +2,7 @@
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
+import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
 
 // The method is a loop, not a straight line: a failed proof sends you back to
@@ -65,7 +66,7 @@ const MethodFlow = () => {
 
         {box(100, 14, 160, 40, "1. Guess the bound", "from a recursion tree or a known form", "#3b82f6")}
         {box(100, 92, 160, 40, "2. Prove it by induction", "assume for smaller n, show for n", "#3b82f6")}
-        {box(100, 172, 160, 40, "Done — bound proved", "with explicit c and n₀", "#10b981")}
+        {box(100, 172, 160, 40, "Done: bound proved", "with explicit c and n₀", "#10b981")}
 
         {/* Down arrows */}
         <line x1={180} y1={54} x2={180} y2={88} stroke="#94a3b8" strokeWidth="1.5" markerEnd="url(#sub-arrow)" />
@@ -91,8 +92,8 @@ const MethodFlow = () => {
         </text>
       </svg>
       <figcaption className="mt-2 text-center text-xs text-gray-500 dark:text-gray-400">
-        When the algebra leaves you a term short, the guess needs strengthening —
-        that dashed path is the method, not a failure of it.
+        When the algebra leaves you a term short, the guess needs strengthening.
+        That dashed path is the method, not a failure of it.
       </figcaption>
     </figure>
   );
@@ -246,19 +247,19 @@ const Content = () => {
 
   const inductionParts = [
     {
-      points: "The inductive hypothesis — the bound you are assuming.",
+      points: "The inductive hypothesis: the bound you are assuming.",
       subpoints: [
         "Assume the bound holds for every input smaller than n, for example T(k) ≤ ck log k for all k < n.",
       ],
     },
     {
-      points: "The inductive step — the algebra.",
+      points: "The inductive step: the algebra.",
       subpoints: [
         "Substitute that assumption into the recurrence and show the same bound comes out for n. This is the step the method is named after.",
       ],
     },
     {
-      points: "The base case — where the induction starts.",
+      points: "The base case: where the induction starts.",
       subpoints: [
         "Show the bound holds for one or more small values of n directly, choosing c large enough to make it true.",
       ],
@@ -269,7 +270,7 @@ const Content = () => {
     [
       "Master Theorem",
       "T(n) = aT(n/b) + f(n) only",
-      "Almost none — three cases",
+      "Almost none: three cases",
       "A tight Θ bound, instantly",
     ],
     [
@@ -317,7 +318,7 @@ const Content = () => {
     {
       points: "Declaring victory with the wrong constant.",
       subpoints: [
-        "Ending at (c + 1)n and calling it O(n) is the single most common error. The constant must come out unchanged — you must reach ≤ cn, not ≤ (c+1)n.",
+        "Ending at (c + 1)n and calling it O(n) is the single most common error. The constant must come out unchanged. You must reach ≤ cn, not ≤ (c+1)n.",
       ],
     },
     {
@@ -359,15 +360,15 @@ const Content = () => {
     },
     {
       q: "When should I use substitution instead of the Master Theorem?",
-      a: "Whenever the recurrence does not have the form T(n) = aT(n/b) + f(n) with constant a and b — unequal subproblem sizes, subtractive recurrences like T(n − 1), non-constant a — or when it falls into one of the Master Theorem's gaps. Substitution works on any recurrence; the Master Theorem is faster but far narrower.",
+      a: "Whenever the recurrence does not have the form T(n) = aT(n/b) + f(n) with constant a and b (unequal subproblem sizes, subtractive recurrences like T(n − 1), non-constant a), or when it falls into one of the Master Theorem's gaps. Substitution works on any recurrence; the Master Theorem is faster but far narrower.",
     },
     {
       q: "How do I come up with the initial guess?",
-      a: "Usually from a recursion tree: sketch it, sum the levels roughly, and use that as your guess. You can also match the recurrence against a familiar one, or prove loose upper and lower bounds first and tighten from both sides. The guess does not need to be inspired — it needs to be checkable.",
+      a: "Usually from a recursion tree: sketch it, sum the levels roughly, and use that as your guess. You can also match the recurrence against a familiar one, or prove loose upper and lower bounds first and tighten from both sides. The guess does not need to be inspired. It needs to be checkable.",
     },
     {
       q: "Why does my proof fail even though the guess is right?",
-      a: "Almost always because the inductive hypothesis is too weak. If the algebra leaves you at cn + 1 when you needed cn, subtract a lower-order term from the hypothesis — assume T(n) ≤ cn − d instead of T(n) ≤ cn. The stronger statement is paradoxically easier to prove, because the extra −d absorbs the leftover term.",
+      a: "Almost always because the inductive hypothesis is too weak. If the algebra leaves you at cn + 1 when you needed cn, subtract a lower-order term from the hypothesis: assume T(n) ≤ cn − d instead of T(n) ≤ cn. The stronger statement is paradoxically easier to prove, because the extra −d absorbs the leftover term.",
     },
     {
       q: "Why can the base case start at n = 2 instead of n = 1?",
@@ -375,31 +376,31 @@ const Content = () => {
     },
     {
       q: "Can substitution prove a lower bound as well?",
-      a: "Yes. The structure is identical, with ≤ replaced by ≥ throughout, and the constant chosen small enough rather than large enough. To establish Θ you prove both directions — an O bound and an Ω bound with the same function.",
+      a: "Yes. The structure is identical, with ≤ replaced by ≥ throughout, and the constant chosen small enough rather than large enough. To establish Θ you prove both directions: an O bound and an Ω bound with the same function.",
     },
   ];
 
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
       <div className="md:col-span-3">
-        <NewsletterEmbed mobile={false} theme={theme} />
-        <DailyDSAEmbed mobile={false} theme={theme} />
+        <BackendEngineerCard theme={theme} />
+        <DailyDSAEmbed mobile={false} theme={theme} bordered={false} />
       </div>
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         <Section title="What the Substitution Method Is">
           <P>
             The substitution method solves a recurrence in two steps:{" "}
             <b>guess the form of the answer, then prove it correct by
-            mathematical induction</b>. The name comes from the second step —
-            you substitute the inductive hypothesis into the recurrence and check
+            mathematical induction</b>. The name comes from the second step.
+            You substitute the inductive hypothesis into the recurrence and check
             that the same bound survives.
           </P>
           <P>
             That structure makes it the odd one out among the three techniques.
             The Master Theorem and the recursion tree both <i>derive</i> an
             answer; substitution <i>verifies</i> one you already have. It cannot
-            tell you what the solution is. What it can do — and neither of the
-            others can — is turn a plausible answer into a proof, for a
+            tell you what the solution is. What it can do (and neither of the
+            others can), is turn a plausible answer into a proof, for a
             recurrence of any shape whatsoever.
           </P>
           <MethodFlow />
@@ -434,13 +435,13 @@ const Content = () => {
           <P>
             One rule governs the whole exercise: <b>the constant must come out
             unchanged</b>. If you assume T(k) ≤ ck and the algebra ends at
-            (c + 1)n, you have not proved T(n) ≤ cn — you have proved a weaker
+            (c + 1)n, you have not proved T(n) ≤ cn. You have proved a weaker
             statement with a constant that grows at every level, which over log n
             levels is not a constant at all.
           </P>
         </Section>
 
-        <Section title="Worked Example 1 — T(n) = 2T(n/2) + n">
+        <Section title="Worked Example 1: T(n) = 2T(n/2) + n">
           <P>
             This is the merge sort recurrence. A recursion tree suggests
             O(n log n), so that is the guess.
@@ -469,7 +470,7 @@ const Content = () => {
           <P>
             <b>Base case.</b> Here the induction cannot start at n = 1: the bound
             cn log n equals 0 when n = 1, and T(1) = 1 is not ≤ 0. This is not a
-            problem — asymptotic claims only need to hold for n ≥ n₀, so start at
+            problem: asymptotic claims only need to hold for n ≥ n₀, so start at
             n = 2 and n = 3 instead. With T(1) = 1, the recurrence gives T(2) = 4
             and T(3) = 5. Then:
           </P>
@@ -503,17 +504,17 @@ const Content = () => {
           />
           <P>
             So T(n) = Ω(n log n) with c = 1. Combined with the upper bound,
-            <b> T(n) = Θ(n log n)</b> — the same answer the Master Theorem gives
+            <b> T(n) = Θ(n log n)</b>: the same answer the Master Theorem gives
             through Case 2, now proved from first principles.
           </P>
         </Section>
 
-        <Section title="Worked Example 2 — a Recurrence the Master Theorem Cannot Touch">
+        <Section title="Worked Example 2: a Recurrence the Master Theorem Cannot Touch">
           <P>
             Solve T(n) = T(n − 1) + n, with T(1) = 1. The input shrinks by
             subtraction, so there is no b and the Master Theorem does not apply at
             all. A recursion tree is a single chain costing n, n−1, n−2, …, which
-            sums to about n²/2 — so guess O(n²).
+            sums to about n²/2, so guess O(n²).
           </P>
           <P>
             <b>Inductive hypothesis.</b> Assume T(k) ≤ ck² for all k &lt; n.
@@ -530,12 +531,12 @@ const Content = () => {
           />
           <P>
             <b>Base case.</b> T(1) = 1 ≤ c · 1² holds for c ≥ 1. Taking c = 1
-            satisfies everything, so <b>T(n) = O(n²)</b> — which matches the exact
+            satisfies everything, so <b>T(n) = O(n²)</b>, which matches the exact
             answer n(n+1)/2.
           </P>
         </Section>
 
-        <Section title="The Classic Trap — a Proof That Looks Right and Is Not">
+        <Section title="The Classic Trap: a Proof That Looks Right and Is Not">
           <P>
             Suppose you guessed O(n) for the merge sort recurrence instead. Assume
             T(k) ≤ ck and substitute:
@@ -546,7 +547,7 @@ const Content = () => {
               { expr: "     ≤ 2 · c(n/2) + n" },
               { expr: "     = cn + n" },
               { expr: "     = (c + 1)n" },
-              { expr: "     ≠ ≤ cn", note: "the constant grew — the proof fails" },
+              { expr: "     ≠ ≤ cn", note: "the constant grew: the proof fails" },
             ]}
           />
           <Callout tone="amber">
@@ -571,7 +572,7 @@ const Content = () => {
           <Derivation
             steps={[
               { expr: "T(n) ≤ 2 · c⌊n/2⌋ + 1" },
-              { expr: "     ≤ cn + 1", note: "so close — but not ≤ cn" },
+              { expr: "     ≤ cn + 1", note: "so close, but not ≤ cn" },
             ]}
           />
           <P>
@@ -590,7 +591,7 @@ const Content = () => {
             The stronger hypothesis carries a spare −d through the induction, and
             that spare term absorbs the leftover +1. Since ck − d is still O(k),
             proving the stronger statement proves the original one. Being handed a
-            <i> stronger</i> assumption is what makes the step work — a genuinely
+            <i> stronger</i> assumption is what makes the step work: a genuinely
             useful trick, and one worth recognising when a proof stalls one term
             away from closing.
           </P>
@@ -599,7 +600,7 @@ const Content = () => {
         <Section title="Changing Variables">
           <P>
             Some recurrences become familiar after a substitution of a different
-            kind — renaming the variable. Consider T(n) = 2T(√n) + log n, which
+            kind: renaming the variable. Consider T(n) = 2T(√n) + log n, which
             fits none of the standard patterns.
           </P>
           <P>
@@ -627,6 +628,14 @@ const Content = () => {
           <List items={mistakes} />
         </Section>
 
+        {/* Newsletter: inline, after the substantive sections and before the
+            end matter. NewsletterEmbed renders null below 768px (desktop-only
+            for mobile performance), so the wrapper hides at the same
+            breakpoint, otherwise this leaves an empty padded box on phones. */}
+        <section className="hidden border-b border-gray-100 p-6 md:block dark:border-gray-700">
+          <NewsletterEmbed mobile={false} theme={theme} bordered={false} />
+        </section>
+
         <Section title="Frequently Asked Questions">
           <div className="space-y-6">
             {faqs.map((faq, index) => (
@@ -644,9 +653,9 @@ const Content = () => {
           <List
             items={[
               { points: "Substitution is guess-then-prove: it verifies an answer rather than deriving one." },
-              { points: "Every proof needs an inductive hypothesis, an inductive step, and a base case — and the base case is where c gets pinned down." },
+              { points: "Every proof needs an inductive hypothesis, an inductive step, and a base case, and the base case is where c gets pinned down." },
               { points: "The constant must survive the algebra unchanged; ending at (c + 1)n is a failed proof, not a successful one." },
-              { points: "Never let asymptotic notation into the middle of the induction — it hides the constant you are checking." },
+              { points: "Never let asymptotic notation into the middle of the induction. It hides the constant you are checking." },
               { points: "A proof that fails by one term usually needs a stronger hypothesis, such as ck − d instead of ck." },
               { points: "It works on any recurrence, which is why it is the fallback when the Master Theorem does not apply." },
             ]}

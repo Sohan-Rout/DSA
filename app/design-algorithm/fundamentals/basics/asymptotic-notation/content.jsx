@@ -2,6 +2,7 @@
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
+import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
 
 // Plots f(n) against a scaled bound c*g(n) so the reader can see what "for all
@@ -248,7 +249,7 @@ const Content = () => {
     {
       points: "It lets you reject a design before you build it.",
       subpoints: [
-        "If a problem has a million inputs and your idea is quadratic, you know it is wrong on paper — no prototype required.",
+        "If a problem has a million inputs and your idea is quadratic, you know it is wrong on paper: no prototype required.",
       ],
     },
   ];
@@ -256,11 +257,11 @@ const Content = () => {
   const simplify = [
     { points: "Start with the exact operation count.", detail: "T(n) = 3n² + 5n + 7" },
     {
-      points: "Drop the lower-order terms — they grow slower and become irrelevant.",
+      points: "Drop the lower-order terms. They grow slower and become irrelevant.",
       detail: "T(n) ≈ 3n²",
     },
     {
-      points: "Drop the constant factor — it does not change the shape of the curve.",
+      points: "Drop the constant factor. It does not change the shape of the curve.",
       detail: "T(n) = Θ(n²)",
     },
   ];
@@ -282,33 +283,33 @@ const Content = () => {
 
   const properties = [
     {
-      points: "Transitivity — it holds for all five notations.",
+      points: "Transitivity. It holds for all five notations.",
       subpoints: ["If f = O(g) and g = O(h), then f = O(h)."],
     },
     {
-      points: "Reflexivity — for O, Ω and Θ only.",
+      points: "Reflexivity: for O, Ω and Θ only.",
       subpoints: [
         "f = O(f), f = Ω(f) and f = Θ(f) are always true. The strict forms are not reflexive: f is never o(f).",
       ],
     },
     {
-      points: "Symmetry — Θ only.",
+      points: "Symmetry: Θ only.",
       subpoints: ["If f = Θ(g), then g = Θ(f). O and Ω are not symmetric."],
     },
     {
-      points: "Transpose symmetry — O and Ω are mirrors.",
+      points: "Transpose symmetry: O and Ω are mirrors.",
       subpoints: [
         "f = O(g) if and only if g = Ω(f). The same relationship links o and ω.",
       ],
     },
     {
-      points: "The sum rule — the larger term absorbs the smaller.",
+      points: "The sum rule: the larger term absorbs the smaller.",
       subpoints: [
         "O(f) + O(g) = O(max(f, g)). This is why sequential blocks of code collapse to whichever is slowest.",
       ],
     },
     {
-      points: "The product rule — nested work multiplies.",
+      points: "The product rule: nested work multiplies.",
       subpoints: [
         "O(f) × O(g) = O(f × g). This is why an O(log n) loop inside an O(n) loop is O(n log n).",
       ],
@@ -359,7 +360,7 @@ const Content = () => {
     {
       points: "Different input sizes stay separate.",
       subpoints: [
-        "A loop over n nested in a loop over m is O(n · m) — collapsing it to O(n²) is only correct if n and m are the same quantity.",
+        "A loop over n nested in a loop over m is O(n · m): collapsing it to O(n²) is only correct if n and m are the same quantity.",
       ],
     },
   ];
@@ -400,7 +401,7 @@ const Content = () => {
     },
     {
       points: "Writing O(2n) or O(n + 5).",
-      subpoints: ["Both are just O(n) — the point of the notation is to discard that detail."],
+      subpoints: ["Both are just O(n): the point of the notation is to discard that detail."],
     },
     {
       points: "Using O where Θ is meant.",
@@ -411,13 +412,13 @@ const Content = () => {
     {
       points: "Reading the equals sign as equality.",
       subpoints: [
-        'f(n) = O(g(n)) really means "f belongs to the set O(g)". That is why you can write n = O(n²) but never O(n²) = n — the relation only runs one way.',
+        'f(n) = O(g(n)) really means "f belongs to the set O(g)". That is why you can write n = O(n²) but never O(n²) = n: the relation only runs one way.',
       ],
     },
     {
       points: "Forgetting that constants matter for small n.",
       subpoints: [
-        "An O(n log n) algorithm with a huge constant can lose to an O(n²) one on tiny inputs — which is why real sort implementations switch to insertion sort for short subarrays.",
+        "An O(n log n) algorithm with a huge constant can lose to an O(n²) one on tiny inputs, which is why real sort implementations switch to insertion sort for short subarrays.",
       ],
     },
     {
@@ -431,11 +432,11 @@ const Content = () => {
   const faqs = [
     {
       q: "What is the difference between Big-O and Big-Θ?",
-      a: "Big-O is only a ceiling: it says the algorithm grows no faster than the given function, so an O(n) algorithm is technically also O(n²). Big-Θ is a two-sided claim — the function is both an upper and a lower bound — so it pins the growth rate exactly. Θ is the stronger statement, and you can only make it when the best and worst cases share the same growth.",
+      a: "Big-O is only a ceiling: it says the algorithm grows no faster than the given function, so an O(n) algorithm is technically also O(n²). Big-Θ is a two-sided claim (the function is both an upper and a lower bound), so it pins the growth rate exactly. Θ is the stronger statement, and you can only make it when the best and worst cases share the same growth.",
     },
     {
       q: "Why do we ignore constants and lower-order terms?",
-      a: "Because they stop mattering as n grows. In 3n² + 5n + 7, the quadratic term accounts for 84% of the total at n = 10 and over 99.9% at n = 10,000. The constant 3 depends on your language and hardware anyway, so keeping it would make the answer machine-specific — exactly what asymptotic notation exists to avoid.",
+      a: "Because they stop mattering as n grows. In 3n² + 5n + 7, the quadratic term accounts for 84% of the total at n = 10 and over 99.9% at n = 10,000. The constant 3 depends on your language and hardware anyway, so keeping it would make the answer machine-specific: exactly what asymptotic notation exists to avoid.",
     },
     {
       q: "Is Big-O the same thing as the worst case?",
@@ -443,11 +444,11 @@ const Content = () => {
     },
     {
       q: "Does the base of the logarithm matter in O(log n)?",
-      a: "No. Changing base multiplies by a constant — log₂n = log₁₀n / log₁₀2 — and constants are dropped, so log₂n, log₁₀n and ln n are all written O(log n). This is why binary search and a search that splits into ten parts have the same complexity even though one is measurably faster.",
+      a: "No. Changing base multiplies by a constant (log₂n = log₁₀n / log₁₀2), and constants are dropped, so log₂n, log₁₀n and ln n are all written O(log n). This is why binary search and a search that splits into ten parts have the same complexity even though one is measurably faster.",
     },
     {
       q: "Can an algorithm be both O(n) and O(n²)?",
-      a: "Yes, and this is the most common source of confusion. Big-O is an upper bound, and n really does grow no faster than n², so the statement is true — just uselessly loose. By convention you always quote the tightest upper bound you can prove, which is why nobody writes O(n²) for a single loop.",
+      a: "Yes, and this is the most common source of confusion. Big-O is an upper bound, and n really does grow no faster than n², so the statement is true: just uselessly loose. By convention you always quote the tightest upper bound you can prove, which is why nobody writes O(n²) for a single loop.",
     },
     {
       q: "How do I find the asymptotic notation of a piece of code?",
@@ -458,16 +459,16 @@ const Content = () => {
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
       <div className="md:col-span-3">
-        <NewsletterEmbed mobile={false} theme={theme} />
-        <DailyDSAEmbed mobile={false} theme={theme} />
+        <BackendEngineerCard theme={theme} />
+        <DailyDSAEmbed mobile={false} theme={theme} bordered={false} />
       </div>
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         <Section title="What is Asymptotic Notation?">
           <P>
             Asymptotic notation is a language for describing how the cost of an
             algorithm grows as its input gets larger. Instead of measuring an
-            algorithm in seconds — which depends on the machine, the compiler and
-            the mood of your operating system — we count the operations it
+            algorithm in seconds (which depends on the machine, the compiler and
+            the mood of your operating system), we count the operations it
             performs as a function of the input size <b>n</b>, and then keep only
             the part of that function that matters when n becomes large.
           </P>
@@ -485,7 +486,7 @@ const Content = () => {
           <List items={whyPoints} />
           <Callout>
             Asymptotic notation is deliberately imprecise. Throwing away
-            constants is not a limitation of the technique — it is the entire
+            constants is not a limitation of the technique. It is the entire
             point, because it is what makes a complexity claim true on every
             machine rather than on yours.
           </Callout>
@@ -530,12 +531,12 @@ const Content = () => {
             At n = 10 the smaller terms still contribute a sixth of the total. By
             n = 10,000 they contribute less than a fiftieth of one percent. Since
             asymptotic analysis is about the behaviour as n keeps growing, keeping
-            those terms would add precision that is already noise — and would make
+            those terms would add precision that is already noise, and would make
             the answer depend on details no two machines agree on.
           </P>
         </Section>
 
-        <Section title="Big-O — the Upper Bound">
+        <Section title="Big-O: the Upper Bound">
           <P>
             Big-O says an algorithm grows <i>no faster than</i> some function. It
             is the ceiling.
@@ -556,7 +557,7 @@ const Content = () => {
               { label: "c·g(n)", fn: (n) => n * n, color: "#ef4444", dashed: true },
               { label: "f(n)", fn: (n) => 0.5 * n * n + 3 * n + 5, color: "#3b82f6" },
             ]}
-            caption="Past n₀ the red ceiling stays above f(n) — that is all Big-O requires."
+            caption="Past n₀ the red ceiling stays above f(n). That is all Big-O requires."
           />
           <P>
             Because it is only a ceiling, an O(n) algorithm is technically also
@@ -593,7 +594,7 @@ const Content = () => {
             ]}
           />
           <P>
-            Note how crude the bound is — 15n² is five times larger than the
+            Note how crude the bound is: 15n² is five times larger than the
             function it bounds. That is fine. The definition never asks for the
             smallest possible c, only for <i>some</i> c that works, which is
             exactly why constant factors carry no information in the final answer.
@@ -602,7 +603,7 @@ const Content = () => {
           <InContentAd />
         </Section>
 
-        <Section title="Big-Ω — the Lower Bound">
+        <Section title="Big-Ω: the Lower Bound">
           <P>
             Big-Ω is the mirror image: the algorithm grows <i>at least as fast
             as</i> the given function. It is the floor.
@@ -629,7 +630,7 @@ const Content = () => {
           </P>
         </Section>
 
-        <Section title="Big-Θ — the Tight Bound">
+        <Section title="Big-Θ: the Tight Bound">
           <P>
             Θ is the strongest of the three: it holds when the same function is
             both an upper and a lower bound, so the growth rate is pinned exactly.
@@ -645,12 +646,12 @@ const Content = () => {
               { label: "f(n)", fn: (n) => 0.5 * n * n + 3 * n + 5, color: "#3b82f6" },
               { label: "c₁·g(n)", fn: (n) => 0.3 * n * n, color: "#10b981", dashed: true },
             ]}
-            caption="f(n) is sandwiched between two scaled copies of the same g(n) — that is Θ."
+            caption="f(n) is sandwiched between two scaled copies of the same g(n). That is Θ."
           />
           <P>
             Equivalently: f(n) = Θ(g(n)) if and only if f(n) = O(g(n)) and
             f(n) = Ω(g(n)). Merge sort is Θ(n log n) because it never does better
-            and never does worse. Quick sort is <i>not</i> Θ(n log n) — its worst
+            and never does worse. Quick sort is <i>not</i> Θ(n log n). Its worst
             case is Θ(n²), so only a per-case statement is honest.
           </P>
         </Section>
@@ -662,12 +663,12 @@ const Content = () => {
           </P>
           <ul className="space-y-3 list-disc pl-5 marker:text-gray-500 dark:marker:text-gray-400">
             <li className="text-gray-700 dark:text-gray-300 pl-2">
-              <b>f(n) = o(g(n))</b> — f grows strictly slower than g. The bound
+              <b>f(n) = o(g(n))</b>: f grows strictly slower than g. The bound
               must hold for <i>every</i> constant c, not just some c. Example:
               n = o(n²), but n is not o(n).
             </li>
             <li className="text-gray-700 dark:text-gray-300 pl-2">
-              <b>f(n) = ω(g(n))</b> — f grows strictly faster than g. Example:
+              <b>f(n) = ω(g(n))</b>: f grows strictly faster than g. Example:
               n² = ω(n).
             </li>
           </ul>
@@ -686,8 +687,8 @@ const Content = () => {
           />
           <P>
             The middle column is a useful mnemonic but not a perfect one. Unlike
-            numbers, two functions need not be comparable at all — you can
-            construct oscillating functions where neither is O of the other — so
+            numbers, two functions need not be comparable at all (you can
+            construct oscillating functions where neither is O of the other), so
             treat the ≤ / ≥ / = analogy as intuition rather than as a theorem.
           </P>
         </Section>
@@ -702,8 +703,8 @@ const Content = () => {
 
         <Section title="Comparing Growth Rates with Limits">
           <P>
-            When two functions are hard to compare by eye — is n log n bigger than
-            n^1.5? — the limit test settles it mechanically. Evaluate the ratio as
+            When two functions are hard to compare by eye (is n log n bigger than
+            n^1.5?), the limit test settles it mechanically. Evaluate the ratio as
             n approaches infinity:
           </P>
           <Formula>lim (n → ∞) f(n) / g(n)</Formula>
@@ -714,7 +715,7 @@ const Content = () => {
           />
           <P>
             For the example above, n log n divided by n^1.5 is log n / n^0.5, which
-            tends to 0, so n log n = o(n^1.5) — the linearithmic function is the
+            tends to 0, so n log n = o(n^1.5): the linearithmic function is the
             smaller of the two. This test is also the quickest way to confirm the
             standard ordering: 1 &lt; log n &lt; √n &lt; n &lt; n log n &lt; n²
             &lt; n³ &lt; 2ⁿ &lt; n!.
@@ -803,10 +804,18 @@ const Content = () => {
           <Callout>
             Notation describes the <b>growth rate</b>; best/average/worst describes{" "}
             <b>which input</b> you are talking about. Pick one from each column and
-            your statement will be unambiguous — for example, &quot;quick sort is
+            your statement will be unambiguous: for example, &quot;quick sort is
             Θ(n²) in the worst case and Θ(n log n) on average&quot;.
           </Callout>
         </Section>
+
+        {/* Newsletter: inline, after the substantive sections and before the
+            end matter. NewsletterEmbed renders null below 768px (desktop-only
+            for mobile performance), so the wrapper hides at the same
+            breakpoint, otherwise this leaves an empty padded box on phones. */}
+        <section className="hidden border-b border-gray-100 p-6 md:block dark:border-gray-700">
+          <NewsletterEmbed mobile={false} theme={theme} bordered={false} />
+        </section>
 
         <Section title="Frequently Asked Questions">
           <div className="space-y-6">
@@ -826,7 +835,7 @@ const Content = () => {
             items={[
               { points: "Asymptotic notation describes growth as n → ∞, not speed at any particular size." },
               { points: "O is an upper bound, Ω is a lower bound, Θ is both at once, and o and ω are their strict versions." },
-              { points: "A bound only has to hold past some cutoff n₀, and you may scale g(n) by any constant — which is why constants never survive." },
+              { points: "A bound only has to hold past some cutoff n₀, and you may scale g(n) by any constant, which is why constants never survive." },
               { points: "Always quote the tightest bound you can justify; a loose O is true but says nothing." },
               { points: "The equals sign in f = O(g) means set membership, so the relation only reads left to right." },
               { points: "The limit test decides any comparison you cannot make by eye." },

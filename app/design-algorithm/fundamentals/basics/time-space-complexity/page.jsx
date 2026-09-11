@@ -11,7 +11,7 @@ export const metadata = {
   alternates: {
     canonical: "/design-algorithm/fundamentals/basics/time-space-complexity",
   },
-  title: "Time and Space Complexity — A Complete Guide with Examples",
+  title: "Time and Space Complexity: A Complete Guide with Examples",
   description:
     "A complete guide to time and space complexity: how to count operations, analyse loops and recursion, the hidden cost of the call stack, best/average/worst case, the time-space trade-off, complexity tables for common data structures and sorting algorithms, and how to pick a target complexity from the input size.",
   keywords: [
@@ -42,7 +42,7 @@ export const metadata = {
 };
 
 // FAQ answers mirror the "Frequently Asked Questions" section in content.jsx.
-// Keep the two in sync — structured data that does not match the visible page
+// Keep the two in sync: structured data that does not match the visible page
 // is a manual-action risk.
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -61,7 +61,7 @@ const faqJsonLd = {
       name: "Which matters more, time or space?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "On modern hardware, time usually matters more, because memory is comparatively cheap and plentiful. The exception is any environment with a hard memory ceiling — embedded devices, large datasets that must stay in RAM, or a competitive-programming problem with a 256 MB limit — where an O(n) algorithm that allocates O(n^2) memory simply cannot run.",
+        text: "On modern hardware, time usually matters more, because memory is comparatively cheap and plentiful. The exception is any environment with a hard memory ceiling (embedded devices, large datasets that must stay in RAM, or a competitive-programming problem with a 256 MB limit), where an O(n) algorithm that allocates O(n^2) memory simply cannot run.",
       },
     },
     {
@@ -77,7 +77,7 @@ const faqJsonLd = {
       name: "How do I find the space complexity of a recursive function?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Take the maximum depth of the recursion tree and multiply it by the space each frame uses, then add any data structures allocated outside the recursion. Depth, not the total number of calls, is what counts — only the frames on the current path are alive at once.",
+        text: "Take the maximum depth of the recursion tree and multiply it by the space each frame uses, then add any data structures allocated outside the recursion. Depth, not the total number of calls, is what counts: only the frames on the current path are alive at once.",
       },
     },
     {
@@ -121,7 +121,7 @@ export default function Page() {
 
         <section className="px-2">
           <CodeBlock
-            title="Complexity in Practice — Two Solutions, Two Trade-offs"
+            title="Complexity in Practice: Two Solutions, Two Trade-offs"
             codeExamples={codeExamples}
           />
         </section>

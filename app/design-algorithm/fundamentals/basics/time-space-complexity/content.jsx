@@ -2,6 +2,7 @@
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
+import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
 
 const Section = ({ title, children }) => (
@@ -132,7 +133,7 @@ const Content = () => {
     { points: "Assigning to a variable, reading a variable." },
     { points: "Indexing an array: arr[i]." },
     { points: "Following a reference or pointer: node.next." },
-    { points: "Calling a function — the call itself, not the work inside it." },
+    { points: "Calling a function: the call itself, not the work inside it." },
   ];
 
   const countingRows = [
@@ -152,7 +153,7 @@ const Content = () => {
 
   const loopRows = [
     ["for (i = 0; i < n; i++)", "O(n)", "The counter increases by a constant, so it takes n steps to reach n."],
-    ["for (i = 0; i < n; i += 3)", "O(n)", "n/3 iterations — still linear, because constants are dropped."],
+    ["for (i = 0; i < n; i += 3)", "O(n)", "n/3 iterations: still linear, because constants are dropped."],
     [
       "for (i = 1; i < n; i *= 2)",
       "O(log n)",
@@ -171,7 +172,7 @@ const Content = () => {
     [
       "for (i = 0; i < n; i++) for (j = 0; j < m; j++)",
       "O(n · m)",
-      "Two independent sizes must both appear — do not collapse this to O(n²).",
+      "Two independent sizes must both appear. Do not collapse this to O(n²).",
     ],
     [
       "for (i = 0; i < n; i++) for (j = 1; j < n; j *= 2)",
@@ -187,20 +188,20 @@ const Content = () => {
 
   const spaceCounts = [
     {
-      points: "Auxiliary space — the extra memory your algorithm allocates.",
+      points: "Auxiliary space: the extra memory your algorithm allocates.",
       subpoints: [
         "Temporary arrays, hash maps, the recursion call stack, and any buffers you create.",
         "This is what people almost always mean when they quote a space complexity.",
       ],
     },
     {
-      points: "Input space — the memory the input itself occupies.",
+      points: "Input space: the memory the input itself occupies.",
       subpoints: [
         "Total space complexity = input space + auxiliary space, but the input is usually excluded because you had to store it either way.",
       ],
     },
     {
-      points: "The call stack — the part everyone forgets.",
+      points: "The call stack: the part everyone forgets.",
       subpoints: [
         "Every pending recursive call holds its parameters and local variables in memory, so recursion depth is a real space cost.",
       ],
@@ -211,7 +212,7 @@ const Content = () => {
     ["Iterative loop", "O(1)", "No frames are stacked; the loop reuses the same variables."],
     ["Linear recursion (factorial, linked-list traversal)", "O(n)", "n frames are open at the deepest point."],
     ["Binary search, recursive", "O(log n)", "The depth is the number of halvings."],
-    ["Merge sort", "O(n)", "O(log n) of stack plus O(n) for the merge buffer — the buffer dominates."],
+    ["Merge sort", "O(n)", "O(log n) of stack plus O(n) for the merge buffer: the buffer dominates."],
     ["Quick sort (with tail-call on the larger side)", "O(log n)", "Depth is O(log n) when partitions are balanced, O(n) in the worst case."],
     ["DFS on a graph", "O(V)", "A path can, in the worst case, contain every vertex."],
   ];
@@ -220,7 +221,7 @@ const Content = () => {
     {
       points: "Memoization trades memory for repeated work.",
       subpoints: [
-        "Naive recursive Fibonacci is O(2ⁿ) time and O(n) space. Caching each result makes it O(n) time and O(n) space — an enormous win for a small, bounded cost.",
+        "Naive recursive Fibonacci is O(2ⁿ) time and O(n) space. Caching each result makes it O(n) time and O(n) space: an enormous win for a small, bounded cost.",
       ],
     },
     {
@@ -232,7 +233,7 @@ const Content = () => {
     {
       points: "Counting sort trades memory for a linear sort.",
       subpoints: [
-        "It sorts in O(n + k) time by allocating a bucket for every possible value — fast when the value range k is small, wasteful when it is huge.",
+        "It sorts in O(n + k) time by allocating a bucket for every possible value: fast when the value range k is small, wasteful when it is huge.",
       ],
     },
     {
@@ -247,7 +248,7 @@ const Content = () => {
     ["Array (static)", "O(1)", "O(n)", "O(n)", "O(n)", "Access by index is the one thing arrays do instantly."],
     ["Dynamic array", "O(1)", "O(n)", "O(1)*", "O(n)", "*Amortized for appends; a resize copy is O(n)."],
     ["Singly linked list", "O(n)", "O(n)", "O(1)", "O(1)", "Insert/delete are O(1) only when you already hold the node."],
-    ["Hash table", "—", "O(1)", "O(1)", "O(1)", "Average case; degrades to O(n) with heavy collisions."],
+    ["Hash table", "-", "O(1)", "O(1)", "O(1)", "Average case; degrades to O(n) with heavy collisions."],
     ["Balanced BST", "O(log n)", "O(log n)", "O(log n)", "O(log n)", "Keeps data sorted, unlike a hash table."],
     ["Binary heap", "O(1) (min/max)", "O(n)", "O(log n)", "O(log n)", "Only the extreme element is cheap to reach."],
   ];
@@ -276,7 +277,7 @@ const Content = () => {
     {
       points: "Decide what n actually is.",
       subpoints: [
-        "The number of array elements, the number of nodes and edges, the length of the string, the number of digits — name it before you count anything.",
+        "The number of array elements, the number of nodes and edges, the length of the string, the number of digits: name it before you count anything.",
       ],
     },
     {
@@ -323,7 +324,7 @@ const Content = () => {
     {
       points: "Forgetting the recursion stack in space analysis.",
       subpoints: [
-        'A recursive function that allocates nothing is still not O(1) space — a depth-n recursion holds n frames, which is exactly why deep recursion throws a "maximum call stack size exceeded" error.',
+        'A recursive function that allocates nothing is still not O(1) space: a depth-n recursion holds n frames, which is exactly why deep recursion throws a "maximum call stack size exceeded" error.',
       ],
     },
     {
@@ -353,7 +354,7 @@ const Content = () => {
     },
     {
       q: "Which matters more, time or space?",
-      a: "On modern hardware, time usually matters more, because memory is comparatively cheap and plentiful. The exception is any environment with a hard memory ceiling — embedded devices, large datasets that must stay in RAM, or a competitive-programming problem with a 256 MB limit — where an O(n) algorithm that allocates O(n²) memory simply cannot run.",
+      a: "On modern hardware, time usually matters more, because memory is comparatively cheap and plentiful. The exception is any environment with a hard memory ceiling (embedded devices, large datasets that must stay in RAM, or a competitive-programming problem with a 256 MB limit), where an O(n) algorithm that allocates O(n²) memory simply cannot run.",
     },
     {
       q: "Does an O(1) algorithm always beat an O(n) one?",
@@ -361,7 +362,7 @@ const Content = () => {
     },
     {
       q: "How do I find the space complexity of a recursive function?",
-      a: "Take the maximum depth of the recursion tree and multiply it by the space each frame uses, then add any data structures allocated outside the recursion. Depth, not the total number of calls, is what counts — only the frames on the current path are alive at once.",
+      a: "Take the maximum depth of the recursion tree and multiply it by the space each frame uses, then add any data structures allocated outside the recursion. Depth, not the total number of calls, is what counts: only the frames on the current path are alive at once.",
     },
     {
       q: "What does amortized complexity mean here?",
@@ -372,8 +373,8 @@ const Content = () => {
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
       <div className="md:col-span-3">
-        <NewsletterEmbed mobile={false} theme={theme} />
-        <DailyDSAEmbed mobile={false} theme={theme} />
+        <BackendEngineerCard theme={theme} />
+        <DailyDSAEmbed mobile={false} theme={theme} bordered={false} />
       </div>
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         <Section title="What Are Time and Space Complexity?">
@@ -388,7 +389,7 @@ const Content = () => {
           </P>
           <P>
             The word &quot;grows&quot; is the important one. Neither measure is
-            interested in a single number — not milliseconds, not kilobytes. Both
+            interested in a single number, not milliseconds, not kilobytes. Both
             answer the same shaped question: <i>if the input doubles, what
             happens?</i> An O(n) algorithm does twice the work. An O(n²)
             algorithm does four times the work. An O(log n) algorithm does one
@@ -400,7 +401,7 @@ const Content = () => {
 
         <Section title="Why Not Just Measure Seconds and Megabytes?">
           <P>
-            Timing code with a stopwatch is genuinely useful — it is called
+            Timing code with a stopwatch is genuinely useful. It is called
             benchmarking, and you should do it before optimising anything. But it
             cannot replace complexity analysis, for four reasons:
           </P>
@@ -420,7 +421,7 @@ const Content = () => {
           </P>
           <List items={constantOps} />
           <P>
-            The model is a deliberate simplification — it ignores CPU caches,
+            The model is a deliberate simplification. It ignores CPU caches,
             branch prediction and memory latency, all of which matter in real
             benchmarks. What it buys you is a count that is independent of any
             particular processor, which is exactly what makes complexity
@@ -447,7 +448,7 @@ const Content = () => {
           <P>
             Adding the column gives T(n) = 3n + 4. Now apply the two
             simplification rules: drop the lower-order term (the constant 4) and
-            drop the constant factor (the 3). What remains is <b>O(n)</b> — the
+            drop the constant factor (the 3). What remains is <b>O(n)</b>: the
             cost is proportional to the number of elements, which matches the
             intuition that you must look at every element to add it up.
           </P>
@@ -463,7 +464,7 @@ const Content = () => {
           <P>
             Two inputs of the same size can cost wildly different amounts, so a
             single number is often not enough. Linear search is the classic
-            illustration — it stops as soon as it finds the target:
+            illustration. It stops as soon as it finds the target:
           </P>
           <CodeSample>{`function linearSearch(arr, target) {
   for (let i = 0; i < arr.length; i++) {
@@ -478,7 +479,7 @@ const Content = () => {
           />
           <P>
             The average case assumes every position is equally likely, which
-            gives n/2 comparisons — still O(n) after dropping the constant. In
+            gives n/2 comparisons: still O(n) after dropping the constant. In
             practice the worst case is quoted most often, because it is the only
             one that comes with a guarantee. The average case matters when an
             algorithm&apos;s worst case is rare and pathological, which is
@@ -518,8 +519,8 @@ const Content = () => {
           <P>
             A recursive function does not wear its cost on its sleeve, because the
             work is spread across a tree of calls. The standard technique is to
-            write a <b>recurrence relation</b> — an equation that defines the cost
-            of size n in terms of smaller sizes — and then solve it.
+            write a <b>recurrence relation</b> (an equation that defines the cost
+            of size n in terms of smaller sizes), and then solve it.
           </P>
           <CodeSample>{`function mergeSort(arr) {
   if (arr.length <= 1) return arr;             // O(1)
@@ -531,7 +532,7 @@ const Content = () => {
           <P>
             Reading that directly off the code gives T(n) = 2T(n/2) + O(n): two
             subproblems of half the size, plus a linear merge. Solving it yields
-            O(n log n) — there are log₂n levels of recursion, and every level does
+            O(n log n). There are log₂n levels of recursion, and every level does
             a total of O(n) work merging.
           </P>
           <P>
@@ -543,8 +544,8 @@ const Content = () => {
 
         <Section title="What Space Complexity Actually Counts">
           <P>
-            Space complexity is measured the same way as time — as growth, not as
-            a byte count — but it is split into parts that are easy to confuse:
+            Space complexity is measured the same way as time (as growth, not as
+            a byte count), but it is split into parts that are easy to confuse:
           </P>
           <List items={spaceCounts} />
           <P>
@@ -628,7 +629,7 @@ const Content = () => {
             Quick sort is usually the fastest in practice despite its O(n²) worst
             case, because its constant factors are small and it needs no merge
             buffer. Counting sort escapes the O(n log n) lower bound entirely by
-            not comparing elements at all — which it can only do because it
+            not comparing elements at all, which it can only do because it
             assumes the keys are small integers.
           </P>
         </Section>
@@ -648,7 +649,7 @@ const Content = () => {
           <P>
             Used in reverse, the table is a strong hint. If a problem states that n
             can be up to 200,000, an O(n²) solution would need roughly 4 × 10¹⁰
-            operations and is hopeless — so the intended answer is almost
+            operations and is hopeless, so the intended answer is almost
             certainly O(n log n) or better, and you can stop trying to make nested
             loops work.
           </P>
@@ -661,6 +662,14 @@ const Content = () => {
         <Section title="Common Mistakes and Misconceptions">
           <List items={mistakes} />
         </Section>
+
+        {/* Newsletter: inline, after the substantive sections and before the
+            end matter. NewsletterEmbed renders null below 768px (desktop-only
+            for mobile performance), so the wrapper hides at the same
+            breakpoint, otherwise this leaves an empty padded box on phones. */}
+        <section className="hidden border-b border-gray-100 p-6 md:block dark:border-gray-700">
+          <NewsletterEmbed mobile={false} theme={theme} bordered={false} />
+        </section>
 
         <Section title="Frequently Asked Questions">
           <div className="space-y-6">
@@ -684,7 +693,7 @@ const Content = () => {
               { points: "Time complexity counts operations; space complexity counts the memory alive at the peak, including the recursion stack." },
               { points: "Nested loops multiply, sequential loops add, and only the dominant term survives." },
               { points: "Best, average and worst case describe the input; O, Ω and Θ describe the bound. They are independent." },
-              { points: "Memory can usually be traded for speed — memoization, hashing and precomputed tables are all the same bargain." },
+              { points: "Memory can usually be traded for speed: memoization, hashing and precomputed tables are all the same bargain." },
               { points: "Let the input size pick your target complexity before you start writing code." },
             ]}
           />
