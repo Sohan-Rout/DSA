@@ -27,7 +27,7 @@ export default function ListedOnSection({ className = "" }) {
       {/* divide-* draws the separator only *between* items, so the rule count
           stays correct however many listings the array grows to. It runs
           horizontally when the row stacks on narrow screens. */}
-      <ul className="grid divide-y divide-gray-200 overflow-hidden rounded-xl border border-gray-200 bg-white sm:grid-flow-col sm:auto-cols-fr sm:divide-x sm:divide-y-0 dark:divide-gray-700 dark:border-gray-700 dark:bg-neutral-950">
+      <ul className="grid divide-y divide-gray-200 overflow-hidden rounded-xl border border-gray-200 bg-white md:grid-flow-col md:auto-cols-fr md:divide-x md:divide-y-0 dark:divide-gray-700 dark:border-gray-700 dark:bg-neutral-950">
         {LISTINGS.map(({ name, href, Mark }) => (
           <li key={name}>
             <a
