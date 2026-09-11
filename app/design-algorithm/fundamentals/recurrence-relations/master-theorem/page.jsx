@@ -11,7 +11,7 @@ export const metadata = {
   alternates: {
     canonical: "/design-algorithm/fundamentals/recurrence-relations/master-theorem",
   },
-  title: "Master Theorem — Solve Divide and Conquer Recurrences",
+  title: "Master Theorem: Solve Divide and Conquer Recurrences",
   description:
     "Learn the Master Theorem for solving divide-and-conquer recurrences of the form T(n) = aT(n/b) + f(n). Covers where the three cases come from, the watershed function, the regularity condition, worked examples for merge sort, binary search and Strassen's algorithm, and the recurrences the theorem cannot solve.",
   keywords: [
@@ -41,7 +41,7 @@ export const metadata = {
 };
 
 // FAQ answers mirror the "Frequently Asked Questions" section in content.jsx.
-// Keep the two in sync — structured data that does not match the visible page
+// Keep the two in sync: structured data that does not match the visible page
 // is a manual-action risk.
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -60,7 +60,7 @@ const faqJsonLd = {
       name: "What do a, b and f(n) mean in the Master Theorem?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "a is the number of subproblems each call creates, b is the factor by which the input size shrinks in each subproblem, and f(n) is the work done outside the recursive calls — the dividing and combining. For merge sort, a = 2, b = 2 and f(n) = n, because it makes two half-size calls and merges in linear time.",
+        text: "a is the number of subproblems each call creates, b is the factor by which the input size shrinks in each subproblem, and f(n) is the work done outside the recursive calls: the dividing and combining. For merge sort, a = 2, b = 2 and f(n) = n, because it makes two half-size calls and merges in linear time.",
       },
     },
     {
@@ -92,7 +92,7 @@ const faqJsonLd = {
       name: "What is the difference between the Master Theorem and the recursion tree method?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "The Master Theorem is a shortcut — three cases, no work, but it only fits recurrences of one exact shape. The recursion tree method is a general technique that works on any recurrence, including unequal splits and subtractive ones, at the cost of doing the summation yourself. The Master Theorem is really just the recursion tree argument, solved once in general.",
+        text: "The Master Theorem is a shortcut: three cases, no work, but it only fits recurrences of one exact shape. The recursion tree method is a general technique that works on any recurrence, including unequal splits and subtractive ones, at the cost of doing the summation yourself. The Master Theorem is really just the recursion tree argument, solved once in general.",
       },
     },
   ],

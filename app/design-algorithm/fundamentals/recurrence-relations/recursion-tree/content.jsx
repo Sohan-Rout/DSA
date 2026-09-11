@@ -2,6 +2,7 @@
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
+import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
 
 // A recursion tree drawn from a level description. Each node carries the size
@@ -266,7 +267,7 @@ const Content = () => {
     {
       points: "A node holds the non-recursive cost of one call.",
       subpoints: [
-        "Not the total cost of that call — only the f(n) part. The recursive work is represented by the node's children.",
+        "Not the total cost of that call: only the f(n) part. The recursive work is represented by the node's children.",
       ],
     },
     {
@@ -284,7 +285,7 @@ const Content = () => {
     {
       points: "The depth is how many times you can shrink n before hitting the base case.",
       subpoints: [
-        "Dividing by b gives depth log_b n. Subtracting a constant gives depth n — a much taller tree.",
+        "Dividing by b gives depth log_b n. Subtracting a constant gives depth n: a much taller tree.",
       ],
     },
     {
@@ -339,7 +340,7 @@ const Content = () => {
       "Recursion tree",
       "Any recurrence",
       "Draw and sum",
-      "The answer plus the intuition — but informally",
+      "The answer plus the intuition, but informally",
     ],
     [
       "Master Theorem",
@@ -373,7 +374,7 @@ const Content = () => {
     {
       points: "Find the depth of the tree.",
       subpoints: [
-        "Solve for when the subproblem size reaches 1 — log_b n for division, n for subtraction.",
+        "Solve for when the subproblem size reaches 1: log_b n for division, n for subtraction.",
       ],
     },
     {
@@ -418,7 +419,7 @@ const Content = () => {
     {
       points: "Summing a geometric series as though it were constant.",
       subpoints: [
-        "If levels shrink by a constant ratio, the total is a constant multiple of the first level — do not multiply by the depth.",
+        "If levels shrink by a constant ratio, the total is a constant multiple of the first level. Do not multiply by the depth.",
       ],
     },
     {
@@ -448,7 +449,7 @@ const Content = () => {
     },
     {
       q: "When is a recursion tree better than the Master Theorem?",
-      a: "Whenever the Master Theorem does not apply — unequal subproblem sizes such as T(n/3) + T(2n/3), subtractive recurrences such as T(n − 1), or recurrences that fall into the theorem's gaps like T(n) = 2T(n/2) + n/log n. The tree handles all of these, because it makes no assumption about the shape of the recurrence.",
+      a: "Whenever the Master Theorem does not apply: unequal subproblem sizes such as T(n/3) + T(2n/3), subtractive recurrences such as T(n − 1), or recurrences that fall into the theorem's gaps like T(n) = 2T(n/2) + n/log n. The tree handles all of these, because it makes no assumption about the shape of the recurrence.",
     },
     {
       q: "What do the three tree shapes mean?",
@@ -459,8 +460,8 @@ const Content = () => {
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
       <div className="md:col-span-3">
-        <NewsletterEmbed mobile={false} theme={theme} />
-        <DailyDSAEmbed mobile={false} theme={theme} />
+        <BackendEngineerCard theme={theme} />
+        <DailyDSAEmbed mobile={false} theme={theme} bordered={false} />
       </div>
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         <Section title="What the Recursion Tree Method Is">
@@ -476,7 +477,7 @@ const Content = () => {
             an answer and explains it. The Master Theorem gives you a result with
             no insight into where it came from. The substitution method proves a
             result you must already have guessed. The recursion tree shows you
-            where the time actually goes — and it works on recurrences the other
+            where the time actually goes, and it works on recurrences the other
             two cannot express.
           </P>
         </Section>
@@ -491,7 +492,7 @@ const Content = () => {
           </Callout>
         </Section>
 
-        <Section title="Worked Example 1 — T(n) = 2T(n/2) + n">
+        <Section title="Worked Example 1: T(n) = 2T(n/2) + n">
           <P>
             The merge sort recurrence. Each call does n units of work merging, then
             hands two half-size problems to its children:
@@ -527,7 +528,7 @@ const Content = () => {
           <InContentAd />
         </Section>
 
-        <Section title="Worked Example 2 — When the Levels Shrink">
+        <Section title="Worked Example 2: When the Levels Shrink">
           <P>
             Solve T(n) = 3T(n/4) + n². Now the node count triples while each
             subproblem&apos;s cost drops by a factor of 16, so the levels do{" "}
@@ -540,7 +541,7 @@ const Content = () => {
           <P>
             Each level costs 3/16 of the one above it. That is a decreasing
             geometric series, and a geometric series is dominated by its first
-            term — so instead of multiplying by the depth, sum the series:
+            term, so instead of multiplying by the depth, sum the series:
           </P>
           <Derivation
             steps={[
@@ -554,7 +555,7 @@ const Content = () => {
             The leaves are negligible here: there are 3^(log₄n) = n^(log₄3) ≈
             n^0.79 of them, far fewer than the n² work done at the root. Computing
             the ratio T(n)/n² numerically converges to 1.2308, which is 16/13
-            exactly — the constant the series predicts.
+            exactly: the constant the series predicts.
           </P>
         </Section>
 
@@ -577,7 +578,7 @@ const Content = () => {
           </P>
         </Section>
 
-        <Section title="Worked Example 3 — Unequal Subproblems">
+        <Section title="Worked Example 3: Unequal Subproblems">
           <P>
             Solve T(n) = T(n/3) + T(2n/3) + n. There is no single b here, so the
             Master Theorem cannot even state this recurrence. The tree handles it
@@ -602,15 +603,15 @@ const Content = () => {
               },
               {
                 points: "The longest path multiplies by 2/3 each step.",
-                subpoints: ["It survives for log_{3/2}n levels — the height of the tree."],
+                subpoints: ["It survives for log_{3/2}n levels: the height of the tree."],
               },
             ]}
           />
           <P>
             Above the shortest leaf, every level costs exactly n; below it, levels
             cost at most n. That brackets the total between n·log₃n and
-            n·log_{"{3/2}"}n. Both are Θ(n log n) — the bases differ only by a
-            constant factor — so <b>T(n) = Θ(n log n)</b>.
+            n·log_{"{3/2}"}n. Both are Θ(n log n) (the bases differ only by a
+            constant factor), so <b>T(n) = Θ(n log n)</b>.
           </P>
           <Callout>
             This is the practical case that matters most: it is the recurrence for
@@ -620,7 +621,7 @@ const Content = () => {
           </Callout>
         </Section>
 
-        <Section title="Worked Example 4 — Filling a Master Theorem Gap">
+        <Section title="Worked Example 4: Filling a Master Theorem Gap">
           <P>
             Solve T(n) = 2T(n/2) + n/log n. The Master Theorem is silent here: the
             watershed is n, and n/log n is smaller than n but not{" "}
@@ -643,7 +644,7 @@ const Content = () => {
           />
           <P>
             The harmonic series is what the Master Theorem&apos;s gap is hiding.
-            Neither geometric nor constant, it sums to a logarithm — giving an
+            Neither geometric nor constant, it sums to a logarithm: giving an
             answer, n log log n, that none of the three cases could have produced.
             Evaluating the recurrence numerically confirms it: T(n)/(n log log n)
             settles at about 0.72 and stays there as n grows.
@@ -675,6 +676,14 @@ const Content = () => {
           <List items={mistakes} />
         </Section>
 
+        {/* Newsletter: inline, after the substantive sections and before the
+            end matter. NewsletterEmbed renders null below 768px (desktop-only
+            for mobile performance), so the wrapper hides at the same
+            breakpoint, otherwise this leaves an empty padded box on phones. */}
+        <section className="hidden border-b border-gray-100 p-6 md:block dark:border-gray-700">
+          <NewsletterEmbed mobile={false} theme={theme} bordered={false} />
+        </section>
+
         <Section title="Frequently Asked Questions">
           <div className="space-y-6">
             {faqs.map((faq, index) => (
@@ -692,10 +701,10 @@ const Content = () => {
           <List
             items={[
               { points: "Draw the calls as a tree, cost each level, and sum the levels plus the leaves." },
-              { points: "A node holds f(n) — the non-recursive work — never T(n)." },
+              { points: "A node holds f(n) (the non-recursive work), never T(n)." },
               { points: "Level costs either shrink, stay equal or grow, and those three shapes are the Master Theorem's three cases." },
               { points: "Depth is log_b n when the input is divided and n when it is decremented; the depth multiplies everything." },
-              { points: "A geometric series is dominated by its first term — sum it, do not multiply it by the depth." },
+              { points: "A geometric series is dominated by its first term: sum it, do not multiply it by the depth." },
               { points: "The tree gives you the answer and the intuition; use substitution to turn it into a proof." },
             ]}
           />

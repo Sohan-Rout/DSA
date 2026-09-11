@@ -2,6 +2,7 @@
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
+import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
 
 // The real cost of the first 32 appends to a doubling array: mostly 1, with a
@@ -104,8 +105,8 @@ const CostChart = () => {
         </text>
       </svg>
       <figcaption className="mt-2 text-center text-xs text-gray-500 dark:text-gray-400">
-        Most appends cost 1. The red spikes are resizes, and they double in height
-        — but they also halve in frequency, which is exactly why the average stays
+        Most appends cost 1. The red spikes are resizes, and they double in height,
+        but they also halve in frequency, which is exactly why the average stays
         flat.
       </figcaption>
     </figure>
@@ -264,7 +265,7 @@ const Content = () => {
     {
       points: "The guarantee is about the sequence, not any single operation.",
       subpoints: [
-        "One individual append genuinely can cost Θ(n). Amortized analysis never claims otherwise — it claims those expensive operations cannot happen often.",
+        "One individual append genuinely can cost Θ(n). Amortized analysis never claims otherwise. It claims those expensive operations cannot happen often.",
       ],
     },
   ];
@@ -291,7 +292,7 @@ const Content = () => {
   ];
 
   const counterRows = [
-    ["0", "0 0 0 0", "—", "—"],
+    ["0", "0 0 0 0", "-", "-"],
     ["1", "0 0 0 1", "1", "1"],
     ["2", "0 0 1 0", "2", "3"],
     ["3", "0 0 1 1", "1", "4"],
@@ -307,7 +308,7 @@ const Content = () => {
     ["Binary counter increment", "Θ(log n) bit flips", "O(1)", "Bit i only flips every 2ⁱ increments"],
     ["Stack with multipop", "Θ(n) for one multipop", "O(1)", "Each element can only be popped once after being pushed"],
     ["Hash table insert with rehash", "Θ(n) on rehash", "O(1)", "Same doubling argument as the dynamic array"],
-    ["Union-Find (rank + path compression)", "Θ(log n)", "O(α(n))", "α is the inverse Ackermann function — effectively ≤ 4"],
+    ["Union-Find (rank + path compression)", "Θ(log n)", "O(α(n))", "α is the inverse Ackermann function: effectively ≤ 4"],
     ["Splay tree operations", "Θ(n)", "O(log n)", "A costly splay restructures the tree, making later ones cheap"],
     ["Fibonacci heap extract-min", "Θ(n)", "O(log n)", "Consolidation is deferred until an extract forces it"],
   ];
@@ -369,7 +370,7 @@ const Content = () => {
   const faqs = [
     {
       q: "What is amortized analysis?",
-      a: "It is a way of measuring the cost of an operation by averaging it over a worst-case sequence of operations, rather than looking at a single operation in isolation. It is used when an occasional expensive operation is guaranteed to be paid for by many cheap ones — like appending to a dynamic array, where the rare resize is offset by all the appends that fit without resizing.",
+      a: "It is a way of measuring the cost of an operation by averaging it over a worst-case sequence of operations, rather than looking at a single operation in isolation. It is used when an occasional expensive operation is guaranteed to be paid for by many cheap ones: like appending to a dynamic array, where the rare resize is offset by all the appends that fit without resizing.",
     },
     {
       q: "Is amortized analysis the same as average-case analysis?",
@@ -389,15 +390,15 @@ const Content = () => {
     },
     {
       q: "When is an amortized bound not good enough?",
-      a: "When any individual operation being slow is unacceptable. Real-time systems, safety-critical controllers and latency-sensitive services all care about the worst single operation, not the average across a sequence — a resize that stalls one request in a thousand still shows up as a p99 latency spike even though the amortized cost is O(1).",
+      a: "When any individual operation being slow is unacceptable. Real-time systems, safety-critical controllers and latency-sensitive services all care about the worst single operation, not the average across a sequence: a resize that stalls one request in a thousand still shows up as a p99 latency spike even though the amortized cost is O(1).",
     },
   ];
 
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
       <div className="md:col-span-3">
-        <NewsletterEmbed mobile={false} theme={theme} />
-        <DailyDSAEmbed mobile={false} theme={theme} />
+        <BackendEngineerCard theme={theme} />
+        <DailyDSAEmbed mobile={false} theme={theme} bordered={false} />
       </div>
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         <Section title="What Amortized Analysis Is">
@@ -406,7 +407,7 @@ const Content = () => {
             occasionally enormous. Appending to a dynamic array normally writes one
             slot, but when the buffer fills it allocates a bigger one and copies
             everything across. Quoting the worst case for that operation gives
-            O(n), which is technically correct and deeply misleading — it suggests
+            O(n), which is technically correct and deeply misleading. It suggests
             that building a list of a million items costs a trillion operations,
             when it actually costs about two million.
           </P>
@@ -414,12 +415,12 @@ const Content = () => {
             <b>Amortized analysis measures the average cost per operation across a
             worst-case sequence of operations.</b> Instead of asking &quot;how bad
             can one append be?&quot;, it asks &quot;how bad can n appends be, in
-            total?&quot; — and then divides. When the expensive cases are
+            total?&quot; and then divides. When the expensive cases are
             structurally guaranteed to be rare, that average is the honest number.
           </P>
         </Section>
 
-        <Section title="The Motivating Example — a Doubling Array">
+        <Section title="The Motivating Example: a Doubling Array">
           <P>
             A dynamic array keeps a buffer with some capacity. Appending writes one
             element; if the buffer is full, it first allocates one of double the
@@ -444,14 +445,14 @@ const Content = () => {
           />
           <CostChart />
           <P>
-            The picture contains the entire argument. The spikes double in height —
+            The picture contains the entire argument. The spikes double in height,
             but they also double in spacing. Each resize is twice as expensive as
             the last and happens half as often, and those two effects cancel
             exactly.
           </P>
         </Section>
 
-        <Section title="Method 1 — Aggregate Analysis">
+        <Section title="Method 1: Aggregate Analysis">
           <P>
             The simplest method: add up the cost of the whole sequence, then
             divide by the number of operations. For n appends, the writes cost n,
@@ -469,12 +470,12 @@ const Content = () => {
             Running this for real confirms it: the total cost of n appends divided
             by n settles at about 2.05 and stays there, whether n is a thousand or
             a million. The bound of 3 is comfortable, and the important point is
-            that it is a <i>constant</i> — it does not creep upward with n.
+            that it is a <i>constant</i>. It does not creep upward with n.
           </P>
           <Callout>
             The reason doubling works is that the growth is <b>geometric</b>. If
             you instead grew the buffer by a fixed 10 slots each time, you would
-            resize n/10 times, copying an average of n/2 elements each time —
+            resize n/10 times, copying an average of n/2 elements each time:
             Θ(n²) in total, and Θ(n) amortized per append. The choice of growth
             factor is what creates the guarantee.
           </Callout>
@@ -504,16 +505,16 @@ const Content = () => {
           />
           <P>
             Measured over 100,000 increments, the ratio is 1.99998 flips per
-            increment — converging on 2 exactly as the series predicts.
+            increment: converging on 2 exactly as the series predicts.
           </P>
 
           <InContentAd />
         </Section>
 
-        <Section title="Method 2 — The Accounting Method">
+        <Section title="Method 2: The Accounting Method">
           <P>
             Also called the banker&apos;s method. You <b>invent</b> a charge for
-            each operation — its amortized cost — which may be more or less than
+            each operation (its amortized cost), which may be more or less than
             what the operation really costs. The surplus is stored as{" "}
             <b>credit</b> on the data structure and later spent on expensive
             operations.
@@ -527,11 +528,11 @@ const Content = () => {
           <P>For the dynamic array, charge 3 units per append and spend them as:</P>
           <List
             items={[
-              { points: "1 unit pays for writing this element into the buffer — spent immediately." },
+              { points: "1 unit pays for writing this element into the buffer: spent immediately." },
               { points: "1 unit is banked to pay for copying this element at the next resize." },
               {
                 points:
-                  "1 unit is banked to pay for copying one older element — specifically, one of the elements that were already present at the last resize and so have no credit of their own.",
+                  "1 unit is banked to pay for copying one older element: specifically, one of the elements that were already present at the last resize and so have no credit of their own.",
               },
             ]}
           />
@@ -546,24 +547,24 @@ const Content = () => {
             operations can carry different charges. For a stack supporting push,
             pop and multipop(k), charge 2 for a push (1 to push, 1 banked for the
             eventual pop) and 0 for pop and multipop. Every pop is then paid for by
-            the credit its push left behind — so even a multipop that removes a
+            the credit its push left behind, so even a multipop that removes a
             thousand elements is free, because those thousand pushes already paid.
           </P>
         </Section>
 
-        <Section title="Method 3 — The Potential Method">
+        <Section title="Method 3: The Potential Method">
           <P>
             The physicist&apos;s method, and the most powerful of the three.
             Instead of tracking credit on individual elements, define a{" "}
             <b>potential function</b> Φ that maps the whole state of the data
-            structure to a number — the stored-up work it represents.
+            structure to a number: the stored-up work it represents.
           </P>
           <Formula>amortized cost = actual cost + Φ(after) − Φ(before)</Formula>
           <P>
             Summed over a sequence, the Φ terms telescope: every intermediate value
             appears once positive and once negative, leaving only Φ(end) − Φ(start).
-            So as long as <b>Φ never drops below its starting value</b> — usually
-            arranged by setting Φ(D₀) = 0 and keeping Φ ≥ 0 — the total amortized
+            So as long as <b>Φ never drops below its starting value</b> (usually
+            arranged by setting Φ(D₀) = 0 and keeping Φ ≥ 0), the total amortized
             cost is an upper bound on the total real cost.
           </P>
           <P>
@@ -586,7 +587,7 @@ const Content = () => {
           <P>
             <b>Dynamic array.</b> Let Φ = 2·size − capacity. Immediately after a
             resize, size is half of capacity so Φ = 0; as appends fill the buffer,
-            Φ climbs to equal capacity by the time the next resize is due — having
+            Φ climbs to equal capacity by the time the next resize is due: having
             accumulated precisely enough potential to fund the copy. Working through
             both cases gives an amortized cost of 3 per append, agreeing with the
             accounting method.
@@ -600,7 +601,7 @@ const Content = () => {
             firstColMono={false}
           />
           <P>
-            All three are provably equivalent in power — any bound one can
+            All three are provably equivalent in power: any bound one can
             establish, the others can too. Aggregate analysis is the one to reach
             for when every operation is the same kind. The accounting method suits
             structures with several operation types. The potential method is the
@@ -632,7 +633,7 @@ const Content = () => {
           <P>
             Union-Find is the most striking entry. With union by rank and path
             compression, a sequence of m operations costs O(m·α(n)), where α is the
-            inverse Ackermann function — a function that grows so slowly it is below
+            inverse Ackermann function: a function that grows so slowly it is below
             5 for any n that could be written down in this universe. The
             per-operation worst case is still logarithmic; only the amortized
             analysis reveals that the structure is effectively constant-time.
@@ -648,7 +649,7 @@ const Content = () => {
           <List items={limits} />
           <P>
             The engineering response is not to abandon the structure but to spread
-            the cost deliberately — incremental or background resizing, or
+            the cost deliberately: incremental or background resizing, or
             preallocating capacity up front when the final size is known. Both
             convert a rare large stall into a small predictable overhead on every
             operation.
@@ -658,6 +659,14 @@ const Content = () => {
         <Section title="Common Mistakes">
           <List items={mistakes} />
         </Section>
+
+        {/* Newsletter: inline, after the substantive sections and before the
+            end matter. NewsletterEmbed renders null below 768px (desktop-only
+            for mobile performance), so the wrapper hides at the same
+            breakpoint, otherwise this leaves an empty padded box on phones. */}
+        <section className="hidden border-b border-gray-100 p-6 md:block dark:border-gray-700">
+          <NewsletterEmbed mobile={false} theme={theme} bordered={false} />
+        </section>
 
         <Section title="Frequently Asked Questions">
           <div className="space-y-6">
@@ -675,11 +684,11 @@ const Content = () => {
         <Section title="Key Takeaways">
           <List
             items={[
-              { points: "Amortized cost is the average per operation over a worst-case sequence — not over a distribution of inputs." },
+              { points: "Amortized cost is the average per operation over a worst-case sequence, not over a distribution of inputs." },
               { points: "It applies when expensive operations are structurally rare, such as a resize that doubles in cost but halves in frequency." },
               { points: "Aggregate analysis divides the total by n; the accounting method banks credit; the potential method tracks a function Φ." },
               { points: "The accounting method requires credit to stay non-negative; the potential method requires Φ never to fall below its starting value." },
-              { points: "Geometric growth is what creates the guarantee — growing by a fixed amount gives Θ(n) amortized, not O(1)." },
+              { points: "Geometric growth is what creates the guarantee: growing by a fixed amount gives Θ(n) amortized, not O(1)." },
               { points: "An amortized bound says nothing about any single operation, so it is the wrong tool for real-time or tail-latency requirements." },
             ]}
           />

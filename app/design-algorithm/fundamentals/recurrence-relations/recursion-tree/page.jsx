@@ -11,7 +11,7 @@ export const metadata = {
   alternates: {
     canonical: "/design-algorithm/fundamentals/recurrence-relations/recursion-tree",
   },
-  title: "Recursion Tree Method — Solve Recurrences by Summing Levels",
+  title: "Recursion Tree Method: Solve Recurrences by Summing Levels",
   description:
     "Learn the recursion tree method for solving recurrence relations: draw the calls as a tree, cost each level, and sum. Covers the anatomy of a tree, worked examples for T(n) = 2T(n/2) + n, 3T(n/4) + n², the unequal split T(n/3) + T(2n/3) + n, and the Master Theorem gap case 2T(n/2) + n/log n.",
   keywords: [
@@ -40,7 +40,7 @@ export const metadata = {
 };
 
 // FAQ answers mirror the "Frequently Asked Questions" section in content.jsx.
-// Keep the two in sync — structured data that does not match the visible page
+// Keep the two in sync: structured data that does not match the visible page
 // is a manual-action risk.
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -83,7 +83,7 @@ const faqJsonLd = {
       name: "When is a recursion tree better than the Master Theorem?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Whenever the Master Theorem does not apply — unequal subproblem sizes such as T(n/3) + T(2n/3), subtractive recurrences such as T(n - 1), or recurrences that fall into the theorem's gaps like T(n) = 2T(n/2) + n/log n. The tree handles all of these, because it makes no assumption about the shape of the recurrence.",
+        text: "Whenever the Master Theorem does not apply: unequal subproblem sizes such as T(n/3) + T(2n/3), subtractive recurrences such as T(n - 1), or recurrences that fall into the theorem's gaps like T(n) = 2T(n/2) + n/log n. The tree handles all of these, because it makes no assumption about the shape of the recurrence.",
       },
     },
     {

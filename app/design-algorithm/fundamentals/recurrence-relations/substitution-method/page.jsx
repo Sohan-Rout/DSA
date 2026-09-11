@@ -12,7 +12,7 @@ export const metadata = {
     canonical:
       "/design-algorithm/fundamentals/recurrence-relations/substitution-method",
   },
-  title: "Substitution Method — Solve Recurrences by Induction",
+  title: "Substitution Method: Solve Recurrences by Induction",
   description:
     "Learn the substitution method for solving recurrence relations: guess the bound, then prove it by mathematical induction. Covers full worked proofs for T(n) = 2T(n/2) + n and T(n) = T(n-1) + n, matching lower bounds, why the constant must come out unchanged, strengthening the inductive hypothesis, and changing variables.",
   keywords: [
@@ -41,7 +41,7 @@ export const metadata = {
 };
 
 // FAQ answers mirror the "Frequently Asked Questions" section in content.jsx.
-// Keep the two in sync — structured data that does not match the visible page
+// Keep the two in sync: structured data that does not match the visible page
 // is a manual-action risk.
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -60,7 +60,7 @@ const faqJsonLd = {
       name: "When should I use substitution instead of the Master Theorem?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Whenever the recurrence does not have the form T(n) = aT(n/b) + f(n) with constant a and b — unequal subproblem sizes, subtractive recurrences like T(n - 1), non-constant a — or when it falls into one of the Master Theorem's gaps. Substitution works on any recurrence; the Master Theorem is faster but far narrower.",
+        text: "Whenever the recurrence does not have the form T(n) = aT(n/b) + f(n) with constant a and b (unequal subproblem sizes, subtractive recurrences like T(n - 1), non-constant a), or when it falls into one of the Master Theorem's gaps. Substitution works on any recurrence; the Master Theorem is faster but far narrower.",
       },
     },
     {
@@ -68,7 +68,7 @@ const faqJsonLd = {
       name: "How do I come up with the initial guess?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Usually from a recursion tree: sketch it, sum the levels roughly, and use that as your guess. You can also match the recurrence against a familiar one, or prove loose upper and lower bounds first and tighten from both sides. The guess does not need to be inspired — it needs to be checkable.",
+        text: "Usually from a recursion tree: sketch it, sum the levels roughly, and use that as your guess. You can also match the recurrence against a familiar one, or prove loose upper and lower bounds first and tighten from both sides. The guess does not need to be inspired. It needs to be checkable.",
       },
     },
     {
@@ -76,7 +76,7 @@ const faqJsonLd = {
       name: "Why does my substitution proof fail even though the guess is right?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Almost always because the inductive hypothesis is too weak. If the algebra leaves you at cn + 1 when you needed cn, subtract a lower-order term from the hypothesis — assume T(n) <= cn - d instead of T(n) <= cn. The stronger statement is paradoxically easier to prove, because the extra -d absorbs the leftover term.",
+        text: "Almost always because the inductive hypothesis is too weak. If the algebra leaves you at cn + 1 when you needed cn, subtract a lower-order term from the hypothesis: assume T(n) <= cn - d instead of T(n) <= cn. The stronger statement is paradoxically easier to prove, because the extra -d absorbs the leftover term.",
       },
     },
     {
@@ -92,7 +92,7 @@ const faqJsonLd = {
       name: "Can the substitution method prove a lower bound as well?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. The structure is identical, with <= replaced by >= throughout, and the constant chosen small enough rather than large enough. To establish Theta you prove both directions — an O bound and an Omega bound with the same function.",
+        text: "Yes. The structure is identical, with <= replaced by >= throughout, and the constant chosen small enough rather than large enough. To establish Theta you prove both directions: an O bound and an Omega bound with the same function.",
       },
     },
   ],

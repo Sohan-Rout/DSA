@@ -11,7 +11,7 @@ export const metadata = {
   alternates: {
     canonical: "/design-algorithm/fundamentals/amortized-analysis",
   },
-  title: "Amortized Analysis — Aggregate, Accounting and Potential Methods",
+  title: "Amortized Analysis: Aggregate, Accounting and Potential Methods",
   description:
     "Learn amortized analysis: why an occasional expensive operation does not make a data structure slow. Covers the dynamic array doubling argument, the binary counter, all three methods (aggregate, accounting, potential), how amortized differs from average-case, and when an amortized bound is not good enough.",
   keywords: [
@@ -41,7 +41,7 @@ export const metadata = {
 };
 
 // FAQ answers mirror the "Frequently Asked Questions" section in content.jsx.
-// Keep the two in sync — structured data that does not match the visible page
+// Keep the two in sync: structured data that does not match the visible page
 // is a manual-action risk.
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -52,7 +52,7 @@ const faqJsonLd = {
       name: "What is amortized analysis?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "It is a way of measuring the cost of an operation by averaging it over a worst-case sequence of operations, rather than looking at a single operation in isolation. It is used when an occasional expensive operation is guaranteed to be paid for by many cheap ones — like appending to a dynamic array, where the rare resize is offset by all the appends that fit without resizing.",
+        text: "It is a way of measuring the cost of an operation by averaging it over a worst-case sequence of operations, rather than looking at a single operation in isolation. It is used when an occasional expensive operation is guaranteed to be paid for by many cheap ones: like appending to a dynamic array, where the rare resize is offset by all the appends that fit without resizing.",
       },
     },
     {
@@ -92,7 +92,7 @@ const faqJsonLd = {
       name: "When is an amortized bound not good enough?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "When any individual operation being slow is unacceptable. Real-time systems, safety-critical controllers and latency-sensitive services all care about the worst single operation, not the average across a sequence — a resize that stalls one request in a thousand still shows up as a p99 latency spike even though the amortized cost is O(1).",
+        text: "When any individual operation being slow is unacceptable. Real-time systems, safety-critical controllers and latency-sensitive services all care about the worst single operation, not the average across a sequence: a resize that stalls one request in a thousand still shows up as a p99 latency spike even though the amortized cost is O(1).",
       },
     },
   ],

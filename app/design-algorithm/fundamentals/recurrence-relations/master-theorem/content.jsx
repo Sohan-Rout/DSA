@@ -2,6 +2,7 @@
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
+import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
 
 // A three-level recursion tree for T(n) = a*T(n/b) + f(n). Seeing that every
@@ -196,19 +197,19 @@ const Content = () => {
 
   const parts = [
     {
-      points: "a — how many subproblems each call creates.",
+      points: "a: how many subproblems each call creates.",
       subpoints: [
         "Merge sort makes two recursive calls, so a = 2. It must be a constant ≥ 1; it does not have to equal b.",
       ],
     },
     {
-      points: "b — the factor by which the input shrinks.",
+      points: "b: the factor by which the input shrinks.",
       subpoints: [
         "Halving the array means b = 2. It must be a constant greater than 1, otherwise the recursion never reaches the base case.",
       ],
     },
     {
-      points: "f(n) — everything the call does outside the recursion.",
+      points: "f(n): everything the call does outside the recursion.",
       subpoints: [
         "The splitting, the merging, the partitioning, the combining. For merge sort this is the O(n) merge.",
       ],
@@ -247,12 +248,12 @@ const Content = () => {
   const exampleRows = [
     ["T(n) = 2T(n/2) + n", "2", "2", "n¹", "Case 2", "Θ(n log n)", "Merge sort"],
     ["T(n) = T(n/2) + 1", "1", "2", "n⁰ = 1", "Case 2", "Θ(log n)", "Binary search"],
-    ["T(n) = 4T(n/2) + n", "4", "2", "n²", "Case 1", "Θ(n²)", "—"],
-    ["T(n) = 9T(n/3) + n", "9", "3", "n²", "Case 1", "Θ(n²)", "—"],
+    ["T(n) = 4T(n/2) + n", "4", "2", "n²", "Case 1", "Θ(n²)", "-"],
+    ["T(n) = 9T(n/3) + n", "9", "3", "n²", "Case 1", "Θ(n²)", "-"],
     ["T(n) = 7T(n/2) + n²", "7", "2", "n^2.807", "Case 1", "Θ(n^log₂7)", "Strassen"],
-    ["T(n) = 2T(n/2) + n²", "2", "2", "n¹", "Case 3", "Θ(n²)", "—"],
-    ["T(n) = 3T(n/4) + n log n", "3", "4", "n^0.793", "Case 3", "Θ(n log n)", "—"],
-    ["T(n) = 8T(n/2) + n³", "8", "2", "n³", "Case 2", "Θ(n³ log n)", "—"],
+    ["T(n) = 2T(n/2) + n²", "2", "2", "n¹", "Case 3", "Θ(n²)", "-"],
+    ["T(n) = 3T(n/4) + n log n", "3", "4", "n^0.793", "Case 3", "Θ(n log n)", "-"],
+    ["T(n) = 8T(n/2) + n³", "8", "2", "n³", "Case 2", "Θ(n³ log n)", "-"],
   ];
 
   const failRows = [
@@ -327,7 +328,7 @@ const Content = () => {
     {
       points: "Skipping the regularity condition in Case 3.",
       subpoints: [
-        "It holds for every polynomial f, which is why it is easy to forget — but it is part of the case, and there are standard exercises built on functions where it fails.",
+        "It holds for every polynomial f, which is why it is easy to forget, but it is part of the case, and there are standard exercises built on functions where it fails.",
       ],
     },
     {
@@ -363,7 +364,7 @@ const Content = () => {
     },
     {
       q: "What do a, b and f(n) mean?",
-      a: "a is the number of subproblems each call creates, b is the factor by which the input size shrinks in each subproblem, and f(n) is the work done outside the recursive calls — the dividing and combining. For merge sort, a = 2, b = 2 and f(n) = n, because it makes two half-size calls and merges in linear time.",
+      a: "a is the number of subproblems each call creates, b is the factor by which the input size shrinks in each subproblem, and f(n) is the work done outside the recursive calls: the dividing and combining. For merge sort, a = 2, b = 2 and f(n) = n, because it makes two half-size calls and merges in linear time.",
     },
     {
       q: "Why does merge sort come out as Θ(n log n)?",
@@ -379,15 +380,15 @@ const Content = () => {
     },
     {
       q: "What is the difference between the Master Theorem and the recursion tree method?",
-      a: "The Master Theorem is a shortcut — three cases, no work, but it only fits recurrences of one exact shape. The recursion tree method is a general technique that works on any recurrence, including unequal splits and subtractive ones, at the cost of doing the summation yourself. The Master Theorem is really just the recursion tree argument, solved once in general.",
+      a: "The Master Theorem is a shortcut: three cases, no work, but it only fits recurrences of one exact shape. The recursion tree method is a general technique that works on any recurrence, including unequal splits and subtractive ones, at the cost of doing the summation yourself. The Master Theorem is really just the recursion tree argument, solved once in general.",
     },
   ];
 
   return (
     <main className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:gap-4">
       <div className="md:col-span-3">
-        <NewsletterEmbed mobile={false} theme={theme} />
-        <DailyDSAEmbed mobile={false} theme={theme} />
+        <BackendEngineerCard theme={theme} />
+        <DailyDSAEmbed mobile={false} theme={theme} bordered={false} />
       </div>
       <article className="md:col-span-9 max-w-4xl bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
         <Section title="What Problem Does the Master Theorem Solve?">
@@ -396,14 +397,14 @@ const Content = () => {
             itself. Merge sort sorts an array by sorting two half-arrays and
             merging the results, so its running time obeys T(n) = 2T(n/2) + n.
             That equation is called a <b>recurrence relation</b>, and it is not an
-            answer — you cannot look at it and say how fast merge sort is.
+            answer. You cannot look at it and say how fast merge sort is.
           </P>
           <P>
             Solving the recurrence means turning it into a closed form like
             Θ(n log n). There are three standard ways to do that: expand it into a
             recursion tree and sum the levels, guess an answer and prove it by
-            induction (the substitution method), or — when the recurrence has the
-            right shape — apply the <b>Master Theorem</b> and simply read the
+            induction (the substitution method), or (when the recurrence has the
+            right shape), apply the <b>Master Theorem</b> and simply read the
             answer off. This page is about the third.
           </P>
           <Callout>
@@ -421,8 +422,8 @@ const Content = () => {
           <Formula>T(n) = a·T(n/b) + f(n), where a ≥ 1 and b &gt; 1 are constants</Formula>
           <List items={parts} />
           <P>
-            If your recurrence does not fit this template — different-sized
-            subproblems, a subtractive step, a non-constant a — the Master Theorem
+            If your recurrence does not fit this template (different-sized
+            subproblems, a subtractive step, a non-constant a), the Master Theorem
             does not apply, and no amount of rearranging will change that. The
             section on limitations below covers what to do instead.
           </P>
@@ -493,7 +494,7 @@ const Content = () => {
           </P>
           <P>
             The ε in Cases 1 and 3 matters more than it looks. It requires f to be{" "}
-            <i>polynomially</i> smaller or larger — smaller or larger by a factor
+            <i>polynomially</i> smaller or larger: smaller or larger by a factor
             of n^ε for some ε &gt; 0. Being smaller by a factor of log n does not
             qualify, and that is precisely the gap where the theorem gives no
             answer at all.
@@ -506,7 +507,7 @@ const Content = () => {
           </P>
         </Section>
 
-        <Section title="Worked Example — Case 2 (Merge Sort)">
+        <Section title="Worked Example: Case 2 (Merge Sort)">
           <P>Solve T(n) = 2T(n/2) + n.</P>
           <List
             ordered
@@ -532,7 +533,7 @@ const Content = () => {
           </P>
         </Section>
 
-        <Section title="Worked Example — Case 1 (Leaves Dominate)">
+        <Section title="Worked Example: Case 1 (Leaves Dominate)">
           <P>Solve T(n) = 4T(n/2) + n.</P>
           <List
             ordered
@@ -540,7 +541,7 @@ const Content = () => {
               { points: "Identify the parts.", subpoints: ["a = 4, b = 2, f(n) = n."] },
               {
                 points: "Compute the watershed function.",
-                subpoints: ["n^(log₂4) = n² — four subproblems of half the size produce n² leaves."],
+                subpoints: ["n^(log₂4) = n²: four subproblems of half the size produce n² leaves."],
               },
               {
                 points: "Compare.",
@@ -552,12 +553,12 @@ const Content = () => {
             ]}
           />
           <P>
-            The linear work at the root is irrelevant here — the tree branches so
+            The linear work at the root is irrelevant here: the tree branches so
             fast that almost all the cost sits in the leaves.
           </P>
         </Section>
 
-        <Section title="Worked Example — Case 3 (Root Dominates)">
+        <Section title="Worked Example: Case 3 (Root Dominates)">
           <P>Solve T(n) = 2T(n/2) + n².</P>
           <List
             ordered
@@ -593,7 +594,7 @@ const Content = () => {
           <P>
             Strassen&apos;s matrix multiplication is the most interesting row. It
             replaces eight recursive multiplications with seven, dropping a from 8
-            to 7 — and since the answer is Θ(n^(log₂a)), that single change takes
+            to 7, and since the answer is Θ(n^(log₂a)), that single change takes
             the running time from Θ(n³) to roughly Θ(n^2.807). It is a direct,
             practical demonstration that a is the parameter worth fighting over.
           </P>
@@ -615,7 +616,7 @@ const Content = () => {
           <P>
             The first row is the classic gap case. Here f(n) = n/log n is smaller
             than the watershed n, but only by a logarithmic factor, not a
-            polynomial one — so Case 1 does not apply, and it is not equal to n
+            polynomial one, so Case 1 does not apply, and it is not equal to n
             either, so Case 2 does not apply. The theorem is simply silent, and you
             need a recursion tree to find the real answer.
           </P>
@@ -624,6 +625,14 @@ const Content = () => {
         <Section title="Common Mistakes">
           <List items={mistakes} />
         </Section>
+
+        {/* Newsletter: inline, after the substantive sections and before the
+            end matter. NewsletterEmbed renders null below 768px (desktop-only
+            for mobile performance), so the wrapper hides at the same
+            breakpoint, otherwise this leaves an empty padded box on phones. */}
+        <section className="hidden border-b border-gray-100 p-6 md:block dark:border-gray-700">
+          <NewsletterEmbed mobile={false} theme={theme} bordered={false} />
+        </section>
 
         <Section title="Frequently Asked Questions">
           <div className="space-y-6">
@@ -646,7 +655,7 @@ const Content = () => {
               { points: "Case 1: leaves dominate → Θ(n^(log_b a)). Case 2: levels tie → Θ(n^(log_b a) log n). Case 3: root dominates → Θ(f(n))." },
               { points: "The difference in Cases 1 and 3 must be polynomial; a log factor is not enough, and that gap is where the theorem stays silent." },
               { points: "Case 3 is not finished until you have checked the regularity condition a·f(n/b) ≤ c·f(n)." },
-              { points: "Unequal splits, subtractive recurrences and non-constant a all fall outside the theorem — reach for a recursion tree instead." },
+              { points: "Unequal splits, subtractive recurrences and non-constant a all fall outside the theorem: reach for a recursion tree instead." },
             ]}
           />
         </Section>

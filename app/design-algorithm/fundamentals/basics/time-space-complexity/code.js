@@ -2,7 +2,7 @@ const codeExamples = {
   javascript: `// Comparing complexities of two solutions to the same problem
 // Problem: does the array contain any duplicate value?
 
-// Approach 1 — compare every pair
+// Approach 1: compare every pair
 // Time:  O(n^2)  ... two nested loops over n
 // Space: O(1)    ... no extra structure is allocated
 function hasDuplicateBrute(arr) {
@@ -14,7 +14,7 @@ function hasDuplicateBrute(arr) {
   return false;
 }
 
-// Approach 2 — remember what we have already seen
+// Approach 2. Remember what we have already seen
 // Time:  O(n)    ... one pass, O(1) average work per element
 // Space: O(n)    ... the set can hold every element
 function hasDuplicateSet(arr) {

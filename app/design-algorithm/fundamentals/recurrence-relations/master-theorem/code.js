@@ -67,7 +67,7 @@ function masterTheorem(a, b, fExp) {
   if (Math.abs(fExp - watershed) <= EPS) {
     return \`Case 2: T(n) = Theta(n^\${watershed.toFixed(3)} log n)\`;
   }
-  return \`Case 3: T(n) = Theta(n^\${fExp}) — verify a*f(n/b) <= c*f(n)\`;
+  return \`Case 3: T(n) = Theta(n^\${fExp}): verify a*f(n/b) <= c*f(n)\`;
 }
 
 console.log(masterTheorem(2, 2, 1));  // Case 2: Theta(n log n)
