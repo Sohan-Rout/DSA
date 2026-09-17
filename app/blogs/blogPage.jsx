@@ -2,12 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  FiClock,
-  FiCalendar,
-  FiArrowRight,
-} from "react-icons/fi";
-import { motion } from "framer-motion";
+import { FiCalendar, FiArrowRight } from "react-icons/fi";
+import { motion, MotionConfig } from "framer-motion";
 import PopularTopics from "@/app/blogs/components/PopularTopics";
 import blogData from "@/app/blogs/data/blogs.json";
 
@@ -16,57 +12,52 @@ const BlogPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
 
-  // Filtered blogs
-  const filteredBlogs = blogData.filter((blog) => {
-    const matchesSearch =
-      searchQuery === "" ||
-      blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      blog.tags.some((tag) =>
-        tag.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+  // Filtered blogs, newest first so a new post lands at the top
+  const filteredBlogs = [...blogData]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .filter((blog) => {
+      const matchesSearch =
+        searchQuery === "" ||
+        blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        blog.tags.some((tag) =>
+          tag.toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
-    const matchesCategory =
-      activeCategory === "All" || blog.category === activeCategory;
+      const matchesCategory =
+        activeCategory === "All" || blog.category === activeCategory;
 
-    return matchesSearch && matchesCategory;
-  });
+      return matchesSearch && matchesCategory;
+    });
 
   // Categories
   const categories = ["All", ...new Set(blogData.map((blog) => blog.category))];
-
-  // Featured posts (latest 5 by date)
-  const featuredPosts = [...blogData]
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 4);
 
   // Popular tags, taken from the posts themselves so every chip returns results
   const popularTags = [...new Set(blogData.flatMap((blog) => blog.tags))];
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="min-h-screen bg-linear-to-br from-zinc-50 to-zinc-100 dark:from-zinc-900 dark:to-zinc-950">
-      <main className="container mx-auto max-w-6xl px-6 pt-32 pb-20">
+      <main className="container mx-auto max-w-6xl px-6 pt-28 sm:pt-32 pb-20">
         {/* Hero Section */}
-        <section className="mb-20 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+        <section className="mb-12 sm:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-5xl mt-10 md:text-5xl font-bold text-zinc-800 dark:text-white mb-6 leading-tight"
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="max-w-3xl"
           >
-            Insights for{" "}
-            <span className="bg-linear-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-              Modern Developers
-            </span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-xl text-zinc-600 dark:text-zinc-300 max-w-3xl mx-auto mb-10"
-          >
-            Cutting-edge tutorials, guides, and deep dives on web development,
-            programming, and more.
-          </motion.p>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400">
+              The DSA Visualizer Blog
+            </p>
+            <h1 className="mb-5 text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] text-zinc-900 dark:text-white text-balance">
+              Practical writing for people who build software
+            </h1>
+            <p className="text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+              Guides, explainers and honest answers on programming, web
+              development, computer science and the rest of the stack.
+            </p>
+          </motion.div>
 
           {/* Email Subscribe Section — hidden until the mailing list backend
               exists. The form has no submit handler yet, so re-enable this
@@ -95,107 +86,6 @@ const BlogPage = () => {
             </p>
           </motion.div>
           */}
-        </section>
-
-        {/* Featured Posts */}
-        <section className="mb-20">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="text-3xl font-medium text-zinc-800 dark:text-white">
-              Featured Articles
-            </h2>
-          </div>
-          <div className="h-0.5 max-w-6xl rounded-full bg-linear-to-l from-zinc-600 via-black to-zinc-600 mb-4"></div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Left column: recent upload (big card) - vertical layout */}
-            <motion.div
-              key={featuredPosts[0].id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ y: -5 }}
-              className="col-span-12 lg:col-span-6 h-full bg-white dark:bg-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-zinc-100 dark:border-zinc-700/50"
-            >
-              <Link href={featuredPosts[0].slug}>
-                <div className="relative h-64 w-full overflow-hidden">
-                  <Image
-                    src={featuredPosts[0].image}
-                    alt={featuredPosts[0].title}
-                    fill
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    priority
-                    className="object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
-                  <span className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-medium px-2.5 py-1 rounded-full">
-                    {featuredPosts[0].category}
-                  </span>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center text-sm text-zinc-500 dark:text-zinc-400 mb-3">
-                    <FiCalendar className="mr-1.5" />
-                    <span className="mr-3">{featuredPosts[0].date}</span>
-                    <FiClock className="mr-1.5" />
-                    <span>{featuredPosts[0].readTime}</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-zinc-800 dark:text-white mb-3">
-                    {featuredPosts[0].title}
-                  </h3>
-                  <p className="text-zinc-600 dark:text-zinc-300 mb-4 line-clamp-3">
-                    {featuredPosts[0].excerpt}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {featuredPosts[0].tags.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 rounded-full text-zinc-700 dark:text-zinc-300"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Right column: next 4 featured cards in vertical list-style layout */}
-            <div className="col-span-12 lg:col-span-6 h-full flex flex-col gap-6">
-              {featuredPosts.slice(1, 5).map((post, index) => (
-                <motion.div
-                  key={post.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                  className="flex gap-4 items-start bg-white dark:bg-zinc-800 rounded-xl p-4 shadow hover:shadow-md transition-shadow border border-zinc-100 dark:border-zinc-700/50"
-                >
-                  <div className="relative w-32 h-24 shrink-0 overflow-hidden rounded-md">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      sizes="128px"
-                      className="object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center text-sm text-zinc-500 dark:text-zinc-400 mb-1">
-                      <FiCalendar className="mr-1.5" />
-                      <span className="mr-3">{post.date}</span>
-                      <FiClock className="mr-1.5" />
-                      <span>{post.readTime}</span>
-                    </div>
-                    <h3 className="text-lg font-semibold text-zinc-800 dark:text-white mb-1">
-                      <Link href={post.slug}>{post.title}</Link>
-                    </h3>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-300 line-clamp-2">
-                      {post.excerpt}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </section>
 
         {/* Popular Tags */}
@@ -240,7 +130,7 @@ const BlogPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredBlogs.length > 0 ? (
-              filteredBlogs.map((post) => (
+              filteredBlogs.map((post, index) => (
                 <motion.article
                   key={post.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -257,6 +147,8 @@ const BlogPage = () => {
                           alt={post.title}
                           fill
                           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                          // First row is now above the fold, so it carries the LCP image
+                          priority={index < 3}
                           className="object-cover transition-transform duration-500 hover:scale-105"
                         />
                       </div>
@@ -316,6 +208,7 @@ const BlogPage = () => {
         </section>
       </main>
     </div>
+    </MotionConfig>
   );
 };
 

@@ -60,5 +60,21 @@
       "Beginner Programming"
     ],
     "image": "/blog/timeRequired.png"
+  },
+  {
+    "id": 5,
+    "title": "What Is a Server? A Beginner's Guide",
+    "excerpt": "Every click, message and video starts with a request to a computer somewhere else. Learn what a server is, where it lives, how the client-server model works, and what really separates a server from your laptop.",
+    "date": "Sep 17, 2026",
+    "readTime": "5 min read",
+    "slug": "/blogs/Content/whatIsServer",
+    "category": "Backend",
+    "tags": [
+      "Servers",
+      "Backend",
+      "Web Development",
+      "Beginner Programming"
+    ],
+    "image": "/blog/whatIsServer.png"
   }
 ]
