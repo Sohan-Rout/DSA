@@ -140,7 +140,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="md:hidden px-6 pb-4 pt-2 flex flex-col gap-2 animate-fade-in-down">
+          <div className="md:hidden max-h-[calc(100dvh-7rem)] overflow-y-auto overscroll-contain px-6 pb-4 pt-2 flex flex-col gap-2 animate-fade-in-down">
             <div>
               <button
                 onClick={() => setServicesOpen(!servicesOpen)}
