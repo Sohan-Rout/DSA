@@ -171,10 +171,14 @@ const handleLogout = async () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — capped to the space left below the bar rather than a
+          fixed height, and scrollable, so opening both dropdowns on a short
+          screen can't clip the items underneath. */}
       <div
-        className={`md:hidden bg-white/90 dark:bg-gray-900/90 rounded-xl backdrop-blur-lg transition-all duration-300 overflow-hidden ${
-          mobileMenuOpen ? "max-h-128 py-4" : "max-h-0 py-0"
+        className={`md:hidden bg-white/90 dark:bg-gray-900/90 rounded-xl backdrop-blur-lg transition-all duration-300 ${
+          mobileMenuOpen
+            ? "max-h-[calc(100dvh-7rem)] overflow-y-auto overscroll-contain py-4"
+            : "max-h-0 overflow-hidden py-0"
         }`}
       >
         <ul className="flex flex-col space-y-4 px-6">
