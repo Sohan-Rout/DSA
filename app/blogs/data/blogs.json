@@ -76,5 +76,21 @@
       "Beginner Programming"
     ],
     "image": "/blog/whatIsServer.png"
+  },
+  {
+    "id": 6,
+    "title": "LeetCode Is Harder Than It Looks",
+    "excerpt": "You read the problem. You understand what it's asking. And then nothing. Why knowing DSA and solving DSA problems are two different skills, and how pattern recognition closes the gap.",
+    "date": "Sep 18, 2026",
+    "readTime": "7 min read",
+    "slug": "/blogs/Content/leetcodeIsHard",
+    "category": "DSA",
+    "tags": [
+      "LeetCode",
+      "DSA",
+      "Coding Interview",
+      "Problem Solving"
+    ],
+    "image": "/blog/leetcodeIsHard.png"
   }
 ]
