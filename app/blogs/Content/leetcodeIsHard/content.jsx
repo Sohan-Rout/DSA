@@ -74,7 +74,7 @@ const BlogContent = () => (
     deck="The hard part was never writing the code. It's knowing how to approach a problem you have never seen before."
     date="Sep 18, 2026"
     readTime="7 min read"
-    image="/blog/leetcodeIsHard.png"
+    image="/blog/leetcodeIsHard.webp"
     imageAlt="A LeetCode-style problem with a blank editor beside it"
     imageCaption="You understand the question. The editor is still empty. That gap is the real difficulty."
     url="https://www.dsavisualizer.in/blogs/Content/leetcodeIsHard"

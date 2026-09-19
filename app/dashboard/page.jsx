@@ -145,7 +145,10 @@ export default function Dashboard() {
                   >
                     <div className="relative aspect-16/10 w-full overflow-hidden bg-inset">
                       <Image
-                        src={`/modules/${mod.image}`}
+                        // Supabase still stores the original .png filename;
+                        // the files on disk are .webp, so swap the extension here
+                        // rather than migrating the column.
+                        src={`/modules/${mod.image.replace(/\.png$/, ".webp")}`}
                         alt=""
                         fill
                         sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"

@@ -84,7 +84,7 @@ const BlogContent = () => (
     deck="The concepts are identical everywhere. What changes is what's built in, what you write yourself, and where the performance surprises hide."
     date="May 19, 2025"
     readTime="8 min read"
-    image="/blog/dsaDifferent.png"
+    image="/blog/dsaDifferent.webp"
     imageAlt="Data structures compared across programming languages"
     imageCaption="Same ideas, different vocabulary — and occasionally different costs."
     url="https://www.dsavisualizer.in/blogs/Content/dsaDifferent"
