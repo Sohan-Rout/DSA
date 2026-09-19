@@ -76,7 +76,7 @@ const BlogContent = () => (
     deck="Not the interview answer — where DSA genuinely changes the code you ship, and how much of it is actually worth learning."
     date="May 17, 2025"
     readTime="8 min read"
-    image="/blog/dsaWebDev.png"
+    image="/blog/dsaWebDev.webp"
     imageAlt="Data structures applied to web development"
     imageCaption="Most front-end performance problems are algorithm problems in disguise."
     url="https://www.dsavisualizer.in/blogs/Content/dsaWebDev"

@@ -18,7 +18,7 @@ const Diagram = ({ name, alt, width, height, caption }) => (
     {/* Background matches the images' own, so they sit flush in the frame */}
     <div className="overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
       <Image
-        src={`/blog/whatIsServer/${name}.png`}
+        src={`/blog/whatIsServer/${name}.webp`}
         alt={alt}
         width={width}
         height={height}
@@ -27,7 +27,7 @@ const Diagram = ({ name, alt, width, height, caption }) => (
         style={{ maxWidth: `${width}px` }}
       />
       <Image
-        src={`/blog/whatIsServer/${name}-dark.png`}
+        src={`/blog/whatIsServer/${name}-dark.webp`}
         alt={alt}
         width={width}
         height={height}
@@ -91,7 +91,7 @@ const BlogContent = () => (
     deck="Every click, message and video starts with a request to a computer somewhere else. Here is what that computer is, where it lives, and what it actually does."
     date="Sep 17, 2026"
     readTime="5 min read"
-    image="/blog/whatIsServer.png"
+    image="/blog/whatIsServer.webp"
     imageAlt="A browser sending a request to a server and receiving a response"
     imageCaption="Almost everything you do online is a conversation between a client and a server."
     url="https://www.dsavisualizer.in/blogs/Content/whatIsServer"

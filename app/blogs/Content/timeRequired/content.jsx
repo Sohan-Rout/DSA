@@ -138,7 +138,7 @@ const BlogContent = () => (
     deck="Honest timelines for going from your first array problem to genuine fluency — and what actually decides which end of the range you land on."
     date="June 20, 2025"
     readTime="10 min read"
-    image="/blog/timeRequired.png"
+    image="/blog/timeRequired.webp"
     imageAlt="A learning timeline for data structures and algorithms"
     imageCaption="Consistency moves this timeline far more than raw talent does."
     url="https://www.dsavisualizer.in/blogs/Content/timeRequired"

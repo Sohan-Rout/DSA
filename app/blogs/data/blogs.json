@@ -12,7 +12,7 @@
       "Web Development",
       "Algorithms"
     ],
-    "image": "/blog/dsaWebDev.png"
+    "image": "/blog/dsaWebDev.webp"
   },
   {
     "id": 2,
@@ -27,7 +27,7 @@
       "Programming Languages",
       "Algorithms"
     ],
-    "image": "/blog/dsaDifferent.png"
+    "image": "/blog/dsaDifferent.webp"
   },
   {
     "id": 3,
@@ -43,7 +43,7 @@
       "Algorithms",
       "Beginner Programming"
     ],
-    "image": "/blog/whatIsDS.png"
+    "image": "/blog/whatIsDS.webp"
   },
   {
     "id": 4,
@@ -59,7 +59,7 @@
       "Algorithms",
       "Beginner Programming"
     ],
-    "image": "/blog/timeRequired.png"
+    "image": "/blog/timeRequired.webp"
   },
   {
     "id": 5,
@@ -75,7 +75,7 @@
       "Web Development",
       "Beginner Programming"
     ],
-    "image": "/blog/whatIsServer.png"
+    "image": "/blog/whatIsServer.webp"
   },
   {
     "id": 6,
@@ -91,6 +91,6 @@
       "Coding Interview",
       "Problem Solving"
     ],
-    "image": "/blog/leetcodeIsHard.png"
+    "image": "/blog/leetcodeIsHard.webp"
   }
 ]

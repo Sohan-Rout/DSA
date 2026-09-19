@@ -24,42 +24,42 @@ const dataStructures = [
     description:
       "A row of boxes, each holding a value at a numbered position. Reading position 4 is instant, but inserting in the middle means shifting everything after it.",
     note: "Best for ordered items you mostly read",
-    image: "/blog/DSimage/array.png",
+    image: "/blog/DSimage/array.webp",
   },
   {
     title: "Stack (LIFO)",
     description:
       "A stack of plates — you add and remove from the top only. The last thing in is the first thing out.",
     note: "Best for undo history and backtracking",
-    image: "/blog/DSimage/stack.png",
+    image: "/blog/DSimage/stack.webp",
   },
   {
     title: "Queue (FIFO)",
     description:
       "People standing in line. The first to arrive is the first served, and nobody jumps ahead.",
     note: "Best for scheduling and task processing",
-    image: "/blog/DSimage/queue.png",
+    image: "/blog/DSimage/queue.webp",
   },
   {
     title: "Linked List",
     description:
       "A chain of nodes, each holding a value and the address of the next. There is no fixed size, and inserting means rewriting one link.",
     note: "Best for frequent insertions and removals",
-    image: "/blog/DSimage/linkedList.png",
+    image: "/blog/DSimage/linkedList.webp",
   },
   {
     title: "Tree",
     description:
       "Starts at a root and branches out. Each step down usually halves what is left to search, which is where the speed comes from.",
     note: "Best for hierarchies and fast lookup",
-    image: "/blog/DSimage/tree.png",
+    image: "/blog/DSimage/tree.webp",
   },
   {
     title: "Graph",
     description:
       "Nodes connected by edges, with no required shape. Any node can link to any other, which is how real networks behave.",
     note: "Best for networks, maps and recommendations",
-    image: "/blog/DSimage/graph.png",
+    image: "/blog/DSimage/graph.webp",
   },
 ];
 
@@ -96,7 +96,7 @@ const BlogContent = () => (
     deck="Arrays, stacks, linked lists — what the words actually mean, why each one exists, and how to tell which to reach for."
     date="May 23, 2025"
     readTime="7 min read"
-    image="/blog/whatIsDS.png"
+    image="/blog/whatIsDS.webp"
     imageAlt="An illustration of common data structures"
     imageCaption="Six structures cover the vast majority of everyday programming."
     url="https://www.dsavisualizer.in/blogs/Content/whatIsDS"

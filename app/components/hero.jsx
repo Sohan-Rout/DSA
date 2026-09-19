@@ -162,7 +162,7 @@ const HeroSection = () => {
           <div className="lg:w-1/2 lg:h-full flex justify-center items-center mt-10 lg:mt-0 relative">
             <div className="relative w-full h-full max-w-lg">
               <Image
-                src="/GurlThinking.png"
+                src="/GurlThinking.webp"
                 alt="Person thinking about algorithms"
                 width={1200}
                 height={1200}
