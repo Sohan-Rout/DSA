@@ -96,7 +96,6 @@ export default function Page() {
               { text: "Single Ended Queue", url: "./singleEnded" },
               { text: "Circular Queue", url: "./circular" },
               { text: "Double-Ended Queue", url: "./deque" },
-              { text: "Multiple Queue", url: "./multiple" },
             ]}
           />
         </section>

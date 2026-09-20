@@ -130,7 +130,7 @@ export default function Page() {
           <ExploreOther
             title="Explore other topics"
             links={[
-              { text: "Asymptotic Notation", url: "../asymptotic-notation" },
+              { text: "Asymptotic Notation", url: "/design-algorithm/fundamentals/basics/asymptotic-notation" },
             ]}
           />
         </section>

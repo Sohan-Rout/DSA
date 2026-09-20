@@ -93,10 +93,10 @@ export default function Page() {
           <ExploreOther
             title="Explore Other Tree Topics"
             links={[
-              { text: "Pre-order Traversal", url: "../pre-order" },
-              { text: "In-order Traversal", url: "../in-order" },
-              { text: "Level-order Traversal", url: "../level-order" },
-              { text: "Morris Traversal", url: "../morris" },
+              { text: "Pre-order Traversal", url: "/visualizer/trees/traversal/pre-order" },
+              { text: "In-order Traversal", url: "/visualizer/trees/traversal/in-order" },
+              { text: "Level-order Traversal", url: "/visualizer/trees/traversal/level-order" },
+              { text: "Morris Traversal", url: "/visualizer/trees/traversal/morris" },
               { text: "BST Insertion", url: "../bst/insertion" },
               { text: "BST Deletion", url: "../bst/deletion" },
               { text: "AVL Balancing", url: "../bst/avl" },

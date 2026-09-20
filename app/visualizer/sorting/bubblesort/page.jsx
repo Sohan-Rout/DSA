@@ -106,7 +106,7 @@ export default function Page() {
             },
             { text: "Merge Sort", url: "/visualizer/sorting/mergesort" },
             { text: "Quick Sort", url: "/visualizer/sorting/quicksort" },
-            { text: "Heap Sort", url: "/algorithms/sorting/heap" },
+            { text: "Heap Sort", url: "/visualizer/trees/applications/heap-sort" },
           ]}
         />
         </section>

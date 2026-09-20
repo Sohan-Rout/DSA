@@ -136,10 +136,10 @@ export default function Page() {
           <ExploreOther
             title="Explore other topics"
             links={[
-              { text: "Master Theorem", url: "../master-theorem" },
-              { text: "Substitution Method", url: "../substitution-method" },
-              { text: "Asymptotic Notation", url: "../../basics/asymptotic-notation" },
-              { text: "Time & Space Complexity", url: "../../basics/time-space-complexity" },
+              { text: "Master Theorem", url: "/design-algorithm/fundamentals/recurrence-relations/master-theorem" },
+              { text: "Substitution Method", url: "/design-algorithm/fundamentals/recurrence-relations/substitution-method" },
+              { text: "Asymptotic Notation", url: "/design-algorithm/fundamentals/basics/asymptotic-notation" },
+              { text: "Time & Space Complexity", url: "/design-algorithm/fundamentals/basics/time-space-complexity" },
             ]}
           />
         </section>

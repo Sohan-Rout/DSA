@@ -68,6 +68,59 @@ const sections = [
       },
     ],
   },
+  {
+    title: "Divide and Conquer",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M12 4v4m0 0L7 12m5-4l5 4M7 12v4m0 0H4m3 0h3m7-4v4m0 0h-3m3 0h3"
+        />
+      </svg>
+    ),
+    info: {
+      About:
+        "Break a problem into smaller copies of itself, solve those recursively, and combine the answers. Start with the divide, conquer and combine steps and the recurrence they produce, then see the paradigm at work in binary search, merge sort and quick sort.",
+    },
+    subsections: [
+      {
+        title: "Getting Started",
+        items: [
+          {
+            name: "Introduction",
+            path: "/design-algorithm/divide-and-conquer/introduction",
+          },
+        ],
+      },
+      // These point at the existing visualizer modules rather than restating
+      // them here, so each algorithm keeps a single page.
+      {
+        title: "Algorithm",
+        items: [
+          {
+            name: "Binary Search",
+            path: "/visualizer/searching/binarysearch",
+          },
+          {
+            name: "Merge Sort",
+            path: "/visualizer/sorting/mergesort",
+          },
+          {
+            name: "Quick Sort",
+            path: "/visualizer/sorting/quicksort",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 const DesignAlgorithm = () => {
