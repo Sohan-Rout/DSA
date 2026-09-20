@@ -2,9 +2,9 @@
 import ComplexityGraph from "@/app/components/ui/graph";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
-import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 const StackFullDiagram = ({ values, capacity, keyPrefix }) => {
   const boxWidth = 84;
@@ -388,8 +388,7 @@ const Content = () => {
           </div>
         </section>
       </article>
-      <NewsletterEmbed mobile theme={theme} />
-      <DailyDSAEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };

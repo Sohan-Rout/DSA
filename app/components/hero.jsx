@@ -142,7 +142,7 @@ const HeroSection = () => {
                     </div>
                   ))}
                 </div>
-                <span>1,000+ Active Learners</span>
+                <span>10,000+ Active Learners</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg

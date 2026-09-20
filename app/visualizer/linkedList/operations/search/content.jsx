@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 const Content = () => {
   const [theme, setTheme] = useState("light");
@@ -290,7 +290,7 @@ const Content = () => {
 
         <InContentAd />
       </article>
-      <NewsletterEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };

@@ -5,6 +5,7 @@ import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 // Drawn as a ring rather than a row: the wrap-around is the whole point, and
 // a straight line can't show index 4 handing over to index 0.
@@ -515,8 +516,7 @@ const Content = () => {
       </div>
     </section>
   </article>
-      <NewsletterEmbed mobile theme={theme} />
-      <DailyDSAEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
 </main>
     );
   };

@@ -4,6 +4,7 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 const Section = ({ title, children }) => (
   <section className="p-6 border-b border-gray-100 dark:border-gray-700 last:border-b-0">
@@ -699,8 +700,7 @@ const Content = () => {
           />
         </Section>
       </article>
-      <NewsletterEmbed mobile theme={theme} />
-      <DailyDSAEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };

@@ -4,6 +4,7 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 // Plots f(n) against a scaled bound c*g(n) so the reader can see what "for all
 // n >= n0" actually means: the bound only has to hold to the right of n0.
@@ -843,8 +844,7 @@ const Content = () => {
           />
         </Section>
       </article>
-      <NewsletterEmbed mobile theme={theme} />
-      <DailyDSAEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };

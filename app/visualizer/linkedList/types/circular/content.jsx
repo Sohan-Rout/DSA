@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 // Each node is drawn as [data | next] with the next cell holding the actual
 // address it stores. The tail's next holds the head's address rather than
@@ -704,7 +704,7 @@ const Content = () => {
 
         <InContentAd />
       </article>
-      <NewsletterEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };

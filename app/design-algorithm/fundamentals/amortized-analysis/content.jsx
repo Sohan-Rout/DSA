@@ -4,6 +4,7 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 // The real cost of the first 32 appends to a doubling array: mostly 1, with a
 // spike every power of two. Seeing the spikes next to the flat amortized line
@@ -694,8 +695,7 @@ const Content = () => {
           />
         </Section>
       </article>
-      <NewsletterEmbed mobile theme={theme} />
-      <DailyDSAEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };

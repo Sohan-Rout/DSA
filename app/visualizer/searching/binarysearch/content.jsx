@@ -6,6 +6,7 @@ import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import { useEffect, useState } from "react";
 import InContentAd from "@/app/components/ads/InContentAd";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 const RangeDiagram = ({ values, low, high, mid, found, keyPrefix }) => {
   const boxSize = 40;
@@ -318,8 +319,7 @@ const Content = () => {
           </div>
         </section>
       </article>
-      <NewsletterEmbed mobile theme={theme} />
-      <DailyDSAEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };

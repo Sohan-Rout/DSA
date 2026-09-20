@@ -5,6 +5,7 @@ import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 // Each node is drawn as a data cell plus a next cell holding the address it
 // points at, so the links the algorithm rewires are literally readable.
@@ -625,8 +626,7 @@ const Content = () => {
           </div>
         </section>
       </article>
-      <NewsletterEmbed mobile theme={theme} />
-      <DailyDSAEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };

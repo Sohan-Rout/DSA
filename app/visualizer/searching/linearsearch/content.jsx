@@ -5,6 +5,7 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 const ArrayCheckDiagram = ({ values, current, checked, found, keyPrefix }) => {
   const boxSize = 40;
@@ -301,8 +302,7 @@ const Content = () => {
           </div>
         </section>
       </article>
-      <NewsletterEmbed mobile theme={theme} />
-      <DailyDSAEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };

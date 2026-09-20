@@ -4,6 +4,7 @@ import { useTheme } from "@/app/contexts/ThemeContext";
 import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 // The method is a loop, not a straight line: a failed proof sends you back to
 // strengthen the guess rather than to abandon it. The diagram makes that cycle
@@ -662,8 +663,7 @@ const Content = () => {
           />
         </Section>
       </article>
-      <NewsletterEmbed mobile theme={theme} />
-      <DailyDSAEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };
