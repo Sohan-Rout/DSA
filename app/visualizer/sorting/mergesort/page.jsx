@@ -104,7 +104,7 @@ export default function Page() {
                 url: "/visualizer/sorting/insertionsort",
               },
               { text: "Quick Sort", url: "/visualizer/sorting/quicksort" },
-              { text: "Heap Sort", url: "/algorithms/sorting/heap" },
+              { text: "Heap Sort", url: "/visualizer/trees/applications/heap-sort" },
             ]}
           />
         </section>

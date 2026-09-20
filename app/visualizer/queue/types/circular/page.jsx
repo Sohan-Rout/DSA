@@ -91,7 +91,6 @@ export default function Page() {
             links={[
               { text: "Single Ended Queue", url: "./singleEnded" },
               { text: "Double Ended Queue", url: "./deque" },
-              { text: "Multiple Queue", url: "./multiple" },
               { text: "Priority Queue", url: "./priority" },
             ]}
           />

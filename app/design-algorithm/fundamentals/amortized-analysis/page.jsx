@@ -137,10 +137,10 @@ export default function Page() {
           <ExploreOther
             title="Explore other topics"
             links={[
-              { text: "Time & Space Complexity", url: "../basics/time-space-complexity" },
-              { text: "Asymptotic Notation", url: "../basics/asymptotic-notation" },
-              { text: "Master Theorem", url: "../recurrence-relations/master-theorem" },
-              { text: "Recursion Tree Method", url: "../recurrence-relations/recursion-tree" },
+              { text: "Time & Space Complexity", url: "/design-algorithm/fundamentals/basics/time-space-complexity" },
+              { text: "Asymptotic Notation", url: "/design-algorithm/fundamentals/basics/asymptotic-notation" },
+              { text: "Master Theorem", url: "/design-algorithm/fundamentals/recurrence-relations/master-theorem" },
+              { text: "Recursion Tree Method", url: "/design-algorithm/fundamentals/recurrence-relations/recursion-tree" },
             ]}
           />
         </section>

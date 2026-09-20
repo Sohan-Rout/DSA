@@ -138,7 +138,7 @@ export default function Page() {
           <ExploreOther
             title="Explore other topics"
             links={[
-              { text: "Time & Space Complexity", url: "../time-space-complexity" },
+              { text: "Time & Space Complexity", url: "/design-algorithm/fundamentals/basics/time-space-complexity" },
             ]}
           />
         </section>

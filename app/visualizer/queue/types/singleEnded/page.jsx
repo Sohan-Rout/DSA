@@ -90,7 +90,6 @@ export default function Page() {
           links={[
             { text: "Double Ended Queue", url: "./deque" },
             { text: "Circular Queue", url: "./circular" },
-            { text: "Multiple Queue", url: "./multiple" },
             { text: "Priority Queue", url: "./priority" },
           ]}
         />
