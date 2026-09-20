@@ -7,7 +7,15 @@ const FALLBACK_HEIGHT = 350;
 
 // `bordered` mirrors NewsletterEmbed: defaults to true so existing placements
 // are untouched, opt out per usage.
-const DailyDSAEmbed = ({ mobile = false, theme = "light", bordered = true }) => {
+// `eager` opts out of lazy loading. Inside the mobile carousel the iframe can
+// be scrolled past while it is the inactive slide, and a lazy iframe that never
+// intersected the viewport stays on about:blank — an empty dashed box.
+const DailyDSAEmbed = ({
+  mobile = false,
+  theme = "light",
+  bordered = true,
+  eager = false,
+}) => {
   const [height, setHeight] = useState(FALLBACK_HEIGHT);
   const iframeRef = useRef(null);
 
@@ -48,7 +56,7 @@ const DailyDSAEmbed = ({ mobile = false, theme = "light", bordered = true }) => 
             bordered ? "rounded-none border border-dashed border-black" : "border-0"
           }`}
           title="Daily DSA Challenge"
-          loading="lazy"
+          loading={eager ? "eager" : "lazy"}
         ></iframe>
       </div>
     </div>

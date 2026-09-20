@@ -6,6 +6,7 @@ import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
 import { motion } from "framer-motion";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 const lowbit = (i) => i & -i;
 const BOX = 30;
@@ -200,8 +201,7 @@ const Content = () => {
           <InContentAd />
         </section>
       </article>
-      <NewsletterEmbed mobile theme={theme} />
-      <DailyDSAEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };

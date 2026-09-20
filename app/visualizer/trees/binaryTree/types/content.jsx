@@ -2,10 +2,10 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { useTheme } from "@/app/contexts/ThemeContext";
-import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import DailyDSAEmbed from "@/app/components/ui/DailyDSAEmbed";
 import InContentAd from "@/app/components/ads/InContentAd";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 const NODE_GRAD_ID = "bt-types-node-grad";
 const SHADOW_FILTER_ID = "bt-types-node-shadow";
@@ -324,8 +324,7 @@ const Content = () => {
           <InContentAd />
         </section>
       </article>
-      <NewsletterEmbed mobile theme={theme} />
-      <DailyDSAEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };

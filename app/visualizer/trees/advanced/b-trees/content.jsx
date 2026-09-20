@@ -6,6 +6,7 @@ import NewsletterEmbed from "@/app/components/ui/NewsletterEmbed";
 import BackendEngineerCard from "@/app/components/ui/BackendEngineerCard";
 import InContentAd from "@/app/components/ads/InContentAd";
 import { motion } from "framer-motion";
+import MobileEmbedCarousel from "@/app/components/ui/MobileEmbedCarousel";
 
 const KEY_W = 36;
 const NODE_H = 30;
@@ -263,8 +264,7 @@ const Content = () => {
           </div>
         </section>
       </article>
-      <NewsletterEmbed mobile theme={theme} />
-      <DailyDSAEmbed mobile theme={theme} />
+      <MobileEmbedCarousel theme={theme} />
     </main>
   );
 };
