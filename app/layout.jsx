@@ -1,8 +1,8 @@
 import "./globals.css";
 import Script from "next/script";
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { UserProvider } from '@/app/contexts/UserContext';
-import { ThemeProvider } from '@/app/contexts/ThemeContext';
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { UserProvider } from "@/app/contexts/UserContext";
+import { ThemeProvider } from "@/app/contexts/ThemeContext";
 import ClientLayoutWrapper from "@/app/components/ui/ClientLayoutWrapper";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
@@ -10,52 +10,55 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 export const metadata = {
   metadataBase: new URL("https://www.dsavisualizer.in"),
   title: {
-    default: 'DSA Visualizer | Visualize & Learn DSA the Smart Way',
+    default: "DSA Visualizer | Visualize & Learn DSA the Smart Way",
     // Pages set a bare title; the brand is appended here so it stays
     // consistent and new pages get it automatically.
-    template: '%s | DSA Visualizer',
+    template: "%s | DSA Visualizer",
   },
-  description: 'Master Data Structures and Algorithms with interactive visualizations. Perfect for students, beginners, and interview prep. Visualize Stack, Queue, Tree, Graph, Sorting & more.',
+  description:
+    "Master Data Structures and Algorithms with interactive visualizations. Perfect for students, beginners, and interview prep. Visualize Stack, Queue, Tree, Graph, Sorting & more.",
   keywords: [
-    'DSA Visualizer',
-    'Data Structures and Algorithms',
-    'Visual DSA Tool',
-    'Learn DSA Online',
-    'DSA for Beginners',
-    'DSA Practice',
-    'Stack Visualizer',
-    'Queue Visualizer',
-    'Graph Visualizer',
-    'Sorting Algorithms',
+    "DSA Visualizer",
+    "Data Structures and Algorithms",
+    "Visual DSA Tool",
+    "Learn DSA Online",
+    "DSA for Beginners",
+    "DSA Practice",
+    "Stack Visualizer",
+    "Queue Visualizer",
+    "Graph Visualizer",
+    "Sorting Algorithms",
   ],
-  authors: [{ name: 'Sohan Rout' }],
-  creator: 'Sohan Rout',
-  publisher: 'DSA Visualizer',
-  robots: 'index, follow',
+  authors: [{ name: "Sohan Rout" }],
+  creator: "Sohan Rout",
+  publisher: "DSA Visualizer",
+  robots: "index, follow",
   icons: {
-    icon: '/favicon.ico?v=2',
+    icon: "/favicon.ico?v=2",
   },
   openGraph: {
-    title: 'DSA Visualizer | Visualize & Learn DSA the Smart Way',
-    description: 'Interactive platform to visualize and learn DSA concepts easily. Great for students and interview preparation.',
-    url: '/',
-    siteName: 'DSA Visualizer',
+    title: "DSA Visualizer | Visualize & Learn DSA the Smart Way",
+    description:
+      "Interactive platform to visualize and learn DSA concepts easily. Great for students and interview preparation.",
+    url: "/",
+    siteName: "DSA Visualizer",
     images: [
       {
-        url: '/og.png',
+        url: "/og.png",
         width: 1200,
         height: 630,
-        alt: 'DSA Visualizer Preview Image',
+        alt: "DSA Visualizer Preview Image",
       },
     ],
-    locale: 'en_US',
-    type: 'website',
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'DSA Visualizer | Learn DSA the Smart Way',
-    description: 'Visualize algorithms like Stack, Queue, Graphs, and Sorting in real-time. Learn DSA interactively.',
-    images: ['/og.png'],
+    card: "summary_large_image",
+    title: "DSA Visualizer | Learn DSA the Smart Way",
+    description:
+      "Visualize algorithms like Stack, Queue, Graphs, and Sorting in real-time. Learn DSA interactively.",
+    images: ["/og.png"],
   },
 };
 
@@ -66,7 +69,14 @@ export default function RootLayout({ children }) {
         <meta name="application-name" content="DSA Visualizer" />
         <meta property="og:site_name" content="DSA Visualizer" />
         <link rel="icon" href="/favicon.ico?v=2" />
-        
+        {/* Google AdSense */}
+        <meta name="google-adsense-account" content="ca-pub-4311738896428559" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4311738896428559"
+          crossOrigin="anonymous"
+        ></script>
+
         {/* Google Analytics Script */}
         {GA_ID && (
           <>
@@ -90,13 +100,11 @@ export default function RootLayout({ children }) {
       <body>
         <UserProvider>
           <ThemeProvider>
-            <ClientLayoutWrapper>
-              {children}
-            </ClientLayoutWrapper>
+            <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
           </ThemeProvider>
         </UserProvider>
       </body>
-      <SpeedInsights/>
+      <SpeedInsights />
     </html>
   );
 }
